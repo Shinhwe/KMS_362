@@ -18,7 +18,7 @@ public class EdiCubeOption
     {
       type = 1300;
     }
-    else if (GameConstants.isCap(itemid))
+    else if (GameConstants.isHat(itemid))
     {
       type = 1301;
     }
@@ -30,7 +30,7 @@ public class EdiCubeOption
     {
       type = 1303;
     }
-    else if (GameConstants.isCape(itemid) || GameConstants.isLongcoat(itemid) || type == 1132 || type == 1152 || (type >= 1070 && type <= 1073) || (type >= 1040 && type <= 1042) || (type >= 1061 && type <= 1063))
+    else if (GameConstants.isCape(itemid) || GameConstants.isOverall(itemid) || type == 1132 || type == 1152 || (type >= 1070 && type <= 1073) || (type >= 1040 && type <= 1042) || (type >= 1061 && type <= 1063))
     {
       type = 1304;
     }
@@ -114,7 +114,7 @@ public class EdiCubeOption
     {
       type = 1300;
     }
-    else if (GameConstants.isCap(itemid))
+    else if (GameConstants.isHat(itemid))
     {
       type = 1301;
     }
@@ -126,7 +126,7 @@ public class EdiCubeOption
     {
       type = 1303;
     }
-    else if (GameConstants.isCape(itemid) || GameConstants.isLongcoat(itemid) || type == 1132 || type == 1152 || (type >= 1070 && type <= 1073) || (type >= 1040 && type <= 1042) || (type >= 1061 && type <= 1063))
+    else if (GameConstants.isCape(itemid) || GameConstants.isOverall(itemid) || type == 1132 || type == 1152 || (type >= 1070 && type <= 1073) || (type >= 1040 && type <= 1042) || (type >= 1061 && type <= 1063))
     {
       type = 1304;
     }

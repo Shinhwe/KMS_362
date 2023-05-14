@@ -48,7 +48,7 @@ public class GameConstants
       "tuc", "reqLevel", "reqJob", "reqSTR", "reqDEX", "reqINT", "reqLUK", "reqPOP", "cash", "cursed",
       "success", "setItemID", "equipTradeBlock", "durability", "randOption", "randStat", "masterLevel", "reqSkillLevel", "elemDefault", "incRMAS",
       "incRMAF", "incRMAI", "incRMAL", "canLevel", "skill", "charmEXP", "bdR", "imdR", "onlyEquip", "jokerToSetItem",
-      "android", "attackSpeed"};
+      "android", "attackSpeed", "islot", "vslot"};
   public static final int[] hyperTele = new int[]{
       310000000, 220000000, 100000000, 250000000, 240000000, 104000000, 103000000, 102000000, 101000000, 120000000,
       260000000, 200000000, 230000000};
@@ -2634,10 +2634,6 @@ public class GameConstants
     return (isThrowingStar(itemId) || isBullet(itemId));
   }
   
-  public static boolean isOverall(int itemId)
-  {
-    return (itemId / 10000 == 105);
-  }
   
   public static boolean isPet(int itemId)
   {
@@ -2656,38 +2652,158 @@ public class GameConstants
   
   public static boolean isMagicWeapon(int itemId)
   {
-    int s = itemId / 10000;
-    return (s == 137 || s == 138 || s == 121 || s == 126);
+    // 是武器并且魔攻不是0就是魔法武器
+    Integer incMAD = MapleItemInformationProvider.getInstance().getItemInformation(itemId).equipStats.get("MAD");
+    return isWeapon(itemId) && incMAD != null && incMAD.intValue() > 0;
+  }
+  
+  public static boolean isPhysicalWeapon(int itemId)
+  {
+    // 是武器并且魔攻是0就是物理武器
+    Integer incMAD = MapleItemInformationProvider.getInstance().getItemInformation(itemId).equipStats.get("MAD");
+    return isWeapon(itemId) && (incMAD != null || incMAD.intValue() == 0);
   }
   
   public static boolean isWeapon(int itemId)
   {
-    if (itemId >= 1660000 && itemId <= 1680000)
-    {
-      return false;
-    }
-    return itemId >= 1200000 && itemId < 1800000 && !isArcaneSymbol(itemId) && !isAuthenticSymbol(itemId);
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "Wp";
   }
   
   public static boolean isSecondaryWeapon(int itemId)
   {
-    return (itemId / 10000 == 135 || itemId / 1000 == 1098 || itemId / 1000 == 1099);
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    boolean isWeapon = MapleItemInformationProvider.getInstance().getItemInformation(itemId).isWeapon;
+    return islot == "WpSi" || (isWeapon && islot == "Si");
   }
   
-  public static boolean isCap(int itemId)
+  public static boolean isHat(int itemId)
   {
-    return (itemId / 1000 == 1000 || itemId / 1000 == 1001 || itemId / 1000 == 1002 || itemId / 1000 == 1003 || itemId / 1000 == 1004 || itemId / 1000 == 1005);
-  }
-  
-  public static boolean isLongcoat(int itemId)
-  {
-    return (itemId / 1000 == 1050 || itemId / 1000 == 1051 || itemId / 1000 == 1052 || itemId / 1000 == 1053 || itemId == 1042264);
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "Cp";
   }
   
   public static boolean isCape(int itemId)
   {
-    return (itemId / 10000 == 109 || itemId / 10000 == 110 || itemId / 10000 == 113);
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "Sr";
   }
+  
+  public static boolean isShoe(int itemId)
+  {
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "So";
+  }
+  
+  public static boolean isGlove(int itemId)
+  {
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "Gv";
+  }
+  
+  public static boolean isShield(int itemId)
+  {
+    boolean isShield = MapleItemInformationProvider.getInstance().getItemInformation(itemId).isShield;
+    return isShield;
+  }
+  
+  public static boolean isShoulder(int itemId)
+  {
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "Sh";
+  }
+  
+  public static boolean isTop(int itemId)
+  {
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "Ma";
+  }
+  
+  public static boolean isOverall(int itemId)
+  {
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "MaPn";
+  }
+  
+  public static boolean isBottom(int itemId)
+  {
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "Pn";
+  }
+  
+  public static boolean isRing(int itemId)
+  {
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "Ri";
+  }
+  
+  public static boolean isBelt(int itemId)
+  {
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "Be";
+  }
+  
+  public static boolean isPendant(int itemId)
+  {
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "Pe";
+  }
+  
+  public static boolean isEarring(int itemId)
+  {
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "Ae";
+  }
+  
+  public static boolean isEyeAccessory(int itemId)
+  {
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "Ay";
+  }
+  
+  public static boolean isFaceAccessory(int itemId)
+  {
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "Af";
+  }
+  
+  public static boolean isPocketItem(int itemId)
+  {
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "Po";
+  }
+  
+  public static boolean isBadge(int itemId)
+  {
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "Ba";
+  }
+  
+  public static boolean isAndroid(int itemId)
+  {
+    boolean isAndroid = MapleItemInformationProvider.getInstance().getItemInformation(itemId).isAndroid;
+    return isAndroid;
+  }
+  
+  public static boolean isAndroidHeart(int itemId)
+  {
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "Tm" && isAndroid(itemId) == false;
+  }
+  
+  public static boolean isMedal(int itemId)
+  {
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    return islot == "Me";
+  }
+  
+  public static boolean isEmblem(int itemId)
+  {
+    String islot = MapleItemInformationProvider.getInstance().getItemInformation(itemId).islot;
+    boolean isWeapon = MapleItemInformationProvider.getInstance().getItemInformation(itemId).isWeapon;
+    return isWeapon == false && islot == "Si";
+  }
+  
   
   public static MapleInventoryType getInventoryType(int itemId)
   {
@@ -2786,13 +2902,6 @@ public class GameConstants
         return MapleWeaponType.ACIENTBOW;
     }
     return MapleWeaponType.NOT_A_WEAPON;
-  }
-  
-  public static boolean isShield(int itemId)
-  {
-    int cat = itemId / 10000;
-    cat %= 100;
-    return (cat == 9);
   }
   
   public static boolean isEquip(int itemId)
@@ -3391,10 +3500,6 @@ public class GameConstants
     return false;
   }
   
-  public static boolean isRing(int itemId)
-  {
-    return (itemId >= 1112000 && itemId < 1120000);
-  }
   
   public static boolean isEffectRing(int itemid)
   {
@@ -4476,10 +4581,6 @@ public class GameConstants
     return (itemId / 10000 == 101 || itemId / 10000 == 102 || itemId / 10000 == 103 || itemId / 10000 == 111 || itemId / 10000 == 112 || itemId / 10000 == 113 || itemId / 10000 == 114 || itemId / 10000 == 115);
   }
   
-  public static boolean isMedal(int itemId)
-  {
-    return (itemId / 10000 == 114);
-  }
   
   public static boolean potentialIDFits(int potentialID, int newstate, int i)
   {
@@ -15288,15 +15389,13 @@ public class GameConstants
     return (itemId / 1000 == 1001);
   }
   
-  public static boolean isGlove(int itemId)
+  
+  public static boolean isCategoryA(int itemId)
   {
-    return (itemId / 10000 == 108);
+    // check https://strategywiki.org/wiki/MapleStory/Spell_Trace_and_Star_Force#Normal_Equip
+    return isHat(itemId) || isTop(itemId) || isBottom(itemId) || isOverall(itemId) || isCape(itemId) || isRing(itemId) || isPendant(itemId) || isBelt(itemId) || isShoulder(itemId) || isShield(itemId) || isWeapon(itemId) || isSecondaryWeapon(itemId);
   }
   
-  public static boolean isShoes(int itemId)
-  {
-    return (itemId / 10000 == 107);
-  }
   
   public static boolean isAggressIveMonster(int mobid)
   {

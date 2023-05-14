@@ -918,7 +918,7 @@ public class PlayerStats
         if (GameConstants.isDemonAvenger(chra.getJob()) && equip.getEnhance() > 0)
         {
           starforce += equip.getEnhance();
-          if (GameConstants.isLongcoat(equip.getItemId()))
+          if (GameConstants.isOverall(equip.getItemId()))
           {
             starforce += equip.getEnhance();
           }
@@ -950,7 +950,7 @@ public class PlayerStats
           this.localint_ += equip.getInt();
           this.localluk += equip.getLuk();
         }
-        this.starforce += (GameConstants.isLongcoat(equip.getItemId()) ? (equip.getEnhance() * 2) : equip.getEnhance());
+        this.starforce += (GameConstants.isOverall(equip.getItemId()) ? (equip.getEnhance() * 2) : equip.getEnhance());
         this.watk += equip.getWatk();
         this.magic += equip.getMatk();
         this.wdef += equip.getWdef();

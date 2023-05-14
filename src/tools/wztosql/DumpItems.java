@@ -155,19 +155,21 @@ public class DumpItems
           MapleData iz = d.getData(topDir.getName() + "/" + ifile.getName());
           if (charz || topDir.getName().equalsIgnoreCase("Pet"))
           {
-            dumpItem(psa, psr, ps, pse, iz);
+            boolean isShield = topDir.getName().equalsIgnoreCase("Shield");
+            boolean isWeapon = topDir.getName().equalsIgnoreCase("Weapon");
+            dumpItem(psa, psr, ps, pse, iz, isShield, isWeapon);
             continue;
           }
           for (MapleData itemData : iz)
           {
-            dumpItem(psa, psr, ps, pse, itemData);
+            dumpItem(psa, psr, ps, pse, itemData, false, false);
           }
         }
       }
     }
   }
   
-  public void dumpItem(PreparedStatement psa, PreparedStatement psr, PreparedStatement ps, PreparedStatement pse, MapleData iz) throws Exception
+  public void dumpItem(PreparedStatement psa, PreparedStatement psr, PreparedStatement ps, PreparedStatement pse, MapleData iz, boolean isShield, boolean isWeapon) throws Exception
   {
     short ret;
     double d;
@@ -327,14 +329,14 @@ public class DumpItems
     }
     ps.setString(14, scrollReqs.toString());
     ps.setString(15, consumeItem.toString());
-    Map<Integer, Map<String, Integer>> equipStats = new HashMap<>();
+    Map<Integer, Map<String, String>> equipStats = new HashMap<>();
     equipStats.put(Integer.valueOf(-1), new HashMap<>());
     dat = iz.getChildByPath("mob");
     if (dat != null)
     {
       for (MapleData child : dat)
       {
-        equipStats.get(Integer.valueOf(-1)).put("mob" + MapleDataTool.getIntConvert("id", child, 0), Integer.valueOf(MapleDataTool.getIntConvert("prob", child, 0)));
+        equipStats.get(Integer.valueOf(-1)).put("mob" + MapleDataTool.getIntConvert("id", child, 0), Integer.valueOf(MapleDataTool.getIntConvert("prob", child, 0)).toString());
       }
     }
     dat = iz.getChildByPath("info/level/case");
@@ -380,7 +382,7 @@ public class DumpItems
         {
           if (data.getName().length() > 3 && data.getType() != MapleDataType.CANVAS)
           {
-            equipStats.get(Integer.valueOf(lv)).put(data.getName().substring(3), Integer.valueOf(MapleDataTool.getIntConvert(data, 0)));
+            equipStats.get(Integer.valueOf(lv)).put(data.getName().substring(3), Integer.valueOf(MapleDataTool.getIntConvert(data, 0)).toString());
           }
         }
       }
@@ -389,7 +391,15 @@ public class DumpItems
     if (dat != null)
     {
       ps.setString(21, MapleDataTool.getString("afterImage", dat, ""));
-      Map<String, Integer> rett = equipStats.get(Integer.valueOf(-1));
+      Map<String, String> rett = equipStats.get(Integer.valueOf(-1));
+      if (isShield == true)
+      {
+        rett.put("isShield", "1");
+      }
+      if (isWeapon == true)
+      {
+        rett.put("isWeapon", "1");
+      }
       for (MapleData data : dat.getChildren())
       {
         if (data.getName().startsWith("inc"))
@@ -397,7 +407,7 @@ public class DumpItems
           int gg = MapleDataTool.getIntConvert(data, 0);
           if (gg != 0)
           {
-            rett.put(data.getName().substring(3), Integer.valueOf(gg));
+            rett.put(data.getName().substring(3), Integer.valueOf(gg).toString());
           }
         }
       }
@@ -408,7 +418,7 @@ public class DumpItems
         {
           if (dat.getChildByPath("level") != null)
           {
-            rett.put(stat, Integer.valueOf(1));
+            rett.put(stat, Integer.valueOf(1).toString());
           }
         }
         else if (mapleData != null)
@@ -417,15 +427,19 @@ public class DumpItems
           {
             for (int i = 0; i < mapleData.getChildren().size(); i++)
             {
-              rett.put("skillid" + i, Integer.valueOf(MapleDataTool.getIntConvert(Integer.toString(i), mapleData, 0)));
+              rett.put("skillid" + i, Integer.valueOf(MapleDataTool.getIntConvert(Integer.toString(i), mapleData, 0)).toString());
             }
+          }
+          if (stat.contains("slot"))
+          {
+            rett.put(stat, mapleData.getData().toString());
           }
           else
           {
             int dd = MapleDataTool.getIntConvert(mapleData, 0);
             if (dd != 0)
             {
-              rett.put(stat, Integer.valueOf(dd));
+              rett.put(stat, Integer.valueOf(dd).toString());
             }
           }
         }
@@ -440,13 +454,13 @@ public class DumpItems
     ps.setString(23, a);
     ps.setInt(24, MapleDataTool.getIntConvert("info/nickSkill", iz, 0));
     pse.setInt(1, this.id);
-    for (Map.Entry<Integer, Map<String, Integer>> stats : equipStats.entrySet())
+    for (Map.Entry<Integer, Map<String, String>> stats : equipStats.entrySet())
     {
       pse.setInt(2, stats.getKey().intValue());
-      for (Map.Entry<String, Integer> stat : (Iterable<Map.Entry<String, Integer>>) ((Map) stats.getValue()).entrySet())
+      for (Map.Entry<String, String> stat : (Iterable<Map.Entry<String, String>>) ((Map) stats.getValue()).entrySet())
       {
         pse.setString(3, stat.getKey());
-        pse.setLong(4, stat.getValue().intValue());
+        pse.setString(4, stat.getValue());
         pse.addBatch();
       }
     }

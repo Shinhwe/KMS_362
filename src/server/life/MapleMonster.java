@@ -4023,8 +4023,9 @@ public class MapleMonster extends AbstractLoadedMapleLife
     private final Map<Integer, MapleMonster.OnePartyAttacker> attackers = new HashMap<>(6);
     private final int partyid;
     
-  vate long totDamage = 0L;
-    pri  public PartyAttackerEntry(int partyid)
+    private long totDamage = 0L;
+    
+    public PartyAttackerEntry(int partyid)
     {
       this.partyid = partyid;
     }

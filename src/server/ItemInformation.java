@@ -42,6 +42,19 @@ public class ItemInformation
   
   public int mob;
   
+  public String vslot = "";
+  
+  public String islot = "";
+  
+  public boolean isShield = false;
+  
+  // 主武器副武器都算Weapon, 需要根据islot进行二次判断
+  // 服务器的islot是Si或者WpSi
+  // 但是Emblem的islot也是Si, 所以需要这个字段来判断是不是Emblem
+  public boolean isWeapon = false;
+  
+  public boolean isAndroid = false;
+  
   public int cardSet;
   
   public int create;

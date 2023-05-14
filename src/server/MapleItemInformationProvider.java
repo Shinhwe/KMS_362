@@ -3520,7 +3520,7 @@ public class MapleItemInformationProvider
   
   public void initItemEquipData(ResultSet sqlEquipData) throws SQLException
   {
-    int itemID = sqlEquipData.getInt("itemid");
+    Integer itemID = Integer.valueOf(sqlEquipData.getString("itemid"));
     if (this.tmpInfo == null || this.tmpInfo.itemId != itemID)
     {
       if (!this.dataCache.containsKey(Integer.valueOf(itemID)))
@@ -3534,24 +3534,51 @@ public class MapleItemInformationProvider
     {
       this.tmpInfo.equipStats = new HashMap<>();
     }
-    int itemLevel = sqlEquipData.getInt("itemLevel");
-    if (itemLevel == -1)
+    
+    Integer itemLevel = Integer.valueOf(sqlEquipData.getString("itemLevel"));
+    
+    String key = sqlEquipData.getString("key");
+    
+    String value = sqlEquipData.getString("value");
+    
+    
+    if (key.equalsIgnoreCase("islot"))
     {
-      this.tmpInfo.equipStats.put(sqlEquipData.getString("key"), Integer.valueOf(sqlEquipData.getInt("value")));
+      this.tmpInfo.islot = value;
+    }
+    else if (key.equalsIgnoreCase("vslot"))
+    {
+      this.tmpInfo.vslot = value;
+    }
+    else if (key.equalsIgnoreCase("isShield"))
+    {
+      this.tmpInfo.isShield = Integer.valueOf(value) == 1 ? true : false;
+    }
+    else if (key.equalsIgnoreCase("isWeapon"))
+    {
+      this.tmpInfo.isWeapon = Integer.valueOf(value) == 1 ? true : false;
+    }
+    else if (itemLevel == -1)
+    {
+      this.tmpInfo.equipStats.put(key, Integer.valueOf(value));
     }
     else
     {
+      if (key.equalsIgnoreCase("android")) {
+        this.tmpInfo.isAndroid = true;
+      }
+      
       if (this.tmpInfo.equipIncs == null)
       {
         this.tmpInfo.equipIncs = new HashMap<>();
       }
-      Map<String, Integer> toAdd = this.tmpInfo.equipIncs.get(Integer.valueOf(itemLevel));
+      Map<String, Integer> toAdd = this.tmpInfo.equipIncs.get(itemLevel);
       if (toAdd == null)
       {
         toAdd = new HashMap<>();
-        this.tmpInfo.equipIncs.put(Integer.valueOf(itemLevel), toAdd);
+        this.tmpInfo.equipIncs.put(itemLevel, toAdd);
       }
-      toAdd.put(sqlEquipData.getString("key"), Integer.valueOf(sqlEquipData.getInt("value")));
+      toAdd.put(key, Integer.valueOf(value));
     }
   }
   

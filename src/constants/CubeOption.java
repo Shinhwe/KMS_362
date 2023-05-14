@@ -23,7 +23,7 @@ public class CubeOption
       LinkedHashMap<Integer, Integer> list = new LinkedHashMap<Integer, Integer>();
       potentialid = 0;
       int type = itemid / 1000;
-      type = GameConstants.isWeapon(itemid) || GameConstants.isSecondaryWeapon(itemid) ? 1302 : (GameConstants.isCap(itemid) ? 1004 : (GameConstants.isCape(itemid) ? 1102 : (type == 1132 || type == 1152 ? 1132 : (GameConstants.isLongcoat(itemid) || type >= 1040 && type <= 1042 ? 1042 : (type >= 1070 && type <= 1073 ? 1073 : (type >= 1080 && type <= 1082 ? 1082 : (type >= 1061 && type <= 1063 ? 1062 : (type == 1672 ? 1672 : (type == 1190 || type == 1191 ? 1190 : 1122)))))))));
+      type = GameConstants.isWeapon(itemid) || GameConstants.isSecondaryWeapon(itemid) ? 1302 : (GameConstants.isHat(itemid) ? 1004 : (GameConstants.isCape(itemid) ? 1102 : (type == 1132 || type == 1152 ? 1132 : (GameConstants.isOverall(itemid) || type >= 1040 && type <= 1042 ? 1042 : (type >= 1070 && type <= 1073 ? 1073 : (type >= 1080 && type <= 1082 ? 1082 : (type >= 1061 && type <= 1063 ? 1062 : (type == 1672 ? 1672 : (type == 1190 || type == 1191 ? 1190 : 1122)))))))));
       if (grade == 1)
       {
         switch (type)
@@ -3448,7 +3448,7 @@ public class CubeOption
       LinkedHashMap<Integer, Integer> list = new LinkedHashMap<Integer, Integer>();
       potentialid = 0;
       int type = itemid / 1000;
-      type = GameConstants.isWeapon(itemid) || GameConstants.isSecondaryWeapon(itemid) ? 1302 : (GameConstants.isCap(itemid) ? 1004 : (GameConstants.isCape(itemid) ? 1102 : (type == 1132 || type == 1152 ? 1132 : (GameConstants.isLongcoat(itemid) || type >= 1040 && type <= 1042 ? 1042 : (type >= 1070 && type <= 1073 ? 1073 : (type >= 1080 && type <= 1082 ? 1082 : (type >= 1061 && type <= 1063 ? 1062 : (type == 1672 ? 1672 : (type == 1190 || type == 1191 ? 1190 : 1122)))))))));
+      type = GameConstants.isWeapon(itemid) || GameConstants.isSecondaryWeapon(itemid) ? 1302 : (GameConstants.isHat(itemid) ? 1004 : (GameConstants.isCape(itemid) ? 1102 : (type == 1132 || type == 1152 ? 1132 : (GameConstants.isOverall(itemid) || type >= 1040 && type <= 1042 ? 1042 : (type >= 1070 && type <= 1073 ? 1073 : (type >= 1080 && type <= 1082 ? 1082 : (type >= 1061 && type <= 1063 ? 1062 : (type == 1672 ? 1672 : (type == 1190 || type == 1191 ? 1190 : 1122)))))))));
       if (grade == 1)
       {
         switch (type)
@@ -6867,7 +6867,7 @@ public class CubeOption
     LinkedHashMap<Integer, Integer> list = new LinkedHashMap<Integer, Integer>();
     int potentialid = 0;
     int type = itemid / 1000;
-    type = GameConstants.isWeapon(itemid) || GameConstants.isSecondaryWeapon(itemid) ? 1302 : (GameConstants.isCap(itemid) ? 1004 : (GameConstants.isCape(itemid) ? 1102 : (type == 1132 || type == 1152 ? 1132 : (GameConstants.isLongcoat(itemid) || type >= 1040 && type <= 1042 ? 1042 : (type >= 1070 && type <= 1073 ? 1073 : (type >= 1080 && type <= 1082 ? 1082 : (type >= 1061 && type <= 1063 ? 1062 : (type == 1672 ? 1672 : (type == 1190 || type == 1191 ? 1190 : 1122)))))))));
+    type = GameConstants.isWeapon(itemid) || GameConstants.isSecondaryWeapon(itemid) ? 1302 : (GameConstants.isHat(itemid) ? 1004 : (GameConstants.isCape(itemid) ? 1102 : (type == 1132 || type == 1152 ? 1132 : (GameConstants.isOverall(itemid) || type >= 1040 && type <= 1042 ? 1042 : (type >= 1070 && type <= 1073 ? 1073 : (type >= 1080 && type <= 1082 ? 1082 : (type >= 1061 && type <= 1063 ? 1062 : (type == 1672 ? 1672 : (type == 1190 || type == 1191 ? 1190 : 1122)))))))));
     if (grade == 4)
     {
       switch (type)
@@ -7154,7 +7154,7 @@ public class CubeOption
     LinkedHashMap<Integer, Integer> list = new LinkedHashMap<Integer, Integer>();
     int potentialid = 0;
     int type = itemid / 1000;
-    type = GameConstants.isWeapon(itemid) || GameConstants.isSecondaryWeapon(itemid) ? 1302 : (GameConstants.isCap(itemid) ? 1004 : (GameConstants.isCape(itemid) ? 1102 : (type == 1132 || type == 1152 ? 1132 : (GameConstants.isLongcoat(itemid) || type >= 1040 && type <= 1042 ? 1042 : (type >= 1070 && type <= 1073 ? 1073 : (type >= 1080 && type <= 1082 ? 1082 : (type >= 1061 && type <= 1063 ? 1062 : (type == 1672 ? 1672 : (type == 1190 || type == 1191 ? 1190 : 1122)))))))));
+    type = GameConstants.isWeapon(itemid) || GameConstants.isSecondaryWeapon(itemid) ? 1302 : (GameConstants.isHat(itemid) ? 1004 : (GameConstants.isCape(itemid) ? 1102 : (type == 1132 || type == 1152 ? 1132 : (GameConstants.isOverall(itemid) || type >= 1040 && type <= 1042 ? 1042 : (type >= 1070 && type <= 1073 ? 1073 : (type >= 1080 && type <= 1082 ? 1082 : (type >= 1061 && type <= 1063 ? 1062 : (type == 1672 ? 1672 : (type == 1190 || type == 1191 ? 1190 : 1122)))))))));
     if (grade == 4)
     {
       switch (type)

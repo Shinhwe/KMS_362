@@ -18943,7 +18943,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     {
       final Equip eq = (Equip) item;
       starforce += eq.getEnhance();
-      if (GameConstants.isLongcoat(item.getItemId()))
+      if (GameConstants.isOverall(item.getItemId()))
       {
         starforce += eq.getEnhance();
       }

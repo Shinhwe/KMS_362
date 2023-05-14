@@ -5678,7 +5678,7 @@ public class InventoryHandler
           if (Randomizer.isSuccess(마라벨나올확률))
           {
             /* 4021 */
-            if (GameConstants.isCap(baseitemid))
+            if (GameConstants.isHat(baseitemid))
             {
               /* 4022 */
               boolean a = true;
@@ -5727,7 +5727,7 @@ public class InventoryHandler
               }
               /* 4044 */
             }
-            else if (GameConstants.isLongcoat(baseitemid))
+            else if (GameConstants.isOverall(baseitemid))
             {
               /* 4045 */
               if (c.getPlayer().getGender() == 0)
@@ -5754,7 +5754,7 @@ public class InventoryHandler
               MItemidselect = 망토장갑[Random];
               /* 4055 */
             }
-            else if (GameConstants.isShoes(baseitemid))
+            else if (GameConstants.isShoe(baseitemid))
             {
               /* 4056 */
               boolean a = true;
@@ -5827,7 +5827,7 @@ public class InventoryHandler
               Label = 1;
             }
             /* 4089 */
-            if (GameConstants.isCap(baseitemid))
+            if (GameConstants.isHat(baseitemid))
             {
               /* 4090 */
               boolean a = true;
@@ -5842,7 +5842,7 @@ public class InventoryHandler
                 while (a)
                 {
                   /* 4095 */
-                  if (!GameConstants.isCap(MItemidselect))
+                  if (!GameConstants.isHat(MItemidselect))
                   {
                     /* 4096 */
                     Random = (int) Math.floor(Math.random() * SLabel.length);
@@ -5871,7 +5871,7 @@ public class InventoryHandler
                 while (a)
                 {
                   /* 4109 */
-                  if (!GameConstants.isCap(MItemidselect))
+                  if (!GameConstants.isHat(MItemidselect))
                   {
                     /* 4110 */
                     Random = (int) Math.floor(Math.random() * SLabel.length);
@@ -5896,7 +5896,7 @@ public class InventoryHandler
               
               /* 4122 */
             }
-            else if (GameConstants.isLongcoat(baseitemid))
+            else if (GameConstants.isOverall(baseitemid))
             {
               /* 4123 */
               boolean a = true;
@@ -5911,7 +5911,7 @@ public class InventoryHandler
                 while (a)
                 {
                   /* 4128 */
-                  if (!GameConstants.isLongcoat(MItemidselect))
+                  if (!GameConstants.isOverall(MItemidselect))
                   {
                     /* 4129 */
                     Random = (int) Math.floor(Math.random() * SLabel.length);
@@ -5940,7 +5940,7 @@ public class InventoryHandler
                 while (a)
                 {
                   /* 4142 */
-                  if (!GameConstants.isLongcoat(MItemidselect))
+                  if (!GameConstants.isOverall(MItemidselect))
                   {
                     /* 4143 */
                     Random = (int) Math.floor(Math.random() * SLabel.length);
@@ -6017,7 +6017,7 @@ public class InventoryHandler
               
               /* 4179 */
             }
-            else if (GameConstants.isShoes(baseitemid))
+            else if (GameConstants.isShoe(baseitemid))
             {
               /* 4180 */
               boolean a = true;
@@ -6032,7 +6032,7 @@ public class InventoryHandler
                 while (a)
                 {
                   /* 4185 */
-                  if (!GameConstants.isShoes(MItemidselect))
+                  if (!GameConstants.isShoe(MItemidselect))
                   {
                     /* 4186 */
                     Random = (int) Math.floor(Math.random() * SLabel.length);
@@ -6061,7 +6061,7 @@ public class InventoryHandler
                 while (a)
                 {
                   /* 4199 */
-                  if (!GameConstants.isShoes(MItemidselect))
+                  if (!GameConstants.isShoe(MItemidselect))
                   {
                     /* 4200 */
                     Random = (int) Math.floor(Math.random() * SLabel.length);
