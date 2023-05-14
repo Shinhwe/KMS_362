@@ -1,0 +1,15 @@
+/bin/
+/dist/
+/dump/
+/jdk1.8.0_333/
+/build/
+/.idea/
+/.settings/
+/classes/
+/Log/
+/LogFile/
+*.txt
+*.zip
+*.bak
+/nbproject/
+desktop.ini
