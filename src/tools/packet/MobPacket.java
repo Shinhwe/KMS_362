@@ -1271,7 +1271,17 @@ public class MobPacket
             */
       mplew.writeInt(-30);
       mplew.writeInt(-20);
+      
+//      mplew.writeInt(effect.getX() * -1);
+//      mplew.writeInt(effect.getZ() * -1);
     }
+    
+    if (getMse(mse, MonsterStatus.刺伤))
+    {
+      mplew.writeInt(-99);
+      mplew.writeInt(-99);
+    }
+    
         /*
         if (getMse(mse, MonsterStatus.MS_IndieMdr)) {
             mplew.writeInt((mob.getBuff(MonsterStatus.MS_IndieMdr).getChr() != null) ? mob.getBuff(MonsterStatus.MS_IndieMdr).getChr().getId() : 0);

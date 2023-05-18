@@ -138,6 +138,14 @@ public class AdminTool extends JFrame
   
   public AdminTool()
   {
+    UIManager.put("Label.font", new Font("YGO 550", Font.PLAIN, 14));
+    UIManager.put("Button.font", new Font("YGO 550", Font.PLAIN, 14));
+    UIManager.put("CheckBox.font", new Font("YGO 550", Font.PLAIN, 14));
+    UIManager.put("TextField.font", new Font("YGO 550", Font.PLAIN, 14));
+    UIManager.put("TextPane.font", new Font("YGO 550", Font.PLAIN, 14));
+    UIManager.put("Panel.font", new Font("YGO 550", Font.PLAIN, 14));
+    UIManager.put("ScrollPane.font", new Font("YGO 550", Font.PLAIN, 14));
+    UIManager.put("TabbedPane.font", new Font("YGO 550", Font.PLAIN, 14));
     this.names = new ArrayList<>();
     this.itemid = new ArrayList<>();
     initComponents();
@@ -651,7 +659,9 @@ public class AdminTool extends JFrame
     this.jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel1Layout.createSequentialGroup().addContainerGap().addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(this.jScrollPane4).addGroup(jPanel1Layout.createSequentialGroup().addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false).addComponent(this.jLabel6).addComponent(this.jButton9, -1, -1, 32767).addComponent(this.jButton12, -1, -1, 32767).addComponent(this.jLabel7).addComponent(this.jLabel8).addComponent(this.jButton13, -1, -1, 32767).addComponent(this.jButton14, -1, -1, 32767).addComponent(this.jButton16, -1, -1, 32767).addComponent(this.jButton17, -1, -1, 32767)).addGap(0, 369, 32767))).addContainerGap()));
     jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel1Layout.createSequentialGroup().addContainerGap().addComponent(this.jLabel6).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jScrollPane4, -2, 118, -2).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(this.jButton9).addGap(16, 16, 16).addComponent(this.jLabel7).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jButton12).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(this.jLabel8).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(this.jButton13).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jButton14).addGap(26, 26, 26).addComponent(this.jButton16).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jButton17).addContainerGap(-1, 32767)));
+    
     this.jTabbedPane2.addTab("Develop", this.jPanel1);
+    
     this.jButton15.setText("공지");
     this.jButton15.addActionListener(new ActionListener()
     {

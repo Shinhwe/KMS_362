@@ -119,7 +119,8 @@ public enum MonsterStatus implements Serializable
   MS_Unk16(118),
   MS_Unk17(119),
   MS_Unk18(120),
-  MS_Unk19(121);
+  MS_Unk19(121),
+  刺伤(92);
   
   static final long serialVersionUID = 0L;
   

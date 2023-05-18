@@ -998,7 +998,8 @@ public class InventoryHandler
     }
     if (header == RecvPacketOpcode.USE_BLACK_REBIRTH_SCROLL)
     {
-      final long newRebirth = toScroll.newRebirth(ii.getReqLevel(toScroll.getItemId()), scroll.getItemId(), false);
+      boolean isBossItem = GameConstants.isBossItem(toScroll.getItemId());
+      final long newRebirth = toScroll.newRebirth(ii.getReqLevel(toScroll.getItemId()), scroll.getItemId(), false, isBossItem);
       c.getSession().writeAndFlush(CWvsContext.useBlackRebirthScroll(toScroll, scroll, newRebirth, false));
       MapleInventoryManipulator.removeFromSlot(c, GameConstants.getInventoryType(scroll.getItemId()), scroll.getPosition(), (short) 1, false, false);
       c.getSession().writeAndFlush(CWvsContext.blackRebirthResult(true, toScroll.getFire(), toScroll));
@@ -1036,7 +1037,7 @@ public class InventoryHandler
     }
     if (recovery)
     {
-      chr.dropMessage(5, "\uc8fc\ubb38\uc11c\uc758 \ud6a8\uacfc\ub85c \uc0ac\uc6a9\ub41c \uc8fc\ubb38\uc11c\uac00 \ucc28\uac10\ub418\uc9c0 \uc54a\uc558\uc2b5\ub2c8\ub2e4.");
+      chr.dropMessage(5, "주문서의 효과로 사용된 주문서가 차감되지 않았습니다.");
     }
     else if (GameConstants.isZero(chr.getJob()) && toScroll.getPosition() == -11)
     {
@@ -10648,8 +10649,9 @@ public class InventoryHandler
       if (scroll != null)
       {
         final Equip neweqs = (Equip) eq.copy();
+        boolean isBossItem = GameConstants.isBossItem(neweqs.getItemId());
         neweqs.resetRebirth(ii.getReqLevel(neweqs.getItemId()));
-        neweqs.setFire(neweqs.newRebirth(ii.getReqLevel(neweqs.getItemId()), scroll.getItemId(), true));
+        neweqs.setFire(neweqs.newRebirth(ii.getReqLevel(neweqs.getItemId()), scroll.getItemId(), true, isBossItem));
         final long newRebirth = neweqs.getFire();
         c.getSession().writeAndFlush(CWvsContext.useBlackRebirthScroll(eq, scroll, newRebirth, false));
         MapleInventoryManipulator.removeFromSlot(c, GameConstants.getInventoryType(scroll.getItemId()), scroll.getPosition(), (short) 1, false, false);

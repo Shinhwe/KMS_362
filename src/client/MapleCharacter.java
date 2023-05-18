@@ -90,6 +90,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   private final transient Map<Integer, SkillCustomInfo> customInfo;
   private final transient Map<Integer, MapleCoolDownValueHolder> coolDowns;
   private final PlayerStats stats;
+  
   private final EnumMap<MapleTrait.MapleTraitType, MapleTrait> traits;
   private final transient ScheduledFuture<?> LastTouchedRune;
   private final boolean innerskill_changed;
@@ -5785,6 +5786,34 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     return (mbsvh == null) ? null : Long.valueOf(mbsvh.startTime);
   }
   
+  
+  public void doHeroSelfRecovery()
+  {
+    Skill skill = SkillFactory.getSkill(1110000);
+    
+    int level = this.getSkillLevel(skill);
+    
+    if (level > 0)
+    {
+      SecondaryStatEffect eff = skill.getEffect(level);
+      
+      int hpRecoverPercent = eff.getX();
+      
+      int mpRecoverPercent = eff.getY();
+      
+      int recoverTime = eff.getU() * 1000;
+      
+      long now = System.currentTimeMillis();
+      
+      if (this.isAlive() && this.stats.heroNextSelfRecoverTime <= now)
+      {
+        this.stats.heroNextSelfRecoverTime = now + recoverTime;
+        
+        this.addMPHP(this.stats.getCurrentMaxHp() * hpRecoverPercent / 100, this.stats.getCurrentMaxMp(this) * mpRecoverPercent / 100);
+      }
+    }
+  }
+  
   public void doRecovery()
   {
     final SecondaryStatEffect bloodEffect = this.getBuffedEffect(SecondaryStat.Recovery);
@@ -7369,39 +7398,6 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       this.client.getSession().writeAndFlush(CWvsContext.BuffPacket.giveBuff(stat, combo.getEffect(this.getTotalSkillLevel(combo)), this));
       this.map.broadcastMessage(this, CWvsContext.BuffPacket.giveForeignBuff(this, stat, combo.getEffect(this.getTotalSkillLevel(combo))), false);
     }
-  }
-  
-  public void handleOrbconsume(final int skillId)
-  {
-    int howmany = 0;
-    switch (skillId)
-    {
-      case 1111008:
-      {
-        howmany = 1;
-        break;
-      }
-      case 400011027:
-      {
-        howmany = 6;
-        break;
-      }
-    }
-    final Skill combo = SkillFactory.getSkill(1101013);
-    if (this.getSkillLevel(combo) <= 0)
-    {
-      return;
-    }
-    final SecondaryStatEffect ceffect = this.getBuffedEffect(SecondaryStat.ComboCounter);
-    if (ceffect == null)
-    {
-      return;
-    }
-    final EnumMap<SecondaryStat, Pair<Integer, Integer>> stat = new EnumMap<SecondaryStat, Pair<Integer, Integer>>(SecondaryStat.class);
-    stat.put(SecondaryStat.ComboCounter, new Pair<Integer, Integer>(Math.max(1, this.getBuffedValue(SecondaryStat.ComboCounter) - howmany), 0));
-    this.setBuffedValue(SecondaryStat.ComboCounter, Math.max(1, this.getBuffedValue(SecondaryStat.ComboCounter) - howmany));
-    this.client.getSession().writeAndFlush(CWvsContext.BuffPacket.giveBuff(stat, ceffect, this));
-    this.map.broadcastMessage(this, CWvsContext.BuffPacket.giveForeignBuff(this, stat, ceffect), false);
   }
   
   public void silentEnforceMaxHpMp()
@@ -21825,11 +21821,11 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   public List<Integer> getPrevBonusEffect()
   {
     List<Integer> effects = new ArrayList<>();
-
-      for (int i = 0; i < 8; i++)
-      {
-          effects.add(getEffectValue(i));
-      }
+    
+    for (int i = 0; i < 8; i++)
+    {
+      effects.add(getEffectValue(i));
+    }
     
     return effects;
   }
@@ -21859,10 +21855,10 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     
     for (CustomItem.CustomItemType type : CustomItem.CustomItemType.values())
     {
-        if (type.ordinal() == 0)
-        {
-            continue;
-        }
+      if (type.ordinal() == 0)
+      {
+        continue;
+      }
       
       int id = equippedCustomItem(type);
     }
@@ -23167,14 +23163,14 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     }
     
     MapleDonationSkill dskill = MapleDonationSkill.getBySkillId(skillid);
-      if (dskill == null)
-      {
-          return false;
-      }
-      else
-      {
-          return (this.getKeyValue(201910, "DonationSkill") & dskill.getValue()) != 0;
-      }
+    if (dskill == null)
+    {
+      return false;
+    }
+    else
+    {
+      return (this.getKeyValue(201910, "DonationSkill") & dskill.getValue()) != 0;
+    }
   }
   
   public void gainDonationSkills()
@@ -24491,6 +24487,10 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
         if (MapleCharacter.this.canRecover(time))
         {
           MapleCharacter.this.doRecovery();
+        }
+        if (GameConstants.isHero(MapleCharacter.this.getJob()))
+        {
+          MapleCharacter.this.doHeroSelfRecovery();
         }
         this.handleSkillOptions(time);
         MapleCharacter.this.handleAdditionalSkills(time);

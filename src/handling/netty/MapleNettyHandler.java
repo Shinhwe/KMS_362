@@ -2436,7 +2436,7 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
         final short pos = slea.readShort();
         final int itemid = slea.readInt();
         c.getPlayer().resetStats(4, 4, 4, 4);
-        c.getPlayer().dropMessage(5, "AP \ucd08\uae30\ud654\uac00 \uc644\ub8cc \ub418\uc5c8\uc2b5\ub2c8\ub2e4.");
+        c.getPlayer().dropMessage(5, "AP 초기화가 완료 되었습니다.");
         c.send(CWvsContext.enableActions(c.getPlayer()));
         MapleInventoryManipulator.removeFromSlot(c, GameConstants.getInventoryType(itemid), pos, (short) 1, false);
         break;
@@ -2448,18 +2448,18 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
         if (item != null)
         {
           final Equip eq = (Equip) item;
-          String set = "\uc544\uc774\ud15c";
+          String set = "아이템";
           if ((eq.getEquipmentType() & 0x20000) == 0x20000)
           {
             eq.setEquipmentType(eq.getEquipmentType() - 131072);
-            set += "\uc758 \uc7a0\uae08\uc774 \ud574\uc81c";
+            set += "의 잠금이 해제";
           }
           else
           {
             eq.setEquipmentType(eq.getEquipmentType() | 0x20000);
-            set += "\uc5d0 \uc7a0\uae08\uc774 \uc124\uc815";
+            set += "에 잠금이 설정";
           }
-          set += "\ub418\uc5c8\uc2b5\ub2c8\ub2e4.";
+          set += "되었습니다.";
           c.getPlayer().dropMessage(5, set);
           c.send(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, eq));
           c.send(CWvsContext.enableActions(c.getPlayer()));
@@ -2526,8 +2526,8 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
           c.send(CWvsContext.updateSuddenQuest((int) c.getPlayer().getKeyValue(51351, "midquestid"), false, 0L, "count=0;Quest=0;day=0;state=0;"));
           c.getPlayer().removeKeyValue(51351);
           final int rand = Randomizer.rand(0, itemlist.length - 1);
-          c.getPlayer().gainCabinetItemPlayer(itemlist[rand][0], itemlist[rand][1], 1, "\ub3cc\ubc1c\ubbf8\uc158 \ubcf4\uc0c1 \uc785\ub2c8\ub2e4. \ubcf4\uad00 \uae30\uac04 \ub0b4\uc5d0 \uc218\ub839\ud558\uc9c0 \uc54a\uc744 \uc2dc \ubcf4\uad00\ud568\uc5d0\uc11c \uc0ac\ub77c\uc9d1\ub2c8\ub2e4.");
-          c.getPlayer().dropMessage(5, "\ub3cc\ubc1c\ubbf8\uc158 \ubcf4\uc0c1\uc774 <\uba54\uc774\ud50c \ubcf4\uad00\ud568>\uc5d0 \uc9c0\uae09 \ub418\uc5c8\uc2b5\ub2c8\ub2e4.");
+          c.getPlayer().gainCabinetItemPlayer(itemlist[rand][0], itemlist[rand][1], 1, "돌발미션 보상 입니다. 보관 기간 내에 수령하지 않을 시 보관함에서 사라집니다.");
+          c.getPlayer().dropMessage(5, "돌발미션 보상이 <메이플 보관함>에 지급 되었습니다.");
           c.getPlayer().getClient().getSession().writeAndFlush(CField.EffectPacket.showNormalEffect(c.getPlayer(), 15, true));
           c.getPlayer().getMap().broadcastMessage(c.getPlayer(), CField.EffectPacket.showNormalEffect(c.getPlayer(), 15, false), false);
           break;

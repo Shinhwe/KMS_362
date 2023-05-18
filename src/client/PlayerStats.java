@@ -161,6 +161,8 @@ public class PlayerStats
   private transient WeakReference<MapleCharacter> chr;
   private transient float shouldHealHP;
   private transient float shouldHealMP;
+  
+  public long heroNextSelfRecoverTime = 0;
   private transient byte passive_mastery;
   private transient int localstr;
   private transient int localdex;

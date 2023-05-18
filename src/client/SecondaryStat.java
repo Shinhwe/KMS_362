@@ -369,7 +369,7 @@ public enum SecondaryStat implements Serializable
   ChillingStep(357),
   DotBasedBuff(358),
   BlessingAnsanble(359), //361 sniffer +1
-  ComboCostInc(360),
+  刺痕剑(360),
   ExtremeArchery(361),
   NaviFlying(362), //361 sniffer +1 362
   QuiverCatridge(363),

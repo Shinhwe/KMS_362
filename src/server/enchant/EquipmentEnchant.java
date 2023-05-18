@@ -542,7 +542,8 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Matk, Integer.valueOf(1)));
         }
         
-        if(GameConstants.isCategoryA(item.getItemId())) {
+        if (GameConstants.isCategoryA(item.getItemId()))
+        {
         
         }
       }
@@ -645,8 +646,10 @@ public class EquipmentEnchant
         {
           i = 1;
         }
-//                if (c.getPlayer().isGM())
-//                    i = 1;
+        if (c.getPlayer().isGM())
+        {
+          i = 1;
+        }
         if (c.getPlayer().haveItem(4001832, es.getJuhun()))
         {
           c.getPlayer().removeItem(4001832, -es.getJuhun());
@@ -656,7 +659,7 @@ public class EquipmentEnchant
           return;
         }
         equip3 = (Equip) item.copy();
-        if (i > 0)
+        if (i == 1)
         {
           if (scrollType(es.getName()) == 4)
           {

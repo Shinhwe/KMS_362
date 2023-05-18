@@ -6198,6 +6198,7 @@ public class CField
     
     public static byte[] showHealEffect(MapleCharacter chr, int skillid, boolean own)
     {
+      System.out.println("showHealEffect!");
       return showEffect(chr, 0, skillid, 37, 0, 0, (byte) 0, own, null, null, null);
     }
     

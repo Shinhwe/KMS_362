@@ -1198,7 +1198,7 @@ public class MapleInventoryManipulator
         }
       }
     }
-    if (MapleItemInformationProvider.getInstance().getName(source.getItemId()).startsWith("\uc815\ub839\uc758"))
+    if (MapleItemInformationProvider.getInstance().getName(source.getItemId()).startsWith("정령의"))
     {
       final KoreaCalendar kc = new KoreaCalendar();
       final String nowtime = kc.getYeal() % 100 + kc.getMonths() + kc.getDays() + kc.getHours() + kc.getMins() + kc.getMins();
@@ -1320,7 +1320,7 @@ public class MapleInventoryManipulator
         {
           if (source.getAndroid() == null)
           {
-            chr.dropMessage(1, "\uc548\ub4dc\ub85c\uc774\ub4dc \uc624\ub958\uac00 \ubc1c\uc0dd\ud558\uc600\uc2b5\ub2c8\ub2e4.");
+            chr.dropMessage(1, "안드로이드 오류가 발생하였습니다.");
             return;
           }
           chr.setAndroid(source.getAndroid());
@@ -1348,7 +1348,7 @@ public class MapleInventoryManipulator
         {
           if (android.getAndroid() == null)
           {
-            chr.dropMessage(1, "\uc548\ub4dc\ub85c\uc774\ub4dc \uc624\ub958\uac00 \ubc1c\uc0dd\ud558\uc600\uc2b5\ub2c8\ub2e4.");
+            chr.dropMessage(1, "안드로이드 오류가 발생하였습니다.");
             return;
           }
           chr.setAndroid(android.getAndroid());
@@ -1375,7 +1375,7 @@ public class MapleInventoryManipulator
     chr.getInventory(type).removeSlot(src);
     if (target != null)
     {
-      if (MapleItemInformationProvider.getInstance().getName(target.getItemId()).startsWith("\uc815\ub839\uc758"))
+      if (MapleItemInformationProvider.getInstance().getName(target.getItemId()).startsWith("정령의"))
       {
         c.getPlayer().removeKeyValue(27040);
         c.getPlayer().updateInfoQuest(27039, "0=0|0|0|0|0");

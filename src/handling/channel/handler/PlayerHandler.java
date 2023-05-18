@@ -3525,7 +3525,6 @@ public class PlayerHandler
         }
         case 1121010:
         {
-          chr.handleOrbconsume(1121015);
           effect.applyTo(chr);
           break;
         }
@@ -5798,20 +5797,7 @@ public class PlayerHandler
     {
       MapleSnowball.MapleSnowballs.hitSnowball(chr);
     }
-    int numFinisherOrbs = 0;
-    Integer comboBuff = chr.getBuffedValue(SecondaryStat.ComboCounter);
-    if (isFinisher(attack.skill))
-    {
-      if (comboBuff != null)
-      {
-        numFinisherOrbs = comboBuff.intValue() - 1;
-      }
-      if (numFinisherOrbs <= 0)
-      {
-        return;
-      }
-      chr.handleOrbconsume(attack.skill);
-    }
+    
     chr.checkFollow();
     if (!chr.isHidden())
     {
@@ -6563,37 +6549,24 @@ public class PlayerHandler
   
   public static final void Heal(LittleEndianAccessor slea, MapleCharacter chr)
   {
-    if (chr == null)
-    {
-      return;
-    }
-    slea.readInt();
-    if (slea.available() >= 8L)
-    {
-      slea.skip(4);
-    }
+    slea.skip(8);
+    
     int healHP = slea.readShort();
+    
     int healMP = slea.readShort();
+    
+    boolean isChair = slea.readByte() == 2;
+    
     PlayerStats stats = chr.getStat();
-    if (stats.getHp() <= 0L && chr.getBattleGroundChr() != null)
+    
+    // TODO: 加一个对shouldRecoverHp和shouldRecoverMp的判断, 防止客户端夏季八改包
+    if (healHP != 0 && chr.isAlive())
     {
-      return;
-    }
-    long now = System.currentTimeMillis();
-    if (healHP != 0 && chr.canHP(now + 1000L) && chr.isAlive() && !chr.getMap().isTown())
-    {
-      if (healHP > stats.getHealHP())
-      {
-        healHP = (int) stats.getHealHP();
-      }
       chr.addHP(healHP);
     }
-    if (healMP != 0 && !GameConstants.isDemonSlayer(chr.getJob()) && chr.canMP(now + 1000L) && chr.isAlive() && !chr.getMap().isTown())
+    
+    if (healMP != 0 && !GameConstants.isDemonSlayer(chr.getJob()) && chr.isAlive())
     {
-      if (healMP > stats.getHealMP())
-      {
-        healMP = (int) stats.getHealMP();
-      }
       chr.addMP(healMP);
     }
   }

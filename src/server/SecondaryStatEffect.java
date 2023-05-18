@@ -3876,11 +3876,6 @@ public class SecondaryStatEffect
     block3:
     switch (this.sourceid)
     {
-      case 1121010:
-      {
-        applyfrom.handleOrbconsume(1121010);
-        break;
-      }
       case 1200014:
       case 1220010:
       {
@@ -6290,7 +6285,7 @@ public class SecondaryStatEffect
         Equip eq = (Equip) applyto.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
         if (eq == null)
         {
-          System.out.println("\ubb34\uae30 \uc5c6\uc774 \ubc84\ud504\ub97c \uc5b4\ub5bb\uac8c \uc368 \u3161\u3161 " + applyto.getName());
+          System.out.println("무기 없이 버프를 어떻게 써 ㅡㅡ " + applyto.getName());
           break;
         }
         eq = (Equip) MapleItemInformationProvider.getInstance().getEquipById(eq.getItemId());
@@ -6302,7 +6297,7 @@ public class SecondaryStatEffect
         Equip eq = (Equip) applyto.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
         if (eq == null)
         {
-          System.out.println("\ubb34\uae30 \uc5c6\uc774 \ubc84\ud504\ub97c \uc5b4\ub5bb\uac8c \uc368 \u3161\u3161 " + applyto.getName());
+          System.out.println("무기 없이 버프를 어떻게 써 ㅡㅡ " + applyto.getName());
           break;
         }
         eq = (Equip) MapleItemInformationProvider.getInstance().getEquipById(eq.getItemId());
@@ -6314,7 +6309,7 @@ public class SecondaryStatEffect
         Equip eq = (Equip) applyto.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
         if (eq == null)
         {
-          System.out.println("\ubb34\uae30 \uc5c6\uc774 \ubc84\ud504\ub97c \uc5b4\ub5bb\uac8c \uc368 \u3161\u3161 " + applyto.getName());
+          System.out.println("무기 없이 버프를 어떻게 써 ㅡㅡ " + applyto.getName());
           break;
         }
         eq = (Equip) MapleItemInformationProvider.getInstance().getEquipById(eq.getItemId());
@@ -8800,28 +8795,14 @@ public class SecondaryStatEffect
         break;
       }
       case 80002419:
-      {//` 버프 아 버프가 따로있었네요 그래서 351을 봐야할것같다고 말씀드린거..ㅇㅂㅇ...잘몰라서 아까 버프있냐고 물어봤는데 ㄷㄷ; 버프인지 는 몰랐어요 ㅇㅋ
-        localstatups.clear();
-        
-        List<Integer> effects = applyfrom.getBonusEffect();
-        SecondaryStat[] stats = {SecondaryStat.IndieDamR, SecondaryStat.IndieExp, SecondaryStat.DropRate, SecondaryStat.MesoUp, SecondaryStat.IndieCD, SecondaryStat.IndieBDR, SecondaryStat.IndieAllStatR, SecondaryStat.IndiePmdR};
-        
-        for (int i = 0; i < 8; i++)
-        {
-          int value = effects.get(i);
-          applyfrom.setEffect(i, effects.get(i));
-          if (value > 0)
-          {
-            localstatups.put(stats[i], new Pair<>(value, 0));
-          }
-        }
-        
+      {
+        // TODO: 威尔匹配BUFF
         break;
       }
       
       case 1111003:
       {
-        localstatups.put(SecondaryStat.ComboCostInc, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(1111003), localDuration));
+        localstatups.put(SecondaryStat.刺痕剑, new Pair<Integer, Integer>(SkillFactory.getSkill(1111003).getEffect(applyto.getSkillLevel(1111003)).getDuration(), localDuration));
         break;
       }
       case 80003025:

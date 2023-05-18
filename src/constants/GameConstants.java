@@ -11281,7 +11281,7 @@ public class GameConstants
           }
           else
           {
-            if (a1 == 3101008 || a1 == 1311011 || a1 == 2221011)
+            if (a1 == 3101008 || a1 == 2221011)
             {
               return true;
             }
@@ -15396,6 +15396,12 @@ public class GameConstants
     return isHat(itemId) || isTop(itemId) || isBottom(itemId) || isOverall(itemId) || isCape(itemId) || isRing(itemId) || isPendant(itemId) || isBelt(itemId) || isShoulder(itemId) || isShield(itemId) || isWeapon(itemId) || isSecondaryWeapon(itemId);
   }
   
+  public static boolean isBossItem(int itemId)
+  {
+    // TODO: mark boss item id
+    return true;
+  }
+  
   
   public static boolean isAggressIveMonster(int mobid)
   {
@@ -17629,4 +17635,6 @@ public class GameConstants
     }
     return -1;
   }
+  
+
 }

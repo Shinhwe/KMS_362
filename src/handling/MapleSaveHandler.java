@@ -423,40 +423,7 @@ public class MapleSaveHandler implements Runnable
       System.out.println("드롭 데이터를 초기화했습니다.");
     }
     
-    while (channels.hasNext())
-    {
-      ChannelServer cs = channels.next();
-      Iterator<MapleCharacter> chrs = cs.getPlayerStorage().getAllCharacters().values().iterator();
-      while (chrs.hasNext())
-      {
-        
-        MapleCharacter chr = chrs.next();
-        
-        if (chr.isAlive())
-        {
-          List<Integer> prevEffects = chr.getPrevBonusEffect();
-          List<Integer> curEffects = chr.getBonusEffect();
-          
-          for (int i = 0; i < curEffects.size(); i++)
-          {
-            if (prevEffects.get(i) != curEffects.get(i))
-            {
-              chr.cancelEffectFromBuffStat(SecondaryStat.IndieDamR, 80002419);
-              chr.cancelEffectFromBuffStat(SecondaryStat.IndieExp, 80002419);
-              chr.cancelEffectFromBuffStat(SecondaryStat.DropRate, 80002419);
-              chr.cancelEffectFromBuffStat(SecondaryStat.MesoUp, 80002419);
-              chr.cancelEffectFromBuffStat(SecondaryStat.IndieCD, 80002419);
-              chr.cancelEffectFromBuffStat(SecondaryStat.IndieBDR, 80002419);
-              chr.cancelEffectFromBuffStat(SecondaryStat.IndieAllStatR, 80002419);
-              chr.cancelEffectFromBuffStat(SecondaryStat.IndiePmdR, 80002419);
-              SkillFactory.getSkill(80002419).getEffect(1).applyTo(chr);
-              chr.getStat().recalcLocalStats(chr);
-              break;
-            }
-          }
-        }
-      }
-    }
+    
     if ((new Date()).getHours() >= 10 && (new Date()).getHours() <= 24)
     {
       if (((new Date()).getMinutes() == 15 || (new Date()).getMinutes() == 45) && !this.minigamegive)

@@ -58,7 +58,7 @@ public class BattleReverse
   {
     if (BattleReverse.BattleReverseMatchingQueue.size() >= 2)
     {
-      mapleCharacter.getClient().send(CField.NPCPacket.getNPCTalk(9062354, (byte) 0, "\uc7a0\uc2dc \ud6c4\uc5d0 \ub2e4\uc2dc \uc2dc\ub3c4\ud574 \uc8fc\uc138\uc694.", "00 00", (byte) 0, mapleCharacter.getId()));
+      mapleCharacter.getClient().send(CField.NPCPacket.getNPCTalk(9062354, (byte) 0, "잠시 후에 다시 시도해 주세요.", "00 00", (byte) 0, mapleCharacter.getId()));
     }
     else if (!BattleReverse.BattleReverseMatchingQueue.contains(mapleCharacter))
     {
@@ -304,7 +304,7 @@ public class BattleReverse
       return;
     }
     mapleCharacter.getBattleReverseInstance().endGame(mapleCharacter, true);
-    mapleCharacter.dropMessage(1, "\uc624\ub958\uac00 \ubc1c\uc0dd\ud558\uc5ec \uac8c\uc784\uc774 \ucde8\uc18c\ub429\ub2c8\ub2e4.");
+    mapleCharacter.dropMessage(1, "오류가 발생하여 게임이 취소됩니다.");
   }
   
   public void placeStone(final Point lastPoint, final MapleCharacter mapleCharacter)
@@ -479,7 +479,7 @@ public class BattleReverse
     while (iterator3.hasNext())
     {
       final BattleReversePlayer battleReversePlayer5;
-      (battleReversePlayer5 = iterator3.next()).chr.getClient().getSession().writeAndFlush(CField.UIPacket.detailShowInfo("\ub458 \uc218 \uc788\ub294 \uacf3\uc774 \uc5c6\uc5b4 \ud134\uc774 \ub118\uc5b4\uac11\ub2c8\ub2e4.", 3, 20, 20));
+      (battleReversePlayer5 = iterator3.next()).chr.getClient().getSession().writeAndFlush(CField.UIPacket.detailShowInfo("둘 수 있는 곳이 없어 턴이 넘어갑니다.", 3, 20, 20));
       battleReversePlayer5.chr.getClient().getSession().writeAndFlush(SLFCGPacket.MultiOthelloGamePacket.onBoardUpdate(battleReversePlayer.getPlayer().getId() == battleReversePlayer5.getPlayer().getId(), point, this.getOpponent(mapleCharacter.getId()).getStoneId(), this.getPlayer(mapleCharacter.getId()).getHP(), this.getStones(), (byte) 0));
     }
   }
@@ -521,7 +521,7 @@ public class BattleReverse
     else
     {
       opponent.chr.getClient().getSession().writeAndFlush(SLFCGPacket.MultiOthelloGamePacket.onResult(4));
-      opponent.chr.getClient().getSession().writeAndFlush(CField.UIPacket.detailShowInfo("\uc0c1\ub300\ubc29\uc774 \ubbf8\ub2c8\uac8c\uc784\uc744 \uc885\ub8cc\ud558\uc5ec \uac8c\uc784\uc774 \uc885\ub8cc\ub429\ub2c8\ub2e4.", 3, 20, 20));
+      opponent.chr.getClient().getSession().writeAndFlush(CField.UIPacket.detailShowInfo("상대방이 미니게임을 종료하여 게임이 종료됩니다.", 3, 20, 20));
       opponent.chr.getClient().getSession().writeAndFlush(SLFCGPacket.playSE("Sound/MiniGame.img/oneCard/victory"));
     }
     if (battleReversePlayer != null && battleReversePlayer2 != null)

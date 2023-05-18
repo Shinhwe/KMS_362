@@ -74,7 +74,7 @@ function action(M, T, S)
 			+ "#fUI/UIWindow2.img/QuestIcon/4/0#\r\n"
 			+ "  #i"+wList[S]+":# #t"+wList[S]+":# #e#r(선택한 무기)#k#n\r\n", 4, 2007);
 		}
-		if (cm.getPlayer().getKeyValue(1912211, "timerf") == -1 && cm.getPlayer().getLevel() <= 20) {
+		if (cm.getPlayer().getKeyValue(1912211, "timerf") == -1) {
 			addOption(1004404, false);
 			addOption(1052893, false);
 			addOption(1102799, false);
@@ -411,6 +411,7 @@ function addOption(i, isWeapon)
 	item.setReqLevel(-90);
 	item.setLevel(item.getUpgradeSlots());
 	item.setUpgradeSlots(0);
-	item.setExpiration(System.currentTimeMillis() + (7 * 24 * 3600 * 1000));
+	item.setEnhance(8)
+	// item.setExpiration(System.currentTimeMillis() + (7 * 24 * 3600 * 1000));
 	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), item, false);
 }

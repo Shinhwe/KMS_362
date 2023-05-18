@@ -289,8 +289,8 @@ function action(mode, type, sel) {
 
 			if (seld != 430)
 				cm.changeJob(cjob);
-                                           cm.gainItem(1142358, 1);
-			cm.gainItem(2000054, 1);
+                                           addMedal();
+			cm.gainItem(2000005, 300);
                                            cm.gainItem(3018469, 1);
                                           cm.gainItem(2431307, 1);
 			cm.gainMeso(3000000);
@@ -386,11 +386,11 @@ function action(mode, type, sel) {
 			}
 			cm.getPlayer().setReborns(sel);
 			cm.getPlayer().AutoTeachSkill();
-                                           cm.gainItem(1142358, 1);
+			addMedal();
                                            cm.gainItem(2431307, 1);
                                          cm.gainItem(2433444, 1);
                                          cm.gainItem(3018469, 1);
-			cm.gainItem(2000054, 1);
+										 cm.gainItem(2000005, 300);
 			cm.gainItem(2431774, 1);
                         cm.gainItem(3700011, 1);
 			cm.gainMeso(3000000);
@@ -524,4 +524,21 @@ function FirstJob(i) {
 			break;
 	}
 	cm.sendOkS(chat, 0x4);
+}
+
+function addMedal()
+{
+	item = Packages.server.MapleItemInformationProvider.getInstance().getEquipById(1142358);
+	item.setStr(50);
+	item.setDex(50);
+	item.setInt(50);
+	item.setLuk(50);
+	item.setWatk(20);
+	item.setMatk(20);
+	item.setHp(item.getHp() + 1000);
+	item.setMp(item.getMp() + 1000);
+	item.setPotential1(20086);
+	item.setPotential2(20086);
+	item.setPotential3(20086);
+	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), item, false);
 }

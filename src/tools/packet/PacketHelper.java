@@ -3714,7 +3714,7 @@ public class PacketHelper
         if (GameConstants.isTextChair(itemId))
         {
           mplew.writeMapleAsciiString(chr.getChairText());
-          ChatPacket(mplew, chr.getName(), "[\uc758\uc790]" + chr.getChairText());
+          ChatPacket(mplew, chr.getName(), "[의자]" + chr.getChairText());
           break;
         }
         if (GameConstants.isTowerChair(itemId))

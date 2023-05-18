@@ -1847,7 +1847,10 @@ public class DamageParse
                 }
                 if (player.getBuffedValue(1111003))
                 {
-                  applys.add(new Pair<MonsterStatus, MonsterStatusEffect>(MonsterStatus.MS_CriticalBind_N, new MonsterStatusEffect(1111003, 20000, 1)));
+                  int skillLevel = player.getSkillLevel(1111003);
+                  int duration = SkillFactory.getSkill(1111003).getEffect(skillLevel).getV() * 1000;
+                  System.out.println("duration = " + duration);
+                  applys.add(new Pair<MonsterStatus, MonsterStatusEffect>(MonsterStatus.刺伤, new MonsterStatusEffect(1111003, duration, 1)));
                   break;
                 }
                 if (player.getBuffedValue(5311004))
@@ -4844,7 +4847,7 @@ public class DamageParse
       {
         player.addHP(-monster.getBuff(MonsterStatus.MS_MCounter).getValue());
       }
-      player.dropMessageGM(5, "\ub9e4\uc9c1 \uc2a4\ud0ac(" + SkillFactory.getSkill(attack.skill).getName() + ") : " + attack.skill);
+      player.dropMessageGM(5, "매직 스킬(" + SkillFactory.getSkill(attack.skill).getName() + ") : " + attack.skill);
       switch (attack.skill)
       {
         case 2101004:

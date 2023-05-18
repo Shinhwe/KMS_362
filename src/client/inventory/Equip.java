@@ -9,9 +9,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Equip
-    extends Item
-    implements Serializable
+public class Equip extends Item implements Serializable
 {
   public static final int ARMOR_RATIO = 350000;
   public static final int WEAPON_RATIO = 700000;
@@ -1597,35 +1595,105 @@ public class Equip
     item.setFire(fire4);
   }
   
-  public long newRebirth(int reqLevel, int scrollId, boolean update)
+  public long newRebirth(int reqLevel, int scrollId, boolean update, boolean isBossItem)
   {
     if (GameConstants.isRing(this.getItemId()) || this.getItemId() / 1000 == 1092 || this.getItemId() / 1000 == 1342 || this.getItemId() / 1000 == 1713 || this.getItemId() / 1000 == 1712 || this.getItemId() / 1000 == 1152 || this.getItemId() / 1000 == 1142 || this.getItemId() / 1000 == 1143 || this.getItemId() / 1000 == 1672 || GameConstants.isSecondaryWeapon(this.getItemId()) || this.getItemId() / 1000 == 1190 || this.getItemId() / 1000 == 1191 || this.getItemId() / 1000 == 1182 || this.getItemId() / 1000 == 1662 || this.getItemId() / 1000 == 1802)
     {
       return 0L;
     }
+    
+    System.out.println("开始砸火花啦, 是BOSS物品吗? " + isBossItem);
+    
+    // check https://strategywiki.org/wiki/MapleStory/Bonus_Stats
+    
+    // 条件有点多, 简化一下, 普通装备1到5级, boss装备4到8级, 用强力火花的BOSS装备可以达到5到9级和7到12级(魔改)
+    // 保持最大最小值差距是4, 简化了概率计算
+    int minValue = 1;
+    
     int maxValue = 5;
+    
+    // 普通装备不总是 4 条火花的, 概率也不是等分的
+    // 参照wiki, 进行一部分的简化 40 40 15 5
+    //  5% 很少? 官服只有4%!
+    
+    int chance = Randomizer.nextInt(100);
+    
+    System.out.println("计算火花条数的Chance =  " + chance);
+    
+    int numberOfLines = 1;
+    
+    if (chance > 95)
+    {
+      numberOfLines = 4;
+    }
+    else if (chance > 80)
+    {
+      numberOfLines = 3;
+    }
+    else if (chance > 40)
+    {
+      numberOfLines = 2;
+    }
+    
+    // 但是BOSS物品肯定是4条, 再别说了, BOSS装备就是强力
+    if (isBossItem)
+    {
+      numberOfLines = 4;
+      
+      minValue = 4;
+      
+      maxValue = 8;
+    }
+    
     if (MapleItemInformationProvider.getInstance().getName(scrollId) != null)
     {
       if (MapleItemInformationProvider.getInstance().getName(scrollId).contains("강력한 환생의"))
       {
-        maxValue = 6;
+        if (isBossItem)
+        {
+          minValue = 5;
+          maxValue = 9;
+        }
+        else
+        {
+          minValue = 2;
+          maxValue = 6;
+        }
       }
       if (MapleItemInformationProvider.getInstance().getName(scrollId).contains("영원한 환생의") || MapleItemInformationProvider.getInstance().getName(scrollId).contains("검은 환생의"))
       {
-        maxValue = 7;
+        if (isBossItem)
+        {
+          minValue = 8;
+          maxValue = 12;
+        }
+        else
+        {
+          minValue = 3;
+          maxValue = 7;
+        }
       }
     }
+    
+    System.out.println("经过一顿夏姬八计算 numberOfLines = " + numberOfLines + "; minValue = " + minValue + "; maxValue = " + maxValue);
+    
     Equip ordinary = (Equip) MapleItemInformationProvider.getInstance().getEquipById(this.getItemId(), false);
+    
     short ordinaryPad = ordinary.watk > 0 ? ordinary.watk : ordinary.matk;
+    
     short ordinaryMad = ordinary.matk > 0 ? ordinary.matk : ordinary.watk;
+    
     MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
+    
     if ((ii.isKarmaEnabled(this.getItemId()) || ii.isPKarmaEnabled(this.getItemId())) && this.getKarmaCount() < 0)
     {
       this.setKarmaCount((byte) 10);
     }
     long[] rebirth = new long[]{-1L, -1L, -1L, -1L};
     int[] rebirthOptions = new int[]{-1, -1, -1, -1};
-    for (int i = 0; i < 4; ++i)
+    
+    
+    for (int i = 0; i < numberOfLines; ++i)
     {
       int randomOption = Randomizer.nextInt(25);
       while (rebirthOptions[0] == randomOption || rebirthOptions[1] == randomOption || rebirthOptions[2] == randomOption || rebirthOptions[3] == randomOption || randomOption == 12 || randomOption == 14 || randomOption == 15 || randomOption == 16 || !GameConstants.isWeapon(this.getItemId()) && (randomOption == 21 || randomOption == 23))
@@ -1633,9 +1701,60 @@ public class Equip
         randomOption = Randomizer.nextInt(25);
       }
       rebirthOptions[i] = randomOption;
-      int randomValue = 0;
-      randomValue = (randomOption == 17 || randomOption == 18) && !GameConstants.isWeapon(this.getItemId()) || randomOption == 22 ? Randomizer.rand(1, maxValue) : Randomizer.rand(3, maxValue);
+      
+      int randomValue = minValue;
+      
+      
+      // 最大最小值差4, 概率分布
+      // 普通装备 40 40 10 5 5
+      // BOSS装备 8 32 32 20 8
+      // 5% 很少? 官服只有 1%!
+      
+      chance = Randomizer.nextInt(100);
+      
+      if (isBossItem)
+      {
+        if (chance > 92)
+        {
+          randomValue = maxValue;
+        }
+        else if (chance > 72)
+        {
+          randomValue = maxValue - 1;
+        }
+        else if (chance > 40)
+        {
+          randomValue = maxValue - 2;
+        }
+        else if (chance > 8)
+        {
+          randomValue = maxValue - 3;
+        }
+      }
+      else
+      {
+        if (chance > 95)
+        {
+          randomValue = maxValue;
+        }
+        else if (chance > 90)
+        {
+          randomValue = maxValue - 1;
+        }
+        else if (chance > 80)
+        {
+          randomValue = maxValue - 2;
+        }
+        else if (chance > 40)
+        {
+          randomValue = maxValue - 3;
+        }
+      }
+      
+      System.out.println("当前随机第 " + i + " 条火花! randomValue = " + randomValue + "; chance = " + chance + "; randomOption = " + randomOption);
+      
       rebirth[i] = randomOption * 10L + randomValue;
+      
       for (int j = 0; j < i; ++j)
       {
         int n = i;
@@ -1647,6 +1766,7 @@ public class Equip
       }
       this.setFireOption(randomOption, reqLevel, randomValue, ordinaryPad, ordinaryMad);
     }
+    
     return rebirth[0] + rebirth[1] + rebirth[2] + rebirth[3];
   }
   
@@ -1656,54 +1776,105 @@ public class Equip
     {
       return;
     }
+    
     Equip nEquip2 = (Equip) chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
-    int maxValue = 5;
+    
+    // 再别说了, 神之子的武器就是BOSS武器, 别问, 问就是我的怜悯
+    int minValue = 4;
+    
+    int maxValue = 8;
+    
+    int numberOfLines = 4;
+    
     if (MapleItemInformationProvider.getInstance().getName(scrollId) != null)
     {
-      if (MapleItemInformationProvider.getInstance().getName(scrollId).contains("\uac15\ub825\ud55c \ud658\uc0dd\uc758"))
+      if (MapleItemInformationProvider.getInstance().getName(scrollId).contains("강력한 환생의"))
       {
-        maxValue = 6;
+        minValue = 5;
+        maxValue = 9;
       }
-      if (MapleItemInformationProvider.getInstance().getName(scrollId).contains("\uc601\uc6d0\ud55c \ud658\uc0dd\uc758") || MapleItemInformationProvider.getInstance().getName(scrollId).contains("\uac80\uc740 \ud658\uc0dd\uc758"))
+      if (MapleItemInformationProvider.getInstance().getName(scrollId).contains("강력한 환생의") || MapleItemInformationProvider.getInstance().getName(scrollId).contains("검은 환생의"))
       {
-        maxValue = 7;
+        minValue = 8;
+        maxValue = 12;
       }
     }
+    
     Equip ordinary = (Equip) MapleItemInformationProvider.getInstance().getEquipById(this.getItemId(), false);
+    
     Equip ordinary2 = (Equip) MapleItemInformationProvider.getInstance().getEquipById(nEquip2.getItemId(), false);
+    
     short ordinaryPad = ordinary.watk > 0 ? ordinary.watk : ordinary.matk;
+    
     short ordinaryMad = ordinary.matk > 0 ? ordinary.matk : ordinary.watk;
+    
     short ordinaryPad2 = ordinary2.watk > 0 ? ordinary2.watk : ordinary2.matk;
+    
     short ordinaryMad2 = ordinary2.matk > 0 ? ordinary2.matk : ordinary2.watk;
+    
     long[] rebirth = new long[]{-1L, -1L, -1L, -1L};
+    
     int[] rebirthOptions = new int[]{-1, -1, -1, -1};
-    for (int i = 0; i < 4; ++i)
+    
+    for (int i = 0; i < numberOfLines; ++i)
     {
       int randomOption = Randomizer.nextInt(25);
+      
       while (rebirthOptions[0] == randomOption || rebirthOptions[1] == randomOption || rebirthOptions[2] == randomOption || rebirthOptions[3] == randomOption || randomOption == 12 || randomOption == 14 || randomOption == 15 || randomOption == 16 || !GameConstants.isWeapon(this.getItemId()) && (randomOption == 21 || randomOption == 23))
       {
         randomOption = Randomizer.nextInt(25);
       }
+      
       rebirthOptions[i] = randomOption;
-      int randomValue = 0;
-      randomValue = (randomOption == 17 || randomOption == 18) && !GameConstants.isWeapon(this.getItemId()) || randomOption == 22 ? Randomizer.rand(1, maxValue) : Randomizer.rand(3, maxValue);
+      
+      int randomValue = minValue;
+      
+      int chance = Randomizer.nextInt(100);
+      
+      
+      if (chance > 92)
+      {
+        randomValue = maxValue;
+      }
+      else if (chance > 72)
+      {
+        randomValue = maxValue - 1;
+      }
+      else if (chance > 40)
+      {
+        randomValue = maxValue - 2;
+      }
+      else if (chance > 8)
+      {
+        randomValue = maxValue - 3;
+      }
+      
+      
       rebirth[i] = randomOption * 10L + randomValue;
+      
       for (int j = 0; j < i; ++j)
       {
         int n = i;
         rebirth[n] = rebirth[n] * 1000L;
       }
+      
       this.setFireOption(randomOption, reqLevel, randomValue, ordinaryPad, ordinaryMad);
+      
       if (nEquip2 == null)
       {
         continue;
       }
+      
       nEquip2.setFireOption(randomOption, reqLevel, randomValue, ordinaryPad2, ordinaryMad2);
     }
-    this.setFire(rebirth[0] + rebirth[1] + rebirth[2] + rebirth[3]);
+    
+    long fire = rebirth[0] + rebirth[1] + rebirth[2] + rebirth[3];
+    
+    this.setFire(fire);
+    
     if (nEquip2 != null)
     {
-      nEquip2.setFire(rebirth[0] + rebirth[1] + rebirth[2] + rebirth[3]);
+      nEquip2.setFire(fire);
     }
   }
   
@@ -2239,9 +2410,7 @@ public class Equip
   
   public enum ScrollResult
   {
-    SUCCESS,
-    FAIL,
-    CURSE
+    SUCCESS, FAIL, CURSE
     
   }
 }

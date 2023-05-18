@@ -533,7 +533,7 @@ public class World
           }
         }
       }
-      DBLogger.getInstance().logChat(LogType.Chat.Buddy, player.getId(), player.getName(), chattext, "\uc218\uc2e0 : " + targets);
+      DBLogger.getInstance().logChat(LogType.Chat.Buddy, player.getId(), player.getName(), chattext, "수신 : " + targets);
     }
     
     public static void updateBuddies(final String name, final int characterId, final int channel, final int[] buddies, final int accId, final boolean offline)
@@ -584,7 +584,7 @@ public class World
             {
               if (buddylist.contains(accId))
               {
-                buddylist.put(new BuddylistEntry(name, name, accId, cidFrom, "\uadf8\ub8f9 \ubbf8\uc9c0\uc815", channel, true, level, job, memo));
+                buddylist.put(new BuddylistEntry(name, name, accId, cidFrom, "그룹 미지정", channel, true, level, job, memo));
                 addChar.getClient().getSession().writeAndFlush(CWvsContext.BuddylistPacket.updateBuddyChannel(cidFrom, accId, channel, buddylist.get(accId).getName()));
                 break;
               }
@@ -594,7 +594,7 @@ public class World
             {
               if (buddylist.contains(accId))
               {
-                buddylist.put(new BuddylistEntry(name, name, accId, cidFrom, "\uadf8\ub8f9 \ubbf8\uc9c0\uc815", -1, buddylist.get(accId).isVisible(), level, job, memo));
+                buddylist.put(new BuddylistEntry(name, name, accId, cidFrom, "그룹 미지정", -1, buddylist.get(accId).isVisible(), level, job, memo));
                 addChar.getClient().getSession().writeAndFlush(CWvsContext.BuddylistPacket.updateBuddyChannel(cidFrom, accId, -1, buddylist.get(accId).getName()));
                 break;
               }
@@ -2000,7 +2000,7 @@ public class World
               g_.allianceChat(player, msg, slea, recv);
               if (i == 0)
               {
-                DBLogger.getInstance().logChat(LogType.Chat.Guild, player.getId(), player.getName(), msg, "[" + ga.getName() + " - \uc5f0\ud569 ]");
+                DBLogger.getInstance().logChat(LogType.Chat.Guild, player.getId(), player.getName(), msg, "[" + ga.getName() + " - 연합 ]");
               }
             }
           }

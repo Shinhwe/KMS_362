@@ -2774,8 +2774,9 @@ public class MapleItemInformationProvider
             }
             else
             {
+              boolean isBossItem = GameConstants.isBossItem(getReqLevel(nEquip.getItemId()));
               nEquip.resetRebirth(getReqLevel(nEquip.getItemId()));
-              nEquip.setFire(nEquip.newRebirth(getReqLevel(nEquip.getItemId()), scrollId.getItemId(), true));
+              nEquip.setFire(nEquip.newRebirth(getReqLevel(nEquip.getItemId()), scrollId.getItemId(), true, isBossItem));
             }
             return nEquip;
           }
@@ -3131,7 +3132,8 @@ public class MapleItemInformationProvider
     Equip eqz = (Equip) eq;
     if (!isCash(equipId) && rebirth)
     {
-      eqz.setFire(eqz.newRebirth(getReqLevel(equipId), 0, true));
+      boolean isBossItem = GameConstants.isBossItem(equipId);
+      eqz.setFire(eqz.newRebirth(getReqLevel(equipId), 0, true, isBossItem));
       if (ItemFlag.UNTRADEABLE.check(eqz.getFlag()) && eqz.getKarmaCount() < 0 && (isKarmaEnabled(equipId) || isPKarmaEnabled(equipId)))
       {
         eqz.setKarmaCount((byte) 10);

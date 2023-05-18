@@ -674,7 +674,7 @@ public class ChatHandler
         }
         if (!c.getPlayer().getCanTalk())
         {
-          c.getSession().writeAndFlush(CWvsContext.serverNotice(6, "", "\ucc44\ud305 \uae08\uc9c0 \uc0c1\ud0dc\uc785\ub2c8\ub2e4."));
+          c.getSession().writeAndFlush(CWvsContext.serverNotice(6, "", "채팅 금지 상태입니다."));
           return;
         }
         final String recipient = slea.readMapleAsciiString();
@@ -690,7 +690,7 @@ public class ChatHandler
         if (ch2 <= 0)
         {
           c.getSession().writeAndFlush(CField.getWhisperReply(recipient, (byte) 0));
-          AdminTool.addMessage(6, "[" + c.getChannel() + "\ucc44\ub110] " + c.getPlayer().getName() + " > " + recipient + " : " + text);
+          AdminTool.addMessage(6, "[" + c.getChannel() + "채널] " + c.getPlayer().getName() + " > " + recipient + " : " + text);
           FileoutputUtil.log(FileoutputUtil.귓속말채팅로그, "[귓속말] [" + c.getChannel() + "채널] " + c.getPlayer().getName() + " > " + recipient + " : " + text);
           break;
         }
@@ -708,7 +708,7 @@ public class ChatHandler
         {
           c.getSession().writeAndFlush(CField.getWhisperReply(recipient, (byte) 1));
         }
-        AdminTool.addMessage(6, "[" + c.getChannel() + "\ucc44\ub110] " + c.getPlayer().getName() + " > " + recipient + " : " + text);
+        AdminTool.addMessage(6, "[" + c.getChannel() + "채널] " + c.getPlayer().getName() + " > " + recipient + " : " + text);
         FileoutputUtil.log(FileoutputUtil.귓속말채팅로그, "[귓속말] [" + c.getChannel() + "채널] " + c.getPlayer().getName() + " > " + recipient + " : " + text);
         break;
       }

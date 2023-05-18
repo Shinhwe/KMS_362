@@ -247,7 +247,7 @@ public class PetHandler
     final MaplePet pet = chr.getPet(type);
     if (pet == null)
     {
-      chr.dropMessage(1, "\ud3ab\uc774 \uc874\uc7ac\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4.");
+      chr.dropMessage(1, "펫이 존재하지 않습니다.");
       chr.getClient().getSession().writeAndFlush(CWvsContext.enableActions(chr));
       return;
     }

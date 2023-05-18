@@ -2071,9 +2071,9 @@ public class InterServerHandler
         }
       }
       
-      if (player.getClient().isFirstLogin() && !player.isGM() && !player.getName().equals("\uc624\ube0c"))
+      if (player.getClient().isFirstLogin() && !player.isGM() && !player.getName().equals("오브"))
       {
-        World.Broadcast.broadcastMessage(CField.UIPacket.detailShowInfo(player.getName() + "\ub2d8, \uc811\uc18d\uc744 \ud658\uc601\ud569\ub2c8\ub2e4. \uc624\ub298\ub3c4 " + LoginServer.getServerName() + "\uc5d0\uc11c \uc990\uac70\uc6b4 \uc2dc\uac04 \ub418\uc138\uc694.", false));
+        World.Broadcast.broadcastMessage(CField.UIPacket.detailShowInfo(player.getName() + "님, 접속을 환영합니다. 오늘도 " + LoginServer.getServerName() + "에서 즐거운 시간 되세요.", false));
         player.getClient().setLogin(false);
       }
       /* 1238 */
