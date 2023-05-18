@@ -48,7 +48,7 @@ public class GameConstants
       "tuc", "reqLevel", "reqJob", "reqSTR", "reqDEX", "reqINT", "reqLUK", "reqPOP", "cash", "cursed",
       "success", "setItemID", "equipTradeBlock", "durability", "randOption", "randStat", "masterLevel", "reqSkillLevel", "elemDefault", "incRMAS",
       "incRMAF", "incRMAI", "incRMAL", "canLevel", "skill", "charmEXP", "bdR", "imdR", "onlyEquip", "jokerToSetItem",
-      "android", "attackSpeed", "islot", "vslot"};
+      "android", "attackSpeed", "islot", "vslot", "bossReward"};
   public static final int[] hyperTele = new int[]{
       310000000, 220000000, 100000000, 250000000, 240000000, 104000000, 103000000, 102000000, 101000000, 120000000,
       260000000, 200000000, 230000000};
@@ -15410,8 +15410,8 @@ public class GameConstants
   
   public static boolean isBossItem(int itemId)
   {
-    // TODO: mark boss item id
-    return true;
+    boolean isBossItem = MapleItemInformationProvider.getInstance().getItemInformation(itemId).isBossItem;
+    return isBossItem;
   }
   
   

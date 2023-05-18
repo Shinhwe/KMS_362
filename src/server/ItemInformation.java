@@ -47,6 +47,8 @@ public class ItemInformation
   public String islot = "";
   
   public boolean isShield = false;
+
+  public boolean isBossItem = false;
   
   // 主武器副武器都算Weapon, 需要根据islot进行二次判断
   // 服务器的islot是Si或者WpSi

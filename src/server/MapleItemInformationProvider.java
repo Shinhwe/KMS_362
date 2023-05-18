@@ -3552,6 +3552,10 @@ public class MapleItemInformationProvider
     {
       this.tmpInfo.vslot = value;
     }
+    else if(key.equalsIgnoreCase("bossReward"))
+    {
+      this.tmpInfo.isBossItem = Integer.valueOf(value) == 1 ? true : false;
+    }
     else if (key.equalsIgnoreCase("isShield"))
     {
       this.tmpInfo.isShield = Integer.valueOf(value) == 1 ? true : false;
