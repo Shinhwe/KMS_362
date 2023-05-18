@@ -46,7 +46,7 @@ function action(mode, type, sel) {
 
 	if (status == 0) {
 
-		var msg = "#fn나눔고딕##fs13#";
+		var msg = "#fn나눔고딕##fs14#";
 		msg += "[길드 대항전 결과 :: #b"+guild1.getName()+"#k VS #r" + guild2.getName()+"#k]"+enter;
 		msg += "#b"+guild1.getName()+"#k 길드의 누적 데미지 : #b"+damage1+"#k"+enter;
 		msg += "#b"+guild2.getName()+"#k 길드의 누적 데미지 : #b"+damage2+"#k"+enter;

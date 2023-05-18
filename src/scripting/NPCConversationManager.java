@@ -6583,7 +6583,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
   
   public String getDamageMeterRank(int limit)
   {
-    String text = "#fn나눔고딕 Extrabold##fs13# ";
+    String text = "#fn나눔고딕 Extrabold##fs14# ";
     try
     {
       Connection con = DatabaseConnection.getConnection();

@@ -2,7 +2,7 @@ var status = -1;
 
 function start(mode, type, selection) {
 	dialogue = [
-		["next", 4, "#fs10#저... 저기요..."],
+		["next", 4, "#fs14#저... 저기요..."],
 		["nextprev", 2, "응? 누군가 부르는 소리가..."],
 		["nextprev", 4, "저... 제 목소리가 들리시나요..."],
 		["nextprev", 4, "전 엘리니아에서 연구 중인 베티 박사의 딸 앤이라고 해요."],

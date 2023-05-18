@@ -47,7 +47,7 @@ function action(mode, type, selection) {
     } else if (status == 3) {
         cm.sendNextPrev("#fn나눔고딕 Extrabold#응? 못보던 젊은이로군…그래, 무슨일로 날 찾아왔지?..");
     } else if (status == 4) {
-        cm.sendNextS("#fn나눔고딕 Extrabold##b아! 저는 #fs14#존#fs14# 님을 … \r\n\r\n#fs13##L1#진심으로 돕고 싶어 소문듣고 찾아왔습니다.\r\n#L2#도와드리라고 의뢰를 받아서 왔습니다.",2);
+        cm.sendNextS("#fn나눔고딕 Extrabold##b아! 저는 #fs14#존#fs14# 님을 … \r\n\r\n#fs14##L1#진심으로 돕고 싶어 소문듣고 찾아왔습니다.\r\n#L2#도와드리라고 의뢰를 받아서 왔습니다.",2);
     } else if (status == 5) {
             if (selection == 2) {
 	cm.sendYesNo("#fn나눔고딕 Extrabold#아, 맞아! 저번에 한번 도와달라고 의뢰 했었던 적이 있엇던가..?\r\n어쨋든 반가워!.. 그렇다면 내 이야기를 들을 준비는 되었어?");

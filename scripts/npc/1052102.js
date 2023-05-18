@@ -47,7 +47,7 @@ function action(mode, type, selection) {
     } else if (status == 3) {
         cm.sendNextPrev("#fn나눔고딕 Extrabold#난 망했어.. 우에엥ㅠ_ㅠ 친구 돈을 그렇게 쉽게 잃어버리다니..\r\n하필 그.. 험난한.. #b지하철 역#k 에서 잃어버린 거야...ㅠㅠ\r\n대체.. 왜! ㅠㅠ… 하.. 누가 도와주지 않으려나..?");
     } else if (status == 4) {
-        cm.sendNextS("#fn나눔고딕 Extrabold##d(얘기를 듣지 않아도 어떤 일인지 알 것 같다, 어떻게 할까?)#k\r\n\r\n#fs13##L1##b슈미를 도와준다.\r\n#L2#알 게 뭐야? 갈 길 간다.#k",2);
+        cm.sendNextS("#fn나눔고딕 Extrabold##d(얘기를 듣지 않아도 어떤 일인지 알 것 같다, 어떻게 할까?)#k\r\n\r\n#fs14##L1##b슈미를 도와준다.\r\n#L2#알 게 뭐야? 갈 길 간다.#k",2);
     } else if (status == 5) {
             if (selection == 2) {
 	cm.sendOkS("#fn나눔고딕 Extrabold##b슈미가 죽던 말던 알빠 아니지! 하던거나 하자..#k",2);

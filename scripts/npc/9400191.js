@@ -90,7 +90,7 @@ function action(mode, type, sel) {
 					switch (seld) {
 						case 2:
 							var msg = "#b#h ##k님께선 얼마를 배팅하고 길드 경쟁전에 참가하시겠습니까?"+enter;
-							msg += "#r#fs13#※주의! 지금 배팅하는 금액은 즉시 빠져나가며, 경쟁전에서 이기거나, 원정대가 해체되는 경우를 제외하곤 절대 돌려받을 수 없으니 신중하게 선택해주세요.";
+							msg += "#r#fs14#※주의! 지금 배팅하는 금액은 즉시 빠져나가며, 경쟁전에서 이기거나, 원정대가 해체되는 경우를 제외하곤 절대 돌려받을 수 없으니 신중하게 선택해주세요.";
 							cm.sendGetNumber(msg, 1, 1, cm.getPlayer().getMeso());
 							break;
 						case 3:
@@ -274,7 +274,7 @@ function action(mode, type, sel) {
 						switch (seld) {
 							case 2:
 								var msg = "#b#h ##k님께선 얼마를 배팅하고 길드 경쟁전에 참가하시겠습니까?"+enter;
-								msg += "#r#fs13#※주의! 지금 배팅하는 금액은 즉시 빠져나가며, 경쟁전에서 이기거나, 원정대가 해체되는 경우를 제외하곤 절대 돌려받을 수 없으니 신중하게 선택해주세요.";
+								msg += "#r#fs14#※주의! 지금 배팅하는 금액은 즉시 빠져나가며, 경쟁전에서 이기거나, 원정대가 해체되는 경우를 제외하곤 절대 돌려받을 수 없으니 신중하게 선택해주세요.";
 								cm.sendGetNumber(msg, 1, 1, cm.getPlayer().getMeso());
 								break;
 							case 3:

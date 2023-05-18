@@ -86,7 +86,7 @@ function action(mode, type, selection) {
 			type = types[i];
 			name = type.name();
 			if (i == 0) {
-				msg += "                                                              #b#fs13##L" + i + "#인벤토리#l\r\n\r\n";
+				msg += "                                                              #b#fs14##L" + i + "#인벤토리#l\r\n\r\n";
 			} else {
 				var id = cm.getPlayer().equippedCustomItem(type);
 				var image = 0;
