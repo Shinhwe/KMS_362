@@ -31,12 +31,12 @@ function action(mode, type, selection) {
     }
     if (status == 0) {
         var choose = "#fs14##b블랙 페스티벌dd#k" + 검정 + "에 온 것을 환영하네! 자네들을 위해 #b페스티벌#k" + 검정 + "에서 궁금해할 만한 것들을 모아봤다네.\r\n\r\n";
-        choose += "#fUI/UIWindow2.img/UtilDlgEx/list4#\r\n#fs12#";
+        choose += "#fUI/UIWindow2.img/UtilDlgEx/list4#\r\n#fs14#";
         choose += "#L0#" + 하늘 + "[블랙] 서버 규칙 및 필수 안내" + 퀘스트 + "#l\r\n";
-        choose += "#fs12##L1#" + 하늘 + "[블랙] 블랙 페스티벌 칭호 받기" + 퀘스트 + "#l\r\n";
-        choose += "#fs12##L2##d[블랙] 추천인 설명 및 상점#l\r\n";
-        choose += "#fs12##L3##d[블랙] 데일리기프트 상점#l\r\n";
-        choose += "#fs12##L4##d[블랙] 블랙 페스티벌로 이동하기#l\r\n";
+        choose += "#fs14##L1#" + 하늘 + "[블랙] 블랙 페스티벌 칭호 받기" + 퀘스트 + "#l\r\n";
+        choose += "#fs14##L2##d[블랙] 추천인 설명 및 상점#l\r\n";
+        choose += "#fs14##L3##d[블랙] 데일리기프트 상점#l\r\n";
+        choose += "#fs14##L4##d[블랙] 블랙 페스티벌로 이동하기#l\r\n";
         cm.sendSimple(choose);
 
     } else if (status == 1) {

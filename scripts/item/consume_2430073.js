@@ -97,7 +97,7 @@ function action (mode, type, selection) {
         //강화수, 강화성공확률, 강화메소, 올스탯, 공마 
         var notice = "";
         say = "";
-        say += "#fs 11#메소강화 초기화권을 사용하시겠습니까?\r\n\r\n\r\n ";
+        say += "#fs14#메소강화 초기화권을 사용하시겠습니까?\r\n\r\n\r\n ";
         cm.sendSimple(notice + say +
         "#L2##b사용하겠습니다.#k#k#l");
     } else if (status == 2) {
@@ -106,7 +106,7 @@ function action (mode, type, selection) {
         }
         //강화수, 강화성공확률, 강화메소, 올스탯, 공마 
         say = "";
-        say += "#fs 11#";
+        say += "#fs14#";
         say += "초기화권 사용시#b메소강화 옵션이#k사라집니다.\r\n";
         if (selection == 1 || choice == 1) {
             say += "\r\n";

@@ -124,7 +124,7 @@ function action (mode, type, selection) {
         //강화수, 강화성공확률, 강화메소, 올스탯, 공마 
         var notice = "";
         say = "";
-        say += "#fs 11#+17 강화권을 사용하시겠습니까?\r\n\r\n\r\n ";
+        say += "#fs14#+17 강화권을 사용하시겠습니까?\r\n\r\n\r\n ";
         cm.sendSimple(notice + say +
       //  "#L1##b" + ConvertNumber(keep) + "메소를 사용하여 파괴, 미끄러짐을 방지 하겠습니다.#l\r\n" +
         "#L2##b사용하겠습니다.#k#k#l");
@@ -139,7 +139,7 @@ function action (mode, type, selection) {
         }
         //강화수, 강화성공확률, 강화메소, 올스탯, 공마 
         say = "";
-        say += "#fs 11#";
+        say += "#fs14#";
         say += "강화 : #b0강 -> 17강#k\r\n";
         say += "강화 성공 시 #b올스탯 + 392 공마 + 275#k 증가\r\n";
         if (selection == 1 || choice == 1) {

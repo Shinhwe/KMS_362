@@ -60,7 +60,7 @@ function action(mode, type, selection) {
 						cm.dispose();
 						return;
 					}
-					cm.sendAcceptDecline("무릉도장에 입장 시 지금 적용되어 있는\r\n#b#fs16##e모든 버프 효과가 해제#n#k#fs12#될거야.\r\n\r\n그래도 진짜로 도전하겠어?");
+					cm.sendAcceptDecline("무릉도장에 입장 시 지금 적용되어 있는\r\n#b#fs16##e모든 버프 효과가 해제#n#k#fs14#될거야.\r\n\r\n그래도 진짜로 도전하겠어?");
 				}
 			} else if (selection == 1) {
 				cm.sendNext("우리 사부님은 무릉에서 가장 강한 분이야.\r\n그런 사부님께서 만드신 곳이 바로 이 #b무릉도장#k이지.");

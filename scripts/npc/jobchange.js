@@ -82,7 +82,7 @@ function action(mode, type, sel) {
 
 					var msg = "#fc0xFF000000#자유전직을 하기 전 모든 장비류는 착용해제 해주시게"+enter;
 					msg += "정말 이 직업을 할 것이 아니라면 #b'아니오'#fc0xFF000000#를 누르고 다시 선택하게"+enter;
-					msg += enter + "#fs12##b동의#fc0xFF000000#한다면 #b'예'#fc0xFF000000#를 누르게";
+					msg += enter + "#fs14##b동의#fc0xFF000000#한다면 #b'예'#fc0xFF000000#를 누르게";
 
 					cm.sendYesNo(msg);
 				} else if (status == 3) {

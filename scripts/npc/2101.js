@@ -28,14 +28,14 @@ function action(mode, type, selection) {
         choose += "안녕하세요, 자유전직 시스템 입니다.\r\n";
         choose += "자유전직의 재료는 #i4310086# 이며,소비상점에서 구매가능 합니다\r\n";
         choose += "아래는 #r레벨별 필요한 코인#k 갯수입니다\r\n";
-        choose += "레벨 : 10 ~ 200 = #i4310086# #fs14# #rX 1#k #fs12#\r\n";
-        choose += "레벨 : 200 ~ 210 = #i4310086# #fs14# #rX 3#k #fs12#\r\n";
-        choose += "레벨 : 210 ~ 220 = #i4310086# #fs14# #rX 6#k #fs12#\r\n";
-        choose += "레벨 : 220 ~ 230 = #i4310086# #fs14# #rX 10#k #fs12#\r\n";
-        choose += "레벨 : 230 ~ 240 = #i4310086# #fs14# #rX 20#k #fs12#\r\n";
-        choose += "레벨 : 240 ~ 250 = #i4310086# #fs14# #rX 40#k #fs12#\r\n";
-        choose += "레벨 : 250 ~ 260 = #i4310086# #fs14# #rX 70#k #fs12#\r\n";
-        choose += "레벨 : 260 ~ 999 = #i4310086# #fs14# #rX 100#k #fs12#\r\n";
+        choose += "레벨 : 10 ~ 200 = #i4310086# #fs14# #rX 1#k #fs14#\r\n";
+        choose += "레벨 : 200 ~ 210 = #i4310086# #fs14# #rX 3#k #fs14#\r\n";
+        choose += "레벨 : 210 ~ 220 = #i4310086# #fs14# #rX 6#k #fs14#\r\n";
+        choose += "레벨 : 220 ~ 230 = #i4310086# #fs14# #rX 10#k #fs14#\r\n";
+        choose += "레벨 : 230 ~ 240 = #i4310086# #fs14# #rX 20#k #fs14#\r\n";
+        choose += "레벨 : 240 ~ 250 = #i4310086# #fs14# #rX 40#k #fs14#\r\n";
+        choose += "레벨 : 250 ~ 260 = #i4310086# #fs14# #rX 70#k #fs14#\r\n";
+        choose += "레벨 : 260 ~ 999 = #i4310086# #fs14# #rX 100#k #fs14#\r\n";
         choose += "#L31##e#b자유 전직을 이용하겠다.#k#l";
         if (cm.getPlayer().hasGmLevel(10)){
             choose += "\r\n#l#k\r\n\r\n#b#e관리자 시스템#n #r(운영자만 보이는 메뉴)#k\r\n";

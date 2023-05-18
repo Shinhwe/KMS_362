@@ -331,7 +331,7 @@ function action(mode, type, sel) {
 					break;
 					case 2:
 						seldgrade = sel;
-						cm.sendYesNo("정말 #fs14##r'"+modify+"님'의 후원등급을 #e'"+grade[seldgrade][1]+"'#n#k#fs12#로 바꾸시겠습니까?");
+						cm.sendYesNo("정말 #fs14##r'"+modify+"님'의 후원등급을 #e'"+grade[seldgrade][1]+"'#n#k#fs14#로 바꾸시겠습니까?");
 					break;
 				}
 			break;
@@ -569,7 +569,7 @@ function getList2Admin(n) {
                     	ret += "#L"+(rs.getInt("id"))+"#";
                 	ret += "#fs14#닉네임 : #b"+rs.getString("name")+"#k #fs14#지급 날짜 : #d"+rs.getString("date")+"#k \r\n";
                  	ret += "    후원금액 : #b"+rs.getInt("sum") + "#k\r\n";
-                	ret += "    비고 : #d" + rs.getString("comment") + "#k#l#fs12#\r\n\r\n----------------------------------------------\r\n";
+                	ret += "    비고 : #d" + rs.getString("comment") + "#k#l#fs14#\r\n\r\n----------------------------------------------\r\n";
             }
             rs.close();
             ps.close();
@@ -675,7 +675,7 @@ function getList2(n) {
                     	ret += "#L"+(rs.getInt("id"))+"#";
                 	ret += "#fs14#닉네임 : #b"+rs.getString("name")+"#k #fs14#지급 날짜 : #d"+rs.getString("date")+"#k \r\n";
                  	ret += "    지급 후원 포인트 : #b"+rs.getInt("sum") + "#k\r\n";
-                	ret += "    비고 : #d" + rs.getString("comment") + "#k#l#fs12#\r\n\r\n----------------------------------------------\r\n";
+                	ret += "    비고 : #d" + rs.getString("comment") + "#k#l#fs14#\r\n\r\n----------------------------------------------\r\n";
             }
             rs.close();
             ps.close();

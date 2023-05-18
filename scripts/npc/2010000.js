@@ -40,14 +40,14 @@ function action(mode, type, selection) {
         cm.playSound(false,"Field.img/Party1/Clear");
 	cm.dispose();
         } else {
-        cm.sendNextS("#fn나눔고딕 Extrabold##b에휴.. 괜한 호기심 영감 때문에.. 고생만 했네..\r\n다음분은.. #fs14#찰리중사#fs12# 라는 사람이였지..?",2);
+        cm.sendNextS("#fn나눔고딕 Extrabold##b에휴.. 괜한 호기심 영감 때문에.. 고생만 했네..\r\n다음분은.. #fs14#찰리중사#fs14# 라는 사람이였지..?",2);
         }
     } else if (status == 2) {
         cm.sendNextS("#fn나눔고딕 Extrabold##d(히익.. 무섭게 생기신 분이다. 분명 어려운 일 이겠지?..)#k\r\n\r\n#b안녕하세요. #e찰리중사#n님! 저는 요즘.. 가장 값 나가는.. 모험가!\r\n#h # (이)라고 합니다. 만나뵈서 정말 영광입니다.!#k",2);
     } else if (status == 3) {
         cm.sendNextPrev("#fn나눔고딕 Extrabold#어라!? 자넨 처음보는 얼굴이로군!! 흐으음..\r\n그래.. 생긴 것이 마음에 안들긴 하지만 기합 하나는 끝내주는구만!");
     } else if (status == 4) {
-        cm.sendNextPrevS("#fn나눔고딕 Extrabold##d(생긴게 뭐? 죽일ㄱㅏ.. 아냐..참자.. 보상받자..보상받자..)#k\r\n\r\n#b하하! 원래 생긴것이 웃기다는 소리를 많이 들었습니다!\r\n그나저나, #fs14#찰리중사#fs12# 님께서 곤란한 일에 처해 있으시다고...?#k",2);
+        cm.sendNextPrevS("#fn나눔고딕 Extrabold##d(생긴게 뭐? 죽일ㄱㅏ.. 아냐..참자.. 보상받자..보상받자..)#k\r\n\r\n#b하하! 원래 생긴것이 웃기다는 소리를 많이 들었습니다!\r\n그나저나, #fs14#찰리중사#fs14# 님께서 곤란한 일에 처해 있으시다고...?#k",2);
     } else if (status == 5) {
         cm.sendNextPrev("#fn나눔고딕 Extrabold#응? 그것을 어떻게 알았지? 실은.. #b이지병장#k 이..\r\n폐광을 탐사 하러 갔는데 지금까지 돌아오지 않고 있어서 말이야..\r\n그게.. 중사인 나로선 #b이지병장#k 을 꼭 찾아야 하지! 큰일이야 큰일...");
     } else if (status == 6) { 

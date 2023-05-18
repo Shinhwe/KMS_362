@@ -98,7 +98,7 @@ function action(mode, type, selection) {
             user += ChannelServer.getAllInstances().get(i).getPlayerStorage().getAllCharacters().length;
         }
         말 = "#fc0xFF6600CC##e#fs14#[해피 스토리] 육성 다이어리#n#k\r\n\r\n";
-        말 += "#b" + questlist.length + " 개#k 의 #b#e[해피 스토리] 육성 다이어리#k#n를 완성하고 보상을 받아가세요.\r\n#r#e#fs12#[ 퀘스트를 클릭하면 해당 맵으로 이동합니다. ]#k#fs14##n\r\n";
+        말 += "#b" + questlist.length + " 개#k 의 #b#e[해피 스토리] 육성 다이어리#k#n를 완성하고 보상을 받아가세요.\r\n#r#e#fs14#[ 퀘스트를 클릭하면 해당 맵으로 이동합니다. ]#k#fs14##n\r\n";
         말 += "#b * 모든 다이어리 완료보상 : #b#i4310266##z4310266# #r2000개#k\r\n";
 
         for (i = 0; i < questlist.length; i++) {

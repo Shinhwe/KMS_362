@@ -42,7 +42,7 @@ function start(mode, type, selection) {
     } else if (status == 5) {
         qm.sendNextPrevS("모든 생명과 물질은 에르다로 구성되어 있잖아?\r\n그래서 #r#e세계의 강한 염원#n#k에 에르다가 반응한대!\r\n\r\n그런데 최근에 에르다에서 #b#e이상한 모습#n#k이 발견된 거야!", 4, 9010010);
     } else if (status == 6) {
-        qm.sendNextPrevS("#r#e밝고 따스한 빛#n#k이 생겨나는 것이... \r\n\r\n꼭 무언가를 #fs16##b#e축하하는 모습#n#k#fs12#이라지 뭐야?", 4, 9010010);
+        qm.sendNextPrevS("#r#e밝고 따스한 빛#n#k이 생겨나는 것이... \r\n\r\n꼭 무언가를 #fs16##b#e축하하는 모습#n#k#fs14#이라지 뭐야?", 4, 9010010);
     } else if (status == 7) {
         qm.sendNextPrevS("이 시기에 #b#e축하#n#k할 일이 뭐겠어!?\r\n\r\n바로 #r#e#fs20#메이플스토리의 18번째 생일!", 4, 9010010);
     } else if (status == 8) {

@@ -107,7 +107,7 @@ function action(M, T, S)
 						+ "   - 보유 네오 잼 | "+Comma(chr.getKeyValue(100712, "point"))+"\r\n"
 						+ "   - 보유 네오 코어 | "+Comma(chr.getKeyValue(501215, "point"))+"\r\n"
 						+ "   - 보유 홍보 포인트 | "+Comma(chr.getHPoint())+"\r\n"
-						+ "   - 보유 후원 포인트 | "+Comma(chr.getDonationPoint())+"\r\n#fs12##fn돋움#"
+						+ "   - 보유 후원 포인트 | "+Comma(chr.getDonationPoint())+"\r\n#fs14##fn돋움#"
 						//+ "#L16#홍보포인트 지급#l #L17#후원포인트 지급#l\r\n"
 						+ "#L13#네오스톤 지급#l#L14#네오잼 지급#l#L15#네오코어 지급#l\r\n\r\n"
 						+ "#L0#장착 중인 인벤토리 확인하기#l\r\n"
@@ -294,7 +294,7 @@ function action(M, T, S)
 					selStr += "  - 공격력 #e+"+inv.getItem(S4).getWatk()+"#n, 마력 #e+"+inv.getItem(S4).getMatk()+"#n\r\n";
 					selStr += "  - 특수옵션 상태 : #e"+inv.getItem(S4).getOwner()+"#n\r\n";
 
-					selStr += "\r\n\r\n#e#fs12##b[잠재능력]#k#n\r\n#fs14#";
+					selStr += "\r\n\r\n#e#fs14##b[잠재능력]#k#n\r\n#fs14#";
 					selStr += "  - 1번째 줄 : #e"+toString(inv.getItem(S4).getPotential1())+"#n\r\n";
 					selStr += "  - 2번째 줄 : #e"+toString(inv.getItem(S4).getPotential2())+"#n\r\n";
 					selStr += "  - 3번째 줄 : #e"+toString(inv.getItem(S4).getPotential3())+"#n\r\n";

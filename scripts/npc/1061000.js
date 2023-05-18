@@ -40,12 +40,12 @@ function action(mode, type, selection) {
         cm.playSound(false,"Field.img/Party1/Clear");
 	cm.dispose();
         } else {
-        cm.sendNextS("#fn나눔고딕 Extrabold##b루팡의 바나나... 으.. 최악이야!\r\n다음은... #fs14#크리슈라마#fs12# 라는 사람이였지..?#k",2);
+        cm.sendNextS("#fn나눔고딕 Extrabold##b루팡의 바나나... 으.. 최악이야!\r\n다음은... #fs14#크리슈라마#fs14# 라는 사람이였지..?#k",2);
         }
     } else if (status == 2) {
         cm.sendNextPrev("#fn나눔고딕 Extrabold#음.. 정말 궁금하단 말이야.. #b만드라고라#k 가 실존 하는 것일까?..");
     } else if (status == 3) {
-        cm.sendNextPrevS("#fn나눔고딕 Extrabold##b혹시, #fs14#크리슈라마#fs12# 님 되시나요?#k", 2);
+        cm.sendNextPrevS("#fn나눔고딕 Extrabold##b혹시, #fs14#크리슈라마#fs14# 님 되시나요?#k", 2);
     } else if (status == 4) {
         cm.sendNextPrev("#fn나눔고딕 Extrabold#엇, 오셨군요! 음.. 제가 부탁드릴것은 #b만드라고라#k 라는 식물의\r\n존재 여부를 확인해 주시는것인데.. 그것이 #b끈기의 숲#k 정상에서\r\n자라고 있다고만 소문으로 널리 알려져 있답니다..\r\n그대가.. 그 위대한 진실을.. 파헤처 주시면 됩니다..");
     } else if (status == 5) {

@@ -40,14 +40,14 @@ function action(mode, type, selection) {
         cm.playSound(false,"Field.img/Party1/Clear");
 	cm.dispose();
         } else {
-        cm.sendNextS("#fn나눔고딕 Extrabold##b슈미를 도와주다가 떨어져 죽는줄 알았어 으으..\r\n다음은... #fs14#존#fs12# 이라는 사람이였지..?",2);
+        cm.sendNextS("#fn나눔고딕 Extrabold##b슈미를 도와주다가 떨어져 죽는줄 알았어 으으..\r\n다음은... #fs14#존#fs14# 이라는 사람이였지..?",2);
         }
     } else if (status == 2) {
-        cm.sendNextPrevS("#fn나눔고딕 Extrabold##b안녕하세요! #fs14#존#fs12# 님 맞으신가요??\r\n저는 #fs14##h ##fs12# (이)라고 합니다.#k",2);
+        cm.sendNextPrevS("#fn나눔고딕 Extrabold##b안녕하세요! #fs14#존#fs14# 님 맞으신가요??\r\n저는 #fs14##h ##fs14# (이)라고 합니다.#k",2);
     } else if (status == 3) {
         cm.sendNextPrev("#fn나눔고딕 Extrabold#응? 못보던 젊은이로군…그래, 무슨일로 날 찾아왔지?..");
     } else if (status == 4) {
-        cm.sendNextS("#fn나눔고딕 Extrabold##b아! 저는 #fs14#존#fs12# 님을 … \r\n\r\n#fs13##L1#진심으로 돕고 싶어 소문듣고 찾아왔습니다.\r\n#L2#도와드리라고 의뢰를 받아서 왔습니다.",2);
+        cm.sendNextS("#fn나눔고딕 Extrabold##b아! 저는 #fs14#존#fs14# 님을 … \r\n\r\n#fs13##L1#진심으로 돕고 싶어 소문듣고 찾아왔습니다.\r\n#L2#도와드리라고 의뢰를 받아서 왔습니다.",2);
     } else if (status == 5) {
             if (selection == 2) {
 	cm.sendYesNo("#fn나눔고딕 Extrabold#아, 맞아! 저번에 한번 도와달라고 의뢰 했었던 적이 있엇던가..?\r\n어쨋든 반가워!.. 그렇다면 내 이야기를 들을 준비는 되었어?");

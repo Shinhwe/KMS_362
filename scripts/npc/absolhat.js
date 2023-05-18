@@ -25,7 +25,7 @@ function action(mode, type, sel) {
        }
    if (status == 0) {
       var msg = "#fs14#제작하실 아이템을 선택해주세요."+enter;
-      msg += "#fs14#레시피와 아이템의 정보는 선택하면 나옵니다.#fs12##b"+enter;
+      msg += "#fs14#레시피와 아이템의 정보는 선택하면 나옵니다.#fs14##b"+enter;
       for (i = 0; i < items.length; i++)
          msg += "#fs14##L"+i+"##i"+items[i]['itemid']+"##z"+items[i]['itemid']+"# 제작"+enter;
 

@@ -74,7 +74,7 @@ function action(M, T, S)
 
 		wList = [];
 		getWeapon(cm.getPlayer().getJob());
-		selStr = "#fs 11##fc0xFF990033#[ZERO]#fc0xFF000000#에 온걸 진심으로 환영하네! 이건 자네의 모험을 도와줄 지원 장비일세, 직업에 맞는 무기를 선택해보게나.#b\r\n";
+		selStr = "#fs14##fc0xFF990033#[ZERO]#fc0xFF000000#에 온걸 진심으로 환영하네! 이건 자네의 모험을 도와줄 지원 장비일세, 직업에 맞는 무기를 선택해보게나.#b\r\n";
 
 		for(i = 0; i < wList.length; i++)
 		{

@@ -41,7 +41,7 @@ function action(mode, type, selection)
             selStr += "#L1##fs14##e해외 헤어#n 리스트 A#l#L2# #e해외 헤어#n 리스트 B#l\r\n";
 		if (cm.getPlayer().getAndroid() != null) {
             		
-            //selStr += "\r\n\r\n#e#r#fs12#[안드로이드 헤어 변경하기]#k#b#n\r\n";
+            //selStr += "\r\n\r\n#e#r#fs14#[안드로이드 헤어 변경하기]#k#b#n\r\n";
             //selStr += "#L12##fs14##e해외 헤어#n 리스트 A#l#L13# #e해외 헤어#n 헤어 리스트 B#l\r\n";
             //selStr += "#L14##e해외 헤어# 리스트 C#l#L15# #e해외 헤어#n 헤어 리스트 D#l\r\n";
             		
@@ -52,7 +52,7 @@ function action(mode, type, selection)
             selStr += "#e #n#L5##fs14# #e해외 성형#n 리스트 A#l#L6# #e해외 성형#n 리스트 B#k#l\r\n";
 		if (cm.getPlayer().getAndroid() != null) {
             		
-            		//selStr += "\r\n\r\n#e#r#fs12#[안드로이드 성형]#k#b#n\r\n#fs14#";
+            		//selStr += "\r\n\r\n#e#r#fs14#[안드로이드 성형]#k#b#n\r\n#fs14#";
             		//selStr += "#e #n#L16# #e해외 성형#n 리스트 A#l#L17# #e해외 성형#n 리스트 B#l\r\n";
 		}
          break;

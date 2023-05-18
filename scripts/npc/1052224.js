@@ -61,7 +61,7 @@ bannedhair = [42960,42670,42830,42810,42820,42840,42850,42560,42530,42540,42550,
             selStr += "#L3# 헤어 리스트 C#l\r\n#L4# 헤어 리스트 D#l \r\n#L5# 헤어 리스트 E#l#k";
 		if (cm.getPlayer().getAndroid() != null) {
             		
-            selStr += "\r\n\r\n#e#r#fs12#[안드로이드 헤어 변경하기]#k#b#n\r\n";
+            selStr += "\r\n\r\n#e#r#fs14#[안드로이드 헤어 변경하기]#k#b#n\r\n";
             selStr += "#L12##fs14# 헤어 리스트 A#l\r\n#L13# 헤어 리스트 B#l\r\n";
             selStr += "#L14# 헤어 리스트 C#l\r\n#L15# 헤어 리스트 D (최신 헤어)#l\r\n";
             selStr += "#L16# 헤어 리스트 E#l";
@@ -73,7 +73,7 @@ bannedhair = [42960,42670,42830,42810,42820,42840,42850,42560,42530,42540,42550,
             selStr += "#e #n#L6##fs14#성형 리스트 A#l\r\n#L7# 성형 리스트 B#l\r\n#b#L8# 성형 리스트 C#l\r\n";
 		if (cm.getPlayer().getAndroid() != null) {
             		
-            		selStr += "\r\n\r\n#e#r#fs12#[안드로이드 성형]#k#b#n\r\n#fs14#";
+            		selStr += "\r\n\r\n#e#r#fs14#[안드로이드 성형]#k#b#n\r\n#fs14#";
             		selStr += "#e #n#L16# 성형 리스트 A#l#L17# 성형 리스트 B #e#r(최신 성형)#l\r\n";
 		}
          break;

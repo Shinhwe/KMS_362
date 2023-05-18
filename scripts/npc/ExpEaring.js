@@ -37,7 +37,7 @@ function action(mode, type, sel) {
        }
    if (status == 0) {
       var msg = "#fs14#제작하실 아이템을 선택해주세요."+enter;
-      msg += "#fs14#레시피와 아이템의 정보는 선택하면 나옵니다.#fs12##b"+enter;
+      msg += "#fs14#레시피와 아이템의 정보는 선택하면 나옵니다.#fs14##b"+enter;
       msg += "#fs14##k1단계 효과 : #b착용 시 경험치 20% 추가 획득"+enter;
       msg += "#k2단계 효과 : #b착용 시 경험치 30% 추가 획득"+enter;
       msg += "#k3단계 효과 : #b착용 시 경험치 40% 추가 획득"+enter;

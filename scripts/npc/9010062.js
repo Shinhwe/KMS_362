@@ -215,7 +215,7 @@ function action(mode, type, sel) {
     } else {
         if (status == 0) {
             sdg = dungeons[status];
-            var msg = "#fs14##fn나눔고딕#"+sdg['name']+"#fs12#"+enter;
+            var msg = "#fs14##fn나눔고딕#"+sdg['name']+"#fs14#"+enter;
             msg += sdg['content']+enter+enter;
             //msg += "#L1#◀#l";
             msg += "　　　";
@@ -240,7 +240,7 @@ function action(mode, type, sel) {
 		    } else {
                 cm.getPlayer().dropMessage(5, status);
                     sdg = dungeons[status];
-                    var msg = "#fs14##fn나눔고딕#"+sdg['name']+"#fs12#"+enter;
+                    var msg = "#fs14##fn나눔고딕#"+sdg['name']+"#fs14#"+enter;
                     msg += sdg['content']+enter+enter;
 			if (status != 0)
                     msg += "#L1#◀#l";

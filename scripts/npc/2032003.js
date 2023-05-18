@@ -21,7 +21,7 @@ function action(mode, type, selection) {
     if (status == 0) {
         cm.sendNext("#fn나눔고딕 Extrabold#여기까지 운이 좋게.. 찾아 오셨군요..\r\n이런 험난한 #b폐광#k 에는 무슨 용무신가요?");
     } else if (status == 1) { 
-        cm.sendNextPrevS("#fn나눔고딕 Extrabold##b혹시 이 근처에서 #fs14#이지병장#fs12# 님을 못보셨나요?#k",2);
+        cm.sendNextPrevS("#fn나눔고딕 Extrabold##b혹시 이 근처에서 #fs14#이지병장#fs14# 님을 못보셨나요?#k",2);
     } else if (status == 2) { 
         cm.sendNextPrev("#fn나눔고딕 Extrabold#아! 그.. 멍청한.. 새..ㄲ..\r\n아니.. 그분이라면 아까 제 도움을 받아 먼저 귀환 하셨어요.");
     } else if (status == 3) { 

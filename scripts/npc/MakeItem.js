@@ -14,7 +14,7 @@ function action(mode, type, sel) {
     	}
 	if (status == 0) {
 		var msg = "#fs14#안녕하세요 #e#b#h ##n#k 님! #b연금술#k에 관심이 있으신가요?\r\n";
-		msg += "#fs12##fc0xFFFF9436##e #L9#[소비]#l    #L7#[안드로이드]#l#k#n\r\n\r\n";
+		msg += "#fs14##fc0xFFFF9436##e #L9#[소비]#l    #L7#[안드로이드]#l#k#n\r\n\r\n";
 		msg += "#L2##fs14##i1132800##b  초월한 보스 장신구#k 제작#l#n\r\n";
 		msg += "#L3##fs14##i1004032##b 앱솔루트 이베이젼 헬름#k 제작#l#n\r\n";
 		msg += "#L6##fs14# #i1123430##b 카오스 칠흑의 보스 세트#k 제작#l#n\r\n\r\n";

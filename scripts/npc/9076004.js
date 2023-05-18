@@ -15,7 +15,7 @@ function action(mode, type, sel) {
 		return;
     	}
 	if (status == 0) {
-		var msg = "#fs12##fc0xFF990033##e[ZERO]#n#fc0xFF000000#의 각종 랭킹을 확인할 수 있는 게시판입니다.#b"+enter+enter;
+		var msg = "#fs14##fc0xFF990033##e[ZERO]#n#fc0xFF000000#의 각종 랭킹을 확인할 수 있는 게시판입니다.#b"+enter+enter;
 		msg += "#L1# 레벨 랭킹"+enter;
 		//msg += "#L6# 보스헌터 랭킹"+enter;
 		//msg += "#L2# 메소 랭킹"+enter;

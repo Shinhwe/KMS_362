@@ -37,7 +37,7 @@ function action(M, T, S)
 		}
 		if (cm.getPlayer().getJob() == 10112) {
 
-			cm.sendOkS("#b#h ##k#fs 11#님의 여정을 돕고자, 아이템들에 #e#r쓸만한 옵션#k#n을 부여 해드렸습니다. \r\n#r#e(제로 직업군은 무기를 획득할 수 없습니다)#n\r\n\r\n#b"
+			cm.sendOkS("#b#h ##k#fs14#님의 여정을 돕고자, 아이템들에 #e#r쓸만한 옵션#k#n을 부여 해드렸습니다. \r\n#r#e(제로 직업군은 무기를 획득할 수 없습니다)#n\r\n\r\n#b"
 			+ "  #i1003561:# #t1003561:#\r\n"
 			+ "  #i1052467:# #t1052467:#\r\n"
 			+ "  #i1032148:# #t1032148:#\r\n"
@@ -76,7 +76,7 @@ function action(M, T, S)
 
 		wList = [];
 		getWeapon(cm.getPlayer().getJob());
-		selStr = "#fs 11##fc0xFF990033#[ZERO]#fc0xFF000000#에 온걸 진심으로 환영하네! 이건 자네의 모험을 도와줄 지원 장비일세, 직업에 맞는 무기를 선택해보게나.\r\n";
+		selStr = "#fs14##fc0xFF990033#[ZERO]#fc0xFF000000#에 온걸 진심으로 환영하네! 이건 자네의 모험을 도와줄 지원 장비일세, 직업에 맞는 무기를 선택해보게나.\r\n";
 		selStr += "#L0##r#e나중에 다시 선택하겠습니다.#b#n#l\r\n\r\n";
 		for(i = 0; i < wList.length; i++)
 		{

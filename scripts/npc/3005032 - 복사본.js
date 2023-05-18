@@ -25,15 +25,15 @@ function action(mode, type, selection) {
       return;
        }
    if (status == 0) {
-   var text = "#fs12##fc0xFF000000#새로운 모험가군? #fc0xFF990033#[ZERO Island]#fc0xFF000000#로 출발할 준비는 되었어?  \r\n\r\n\r\n\r\n";
+   var text = "#fs14##fc0xFF000000#새로운 모험가군? #fc0xFF990033#[ZERO Island]#fc0xFF000000#로 출발할 준비는 되었어?  \r\n\r\n\r\n\r\n";
    text += "";
 
-  // text += "#fs 11#     1. 타 서버 #fc0xFFF781D8#비교발언#d 및 서버에 대한 #fc0xFFF781D8#비방#d, 공격성 발언 #fc0xFFF781D8#금지#d\r\n";
+  // text += "#fs14#     1. 타 서버 #fc0xFFF781D8#비교발언#d 및 서버에 대한 #fc0xFFF781D8#비방#d, 공격성 발언 #fc0xFFF781D8#금지#d\r\n";
   // text += "     2. 비인가 프로그램, 클라이언트 #fc0xFFF781D8#변조#d, 매크로 등 #fc0xFFF781D8#금지#d\r\n        #fc0xFFF781D8#(적발시 즉시 밴)#d\r\n";
  //  text += "     3. 불건전한 닉네임, 타인 사칭 및 #fc0xFFF781D8#비방#d, 과도한 분쟁 #fc0xFFF781D8#금지#d\r\n";
   // text += "     4. #fc0xFFF781D8#GM사칭#d 및 아이템의 현금거래 #fc0xFFF781D8#금지#d\r\n";
   // text += "     5. 게임내 #fc0xFFF781D8#모든 정보는 로그가 기록#d될 수 있으며 필요에 \r\n        의해 #fc0xFFF781D8#증거로 활용#d될 수 있습니다.#d\r\n\r\n";
-   text += "#fs12##fc0xFFFF9900#'예'#fc0xFF000000# 버튼을 누르시면 시작합니다.";
+   text += "#fs14##fc0xFFFF9900#'예'#fc0xFF000000# 버튼을 누르시면 시작합니다.";
       cm.sendYesNo(text);
    } else if (status == 1) {
       FirstJob(cm.getJob());
@@ -247,7 +247,7 @@ function action(mode, type, selection) {
 }
 
 function SecondJob(i) {
-   var adventure = "#fs 12##fc0xFF000000#세부 직업을 선택해! 선택한 직업은 후에 충족 레벨이 되면 자동으로 전직이 된다구\r\n"
+   var adventure = "#fs14##fc0xFF000000#세부 직업을 선택해! 선택한 직업은 후에 충족 레벨이 되면 자동으로 전직이 된다구\r\n"
    switch (i) {
           case 1:
                       adventure += "#fc0xFF000000#현재 당신이 선택한 직업군은 #b전사#fc0xFF000000# 입니다.\r\n";
@@ -282,7 +282,7 @@ function SecondJob(i) {
 }
 
 function FirstJob(i) {
-   var chat = "#fs 12##fc0xFF000000#원하는 직업을 선택해! \r\n\r\n(#fc0xFF6600CC##h0##fc0xFF000000# 님이 현재 플레이 가능한 #fc0xFF6600CC#직업#fc0xFF000000#은 아래와 같습니다)\r\n";
+   var chat = "#fs14##fc0xFF000000#원하는 직업을 선택해! \r\n\r\n(#fc0xFF6600CC##h0##fc0xFF000000# 님이 현재 플레이 가능한 #fc0xFF6600CC#직업#fc0xFF000000#은 아래와 같습니다)\r\n";
    switch (i) {
       case 0:
          chat += "#L1##fc0xFF000000# 저는 #fc0xFFFF3300#전사#fc0xFF000000#로 시작하고 싶습니다.\r\n";

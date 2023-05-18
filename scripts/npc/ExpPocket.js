@@ -65,7 +65,7 @@ function action(mode, type, selection) {
         }
         cm.sendYesNoS("잡초 지금까지 #e#r" + coin + "개#n#k 제거했어.\r\n지금 보상을 받을래?\r\n\r\n#e[잡초 제거 보상]#n\r\n#i4310310:# #b#z4310310:# #e" + coin + "개#n#k\r\n\r\n #r적립된 경험치 #e" + cm.ExpPocket(2) + " 증가#n#k\r\n\r\n#r※ 실제 표기된 경험치 량과 적립된 경험치 량이 틀릴 수 있습니다.", 4, 9062516);
     } else if (status == 1) {
-        cm.sendYesNoS("잡초 제거 보상은 #r#e#fs16#월드 당 1번#n#k#fs12#만 받을 수 있어. \r\n#b#e정말 이 캐릭터로 보상을 받을래?#n#k\r\n\r\n\r\n#e[잡초 제거 보상]#n\r\n#i4310310:# #b#z4310310:# #e" + coin + "개#n#k\r\n\r\n #r적립된 경험치 #e" + cm.ExpPocket(2) + " 증가#n#k", 4, 9062516);
+        cm.sendYesNoS("잡초 제거 보상은 #r#e#fs16#월드 당 1번#n#k#fs14#만 받을 수 있어. \r\n#b#e정말 이 캐릭터로 보상을 받을래?#n#k\r\n\r\n\r\n#e[잡초 제거 보상]#n\r\n#i4310310:# #b#z4310310:# #e" + coin + "개#n#k\r\n\r\n #r적립된 경험치 #e" + cm.ExpPocket(2) + " 증가#n#k", 4, 9062516);
     } else if (status == 2) {
         var exp = cm.ExpPocket(2);
         var kc = new Packages.constants.KoreaCalendar();

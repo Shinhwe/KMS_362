@@ -52,7 +52,7 @@ function action(mode, type, sel) {
 		
 
 		var msg ="#fs14#안녕하세요 #b#h 0##k님! "+seldi+"에 잠재능력 부여가 가능하다는 사실을 알고 계시나요? 원하시는 아이템을 골라주세요.\r\n#r(에디셔널은 개방되지 않습니다)#k"+enter;
-		msg += "#fs14#현재 #b#h 0##k님의 #d"+pt+"포인트#k는 "+p+"P 입니다.#fs12#"+enter+enter;
+		msg += "#fs14#현재 #b#h 0##k님의 #d"+pt+"포인트#k는 "+p+"P 입니다.#fs14#"+enter+enter;
 		switch (seld) {
 			case 1:
 				for (i = 0; i < cm.getInventory(1).getSlotLimit(); i++) {

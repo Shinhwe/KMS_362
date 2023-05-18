@@ -20,7 +20,7 @@ function action(mode, type, selection) {
 	}
 	status++;
 	if (status == 1) {
-		var txt = "안녕하세요. 캐쉬아이템을 사리지지않고 버릴 수 있게 해드립니다.#k\r\n#fs12#";
+		var txt = "안녕하세요. 캐쉬아이템을 사리지지않고 버릴 수 있게 해드립니다.#k\r\n#fs14#";
 		txt += "\r\n#d* 드롭에는 1000 만 메소가 필요합니다.#k\r\n";
 		txt += "#L1##r캐쉬 아이템#k 을 드롭하겠습니다.#k\r\n";
 		cm.sendSimple(txt);

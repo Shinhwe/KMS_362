@@ -660,7 +660,7 @@ function getList2(n) {
 		}
                 	ret += "#fs14#닉네임 : #b"+rs.getString("name")+"#k #fs14#지급 날짜 : #d"+rs.getString("date")+"#k \r\n";
                  	ret += "    스트리밍 : #b"+rs.getInt("youtube") + "#k / 포스팅 : #b" + rs.getInt("blog") + "#k / 기타 : #b" + rs.getInt("etc") + "#k\r\n";
-                	ret += "    비고 : #d" + rs.getString("comment") + "#k#l#fs12#\r\n\r\n----------------------------------------------\r\n";
+                	ret += "    비고 : #d" + rs.getString("comment") + "#k#l#fs14#\r\n\r\n----------------------------------------------\r\n";
             }
             rs.close();
             ps.close();

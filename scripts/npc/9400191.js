@@ -56,7 +56,7 @@ function action(mode, type, sel) {
 		if (guild1 == cm.getPlayer().getGuild()) {
 			if (!guild1R) {
 				if (status == 0) {
-					var msg = "#fs14##fn나눔고딕#[컨텐츠 :: 길드 경쟁전]#fs12#"+enter;
+					var msg = "#fs14##fn나눔고딕#[컨텐츠 :: 길드 경쟁전]#fs14#"+enter;
 					msg += "현재 #b"+guild1.getName()+" 길드#k의 원정대장 : #b"+cm.getGuildWarMaster(1).getName()+"#k#b"+enter;
 					msg += "#L1#원정대원의 목록을 확인하고 싶습니다."+enter;
 					if (cm.getPlayer() != guild1M && cm.getChannelServer().getGuildWar().getMembers(1).indexOf(cm.getPlayer()) == -1)
@@ -240,7 +240,7 @@ function action(mode, type, sel) {
 				}
 				if (guild2 == cm.getPlayer().getGuild()) {
 					if (status == 0) {
-						var msg = "#fs14##fn나눔고딕#[컨텐츠 :: 길드 경쟁전]#fs12#"+enter;
+						var msg = "#fs14##fn나눔고딕#[컨텐츠 :: 길드 경쟁전]#fs14#"+enter;
 						msg += "현재 #b "+guild2.getName()+" 길드#k의 원정대장 : #b"+cm.getGuildWarMaster(2).getName()+"#k#b"+enter;
 						msg += "#L1#원정대원의 목록을 확인하고 싶습니다."+enter;
 						if (cm.getPlayer() != guild2M && cm.getChannelServer().getGuildWar().getMembers(2).indexOf(cm.getPlayer()) == -1)
@@ -311,7 +311,7 @@ function action(mode, type, sel) {
 		}
 	} else {
 		if (status == 0) {
-			var msg = "#fs14##fn나눔고딕#[컨텐츠 :: 길드 경쟁전]#fs12##b"+enter;
+			var msg = "#fs14##fn나눔고딕#[컨텐츠 :: 길드 경쟁전]#fs14##b"+enter;
 			msg += "#L1#길드 경쟁전이 무엇인가요?"+enter;
 			msg += "#L3#길드 경쟁전의 랭킹을 확인하고 싶습니다."+enter+enter;
 			msg += "#L2#길드 경쟁전에 참여하고 싶습니다."+enter;

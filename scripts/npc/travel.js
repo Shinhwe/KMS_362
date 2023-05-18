@@ -788,7 +788,7 @@ function action(mode, type, sel) {
                     cm.sendNext(getName(main) + " 주민들의 고민거리를 모두 해결해주셨군요! 저희가 준비한 패키지여행은 태국이 마지막이었습니다.	");
                 } else if (status == 1) {
                     var msg = "지금까지 일본과 대만, 중국 그리고 태국 주민들의 고민을 해결하시느라 수고 많으셨습니다." + enter;
-                    msg += "고생하신 당신을 위해 앞으로 #b평생#k 일본, 대만, 중국, 태국 여행을 #e#fs14##b무료#k#fs12##n로 제공해드리기로 하였으니 기뻐해주세요!";
+                    msg += "고생하신 당신을 위해 앞으로 #b평생#k 일본, 대만, 중국, 태국 여행을 #e#fs14##b무료#k#fs14##n로 제공해드리기로 하였으니 기뻐해주세요!";
                     cm.sendNext(msg);
                 } else if (status == 2) {
                     cm.gainSponserItem(reward[0], "", reward[1], reward[2], 0);

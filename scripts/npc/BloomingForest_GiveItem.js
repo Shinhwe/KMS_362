@@ -36,7 +36,7 @@ function action(mode, type, selection) {
 		count = item[index][1]
 		cm.sendYesNoS("\r\n지금 즉시 #e<블루밍 플라워> 보상#n을 받아 가시겠나여?\r\n\r\n#fUI/UIWindow2.img/Quest/quest_info/summary_icon/reward#\r\n#b#e#i"+itemid+":# #t"+itemid+":# : "+count+"개\r\n\r\n\r\n#r※ 보상은 월드당 1회만 받을 수 있습니다.\r\n※ 이벤트 기간 : 2021년 6월 16일(수) 23시 59분까지", 4, 9062508);
 	} else if (status == 1) {
-		cm.sendGetText("\r\n정말 현재 캐릭터로 받으시려면 아래 입력창에 \r\n'#r#e수령한다#k#n'를 입력해 주세여!!\r\n#r(예시) 수령한다#k\r\n\r\n\r\n - #e#fs16#<현재 캐릭터> #b"+cm.getPlayer().getLevel()+"레벨 #h0# #n#k#fs12#\r\n\r\n", 9062508);
+		cm.sendGetText("\r\n정말 현재 캐릭터로 받으시려면 아래 입력창에 \r\n'#r#e수령한다#k#n'를 입력해 주세여!!\r\n#r(예시) 수령한다#k\r\n\r\n\r\n - #e#fs16#<현재 캐릭터> #b"+cm.getPlayer().getLevel()+"레벨 #h0# #n#k#fs14#\r\n\r\n", 9062508);
 	} else if (status == 2) {
 		text = cm.getText().replaceAll(" ", "");;
         if (text.contains("수령한다")) {

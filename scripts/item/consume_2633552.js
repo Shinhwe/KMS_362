@@ -70,7 +70,7 @@ function action(M, T, S)
 
 		wList = [];
 		getWeapon(cm.getPlayer().getJob());
-		selStr = "#fs 11##fc0xFF000000#버닝 캐릭터를 위한 지원장비일세! #b직업군에 맞는 무기#fc0xFF000000#를 골라보게나.\r\n";
+		selStr = "#fs14##fc0xFF000000#버닝 캐릭터를 위한 지원장비일세! #b직업군에 맞는 무기#fc0xFF000000#를 골라보게나.\r\n";
 		for(i = 0; i < wList.length; i++)
 		{
 			selStr += "#b#L"+wList[i]+"##i"+wList[i]+":# #t"+wList[i]+":##l\r\n";

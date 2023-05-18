@@ -37,7 +37,7 @@ function action(mode, type, selection)
 //			return;
 //		}
 
-		cm.sendGetText("\r\n\r\n　　 #fs18##fn나눔고딕 ExtraBold##fc0xFF47C83E##e새로운 캐릭터 이름을 입력해주세요!#fn돋움##fs12##k#n\r\n\r\n"
+		cm.sendGetText("\r\n\r\n　　 #fs18##fn나눔고딕 ExtraBold##fc0xFF47C83E##e새로운 캐릭터 이름을 입력해주세요!#fn돋움##fs14##k#n\r\n\r\n"
 			+ "\r\n#e#r※ 주의사항#k#n\r\n#fn돋움체#"
 			+ "　1. 이미 존재하는 이름으로는 변경할 수 없습니다.\r\n"
 			+ "　2. 일부 단어가 포함된 이름으로는 변경할 수 없습니다.\r\n"

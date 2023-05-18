@@ -69,7 +69,7 @@ function action(mode, type, sel) {
 				}
 			break;
 			case 2:
-				var msg = "#fn나눔고딕 ExtraBold##fs15#후원 스페셜 스킬 목록#Cgray# #fs10##r(Special Skill)#k#fs12#"+enter;
+				var msg = "#fn나눔고딕 ExtraBold##fs15#후원 스페셜 스킬 목록#Cgray# #fs10##r(Special Skill)#k#fs14#"+enter;
 				msg += " 현재 #h #님의 후원포인트 : #r"+cm.getPlayer().getDonationPoint()+"P#k#fs14#"+enter;
 				for (i = 0; i < skills.length; i++) {
 					if (skills[i][1] == 99999) {
@@ -112,7 +112,7 @@ function action(mode, type, sel) {
 			        cm.openNpc(2002000);
 			return;
                         case 9:
-				var msg = "#fn나눔고딕 ExtraBold##fs15#후원 VIP 스킬 제작#Cgray# #fs10##r(VIP Skill)#k#fs12#"+enter;
+				var msg = "#fn나눔고딕 ExtraBold##fs15#후원 VIP 스킬 제작#Cgray# #fs10##r(VIP Skill)#k#fs14#"+enter;
 				msg += "#fUI/UIWindow8.img/EldaGauge/tooltip/46# 현재 #h #님의 후원포인트 : #r"+cm.getPlayer().getDonationPoint()+"P#k#fs14#"+enter+enter;
 				msg += "황금 단풍잎은 #b악의 정수 가챠#k에서 얻으실 수 있습니다."+enter;
 				msg += "후원 트라이플링 윔은 기존 윔과 다르게 #r확률100%#k 로 적용되며, 화살갯수를 추가적으로 다실 수 있습니다."+enter;

@@ -112,7 +112,7 @@ function action(mode, type, selection) {
             txt += "#b승급 가능한 최대 랭크는#fc0xFF000000# #e[8랭크]#n\r\n"
             txt += "승급한 랭크의 효과와\r\n승급에 필요한 #r아이템#fc0xFF000000#은 다음과 같다네\r\n\r\n";
             txt += "#r#e승급 성공 시 총 " + effect + " + #r#e" + damageup + "%#n\r\n#fc0xFF000000# #i" + needcoin + "# #b#z" + needcoin + "# " + needcoincount + "개#k\r\n\r\n"
-            txt += "#fs12##fc0xFF000000#정말 #e승급#n을 진행 하겠나?";
+            txt += "#fs14##fc0xFF000000#정말 #e승급#n을 진행 하겠나?";
             cm.sendYesNo(txt);
         } else if (sel == 1) {
             //경험치 티어
@@ -247,7 +247,7 @@ function action(mode, type, selection) {
             txt += "다음 승급 티어는 #e[" + uptear + "티어]#n이며\r\n"
             txt += "승급한 티어의 효과와\r\n승급에 필요한 #r아이템#k은 다음과 같습니다\r\n\r\n";
             txt += "" + effect + " + #r#e" + up + "%\r\n#n#k #i" + needcoin + "# #b#z" + needcoin + "# " + needcoincount + "개#k\r\n\r\n"
-            txt += "#fs12#정말 #e승급#n을 진행 하시겠습니까?";
+            txt += "#fs14#정말 #e승급#n을 진행 하시겠습니까?";
             cm.sendYesNo(txt);
         } else if (sel == 3) {
             //크뎀 티어
@@ -315,7 +315,7 @@ function action(mode, type, selection) {
             txt += "#b승급 가능한 최대 랭크는#k #e[8랭크]#n\r\n"
             txt += "승급한 랭크의 효과와\r\n승급에 필요한 #r아이템#k은 다음과 같습니다\r\n\r\n";
             txt += "#r#e승급 성공시 총 " + effect + " + #r#e" + up + "%#k\r\n#n#k #i" + needcoin + "# #b#z" + needcoin + "# " + needcoincount + "개#k\r\n\r\n"
-            txt += "#fs12#정말 #e승급#n을 진행 하시겠습니까?";
+            txt += "#fs14#정말 #e승급#n을 진행 하시겠습니까?";
             cm.sendYesNo(txt);
         } else if (sel == 4) {
             //보공 티어
@@ -383,7 +383,7 @@ function action(mode, type, selection) {
             txt += "#b승급 가능한 최대 랭크는#k #e[8랭크]#n\r\n"
             txt += "승급한 랭크의 효과와\r\n승급에 필요한 #r아이템#k은 다음과 같습니다\r\n\r\n";
             txt += "#r#e승급 성공시 총 " + effect + " + #r#e" + up + "%#k\r\n#n#k #i" + needcoin + "# #b#z" + needcoin + "# " + needcoincount + "개#k\r\n\r\n"
-            txt += "#fs12#정말 #e승급#n을 진행 하시겠습니까?";
+            txt += "#fs14#정말 #e승급#n을 진행 하시겠습니까?";
             cm.sendYesNo(txt);
         } else if (sel == 5) {
             //메소 티어

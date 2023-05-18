@@ -14,13 +14,13 @@ function action(mode, type, sel) {
     	}
 	if (status == 0) {
 		var msg = "#fs14#안녕하세요 #e#b#h ##n#k 님! #b연금술#k에 관심이 있으신가요?\r\n";
-		msg += "#fs12##fc0xFFFF9436##e #L9#[ 장비 ]#l    #L1#[기타]#l    #L7#[안드로이드]#l#k#n\r\n\r\n";
+		msg += "#fs14##fc0xFFFF9436##e #L9#[ 장비 ]#l    #L1#[기타]#l    #L7#[안드로이드]#l#k#n\r\n\r\n";
 		msg += "#L2##fs14# #i2048753##b 검은 환생의 불꽃#k 제작#l#n\r\n\r\n";
 		msg += "#L3##fs14# #i2002093##b 도핑약#k 제작 #b(2분간 올스탯,공마+300)#l#k#n\r\n\r\n";
 		//msg += "#L6##fs14# #i1032209##b 경험치 귀고리#k 제작#l#n\r\n\r\n";
 		//msg += "#L4##fs14##i1113305##fc0xFFF781D8# 마스테리아의 유산 세트#k 제작#l#n\r\n";
 		//msg += "#L5##fs14##i1114325##fc0xFFF781D8# 제네시스 장신구#k 제작#l#n\r\n\r\n\r\n";
-		//msg += "#fs12##fc0xFFFF9436##e    [ 소비 ]#k#n\r\n";
+		//msg += "#fs14##fc0xFFFF9436##e    [ 소비 ]#k#n\r\n";
 		//msg += "#L7##fs14# #i2431940##b 피로 회복제#k 제작#l#n\r\n\r\n";
 		//msg += "#L8##fs14# #i2002093##b 도핑약#k 제작 #b(2분간 올스탯,공마+300)#l#k#n\r\n\r\n";
                 msg += "\r\n";

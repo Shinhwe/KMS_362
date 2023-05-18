@@ -38,7 +38,7 @@ function action (mode, type, selection) {
         //강화수, 강화성공확률, 강화메소, 올스탯, 공마 
         var notice = "";
         say = "";
-        say += "#fs 11#";
+        say += "#fs14#";
         say += "#r강화 : " + getAddEnhance(item) + "강 -> " + (getAddEnhance(item) + 1) + "강#k\r\n";
         say += "강화 성공 시 #b올스탯 +" + items[getAddEnhance(item) + 1][3] + ", 공마 +" + items[getAddEnhance(item) + 1][4] + "#k 증가\r\n";
         say += "기본강화에 필요한 메소 :#b " + items[getAddEnhance(item) + 1][2] + " 메소#k\r\n";
@@ -64,7 +64,7 @@ function action (mode, type, selection) {
         }
         //강화수, 강화성공확률, 강화메소, 올스탯, 공마 
         say = "";
-        say += "#fs 11#";
+        say += "#fs14#";
         say += "강화 : #b" + getAddEnhance(item) + "강 -> " + (getAddEnhance(item) + 1) + "강#k\r\n";
         say += "강화 성공 시 #b올스탯 +" + items[getAddEnhance(item) + 1][3] + ", 공마 +" + items[getAddEnhance(item) + 1][4] + "#k 증가\r\n";
         say += "기본강화에 필요한 메소 : #b" + items[getAddEnhance(item) + 1][2] + "메소#k\r\n";

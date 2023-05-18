@@ -121,7 +121,7 @@ function action(mode, type, sel) {
 					var msg = "#fc0xFF000000#직업변경을 하기 전에 다음 유의사항을 필독하게"+enter;
 					msg += "#fc0xFFFF3300#"+price+" 후원포인트#fc0xFF000000#가 차감되며, 이 시스템에 관련된 복구를 비롯한 모든 문의는 받지 않는다네"+enter;
 					msg += "정말 이 직업을 할 것이 아니라면 #b'아니오'#fc0xFF000000#를 누르고 다시 선택하게"+enter;
-					msg += enter + "#fs12##b동의#fc0xFF000000#한다면 #b'예'#fc0xFF000000#를 누르게";
+					msg += enter + "#fs14##b동의#fc0xFF000000#한다면 #b'예'#fc0xFF000000#를 누르게";
 
 					cm.sendYesNo(msg);
 				} else if (status == 3) {

@@ -29,7 +29,7 @@ function action(mode, type, sel) {
     	}
 	if (status == 0) {
 		var msg = "#r[#z"+need +"#]#k"+enter;
-		msg += enter+"#fn나눔고딕##fs17##r#e※주의! 절대 해당 상자 사용하여 뽑은 아이템에 아크이노 사용하지 마세요!!!!!#fs12##fn돋움##n#k"+enter+enter;
+		msg += enter+"#fn나눔고딕##fs17##r#e※주의! 절대 해당 상자 사용하여 뽑은 아이템에 아크이노 사용하지 마세요!!!!!#fs14##fn돋움##n#k"+enter+enter;
         msg += "#r#i"+need +"##z"+need +"##k를 정말 사용하시겠습니까? "+ItemList.length+"개의 아이템 중 1가지를 선택하여 획득합니다.#b"+enter;
         for (i = 0; i < ItemList.length; i++) {
             msg += "#L"+i+"##i"+ItemList[i]+"##z"+ItemList[i]+"#" +enter;

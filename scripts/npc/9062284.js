@@ -31,7 +31,7 @@ function action(mode, type, sel) {
 			case 2:
 				var msg = "";
                                 //msg += "#L9##fs14#  (공용)#r 퀘스트의 전당 이동 #k(서브퀘스트 클리어)#n#k"+enter;
-				msg += "#fs12##b#e   [일일 퀘스트]#k#n\r\n"+enter;
+				msg += "#fs14##b#e   [일일 퀘스트]#k#n\r\n"+enter;
 				msg += "#L2##fs14##fUI/UIWindow.img/Quest/icon0#  (Lv. 190)#d 헤이븐 - #b긴급 지원#n#k"+enter;
 				msg += "#L1##fs14##fUI/UIWindow.img/Quest/icon0#  (Lv. 190)#d 버려진 야영지 - #b어둠 퇴치#n#k"+enter;
 				msg += "#L3##fUI/UIWindow.img/Quest/icon0#  (Lv. 200)#d 소멸의여로 - #b소멸의 여로 조사#n#k"+enter;
@@ -41,7 +41,7 @@ function action(mode, type, sel) {
 				msg += "#L7##fUI/UIWindow.img/Quest/icon0#  (Lv. 230)#d 모라스 - #b모라스의 안정을 위해#n#k"+enter;
 				msg += "#L8##fUI/UIWindow.img/Quest/icon0#  (Lv. 235)#d 에스페라 - #b에스페라 정화#l#n#k"+enter;
 				msg += "#L10##fUI/UIWindow.img/Quest/icon0#  (Lv. 260)#d 세르니움 - #b세르니움 정화#l#n#k\r\n"+enter;
-				msg += "#fs12##b#e   [반복 퀘스트]#k#n"+enter;
+				msg += "#fs14##b#e   [반복 퀘스트]#k#n"+enter;
 				msg += "#L9##fs14##fUI/UIWindow.img/Quest/icon0#  잃어버린 크레파스 #b(메소수급)#n#k"+enter;
 				cm.sendSimple(msg);
 			break;

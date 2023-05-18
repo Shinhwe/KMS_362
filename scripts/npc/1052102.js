@@ -53,7 +53,7 @@ function action(mode, type, selection) {
 	cm.sendOkS("#fn나눔고딕 Extrabold##b슈미가 죽던 말던 알빠 아니지! 하던거나 하자..#k",2);
 	cm.dispose();
 	} else {
-        	cm.sendYesNo("#fn나눔고딕 Extrabold##fs15#정말..!? #fs12#정말 나를 도와주는거야 #b#h ##k !?\r\n신난다!! 고마워..!! 정말.. 정말 고마워!! ㅠㅠ..\r\n돈을 찾아와 준다면 내가 너에게 도움이 되는걸 줄게!\r\n\r\n#fUI/UIWindow2.img/QuestIcon/3/0#\r\n#i4021031# #b뒤틀린 시간의 정수#k #r100 개#k\r\n\r\n#d그럼 지금 바로 잃어버린 돈을 찾으러 갈래..??#k");
+        	cm.sendYesNo("#fn나눔고딕 Extrabold##fs15#정말..!? #fs14#정말 나를 도와주는거야 #b#h ##k !?\r\n신난다!! 고마워..!! 정말.. 정말 고마워!! ㅠㅠ..\r\n돈을 찾아와 준다면 내가 너에게 도움이 되는걸 줄게!\r\n\r\n#fUI/UIWindow2.img/QuestIcon/3/0#\r\n#i4021031# #b뒤틀린 시간의 정수#k #r100 개#k\r\n\r\n#d그럼 지금 바로 잃어버린 돈을 찾으러 갈래..??#k");
     }
     } else if (status == 6) { 
         cm.warp(910360000,0);

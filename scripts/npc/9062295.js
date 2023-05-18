@@ -258,7 +258,7 @@ function action(mode, type, selection) {
 }
 
 function SecondJob(i) {
-   var adventure = "#fs 12##fc0xFF000000#세부 직업을 선택하게나 선택한 직업은 후에 충족 레벨이 되면 자동으로 전직이 된다네.\r\n"
+   var adventure = "#fs14##fc0xFF000000#세부 직업을 선택하게나 선택한 직업은 후에 충족 레벨이 되면 자동으로 전직이 된다네.\r\n"
    switch (i) {
           case 1:
                       adventure += "#fc0xFF000000#현재 당신이 선택한 직업군은 #b전사#fc0xFF000000# 입니다.\r\n";
@@ -293,7 +293,7 @@ function SecondJob(i) {
 }
 
 function FirstJob(i) {
-   var chat = "#fs 11##fc0xFF990033#[해피 스토리]#fc0xFF000000#에 온걸 환영하네. 모험을 떠날 준비는 되었는가?\r\n준비가 되었다면 원하는 직업을 선택하게.\r\n\r\n";
+   var chat = "#fs14##fc0xFF990033#[해피 스토리]#fc0xFF000000#에 온걸 환영하네. 모험을 떠날 준비는 되었는가?\r\n준비가 되었다면 원하는 직업을 선택하게.\r\n\r\n";
    switch (i) {
       case 0:
          chat += "#L1##fc0xFF000000# 저는 #fc0xFFFF3300#전사#fc0xFF000000#로 시작하고 싶습니다.\r\n";

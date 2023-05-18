@@ -23,7 +23,7 @@ function action(mode, type, selection) {
     if (status == 0) {
 
         var choose = "#fs14##fc0xFF050099##k\r\n";
-        choose += "  #fs12##e[EASY]#n\r\n";
+        choose += "  #fs14##e[EASY]#n\r\n";
         choose += "#fs14##L1##fUI/UIWindow2.img/MobGage/Mob/8800100##e 자쿰#n#l\r\n";
         choose += "#L99##fUI/UIWindow2.img/MobGage/Mob/8880200##e 카웅#n#l\r\n";
         choose += "#L2##fUI/UIWindow2.img/MobGage/Mob/8810122##e 혼테일#n#l\r\n";
@@ -32,7 +32,7 @@ function action(mode, type, selection) {
         choose += "#L5##fUI/UIWindow2.img/MobGage/Mob/8860000##e 아카이럼#n#l\r\n";
         choose += "#L6##fUI/UIWindow2.img/MobGage/Mob/8820001##e 핑크빈#n#l\r\n";
         choose += "#L7##fUI/UIWindow2.img/MobGage/Mob/8850011##e 시그너스#n#l\r\n\r\n";
-        choose += "  #fs12##b#e[NORMAL]#n#k\r\n";
+        choose += "  #fs14##b#e[NORMAL]#n#k\r\n";
         choose += "#fs14##L10##fUI/UIWindow2.img/MobGage/Mob/8880002##b#e 매그너스#n#l\r\n";
         choose += "#L8##fUI/UIWindow2.img/MobGage/Mob/8930100##e 루타비스#n#l\r\n";
         choose += "#L9##fUI/UIWindow2.img/MobGage/Mob/8500012##e 파풀라투스#n#l\r\n";
@@ -40,14 +40,14 @@ function action(mode, type, selection) {
         choose += "#L12##fUI/UIWindow2.img/MobGage/Mob/8880111##e 데미안#n#l\r\n";
         choose += "#L13##fUI/UIWindow2.img/MobGage/Mob/8880150##e 루시드#n#l\r\n";
         choose += "#L14##fUI/UIWindow2.img/MobGage/Mob/8880342##e 윌#n#l#k\r\n\r\n";
-        choose += "  #fs12##r#e[HARD]#n#k\r\n";
+        choose += "  #fs14##r#e[HARD]#n#k\r\n";
         choose += "#L21##fUI/UIWindow2.img/MobGage/Mob/8800100##e 우르스#n#l\r\n";
         choose += "#L103##fUI/UIWindow2.img/MobGage/Mob/8880405##e 진힐라#n#l\r\n";
         choose += "#L105##fUI/UIWindow2.img/MobGage/Mob/8645009##e 듄켈#n#l\r\n";
         choose += "#L98##fUI/UIWindow2.img/MobGage/Mob/8644655##e 더스크#n#l\r\n";
         choose += "#L97##fUI/UIWindow2.img/MobGage/Mob/8880502##e 검은 마법사#n#l#k\r\n";
         choose += "#L106##fUI/UIWindow2.img/MobGage/Mob/8880600##e 세렌#n#l\r\n\r\n";
-        choose += "  #fs12##fc0xFFF781D8##e[EXTREME]#n#k\r\n";
+        choose += "  #fs14##fc0xFFF781D8##e[EXTREME]#n#k\r\n";
         //choose += "#fs14##L100##e#d 크로스#n#l\r\n";
        // choose += "#fs14##L101##e#d 도로시#n#l\r\n";
         cm.sendSimple(choose);

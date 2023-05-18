@@ -157,7 +157,7 @@ function action(mode, type, selection, selection2) {
         말 = "";
         타입 = "";
         if (st == 0) {
-            말 += "" + 파랑 + "#e#fs12##fc0xFF6B66FF##e원하는 리스트#n#k#fs14#의 헤어를 선택해보세요!\r\n\r\n"
+            말 += "" + 파랑 + "#e#fs14##fc0xFF6B66FF##e원하는 리스트#n#k#fs14#의 헤어를 선택해보세요!\r\n\r\n"
             if (st2 == 0) {
                 for (i = 0; i < mhair.length; i++) {
                     if (i == 0) {

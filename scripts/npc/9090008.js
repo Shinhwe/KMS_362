@@ -249,23 +249,23 @@ function addItemInfo()
 			}
 			if(y == 14)
 			{
-				txt += "\r\n\r\n\r\n#r#e#fs12#[아이템 스타포스 강화 옵션]#b#n#fs14#\r\n";
+				txt += "\r\n\r\n\r\n#r#e#fs14#[아이템 스타포스 강화 옵션]#b#n#fs14#\r\n";
 			}
 			if(y == 26)
 			{
-				txt += "\r\n\r\n\r\n#r#e#fs12#[아이템 강화 옵션]#b#n#fs14#\r\n";
+				txt += "\r\n\r\n\r\n#r#e#fs14#[아이템 강화 옵션]#b#n#fs14#\r\n";
 			}
 			if(y == 30)
 			{
-				txt += "\r\n\r\n\r\n#r#e#fs12#[아이템 추가 옵션]#b#n#fs14#\r\n";
+				txt += "\r\n\r\n\r\n#r#e#fs14#[아이템 추가 옵션]#b#n#fs14#\r\n";
 			}
 			if(y == 35)
 			{
-				txt += "\r\n\r\n\r\n#r#e#fs12#[아이템 잠재 능력]#b#n#fs14#\r\n";
+				txt += "\r\n\r\n\r\n#r#e#fs14#[아이템 잠재 능력]#b#n#fs14#\r\n";
 			}
 			if(y == 42)
 			{
-				txt += "\r\n\r\n\r\n#r#e#fs12#[아케인 포스 능력]#b#n#fs14#\r\n";
+				txt += "\r\n\r\n\r\n#r#e#fs14#[아케인 포스 능력]#b#n#fs14#\r\n";
 			}
 
 		}
@@ -325,9 +325,9 @@ function addItemInfo()
 		{
 			cm.sendSimple("변경을 원하는 #b"+sel[S3]+"#k 수치의 값을 선택해주세요.\r\n#fs14##r"
 				+ "#L0#잠재능력 등급 없음#l\r\n\r\n\r\n"
-				+ "#fs12##e[미확인 잠재능력 등급]#b#n#fs14#\r\n"
+				+ "#fs14##e[미확인 잠재능력 등급]#b#n#fs14#\r\n"
 				+ "#L1#레어#l#L2#에픽#l#L3#유니크#l#L4#레전드리#l\r\n\r\n\r\n"
-				+ "#fs12##e#r[확인된 잠재능력 등급]#b#n#fs14#\r\n"
+				+ "#fs14##e#r[확인된 잠재능력 등급]#b#n#fs14#\r\n"
 				+ "#L17#레어#l#L18#에픽#l#L19#유니크#l#L20#레전드리#l\r\n");
 		}
 		rotation++;

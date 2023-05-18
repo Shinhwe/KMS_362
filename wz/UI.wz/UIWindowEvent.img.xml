@@ -10471,10 +10471,10 @@
 </imgdir>
 </imgdir>
 <imgdir name="vipBenefit">
-<string name="classic" value="#fn모리스##fs11##fc0xFFFFFFFF#VIP 헌터클럽 #fc0xFFFEE0AC# &lt;1단계&gt;#fc0xFFFFFFFF# 서비스 제공\n멤버십샵, 퍼스널샵, 부티크, 쥬얼리샵 #fc0xFFFEE0AC#이용 가능"/>
-<string name="elite" value="#fn모리스##fs11##fc0xFFFEE0AC# &lt;경험의 코어 젬스톤&gt; #fc0xFFFFFFFF#지급\n#fc0xFFFFFFFF#VIP 헌터클럽 #fc0xFFFEE0AC# &lt;1단계&gt;#fc0xFFFFFFFF# 서비스 제공\n메이플 인피니티 풀 #fc0xFFFEE0AC#일일 1회#fc0xFFFFFFFF#  이용 가능\n멤버십샵, 퍼스널샵, 부티크 #fc0xFFFEE0AC#신규 물품 추가"/>
-<string name="premium" value="#fn모리스##fs11##fc0xFFFEE0AC# &lt;선택 아케인심볼 100개 교환권&gt; #fc0xFFFFFFFF#지급\n#fc0xFFFFFFFF#VIP 헌터클럽 #fc0xFFFEE0AC# &lt;2단계&gt;#fc0xFFFFFFFF# 서비스 제공\n메이플 인피니티 풀 #fc0xFFFEE0AC#일일 2회#fc0xFFFFFFFF#  이용 가능\n#fc0xFFFFFFFF# 메소샵#fc0xFFFEE0AC# 이용 가능\n#fc0xFFFFFFFF#멤버십샵, 퍼스널샵, 부티크 #fc0xFFFEE0AC#신규 물품 추가"/>
-<string name="prestige" value="#fn모리스##fs11##fc0xFFFEE0AC# &lt;태풍 성장의 비약&gt; #fc0xFFFFFFFF#지급\n#fc0xFFFFFFFF#VIP 헌터클럽 #fc0xFFFEE0AC# &lt;3단계&gt;#fc0xFFFFFFFF# 서비스 제공\n메이플 인피니티 풀 #fc0xFFFEE0AC#일일 3회#fc0xFFFFFFFF#  이용 가능\n#fc0xFFFFFFFF# 메소샵#fc0xFFFEE0AC# 신규 물품 추가\n#fc0xFFFFFFFF#멤버십샵, 퍼스널샵, 부티크 #fc0xFFFEE0AC#신규 물품 추가"/>
+<string name="classic" value="#fn모리스##fs14##fc0xFFFFFFFF#VIP 헌터클럽 #fc0xFFFEE0AC# &lt;1단계&gt;#fc0xFFFFFFFF# 서비스 제공\n멤버십샵, 퍼스널샵, 부티크, 쥬얼리샵 #fc0xFFFEE0AC#이용 가능"/>
+<string name="elite" value="#fn모리스##fs14##fc0xFFFEE0AC# &lt;경험의 코어 젬스톤&gt; #fc0xFFFFFFFF#지급\n#fc0xFFFFFFFF#VIP 헌터클럽 #fc0xFFFEE0AC# &lt;1단계&gt;#fc0xFFFFFFFF# 서비스 제공\n메이플 인피니티 풀 #fc0xFFFEE0AC#일일 1회#fc0xFFFFFFFF#  이용 가능\n멤버십샵, 퍼스널샵, 부티크 #fc0xFFFEE0AC#신규 물품 추가"/>
+<string name="premium" value="#fn모리스##fs14##fc0xFFFEE0AC# &lt;선택 아케인심볼 100개 교환권&gt; #fc0xFFFFFFFF#지급\n#fc0xFFFFFFFF#VIP 헌터클럽 #fc0xFFFEE0AC# &lt;2단계&gt;#fc0xFFFFFFFF# 서비스 제공\n메이플 인피니티 풀 #fc0xFFFEE0AC#일일 2회#fc0xFFFFFFFF#  이용 가능\n#fc0xFFFFFFFF# 메소샵#fc0xFFFEE0AC# 이용 가능\n#fc0xFFFFFFFF#멤버십샵, 퍼스널샵, 부티크 #fc0xFFFEE0AC#신규 물품 추가"/>
+<string name="prestige" value="#fn모리스##fs14##fc0xFFFEE0AC# &lt;태풍 성장의 비약&gt; #fc0xFFFFFFFF#지급\n#fc0xFFFFFFFF#VIP 헌터클럽 #fc0xFFFEE0AC# &lt;3단계&gt;#fc0xFFFFFFFF# 서비스 제공\n메이플 인피니티 풀 #fc0xFFFEE0AC#일일 3회#fc0xFFFFFFFF#  이용 가능\n#fc0xFFFFFFFF# 메소샵#fc0xFFFEE0AC# 신규 물품 추가\n#fc0xFFFFFFFF#멤버십샵, 퍼스널샵, 부티크 #fc0xFFFEE0AC#신규 물품 추가"/>
 <int name="width" value="278"/>
 <int name="height" value="109"/>
 <vector name="lt" x="75" y="346"/>
