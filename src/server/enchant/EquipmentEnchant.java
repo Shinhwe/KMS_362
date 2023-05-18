@@ -103,12 +103,12 @@ public class EquipmentEnchant
     item.setAcc(equip.getAcc());
     item.setAvoid(equip.getAvoid());
     item.setFire(equip.getFire());
-    int max = equip.getEnhance();
-    while (item.getEnhance() < max)
+    int max = equip.getStartForceLevel();
+    while (item.getStartForceLevel() < max)
     {
       StarForceStats statz = starForceStats(item);
       item.setEnchantBuff((short) 0);
-      item.setEnhance((byte) (item.getEnhance() + 1));
+      item.setStartForceLevel((byte) (item.getStartForceLevel() + 1));
       for (Pair<EnchantFlag, Integer> stat : statz.getStats())
       {
         if (EnchantFlag.Watk.check(stat.left.getValue()))
@@ -468,7 +468,7 @@ public class EquipmentEnchant
     int reqLevel = ii.getReqLevel(item.getItemId());
     List<Pair<EnchantFlag, Integer>> stats = new ArrayList<>();
     MapleWeaponType weaponType = GameConstants.getWeaponType(item.getItemId());
-    int currentStar = item.getEnhance();
+    int currentStar = item.getStartForceLevel();
     int nextStar = currentStar + 1;
     byte equipLevel = item.getReqLevel();
     
@@ -724,13 +724,13 @@ public class EquipmentEnchant
             item.setEquipmentType(4352);
             if (es.getName().contains("亞克回真卷軸"))
             {
-              for (int k = 0; k < equip3.getEnhance(); k++)
+              for (int k = 0; k < equip3.getStartForceLevel(); k++)
               {
                 StarForceStats starForceStats = starForceStats(item);
-                item.setEnhance((byte) (item.getEnhance() + 1));
+                item.setStartForceLevel((byte) (item.getStartForceLevel() + 1));
                 if (equip1 != null)
                 {
-                  equip1.setEnhance((byte) (equip1.getEnhance() + 1));
+                  equip1.setStartForceLevel((byte) (equip1.getStartForceLevel() + 1));
                 }
                 for (Pair<EnchantFlag, Integer> stat : starForceStats.getStats())
                 {
@@ -1051,7 +1051,7 @@ public class EquipmentEnchant
         {
           i = 1000;
         }
-        if (item.getEnhance() < 22)
+        if (item.getStartForceLevel() < 22)
         {
           if (c.getPlayer().haveItem(4310021))
           {
@@ -1086,10 +1086,10 @@ public class EquipmentEnchant
         if (Randomizer.nextInt(1000) < i)
         {
           StarForceStats starForceStats = starForceStats(item);
-          item.setEnhance((byte) (item.getEnhance() + 1));
+          item.setStartForceLevel((byte) (item.getStartForceLevel() + 1));
           if (item2 != null)
           {
-            item2.setEnhance((byte) (item2.getEnhance() + 1));
+            item2.setStartForceLevel((byte) (item2.getStartForceLevel() + 1));
           }
           result = 1;
           for (Pair<EnchantFlag, Integer> stat : starForceStats.getStats())
@@ -1216,12 +1216,12 @@ public class EquipmentEnchant
         else if (Randomizer.nextInt(1000) < j)
         {
           result = 2;
-          while (item.getEnhance() > ((ii.isSuperial(item.getItemId())).right.booleanValue() ? 0 : 12))
+          while (item.getStartForceLevel() > ((ii.isSuperial(item.getItemId())).right.booleanValue() ? 0 : 12))
           {
-            item.setEnhance((byte) (item.getEnhance() - 1));
+            item.setStartForceLevel((byte) (item.getStartForceLevel() - 1));
             if (item2 != null)
             {
-              item2.setEnhance((byte) (item2.getEnhance() - 1));
+              item2.setStartForceLevel((byte) (item2.getStartForceLevel() - 1));
             }
             StarForceStats starForceStats = starForceStats(item);
             for (Pair<EnchantFlag, Integer> stat : starForceStats.getStats())
@@ -1335,13 +1335,13 @@ public class EquipmentEnchant
             checkEquipmentStats(c, item2);
           }
         }
-        else if (((ii.isSuperial(item.getItemId())).right.booleanValue() || item.getEnhance() > 10) && item.getEnhance() % 5 != 0)
+        else if (((ii.isSuperial(item.getItemId())).right.booleanValue() || item.getStartForceLevel() > 10) && item.getStartForceLevel() % 5 != 0)
         {
           result = 0;
-          item.setEnhance((byte) (item.getEnhance() - 1));
+          item.setStartForceLevel((byte) (item.getStartForceLevel() - 1));
           if (item2 != null)
           {
-            item2.setEnhance((byte) (item2.getEnhance() - 1));
+            item2.setStartForceLevel((byte) (item2.getStartForceLevel() - 1));
           }
           StarForceStats starForceStats = starForceStats(item);
           for (Pair<EnchantFlag, Integer> stat : starForceStats.getStats())
@@ -1568,7 +1568,7 @@ public class EquipmentEnchant
         {
           meso *= 2;
         }
-        if (item.getEnhance() < 22)
+        if (item.getStartForceLevel() < 22)
         {
           if (c.getPlayer().haveItem(4310021))
           {
@@ -1589,7 +1589,7 @@ public class EquipmentEnchant
         }
         down = 1000 - success - destroy;
         stats = starForceStats(item);
-        if ((!(ii.isSuperial(item.getItemId())).right.booleanValue() && item.getEnhance() <= 10) || item.getEnhance() % 5 == 0)
+        if ((!(ii.isSuperial(item.getItemId())).right.booleanValue() && item.getStartForceLevel() <= 10) || item.getStartForceLevel() % 5 == 0)
         {
           down = 0;
         }
@@ -1605,9 +1605,9 @@ public class EquipmentEnchant
           return;
         }
         despoer = 0;
-        if (item.getEnhance() >= 12)
+        if (item.getStartForceLevel() >= 12)
         {
-          switch (item.getEnhance())
+          switch (item.getStartForceLevel())
           {
             case 12:
               despoer = 10;
@@ -1642,7 +1642,7 @@ public class EquipmentEnchant
         }
         if ((ii.isSuperial(item.getItemId())).right.booleanValue())
         {
-          switch (item.getEnhance())
+          switch (item.getStartForceLevel())
           {
             case 5:
               despoer = 30;
@@ -1687,7 +1687,7 @@ public class EquipmentEnchant
     MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     boolean superial = (ii.isSuperial(item.getItemId())).right.booleanValue();
     Pair<Integer, Integer> percent = new Pair<>(Integer.valueOf(0), Integer.valueOf(0));
-    switch (item.getEnhance())
+    switch (item.getStartForceLevel())
     {
       case 0:
         percent.left = Integer.valueOf(superial ? 500 : 950);
@@ -1796,7 +1796,7 @@ public class EquipmentEnchant
     
     int equipLevel = ReqLevel != null ? ReqLevel.intValue() : 1;
     
-    int enhance = item.getEnhance();
+    int enhance = item.getStartForceLevel();
     if ((ii.isSuperial(item.getItemId())).right.booleanValue())
     {
       switch ((ii.isSuperial(item.getItemId())).left)

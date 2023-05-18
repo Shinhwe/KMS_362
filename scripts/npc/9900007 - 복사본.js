@@ -20,7 +20,7 @@ function action(mode, type, selection) {
         for (i = 0; i < cm.getInventory(1).getSlotLimit(); i++) {
             if (cm.getInventory(1).getItem(i) != null && cm.getInventory(1).getItem(i).getOwner() != "복구" && Packages.server.MapleItemInformationProvider.getInstance().getReqLevel(cm.getInventory(1).getItem(i).getItemId()) < 150 && Packages.server.MapleItemInformationProvider.getInstance().getReqLevel(cm.getInventory(1).getItem(i).getItemId()) % 10 != 0 && !cm.isCash(cm.getInventory(1).getItem(i).getItemId())) {
                 if (cm.getInventory(1).getItem(i).isAmazingequipscroll()) {
-                    talk += "#L" + i + "# #i" + cm.getInventory(1).getItem(i).getItemId() + "# #b#z" + cm.getInventory(1).getItem(i).getItemId() + "# #r[" + cm.getInventory(1).getItem(i).getEnhance() + "성 강화 적용]\r\n";
+                    talk += "#L" + i + "# #i" + cm.getInventory(1).getItem(i).getItemId() + "# #b#z" + cm.getInventory(1).getItem(i).getItemId() + "# #r[" + cm.getInventory(1).getItem(i).getStarForceLevel() + "성 강화 적용]\r\n";
                 }
             }
         }
@@ -60,13 +60,13 @@ function action(mode, type, selection) {
                 data = [1, 2, 4, 7, 11, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
                 break;
         }
-        nEquip.addStr(-statplus[parseInt(nEquip.getEnhance())]);
-        nEquip.addDex(-statplus[parseInt(nEquip.getEnhance())]);
-        nEquip.addInt(-statplus[parseInt(nEquip.getEnhance())]);
-        nEquip.addLuk(-statplus[parseInt(nEquip.getEnhance())]);
-        nEquip.addWatk(-atkplus[parseInt(nEquip.getEnhance())]);
-        nEquip.addMatk(-atkplus[parseInt(nEquip.getEnhance())]);
-        for (i = 0; i < nEquip.getEnhance(); i++) {
+        nEquip.addStr(-statplus[parseInt(nEquip.getStarForceLevel())]);
+        nEquip.addDex(-statplus[parseInt(nEquip.getStarForceLevel())]);
+        nEquip.addInt(-statplus[parseInt(nEquip.getStarForceLevel())]);
+        nEquip.addLuk(-statplus[parseInt(nEquip.getStarForceLevel())]);
+        nEquip.addWatk(-atkplus[parseInt(nEquip.getStarForceLevel())]);
+        nEquip.addMatk(-atkplus[parseInt(nEquip.getStarForceLevel())]);
+        for (i = 0; i < nEquip.getStarForceLevel(); i++) {
             if (i < 5) {
                 if (isAccessory(nEquip.getItemId())) { // 악세서리 보너스스탯
                     if (reallevel < 120) {

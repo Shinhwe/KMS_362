@@ -452,7 +452,7 @@ import java.util.concurrent.ConcurrentHashMap;
           /* 258 */
           pse.setInt(24, equip.getDurability());
           /* 259 */
-          pse.setByte(25, equip.getEnhance());
+          pse.setByte(25, equip.getStartForceLevel());
           /* 260 */
           pse.setByte(26, equip.getState());
           /* 261 */
@@ -1031,7 +1031,7 @@ import java.util.concurrent.ConcurrentHashMap;
               /* 538 */
               equip.setDurability(rs1.getInt("durability"));
               /* 539 */
-              equip.setEnhance(rs1.getByte("enhance"));
+              equip.setStartForceLevel(rs1.getByte("enhance"));
               /* 540 */
               equip.setState(rs1.getByte("state"));
               /* 541 */

@@ -43,7 +43,7 @@ item.setPotential3(40603);
 item.setPotential4(40603);
 item.setPotential5(40603);
 item.setPotential6(40603);
-item.setEnhance(10);
+item.setStarForceLevel(10);
 //item.setEquipmentType(5888);
 item.setBossDamage(100);
 item.setIgnorePDR(100);

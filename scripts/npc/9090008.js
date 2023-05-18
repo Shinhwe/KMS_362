@@ -191,7 +191,7 @@ function action(M, T, S)
 					case 26: inz.setEnchantAvoid(S4); break;
 					case 27: inz.setLevel(S4); break;
 					case 28: inz.setUpgradeSlots(S4); break;
-					case 29: inz.setEnhance(S4); break;
+					case 29: inz.setStarForceLevel(S4); break;
 					case 30: inz.setAmazingequipscroll(true); break;
 					case 31: inz.setBossDamage(S4); break;
 					case 32: inz.setIgnorePDR(S4); break;

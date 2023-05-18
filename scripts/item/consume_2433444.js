@@ -411,7 +411,7 @@ function addOption(i, isWeapon)
 	item.setReqLevel(-90);
 	item.setLevel(item.getUpgradeSlots());
 	item.setUpgradeSlots(0);
-	item.setEnhance(8)
+	item.setStarForceLevel(8)
 	// item.setExpiration(System.currentTimeMillis() + (7 * 24 * 3600 * 1000));
 	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), item, false);
 }

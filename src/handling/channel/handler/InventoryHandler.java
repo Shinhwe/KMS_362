@@ -829,7 +829,7 @@ public class InventoryHandler
       return false;
     }
     final byte oldLevel = toScroll.getLevel();
-    final byte oldEnhance = toScroll.getEnhance();
+    final byte oldEnhance = toScroll.getStartForceLevel();
     final byte oldState = toScroll.getState();
     final int oldFlag = toScroll.getFlag();
     final byte oldSlots = toScroll.getUpgradeSlots();
@@ -872,7 +872,7 @@ public class InventoryHandler
       toScroll.setUpgradeSlots(origin.getUpgradeSlots());
       toScroll.setWatk(origin.getWatk());
       toScroll.setWdef(origin.getWdef());
-      toScroll.setEnhance((byte) 0);
+      toScroll.setStartForceLevel((byte) 0);
       toScroll.setViciousHammer((byte) 0);
       chr.getInventory(MapleInventoryType.USE).removeItem(scroll.getPosition());
       c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateScrollandItem(scroll, toScroll));
@@ -888,7 +888,7 @@ public class InventoryHandler
         return false;
       }
     }
-    else if (GameConstants.isEquipScroll(scroll.getItemId()) && ((scroll.getItemId() != 2049360 && scroll.getItemId() != 2049361 && toScroll.getUpgradeSlots() >= 1) || toScroll.getEnhance() >= 15 || ii.isCash(toScroll.getItemId())))
+    else if (GameConstants.isEquipScroll(scroll.getItemId()) && ((scroll.getItemId() != 2049360 && scroll.getItemId() != 2049361 && toScroll.getUpgradeSlots() >= 1) || toScroll.getStartForceLevel() >= 15 || ii.isCash(toScroll.getItemId())))
     {
       c.getSession().writeAndFlush(CWvsContext.enableActions(chr));
       chr.dropMessage(1, "더 이상 강화할 수 없는 아이템입니다.");
@@ -1019,7 +1019,7 @@ public class InventoryHandler
     {
       scrollSuccess = Equip.ScrollResult.SUCCESS;
     }
-    else if (scrolled.getLevel() > oldLevel || scrolled.getEnhance() > oldEnhance || scrolled.getState() != oldState || scrolled.getFlag() > oldFlag)
+    else if (scrolled.getLevel() > oldLevel || scrolled.getStartForceLevel() > oldEnhance || scrolled.getState() != oldState || scrolled.getFlag() > oldFlag)
     {
       scrollSuccess = Equip.ScrollResult.SUCCESS;
     }
@@ -4395,7 +4395,7 @@ public class InventoryHandler
           /* 3223 */
           equip2.setWdef(origin.getWdef());
           /* 3224 */
-          equip2.setEnhance((byte) 0);
+          equip2.setStartForceLevel((byte) 0);
           /* 3225 */
           equip2.setViciousHammer((byte) 0);
           /* 3226 */
@@ -6473,7 +6473,7 @@ public class InventoryHandler
           toScroll = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(s2);
         }
         /* 4454 */
-        if (toScroll.getEnhance() >= 12)
+        if (toScroll.getStartForceLevel() >= 12)
         {
           break;
         }

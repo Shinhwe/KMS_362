@@ -9987,7 +9987,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     {
       if (iv instanceof Equip)
       {
-        force += ((Equip) iv).getEnhance();
+        force += ((Equip) iv).getStartForceLevel();
       }
     }
     return force;
@@ -18938,10 +18938,10 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     for (final Item item : this.getInventory(MapleInventoryType.EQUIPPED))
     {
       final Equip eq = (Equip) item;
-      starforce += eq.getEnhance();
+      starforce += eq.getStartForceLevel();
       if (GameConstants.isOverall(item.getItemId()))
       {
-        starforce += eq.getEnhance();
+        starforce += eq.getStartForceLevel();
       }
     }
     return starforce;

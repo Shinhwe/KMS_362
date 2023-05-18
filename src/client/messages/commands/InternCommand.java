@@ -1217,10 +1217,10 @@ public class InternCommand
         Equip nEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem((short) 1);
         if (nEquip != null)
         {
-          while (nEquip.getEnhance() < Integer.parseInt(splitted[1]))
+          while (nEquip.getStartForceLevel() < Integer.parseInt(splitted[1]))
           {
             StarForceStats statz = EquipmentEnchant.starForceStats(nEquip);
-            nEquip.setEnhance((byte) (nEquip.getEnhance() + 1));
+            nEquip.setStartForceLevel((byte) (nEquip.getStartForceLevel() + 1));
             for (Pair<EnchantFlag, Integer> stat : statz.getStats())
             {
               if (EnchantFlag.Watk.check(stat.left.getValue()))
@@ -1287,9 +1287,9 @@ public class InternCommand
       item = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(Short.parseShort(splitted[1]));
       if (item != null)
       {
-        while (item.getEnhance() > 0)
+        while (item.getStartForceLevel() > 0)
         {
-          item.setEnhance((byte) (item.getEnhance() - 1));
+          item.setStartForceLevel((byte) (item.getStartForceLevel() - 1));
           StarForceStats stats = EquipmentEnchant.starForceStats(item);
           for (Pair<EnchantFlag, Integer> stat : stats.getStats())
           {

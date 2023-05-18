@@ -18,7 +18,7 @@ public class Equip extends Item implements Serializable
   private byte upgradeSlots = 0;
   private byte level = 0;
   private byte vicioushammer = 0;
-  private byte enhance = 0;
+  private byte startForceLevel = 0;
   private byte reqLevel = 0;
   private byte yggdrasilWisdom = 0;
   private byte totalDamage = 0;
@@ -253,7 +253,7 @@ public class Equip extends Item implements Serializable
     this.hands = set.hands;
     this.speed = set.speed;
     this.jump = set.jump;
-    this.enhance = set.enhance;
+    this.startForceLevel = set.startForceLevel;
     this.upgradeSlots = set.upgradeSlots;
     this.level = set.level;
     this.itemEXP = set.itemEXP;
@@ -328,7 +328,7 @@ public class Equip extends Item implements Serializable
     ret.hands = this.hands;
     ret.speed = this.speed;
     ret.jump = this.jump;
-    ret.enhance = this.enhance;
+    ret.startForceLevel = this.startForceLevel;
     ret.upgradeSlots = this.upgradeSlots;
     ret.level = this.level;
     ret.itemEXP = this.itemEXP;
@@ -871,14 +871,14 @@ public class Equip extends Item implements Serializable
     this.durability = dur;
   }
   
-  public byte getEnhance()
+  public byte getStartForceLevel()
   {
-    return this.enhance;
+    return this.startForceLevel;
   }
   
-  public void setEnhance(byte en)
+  public void setStartForceLevel(byte en)
   {
-    this.enhance = en;
+    this.startForceLevel = en;
   }
   
   public int getPotential1()

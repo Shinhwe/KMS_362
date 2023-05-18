@@ -80,9 +80,21 @@ public class HyperHandler
         {
           up = 15;
         }
-        else if (lvl >= 270 && lvl <= 300)
+        else if (lvl >= 270 && lvl <= 279)
         {
           up = 16;
+        }
+        else if (lvl >= 280 && lvl <= 289)
+        {
+          up = 17;
+        }
+        else if (lvl >= 290 && lvl <= 299)
+        {
+          up = 18;
+        }
+        else if (lvl >= 300 && lvl <= 309)
+        {
+          up = 19;
         }
       }
       c.getSession().writeAndFlush(CWvsContext.updateHyperSp(value, lvl, sp, value.equals("incHyperStat") ? up : (value.equals("needHyperStatLv") ? HyperHandler.table[lvl] : 1), true));
@@ -207,9 +219,21 @@ public class HyperHandler
     {
       up = 1035 + 15 * a;
     }
-    else if (i >= 270 && i <= 300)
+    else if (i >= 270 && i <= 279)
     {
       up = 1186 + 16 * a;
+    }
+    else if (i >= 280 && i <= 289)
+    {
+      up = 1347 + 17 * a;
+    }
+    else if (i >= 290 && i <= 299)
+    {
+      up = 1518 + 18 * a;
+    }
+    else if (i >= 300 && i <= 309)
+    {
+      up = 1699 + 19 * a;
     }
     if (up < sum && stat)
     {

@@ -161,7 +161,7 @@ function action(M, T, S)
 					case 13: inz.setJump(S4); break;
 					case 14: inz.setLevel(S4); break;
 					case 15: inz.setUpgradeSlots(S4); break;
-					case 16: inz.setEnhance(S4); break;
+					case 16: inz.setStarForceLevel(S4); break;
 					case 17: inz.setAmazingequipscroll(!inz.isAmazingequipscroll()); break;
 					case 18: inz.setBossDamage(S4); break;
 					case 19: inz.setIgnorePDR(S4); break;

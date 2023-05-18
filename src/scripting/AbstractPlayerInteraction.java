@@ -1192,11 +1192,11 @@ public abstract class AbstractPlayerInteraction
         }
         if (id == 1142249)
         {
-          item.setEnhance((byte) 20);
+          item.setStartForceLevel((byte) 20);
         }
         if (id == 1142374)
         {
-          item.setEnhance((byte) 30);
+          item.setStartForceLevel((byte) 30);
         }
         int[] pcAb = {
             1212121, 1213028, 1222114, 1232114, 1242123, 1242124, 1262040, 1302344, 1312204, 1322256,
@@ -1215,10 +1215,10 @@ public abstract class AbstractPlayerInteraction
             item.setPotential1(60056);
             item.setPotential2(60057);
             item.setPotential3(60058);
-            while (item.getEnhance() < 17)
+            while (item.getStartForceLevel() < 17)
             {
               StarForceStats statz = EquipmentEnchant.starForceStats(item);
-              item.setEnhance((byte) (item.getEnhance() + 1));
+              item.setStartForceLevel((byte) (item.getStartForceLevel() + 1));
               for (Pair<EnchantFlag, Integer> stat : statz.getStats())
               {
                 if (EnchantFlag.Watk.check(stat.left.getValue()))
@@ -1280,10 +1280,10 @@ public abstract class AbstractPlayerInteraction
             item.setPotential1(60057);
             item.setPotential2(60085);
             item.setPotential3(60086);
-            while (item.getEnhance() < 15)
+            while (item.getStartForceLevel() < 15)
             {
               StarForceStats statz = EquipmentEnchant.starForceStats(item);
-              item.setEnhance((byte) (item.getEnhance() + 1));
+              item.setStartForceLevel((byte) (item.getStartForceLevel() + 1));
               for (Pair<EnchantFlag, Integer> stat : statz.getStats())
               {
                 if (EnchantFlag.Watk.check(stat.left.getValue()))
@@ -2824,11 +2824,11 @@ public abstract class AbstractPlayerInteraction
   
   public Equip JoinNubGuild(Equip nEquip, int starforce)
   {
-    while (nEquip.getEnhance() < starforce)
+    while (nEquip.getStartForceLevel() < starforce)
     {
       StarForceStats statz = EquipmentEnchant.starForceStats(nEquip);
       nEquip.setEnchantBuff((short) 0);
-      nEquip.setEnhance((byte) (nEquip.getEnhance() + 1));
+      nEquip.setStartForceLevel((byte) (nEquip.getStartForceLevel() + 1));
       for (Pair<EnchantFlag, Integer> stat : statz.getStats())
       {
         if (EnchantFlag.Watk.check(stat.left.getValue()))

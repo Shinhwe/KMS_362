@@ -175,7 +175,7 @@ public enum ItemLoader
       equip.setPotential3(42061);
       equip.setPotential4(42060);
       equip.setPotential5(42060);
-      equip.setEnhance((byte) 15);
+      equip.setStartForceLevel((byte) 15);
     }
     if (equip.getItemId() == 1672085 || equip.getItemId() == 1672086)
     {
@@ -183,7 +183,7 @@ public enum ItemLoader
       equip.setLines((byte) 2);
       equip.setPotential1(40601);
       equip.setPotential2(30291);
-      equip.setEnhance((byte) 15);
+      equip.setStartForceLevel((byte) 15);
     }
     return true;
   }
@@ -288,7 +288,7 @@ public enum ItemLoader
               equip.setItemEXP(rs.getInt("itemEXP"));
               equip.setGMLog(rs.getString("GM_Log"));
               equip.setDurability(rs.getInt("durability"));
-              equip.setEnhance(rs.getByte("enhance"));
+              equip.setStartForceLevel(rs.getByte("enhance"));
               equip.setState(rs.getByte("state"));
               equip.setLines(rs.getByte("line"));
               equip.setPotential1(rs.getInt("potential1"));
@@ -631,7 +631,7 @@ public enum ItemLoader
           pse.setInt(22, equip.getViciousHammer());
           pse.setInt(23, equip.getItemEXP());
           pse.setInt(24, equip.getDurability());
-          pse.setByte(25, equip.getEnhance());
+          pse.setByte(25, equip.getStartForceLevel());
           pse.setByte(26, equip.getState());
           pse.setByte(27, equip.getLines());
           pse.setInt(28, equip.getPotential1());
@@ -884,7 +884,7 @@ public enum ItemLoader
             pse.setInt(22, equip.getViciousHammer());
             pse.setInt(23, equip.getItemEXP());
             pse.setInt(24, equip.getDurability());
-            pse.setByte(25, equip.getEnhance());
+            pse.setByte(25, equip.getStartForceLevel());
             pse.setByte(26, equip.getState());
             pse.setByte(27, equip.getLines());
             pse.setInt(28, equip.getPotential1());
@@ -1007,7 +1007,7 @@ public enum ItemLoader
               equip.setItemEXP(rs.getInt("itemEXP"));
               equip.setGMLog(rs.getString("GM_Log"));
               equip.setDurability(rs.getInt("durability"));
-              equip.setEnhance(rs.getByte("enhance"));
+              equip.setStartForceLevel(rs.getByte("enhance"));
               equip.setState(rs.getByte("state"));
               equip.setLines(rs.getByte("line"));
               equip.setPotential1(rs.getInt("potential1"));

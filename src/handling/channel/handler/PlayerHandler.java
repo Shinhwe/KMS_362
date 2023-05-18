@@ -13706,7 +13706,7 @@ public class PlayerHandler
                 item.setPotential3(42061);
                 item.setPotential4(42060);
                 item.setPotential5(42060);
-                item.setEnhance((byte) 15);
+                item.setStartForceLevel((byte) 15);
               }
               else if (item.getItemId() == 1672085 || item.getItemId() == 1672086)
               {
@@ -13714,7 +13714,7 @@ public class PlayerHandler
                 item.setLines((byte) 2);
                 item.setPotential1(40601);
                 item.setPotential2(30291);
-                item.setEnhance((byte) 15);
+                item.setStartForceLevel((byte) 15);
               }
               MapleInventoryManipulator.addbyItem(c, item);
             }

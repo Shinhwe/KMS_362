@@ -57,7 +57,7 @@ function action(M, T, S)
 	item.setLuk(item.getLuk() + 20);
 	item.setWatk(item.getWatk() + 30);
 	item.setMatk(item.getMatk() + 30);
-	item.setEnhance(item.getEnhance() + 15);
+	item.setStarForceLevel(item.getStarForceLevel() + 15);
 	item.setHp(item.getHp() + 2000);
 	item.setMp(item.getMp() + 2000);
 	item.setState(19);
@@ -114,7 +114,7 @@ function action(M, T, S)
 	item.setLuk(item.getLuk() + 20);
 	item.setWatk(item.getWatk() + 30);
 	item.setMatk(item.getMatk() + 30);
-	item.setEnhance(item.getEnhance() + 15);
+	item.setStarForceLevel(item.getStarForceLevel() + 15);
 	item.setHp(item.getHp() + 2000);
 	item.setMp(item.getMp() + 2000);
 	item.setState(19);
@@ -514,7 +514,7 @@ function addOption(i, isWeapon)
 		}
 		else
 		{
-			item.setEnhance(item.getEnhance() + 17);
+			item.setStarForceLevel(item.getStarForceLevel() + 17);
 			item.setStr(item.getStr() + 80);
 			item.setDex(item.getDex() + 80);
 			item.setInt(item.getInt() + 80);

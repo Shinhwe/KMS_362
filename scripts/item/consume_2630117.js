@@ -135,7 +135,7 @@ function action(mode, type, selection) {
 	item.setBossDamage(item.getBossDamage() + 35);
 	item.setIgnorePDR(item.getIgnorePDR() + 20);
 	item.setTotalDamage(item.getTotalDamage() + 12);
-	item.setEnhance(item.getEnhance() + 15);
+	item.setStarForceLevel(item.getStarForceLevel() + 15);
 	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), item, false);
 	cm.gainItem(2630117, -1);
 	cm.sendOk("아이템이 지급되었습니다.");

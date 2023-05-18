@@ -78,7 +78,7 @@ function action(mode, type, sel) {
 		item.setBossDamage(50);
 		item.setIgnorePDR(30);
 		item.setUpgradeSlots(0);
-		item.setEnhance(25);
+		item.setStarForceLevel(25);
 		item.setPotential1(pots[0]);
 		item.setPotential2(pots[1]);
 		item.setPotential3(pots[2]);
