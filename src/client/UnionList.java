@@ -22,7 +22,7 @@ public class UnionList
     try
     {
       con = DatabaseConnection.getConnection();
-      ps = con.prepareStatement("SELECT u.unk1, u.unk3, sum(ive.enhance) as starforce, c.name as unionname, c.id as id, c.job as unionjob, c.level as unionlevel, u.position, u.position2, u.priset, u.priset1, u.priset2, u.priset3, u.priset4, u.pos, u.pos1, u.pos2, u.pos3, u.pos4 FROM unions as u, characters as c, inventoryitems as iv, inventoryequipment as ive WHERE c.id = u.id && c.accountid = ? && characterid = c.id && iv.position < 0 && ive.inventoryitemid = iv.inventoryitemid group by unionname");
+      ps = con.prepareStatement("SELECT u.unk1, u.unk3, sum(ive.starForceLevel) as starforce, c.name as unionname, c.id as id, c.job as unionjob, c.level as unionlevel, u.position, u.position2, u.priset, u.priset1, u.priset2, u.priset3, u.priset4, u.pos, u.pos1, u.pos2, u.pos3, u.pos4 FROM unions as u, characters as c, inventoryitems as iv, inventoryequipment as ive WHERE c.id = u.id && c.accountid = ? && characterid = c.id && iv.position < 0 && ive.inventoryitemid = iv.inventoryitemid group by unionname");
       ps.setInt(1, accId);
       rs = ps.executeQuery();
       while (rs.next())

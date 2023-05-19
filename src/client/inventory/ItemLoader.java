@@ -4,7 +4,6 @@ import client.MapleClient;
 import constants.GameConstants;
 import database.DatabaseConnection;
 import server.MapleItemInformationProvider;
-import server.enchant.EquipmentEnchant;
 import server.maps.BossReward;
 import tools.Pair;
 
@@ -53,39 +52,13 @@ public enum ItemLoader
     }
     if (ii.getName(equip.getItemId()).startsWith("제네시스"))
     {
-      EquipmentEnchant.checkEquipmentStats(null, equip);
       return true;
     }
     if (equip.getFire() > 0L && (GameConstants.isRing(equip.getItemId()) || equip.getItemId() / 1000 == 1092 || equip.getItemId() / 1000 == 1342 || equip.getItemId() / 1000 == 1713 || equip.getItemId() / 1000 == 1712 || equip.getItemId() / 1000 == 1152 || equip.getItemId() / 1000 == 1143 || equip.getItemId() / 1000 == 1672 || GameConstants.isSecondaryWeapon(equip.getItemId()) || equip.getItemId() / 1000 == 1190 || equip.getItemId() / 1000 == 1182 || equip.getItemId() / 1000 == 1662 || equip.getItemId() / 1000 == 1802))
     {
       equip.setFire(0L);
     }
-    int reqLevel = ii.getReqLevel(equip.getItemId());
-    boolean isSuperiol = ((ii.isSuperial(equip.getItemId())).left != null);
-    if (reqLevel < 95)
-    {
-      int maxEnhance = isSuperiol ? 3 : 5;
-    }
-    else if (reqLevel <= 107)
-    {
-      int maxEnhance = isSuperiol ? 5 : 8;
-    }
-    else if (reqLevel <= 119)
-    {
-      int maxEnhance = isSuperiol ? 8 : 10;
-    }
-    else if (reqLevel <= 129)
-    {
-      int maxEnhance = isSuperiol ? 10 : 15;
-    }
-    else if (reqLevel <= 139)
-    {
-      int maxEnhance = isSuperiol ? 12 : 20;
-    }
-    else
-    {
-      int maxEnhance = isSuperiol ? 15 : 25;
-    }
+    
     if (equip.getArcLevel() > 20)
     {
       equip.setArcLevel(20);
@@ -94,8 +67,7 @@ public enum ItemLoader
     {
       equip.setArc((short) 0);
     }
-    if ((GameConstants.isArcaneSymbol(equip.getItemId()) || GameConstants.isAuthenticSymbol(equip.getItemId()) || equip.getItemId() / 1000 == 1162 || equip.getItemId() / 1000 == 1182) && (equip.getItemId() < 1182000 || equip.getItemId() > 1182006) && equip.getItemId() != 1162002
-        && equip.getState() > 0)
+    if ((GameConstants.isArcaneSymbol(equip.getItemId()) || GameConstants.isAuthenticSymbol(equip.getItemId()) || equip.getItemId() / 1000 == 1162) && equip.getItemId() != 1162002 && equip.getState() > 0)
     {
       equip.setState((byte) 0);
       equip.setLines((byte) 0);
@@ -160,7 +132,7 @@ public enum ItemLoader
     {
       return true;
     }
-    EquipmentEnchant.checkEquipmentStats(null, equip);
+
     if (equip.getItemId() == 1672082)
     {
       equip.setPotential1(60011);
@@ -175,7 +147,8 @@ public enum ItemLoader
       equip.setPotential3(42061);
       equip.setPotential4(42060);
       equip.setPotential5(42060);
-      equip.setStartForceLevel((byte) 15);
+      equip.setStarForceLevel((byte) 15);
+      equip.calcStarForceLevel();
     }
     if (equip.getItemId() == 1672085 || equip.getItemId() == 1672086)
     {
@@ -183,7 +156,8 @@ public enum ItemLoader
       equip.setLines((byte) 2);
       equip.setPotential1(40601);
       equip.setPotential2(30291);
-      equip.setStartForceLevel((byte) 15);
+      equip.setStarForceLevel((byte) 15);
+      equip.calcStarForceLevel();
     }
     return true;
   }
@@ -288,7 +262,7 @@ public enum ItemLoader
               equip.setItemEXP(rs.getInt("itemEXP"));
               equip.setGMLog(rs.getString("GM_Log"));
               equip.setDurability(rs.getInt("durability"));
-              equip.setStartForceLevel(rs.getByte("enhance"));
+              equip.setStarForceLevel(rs.getByte("starForceLevel"));
               equip.setState(rs.getByte("state"));
               equip.setLines(rs.getByte("line"));
               equip.setPotential1(rs.getInt("potential1"));
@@ -324,6 +298,7 @@ public enum ItemLoader
                   }
                 }
               }
+              equip.calcStarForceLevel();
               equip.setEnchantBuff(rs.getShort("enchantbuff"));
               equip.setReqLevel(rs.getByte("reqLevel"));
               equip.setYggdrasilWisdom(rs.getByte("yggdrasilWisdom"));
@@ -631,7 +606,7 @@ public enum ItemLoader
           pse.setInt(22, equip.getViciousHammer());
           pse.setInt(23, equip.getItemEXP());
           pse.setInt(24, equip.getDurability());
-          pse.setByte(25, equip.getStartForceLevel());
+          pse.setByte(25, equip.getStarForceLevel());
           pse.setByte(26, equip.getState());
           pse.setByte(27, equip.getLines());
           pse.setInt(28, equip.getPotential1());
@@ -884,7 +859,7 @@ public enum ItemLoader
             pse.setInt(22, equip.getViciousHammer());
             pse.setInt(23, equip.getItemEXP());
             pse.setInt(24, equip.getDurability());
-            pse.setByte(25, equip.getStartForceLevel());
+            pse.setByte(25, equip.getStarForceLevel());
             pse.setByte(26, equip.getState());
             pse.setByte(27, equip.getLines());
             pse.setInt(28, equip.getPotential1());
@@ -1007,7 +982,7 @@ public enum ItemLoader
               equip.setItemEXP(rs.getInt("itemEXP"));
               equip.setGMLog(rs.getString("GM_Log"));
               equip.setDurability(rs.getInt("durability"));
-              equip.setStartForceLevel(rs.getByte("enhance"));
+              equip.setStarForceLevel(rs.getByte("starForceLevel"));
               equip.setState(rs.getByte("state"));
               equip.setLines(rs.getByte("line"));
               equip.setPotential1(rs.getInt("potential1"));
@@ -1043,6 +1018,7 @@ public enum ItemLoader
                   }
                 }
               }
+              equip.calcStarForceLevel();
               equip.setEnchantBuff(rs.getShort("enchantbuff"));
               equip.setReqLevel(rs.getByte("reqLevel"));
               equip.setYggdrasilWisdom(rs.getByte("yggdrasilWisdom"));

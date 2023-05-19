@@ -63,6 +63,7 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
   
   public static final void handlePacket(final RecvPacketOpcode header, final LittleEndianAccessor slea, final MapleClient c, final ServerType serverType) throws Exception
   {
+//    System.out.println(header.getValue());
     switch (header)
     {
       case PONG:

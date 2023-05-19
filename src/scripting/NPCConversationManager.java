@@ -4253,7 +4253,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         break;
       case 18:
         /* 2508 */
-        sel.setStartForceLevel((byte) amount);
+        sel.setStarForceLevel((byte) amount);
         break;
       case 19:
         /* 2511 */

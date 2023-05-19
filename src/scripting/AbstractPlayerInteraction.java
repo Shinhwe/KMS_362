@@ -41,6 +41,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.*;
+import static server.enchant.EquipmentEnchant.calcStarForceStat;
 
 public abstract class AbstractPlayerInteraction
 {
@@ -1192,11 +1193,11 @@ public abstract class AbstractPlayerInteraction
         }
         if (id == 1142249)
         {
-          item.setStartForceLevel((byte) 20);
+          item.setStarForceLevel((byte) 20);
         }
         if (id == 1142374)
         {
-          item.setStartForceLevel((byte) 30);
+          item.setStarForceLevel((byte) 30);
         }
         int[] pcAb = {
             1212121, 1213028, 1222114, 1232114, 1242123, 1242124, 1262040, 1302344, 1312204, 1322256,
@@ -1215,62 +1216,8 @@ public abstract class AbstractPlayerInteraction
             item.setPotential1(60056);
             item.setPotential2(60057);
             item.setPotential3(60058);
-            while (item.getStartForceLevel() < 17)
-            {
-              StarForceStats statz = EquipmentEnchant.starForceStats(item);
-              item.setStartForceLevel((byte) (item.getStartForceLevel() + 1));
-              for (Pair<EnchantFlag, Integer> stat : statz.getStats())
-              {
-                if (EnchantFlag.Watk.check(stat.left.getValue()))
-                {
-                  item.setWatk((short) (item.getWatk() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Matk.check(stat.left.getValue()))
-                {
-                  item.setMatk((short) (item.getMatk() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Str.check(stat.left.getValue()))
-                {
-                  item.setStr((short) (item.getStr() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Dex.check(stat.left.getValue()))
-                {
-                  item.setDex((short) (item.getDex() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Int.check(stat.left.getValue()))
-                {
-                  item.setInt((short) (item.getInt() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Luk.check(stat.left.getValue()))
-                {
-                  item.setLuk((short) (item.getLuk() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Wdef.check(stat.left.getValue()))
-                {
-                  item.setWdef((short) (item.getWdef() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Mdef.check(stat.left.getValue()))
-                {
-                  item.setMdef((short) (item.getMdef() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Hp.check(stat.left.getValue()))
-                {
-                  item.setHp((short) (item.getHp() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Mp.check(stat.left.getValue()))
-                {
-                  item.setMp((short) (item.getMp() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Acc.check(stat.left.getValue()))
-                {
-                  item.setAcc((short) (item.getAcc() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Avoid.check(stat.left.getValue()))
-                {
-                  item.setAvoid((short) (item.getAvoid() + stat.right.intValue()));
-                }
-              }
-            }
+            item.setStarForceLevel((byte)17);
+            item.starForceStats = calcStarForceStat(item);
           }
         }
         for (int pcAr : pcArc)
@@ -1280,62 +1227,8 @@ public abstract class AbstractPlayerInteraction
             item.setPotential1(60057);
             item.setPotential2(60085);
             item.setPotential3(60086);
-            while (item.getStartForceLevel() < 15)
-            {
-              StarForceStats statz = EquipmentEnchant.starForceStats(item);
-              item.setStartForceLevel((byte) (item.getStartForceLevel() + 1));
-              for (Pair<EnchantFlag, Integer> stat : statz.getStats())
-              {
-                if (EnchantFlag.Watk.check(stat.left.getValue()))
-                {
-                  item.setWatk((short) (item.getWatk() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Matk.check(stat.left.getValue()))
-                {
-                  item.setMatk((short) (item.getMatk() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Str.check(stat.left.getValue()))
-                {
-                  item.setStr((short) (item.getStr() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Dex.check(stat.left.getValue()))
-                {
-                  item.setDex((short) (item.getDex() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Int.check(stat.left.getValue()))
-                {
-                  item.setInt((short) (item.getInt() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Luk.check(stat.left.getValue()))
-                {
-                  item.setLuk((short) (item.getLuk() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Wdef.check(stat.left.getValue()))
-                {
-                  item.setWdef((short) (item.getWdef() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Mdef.check(stat.left.getValue()))
-                {
-                  item.setMdef((short) (item.getMdef() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Hp.check(stat.left.getValue()))
-                {
-                  item.setHp((short) (item.getHp() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Mp.check(stat.left.getValue()))
-                {
-                  item.setMp((short) (item.getMp() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Acc.check(stat.left.getValue()))
-                {
-                  item.setAcc((short) (item.getAcc() + stat.right.intValue()));
-                }
-                if (EnchantFlag.Avoid.check(stat.left.getValue()))
-                {
-                  item.setAvoid((short) (item.getAvoid() + stat.right.intValue()));
-                }
-              }
-            }
+            item.setStarForceLevel((byte)15);
+            item.starForceStats = calcStarForceStat(item);
           }
         }
         item.setGMLog(StringUtil.getAllCurrentTime() + "에 " + "(" + this.id + " / " + this.id2 + ")로부터 gainItem으로 얻은 아이템");
@@ -2824,11 +2717,11 @@ public abstract class AbstractPlayerInteraction
   
   public Equip JoinNubGuild(Equip nEquip, int starforce)
   {
-    while (nEquip.getStartForceLevel() < starforce)
+    while (nEquip.getStarForceLevel() < starforce)
     {
-      StarForceStats statz = EquipmentEnchant.starForceStats(nEquip);
+      StarForceStats statz = EquipmentEnchant.calcStarForceStat(nEquip);
       nEquip.setEnchantBuff((short) 0);
-      nEquip.setStartForceLevel((byte) (nEquip.getStartForceLevel() + 1));
+      nEquip.setStarForceLevel((byte) (nEquip.getStarForceLevel() + 1));
       for (Pair<EnchantFlag, Integer> stat : statz.getStats())
       {
         if (EnchantFlag.Watk.check(stat.left.getValue()))

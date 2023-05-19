@@ -54,7 +54,7 @@ public class InterServerHandler
         c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         return;
       }
-      if (c.getPlayer().getMapId() != ServerConstants.warpMap)
+      if (c.getPlayer().getMap().isTown() == false)
       {
         c.getPlayer().dropMessage(1, "캐시샵은 마을에서만 이용 가능합니다.");
         return;

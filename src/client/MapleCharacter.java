@@ -885,7 +885,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       {
         ret.client.setAccountName(rs.getString("name"));
         ret.nxcredit = rs.getInt("nxCredit");
-        ret.acash = 0;
+        ret.acash = rs.getInt("ACash");
         ret.maplepoints = rs.getInt("mPoints");
         ret.points = rs.getInt("points");
         ret.vpoints = rs.getInt("vpoints");
@@ -9987,7 +9987,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     {
       if (iv instanceof Equip)
       {
-        force += ((Equip) iv).getStartForceLevel();
+        force += ((Equip) iv).getStarForceLevel();
       }
     }
     return force;
@@ -18938,10 +18938,10 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     for (final Item item : this.getInventory(MapleInventoryType.EQUIPPED))
     {
       final Equip eq = (Equip) item;
-      starforce += eq.getStartForceLevel();
+      starforce += eq.getStarForceLevel();
       if (GameConstants.isOverall(item.getItemId()))
       {
-        starforce += eq.getStartForceLevel();
+        starforce += eq.getStarForceLevel();
       }
     }
     return starforce;

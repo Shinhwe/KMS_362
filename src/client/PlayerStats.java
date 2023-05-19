@@ -917,12 +917,12 @@ public class PlayerStats
         }
         chra.getTrait(MapleTrait.MapleTraitType.craft).addLocalExp(equip.getHands());
         this.accuracy += equip.getAcc();
-        if (GameConstants.isDemonAvenger(chra.getJob()) && equip.getStartForceLevel() > 0)
+        if (GameConstants.isDemonAvenger(chra.getJob()) && equip.getStarForceLevel() > 0)
         {
-          starforce += equip.getStartForceLevel();
+          starforce += equip.getStarForceLevel();
           if (GameConstants.isOverall(equip.getItemId()))
           {
-            starforce += equip.getStartForceLevel();
+            starforce += equip.getStarForceLevel();
           }
           if (starforce > 0 && starforce <= 425)
           {
@@ -952,7 +952,7 @@ public class PlayerStats
           this.localint_ += equip.getInt();
           this.localluk += equip.getLuk();
         }
-        this.starforce += (GameConstants.isOverall(equip.getItemId()) ? (equip.getStartForceLevel() * 2) : equip.getStartForceLevel());
+        this.starforce += (GameConstants.isOverall(equip.getItemId()) ? (equip.getStarForceLevel() * 2) : equip.getStarForceLevel());
         this.watk += equip.getWatk();
         this.magic += equip.getMatk();
         this.wdef += equip.getWdef();

@@ -35,11 +35,6 @@ public class ServerConstants
   public static boolean DEBUG_RECEIVE;
   public static boolean DEBUG_SEND;
   public static boolean ServerTest;
-  public static int starForceSalePercent;
-  public static int starForceSalePercents;
-  public static int starForcePlusProb;
-  public static int amazingscrollPlusProb;
-  public static int soulPlusProb;
   public static int BuddyChatPort;
   public static int EventBonusExp;
   public static int WeddingExp;
@@ -106,11 +101,6 @@ public class ServerConstants
     ServerConstants.DEBUG_RECEIVE = false;
     ServerConstants.DEBUG_SEND = false;
     ServerConstants.ServerTest = false;
-    ServerConstants.starForceSalePercent = 30;
-    ServerConstants.starForceSalePercents = 10;
-    ServerConstants.starForcePlusProb = 5;
-    ServerConstants.amazingscrollPlusProb = 5;
-    ServerConstants.soulPlusProb = 2;
     ServerConstants.BuddyChatPort = Integer.parseInt(ServerProperties.getProperty("ports.buddy"));
     ServerConstants.EventBonusExp = Integer.parseInt(ServerProperties.getProperty("world.eventBonus"));
     ServerConstants.WeddingExp = Integer.parseInt(ServerProperties.getProperty("world.weddingBonus"));
@@ -131,7 +121,8 @@ public class ServerConstants
     ServerConstants.warpMap = Integer.parseInt(ServerProperties.getProperty("world.warpMap"));
     ServerConstants.fishMap = 680000711;
     
-    ServerConstants.csNpc = 9001174;
+//    ServerConstants.csNpc = 9001174;
+    ServerConstants.csNpc = 0;
     ServerConstants.JuhunFever = 0;
     ServerConstants.WORLD_UI = "UI/UIWindowEvent.img/sundayMaple";
     ServerConstants.SUNDAY_TEXT = "#sunday# #fn나눔고딕 ExtraBold##fs20##fc0xFFFFFFFF#경험치 3배 쿠폰(15분) #fc0xFFFFD800#5개 #fc0xFFFFFFFF#지급!\\n#sunday# #fs20##fc0xFFFFFFFF#RISE 포인트 획득 가능량 #fc0xFFFFD800#2배!#fc0xFFFFFFFF#";

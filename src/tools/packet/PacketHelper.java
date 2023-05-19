@@ -998,7 +998,7 @@ public class PacketHelper
   {
     mplew.writeMapleAsciiString(equip.getOwner());
     mplew.write(equip.getState());
-    mplew.write(equip.getStartForceLevel());
+    mplew.write(equip.getStarForceLevel());
     mplew.writeShort(equip.getPotential1());
     mplew.writeShort(equip.getPotential2());
     mplew.writeShort(equip.getPotential3());

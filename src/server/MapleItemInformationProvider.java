@@ -2154,7 +2154,7 @@ public class MapleItemInformationProvider
               chr.dropMessage(6, "150레벨 이하의 장비 아이템에만 사용하실 수 있습니다.");
               break;
             }
-            switch (nEquip.getStartForceLevel())
+            switch (nEquip.getStarForceLevel())
             {
               case 0:
                 chane = 60;
@@ -2367,17 +2367,17 @@ public class MapleItemInformationProvider
                     6, 8, 9, 10, 11};
                 break;
             }
-            if (nEquip.getStartForceLevel() < 5)
+            if (nEquip.getStarForceLevel() < 5)
             {
-              nEquip.addStr((short) data[nEquip.getStartForceLevel()]);
-              nEquip.addDex((short) data[nEquip.getStartForceLevel()]);
-              nEquip.addInt((short) data[nEquip.getStartForceLevel()]);
-              nEquip.addLuk((short) data[nEquip.getStartForceLevel()]);
+              nEquip.addStr((short) data[nEquip.getStarForceLevel()]);
+              nEquip.addDex((short) data[nEquip.getStarForceLevel()]);
+              nEquip.addInt((short) data[nEquip.getStarForceLevel()]);
+              nEquip.addLuk((short) data[nEquip.getStarForceLevel()]);
             }
             else
             {
-              nEquip.addWatk((short) data[nEquip.getStartForceLevel()]);
-              nEquip.addMatk((short) data[nEquip.getStartForceLevel()]);
+              nEquip.addWatk((short) data[nEquip.getStarForceLevel()]);
+              nEquip.addMatk((short) data[nEquip.getStarForceLevel()]);
             }
             if (GameConstants.isWeapon(nEquip.getItemId()))
             {
@@ -2394,7 +2394,7 @@ public class MapleItemInformationProvider
             {
               if (level < 120)
               {
-                if (nEquip.getStartForceLevel() < 5)
+                if (nEquip.getStarForceLevel() < 5)
                 {
                   nEquip.addStr((short) 1);
                   nEquip.addDex((short) 1);
@@ -2409,7 +2409,7 @@ public class MapleItemInformationProvider
                   nEquip.addLuk((short) 2);
                 }
               }
-              else if (nEquip.getStartForceLevel() < 5)
+              else if (nEquip.getStarForceLevel() < 5)
               {
                 nEquip.addStr((short) Randomizer.rand(1, 2));
                 nEquip.addDex((short) Randomizer.rand(1, 2));
@@ -2424,7 +2424,7 @@ public class MapleItemInformationProvider
                 nEquip.addLuk((short) 2);
               }
             }
-            nEquip.setStartForceLevel((byte) (nEquip.getStartForceLevel() + 1));
+            nEquip.setStarForceLevel((byte) (nEquip.getStarForceLevel() + 1));
             nEquip.setEquipmentType(nEquip.getEquipmentType() | 0x600);
             break;
           }
@@ -2461,11 +2461,11 @@ public class MapleItemInformationProvider
             {
               max = maxEnhance;
             }
-            while (nEquip.getStartForceLevel() < max)
+            while (nEquip.getStarForceLevel() < max)
             {
-              StarForceStats starForceStats = EquipmentEnchant.starForceStats(nEquip);
+              StarForceStats starForceStats = EquipmentEnchant.calcStarForceStat(nEquip);
               nEquip.setEnchantBuff((short) 0);
-              nEquip.setStartForceLevel((byte) (nEquip.getStartForceLevel() + 1));
+              nEquip.setStarForceLevel((byte) (nEquip.getStarForceLevel() + 1));
               for (Pair<EnchantFlag, Integer> stat : starForceStats.getStats())
               {
                 if (EnchantFlag.Watk.check(stat.left.getValue()))
@@ -2566,11 +2566,6 @@ public class MapleItemInformationProvider
                 }
               }
             }
-            EquipmentEnchant.checkEquipmentStats(chr.getClient(), nEquip);
-            if (zeroEquip != null)
-            {
-              EquipmentEnchant.checkEquipmentStats(chr.getClient(), zeroEquip);
-            }
             break;
           }
           if (GameConstants.isEquipScroll(scrollId.getItemId()))
@@ -2596,14 +2591,14 @@ public class MapleItemInformationProvider
               if (GameConstants.isSuperior(nEquip.getItemId()))
               {
                 int slevel = getReqLevel(nEquip.getItemId());
-                int senhance = nEquip.getStartForceLevel();
+                int senhance = nEquip.getStarForceLevel();
                 if (senhance < 1)
                 {
                   nEquip.setStr((short) (nEquip.getStr() + ((slevel > 70) ? 2 : ((slevel > 100) ? 9 : ((slevel > 140) ? 19 : 1)))));
                   nEquip.setDex((short) (nEquip.getDex() + ((slevel > 70) ? 2 : ((slevel > 100) ? 9 : ((slevel > 140) ? 19 : 1)))));
                   nEquip.setInt((short) (nEquip.getInt() + ((slevel > 70) ? 2 : ((slevel > 100) ? 9 : ((slevel > 140) ? 19 : 1)))));
                   nEquip.setLuk((short) (nEquip.getLuk() + ((slevel > 70) ? 2 : ((slevel > 100) ? 9 : ((slevel > 140) ? 19 : 1)))));
-                  nEquip.setStartForceLevel((byte) 1);
+                  nEquip.setStarForceLevel((byte) 1);
                 }
                 else if (senhance == 1)
                 {
@@ -2611,7 +2606,7 @@ public class MapleItemInformationProvider
                   nEquip.setDex((short) (nEquip.getDex() + ((slevel > 70) ? 3 : ((slevel > 100) ? 10 : ((slevel > 140) ? 20 : 2)))));
                   nEquip.setInt((short) (nEquip.getInt() + ((slevel > 70) ? 3 : ((slevel > 100) ? 10 : ((slevel > 140) ? 20 : 2)))));
                   nEquip.setLuk((short) (nEquip.getLuk() + ((slevel > 70) ? 3 : ((slevel > 100) ? 10 : ((slevel > 140) ? 20 : 2)))));
-                  nEquip.setStartForceLevel((byte) 2);
+                  nEquip.setStarForceLevel((byte) 2);
                 }
                 else if (senhance == 2)
                 {
@@ -2619,7 +2614,7 @@ public class MapleItemInformationProvider
                   nEquip.setDex((short) (nEquip.getDex() + ((slevel > 70) ? 5 : ((slevel > 100) ? 12 : ((slevel > 140) ? 22 : 4)))));
                   nEquip.setInt((short) (nEquip.getInt() + ((slevel > 70) ? 5 : ((slevel > 100) ? 12 : ((slevel > 140) ? 22 : 4)))));
                   nEquip.setLuk((short) (nEquip.getLuk() + ((slevel > 70) ? 5 : ((slevel > 100) ? 12 : ((slevel > 140) ? 22 : 4)))));
-                  nEquip.setStartForceLevel((byte) 3);
+                  nEquip.setStarForceLevel((byte) 3);
                 }
                 else if (senhance == 3)
                 {
@@ -2627,7 +2622,7 @@ public class MapleItemInformationProvider
                   nEquip.setDex((short) (nEquip.getDex() + ((slevel > 70) ? 8 : ((slevel > 100) ? 15 : ((slevel > 140) ? 25 : 7)))));
                   nEquip.setInt((short) (nEquip.getInt() + ((slevel > 70) ? 8 : ((slevel > 100) ? 15 : ((slevel > 140) ? 25 : 7)))));
                   nEquip.setLuk((short) (nEquip.getLuk() + ((slevel > 70) ? 8 : ((slevel > 100) ? 15 : ((slevel > 140) ? 25 : 7)))));
-                  nEquip.setStartForceLevel((byte) 4);
+                  nEquip.setStarForceLevel((byte) 4);
                 }
                 else if (senhance == 4)
                 {
@@ -2635,37 +2630,37 @@ public class MapleItemInformationProvider
                   nEquip.setDex((short) (nEquip.getDex() + ((slevel > 70) ? 12 : ((slevel > 100) ? 19 : ((slevel > 140) ? 29 : 11)))));
                   nEquip.setInt((short) (nEquip.getInt() + ((slevel > 70) ? 12 : ((slevel > 100) ? 19 : ((slevel > 140) ? 29 : 11)))));
                   nEquip.setLuk((short) (nEquip.getLuk() + ((slevel > 70) ? 12 : ((slevel > 100) ? 19 : ((slevel > 140) ? 29 : 11)))));
-                  nEquip.setStartForceLevel((byte) 5);
+                  nEquip.setStarForceLevel((byte) 5);
                 }
                 else if (senhance == 5)
                 {
                   nEquip.setWatk((short) (nEquip.getWatk() + ((slevel > 70) ? 2 : ((slevel > 100) ? 5 : ((slevel > 140) ? 9 : 2)))));
                   nEquip.setMatk((short) (nEquip.getMatk() + ((slevel > 70) ? 2 : ((slevel > 100) ? 5 : ((slevel > 140) ? 9 : 2)))));
-                  nEquip.setStartForceLevel((byte) 6);
+                  nEquip.setStarForceLevel((byte) 6);
                 }
                 else if (senhance == 6)
                 {
                   nEquip.setWatk((short) (nEquip.getWatk() + ((slevel > 70) ? 3 : ((slevel > 100) ? 6 : ((slevel > 140) ? 10 : 3)))));
                   nEquip.setMatk((short) (nEquip.getMatk() + ((slevel > 70) ? 3 : ((slevel > 100) ? 6 : ((slevel > 140) ? 10 : 3)))));
-                  nEquip.setStartForceLevel((byte) 7);
+                  nEquip.setStarForceLevel((byte) 7);
                 }
                 else if (senhance == 7)
                 {
                   nEquip.setWatk((short) (nEquip.getWatk() + ((slevel > 70) ? 4 : ((slevel > 100) ? 7 : ((slevel > 140) ? 11 : 5)))));
                   nEquip.setMatk((short) (nEquip.getMatk() + ((slevel > 70) ? 4 : ((slevel > 100) ? 7 : ((slevel > 140) ? 11 : 5)))));
-                  nEquip.setStartForceLevel((byte) 8);
+                  nEquip.setStarForceLevel((byte) 8);
                 }
                 else if (senhance == 8)
                 {
                   nEquip.setWatk((short) (nEquip.getWatk() + ((slevel > 70) ? 5 : ((slevel > 100) ? 8 : ((slevel > 140) ? 12 : 8)))));
                   nEquip.setMatk((short) (nEquip.getMatk() + ((slevel > 70) ? 5 : ((slevel > 100) ? 8 : ((slevel > 140) ? 12 : 8)))));
-                  nEquip.setStartForceLevel((byte) 9);
+                  nEquip.setStarForceLevel((byte) 9);
                 }
                 else if (senhance == 9)
                 {
                   nEquip.setWatk((short) (nEquip.getWatk() + ((slevel > 70) ? 6 : ((slevel > 100) ? 9 : ((slevel > 140) ? 13 : 12)))));
                   nEquip.setMatk((short) (nEquip.getMatk() + ((slevel > 70) ? 6 : ((slevel > 100) ? 9 : ((slevel > 140) ? 13 : 12)))));
-                  nEquip.setStartForceLevel((byte) 10);
+                  nEquip.setStarForceLevel((byte) 10);
                 }
                 else
                 {
@@ -2673,7 +2668,7 @@ public class MapleItemInformationProvider
                   nEquip.setDex((short) (nEquip.getDex() + ((slevel > 70) ? 15 : ((slevel > 100) ? 20 : ((slevel > 140) ? 30 : 10)))));
                   nEquip.setInt((short) (nEquip.getInt() + ((slevel > 70) ? 15 : ((slevel > 100) ? 20 : ((slevel > 140) ? 30 : 10)))));
                   nEquip.setLuk((short) (nEquip.getLuk() + ((slevel > 70) ? 15 : ((slevel > 100) ? 20 : ((slevel > 140) ? 30 : 10)))));
-                  nEquip.setStartForceLevel((byte) (nEquip.getStartForceLevel() + 1));
+                  nEquip.setStarForceLevel((byte) (nEquip.getStarForceLevel() + 1));
                 }
               }
               else
@@ -2726,7 +2721,7 @@ public class MapleItemInformationProvider
                 {
                   nEquip.setMp((short) (nEquip.getMp() + getEquipLevel(getReqLevel(nEquip.getItemId()) + Randomizer.rand(1, 2))));
                 }
-                nEquip.setStartForceLevel((byte) (nEquip.getStartForceLevel() + 1));
+                nEquip.setStarForceLevel((byte) (nEquip.getStarForceLevel() + 1));
               }
             }
             break;
@@ -2971,7 +2966,7 @@ public class MapleItemInformationProvider
     {
       int i = 0;
       Equip lev = (Equip) equip.copy();
-      byte leve = lev.getStartForceLevel();
+      byte leve = lev.getStarForceLevel();
       switch (itemId)
       {
         case 2049300:

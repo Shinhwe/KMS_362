@@ -15,6 +15,8 @@ public enum EnchantFlag
   Acc(1024),
   Avoid(2048);
   
+  // TODO: 跳跃力 移动速度
+  
   private final int i;
   
   EnchantFlag(int i)

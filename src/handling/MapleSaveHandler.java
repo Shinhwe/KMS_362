@@ -285,14 +285,6 @@ public class MapleSaveHandler implements Runnable
         World.Broadcast.broadcastMessage(CWvsContext.serverMessage(6, 1, "", "무릉도장 랭킹이 갱신 되었습니다.", true));
       }
     }
-    if (Calendar.getInstance().get(7) == 4)
-    {
-      ServerConstants.starForceSalePercent = 10;
-    }
-    else
-    {
-      ServerConstants.starForceSalePercent = 0;
-    }
     if (!noblessPoint.isEmpty())
     {
       Collections.sort(noblessPoint);

@@ -45,7 +45,6 @@ public class MovementParse
           case 73:
           case 91:
           {
-            
             if (rh.available() >= 20L)
             {
               final short xpos = rh.readShort();
@@ -133,7 +132,11 @@ public class MovementParse
             final int now = rh.readInt();
             final byte newstate3 = rh.readByte();
             final short duration3 = rh.readShort();
-            final byte unk3 = rh.readByte();
+            byte unk3 = 0;
+            if (rh.available() >= 1L)
+            {
+              unk3 = rh.readByte();
+            }
             final ChairMovement cm = new ChairMovement(command, new Point(xpos, ypos), duration3, newstate3, fh2, unk3);
             cm.setUnk(now);
             res.add(cm);

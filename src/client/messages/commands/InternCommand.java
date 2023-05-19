@@ -1,9 +1,7 @@
 package client.messages.commands;
 
 import client.*;
-import client.inventory.Equip;
 import client.inventory.Item;
-import client.inventory.MapleInventoryType;
 import client.messages.CommandProcessorUtil;
 import constants.ServerConstants;
 import handling.auction.AuctionServer;
@@ -19,9 +17,6 @@ import provider.MapleDataTool;
 import scripting.EventInstanceManager;
 import server.MapleItemInformationProvider;
 import server.MaplePortal;
-import server.enchant.EnchantFlag;
-import server.enchant.EquipmentEnchant;
-import server.enchant.StarForceStats;
 import server.life.MapleLifeFactory;
 import server.life.MapleMonster;
 import server.life.MapleNPC;
@@ -99,14 +94,6 @@ public class InternCommand
   {
     public int execute(MapleClient c, String[] splitted)
     {
-      Integer sale = Integer.valueOf(splitted[1]);
-      if (sale == null || sale.intValue() < 0 || sale.intValue() > 100)
-      {
-        c.getPlayer().dropMessage(6, "잘못된 값을 입력했습니다.");
-        return 0;
-      }
-      ServerConstants.starForceSalePercent = sale.intValue();
-      c.getPlayer().dropMessage(6, "스타포스 할인율이 " + sale + "%로 조정되었습니다.");
       return 1;
     }
   }
@@ -1208,73 +1195,6 @@ public class InternCommand
   {
     public int execute(MapleClient c, String[] splitted)
     {
-      if (splitted.length < 2)
-      {
-        c.getPlayer().dropMessage(5, "!스타포스 <몇성?> - 장비 탭 첫번째 아이템이 강화됩니다.");
-      }
-      else
-      {
-        Equip nEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem((short) 1);
-        if (nEquip != null)
-        {
-          while (nEquip.getStartForceLevel() < Integer.parseInt(splitted[1]))
-          {
-            StarForceStats statz = EquipmentEnchant.starForceStats(nEquip);
-            nEquip.setStartForceLevel((byte) (nEquip.getStartForceLevel() + 1));
-            for (Pair<EnchantFlag, Integer> stat : statz.getStats())
-            {
-              if (EnchantFlag.Watk.check(stat.left.getValue()))
-              {
-                nEquip.setWatk((short) (nEquip.getWatk() + stat.right.intValue()));
-              }
-              if (EnchantFlag.Matk.check(stat.left.getValue()))
-              {
-                nEquip.setMatk((short) (nEquip.getMatk() + stat.right.intValue()));
-              }
-              if (EnchantFlag.Str.check(stat.left.getValue()))
-              {
-                nEquip.setStr((short) (nEquip.getStr() + stat.right.intValue()));
-              }
-              if (EnchantFlag.Dex.check(stat.left.getValue()))
-              {
-                nEquip.setDex((short) (nEquip.getDex() + stat.right.intValue()));
-              }
-              if (EnchantFlag.Int.check(stat.left.getValue()))
-              {
-                nEquip.setInt((short) (nEquip.getInt() + stat.right.intValue()));
-              }
-              if (EnchantFlag.Luk.check(stat.left.getValue()))
-              {
-                nEquip.setLuk((short) (nEquip.getLuk() + stat.right.intValue()));
-              }
-              if (EnchantFlag.Wdef.check(stat.left.getValue()))
-              {
-                nEquip.setWdef((short) (nEquip.getWdef() + stat.right.intValue()));
-              }
-              if (EnchantFlag.Mdef.check(stat.left.getValue()))
-              {
-                nEquip.setMdef((short) (nEquip.getMdef() + stat.right.intValue()));
-              }
-              if (EnchantFlag.Hp.check(stat.left.getValue()))
-              {
-                nEquip.setHp((short) (nEquip.getHp() + stat.right.intValue()));
-              }
-              if (EnchantFlag.Mp.check(stat.left.getValue()))
-              {
-                nEquip.setMp((short) (nEquip.getMp() + stat.right.intValue()));
-              }
-              if (EnchantFlag.Acc.check(stat.left.getValue()))
-              {
-                nEquip.setAcc((short) (nEquip.getAcc() + stat.right.intValue()));
-              }
-              if (EnchantFlag.Avoid.check(stat.left.getValue()))
-              {
-                nEquip.setAvoid((short) (nEquip.getAvoid() + stat.right.intValue()));
-              }
-            }
-          }
-        }
-      }
       return 1;
     }
   }
@@ -1283,88 +1203,6 @@ public class InternCommand
   {
     public int execute(MapleClient c, String[] splitted)
     {
-      Equip item = null;
-      item = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(Short.parseShort(splitted[1]));
-      if (item != null)
-      {
-        while (item.getStartForceLevel() > 0)
-        {
-          item.setStartForceLevel((byte) (item.getStartForceLevel() - 1));
-          StarForceStats stats = EquipmentEnchant.starForceStats(item);
-          for (Pair<EnchantFlag, Integer> stat : stats.getStats())
-          {
-            if (EnchantFlag.Watk.check(stat.left.getValue()))
-            {
-              int watk = item.getWatk();
-              if (watk / 50 != (item.getWatk() - stat.right.intValue()) / 50)
-              {
-                item.setWatk((short) (item.getWatk() - stat.right.intValue() + 1));
-              }
-              else
-              {
-                item.setWatk((short) (item.getWatk() - stat.right.intValue()));
-              }
-            }
-            if (EnchantFlag.Matk.check(stat.left.getValue()))
-            {
-              int matk = item.getMatk();
-              if (matk / 50 != (item.getMatk() - stat.right.intValue()) / 50)
-              {
-                item.setMatk((short) (item.getMatk() - stat.right.intValue() + 1));
-              }
-              else
-              {
-                item.setMatk((short) (item.getMatk() - stat.right.intValue()));
-              }
-            }
-            if (EnchantFlag.Str.check(stat.left.getValue()))
-            {
-              item.setStr((short) (item.getStr() - stat.right.intValue()));
-            }
-            if (EnchantFlag.Dex.check(stat.left.getValue()))
-            {
-              item.setDex((short) (item.getDex() - stat.right.intValue()));
-            }
-            if (EnchantFlag.Int.check(stat.left.getValue()))
-            {
-              item.setInt((short) (item.getInt() - stat.right.intValue()));
-            }
-            if (EnchantFlag.Luk.check(stat.left.getValue()))
-            {
-              item.setLuk((short) (item.getLuk() - stat.right.intValue()));
-            }
-            if (EnchantFlag.Wdef.check(stat.left.getValue()))
-            {
-              item.setWdef((short) (item.getWdef() - stat.right.intValue()));
-            }
-            if (EnchantFlag.Mdef.check(stat.left.getValue()))
-            {
-              item.setMdef((short) (item.getMdef() - stat.right.intValue()));
-            }
-            if (EnchantFlag.Hp.check(stat.left.getValue()))
-            {
-              item.setHp((short) (item.getHp() - stat.right.intValue()));
-            }
-            if (EnchantFlag.Mp.check(stat.left.getValue()))
-            {
-              item.setMp((short) (item.getMp() - stat.right.intValue()));
-            }
-            if (EnchantFlag.Acc.check(stat.left.getValue()))
-            {
-              item.setAcc((short) (item.getAcc() - stat.right.intValue()));
-            }
-            if (EnchantFlag.Avoid.check(stat.left.getValue()))
-            {
-              item.setAvoid((short) (item.getAvoid() - stat.right.intValue()));
-            }
-          }
-        }
-        c.getPlayer().forceReAddItem(item, MapleInventoryType.EQUIP);
-      }
-      else
-      {
-        c.getPlayer().dropMessage(1, "해당 위치에 아이템이 존재하지 않습니다.");
-      }
       return 1;
     }
   }

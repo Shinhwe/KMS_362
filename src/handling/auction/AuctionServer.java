@@ -452,7 +452,7 @@ import java.util.concurrent.ConcurrentHashMap;
           /* 258 */
           pse.setInt(24, equip.getDurability());
           /* 259 */
-          pse.setByte(25, equip.getStartForceLevel());
+          pse.setByte(25, equip.getStarForceLevel());
           /* 260 */
           pse.setByte(26, equip.getState());
           /* 261 */
@@ -1031,7 +1031,7 @@ import java.util.concurrent.ConcurrentHashMap;
               /* 538 */
               equip.setDurability(rs1.getInt("durability"));
               /* 539 */
-              equip.setStartForceLevel(rs1.getByte("enhance"));
+              equip.setStarForceLevel(rs1.getByte("starForceLevel"));
               /* 540 */
               equip.setState(rs1.getByte("state"));
               /* 541 */
@@ -1095,6 +1095,8 @@ import java.util.concurrent.ConcurrentHashMap;
                 }
                 /*     */
               }
+              
+              equip.calcStarForceLevel();
               /* 568 */
               equip.setEnchantBuff(rs1.getShort("enchantbuff"));
               /* 569 */

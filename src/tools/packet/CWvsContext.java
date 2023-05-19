@@ -2071,13 +2071,19 @@ public class CWvsContext
     return mplew.getPacket();
   }
   
-  public static byte[] equipmentEnchantResult(int op, Equip item, Equip item2, EquipmentScroll scroll, StarForceStats stats, int... args)
+  public static byte[] equipmentEnchantResult(int op, Equip item, Equip item2, EquipmentScroll scroll, StarForceStats stats, int result)
+  {
+    return equipmentEnchantResult(op, item, item2, scroll, stats, result,0, 0, 0, 0);
+  }
+  
+  public static byte[] equipmentEnchantResult(int op, Equip item, Equip item2, EquipmentScroll scroll, StarForceStats stats, int result, long meso, int starForceSuccessChance, int starForceDownChance, int starForceDestroyChance)
   {
     List<EquipmentScroll> ess;
-    double rate;
-    long meso;
+    
     MaplePacketLittleEndianWriter mplew = new MaplePacketLittleEndianWriter();
+    
     mplew.writeShort(SendPacketOpcode.EQUIPMENT_ENCHANT.getValue());
+    
     mplew.write(op);
     switch (op)
     {
@@ -2146,20 +2152,22 @@ public class CWvsContext
         }
         break;
       case 52:
-        mplew.write((args[0] > 0) ? ((args[1] > 0) ? 2 : 1) : 0);
-        rate = (100 - ServerConstants.starForceSalePercent) / 100.0D;
-        meso = (long) (args[3] * rate);
-        if (meso < 0L)
-        {
-          meso &= 0xFFFFFFFFL;
+        int faildType =  0;
+        
+        if (starForceDestroyChance > 0) {
+          faildType = 2;
+        } else if(starForceDownChance > 0) {
+          faildType = 1;
         }
+        
+        mplew.write(faildType);
         mplew.writeLong(meso);
         mplew.writeLong(0L);
-        mplew.writeLong((ServerConstants.starForceSalePercent > 0) ? args[3] : 0L);
+        mplew.writeLong(0); // 折扣
         mplew.write(0);
         mplew.write(0);
-        mplew.writeInt(args[2]);
-        mplew.writeInt(args[1]);
+        mplew.writeInt(starForceSuccessChance);
+        mplew.writeInt(starForceDestroyChance);
         mplew.writeInt(0);
         mplew.writeInt(0);
         mplew.write(item.getEnchantBuff() & 0x20);
@@ -2215,20 +2223,20 @@ public class CWvsContext
         break;
       case 53:
         mplew.write(ServerConstants.feverTime);
-        mplew.writeInt(args[0]);
+        mplew.writeInt(result);
         break;
       case 100:
         mplew.write(ServerConstants.feverTime);
-        mplew.writeInt(args[0]);
+        mplew.writeInt(result);
         mplew.writeMapleAsciiString(scroll.getName());
         PacketHelper.addItemInfo(mplew, item);
         PacketHelper.addItemInfo(mplew, item2);
         break;
       case 101:
-        mplew.write(args[0]);
+        mplew.write(result);
         mplew.writeInt(0);
         PacketHelper.addItemInfo(mplew, item);
-        if (args[0] != 4)
+        if (result != 4)
         {
           PacketHelper.addItemInfo(mplew, item2);
         }

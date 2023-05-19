@@ -4,21 +4,26 @@ import client.MapleCharacter;
 import constants.GameConstants;
 import server.MapleItemInformationProvider;
 import server.Randomizer;
+import server.enchant.EnchantFlag;
+import server.enchant.StarForceStats;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import static server.enchant.EquipmentEnchant.calcStarForceStat;
 
 public class Equip extends Item implements Serializable
 {
   public static final int ARMOR_RATIO = 350000;
   public static final int WEAPON_RATIO = 700000;
+  public StarForceStats starForceStats = new StarForceStats(new ArrayList<>());
   private byte state = 0;
   private byte lines = 0;
   private byte upgradeSlots = 0;
   private byte level = 0;
   private byte vicioushammer = 0;
-  private byte startForceLevel = 0;
+  private byte starForceLevel = 0;
   private byte reqLevel = 0;
   private byte yggdrasilWisdom = 0;
   private byte totalDamage = 0;
@@ -60,6 +65,19 @@ public class Equip extends Item implements Serializable
   private short enchantAvoid = 0;
   private short enchantWatk = 0;
   private short enchantMatk = 0;
+  
+  private short starForceStr = 0;
+  private short starForceDex = 0;
+  private short starForceInt = 0;
+  private short starForceLuk = 0;
+  private short starForceHp = 0;
+  private short starForceMp = 0;
+  private short starForceWdef = 0;
+  private short starForceMdef = 0;
+  private short starForceAcc = 0;
+  private short starForceAvoid = 0;
+  private short starForceWatk = 0;
+  private short starForceMatk = 0;
   private int arcexp = 0;
   private int arclevel = 0;
   private int itemEXP = 0;
@@ -96,8 +114,11 @@ public class Equip extends Item implements Serializable
   
   public static Equip calculateEquipStats(Equip eq)
   {
+    
     eq.getStats().clear();
+    
     eq.getSpecialStats().clear();
+    
     if (eq.getUpgradeSlots() > 0)
     {
       eq.getStats().add(EquipStat.SLOTS);
@@ -230,6 +251,9 @@ public class Equip extends Item implements Serializable
     {
       eq.getSpecialStats().add(EquipSpecialStat.EQUIPMENT_TYPE);
     }
+    
+    eq.calcStarForceLevel();
+    
     return (Equip) eq.copy();
   }
   
@@ -253,7 +277,7 @@ public class Equip extends Item implements Serializable
     this.hands = set.hands;
     this.speed = set.speed;
     this.jump = set.jump;
-    this.startForceLevel = set.startForceLevel;
+    this.starForceLevel = set.starForceLevel;
     this.upgradeSlots = set.upgradeSlots;
     this.level = set.level;
     this.itemEXP = set.itemEXP;
@@ -304,6 +328,17 @@ public class Equip extends Item implements Serializable
     this.Coption1 = set.Coption1;
     this.Coption2 = set.Coption2;
     this.Coption3 = set.Coption3;
+    this.starForceStats = set.starForceStats;
+    this.starForceStr = set.starForceStr;
+    this.starForceDex = set.starForceDex;
+    this.starForceInt = set.starForceInt;
+    this.starForceLuk = set.starForceLuk;
+    this.starForceWatk = set.starForceWatk;
+    this.starForceMatk = set.starForceMatk;
+    this.starForceWdef = set.starForceWdef;
+    this.starForceMdef = set.starForceMdef;
+    this.starForceAcc = set.starForceAcc;
+    this.starForceAvoid = set.starForceAvoid;
   }
   
   @Override
@@ -328,7 +363,7 @@ public class Equip extends Item implements Serializable
     ret.hands = this.hands;
     ret.speed = this.speed;
     ret.jump = this.jump;
-    ret.startForceLevel = this.startForceLevel;
+    ret.starForceLevel = this.starForceLevel;
     ret.upgradeSlots = this.upgradeSlots;
     ret.level = this.level;
     ret.itemEXP = this.itemEXP;
@@ -385,6 +420,17 @@ public class Equip extends Item implements Serializable
     ret.Coption1 = this.Coption1;
     ret.Coption2 = this.Coption2;
     ret.Coption3 = this.Coption3;
+    ret.starForceStats = this.starForceStats;
+    ret.starForceStr = this.starForceStr;
+    ret.starForceDex = this.starForceDex;
+    ret.starForceInt = this.starForceInt;
+    ret.starForceLuk = this.starForceLuk;
+    ret.starForceWatk = this.starForceWatk;
+    ret.starForceMatk = this.starForceMatk;
+    ret.starForceWdef = this.starForceWdef;
+    ret.starForceMdef = this.starForceMdef;
+    ret.starForceAcc = this.starForceAcc;
+    ret.starForceAvoid = this.starForceAvoid;
     return ret;
   }
   
@@ -871,14 +917,14 @@ public class Equip extends Item implements Serializable
     this.durability = dur;
   }
   
-  public byte getStartForceLevel()
+  public byte getStarForceLevel()
   {
-    return this.startForceLevel;
+    return this.starForceLevel;
   }
   
-  public void setStartForceLevel(byte en)
+  public void setStarForceLevel(byte en)
   {
-    this.startForceLevel = en;
+    this.starForceLevel = en;
   }
   
   public int getPotential1()
@@ -2183,6 +2229,195 @@ public class Equip extends Item implements Serializable
     return this.enchantStr;
   }
   
+  public short getStarForceStr()
+  {
+    return starForceStr;
+  }
+  
+  public void setStarForceStr(short starForceStr)
+  {
+    this.starForceStr = starForceStr;
+  }
+  
+  public short getStarForceDex()
+  {
+    return starForceDex;
+  }
+  
+  public void setStarForceDex(short starForceDex)
+  {
+    this.starForceDex = starForceDex;
+  }
+  
+  public short getStarForceInt()
+  {
+    return starForceInt;
+  }
+  
+  public void setStarForceInt(short starForceInt)
+  {
+    this.starForceInt = starForceInt;
+  }
+  
+  public short getStarForceLuk()
+  {
+    return starForceLuk;
+  }
+  
+  public void setStarForceLuk(short starForceLuk)
+  {
+    this.starForceLuk = starForceLuk;
+  }
+  
+  public short getStarForceHp()
+  {
+    return starForceHp;
+  }
+  
+  public void setStarForceHp(short starForceHp)
+  {
+    this.starForceHp = starForceHp;
+  }
+  
+  public short getStarForceMp()
+  {
+    return starForceMp;
+  }
+  
+  public void setStarForceMp(short starForceMp)
+  {
+    this.starForceMp = starForceMp;
+  }
+  
+  public short getStarForceWdef()
+  {
+    return starForceWdef;
+  }
+  
+  public void setStarForceWdef(short starForceWdef)
+  {
+    this.starForceWdef = starForceWdef;
+  }
+  
+  public short getStarForceMdef()
+  {
+    return starForceMdef;
+  }
+  
+  public void setStarForceMdef(short starForceMdef)
+  {
+    this.starForceMdef = starForceMdef;
+  }
+  
+  public short getStarForceAcc()
+  {
+    return starForceAcc;
+  }
+  
+  public void setStarForceAcc(short starForceAcc)
+  {
+    this.starForceAcc = starForceAcc;
+  }
+  
+  public short getStarForceAvoid()
+  {
+    return starForceAvoid;
+  }
+  
+  public void setStarForceAvoid(short starForceAvoid)
+  {
+    this.starForceAvoid = starForceAvoid;
+  }
+  
+  public short getStarForceWatk()
+  {
+    return starForceWatk;
+  }
+  
+  public void setStarForceWatk(short starForceWatk)
+  {
+    this.starForceWatk = starForceWatk;
+  }
+  
+  public short getStarForceMatk()
+  {
+    return starForceMatk;
+  }
+  
+  public void setStarForceMatk(short starForceMatk)
+  {
+    this.starForceMatk = starForceMatk;
+  }
+  
+  public void calcStarForceLevel() {
+    if (this.getItemId() == 1052893)
+    {
+      System.out.println("calcStarForceLevel!");
+    }
+    StarForceStats starForceStats =  calcStarForceStat(this);
+    this.starForceStats = starForceStats;
+    
+    if (starForceStats.getFlag(EnchantFlag.Str) != null)
+    {
+      setStarForceStr(starForceStats.getFlag(EnchantFlag.Str).right.shortValue());
+    }
+    
+    if (starForceStats.getFlag(EnchantFlag.Dex) != null)
+    {
+      setStarForceDex(starForceStats.getFlag(EnchantFlag.Dex).right.shortValue());
+    }
+    
+    if (starForceStats.getFlag(EnchantFlag.Int) != null)
+    {
+      setStarForceInt(starForceStats.getFlag(EnchantFlag.Int).right.shortValue());
+    }
+    
+    if (starForceStats.getFlag(EnchantFlag.Luk) != null)
+    {
+      setStarForceLuk(starForceStats.getFlag(EnchantFlag.Luk).right.shortValue());
+    }
+    
+    if (starForceStats.getFlag(EnchantFlag.Watk) != null)
+    {
+      setStarForceWatk(starForceStats.getFlag(EnchantFlag.Watk).right.shortValue());
+    }
+    
+    if (starForceStats.getFlag(EnchantFlag.Matk) != null)
+    {
+      setStarForceMatk(starForceStats.getFlag(EnchantFlag.Matk).right.shortValue());
+    }
+    
+    if (starForceStats.getFlag(EnchantFlag.Wdef) != null)
+    {
+      setStarForceWdef(starForceStats.getFlag(EnchantFlag.Wdef).right.shortValue());
+    }
+    
+    if (starForceStats.getFlag(EnchantFlag.Mdef) != null)
+    {
+      setStarForceMdef(starForceStats.getFlag(EnchantFlag.Mdef).right.shortValue());
+    }
+    
+    if (starForceStats.getFlag(EnchantFlag.Hp) != null)
+    {
+      setStarForceHp(starForceStats.getFlag(EnchantFlag.Hp).right.shortValue());
+    }
+    
+    if (starForceStats.getFlag(EnchantFlag.Mp) != null)
+    {
+      setStarForceMp(starForceStats.getFlag(EnchantFlag.Mp).right.shortValue());
+    }
+    
+    if (starForceStats.getFlag(EnchantFlag.Acc) != null)
+    {
+      setStarForceAcc(starForceStats.getFlag(EnchantFlag.Acc).right.shortValue());
+    }
+    
+    if (starForceStats.getFlag(EnchantFlag.Avoid) != null)
+    {
+      setStarForceAvoid(starForceStats.getFlag(EnchantFlag.Avoid).right.shortValue());
+    }
+  }
+  
   public void setEnchantStr(short enchantStr)
   {
     this.enchantStr = enchantStr;
@@ -2280,7 +2515,9 @@ public class Equip extends Item implements Serializable
   
   public short getTotalStr()
   {
-    return (short) (this.str + this.enchantStr);
+    System.out.println("this.str = " + this.str +" ;this.enchantStr = " + this.enchantStr + ";this.getStarForceStr() = " + this.getStarForceStr());
+    System.out.println("(this.str + this.enchantStr + this.getStarForceStr()) = " + (this.str + this.enchantStr + this.getStarForceStr()));
+    return (short) (this.str + this.enchantStr + this.getStarForceStr());
   }
   
   public short getTotalDex()
@@ -2300,12 +2537,12 @@ public class Equip extends Item implements Serializable
   
   public short getTotalHp()
   {
-    return (short) (this.hp + this.enchantHp);
+    return (short) (this.hp + this.enchantHp + this.getStarForceHp());
   }
   
   public short getTotalMp()
   {
-    return (short) (this.mp + this.enchantMp);
+    return (short) (this.mp + this.enchantMp + this.getStarForceMp());
   }
   
   public short getTotalAcc()
@@ -2320,22 +2557,22 @@ public class Equip extends Item implements Serializable
   
   public short getTotalWatk()
   {
-    return (short) (this.watk + this.enchantWatk);
+    return (short) (this.watk + this.enchantWatk + this.getStarForceWatk());
   }
   
   public short getTotalMatk()
   {
-    return (short) (this.matk + this.enchantMatk);
+    return (short) (this.matk + this.enchantMatk + this.getStarForceMatk());
   }
   
   public short getTotalWdef()
   {
-    return (short) (this.wdef + this.enchantWdef);
+    return (short) (this.wdef + this.enchantWdef + this.getStarForceWdef());
   }
   
   public short getTotalMdef()
   {
-    return (short) (this.mdef + this.enchantMdef);
+    return (short) (this.mdef + this.enchantMdef + this.getStarForceMdef());
   }
   
   public short getEnchantWdef()
@@ -2407,6 +2644,8 @@ public class Equip extends Item implements Serializable
   {
     this.Coption3 = a;
   }
+  
+  
   
   public enum ScrollResult
   {
