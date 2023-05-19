@@ -148,7 +148,7 @@ public enum ItemLoader
       equip.setPotential4(42060);
       equip.setPotential5(42060);
       equip.setStarForceLevel((byte) 15);
-      equip.calcStarForceLevel();
+      equip.calcStarForceStats();
     }
     if (equip.getItemId() == 1672085 || equip.getItemId() == 1672086)
     {
@@ -157,7 +157,7 @@ public enum ItemLoader
       equip.setPotential1(40601);
       equip.setPotential2(30291);
       equip.setStarForceLevel((byte) 15);
-      equip.calcStarForceLevel();
+      equip.calcStarForceStats();
     }
     return true;
   }
@@ -298,7 +298,7 @@ public enum ItemLoader
                   }
                 }
               }
-              equip.calcStarForceLevel();
+              equip.calcStarForceStats();
               equip.setEnchantBuff(rs.getShort("enchantbuff"));
               equip.setReqLevel(rs.getByte("reqLevel"));
               equip.setYggdrasilWisdom(rs.getByte("yggdrasilWisdom"));
@@ -1018,7 +1018,7 @@ public enum ItemLoader
                   }
                 }
               }
-              equip.calcStarForceLevel();
+              equip.calcStarForceStats();
               equip.setEnchantBuff(rs.getShort("enchantbuff"));
               equip.setReqLevel(rs.getByte("reqLevel"));
               equip.setYggdrasilWisdom(rs.getByte("yggdrasilWisdom"));

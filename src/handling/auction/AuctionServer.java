@@ -1096,7 +1096,7 @@ import java.util.concurrent.ConcurrentHashMap;
                 /*     */
               }
               
-              equip.calcStarForceLevel();
+              equip.calcStarForceStats();
               /* 568 */
               equip.setEnchantBuff(rs1.getShort("enchantbuff"));
               /* 569 */

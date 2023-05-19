@@ -2463,7 +2463,7 @@ public class MapleItemInformationProvider
             }
             while (nEquip.getStarForceLevel() < max)
             {
-              StarForceStats starForceStats = EquipmentEnchant.calcStarForceStat(nEquip);
+              StarForceStats starForceStats = EquipmentEnchant.calcStarForceStats(nEquip);
               nEquip.setEnchantBuff((short) 0);
               nEquip.setStarForceLevel((byte) (nEquip.getStarForceLevel() + 1));
               for (Pair<EnchantFlag, Integer> stat : starForceStats.getStats())

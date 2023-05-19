@@ -41,7 +41,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.*;
-import static server.enchant.EquipmentEnchant.calcStarForceStat;
 
 public abstract class AbstractPlayerInteraction
 {
@@ -1217,7 +1216,7 @@ public abstract class AbstractPlayerInteraction
             item.setPotential2(60057);
             item.setPotential3(60058);
             item.setStarForceLevel((byte)17);
-            item.starForceStats = calcStarForceStat(item);
+            item.calcStarForceStats();
           }
         }
         for (int pcAr : pcArc)
@@ -1228,7 +1227,7 @@ public abstract class AbstractPlayerInteraction
             item.setPotential2(60085);
             item.setPotential3(60086);
             item.setStarForceLevel((byte)15);
-            item.starForceStats = calcStarForceStat(item);
+            item.calcStarForceStats();
           }
         }
         item.setGMLog(StringUtil.getAllCurrentTime() + "에 " + "(" + this.id + " / " + this.id2 + ")로부터 gainItem으로 얻은 아이템");
@@ -2719,7 +2718,7 @@ public abstract class AbstractPlayerInteraction
   {
     while (nEquip.getStarForceLevel() < starforce)
     {
-      StarForceStats statz = EquipmentEnchant.calcStarForceStat(nEquip);
+      StarForceStats statz = EquipmentEnchant.calcStarForceStats(nEquip);
       nEquip.setEnchantBuff((short) 0);
       nEquip.setStarForceLevel((byte) (nEquip.getStarForceLevel() + 1));
       for (Pair<EnchantFlag, Integer> stat : statz.getStats())
