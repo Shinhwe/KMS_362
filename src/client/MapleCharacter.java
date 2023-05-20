@@ -142,10 +142,10 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   public long DamageMeter = 0;
   public boolean pvp, isTrade, isCatching, isCatched, isWolfShipWin, isVoting, isDead, isMapiaVote, isDrVote, isPoliceVote;
   public String mapiajob;
-  public short blackRebirthPos;
+  public short blackFlamePosition;
   public int voteamount, getmapiavote, getpolicevote, getdrvote, mbating, CrystalCharge, returnSc, peaceMaker;
-  public long blackRebirth;
-  public Equip blackRebirthScroll, returnscroll, choicepotential;
+  public long blackFlame;
+  public Equip blackFlameScroll, returnScroll, choicePotential;
   public Item memorialcube;
   public boolean isdressup;
   public boolean useBlackJack;
@@ -23029,14 +23029,14 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   public void gainItemAllStat(int itemid, short quantity, short allstat, short wmtk)
   {
     Equip equip = new Equip(itemid, quantity, (byte) 0);
-    equip.setStr(allstat);
-    equip.setDex(allstat);
-    equip.setInt(allstat);
-    equip.setLuk(allstat);
+    equip.setEnchantStr(allstat);
+    equip.setEnchantDex(allstat);
+    equip.setEnchantInt(allstat);
+    equip.setEnchantLuk(allstat);
     if (wmtk != -1)
     {
-      equip.setWatk(wmtk);
-      equip.setMatk(wmtk);
+      equip.setEnchantWatk(wmtk);
+      equip.setEnchantMatk(wmtk);
     }
     MapleInventoryManipulator.addFromDrop(client, equip, true);
   }
@@ -23703,10 +23703,10 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
         unlimited = 15;
         break;
     }
-    장비.setStr(str);
-    장비.setDex(dex);
-    장비.setInt(int_);
-    장비.setLuk(luk);
+    장비.setEnchantStr(str);
+    장비.setEnchantDex(dex);
+    장비.setEnchantInt(int_);
+    장비.setEnchantLuk(luk);
     장비.setBossDamage((byte) unlimited);
     장비.setTotalDamage((byte) unlimited);
     장비.setAllStat((byte) unlimited);

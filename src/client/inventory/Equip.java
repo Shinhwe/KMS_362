@@ -6,6 +6,7 @@ import server.MapleItemInformationProvider;
 import server.Randomizer;
 import server.enchant.EnchantFlag;
 import server.enchant.EquipmentEnchant;
+import server.enchant.EquipmentScroll;
 import server.enchant.StarForceStats;
 
 import java.io.Serializable;
@@ -20,8 +21,11 @@ public class Equip extends Item implements Serializable
   public StarForceStats starForceStats = new StarForceStats(new ArrayList<>());
   private byte state = 0;
   private byte lines = 0;
+  private byte extraUpgradeSlots = 0;
   private byte upgradeSlots = 0;
-  private byte level = 0;
+  private byte successUpgradeSlots = 0;
+  private byte failUpgradeSlots = 0;
+  private byte enchantLevel = 0;
   private byte vicioushammer = 0;
   private byte starForceLevel = 0;
   private byte reqLevel = 0;
@@ -65,7 +69,23 @@ public class Equip extends Item implements Serializable
   private short enchantAvoid = 0;
   private short enchantWatk = 0;
   private short enchantMatk = 0;
-
+  private short enchantJump = 0;
+  private short flameStr = 0;
+  private short flameDex = 0;
+  private short flameInt = 0;
+  private short flameLuk = 0;
+  private short flameWatk = 0;
+  private short flameMatk = 0;
+  private short flameHp = 0;
+  private short flameMp = 0;
+  private short flameSpeed = 0;
+  private short flameJump = 0;
+  private short flameDamage = 0;
+  private short flameBossDamage = 0;
+  private short flameAllStat = 0;
+  private short flameReductReqLevel = 0;
+  
+  private short flameDef = 0;
   private short starForceStr = 0;
   private short starForceDex = 0;
   private short starForceInt = 0;
@@ -80,7 +100,16 @@ public class Equip extends Item implements Serializable
   private short starForceMatk = 0;
   private int arcexp = 0;
   private int arclevel = 0;
-  private int itemEXP = 0;
+  
+  private int arcStr = 0;
+  
+  private int arcDex = 0;
+  
+  private int arcInt = 0;
+  
+  private int arcLuk = 0;
+  
+  private int arcHp = 0;
   private int durability = -1;
   private int incSkill = -1;
   private int potential1 = 0;
@@ -96,9 +125,11 @@ public class Equip extends Item implements Serializable
   private int Coption1 = 0;
   private int Coption2 = 0;
   private int Coption3 = 0;
-  private long fire = 0L;
+  private long flame = 0L;
   private long optionexpiration = 0L;
   private boolean finalStrike = false;
+  
+  private EquipmentScroll showScrollOption;
   private List<EquipStat> stats = new LinkedList<EquipStat>();
   private List<EquipSpecialStat> specialStats = new LinkedList<EquipSpecialStat>();
 
@@ -123,9 +154,9 @@ public class Equip extends Item implements Serializable
     {
       eq.getStats().add(EquipStat.SLOTS);
     }
-    if (eq.getLevel() > 0)
+    if (eq.getEnchantLevel() > 0)
     {
-      eq.getStats().add(EquipStat.LEVEL);
+      eq.getStats().add(EquipStat.ENCHANTLEVEL);
     }
     if (eq.getTotalStr() > 0)
     {
@@ -183,14 +214,6 @@ public class Equip extends Item implements Serializable
     {
       eq.getStats().add(EquipStat.INC_SKILL);
     }
-    if (eq.getEquipLevel() > 0 || eq.getBaseLevel() > 0)
-    {
-      eq.getStats().add(EquipStat.ITEM_LEVEL);
-    }
-    if (eq.getItemEXP() > 0)
-    {
-      eq.getStats().add(EquipStat.ITEM_EXP);
-    }
     if (eq.getDurability() > -1)
     {
       eq.getStats().add(EquipStat.DURABILITY);
@@ -239,11 +262,11 @@ public class Equip extends Item implements Serializable
     {
       eq.getSpecialStats().add(EquipSpecialStat.ALL_STAT);
     }
-    if (eq.getFire() >= -1L)
+    if (eq.getFlame() >= -1L)
     {
       eq.getSpecialStats().add(EquipSpecialStat.KARMA_COUNT);
     }
-    if (eq.getFire() > 0L)
+    if (eq.getFlame() > 0L)
     {
       eq.getSpecialStats().add(EquipSpecialStat.REBIRTH_FIRE);
     }
@@ -253,6 +276,8 @@ public class Equip extends Item implements Serializable
     }
 
     eq.calcStarForceStats();
+    
+    eq.calcFlameStats();
 
     return (Equip) eq.copy();
   }
@@ -279,8 +304,7 @@ public class Equip extends Item implements Serializable
     this.jump = set.jump;
     this.starForceLevel = set.starForceLevel;
     this.upgradeSlots = set.upgradeSlots;
-    this.level = set.level;
-    this.itemEXP = set.itemEXP;
+    this.enchantLevel = set.enchantLevel;
     this.durability = set.durability;
     this.vicioushammer = set.vicioushammer;
     this.potential1 = set.potential1;
@@ -309,7 +333,7 @@ public class Equip extends Item implements Serializable
     this.specialStats = set.specialStats;
     this.state = set.state;
     this.lines = set.lines;
-    this.fire = set.fire;
+    this.flame = set.flame;
     this.moru = set.moru;
     this.enchantStr = set.enchantStr;
     this.enchantDex = set.enchantDex;
@@ -339,6 +363,22 @@ public class Equip extends Item implements Serializable
     this.starForceMdef = set.starForceMdef;
     this.starForceAcc = set.starForceAcc;
     this.starForceAvoid = set.starForceAvoid;
+    
+    this.flameStr = set.flameStr;
+    this.flameDex = set.flameDex;
+    this.flameInt = set.flameInt;
+    this.flameLuk = set.flameLuk;
+    this.flameWatk = set.flameWatk;
+    this.flameMatk = set.flameMatk;
+    this.flameHp = set.flameHp;
+    this.flameMp = set.flameMp;
+    this.flameSpeed = set.flameMp;
+    this.flameJump = set.flameJump;
+    this.flameDamage = set.flameDamage;
+    this.flameBossDamage = set.flameBossDamage;
+    this.flameAllStat = set.flameAllStat;
+    this.flameReductReqLevel = set.flameReductReqLevel;
+    this.flameDef = set.flameDef;
   }
 
   @Override
@@ -365,8 +405,7 @@ public class Equip extends Item implements Serializable
     ret.jump = this.jump;
     ret.starForceLevel = this.starForceLevel;
     ret.upgradeSlots = this.upgradeSlots;
-    ret.level = this.level;
-    ret.itemEXP = this.itemEXP;
+    ret.enchantLevel = this.enchantLevel;
     ret.durability = this.durability;
     ret.vicioushammer = this.vicioushammer;
     ret.potential1 = this.potential1;
@@ -399,7 +438,7 @@ public class Equip extends Item implements Serializable
     ret.specialStats = this.specialStats;
     ret.state = this.state;
     ret.lines = this.lines;
-    ret.fire = this.fire;
+    ret.flame = this.flame;
     ret.soulskill = this.soulskill;
     ret.equipmentType = this.equipmentType;
     ret.moru = this.moru;
@@ -431,6 +470,23 @@ public class Equip extends Item implements Serializable
     ret.starForceMdef = this.starForceMdef;
     ret.starForceAcc = this.starForceAcc;
     ret.starForceAvoid = this.starForceAvoid;
+    
+    
+    ret.flameStr = this.flameStr;
+    ret.flameDex = this.flameDex;
+    ret.flameInt = this.flameInt;
+    ret.flameLuk = this.flameLuk;
+    ret.flameWatk = this.flameWatk;
+    ret.flameMatk = this.flameMatk;
+    ret.flameHp = this.flameHp;
+    ret.flameMp = this.flameMp;
+    ret.flameSpeed = this.flameMp;
+    ret.flameJump = this.flameJump;
+    ret.flameDamage = this.flameDamage;
+    ret.flameBossDamage = this.flameBossDamage;
+    ret.flameAllStat = this.flameAllStat;
+    ret.flameReductReqLevel = this.flameReductReqLevel;
+    ret.flameDef = this.flameDef;
     return ret;
   }
 
@@ -442,69 +498,100 @@ public class Equip extends Item implements Serializable
 
   public byte getUpgradeSlots ()
   {
-    return this.upgradeSlots;
+    return (byte)(this.upgradeSlots + this.extraUpgradeSlots - this.failUpgradeSlots - this.successUpgradeSlots);
   }
 
-  public void setUpgradeSlots (byte upgradeSlots)
+//  public void setUpgradeSlots (byte upgradeSlots)
+//  {
+//    this.upgradeSlots = upgradeSlots;
+//  }
+  
+  public byte getExtraUpgradeSlots()
   {
-    this.upgradeSlots = upgradeSlots;
+    return extraUpgradeSlots;
   }
+  
+  public void setExtraUpgradeSlots(byte extraUpgradeSlots)
+  {
+    this.extraUpgradeSlots = extraUpgradeSlots;
+  }
+  
+  public byte getFailUpgradeSlots()
+  {
+    return failUpgradeSlots;
+  }
+  
+  public void setFailUpgradeSlots(byte failUpgradeSlots)
+  {
+    this.failUpgradeSlots = failUpgradeSlots;
+  }
+  
+  public byte getSuccessUpgradeSlots()
+  {
+    return successUpgradeSlots;
+  }
+  
+  public void setSuccessUpgradeSlots(byte successUpgradeSlots)
+  {
+    this.successUpgradeSlots = successUpgradeSlots;
+  }
+  
 
   public short getStr ()
   {
     return this.str;
   }
 
-  public void setStr (short str)
-  {
-    if (str < 0)
-    {
-      str = 0;
-    }
-    this.str = str;
-  }
+//  public void setStr (short str)
+//  {
+//    if (str < 0)
+//    {
+//      str = 0;
+//    }
+//    this.str = str;
+//  }
 
   public short getDex ()
   {
     return this.dex;
   }
 
-  public void setDex (short dex)
-  {
-    if (dex < 0)
-    {
-      dex = 0;
-    }
-    this.dex = dex;
-  }
+//  public void setDex (short dex)
+//  {
+//    if (dex < 0)
+//    {
+//      dex = 0;
+//    }
+//    this.dex = dex;
+//  }
 
   public short getInt ()
   {
     return this._int;
   }
 
-  public void setInt (short _int)
-  {
-    if (_int < 0)
-    {
-      _int = 0;
-    }
-    this._int = _int;
-  }
+//  public void setInt (short _int)
+//  {
+//    if (_int < 0)
+//    {
+//      _int = 0;
+//    }
+//    this._int = _int;
+//  }
 
   public short getLuk ()
   {
     return this.luk;
   }
 
-  public void setLuk (short luk)
-  {
-    if (luk < 0)
-    {
-      luk = 0;
-    }
-    this.luk = luk;
-  }
+//  public void setLuk (short luk)
+//  {
+//    if (luk < 0)
+//    {
+//      luk = 0;
+//    }
+//    this.luk = luk;
+//  }
 
   public short getArc ()
   {
@@ -525,289 +612,163 @@ public class Equip extends Item implements Serializable
     return this.hp;
   }
 
-  public void setHp (short hp)
-  {
-    if (hp < 0)
-    {
-      hp = 0;
-    }
-    this.hp = hp;
-  }
+//  public void setHp (short hp)
+//  {
+//    if (hp < 0)
+//    {
+//      hp = 0;
+//    }
+//    this.hp = hp;
+//  }
 
   public short getMp ()
   {
     return this.mp;
   }
 
-  public void setMp (short mp)
-  {
-    if (mp < 0)
-    {
-      mp = 0;
-    }
-    this.mp = mp;
-  }
+//  public void setMp (short mp)
+//  {
+//    if (mp < 0)
+//    {
+//      mp = 0;
+//    }
+//    this.mp = mp;
+//  }
 
   public short getWatk ()
   {
     return this.watk;
   }
 
-  public void setWatk (short watk)
-  {
-    if (watk < 0)
-    {
-      watk = 0;
-    }
-    this.watk = watk;
-  }
+//  public void setWatk (short watk)
+//  {
+//    if (watk < 0)
+//    {
+//      watk = 0;
+//    }
+//    this.watk = watk;
+//  }
 
   public short getMatk ()
   {
     return this.matk;
   }
 
-  public void setMatk (short matk)
-  {
-    if (matk < 0)
-    {
-      matk = 0;
-    }
-    this.matk = matk;
-  }
+//  public void setMatk (short matk)
+//  {
+//    if (matk < 0)
+//    {
+//      matk = 0;
+//    }
+//    this.matk = matk;
+//  }
 
   public short getWdef ()
   {
     return this.wdef;
   }
 
-  public void setWdef (short wdef)
-  {
-    if (wdef < 0)
-    {
-      wdef = 0;
-    }
-    this.wdef = wdef;
-  }
+//  public void setWdef (short wdef)
+//  {
+//    if (wdef < 0)
+//    {
+//      wdef = 0;
+//    }
+//    this.wdef = wdef;
+//  }
 
   public short getMdef ()
   {
     return this.mdef;
   }
 
-  public void setMdef (short mdef)
-  {
-    if (mdef < 0)
-    {
-      mdef = 0;
-    }
-    this.mdef = mdef;
-  }
+//  public void setMdef (short mdef)
+//  {
+//    if (mdef < 0)
+//    {
+//      mdef = 0;
+//    }
+//    this.mdef = mdef;
+//  }
 
   public short getAcc ()
   {
     return this.acc;
   }
 
-  public void setAcc (short acc)
-  {
-    if (acc < 0)
-    {
-      acc = 0;
-    }
-    this.acc = acc;
-  }
+//  public void setAcc (short acc)
+//  {
+//    if (acc < 0)
+//    {
+//      acc = 0;
+//    }
+//    this.acc = acc;
+//  }
 
   public short getAvoid ()
   {
     return this.avoid;
   }
 
-  public void setAvoid (short avoid)
-  {
-    if (avoid < 0)
-    {
-      avoid = 0;
-    }
-    this.avoid = avoid;
-  }
+//  public void setAvoid (short avoid)
+//  {
+//    if (avoid < 0)
+//    {
+//      avoid = 0;
+//    }
+//    this.avoid = avoid;
+//  }
 
   public short getHands ()
   {
     return this.hands;
   }
 
-  public void setHands (short hands)
-  {
-    if (hands < 0)
-    {
-      hands = 0;
-    }
-    this.hands = hands;
-  }
+//  public void setHands (short hands)
+//  {
+//    if (hands < 0)
+//    {
+//      hands = 0;
+//    }
+//    this.hands = hands;
+//  }
 
   public short getSpeed ()
   {
-    return this.speed;
+    return (short) (this.speed + getFlameJump());
   }
 
-  public void setSpeed (short speed)
-  {
-    if (speed < 0)
-    {
-      speed = 0;
-    }
-    this.speed = speed;
-  }
+//  public void setSpeed (short speed)
+//  {
+//    if (speed < 0)
+//    {
+//      speed = 0;
+//    }
+//    this.speed = speed;
+//  }
 
   public short getJump ()
   {
-    return this.jump;
+    return (short) (this.jump + getFlameJump());
   }
 
-  public void setJump (short speed)
+//  public void setJump (short speed)
+//  {
+//    if (speed < 0)
+//    {
+//      speed = 0;
+//    }
+//    this.jump = speed;
+//  }
+
+  public byte getEnchantLevel ()
   {
-    if (speed < 0)
-    {
-      speed = 0;
-    }
-    this.jump = speed;
+    return this.enchantLevel;
   }
 
-  public void addStr (short str)
+  public void setEnchantLevel (byte enchantLevel)
   {
-    if (this.str + str < 0)
-    {
-      this.str = 0;
-    }
-    this.str = (short) (this.str + str);
-  }
-
-  public void addDex (short dex)
-  {
-    if (this.dex + dex < 0)
-    {
-      this.dex = 0;
-    }
-    this.dex = (short) (this.dex + dex);
-  }
-
-  public void addInt (short dex)
-  {
-    if (this._int + dex < 0)
-    {
-      this._int = 0;
-    }
-    this._int = (short) (this._int + dex);
-  }
-
-  public void addLuk (short dex)
-  {
-    if (this.luk + dex < 0)
-    {
-      this.luk = 0;
-    }
-    this.luk = (short) (this.luk + dex);
-  }
-
-  public void addHp (short dex)
-  {
-    if (this.hp + dex < 0)
-    {
-      this.hp = 0;
-    }
-    this.hp = (short) (this.hp + dex);
-  }
-
-  public void addMp (short dex)
-  {
-    if (this.mp + dex < 0)
-    {
-      this.mp = 0;
-    }
-    this.mp = (short) (this.mp + dex);
-  }
-
-  public void addWatk (short watk)
-  {
-    if (this.watk + watk < 0)
-    {
-      this.watk = 0;
-    }
-    this.watk = (short) (this.watk + watk);
-  }
-
-  public void addMatk (short watk)
-  {
-    if (this.matk + watk < 0)
-    {
-      this.matk = 0;
-    }
-    this.matk = (short) (this.matk + watk);
-  }
-
-  public void addWdef (short wdef)
-  {
-    if (wdef + this.wdef < 0)
-    {
-      this.wdef = 0;
-    }
-    this.wdef = (short) (this.wdef + wdef);
-  }
-
-  public void addMdef (short mdef)
-  {
-    if (mdef + this.mdef < 0)
-    {
-      this.mdef = 0;
-    }
-    this.mdef = (short) (this.mdef + mdef);
-  }
-
-  public void addAcc (short acc)
-  {
-    if (acc + this.acc < 0)
-    {
-      this.acc = 0;
-    }
-    this.acc = (short) (this.acc + acc);
-  }
-
-  public void addSpeed (short speed)
-  {
-    if (speed + this.speed < 0)
-    {
-      this.speed = 0;
-    }
-    this.speed = (short) (this.speed + speed);
-  }
-
-  public void addJump (short jump)
-  {
-    if (jump + this.jump < 0)
-    {
-      this.jump = 0;
-    }
-    this.jump = (short) (this.jump + jump);
-  }
-
-  public void addUpgradeSlots (byte upgradeSlots)
-  {
-    this.upgradeSlots = (byte) (this.upgradeSlots + upgradeSlots);
-  }
-
-  public byte getLevel ()
-  {
-    if (this.getItemId() >= 1113098 && this.getItemId() <= 1113128)
-    {
-      return 0;
-    }
-    return this.level;
-  }
-
-  public void setLevel (byte level)
-  {
-    this.level = level;
+    this.enchantLevel = enchantLevel;
   }
 
   public byte getViciousHammer ()
@@ -820,91 +781,13 @@ public class Equip extends Item implements Serializable
     this.vicioushammer = ham;
   }
 
-  public int getItemEXP ()
-  {
-    return this.itemEXP;
-  }
 
-  public void setItemEXP (int itemEXP)
-  {
-    if (itemEXP < 0)
-    {
-      itemEXP = 0;
-    }
-    this.itemEXP = itemEXP;
-  }
-
-  public int getEquipExp ()
-  {
-    if (this.itemEXP <= 0)
-    {
-      return 0;
-    }
-    if (GameConstants.isWeapon(this.getItemId()))
-    {
-      return this.itemEXP / 700000;
-    }
-    return this.itemEXP / 350000;
-  }
-
-  public int getEquipExpForLevel ()
-  {
-    if (this.getEquipExp() <= 0)
-    {
-      return 0;
-    }
-    int expz = this.getEquipExp();
-    for (int i = this.getBaseLevel(); i <= GameConstants.getMaxLevel(this.getItemId()) && expz >= GameConstants.getExpForLevel(i, this.getItemId()); expz -= GameConstants.getExpForLevel(i, this.getItemId()), ++i)
-    {
-    }
-    return expz;
-  }
-
-  public int getExpPercentage ()
-  {
-    if (this.getEquipLevel() < this.getBaseLevel() || this.getEquipLevel() > GameConstants.getMaxLevel(this.getItemId()) || GameConstants.getExpForLevel(this.getEquipLevel(), this.getItemId()) <= 0)
-    {
-      return 0;
-    }
-    return this.getEquipExpForLevel() * 100 / GameConstants.getExpForLevel(this.getEquipLevel(), this.getItemId());
-  }
-
-  public int getEquipLevel ()
-  {
-    if (GameConstants.getMaxLevel(this.getItemId()) <= 0)
-    {
-      return 0;
-    }
-    if (this.getEquipExp() <= 0)
-    {
-      return this.getBaseLevel();
-    }
-    int levelz = this.getBaseLevel();
-    int expz = this.getEquipExp();
-    for (int i = levelz; i <= GameConstants.getMaxLevel(this.getItemId()) && expz >= GameConstants.getExpForLevel(i, this.getItemId()); expz -= GameConstants.getExpForLevel(i, this.getItemId()), ++i)
-    {
-      ++levelz;
-    }
-    return levelz;
-  }
-
-  public int getBaseLevel ()
-  {
-    if (this.getItemId() >= 1113098 && this.getItemId() <= 1113128)
-    {
-      return this.level;
-    }
-    return 0;
-  }
-
+  
+  
   @Override
   public void setQuantity (short quantity)
   {
-    if (quantity < 0 || quantity > 1)
-    {
-      throw new RuntimeException("Setting the quantity to " + quantity + " on an equip (itemid: " + this.getItemId() + ")");
-    }
-    super.setQuantity(quantity);
+    // 设置数量无效, 但是父类提供了这个方法, 这里覆写掉
   }
 
   public int getDurability ()
@@ -1053,14 +936,167 @@ public class Equip extends Item implements Serializable
     this.setState((byte) (this.getState() - 16));
   }
 
-  public long getFire ()
+  public long getFlame ()
   {
-    return this.fire;
+    return this.flame;
   }
 
-  public void setFire (long fire)
+  public void setFlame (long flame)
   {
-    this.fire = fire;
+    this.flame = flame;
+  }
+  
+  
+  
+  public short getFlameStr()
+  {
+    return flameStr;
+  }
+  
+  public void setFlameStr(short flameStr)
+  {
+    this.flameStr = flameStr;
+  }
+  
+  public short getFlameDex()
+  {
+    return flameDex;
+  }
+  
+  public void setFlameDex(short flameDex)
+  {
+    this.flameDex = flameDex;
+  }
+  
+  public short getFlameInt()
+  {
+    return flameInt;
+  }
+  
+  public void setFlameInt(short flameInt)
+  {
+    this.flameInt = flameInt;
+  }
+  
+  public short getFlameLuk()
+  {
+    return flameLuk;
+  }
+  
+  public void setFlameLuk(short flameLuk)
+  {
+    this.flameLuk = flameLuk;
+  }
+  
+  public short getFlameWatk()
+  {
+    return flameWatk;
+  }
+  
+  public void setFlameWatk(short flameWatk)
+  {
+    this.flameWatk = flameWatk;
+  }
+  
+  public short getFlameMatk()
+  {
+    return flameMatk;
+  }
+  
+  public void setFlameMatk(short flameMatk)
+  {
+    this.flameMatk = flameMatk;
+  }
+  
+  public short getFlameHp()
+  {
+    return flameHp;
+  }
+  
+  public void setFlameHp(short flameHp)
+  {
+    this.flameHp = flameHp;
+  }
+  
+  public short getFlameMp()
+  {
+    return flameMp;
+  }
+  
+  public void setFlameMp(short flameMp)
+  {
+    this.flameMp = flameMp;
+  }
+  
+  public short getFlameSpeed()
+  {
+    return flameSpeed;
+  }
+  
+  public void setFlameSpeed(short flameSpeed)
+  {
+    this.flameSpeed = flameSpeed;
+  }
+  
+  public short getFlameJump()
+  {
+    return flameJump;
+  }
+  
+  public void setFlameJump(short flameJump)
+  {
+    this.flameJump = flameJump;
+  }
+  
+  public short getFlameDamage()
+  {
+    return flameDamage;
+  }
+  
+  public void setFlameDamage(short flameDamage)
+  {
+    this.flameDamage = flameDamage;
+  }
+  
+  public short getFlameBossDamage()
+  {
+    return flameBossDamage;
+  }
+  
+  public void setFlameBossDamage(short flameBossDamage)
+  {
+    this.flameBossDamage = flameBossDamage;
+  }
+  
+  public short getFlameAllStat()
+  {
+    return flameAllStat;
+  }
+  
+  public void setFlameAllStat(short flameAllStat)
+  {
+    this.flameAllStat = flameAllStat;
+  }
+  
+  
+  public short getFlameReductReqLevel()
+  {
+    return flameReductReqLevel;
+  }
+  
+  public void setFlameReductReqLevel(short flameReductReqLevel)
+  {
+    this.flameReductReqLevel = flameReductReqLevel;
+  }
+  
+  public short getFlameDef()
+  {
+    return flameDef;
+  }
+  
+  public void setFlameDef(short flameDef)
+  {
+    this.flameDef = flameDef;
   }
 
   public int getIncSkill ()
@@ -1108,10 +1144,10 @@ public class Equip extends Item implements Serializable
     return this.reqLevel;
   }
 
-  public void setReqLevel (byte reqLevel)
-  {
-    this.reqLevel = reqLevel;
-  }
+//  public void setReqLevel (byte reqLevel)
+//  {
+//    this.reqLevel = reqLevel;
+//  }
 
   public byte getYggdrasilWisdom ()
   {
@@ -1135,63 +1171,43 @@ public class Equip extends Item implements Serializable
 
   public short getBossDamage ()
   {
-    return this.bossDamage;
+    return (byte)(this.bossDamage + this.getFlameBossDamage());
   }
 
-  public void setBossDamage (short bossDamage)
-  {
-    this.bossDamage = bossDamage;
-  }
-
-  public void addBossDamage (byte dmg)
-  {
-    this.bossDamage = (short) (this.bossDamage + dmg);
-  }
-
+//  public void setBossDamage (short bossDamage)
+//  {
+//    this.bossDamage = bossDamage;
+//  }
+  
   public short getIgnorePDR ()
   {
     return this.ignorePDR;
   }
 
-  public void setIgnorePDR (short ignorePDR)
-  {
-    this.ignorePDR = ignorePDR;
-  }
-
-  public void addIgnoreWdef (short ignorePDR)
-  {
-    this.ignorePDR = (short) (this.ignorePDR + ignorePDR);
-  }
+//  public void setIgnorePDR (short ignorePDR)
+//  {
+//    this.ignorePDR = ignorePDR;
+//  }
 
   public byte getTotalDamage ()
   {
-    return this.totalDamage;
+    return (byte)(this.totalDamage + this.getFlameDamage());
   }
 
-  public void setTotalDamage (byte totalDamage)
-  {
-    this.totalDamage = totalDamage;
-  }
-
-  public void addTotalDamage (byte totalDamage)
-  {
-    this.totalDamage = (byte) (this.totalDamage + totalDamage);
-  }
+//  public void setTotalDamage (byte totalDamage)
+//  {
+//    this.totalDamage = totalDamage;
+//  }
 
   public byte getAllStat ()
   {
-    return this.allStat;
+    return (byte)(this.allStat + this.getAllStat());
   }
 
-  public void setAllStat (byte allStat)
-  {
-    this.allStat = allStat;
-  }
-
-  public void addAllStat (byte allStat)
-  {
-    this.allStat = (byte) (this.allStat + allStat);
-  }
+//  public void setAllStat (byte allStat)
+//  {
+//    this.allStat = allStat;
+//  }
 
   public byte getKarmaCount ()
   {
@@ -1273,21 +1289,19 @@ public class Equip extends Item implements Serializable
     this.arclevel = lv;
   }
 
-  public void resetRebirth (int reqLevel)
+  public void calcFlameStats ()
   {
-    if (GameConstants.isRing(this.getItemId()) || this.getItemId() / 1000 == 1092 || this.getItemId() / 1000 == 1342 || this.getItemId() / 1000 == 1713 || this.getItemId() / 1000 == 1712 || this.getItemId() / 1000 == 1152 || this.getItemId() / 1000 == 1143 || this.getItemId() / 1000 == 1672 || GameConstants.isSecondaryWeapon(this.getItemId()) || this.getItemId() / 1000 == 1190 || this.getItemId() / 1000 == 1191 || this.getItemId() / 1000 == 1182 || this.getItemId() / 1000 == 1662 || this.getItemId() / 1000 == 1802)
+    if (this.getFlame() == 0L)
     {
       return;
     }
-    if (this.getFire() == 0L)
-    {
-      return;
-    }
-    Equip ordinary = (Equip) MapleItemInformationProvider.getInstance().getEquipById(this.getItemId(), false);
-    short ordinaryPad = ordinary.watk > 0 ? ordinary.watk : ordinary.matk;
-    short ordinaryMad = ordinary.matk > 0 ? ordinary.matk : ordinary.watk;
+    
+    this.resetFlame();
+    
     int[] rebirth = new int[4];
-    String fire = String.valueOf(this.getFire());
+    
+    String fire = String.valueOf(this.getFlame());
+    
     if (fire.length() == 12)
     {
       rebirth[0] = Integer.parseInt(fire.substring(0, 3));
@@ -1313,83 +1327,119 @@ public class Equip extends Item implements Serializable
     {
       return;
     }
-    block37:
+    
+    short incStr = 0;
+    
+    short incDex = 0;
+    
+    short incInt = 0;
+    
+    short incLuk = 0;
+    
+    short incWatk = 0;
+    
+    short incMatk = 0;
+    
+    short incMp = 0;
+    
+    short incHp = 0;
+    
+    short incBossDamage = 0;
+    
+    short incDamage = 0;
+    
+    short incAllStat = 0;
+    
+    short incDef = 0;
+    
+    short incSpeed = 0;
+    
+    short incJump = 0;
+    
+    short reductReqLevel = 0;
+
     for (int i = 0; i < 4; ++i)
     {
       int randomOption = rebirth[i] / 10;
+      
       int randomValue = rebirth[i] - rebirth[i] / 10 * 10;
+
+      if (randomValue == 0) {
+        continue;
+      }
+      
       switch (randomOption)
       {
         case 0:
         {
-          this.addStr((short) (-((reqLevel / 20 + 1) * randomValue)));
-          continue block37;
+          incStr += (short) ((reqLevel / 20 + 1) * randomValue);
+          continue;
         }
         case 1:
         {
-          this.addDex((short) (-((reqLevel / 20 + 1) * randomValue)));
-          continue block37;
+          incDex += (short) ((reqLevel / 20 + 1) * randomValue);
+          continue ;
         }
         case 2:
         {
-          this.addInt((short) (-((reqLevel / 20 + 1) * randomValue)));
-          continue block37;
+          incInt += (short) ((reqLevel / 20 + 1) * randomValue);
+          continue;
         }
         case 3:
         {
-          this.addLuk((short) (-((reqLevel / 20 + 1) * randomValue)));
-          continue block37;
+          incLuk += (short) ((reqLevel / 20 + 1) * randomValue);
+          continue;
         }
         case 4:
         {
-          this.addStr((short) (-((reqLevel / 40 + 1) * randomValue)));
-          this.addDex((short) (-((reqLevel / 40 + 1) * randomValue)));
-          continue block37;
+          incStr += (short) ((reqLevel / 40 + 1) * randomValue);
+          incDex += (short) ((reqLevel / 40 + 1) * randomValue);
+          continue;
         }
         case 5:
         {
-          this.addStr((short) (-((reqLevel / 40 + 1) * randomValue)));
-          this.addInt((short) (-((reqLevel / 40 + 1) * randomValue)));
-          continue block37;
+          incStr += (short) ((reqLevel / 40 + 1) * randomValue);
+          incInt += (short) ((reqLevel / 40 + 1) * randomValue);
+          continue;
         }
         case 6:
         {
-          this.addStr((short) (-((reqLevel / 40 + 1) * randomValue)));
-          this.addLuk((short) (-((reqLevel / 40 + 1) * randomValue)));
-          continue block37;
+          incStr += (short) ((reqLevel / 40 + 1) * randomValue);
+          incLuk += (short) ((reqLevel / 40 + 1) * randomValue);
+          continue;
         }
         case 7:
         {
-          this.addDex((short) (-((reqLevel / 40 + 1) * randomValue)));
-          this.addInt((short) (-((reqLevel / 40 + 1) * randomValue)));
-          continue block37;
+          incDex +=(short) ((reqLevel / 40 + 1) * randomValue);
+          incInt +=(short) ((reqLevel / 40 + 1) * randomValue);
+          continue;
         }
         case 8:
         {
-          this.addDex((short) (-((reqLevel / 40 + 1) * randomValue)));
-          this.addLuk((short) (-((reqLevel / 40 + 1) * randomValue)));
-          continue block37;
+          incDex +=(short) ((reqLevel / 40 + 1) * randomValue);
+          incLuk +=(short) ((reqLevel / 40 + 1) * randomValue);
+          continue;
         }
         case 9:
         {
-          this.addInt((short) (-((reqLevel / 40 + 1) * randomValue)));
-          this.addLuk((short) (-((reqLevel / 40 + 1) * randomValue)));
-          continue block37;
+          incInt +=(short) ((reqLevel / 40 + 1) * randomValue);
+          incLuk +=(short) ((reqLevel / 40 + 1) * randomValue);
+          continue;
         }
         case 10:
         {
-          this.addHp((short) (-(reqLevel / 10 * 10 * 3 * randomValue)));
-          continue block37;
+          incHp += (short) (reqLevel / 10 * 10 * 3 * randomValue);
+          continue;
         }
         case 11:
         {
-          this.addMp((short) (-(reqLevel / 10 * 10 * 3 * randomValue)));
-          continue block37;
+          incMp += (short) (reqLevel / 10 * 10 * 3 * randomValue);
+          continue;
         }
         case 13:
         {
-          this.addWdef((short) (-((reqLevel / 20 + 1) * randomValue)));
-          continue block37;
+          incDef += (short) ((reqLevel / 20 + 1) * randomValue);
+          continue;
         }
         case 17:
         {
@@ -1401,81 +1451,83 @@ public class Equip extends Item implements Serializable
               {
                 if (reqLevel <= 150)
                 {
-                  this.addWatk((short) (-(ordinaryPad * 1200 / 10000 + 1)));
-                  continue block37;
+                  incWatk+=(short) (this.watk * 1200 / 10000 + 1);
+                  continue;
                 }
                 if (reqLevel <= 160)
                 {
-                  this.addWatk((short) (-(ordinaryPad * 1500 / 10000 + 1)));
-                  continue block37;
+                  incWatk+=(short) (this.watk * 1500 / 10000 + 1);
+                  continue;
                 }
-                this.addWatk((short) (-(ordinaryPad * 1800 / 10000 + 1)));
-                continue block37;
+                incWatk+=(short) (this.watk * 1800 / 10000 + 1);
+                continue;
               }
               case 4:
               {
                 if (reqLevel <= 150)
                 {
-                  this.addWatk((short) (-(ordinaryPad * 1760 / 10000 + 1)));
-                  continue block37;
+                  incWatk+=(short) (this.watk * 1760 / 10000 + 1);
+                  continue;
                 }
                 if (reqLevel <= 160)
                 {
-                  this.addWatk((short) (-(ordinaryPad * 2200 / 10000 + 1)));
-                  continue block37;
+                  incWatk+=(short) (this.watk * 2200 / 10000 + 1);
+                  continue;
                 }
-                this.addWatk((short) (-(ordinaryPad * 2640 / 10000 + 1)));
-                continue block37;
+                incWatk+=(short) (this.watk * 2640 / 10000 + 1);
+                continue;
               }
               case 5:
               {
                 if (reqLevel <= 150)
                 {
-                  this.addWatk((short) (-(ordinaryPad * 2420 / 10000 + 1)));
-                  continue block37;
+                  incWatk+=(short) (this.watk * 2420 / 10000 + 1);
+                  continue;
                 }
                 if (reqLevel <= 160)
                 {
-                  this.addWatk((short) (-(ordinaryPad * 3025 / 10000 + 1)));
-                  continue block37;
+                  incWatk+=(short) (this.watk * 3025 / 10000 + 1);
+                  continue;
                 }
-                this.addWatk((short) (-(ordinaryPad * 3630 / 10000 + 1)));
-                continue block37;
+                incWatk+=(short) (this.watk * 3630 / 10000 + 1);
+                continue;
               }
               case 6:
               {
                 if (reqLevel <= 150)
                 {
-                  this.addWatk((short) (-(ordinaryPad * 3200 / 10000 + 1)));
-                  continue block37;
+                  incWatk+=(short) (this.watk * 3200 / 10000 + 1);
+                  continue;
                 }
                 if (reqLevel <= 160)
                 {
-                  this.addWatk((short) (-(ordinaryPad * 4000 / 10000 + 1)));
-                  continue block37;
+                  incWatk+=(short) (this.watk * 4000 / 10000 + 1);
+                  continue;
                 }
-                this.addWatk((short) (-(ordinaryPad * 4800 / 10000 + 1)));
-                continue block37;
+                incWatk+=(short) (this.watk * 4800 / 10000 + 1);
+                continue;
               }
               case 7:
               {
                 if (reqLevel <= 150)
                 {
-                  this.addWatk((short) (-(ordinaryPad * 4100 / 10000 + 1)));
-                  continue block37;
+                  incWatk+=(short) (this.watk * 4100 / 10000 + 1);
+                  continue;
                 }
                 if (reqLevel <= 160)
                 {
-                  this.addWatk((short) (-(ordinaryPad * 5125 / 10000 + 1)));
-                  continue block37;
+                  incWatk+=(short) (this.watk * 5125 / 10000 + 1);
+                  continue;
                 }
-                this.addWatk((short) (-(ordinaryPad * 6150 / 10000 + 1)));
+                incWatk+=(short) (this.watk * 6150 / 10000 + 1);
               }
             }
-            continue block37;
+            continue;
           }
-          this.addWatk((short) (-randomValue));
-          continue block37;
+          
+          incWatk+=(short) randomValue;
+          
+          continue;
         }
         case 18:
         {
@@ -1487,166 +1539,142 @@ public class Equip extends Item implements Serializable
               {
                 if (reqLevel <= 150)
                 {
-                  this.addMatk((short) (-(ordinaryMad * 1200 / 10000 + 1)));
-                  continue block37;
+                  incMatk +=(short) (this.matk * 1200 / 10000 + 1);
+                  continue;
                 }
                 if (reqLevel <= 160)
                 {
-                  this.addMatk((short) (-(ordinaryMad * 1500 / 10000 + 1)));
-                  continue block37;
+                  incMatk +=(short) (this.matk * 1500 / 10000 + 1);
+                  continue;
                 }
-                this.addMatk((short) (-(ordinaryMad * 1800 / 10000 + 1)));
-                continue block37;
+                incMatk +=(short) (this.matk * 1800 / 10000 + 1);
+                continue;
               }
               case 4:
               {
                 if (reqLevel <= 150)
                 {
-                  this.addMatk((short) (-(ordinaryMad * 1760 / 10000 + 1)));
-                  continue block37;
+                  incMatk +=(short) (this.matk * 1760 / 10000 + 1);
+                  continue;
                 }
                 if (reqLevel <= 160)
                 {
-                  this.addMatk((short) (-(ordinaryMad * 2200 / 10000 + 1)));
-                  continue block37;
+                  incMatk +=(short) (this.matk * 2200 / 10000 + 1);
+                  continue;
                 }
-                this.addMatk((short) (-(ordinaryMad * 2640 / 10000 + 1)));
-                continue block37;
+                incMatk +=(short) (this.matk * 2640 / 10000 + 1);
+                continue;
               }
               case 5:
               {
                 if (reqLevel <= 150)
                 {
-                  this.addMatk((short) (-(ordinaryMad * 2420 / 10000 + 1)));
-                  continue block37;
+                  incMatk +=(short) (this.matk * 2420 / 10000 + 1);
+                  continue;
                 }
                 if (reqLevel <= 160)
                 {
-                  this.addMatk((short) (-(ordinaryMad * 3025 / 10000 + 1)));
-                  continue block37;
+                  incMatk +=(short) (this.matk * 3025 / 10000 + 1);
+                  continue;
                 }
-                this.addMatk((short) (-(ordinaryMad * 3630 / 10000 + 1)));
-                continue block37;
+                incMatk +=(short) (this.matk * 3630 / 10000 + 1);
+                continue;
               }
               case 6:
               {
                 if (reqLevel <= 150)
                 {
-                  this.addMatk((short) (-(ordinaryMad * 3200 / 10000 + 1)));
-                  continue block37;
+                  incMatk +=(short) (this.matk * 3200 / 10000 + 1);
+                  continue;
                 }
                 if (reqLevel <= 160)
                 {
-                  this.addMatk((short) (-(ordinaryMad * 4000 / 10000 + 1)));
-                  continue block37;
+                  incMatk +=(short) (this.matk * 4000 / 10000 + 1);
+                  continue;
                 }
-                this.addMatk((short) (-(ordinaryMad * 4800 / 10000 + 1)));
-                continue block37;
+                incMatk +=(short) (this.matk * 4800 / 10000 + 1);
+                continue;
               }
               case 7:
               {
                 if (reqLevel <= 150)
                 {
-                  this.addMatk((short) (-(ordinaryMad * 4100 / 10000 + 1)));
-                  continue block37;
+                  incMatk +=(short) (this.matk * 4100 / 10000 + 1);
+                  continue;
                 }
                 if (reqLevel <= 160)
                 {
-                  this.addMatk((short) (-(ordinaryMad * 5125 / 10000 + 1)));
-                  continue block37;
+                  incMatk +=(short) (this.matk * 5125 / 10000 + 1);
+                  continue;
                 }
-                this.addMatk((short) (-(ordinaryMad * 6150 / 10000 + 1)));
+                incMatk +=(short) (this.matk * 6150 / 10000 + 1);
               }
             }
-            continue block37;
+            continue;
           }
-          this.addMatk((short) (-randomValue));
-          continue block37;
+          incMatk += (short) randomValue;
+          continue;
         }
         case 19:
         {
-          this.addSpeed((short) (-randomValue));
-          continue block37;
+          incSpeed += (short) randomValue;
+          continue;
         }
         case 20:
         {
-          this.addJump((short) (-randomValue));
-          continue block37;
+          incJump += (short) randomValue;
+          continue;
         }
         case 21:
         {
-          this.addBossDamage((byte) (-(randomValue * 2)));
-          continue block37;
+          incBossDamage += (short)(randomValue * 2);
+          continue;
         }
         case 22:
         {
-          this.setReqLevel((byte) 0);
-          continue block37;
+          reductReqLevel += randomValue;
+          continue;
         }
         case 23:
         {
-          this.addTotalDamage((byte) (-randomValue));
-          continue block37;
+          incDamage += (short) randomValue;
+          continue;
         }
         case 24:
         {
-          this.addAllStat((byte) (-randomValue));
+          incAllStat += (short) randomValue;
         }
       }
     }
-    this.setFire(0L);
   }
 
-  public void refreshFire (Equip item, long fire4, boolean reset)
+  public void resetFlame ()
   {
-    int reqLevel = MapleItemInformationProvider.getInstance().getReqLevel(item.getItemId());
-    if (reset)
-    {
-      item.resetRebirth(reqLevel);
-    }
-    short ordinaryPad = item.getWatk() > 0 ? item.getWatk() : item.getMatk();
-    short ordinaryMad = item.getMatk() > 0 ? item.getMatk() : item.getWatk();
-    int[] rebirth = new int[4];
-    String fire = String.valueOf(fire4);
-    if (fire.length() == 12)
-    {
-      rebirth[0] = Integer.parseInt(fire.substring(0, 3));
-      rebirth[1] = Integer.parseInt(fire.substring(3, 6));
-      rebirth[2] = Integer.parseInt(fire.substring(6, 9));
-      rebirth[3] = Integer.parseInt(fire.substring(9));
-    }
-    else if (fire.length() == 11)
-    {
-      rebirth[0] = Integer.parseInt(fire.substring(0, 2));
-      rebirth[1] = Integer.parseInt(fire.substring(2, 5));
-      rebirth[2] = Integer.parseInt(fire.substring(5, 8));
-      rebirth[3] = Integer.parseInt(fire.substring(8));
-    }
-    else if (fire.length() == 10)
-    {
-      rebirth[0] = Integer.parseInt(fire.substring(0, 1));
-      rebirth[1] = Integer.parseInt(fire.substring(1, 4));
-      rebirth[2] = Integer.parseInt(fire.substring(4, 7));
-      rebirth[3] = Integer.parseInt(fire.substring(7));
-    }
-    if (fire.length() >= 10)
-    {
-      for (int i = 0; i < 4; ++i)
-      {
-        int randomOption = rebirth[i] / 10;
-        int randomValue = rebirth[i] - rebirth[i] / 10 * 10;
-        item.setFireOption(randomOption, reqLevel, randomValue, ordinaryPad, ordinaryMad);
-      }
-    }
-    item.setFire(fire4);
+    this.flame = 0;
+    this.flameStr = 0;
+    this.flameDex = 0;
+    this.flameInt = 0;
+    this.flameLuk = 0;
+    this.flameWatk = 0;
+    this.flameMatk = 0;
+    this.flameHp = 0;
+    this.flameMp = 0;
+    this.flameSpeed = 0;
+    this.flameJump = 0;
+    this.flameDamage = 0;
+    this.flameBossDamage = 0;
+    this.flameAllStat = 0;
+    this.flameReductReqLevel = 0;
   }
 
-  public long newRebirth (int reqLevel, int scrollId, boolean update, boolean isBossItem)
+  public long calcNewFlame ( int scrollId )
   {
     if (GameConstants.isRing(this.getItemId()) || this.getItemId() / 1000 == 1092 || this.getItemId() / 1000 == 1342 || this.getItemId() / 1000 == 1713 || this.getItemId() / 1000 == 1712 || this.getItemId() / 1000 == 1152 || this.getItemId() / 1000 == 1142 || this.getItemId() / 1000 == 1143 || this.getItemId() / 1000 == 1672 || GameConstants.isSecondaryWeapon(this.getItemId()) || this.getItemId() / 1000 == 1190 || this.getItemId() / 1000 == 1191 || this.getItemId() / 1000 == 1182 || this.getItemId() / 1000 == 1662 || this.getItemId() / 1000 == 1802)
     {
       return 0L;
     }
+    
+    boolean isBossItem = GameConstants.isBossItem(getItemId());
 
     System.out.println("开始砸火花啦, 是BOSS物品吗? " + isBossItem);
 
@@ -1736,68 +1764,78 @@ public class Equip extends Item implements Serializable
       this.setKarmaCount((byte) 10);
     }
     long[] rebirth = new long[] { -1L, -1L, -1L, -1L };
+    
     int[] rebirthOptions = new int[] { -1, -1, -1, -1 };
 
 
-    for (int i = 0; i < numberOfLines; ++i)
+    for (int i = 0; i < 4; ++i)
     {
-      int randomOption = Randomizer.nextInt(25);
-      while (rebirthOptions[0] == randomOption || rebirthOptions[1] == randomOption || rebirthOptions[2] == randomOption || rebirthOptions[3] == randomOption || randomOption == 12 || randomOption == 14 || randomOption == 15 || randomOption == 16 || !GameConstants.isWeapon(this.getItemId()) && (randomOption == 21 || randomOption == 23))
+      int randomOption = 0;
+      
+      int randomValue = 0;
+      
+      if (numberOfLines > i)
       {
         randomOption = Randomizer.nextInt(25);
+        
+        while (rebirthOptions[0] == randomOption || rebirthOptions[1] == randomOption || rebirthOptions[2] == randomOption || rebirthOptions[3] == randomOption || randomOption == 12 || randomOption == 14 || randomOption == 15 || randomOption == 16 || !GameConstants.isWeapon(this.getItemId()) && (randomOption == 21 || randomOption == 23))
+        {
+          randomOption = Randomizer.nextInt(25);
+        }
+        
+        rebirthOptions[i] = randomOption;
+        
+        randomValue = minValue;
+        
+        
+        // 最大最小值差4, 概率分布
+        // 普通装备 40 40 10 5 5
+        // BOSS装备 8 32 32 20 8
+        // 5% 很少? 官服只有 1%!
+        
+        chance = Randomizer.nextInt(100);
+        
+        if (isBossItem)
+        {
+          if (chance > 92)
+          {
+            randomValue = maxValue;
+          }
+          else if (chance > 72)
+          {
+            randomValue = maxValue - 1;
+          }
+          else if (chance > 40)
+          {
+            randomValue = maxValue - 2;
+          }
+          else if (chance > 8)
+          {
+            randomValue = maxValue - 3;
+          }
+        }
+        else
+        {
+          if (chance > 95)
+          {
+            randomValue = maxValue;
+          }
+          else if (chance > 90)
+          {
+            randomValue = maxValue - 1;
+          }
+          else if (chance > 80)
+          {
+            randomValue = maxValue - 2;
+          }
+          else if (chance > 40)
+          {
+            randomValue = maxValue - 3;
+          }
+        }
+        
+        System.out.println("当前随机第 " + i + " 条火花! randomValue = " + randomValue + "; chance = " + chance + "; randomOption = " + randomOption);
       }
-      rebirthOptions[i] = randomOption;
-
-      int randomValue = minValue;
-
-
-      // 最大最小值差4, 概率分布
-      // 普通装备 40 40 10 5 5
-      // BOSS装备 8 32 32 20 8
-      // 5% 很少? 官服只有 1%!
-
-      chance = Randomizer.nextInt(100);
-
-      if (isBossItem)
-      {
-        if (chance > 92)
-        {
-          randomValue = maxValue;
-        }
-        else if (chance > 72)
-        {
-          randomValue = maxValue - 1;
-        }
-        else if (chance > 40)
-        {
-          randomValue = maxValue - 2;
-        }
-        else if (chance > 8)
-        {
-          randomValue = maxValue - 3;
-        }
-      }
-      else
-      {
-        if (chance > 95)
-        {
-          randomValue = maxValue;
-        }
-        else if (chance > 90)
-        {
-          randomValue = maxValue - 1;
-        }
-        else if (chance > 80)
-        {
-          randomValue = maxValue - 2;
-        }
-        else if (chance > 40)
-        {
-          randomValue = maxValue - 3;
-        }
-      }
-
-      System.out.println("当前随机第 " + i + " 条火花! randomValue = " + randomValue + "; chance = " + chance + "; randomOption = " + randomOption);
 
       rebirth[i] = randomOption * 10L + randomValue;
 
@@ -1806,17 +1844,16 @@ public class Equip extends Item implements Serializable
         int n = i;
         rebirth[n] = rebirth[n] * 1000L;
       }
-      if (!update)
-      {
-        continue;
-      }
-      this.setFireOption(randomOption, reqLevel, randomValue, ordinaryPad, ordinaryMad);
-    }
 
-    return rebirth[0] + rebirth[1] + rebirth[2] + rebirth[3];
+    }
+    
+    long flame = rebirth[0] + rebirth[1] + rebirth[2] + rebirth[3];
+    
+    // 不会更新火花, 只是计算出结果
+    return flame;
   }
 
-  public void setZeroRebirth (MapleCharacter chr, int reqLevel, int scrollId)
+  public void setZeroRebirth (MapleCharacter chr, int scrollId)
   {
     if (GameConstants.isRing(this.getItemId()) || this.getItemId() / 1000 == 1092 || this.getItemId() / 1000 == 1342 || this.getItemId() / 1000 == 1713 || this.getItemId() / 1000 == 1712 || this.getItemId() / 1000 == 1152 || this.getItemId() / 1000 == 1142 || this.getItemId() / 1000 == 1143 || this.getItemId() / 1000 == 1672 || GameConstants.isSecondaryWeapon(this.getItemId()) || this.getItemId() / 1000 == 1190 || this.getItemId() / 1000 == 1191 || this.getItemId() / 1000 == 1182 || this.getItemId() / 1000 == 1662 || this.getItemId() / 1000 == 1802)
     {
@@ -1845,83 +1882,82 @@ public class Equip extends Item implements Serializable
         maxValue = 12;
       }
     }
-
-    Equip ordinary = (Equip) MapleItemInformationProvider.getInstance().getEquipById(this.getItemId(), false);
-
-    Equip ordinary2 = (Equip) MapleItemInformationProvider.getInstance().getEquipById(nEquip2.getItemId(), false);
-
-    short ordinaryPad = ordinary.watk > 0 ? ordinary.watk : ordinary.matk;
-
-    short ordinaryMad = ordinary.matk > 0 ? ordinary.matk : ordinary.watk;
-
-    short ordinaryPad2 = ordinary2.watk > 0 ? ordinary2.watk : ordinary2.matk;
-
-    short ordinaryMad2 = ordinary2.matk > 0 ? ordinary2.matk : ordinary2.watk;
-
+    
     long[] rebirth = new long[] { -1L, -1L, -1L, -1L };
-
+    
     int[] rebirthOptions = new int[] { -1, -1, -1, -1 };
-
-    for (int i = 0; i < numberOfLines; ++i)
+    
+    
+    for (int i = 0; i < 4; ++i)
     {
-      int randomOption = Randomizer.nextInt(25);
-
-      while (rebirthOptions[0] == randomOption || rebirthOptions[1] == randomOption || rebirthOptions[2] == randomOption || rebirthOptions[3] == randomOption || randomOption == 12 || randomOption == 14 || randomOption == 15 || randomOption == 16 || !GameConstants.isWeapon(this.getItemId()) && (randomOption == 21 || randomOption == 23))
+      int randomOption = 0;
+      
+      int randomValue = 0;
+      
+      if (numberOfLines > i)
       {
         randomOption = Randomizer.nextInt(25);
+        
+        while (rebirthOptions[0] == randomOption || rebirthOptions[1] == randomOption || rebirthOptions[2] == randomOption || rebirthOptions[3] == randomOption || randomOption == 12 || randomOption == 14 || randomOption == 15 || randomOption == 16 || !GameConstants.isWeapon(this.getItemId()) && (randomOption == 21 || randomOption == 23))
+        {
+          randomOption = Randomizer.nextInt(25);
+        }
+        
+        rebirthOptions[i] = randomOption;
+        
+        randomValue = minValue;
+        
+        
+        // 最大最小值差4, 概率分布
+        // 普通装备 40 40 10 5 5
+        // BOSS装备 8 32 32 20 8
+        // 5% 很少? 官服只有 1%!
+        
+        int chance = Randomizer.nextInt(100);
+        
+
+          if (chance > 92)
+          {
+            randomValue = maxValue;
+          }
+          else if (chance > 72)
+          {
+            randomValue = maxValue - 1;
+          }
+          else if (chance > 40)
+          {
+            randomValue = maxValue - 2;
+          }
+          else if (chance > 8)
+          {
+            randomValue = maxValue - 3;
+          }
+   
+      
+        System.out.println("当前随机第 " + i + " 条火花! randomValue = " + randomValue + "; chance = " + chance + "; randomOption = " + randomOption);
       }
-
-      rebirthOptions[i] = randomOption;
-
-      int randomValue = minValue;
-
-      int chance = Randomizer.nextInt(100);
-
-
-      if (chance > 92)
-      {
-        randomValue = maxValue;
-      }
-      else if (chance > 72)
-      {
-        randomValue = maxValue - 1;
-      }
-      else if (chance > 40)
-      {
-        randomValue = maxValue - 2;
-      }
-      else if (chance > 8)
-      {
-        randomValue = maxValue - 3;
-      }
-
-
+      
       rebirth[i] = randomOption * 10L + randomValue;
-
+      
       for (int j = 0; j < i; ++j)
       {
         int n = i;
         rebirth[n] = rebirth[n] * 1000L;
       }
-
-      this.setFireOption(randomOption, reqLevel, randomValue, ordinaryPad, ordinaryMad);
-
-      if (nEquip2 == null)
-      {
-        continue;
-      }
-
-      nEquip2.setFireOption(randomOption, reqLevel, randomValue, ordinaryPad2, ordinaryMad2);
+      
     }
+    
+    long flame = rebirth[0] + rebirth[1] + rebirth[2] + rebirth[3];
+    
 
-    long fire = rebirth[0] + rebirth[1] + rebirth[2] + rebirth[3];
+      setFlame(flame);
+      
+      calcFlameStats();
+      
+      nEquip2.setFlame(flame);
+    
+      calcFlameStats();
 
-    this.setFire(fire);
-
-    if (nEquip2 != null)
-    {
-      nEquip2.setFire(fire);
-    }
   }
 
   public int getMoru ()
@@ -1933,286 +1969,7 @@ public class Equip extends Item implements Serializable
   {
     this.moru = moru;
   }
-
-  public void setFireOption (int randomOption, int reqLevel, int randomValue, int ordinaryPad, int ordinaryMad)
-  {
-    block0:
-    switch (randomOption)
-    {
-      case 0:
-      {
-        this.addStr((short) ((reqLevel / 20 + 1) * randomValue));
-        break;
-      }
-      case 1:
-      {
-        this.addDex((short) ((reqLevel / 20 + 1) * randomValue));
-        break;
-      }
-      case 2:
-      {
-        this.addInt((short) ((reqLevel / 20 + 1) * randomValue));
-        break;
-      }
-      case 3:
-      {
-        this.addLuk((short) ((reqLevel / 20 + 1) * randomValue));
-        break;
-      }
-      case 4:
-      {
-        this.addStr((short) ((reqLevel / 40 + 1) * randomValue));
-        this.addDex((short) ((reqLevel / 40 + 1) * randomValue));
-        break;
-      }
-      case 5:
-      {
-        this.addStr((short) ((reqLevel / 40 + 1) * randomValue));
-        this.addInt((short) ((reqLevel / 40 + 1) * randomValue));
-        break;
-      }
-      case 6:
-      {
-        this.addStr((short) ((reqLevel / 40 + 1) * randomValue));
-        this.addLuk((short) ((reqLevel / 40 + 1) * randomValue));
-        break;
-      }
-      case 7:
-      {
-        this.addDex((short) ((reqLevel / 40 + 1) * randomValue));
-        this.addInt((short) ((reqLevel / 40 + 1) * randomValue));
-        break;
-      }
-      case 8:
-      {
-        this.addDex((short) ((reqLevel / 40 + 1) * randomValue));
-        this.addLuk((short) ((reqLevel / 40 + 1) * randomValue));
-        break;
-      }
-      case 9:
-      {
-        this.addInt((short) ((reqLevel / 40 + 1) * randomValue));
-        this.addLuk((short) ((reqLevel / 40 + 1) * randomValue));
-        break;
-      }
-      case 10:
-      {
-        this.addHp((short) (reqLevel / 10 * 10 * 3 * randomValue));
-        break;
-      }
-      case 11:
-      {
-        this.addMp((short) (reqLevel / 10 * 10 * 3 * randomValue));
-        break;
-      }
-      case 13:
-      {
-        this.addWdef((short) ((reqLevel / 20 + 1) * randomValue));
-        break;
-      }
-      case 17:
-      {
-        if (GameConstants.isWeapon(this.getItemId()))
-        {
-          switch (randomValue)
-          {
-            case 3:
-            {
-              if (reqLevel <= 150)
-              {
-                this.addWatk((short) (ordinaryPad * 1200 / 10000 + 1));
-                break block0;
-              }
-              if (reqLevel <= 160)
-              {
-                this.addWatk((short) (ordinaryPad * 1500 / 10000 + 1));
-                break block0;
-              }
-              this.addWatk((short) (ordinaryPad * 1800 / 10000 + 1));
-              break block0;
-            }
-            case 4:
-            {
-              if (reqLevel <= 150)
-              {
-                this.addWatk((short) (ordinaryPad * 1760 / 10000 + 1));
-                break block0;
-              }
-              if (reqLevel <= 160)
-              {
-                this.addWatk((short) (ordinaryPad * 2200 / 10000 + 1));
-                break block0;
-              }
-              this.addWatk((short) (ordinaryPad * 2640 / 10000 + 1));
-              break block0;
-            }
-            case 5:
-            {
-              if (reqLevel <= 150)
-              {
-                this.addWatk((short) (ordinaryPad * 2420 / 10000 + 1));
-                break block0;
-              }
-              if (reqLevel <= 160)
-              {
-                this.addWatk((short) (ordinaryPad * 3025 / 10000 + 1));
-                break block0;
-              }
-              this.addWatk((short) (ordinaryPad * 3630 / 10000 + 1));
-              break block0;
-            }
-            case 6:
-            {
-              if (reqLevel <= 150)
-              {
-                this.addWatk((short) (ordinaryPad * 3200 / 10000 + 1));
-                break block0;
-              }
-              if (reqLevel <= 160)
-              {
-                this.addWatk((short) (ordinaryPad * 4000 / 10000 + 1));
-                break block0;
-              }
-              this.addWatk((short) (ordinaryPad * 4800 / 10000 + 1));
-              break block0;
-            }
-            case 7:
-            {
-              if (reqLevel <= 150)
-              {
-                this.addWatk((short) (ordinaryPad * 4100 / 10000 + 1));
-                break block0;
-              }
-              if (reqLevel <= 160)
-              {
-                this.addWatk((short) (ordinaryPad * 5125 / 10000 + 1));
-                break block0;
-              }
-              this.addWatk((short) (ordinaryPad * 6150 / 10000 + 1));
-            }
-          }
-          break;
-        }
-        this.addWatk((short) randomValue);
-        break;
-      }
-      case 18:
-      {
-        if (GameConstants.isWeapon(this.getItemId()))
-        {
-          switch (randomValue)
-          {
-            case 3:
-            {
-              if (reqLevel <= 150)
-              {
-                this.addMatk((short) (ordinaryMad * 1200 / 10000 + 1));
-                break block0;
-              }
-              if (reqLevel <= 160)
-              {
-                this.addMatk((short) (ordinaryMad * 1500 / 10000 + 1));
-                break block0;
-              }
-              this.addMatk((short) (ordinaryMad * 1800 / 10000 + 1));
-              break block0;
-            }
-            case 4:
-            {
-              if (reqLevel <= 150)
-              {
-                this.addMatk((short) (ordinaryMad * 1760 / 10000 + 1));
-                break block0;
-              }
-              if (reqLevel <= 160)
-              {
-                this.addMatk((short) (ordinaryMad * 2200 / 10000 + 1));
-                break block0;
-              }
-              this.addMatk((short) (ordinaryMad * 2640 / 10000 + 1));
-              break block0;
-            }
-            case 5:
-            {
-              if (reqLevel <= 150)
-              {
-                this.addMatk((short) (ordinaryMad * 2420 / 10000 + 1));
-                break block0;
-              }
-              if (reqLevel <= 160)
-              {
-                this.addMatk((short) (ordinaryMad * 3025 / 10000 + 1));
-                break block0;
-              }
-              this.addMatk((short) (ordinaryMad * 3630 / 10000 + 1));
-              break block0;
-            }
-            case 6:
-            {
-              if (reqLevel <= 150)
-              {
-                this.addMatk((short) (ordinaryMad * 3200 / 10000 + 1));
-                break block0;
-              }
-              if (reqLevel <= 160)
-              {
-                this.addMatk((short) (ordinaryMad * 4000 / 10000 + 1));
-                break block0;
-              }
-              this.addMatk((short) (ordinaryMad * 4800 / 10000 + 1));
-              break block0;
-            }
-            case 7:
-            {
-              if (reqLevel <= 150)
-              {
-                this.addMatk((short) (ordinaryMad * 4100 / 10000 + 1));
-                break block0;
-              }
-              if (reqLevel <= 160)
-              {
-                this.addMatk((short) (ordinaryMad * 5125 / 10000 + 1));
-                break block0;
-              }
-              this.addMatk((short) (ordinaryMad * 6150 / 10000 + 1));
-            }
-          }
-          break;
-        }
-        this.addMatk((short) randomValue);
-        break;
-      }
-      case 19:
-      {
-        this.addSpeed((short) randomValue);
-        break;
-      }
-      case 20:
-      {
-        this.addJump((short) randomValue);
-        break;
-      }
-      case 21:
-      {
-        this.addBossDamage((byte) (randomValue * 2));
-        break;
-      }
-      case 22:
-      {
-        this.setReqLevel((byte) (-5 * randomValue));
-        break;
-      }
-      case 23:
-      {
-        this.addTotalDamage((byte) randomValue);
-        break;
-      }
-      case 24:
-      {
-        this.addAllStat((byte) randomValue);
-      }
-    }
-  }
+  
 
   public int getEquipmentType ()
   {
@@ -2349,8 +2106,36 @@ public class Equip extends Item implements Serializable
     this.starForceMatk = starForceMatk;
   }
 
+  public void resetStarForceStats()
+  {
+    this.starForceAvoid = 0;
+    
+    this.starForceAcc = 0;
+    
+    this.starForceMdef = 0;
+    
+    this.starForceWdef = 0;
+    
+    this.starForceMatk = 0;
+    
+    this.starForceWatk = 0;
+    
+    this.starForceStr = 0;
+    
+    this.starForceDex = 0;
+    
+    this.starForceInt = 0;
+    
+    this.starForceLuk = 0;
+    
+    this.starForceHp = 0;
+    
+    this.starForceMp = 0;
+  }
   public void calcStarForceStats ()
   {
+    this.resetStarForceStats();
+    
     StarForceStats starForceStats = EquipmentEnchant.calcStarForceStats(this);
 
     this.starForceStats = starForceStats;
@@ -2414,6 +2199,16 @@ public class Equip extends Item implements Serializable
     {
       setStarForceAvoid(starForceStats.getFlag(EnchantFlag.Avoid).right.shortValue());
     }
+  }
+  
+  public short getEnchantJump()
+  {
+    return enchantJump;
+  }
+  
+  public void setEnchantJump(short enchantJump)
+  {
+    this.enchantJump = enchantJump;
   }
 
   public void setEnchantStr (short enchantStr)
@@ -2513,32 +2308,32 @@ public class Equip extends Item implements Serializable
 
   public short getTotalStr ()
   {
-    return (short) (this.str + this.enchantStr + this.getStarForceStr());
+    return (short) (this.str + this.enchantStr + this.getStarForceStr() + getFlameStr());
   }
 
   public short getTotalDex ()
   {
-    return (short) (this.dex + this.enchantDex + this.getStarForceDex());
+    return (short) (this.dex + this.enchantDex + this.getStarForceDex() + getFlameDex());
   }
 
   public short getTotalInt ()
   {
-    return (short) (this._int + this.enchantInt + this.getStarForceInt());
+    return (short) (this._int + this.enchantInt + this.getStarForceInt() + getFlameInt());
   }
 
   public short getTotalLuk ()
   {
-    return (short) (this.luk + this.enchantLuk + this.getStarForceLuk());
+    return (short) (this.luk + this.enchantLuk + this.getStarForceLuk()+ getFlameLuk());
   }
 
   public short getTotalHp ()
   {
-    return (short) (this.hp + this.enchantHp + this.getStarForceHp());
+    return (short) (this.hp + this.enchantHp + this.getStarForceHp()+ getFlameHp());
   }
 
   public short getTotalMp ()
   {
-    return (short) (this.mp + this.enchantMp + this.getStarForceMp());
+    return (short) (this.mp + this.enchantMp + this.getStarForceMp()+ getFlameMp());
   }
 
   public short getTotalAcc ()
@@ -2553,22 +2348,22 @@ public class Equip extends Item implements Serializable
 
   public short getTotalWatk ()
   {
-    return (short) (this.watk + this.enchantWatk + this.getStarForceWatk());
+    return (short) (this.watk + this.enchantWatk + this.getStarForceWatk()+ getFlameWatk());
   }
 
   public short getTotalMatk ()
   {
-    return (short) (this.matk + this.enchantMatk + this.getStarForceMatk());
+    return (short) (this.matk + this.enchantMatk + this.getStarForceMatk()+ getFlameMatk());
   }
 
   public short getTotalWdef ()
   {
-    return (short) (this.wdef + this.enchantWdef + this.getStarForceWdef());
+    return (short) (this.wdef + this.enchantWdef + this.getStarForceWdef() + getFlameDef());
   }
 
   public short getTotalMdef ()
   {
-    return (short) (this.mdef + this.enchantMdef + this.getStarForceMdef());
+    return (short) (this.mdef + this.enchantMdef + this.getStarForceMdef() + getFlameDef());
   }
 
   public short getEnchantWdef ()
@@ -2640,8 +2435,18 @@ public class Equip extends Item implements Serializable
   {
     this.Coption3 = a;
   }
-
-
+  
+  public EquipmentScroll getShowScrollOption()
+  {
+    return showScrollOption;
+  }
+  
+  public void setShowScrollOption(EquipmentScroll showScrollOption)
+  {
+    this.showScrollOption = showScrollOption;
+  }
+  
+  
   public enum ScrollResult
   {
     SUCCESS, FAIL, CURSE

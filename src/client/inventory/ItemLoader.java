@@ -54,9 +54,9 @@ public enum ItemLoader
     {
       return true;
     }
-    if (equip.getFire() > 0L && (GameConstants.isRing(equip.getItemId()) || equip.getItemId() / 1000 == 1092 || equip.getItemId() / 1000 == 1342 || equip.getItemId() / 1000 == 1713 || equip.getItemId() / 1000 == 1712 || equip.getItemId() / 1000 == 1152 || equip.getItemId() / 1000 == 1143 || equip.getItemId() / 1000 == 1672 || GameConstants.isSecondaryWeapon(equip.getItemId()) || equip.getItemId() / 1000 == 1190 || equip.getItemId() / 1000 == 1182 || equip.getItemId() / 1000 == 1662 || equip.getItemId() / 1000 == 1802))
+    if (equip.getFlame() > 0L && (GameConstants.isRing(equip.getItemId()) || equip.getItemId() / 1000 == 1092 || equip.getItemId() / 1000 == 1342 || equip.getItemId() / 1000 == 1713 || equip.getItemId() / 1000 == 1712 || equip.getItemId() / 1000 == 1152 || equip.getItemId() / 1000 == 1143 || equip.getItemId() / 1000 == 1672 || GameConstants.isSecondaryWeapon(equip.getItemId()) || equip.getItemId() / 1000 == 1190 || equip.getItemId() / 1000 == 1182 || equip.getItemId() / 1000 == 1662 || equip.getItemId() / 1000 == 1802))
     {
-      equip.setFire(0L);
+      equip.setFlame(0L);
     }
     
     if (equip.getArcLevel() > 20)
@@ -65,7 +65,7 @@ public enum ItemLoader
     }
     if (equip.getArc() > 220)
     {
-      equip.setArc((short) 0);
+      equip.setArc((short) 220);
     }
     if ((GameConstants.isArcaneSymbol(equip.getItemId()) || GameConstants.isAuthenticSymbol(equip.getItemId()) || equip.getItemId() / 1000 == 1162) && equip.getItemId() != 1162002 && equip.getState() > 0)
     {

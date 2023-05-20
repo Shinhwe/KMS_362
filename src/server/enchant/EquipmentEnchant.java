@@ -259,14 +259,8 @@ public class EquipmentEnchant
       }
       ess.add(new EquipmentScroll("回真卷軸 50%", 5000, stats));
       ess.add(new EquipmentScroll("亞克回真卷軸 50%", 10000, stats));
-      if (equip.getViciousHammer() == 0)
-      {
-        if (equip.getUpgradeSlots() < ii.getSlots(equip.getItemId()))
-        {
-          ess.add(new EquipmentScroll("純白的卷軸 10%", 3000, stats));
-        }
-      }
-      else if (equip.getUpgradeSlots() < ii.getSlots(equip.getItemId()) + 1)
+
+      if (equip.getFailUpgradeSlots() > 0)
       {
         ess.add(new EquipmentScroll("純白的卷軸 10%", 3000, stats));
       }
@@ -1055,7 +1049,6 @@ public class EquipmentEnchant
         {
           if (scrollType(es.getName()) == 4)
           {
-
             if (es.getName().contains("亞克回真卷軸"))
             {
               item.setStarForceLevel((byte) 0);
@@ -1112,139 +1105,124 @@ public class EquipmentEnchant
           }
           else if (scrollType(es.getName()) == 5)
           {
-            item.setUpgradeSlots((byte) (item.getUpgradeSlots() + 1));
+            item.setFailUpgradeSlots((byte) (item.getFailUpgradeSlots() - 1));
             if (equip1 != null)
             {
-              equip1.setUpgradeSlots((byte) (equip1.getUpgradeSlots() + 1));
+              equip1.setFailUpgradeSlots((byte) (equip1.getFailUpgradeSlots() - 1));
             }
             c.getSession().writeAndFlush(CWvsContext.equipmentEnchantResult(50, item, null, null, null, 0));
           }
-          else
+          else if (scrollType(es.getName()) <= 3)
           {
-            item.setLevel((byte) (item.getLevel() + 1));
+            item.setEnchantLevel((byte) (item.getEnchantLevel() + 1));
+            
+            item.setSuccessUpgradeSlots((byte) (item.getSuccessUpgradeSlots() + 1));
+            
             if (equip1 != null)
             {
-              equip1.setLevel((byte) (equip1.getLevel() + 1));
+              equip1.setEnchantLevel((byte) (equip1.getEnchantLevel() + 1));
             }
             if (EnchantFlag.Watk.check(es.getFlag()))
             {
-              item.setWatk((short) (item.getWatk() + (es.getFlag(EnchantFlag.Watk)).right.intValue()));
+              item.setEnchantWatk((short) (item.getEnchantWatk() + (es.getFlag(EnchantFlag.Watk)).right.intValue()));
               if (equip1 != null)
               {
-                equip1.setWatk((short) (equip1.getWatk() + (es.getFlag(EnchantFlag.Watk)).right.intValue()));
+                equip1.setEnchantWatk((short) (equip1.getEnchantWatk() + (es.getFlag(EnchantFlag.Watk)).right.intValue()));
               }
             }
             if (EnchantFlag.Matk.check(es.getFlag()))
             {
-              item.setMatk((short) (item.getMatk() + (es.getFlag(EnchantFlag.Matk)).right.intValue()));
+              item.setEnchantMatk((short) (item.getEnchantMatk() + (es.getFlag(EnchantFlag.Matk)).right.intValue()));
               if (equip1 != null)
               {
-                equip1.setMatk((short) (equip1.getMatk() + (es.getFlag(EnchantFlag.Matk)).right.intValue()));
+                equip1.setEnchantMatk((short) (equip1.getEnchantMatk() + (es.getFlag(EnchantFlag.Matk)).right.intValue()));
               }
             }
             if (EnchantFlag.Str.check(es.getFlag()))
             {
-              item.setStr((short) (item.getStr() + (es.getFlag(EnchantFlag.Str)).right.intValue()));
+              item.setEnchantStr((short) (item.getEnchantStr() + (es.getFlag(EnchantFlag.Str)).right.intValue()));
               if (equip1 != null)
               {
-                equip1.setStr((short) (equip1.getStr() + (es.getFlag(EnchantFlag.Str)).right.intValue()));
+                equip1.setEnchantStr((short) (equip1.getEnchantStr() + (es.getFlag(EnchantFlag.Str)).right.intValue()));
               }
             }
             if (EnchantFlag.Dex.check(es.getFlag()))
             {
-              item.setDex((short) (item.getDex() + (es.getFlag(EnchantFlag.Dex)).right.intValue()));
+              item.setEnchantDex((short) (item.getEnchantDex() + (es.getFlag(EnchantFlag.Dex)).right.intValue()));
+              
               if (equip1 != null)
               {
-                equip1.setDex((short) (equip1.getDex() + (es.getFlag(EnchantFlag.Dex)).right.intValue()));
+                equip1.setEnchantDex((short) (equip1.getEnchantDex() + (es.getFlag(EnchantFlag.Dex)).right.intValue()));
               }
             }
             if (EnchantFlag.Int.check(es.getFlag()))
             {
-              item.setInt((short) (item.getInt() + (es.getFlag(EnchantFlag.Int)).right.intValue()));
+              item.setEnchantInt((short) (item.getEnchantInt() + (es.getFlag(EnchantFlag.Int)).right.intValue()));
+              
               if (equip1 != null)
               {
-                equip1.setInt((short) (equip1.getInt() + (es.getFlag(EnchantFlag.Int)).right.intValue()));
+                equip1.setEnchantInt((short) (equip1.getEnchantInt() + (es.getFlag(EnchantFlag.Int)).right.intValue()));
               }
             }
             if (EnchantFlag.Luk.check(es.getFlag()))
             {
-              item.setLuk((short) (item.getLuk() + (es.getFlag(EnchantFlag.Luk)).right.intValue()));
+              item.setEnchantLuk((short) (item.getEnchantLuk() + (es.getFlag(EnchantFlag.Luk)).right.intValue()));
               if (equip1 != null)
               {
-                equip1.setLuk((short) (equip1.getLuk() + (es.getFlag(EnchantFlag.Luk)).right.intValue()));
+                equip1.setEnchantLuk((short) (equip1.getEnchantLuk() + (es.getFlag(EnchantFlag.Luk)).right.intValue()));
               }
             }
             if (EnchantFlag.Wdef.check(es.getFlag()))
             {
-              item.setWdef((short) (item.getWdef() + (es.getFlag(EnchantFlag.Wdef)).right.intValue()));
+              item.setEnchantWdef((short) (item.getEnchantWdef() + (es.getFlag(EnchantFlag.Wdef)).right.intValue()));
               if (equip1 != null)
               {
-                equip1.setWdef((short) (equip1.getWdef() + (es.getFlag(EnchantFlag.Wdef)).right.intValue()));
+                equip1.setEnchantWdef((short) (equip1.getEnchantWdef() + (es.getFlag(EnchantFlag.Wdef)).right.intValue()));
               }
             }
             if (EnchantFlag.Mdef.check(es.getFlag()))
             {
-              item.setMdef((short) (item.getMdef() + (es.getFlag(EnchantFlag.Mdef)).right.intValue()));
+              item.setEnchantMdef((short) (item.getEnchantMdef() + (es.getFlag(EnchantFlag.Mdef)).right.intValue()));
               if (equip1 != null)
               {
-                equip1.setMdef((short) (equip1.getMdef() + (es.getFlag(EnchantFlag.Mdef)).right.intValue()));
+                equip1.setEnchantMdef((short) (equip1.getEnchantMdef() + (es.getFlag(EnchantFlag.Mdef)).right.intValue()));
               }
             }
             if (EnchantFlag.Hp.check(es.getFlag()))
             {
-              item.setHp((short) (item.getHp() + (es.getFlag(EnchantFlag.Hp)).right.intValue()));
+              item.setEnchantHp((short) (item.getEnchantHp() + (es.getFlag(EnchantFlag.Hp)).right.intValue()));
               if (equip1 != null)
               {
-                equip1.setHp((short) (equip1.getHp() + (es.getFlag(EnchantFlag.Hp)).right.intValue()));
+                equip1.setEnchantHp((short) (equip1.getEnchantHp() + (es.getFlag(EnchantFlag.Hp)).right.intValue()));
               }
             }
             if (EnchantFlag.Mp.check(es.getFlag()))
             {
-              item.setMp((short) (item.getMp() + (es.getFlag(EnchantFlag.Mp)).right.intValue()));
+              item.setEnchantMp((short) (item.getEnchantMp() + (es.getFlag(EnchantFlag.Mp)).right.intValue()));
               if (equip1 != null)
               {
-                equip1.setMp((short) (equip1.getMp() + (es.getFlag(EnchantFlag.Mp)).right.intValue()));
+                equip1.setEnchantMp((short) (equip1.getEnchantMp() + (es.getFlag(EnchantFlag.Mp)).right.intValue()));
               }
             }
             if (EnchantFlag.Acc.check(es.getFlag()))
             {
-              item.setAcc((short) (item.getAcc() + (es.getFlag(EnchantFlag.Acc)).right.intValue()));
+              item.setEnchantAcc((short) (item.getEnchantAcc() + (es.getFlag(EnchantFlag.Acc)).right.intValue()));
               if (equip1 != null)
               {
-                equip1.setAcc((short) (equip1.getAcc() + (es.getFlag(EnchantFlag.Acc)).right.intValue()));
+                equip1.setEnchantAcc((short) (equip1.getEnchantAcc() + (es.getFlag(EnchantFlag.Acc)).right.intValue()));
               }
             }
             if (EnchantFlag.Avoid.check(es.getFlag()))
             {
-              item.setAvoid((short) (item.getAvoid() + (es.getFlag(EnchantFlag.Avoid)).right.intValue()));
+              item.setEnchantAvoid((short) (item.getEnchantAvoid() + (es.getFlag(EnchantFlag.Avoid)).right.intValue()));
               if (equip1 != null)
               {
-                equip1.setAvoid((short) (equip1.getAvoid() + (es.getFlag(EnchantFlag.Avoid)).right.intValue()));
-              }
-            }
-            if (!GameConstants.isWeapon(item.getItemId()) && item.getItemId() / 10000 != 108 && item.getLevel() == 4)
-            {
-              MapleItemInformationProvider itemInfo = MapleItemInformationProvider.getInstance();
-              if (itemInfo.getReqJob(item.getItemId()) == 2)
-              {
-                item.addMatk((short) 1);
-                if (equip1 != null)
-                {
-                  equip1.addMatk((short) 1);
-                }
-              }
-              else
-              {
-                item.addWatk((short) 1);
-                if (equip1 != null)
-                {
-                  equip1.addWatk((short) 1);
-                }
+                equip1.setEnchantAvoid((short) (equip1.getEnchantAvoid() + (es.getFlag(EnchantFlag.Avoid)).right.intValue()));
               }
             }
           }
         }
-        if (scrollType(es.getName()) <= 3)
+        else if (scrollType(es.getName()) <= 3)
         {
           boolean safety = false;
           if (ItemFlag.SAFETY_SHIELD.check(item.getFlag()))
@@ -1256,12 +1234,12 @@ public class EquipmentEnchant
             }
             safety = true;
           }
-          if (!safety || i > 0)
+          if (safety == false)
           {
-            item.setUpgradeSlots((byte) (item.getUpgradeSlots() - 1));
+            item.setFailUpgradeSlots((byte) (item.getFailUpgradeSlots() + 1));
             if (equip1 != null)
             {
-              equip1.setUpgradeSlots((byte) (equip1.getUpgradeSlots() - 1));
+              equip1.setFailUpgradeSlots((byte) (equip1.getFailUpgradeSlots() + 1));
             }
           }
           else

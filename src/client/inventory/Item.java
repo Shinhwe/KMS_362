@@ -38,7 +38,6 @@ public class Item implements Comparable<Item>, Serializable
   
   private BossReward reward;
   
-  private StarForceStats showScrollOption = null;
   
   public Item(int id, short position, short quantity, int flag, long uniqueid)
   {
@@ -264,15 +263,6 @@ public class Item implements Comparable<Item>, Serializable
     this.giftFrom = gf;
   }
   
-  public StarForceStats getShowScrollOption()
-  {
-    return this.showScrollOption;
-  }
-  
-  public void setShowScrollOption(StarForceStats showScrollOption)
-  {
-    this.showScrollOption = showScrollOption;
-  }
   
   public int compareTo(Item other)
   {

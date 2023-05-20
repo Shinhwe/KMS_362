@@ -13,6 +13,7 @@ import handling.world.guild.MapleGuildAlliance;
 import scripting.EventInstanceManager;
 import server.*;
 import server.enchant.EnchantFlag;
+import server.enchant.EquipmentScroll;
 import server.enchant.StarForceStats;
 import server.field.skill.*;
 import server.life.MapleHaku;
@@ -5166,7 +5167,7 @@ public class CField
     return mplew.getPacket();
   }
   
-  public static byte[] showScrollOption(int itemId, int scrollId, StarForceStats es)
+  public static byte[] showScrollOption(int itemId, int scrollId, EquipmentScroll es)
   {
     MaplePacketLittleEndianWriter mplew = new MaplePacketLittleEndianWriter();
     mplew.writeShort(SendPacketOpcode.SCROLL_CHAT.getValue());

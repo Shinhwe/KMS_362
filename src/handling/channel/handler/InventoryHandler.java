@@ -364,7 +364,7 @@ public class InventoryHandler
     }
   }
   
-  public static final void UseReturnScroll(LittleEndianAccessor slea, MapleClient c, MapleCharacter chr)
+  public static final void UsereturnScroll(LittleEndianAccessor slea, MapleClient c, MapleCharacter chr)
   {
     if (!chr.isAlive() || chr.getMapId() == 749040100 || chr.inPVP())
     {
@@ -383,7 +383,7 @@ public class InventoryHandler
     FileoutputUtil.log(FileoutputUtil.아이템사용로그, "[주문서 사용] 계정 아이디 : " + c.getAccID() + " | " + c.getPlayer().getName() + "이 " + MapleItemInformationProvider.getInstance().getName(toUse.getItemId()) + "를 " + MapleItemInformationProvider.getInstance().getName(itemId) + "에 사용함.");
     if (!FieldLimitType.PotionUse.check(chr.getMap().getFieldLimit()))
     {
-      if (MapleItemInformationProvider.getInstance().getItemEffect(toUse.getItemId()).applyReturnScroll(chr))
+      if (MapleItemInformationProvider.getInstance().getItemEffect(toUse.getItemId()).applyreturnScroll(chr))
       {
         MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (short) 1, false);
       }
@@ -634,27 +634,27 @@ public class InventoryHandler
     final byte type = slea.readByte();
     Equip equip = null;
     Equip zeroequip = null;
-    if (c.getPlayer().choicepotential.getPosition() > 0)
+    if (c.getPlayer().choicePotential.getPosition() > 0)
     {
-      equip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(c.getPlayer().choicepotential.getPosition());
+      equip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(c.getPlayer().choicePotential.getPosition());
     }
     else
     {
-      equip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(c.getPlayer().choicepotential.getPosition());
+      equip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(c.getPlayer().choicePotential.getPosition());
     }
     final int cube = Integer.parseInt(c.getPlayer().getV("lastCube"));
     if (type == 6)
     {
-      if (c.getPlayer().choicepotential.getPosition() > 0)
+      if (c.getPlayer().choicePotential.getPosition() > 0)
       {
-        equip.set(c.getPlayer().choicepotential);
+        equip.set(c.getPlayer().choicePotential);
       }
       else
       {
-        equip.set(c.getPlayer().choicepotential);
+        equip.set(c.getPlayer().choicePotential);
       }
     }
-    if (GameConstants.isZeroWeapon(c.getPlayer().choicepotential.getItemId()))
+    if (GameConstants.isZeroWeapon(c.getPlayer().choicePotential.getItemId()))
     {
       zeroequip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-11));
       zeroequip.setState(equip.getState());
@@ -666,7 +666,7 @@ public class InventoryHandler
       zeroequip.setPotential5(equip.getPotential5());
       zeroequip.setPotential6(equip.getPotential6());
     }
-    c.getPlayer().choicepotential = null;
+    c.getPlayer().choicePotential = null;
     c.getPlayer().memorialcube = null;
     if (zeroequip != null)
     {
@@ -994,7 +994,7 @@ public class InventoryHandler
     if (ItemFlag.RETURN_SCROLL.check(toScroll.getFlag()))
     {
       chr.returnSc = scroll.getItemId();
-      chr.returnscroll = (Equip) toScroll.copy();
+      chr.returnScroll = (Equip) toScroll.copy();
     }
     if (header == RecvPacketOpcode.USE_BLACK_REBIRTH_SCROLL)
     {
@@ -1110,14 +1110,14 @@ public class InventoryHandler
       {
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateScrollandItem(scroll, toScroll2, false));
       }
-      if (!GameConstants.isSpecialScroll(scroll.getItemId()) && !GameConstants.isCleanSlate(scroll.getItemId()) && !GameConstants.isEquipScroll(scroll.getItemId()) && scroll.getItemId() != 2049360 && scroll.getItemId() != 2049361 && !GameConstants.isPotentialScroll(scroll.getItemId()) && !GameConstants.isRebirthFireScroll(scroll.getItemId()) && !GameConstants.isLuckyScroll(scroll.getItemId()) && c.getPlayer().returnscroll != null && scrollSuccess == Equip.ScrollResult.SUCCESS)
+      if (!GameConstants.isSpecialScroll(scroll.getItemId()) && !GameConstants.isCleanSlate(scroll.getItemId()) && !GameConstants.isEquipScroll(scroll.getItemId()) && scroll.getItemId() != 2049360 && scroll.getItemId() != 2049361 && !GameConstants.isPotentialScroll(scroll.getItemId()) && !GameConstants.isRebirthFireScroll(scroll.getItemId()) && !GameConstants.isLuckyScroll(scroll.getItemId()) && c.getPlayer().returnScroll != null && scrollSuccess == Equip.ScrollResult.SUCCESS)
       {
-        c.getSession().writeAndFlush(CWvsContext.returnEffectConfirm(c.getPlayer().returnscroll, scroll.getItemId()));
-        c.getSession().writeAndFlush(CWvsContext.returnEffectModify(c.getPlayer().returnscroll, scroll.getItemId()));
+        c.getSession().writeAndFlush(CWvsContext.returnEffectConfirm(c.getPlayer().returnScroll, scroll.getItemId()));
+        c.getSession().writeAndFlush(CWvsContext.returnEffectModify(c.getPlayer().returnScroll, scroll.getItemId()));
       }
-      else if (!GameConstants.isSpecialScroll(scroll.getItemId()) && !GameConstants.isCleanSlate(scroll.getItemId()) && !GameConstants.isEquipScroll(scroll.getItemId()) && scroll.getItemId() != 2049360 && scroll.getItemId() != 2049361 && !GameConstants.isPotentialScroll(scroll.getItemId()) && !GameConstants.isRebirthFireScroll(scroll.getItemId()) && !GameConstants.isLuckyScroll(scroll.getItemId()) && c.getPlayer().returnscroll != null && scrollSuccess == Equip.ScrollResult.FAIL)
+      else if (!GameConstants.isSpecialScroll(scroll.getItemId()) && !GameConstants.isCleanSlate(scroll.getItemId()) && !GameConstants.isEquipScroll(scroll.getItemId()) && scroll.getItemId() != 2049360 && scroll.getItemId() != 2049361 && !GameConstants.isPotentialScroll(scroll.getItemId()) && !GameConstants.isRebirthFireScroll(scroll.getItemId()) && !GameConstants.isLuckyScroll(scroll.getItemId()) && c.getPlayer().returnScroll != null && scrollSuccess == Equip.ScrollResult.FAIL)
       {
-        c.getPlayer().returnscroll = null;
+        c.getPlayer().returnScroll = null;
         toScroll.setFlag(toScroll.getFlag() - ItemFlag.RETURN_SCROLL.getValue());
         toScroll.setUpgradeSlots((byte) (toScroll.getUpgradeSlots() + 1));
         chr.getClient().getSession().writeAndFlush(CWvsContext.InventoryPacket.updateEquipSlot(toScroll));
@@ -4628,7 +4628,7 @@ public class InventoryHandler
             c.getPlayer().getMap().broadcastMessage(CField.getBlackCubeEffect(c.getPlayer().getId(), bool4, 5062503, neq.getItemId()));
             
             /* 3351 */
-            (c.getPlayer()).choicepotential = neq;
+            (c.getPlayer()).choicePotential = neq;
             
             /* 3353 */
             if ((c.getPlayer()).memorialcube == null)
@@ -4835,7 +4835,7 @@ public class InventoryHandler
             c.getPlayer().getMap().broadcastMessage(CField.getBlackCubeEffect(c.getPlayer().getId(), bool5, 5062010, neq.getItemId()));
             
             /* 3566 */
-            (c.getPlayer()).choicepotential = neq;
+            (c.getPlayer()).choicePotential = neq;
             
             /* 3568 */
             if ((c.getPlayer()).memorialcube == null)
@@ -5601,7 +5601,7 @@ public class InventoryHandler
             /* 3962 */
             equip1.setViciousHammer((byte) (equip1.getViciousHammer() + 1));
             /* 3963 */
-            equip1.setUpgradeSlots((byte) (equip1.getUpgradeSlots() + 1));
+            equip1.setExtraUpgradeSlots((byte) (equip1.getUpgradeSlots() + 1));
             /* 3964 */
             c.getPlayer().forceReAddItem(equip1, MapleInventoryType.EQUIP);
             /* 3965 */
@@ -10371,13 +10371,13 @@ public class InventoryHandler
     
     MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     
-    if (c.getPlayer().returnscroll == null)
+    if (c.getPlayer().returnScroll == null)
     {
       c.getPlayer().dropMessage(1, "리턴 스크롤 사용 중 오류가 발생하였습니다.");
       return;
     }
     
-    equip = c.getPlayer().returnscroll.getPosition() > 0 ? (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(c.getPlayer().returnscroll.getPosition()) : (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(c.getPlayer().returnscroll.getPosition());
+    equip = c.getPlayer().returnScroll.getPosition() > 0 ? (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(c.getPlayer().returnScroll.getPosition()) : (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(c.getPlayer().returnScroll.getPosition());
     if (equip == null)
     {
       c.getPlayer().dropMessage(1, "리턴 스크롤 사용 중 오류가 발생하였습니다.");
@@ -10385,20 +10385,20 @@ public class InventoryHandler
     }
     if (type == 1)
     {
-      if (c.getPlayer().returnscroll.getPosition() > 0)
+      if (c.getPlayer().returnScroll.getPosition() > 0)
       {
-        equip.set(c.getPlayer().returnscroll);
+        equip.set(c.getPlayer().returnScroll);
       }
       else
       {
-        equip.set(c.getPlayer().returnscroll);
+        equip.set(c.getPlayer().returnScroll);
       }
     }
     equip.setFlag(equip.getFlag() - ItemFlag.RETURN_SCROLL.getValue());
-    if (GameConstants.isZeroWeapon(c.getPlayer().returnscroll.getItemId()))
+    if (GameConstants.isZeroWeapon(c.getPlayer().returnScroll.getItemId()))
     {
       zeroequip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
-      zeroequip.set(c.getPlayer().returnscroll);
+      zeroequip.set(c.getPlayer().returnScroll);
       zeroequip.setFlag(equip.getFlag() - ItemFlag.RETURN_SCROLL.getValue());
     }
     c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, equip));
@@ -10415,7 +10415,7 @@ public class InventoryHandler
       c.getSession().writeAndFlush(CField.getGameMessage(11, "리턴 주문서의 효과가 사라졌습니다."));
     }
     c.getSession().writeAndFlush(CWvsContext.returnEffectModify(null, 0));
-    c.getPlayer().returnscroll = null;
+    c.getPlayer().returnScroll = null;
     c.getPlayer().returnSc = 0;
   }
   

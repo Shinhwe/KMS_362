@@ -104,20 +104,20 @@ public class MarriageMiniBox extends AbstractPlayerStore
     Item item1 = ii.getEquipById(1112744);
     item.setUniqueId(MapleInventoryIdentifier.getInstance());
     Equip eitem = (Equip) item;
-    eitem.setStr((short) 300);
-    eitem.setDex((short) 300);
-    eitem.setInt((short) 300);
-    eitem.setLuk((short) 300);
-    eitem.setWatk((short) 300);
-    eitem.setMatk((short) 300);
+    eitem.setEnchantStr((short) 300);
+    eitem.setEnchantDex((short) 300);
+    eitem.setEnchantInt((short) 300);
+    eitem.setEnchantLuk((short) 300);
+    eitem.setEnchantWatk((short) 300);
+    eitem.setEnchantMatk((short) 300);
     item1.setUniqueId(MapleInventoryIdentifier.getInstance());
     Equip eitem1 = (Equip) item1;
-    eitem1.setStr((short) 300);
-    eitem1.setDex((short) 300);
-    eitem1.setInt((short) 300);
-    eitem1.setLuk((short) 300);
-    eitem1.setWatk((short) 300);
-    eitem1.setMatk((short) 300);
+    eitem1.setEnchantStr((short) 300);
+    eitem1.setEnchantDex((short) 300);
+    eitem1.setEnchantInt((short) 300);
+    eitem1.setEnchantLuk((short) 300);
+    eitem1.setEnchantWatk((short) 300);
+    eitem1.setEnchantMatk((short) 300);
     try
     {
       MapleRing.makeRing(1112744, getPlayer1(), eitem.getUniqueId(), eitem1.getUniqueId());

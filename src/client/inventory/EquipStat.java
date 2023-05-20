@@ -3,7 +3,7 @@ package client.inventory;
 public enum EquipStat
 {
   SLOTS(1, 1, 1),
-  LEVEL(2, 1, 1),
+  ENCHANTLEVEL(2, 1, 1),
   STR(4, 2, 1),
   DEX(8, 2, 1),
   INT(16, 2, 1),
