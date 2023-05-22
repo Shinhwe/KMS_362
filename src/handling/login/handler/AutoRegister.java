@@ -24,7 +24,7 @@ public class AutoRegister
       ps = con.prepareStatement("SELECT name FROM accounts WHERE name = ?");
       ps.setString(1, login);
       rs = ps.executeQuery();
-      if (rs.first())
+      if (rs.next())
       {
         accountExists = true;
       }
@@ -100,8 +100,7 @@ public class AutoRegister
       {
         ipc.setString(1, sockAddr.substring(1, sockAddr.lastIndexOf(':')));
         ResultSet rs = ipc.executeQuery();
-        if (!rs.first() || (
-            rs.last() && rs.getRow() < 1))
+        if (rs.next() == false)
         {
           try
           {

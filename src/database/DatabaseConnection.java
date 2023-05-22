@@ -29,6 +29,7 @@ import server.ServerProperties;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
@@ -39,11 +40,11 @@ import java.sql.SQLException;
  */
 public class DatabaseConnection
 {
-  
+
   public static final String MYSQLSCHEMA = ServerProperties.getProperty("query.schema");
   public static final String MySQLUSER = ServerProperties.getProperty("query.user");
   public static final String MySQLPASS = ServerProperties.getProperty("query.password");
-  public static final String MySQLURL = "jdbc:mysql://localhost:3306/" + MYSQLSCHEMA + "?autoReconnect=true&characterEncoding=euckr&maxReconnects=5";
+  public static final String MySQLURL = "jdbc:mysql://localhost:3306/" + MYSQLSCHEMA + "?autoReconnect=true&maxReconnects=5&zeroDateTimeBehavior=convertToNull";
   public static final int CLOSE_CURRENT_RESULT = 1;
   /**
    * The constant indicating that the current <code>ResultSet</code> object
@@ -105,7 +106,7 @@ public class DatabaseConnection
   private static int databaseMinorVersion;
   private static String databaseProductVersion;
   private static int MySQLMAXCONNECTION = 2100000000;
-  
+
   /**
    * 데이터베이스 연결 함수. Apache common의 dbcp api를 사용하여 커넥션 풀을 생성.
    */
@@ -115,30 +116,31 @@ public class DatabaseConnection
     {
       return;
     }
-    
+
     try
     {
       //Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver").newInstance();
-      Class.forName("com.mysql.jdbc.Driver").newInstance();
+      // Class.forName("com.mysql.jdbc.Driver").newInstance();
+      DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
     }
-    catch (Throwable ex)
+    catch (Exception ex)
     {
       ex.printStackTrace();
       System.exit(1);
     }
-    
+
     connectionPool = new GenericObjectPool();
-    
+
     if (MySQLMINCONNECTION > MySQLMAXCONNECTION)
     {
       MySQLMAXCONNECTION = MySQLMINCONNECTION;
     }
-    
+
     connectionPool.setMaxIdle(MySQLMINCONNECTION);
     connectionPool.setMaxActive(MySQLMAXCONNECTION);
     connectionPool.setTestOnBorrow(true);
     connectionPool.setMaxWait(5000);
-    
+
     try
     {
       dataSource = setupDataSource();
@@ -155,17 +157,17 @@ public class DatabaseConnection
       System.exit(1);
     }
   }
-  
+
   private static DataSource setupDataSource() throws Exception
   {
     ConnectionFactory conFactory = new DriverManagerConnectionFactory(MySQLURL,
         MySQLUSER, MySQLPASS);
-    
+
     PoolableConnectionFactoryAE poolableConnectionFactoryAE = new PoolableConnectionFactoryAE(conFactory, connectionPool, null, 1, false, true);
-    
+
     return new PoolingDataSource(connectionPool);
   }
-  
+
   public static void closeObject(Connection con)
   {
     try
@@ -180,7 +182,7 @@ public class DatabaseConnection
       con = null;
     }
   }
-  
+
   public static synchronized void shutdown()
   {
     try
@@ -190,10 +192,10 @@ public class DatabaseConnection
     catch (Exception e)
     {
     }
-    
+
     dataSource = null;
   }
-  
+
   public static Connection getConnection() throws SQLException
   {
     if (connectionPool.getNumIdle() == 0)
@@ -203,12 +205,12 @@ public class DatabaseConnection
     final Connection con = dataSource.getConnection();
     return con;
   }
-  
+
   public static int getActiveConnections()
   {
     return connectionPool.getNumActive();
   }
-  
+
   public static int getIdleConnections()
   {
     return connectionPool.getNumIdle();

@@ -75,7 +75,7 @@ public class MapleGuild implements Comparable<MapleGuild>
       ps = con.prepareStatement("SELECT * FROM guilds WHERE guildid = ?");
       ps.setInt(1, guildid);
       rs = ps.executeQuery();
-      if (!rs.first())
+      if (!rs.next())
       {
         rs.close();
         ps.close();

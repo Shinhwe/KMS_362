@@ -32,12 +32,12 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class MapleClient
 {
-  
+
   public static final byte LOGIN_NOTLOGGEDIN = 0;
   public static final byte LOGIN_SERVER_TRANSITION = 1;
   public static final byte LOGIN_LOGGEDIN = 2;
   public static final byte CHANGE_CHANNEL = 3;
-  public static final int DEFAULT_CHARSLOT = 48;//characterslot
+  public static final int DEFAULT_CHARSLOT = 48;// characterslot
   public static final String CLIENT_KEY = "CLIENT";
   public static final AttributeKey<MapleClient> CLIENTKEY = AttributeKey.valueOf("mapleclient_netty");
   private static final long serialVersionUID = 9179541993413738569L;
@@ -97,15 +97,15 @@ public class MapleClient
   private Map<String, String> keyValues = new HashMap<>();
   private List<MapleCabinet> cabinet = new ArrayList<>();
   private List<MapleShopLimit> shops = new ArrayList<>();
-  
-  public MapleClient(Channel session, MapleAESOFB send, MapleAESOFB receive)
+
+  public MapleClient (Channel session, MapleAESOFB send, MapleAESOFB receive)
   {
     this.send = send;
     this.receive = receive;
     this.session = session;
   }
-  
-  public static final void banMacs(String[] macs)
+
+  public static final void banMacs (String[] macs)
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -175,8 +175,8 @@ public class MapleClient
       }
     }
   }
-  
-  public static final byte unban(String charname)
+
+  public static final byte unban (String charname)
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -231,23 +231,23 @@ public class MapleClient
     }
     return 0;
   }
-  
-  public static final String getLogMessage(MapleClient cfor, String message)
+
+  public static final String getLogMessage (MapleClient cfor, String message)
   {
     return getLogMessage(cfor, message, new Object[0]);
   }
-  
-  public static final String getLogMessage(MapleCharacter cfor, String message)
+
+  public static final String getLogMessage (MapleCharacter cfor, String message)
   {
     return getLogMessage((cfor == null) ? null : cfor.getClient(), message);
   }
-  
-  public static final String getLogMessage(MapleCharacter cfor, String message, Object... parms)
+
+  public static final String getLogMessage (MapleCharacter cfor, String message, Object... parms)
   {
     return getLogMessage((cfor == null) ? null : cfor.getClient(), message, parms);
   }
-  
-  public static final String getLogMessage(MapleClient cfor, String message, Object... parms)
+
+  public static final String getLogMessage (MapleClient cfor, String message, Object... parms)
   {
     StringBuilder builder = new StringBuilder();
     if (cfor != null)
@@ -275,8 +275,8 @@ public class MapleClient
     }
     return builder.toString();
   }
-  
-  public static final int findAccIdForCharacterName(String charName)
+
+  public static final int findAccIdForCharacterName (String charName)
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -325,8 +325,8 @@ public class MapleClient
     }
     return -1;
   }
-  
-  public static final byte unbanIPMacs(String charname)
+
+  public static final byte unbanIPMacs (String charname)
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -419,8 +419,8 @@ public class MapleClient
       }
     }
   }
-  
-  public static final byte unHellban(String charname)
+
+  public static final byte unHellban (String charname)
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -492,58 +492,58 @@ public class MapleClient
       }
     }
   }
-  
-  public final MapleAESOFB getReceiveCrypto()
+
+  public final MapleAESOFB getReceiveCrypto ()
   {
     return this.receive;
   }
-  
-  public final MapleAESOFB getSendCrypto()
+
+  public final MapleAESOFB getSendCrypto ()
   {
     return this.send;
   }
-  
-  public final Channel getSession()
+
+  public final Channel getSession ()
   {
     return this.session;
   }
-  
-  public final Lock getLock()
+
+  public final Lock getLock ()
   {
     return this.mutex;
   }
-  
-  public final Lock getNPCLock()
+
+  public final Lock getNPCLock ()
   {
     return this.npc_mutex;
   }
-  
-  public MapleCharacter getPlayer()
+
+  public MapleCharacter getPlayer ()
   {
     return this.player;
   }
-  
-  public void setPlayer(MapleCharacter player)
+
+  public void setPlayer (MapleCharacter player)
   {
     this.player = player;
   }
-  
-  public void createdChar(int id)
+
+  public void createdChar (int id)
   {
     this.allowedChar.add(Integer.valueOf(id));
   }
-  
-  public final boolean login_Auth(int id)
+
+  public final boolean login_Auth (int id)
   {
     return this.allowedChar.contains(Integer.valueOf(id));
   }
-  
-  public boolean canMakeCharacter(int serverId)
+
+  public boolean canMakeCharacter (int serverId)
   {
     return (loadCharactersSize(serverId) < getCharacterSlots());
   }
-  
-  public final List<MapleCharacter> loadCharacters(int serverId)
+
+  public final List<MapleCharacter> loadCharacters (int serverId)
   {
     List<MapleCharacter> chars = new LinkedList<>();
     for (CharNameAndId cni : loadCharactersInternal(serverId))
@@ -555,8 +555,8 @@ public class MapleClient
     }
     return chars;
   }
-  
-  public List<String> loadCharacterNames(int serverId)
+
+  public List<String> loadCharacterNames (int serverId)
   {
     List<String> chars = new LinkedList<>();
     for (CharNameAndId cni : loadCharactersInternal(serverId))
@@ -565,8 +565,8 @@ public class MapleClient
     }
     return chars;
   }
-  
-  private List<CharNameAndId> loadCharactersInternal(int serverId)
+
+  private List<CharNameAndId> loadCharactersInternal (int serverId)
   {
     List<CharNameAndId> chars = new LinkedList<>();
     Connection con = null;
@@ -617,8 +617,8 @@ public class MapleClient
     }
     return chars;
   }
-  
-  private int loadCharactersSize(int serverId)
+
+  private int loadCharactersSize (int serverId)
   {
     int chars = 0;
     Connection con = null;
@@ -668,22 +668,23 @@ public class MapleClient
     }
     return chars;
   }
-  
-  public boolean isLoggedIn()
+
+  public boolean isLoggedIn ()
   {
     return (this.loggedIn && this.accId >= 0);
   }
-  
-  private Calendar getTempBanCalendar(ResultSet rs) throws SQLException
+
+  private Calendar getTempBanCalendar (ResultSet rs) throws SQLException
   {
     Calendar lTempban = Calendar.getInstance();
-    if (rs.getLong("tempban") == 0L)
+    Timestamp timestamp = rs.getTimestamp("tempban");
+    if (timestamp == null)
     {
       lTempban.setTimeInMillis(0L);
       return lTempban;
     }
     Calendar today = Calendar.getInstance();
-    lTempban.setTimeInMillis(rs.getTimestamp("tempban").getTime());
+    lTempban.setTimeInMillis(timestamp.getTime());
     if (today.getTimeInMillis() < lTempban.getTimeInMillis())
     {
       return lTempban;
@@ -691,18 +692,18 @@ public class MapleClient
     lTempban.setTimeInMillis(0L);
     return lTempban;
   }
-  
-  public Calendar getTempBanCalendar()
+
+  public Calendar getTempBanCalendar ()
   {
     return this.tempban;
   }
-  
-  public byte getBanReason()
+
+  public byte getBanReason ()
   {
     return this.greason;
   }
-  
-  public void ban()
+
+  public void ban ()
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -743,8 +744,8 @@ public class MapleClient
       }
     }
   }
-  
-  public boolean hasBannedIP()
+
+  public boolean hasBannedIP ()
   {
     boolean ret = false;
     Connection con = null;
@@ -793,8 +794,8 @@ public class MapleClient
     }
     return ret;
   }
-  
-  public boolean hasBannedMac()
+
+  public boolean hasBannedMac ()
   {
     if (this.macs.isEmpty())
     {
@@ -863,8 +864,8 @@ public class MapleClient
     }
     return ret;
   }
-  
-  private void loadMacsIfNescessary() throws SQLException
+
+  private void loadMacsIfNescessary () throws SQLException
   {
     if (this.macs.isEmpty())
     {
@@ -947,8 +948,8 @@ public class MapleClient
       }
     }
   }
-  
-  public void banMacs()
+
+  public void banMacs ()
   {
     try
     {
@@ -970,14 +971,14 @@ public class MapleClient
       e.printStackTrace();
     }
   }
-  
-  public int finishLogin()
+
+  public int finishLogin ()
   {
     updateLoginState(2, getSessionIPAddress());
     return 0;
   }
-  
-  public void clearInformation()
+
+  public void clearInformation ()
   {
     this.accountName = null;
     this.accId = -1;
@@ -988,8 +989,8 @@ public class MapleClient
     this.tempban = null;
     this.gender = -1;
   }
-  
-  public void SaveQuest(Connection con)
+
+  public void SaveQuest (Connection con)
   {
     PreparedStatement ps = null;
     PreparedStatement pse = null;
@@ -1063,8 +1064,8 @@ public class MapleClient
       }
     }
   }
-  
-  public void loadCustomDatas()
+
+  public void loadCustomDatas ()
   {
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -1127,8 +1128,8 @@ public class MapleClient
       }
     }
   }
-  
-  public void loadCustomKeyValue()
+
+  public void loadCustomKeyValue ()
   {
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -1186,8 +1187,8 @@ public class MapleClient
       }
     }
   }
-  
-  public void loadQuest()
+
+  public void loadQuest ()
   {
     PreparedStatement ps = null;
     PreparedStatement pse = null;
@@ -1270,8 +1271,8 @@ public class MapleClient
       }
     }
   }
-  
-  public void loadKeyValues()
+
+  public void loadKeyValues ()
   {
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -1329,15 +1330,15 @@ public class MapleClient
       }
     }
   }
-  
-  public int login(String login, String pwd, String mac, boolean ipMacBanned)
+
+  public int login (String login, String pwd, String mac, boolean ipMacBanned)
   {
     boolean ipBan = hasBannedIP();
     boolean macBan = hasBannedMac();
     return login(login, pwd, mac, false, (ipBan || macBan));
   }
-  
-  public int login(String login, String pwd, String mac, boolean weblogin, boolean ipMacBanned)
+
+  public int login (String login, String pwd, String mac, boolean weblogin, boolean ipMacBanned)
   {
     int loginok = 5;
     PreparedStatement ps = null;
@@ -1368,11 +1369,11 @@ public class MapleClient
         this.SecondPwUse = rs.getInt("SecondPwUse");
         this.saveOTPNum = rs.getInt("saveOTPNum");
         this.saveOTPDay = rs.getString("saveOTPDay");
-        
+
         int allowed = rs.getByte("allowed");
         rs.close();
         ps.close();
-        
+
         if (banned > 0 && !this.gm)
         {
           loginok = 3;
@@ -1426,7 +1427,7 @@ public class MapleClient
     }
     catch (SQLException e)
     {
-      System.err.println("ERROR" + e);
+      e.printStackTrace();
     }
     finally
     {
@@ -1466,14 +1467,14 @@ public class MapleClient
     }
     return loginok;
   }
-  
-  public boolean CheckSecondPassword(String in)
+
+  public boolean CheckSecondPassword (String in)
   {
     boolean allow = in.equals(this.secondPassword);
     return allow;
   }
-  
-  private void unban()
+
+  private void unban ()
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -1514,8 +1515,8 @@ public class MapleClient
       }
     }
   }
-  
-  public void updateMacs(String macData)
+
+  public void updateMacs (String macData)
   {
     Collections.addAll(this.macs, macData.split(", "));
     StringBuilder newMacData = new StringBuilder();
@@ -1568,18 +1569,18 @@ public class MapleClient
       }
     }
   }
-  
-  public int getAccID()
+
+  public int getAccID ()
   {
     return this.accId;
   }
-  
-  public void setAccID(int id)
+
+  public void setAccID (int id)
   {
     this.accId = id;
   }
-  
-  public final void updateLoginState(int newstate, String SessionID)
+
+  public final void updateLoginState (int newstate, String SessionID)
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -1632,8 +1633,8 @@ public class MapleClient
       this.loggedIn = !this.serverTransition;
     }
   }
-  
-  public final void updateLoginState(int newstate, String SessionID, String accname)
+
+  public final void updateLoginState (int newstate, String SessionID, String accname)
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -1686,8 +1687,8 @@ public class MapleClient
       this.loggedIn = !this.serverTransition;
     }
   }
-  
-  public final void updateSecondPassword()
+
+  public final void updateSecondPassword ()
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -1729,8 +1730,8 @@ public class MapleClient
       }
     }
   }
-  
-  public final byte getLoginState()
+
+  public final byte getLoginState ()
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -1747,8 +1748,7 @@ public class MapleClient
         throw new DatabaseException("Everything sucks ?꾩씠??: " + getAccID());
       }
       byte state = rs.getByte("loggedin");
-      if ((state == 1 || state == 3)
-          && rs.getTimestamp("lastlogin").getTime() + 20000L < System.currentTimeMillis())
+      if ((state == 1 || state == 3) && rs.getTimestamp("lastlogin").getTime() + 20000L < System.currentTimeMillis())
       {
         state = 0;
         updateLoginState(state, null);
@@ -1786,13 +1786,13 @@ public class MapleClient
       }
     }
   }
-  
-  public final boolean checkBirthDate(int date)
+
+  public final boolean checkBirthDate (int date)
   {
     return (this.birthday == date);
   }
-  
-  public final void removalTask(boolean shutdown)
+
+  public final void removalTask (boolean shutdown)
   {
     try
     {
@@ -1918,8 +1918,8 @@ public class MapleClient
       FileoutputUtil.outputFileError("Log_AccountStuck.rtf", e);
     }
   }
-  
-  public String getPassword(String login)
+
+  public String getPassword (String login)
   {
     String password = null;
     Connection con = null;
@@ -1967,13 +1967,13 @@ public class MapleClient
     }
     return password;
   }
-  
-  public final void disconnect(boolean RemoveInChannelServer, boolean fromCS)
+
+  public final void disconnect (boolean RemoveInChannelServer, boolean fromCS)
   {
     disconnect(RemoveInChannelServer, fromCS, false);
   }
-  
-  public final void disconnect(boolean RemoveInChannelServer, boolean fromCS, boolean shutdown)
+
+  public final void disconnect (boolean RemoveInChannelServer, boolean fromCS, boolean shutdown)
   {
     if (this.player != null)
     {
@@ -2131,8 +2131,8 @@ public class MapleClient
     }
     this.engines.clear();
   }
-  
-  public final void disconnect(MapleCharacter player, boolean RemoveInChannelServer, boolean fromCS, boolean shutdown)
+
+  public final void disconnect (MapleCharacter player, boolean RemoveInChannelServer, boolean fromCS, boolean shutdown)
   {
     if (player != null)
     {
@@ -2276,13 +2276,13 @@ public class MapleClient
     updateLoginState(0, getSessionIPAddress());
     this.engines.clear();
   }
-  
-  public final String getSessionIPAddress()
+
+  public final String getSessionIPAddress ()
   {
     return this.session.remoteAddress().toString().split(":")[0].split("/")[1];
   }
-  
-  public final boolean CheckIPAddress()
+
+  public final boolean CheckIPAddress ()
   {
     if (this.accId < 0)
     {
@@ -2343,27 +2343,27 @@ public class MapleClient
     }
     return true;
   }
-  
-  public final void DebugMessage(StringBuilder sb)
+
+  public final void DebugMessage (StringBuilder sb)
   {
   }
-  
-  public final int getChannel()
+
+  public final int getChannel ()
   {
     return this.channel;
   }
-  
-  public final void setChannel(int channel)
+
+  public final void setChannel (int channel)
   {
     this.channel = channel;
   }
-  
-  public final ChannelServer getChannelServer()
+
+  public final ChannelServer getChannelServer ()
   {
     return ChannelServer.getInstance(this.channel);
   }
-  
-  public final int deleteCharacter(int cid)
+
+  public final int deleteCharacter (int cid)
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -2440,7 +2440,7 @@ public class MapleClient
       MapleCharacter.deleteWhereCharacterId(con, "DELETE FROM inventoryslot WHERE characterid = ?", cid);
       MapleCharacter.deleteWhereCharacterId(con, "DELETE FROM extendedSlots WHERE characterid = ?", cid);
       MapleCharacter.deleteWhereCharacterId(con, "DELETE FROM `unions` WHERE id = ?", cid);
-      
+
       con.close();
       return 0;
     }
@@ -2477,87 +2477,87 @@ public class MapleClient
     }
     return 10;
   }
-  
-  public final byte getGender()
+
+  public final byte getGender ()
   {
     return this.gender;
   }
-  
-  public final void setGender(byte gender)
+
+  public final void setGender (byte gender)
   {
     this.gender = gender;
   }
-  
-  public final String getSecondPassword()
+
+  public final String getSecondPassword ()
   {
     return this.secondPassword;
   }
-  
-  public final void setSecondPassword(String secondPassword)
+
+  public final void setSecondPassword (String secondPassword)
   {
     this.secondPassword = secondPassword;
   }
-  
-  public final String getAccountName()
+
+  public final String getAccountName ()
   {
     return this.accountName;
   }
-  
-  public final void setAccountName(String accountName)
+
+  public final void setAccountName (String accountName)
   {
     this.accountName = accountName;
   }
-  
-  public final String getPassword()
+
+  public final String getPassword ()
   {
     return this.pwd;
   }
-  
-  public final void setPassword(String pwd)
+
+  public final void setPassword (String pwd)
   {
     this.pwd = pwd;
   }
-  
-  public final int getWorld()
+
+  public final int getWorld ()
   {
     return this.world;
   }
-  
-  public final void setWorld(int world)
+
+  public final void setWorld (int world)
   {
     this.world = world;
   }
-  
-  public final int getLatency()
+
+  public final int getLatency ()
   {
     return (int) (this.lastPong - this.lastPing);
   }
-  
-  public final long getLastPong()
+
+  public final long getLastPong ()
   {
     return this.lastPong;
   }
-  
-  public final long getLastPing()
+
+  public final long getLastPing ()
   {
     return this.lastPing;
   }
-  
-  public final void pongReceived()
+
+  public final void pongReceived ()
   {
     this.lastPong = System.currentTimeMillis();
   }
-  
-  public final void sendPing()
+
+  public final void sendPing ()
   {
     lastPing = System.currentTimeMillis();
     session.writeAndFlush(LoginPacket.getPing());
-    
+
     Timer.PingTimer.getInstance().schedule(new Runnable()
     {
-      
+
       @Override
-      public void run()
+      public void run ()
       {
         try
         {
@@ -2573,53 +2573,53 @@ public class MapleClient
       }
     }, 60000);
   }
-  
-  public final Set<String> getMacs()
+
+  public final Set<String> getMacs ()
   {
     return Collections.unmodifiableSet(this.macs);
   }
-  
-  public final boolean isGm()
+
+  public final boolean isGm ()
   {
     return this.gm;
   }
-  
-  public final void setScriptEngine(String name, ScriptEngine e)
+
+  public final void setScriptEngine (String name, ScriptEngine e)
   {
     this.engines.put(name, e);
   }
-  
-  public final ScriptEngine getScriptEngine(String name)
+
+  public final ScriptEngine getScriptEngine (String name)
   {
     return this.engines.get(name);
   }
-  
-  public final void removeScriptEngine(String name)
+
+  public final void removeScriptEngine (String name)
   {
     this.engines.remove(name);
   }
-  
-  public final ScheduledFuture<?> getIdleTask()
+
+  public final ScheduledFuture<?> getIdleTask ()
   {
     return this.idleTask;
   }
-  
-  public final void setIdleTask(ScheduledFuture<?> idleTask)
+
+  public final void setIdleTask (ScheduledFuture<?> idleTask)
   {
     this.idleTask = idleTask;
   }
-  
-  public boolean isFirstLogin()
+
+  public boolean isFirstLogin ()
   {
     return firstlogin;
   }
-  
-  public void setLogin(boolean a)
+
+  public void setLogin (boolean a)
   {
     firstlogin = a;
   }
-  
-  public int getCharacterSlots()
+
+  public int getCharacterSlots ()
   {// 재 코딩
     if (this.charslots != 30)
     {
@@ -2680,8 +2680,8 @@ public class MapleClient
     }
     return this.charslots;
   }
-  
-  public boolean gainCharacterSlot()
+
+  public boolean gainCharacterSlot ()
   {
     if (this.getCharacterSlots() > 48)
     {
@@ -2731,43 +2731,43 @@ public class MapleClient
     }
     return true;
   }
-  
-  public boolean isMonitored()
+
+  public boolean isMonitored ()
   {
     return this.monitored;
   }
-  
-  public void setMonitored(boolean m)
+
+  public void setMonitored (boolean m)
   {
     this.monitored = m;
   }
-  
-  public boolean isReceiving()
+
+  public boolean isReceiving ()
   {
     return this.receiving;
   }
-  
-  public void setReceiving(boolean m)
+
+  public void setReceiving (boolean m)
   {
     this.receiving = m;
   }
-  
-  public boolean canClickNPC()
+
+  public boolean canClickNPC ()
   {
     return (this.lastNpcClick + 500L < System.currentTimeMillis());
   }
-  
-  public void setClickedNPC()
+
+  public void setClickedNPC ()
   {
     this.lastNpcClick = System.currentTimeMillis();
   }
-  
-  public void removeClickedNPC()
+
+  public void removeClickedNPC ()
   {
     this.lastNpcClick = 0L;
   }
-  
-  public final Timestamp getCreated()
+
+  public final Timestamp getCreated ()
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -2817,53 +2817,53 @@ public class MapleClient
       }
     }
   }
-  
-  public String getTempIP()
+
+  public String getTempIP ()
   {
     return this.tempIP;
   }
-  
-  public void setTempIP(String s)
+
+  public void setTempIP (String s)
   {
     this.tempIP = s;
   }
-  
-  public final byte getNameChangeEnable()
+
+  public final byte getNameChangeEnable ()
   {
     return this.nameChangeEnable;
   }
-  
-  public final void setNameChangeEnable(byte nickName)
+
+  public final void setNameChangeEnable (byte nickName)
   {
     this.nameChangeEnable = nickName;
   }
-  
-  public boolean isLocalhost()
+
+  public boolean isLocalhost ()
   {
     return ServerConstants.Use_Localhost;
   }
-  
-  public boolean isAuction()
+
+  public boolean isAuction ()
   {
     return this.auction;
   }
-  
-  public void setAuction(boolean auction)
+
+  public void setAuction (boolean auction)
   {
     this.auction = auction;
   }
-  
-  public int getPoint()
+
+  public int getPoint ()
   {
     return this.point;
   }
-  
-  public void setPoint(int point)
+
+  public void setPoint (int point)
   {
     this.point = point;
   }
-  
-  public void order(LittleEndianAccessor slea)
+
+  public void order (LittleEndianAccessor slea)
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -2951,18 +2951,18 @@ public class MapleClient
       }
     }
   }
-  
-  public Map<String, String> getKeyValues()
+
+  public Map<String, String> getKeyValues ()
   {
     return this.keyValues;
   }
-  
-  public void setKeyValues(Map<String, String> keyValues)
+
+  public void setKeyValues (Map<String, String> keyValues)
   {
     this.keyValues = keyValues;
   }
-  
-  public void saveKeyValueToDB(Connection con)
+
+  public void saveKeyValueToDB (Connection con)
   {
     try
     {
@@ -2988,8 +2988,8 @@ public class MapleClient
       e.printStackTrace();
     }
   }
-  
-  public void saveCustomDataToDB(Connection con)
+
+  public void saveCustomDataToDB (Connection con)
   {
     PreparedStatement ps = null;
     PreparedStatement pse = null;
@@ -3038,8 +3038,8 @@ public class MapleClient
       }
     }
   }
-  
-  public void saveCustomKeyValueToDB(Connection con)
+
+  public void saveCustomKeyValueToDB (Connection con)
   {
     PreparedStatement ps = null;
     PreparedStatement pse = null;
@@ -3084,8 +3084,8 @@ public class MapleClient
       }
     }
   }
-  
-  public String getKeyValue(String key)
+
+  public String getKeyValue (String key)
   {
     if (this.keyValues.containsKey(key))
     {
@@ -3093,23 +3093,23 @@ public class MapleClient
     }
     return null;
   }
-  
-  public void setKeyValue(String key, String value)
+
+  public void setKeyValue (String key, String value)
   {
     this.keyValues.put(key, value);
   }
-  
-  public void removeKeyValue(String key)
+
+  public void removeKeyValue (String key)
   {
     this.keyValues.remove(key);
   }
-  
-  public Map<Integer, List<Pair<String, String>>> getCustomDatas()
+
+  public Map<Integer, List<Pair<String, String>>> getCustomDatas ()
   {
     return this.customDatas;
   }
-  
-  public String getCustomData(int id, String key)
+
+  public String getCustomData (int id, String key)
   {
     if (this.customDatas.containsKey(Integer.valueOf(id)))
     {
@@ -3123,8 +3123,8 @@ public class MapleClient
     }
     return null;
   }
-  
-  public void setCustomData(int id, String key, String value)
+
+  public void setCustomData (int id, String key, String value)
   {
     if (this.customDatas.containsKey(Integer.valueOf(id)))
     {
@@ -3149,38 +3149,38 @@ public class MapleClient
     this.session.writeAndFlush(CWvsContext.InfoPacket.updateClientInfoQuest(id, key + "=" + value));
     this.session.writeAndFlush(CWvsContext.InfoPacket.updateInfoQuest(id, key + "=" + value));
   }
-  
-  public long getChatBlockedTime()
+
+  public long getChatBlockedTime ()
   {
     return this.chatBlockedTime;
   }
-  
-  public void setChatBlockedTime(long chatBlockedTime)
+
+  public void setChatBlockedTime (long chatBlockedTime)
   {
     this.chatBlockedTime = chatBlockedTime;
   }
-  
-  public boolean isFarm()
+
+  public boolean isFarm ()
   {
     return this.farm;
   }
-  
-  public void setFarm(boolean farm)
+
+  public void setFarm (boolean farm)
   {
     this.farm = farm;
   }
-  
-  public boolean isCashShop()
+
+  public boolean isCashShop ()
   {
     return this.cashShop;
   }
-  
-  public void setCashShop(boolean shop)
+
+  public void setCashShop (boolean shop)
   {
     this.cashShop = shop;
   }
-  
-  public byte[] getFarmImg()
+
+  public byte[] getFarmImg ()
   {
     byte[] farmImg = new byte[0];
     PreparedStatement ps = null;
@@ -3243,8 +3243,8 @@ public class MapleClient
     }
     return farmImg;
   }
-  
-  public final void setFarmImg(byte[] farmImg)
+
+  public final void setFarmImg (byte[] farmImg)
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -3291,8 +3291,8 @@ public class MapleClient
       }
     }
   }
-  
-  public final boolean isAllowedClient()
+
+  public final boolean isAllowedClient ()
   {
     if (this.accountName == null)
     {
@@ -3300,8 +3300,8 @@ public class MapleClient
     }
     return false;
   }
-  
-  public int allChargePoint()
+
+  public int allChargePoint ()
   {
     try
     {
@@ -3312,8 +3312,8 @@ public class MapleClient
       return 0;
     }
   }
-  
-  public int chargePoint()
+
+  public int chargePoint ()
   {
     int charge = 0;
     int month = CurrentTime.getMonth() + 1;
@@ -3335,8 +3335,8 @@ public class MapleClient
     }
     return charge;
   }
-  
-  public int getMVPGrade()
+
+  public int getMVPGrade ()
   {
     int totalAmount = allChargePoint(), lastThreeMonth = chargePoint();
     if (lastThreeMonth >= 1500000)
@@ -3369,23 +3369,23 @@ public class MapleClient
     }
     return 2;
   }
-  
-  public void send(byte[] p)
+
+  public void send (byte[] p)
   {
     getSession().writeAndFlush(p);
   }
-  
-  public long getDiscordId()
+
+  public long getDiscordId ()
   {
     return this.discordid;
   }
-  
-  public int getSecondPw()
+
+  public int getSecondPw ()
   {
     return this.SecondPwUse;
   }
-  
-  public void setSecondPw(int SecondPwUse)
+
+  public void setSecondPw (int SecondPwUse)
   {
     this.SecondPwUse = SecondPwUse;
     Connection con = null;
@@ -3428,23 +3428,23 @@ public class MapleClient
       }
     }
   }
-  
-  public boolean getCheckOTP()
+
+  public boolean getCheckOTP ()
   {
     return this.sendOTP;
   }
-  
-  public void setCheckOTP(boolean a)
+
+  public void setCheckOTP (boolean a)
   {
     this.sendOTP = a;
   }
-  
-  public int getSaveOTPNum()
+
+  public int getSaveOTPNum ()
   {
     return this.saveOTPNum;
   }
-  
-  public void setSaveOTPNum(int saveOTPNum)
+
+  public void setSaveOTPNum (int saveOTPNum)
   {
     this.saveOTPNum = saveOTPNum;
     Connection con = null;
@@ -3487,8 +3487,8 @@ public class MapleClient
       }
     }
   }
-  
-  public String getEmail()
+
+  public String getEmail ()
   {
     String email = "";
     PreparedStatement ps = null;
@@ -3547,28 +3547,28 @@ public class MapleClient
     }
     return email;
   }
-  
-  public String getLIEDETECT()
+
+  public String getLIEDETECT ()
   {
     return this.LIEDETECT;
   }
-  
-  public void setLIEDETECT(String LIEDETECT)
+
+  public void setLIEDETECT (String LIEDETECT)
   {
     this.LIEDETECT = LIEDETECT;
   }
-  
-  public int getLieDectctCount()
+
+  public int getLieDectctCount ()
   {
     return this.lieDectctCount;
   }
-  
-  public void setLieDectctCount(int lieDectctCount)
+
+  public void setLieDectctCount (int lieDectctCount)
   {
     this.lieDectctCount = lieDectctCount;
   }
-  
-  public MapleCharacter getRandomCharacter()
+
+  public MapleCharacter getRandomCharacter ()
   {
     MapleCharacter chr = null;
     List<MapleCharacter> players = new ArrayList<>();
@@ -3592,8 +3592,8 @@ public class MapleClient
     }
     return chr;
   }
-  
-  public void loadCabinet()
+
+  public void loadCabinet ()
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -3641,18 +3641,18 @@ public class MapleClient
       }
     }
   }
-  
-  public List<MapleCabinet> getCabiNet()
+
+  public List<MapleCabinet> getCabiNet ()
   {
     return this.cabinet;
   }
-  
-  public void setCabiNet(List<MapleCabinet> cabinet)
+
+  public void setCabiNet (List<MapleCabinet> cabinet)
   {
     this.cabinet = cabinet;
   }
-  
-  public void saveCabiNet(List<MapleCabinet> cabinet)
+
+  public void saveCabiNet (List<MapleCabinet> cabinet)
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -3718,8 +3718,8 @@ public class MapleClient
       }
     }
   }
-  
-  public void loadShopLimit()
+
+  public void loadShopLimit ()
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -3765,18 +3765,18 @@ public class MapleClient
       }
     }
   }
-  
-  public List<MapleShopLimit> getShopLimit()
+
+  public List<MapleShopLimit> getShopLimit ()
   {
     return this.shops;
   }
-  
-  public void setShopLimit(List<MapleShopLimit> shops)
+
+  public void setShopLimit (List<MapleShopLimit> shops)
   {
     this.shops = shops;
   }
-  
-  public void saveShopLimit(List<MapleShopLimit> shoplimit)
+
+  public void saveShopLimit (List<MapleShopLimit> shoplimit)
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -3841,13 +3841,13 @@ public class MapleClient
       }
     }
   }
-  
-  public String getSaveOTPDay()
+
+  public String getSaveOTPDay ()
   {
     return this.saveOTPDay;
   }
-  
-  public void setSaveOTPDay(String saveOTPDay)
+
+  public void setSaveOTPDay (String saveOTPDay)
   {
     this.saveOTPDay = saveOTPDay;
     Connection con = null;
@@ -3890,8 +3890,8 @@ public class MapleClient
       }
     }
   }
-  
-  public long getCharCreatetime()
+
+  public long getCharCreatetime ()
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -3937,8 +3937,8 @@ public class MapleClient
     }
     return this.createchartime;
   }
-  
-  public void setCharCreatetime(long time)
+
+  public void setCharCreatetime (long time)
   {
     this.createchartime = time;
     Connection con = null;
@@ -3990,8 +3990,8 @@ public class MapleClient
       }
     }
   }
-  
-  public boolean isFirstlogin()
+
+  public boolean isFirstlogin ()
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -4037,8 +4037,8 @@ public class MapleClient
     }
     return this.firstlogin;
   }
-  
-  public void setFirstlogin(boolean firstlogin)
+
+  public void setFirstlogin (boolean firstlogin)
   {
     this.firstlogin = firstlogin;
     Connection con = null;
@@ -4090,8 +4090,8 @@ public class MapleClient
       }
     }
   }
-  
-  public long getCustomKeyValue(int type, String key)
+
+  public long getCustomKeyValue (int type, String key)
   {
     String questInfo = getInfoQuest(type);
     if (questInfo == null)
@@ -4111,8 +4111,8 @@ public class MapleClient
     }
     return -1L;
   }
-  
-  public String getCustomKeyValueStr(int type, String key)
+
+  public String getCustomKeyValueStr (int type, String key)
   {
     String questInfo = getInfoQuest(type);
     if (questInfo == null)
@@ -4131,8 +4131,8 @@ public class MapleClient
     }
     return null;
   }
-  
-  public void setCustomKeyValue(int id, String key, String value)
+
+  public void setCustomKeyValue (int id, String key, String value)
   {
     String questInfo = getInfoQuest(id);
     if (questInfo == null)
@@ -4155,8 +4155,8 @@ public class MapleClient
     this.customKeyValue.put(Integer.valueOf(id), questInfo + key + "=" + value + ";");
     getSession().writeAndFlush(CWvsContext.InfoPacket.updateInfoQuest(id, questInfo + key + "=" + value + ";"));
   }
-  
-  public void removeCustomKeyValue(int type)
+
+  public void removeCustomKeyValue (int type)
   {
     MapleQuest quest = MapleQuest.getInstance(type);
     if (quest == null)
@@ -4197,8 +4197,8 @@ public class MapleClient
       }
     }
   }
-  
-  public final List<MapleQuestStatus> getStartedQuests()
+
+  public final List<MapleQuestStatus> getStartedQuests ()
   {
     List<MapleQuestStatus> ret = new LinkedList<>();
     for (MapleQuestStatus q : this.quests.values())
@@ -4210,8 +4210,8 @@ public class MapleClient
     }
     return ret;
   }
-  
-  public final List<MapleQuestStatus> getCompletedQuests()
+
+  public final List<MapleQuestStatus> getCompletedQuests ()
   {
     List<MapleQuestStatus> ret = new LinkedList<>();
     for (MapleQuestStatus q : this.quests.values())
@@ -4223,8 +4223,8 @@ public class MapleClient
     }
     return ret;
   }
-  
-  public final void updateQuest(MapleQuestStatus quest, boolean update)
+
+  public final void updateQuest (MapleQuestStatus quest, boolean update)
   {
     this.quests.put(quest.getQuest(), quest);
     if (update)
@@ -4232,8 +4232,8 @@ public class MapleClient
       getSession().writeAndFlush(CWvsContext.InfoPacket.updateQuest(quest));
     }
   }
-  
-  public final byte getQuestStatus(int quest)
+
+  public final byte getQuestStatus (int quest)
   {
     MapleQuest qq = MapleQuest.getInstance(quest);
     if (getQuestNoAdd(qq) == null)
@@ -4242,8 +4242,8 @@ public class MapleClient
     }
     return getQuestNoAdd(qq).getStatus();
   }
-  
-  public final MapleQuestStatus getQuestNoAdd(MapleQuest quest)
+
+  public final MapleQuestStatus getQuestNoAdd (MapleQuest quest)
   {
     if (!this.quests.containsKey(quest))
     {
@@ -4251,8 +4251,8 @@ public class MapleClient
     }
     return this.quests.get(quest);
   }
-  
-  public final MapleQuestStatus getQuest(MapleQuest quest)
+
+  public final MapleQuestStatus getQuest (MapleQuest quest)
   {
     if (!this.quests.containsKey(quest))
     {
@@ -4260,13 +4260,13 @@ public class MapleClient
     }
     return this.quests.get(quest);
   }
-  
-  public Map<MapleQuest, MapleQuestStatus> getQuests()
+
+  public Map<MapleQuest, MapleQuestStatus> getQuests ()
   {
     return this.quests;
   }
-  
-  public final String getInfoQuest(int questid)
+
+  public final String getInfoQuest (int questid)
   {
     if (this.customKeyValue.containsKey(Integer.valueOf(questid)))
     {
@@ -4274,20 +4274,20 @@ public class MapleClient
     }
     return "";
   }
-  
-  public Map<Integer, String> getCustomKeyValue()
+
+  public Map<Integer, String> getCustomKeyValue ()
   {
     return this.customKeyValue;
   }
-  
+
   protected static final class CharNameAndId
   {
-    
+
     public final String name;
-    
+
     public final int id;
-    
-    public CharNameAndId(String name, int id)
+
+    public CharNameAndId (String name, int id)
     {
       this.name = name;
       this.id = id;
