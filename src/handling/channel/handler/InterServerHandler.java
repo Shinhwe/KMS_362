@@ -598,15 +598,15 @@ public class InterServerHandler
       player.giveCoolDowns(PlayerBuffStorage.getCooldownsFromStorage(player.getId()));
       
       /*  460 */
-      if (player.choicepotential != null && player.memorialcube != null)
+      if (player.choicePotential != null && player.memorialcube != null)
       {
         /*  461 */
-        Item ordinary = player.getInventory(MapleInventoryType.EQUIP).getItem(player.choicepotential.getPosition());
+        Item ordinary = player.getInventory(MapleInventoryType.EQUIP).getItem(player.choicePotential.getPosition());
         /*  462 */
         if (ordinary != null)
         {
           /*  463 */
-          player.choicepotential.setInventoryId(ordinary.getInventoryId());
+          player.choicePotential.setInventoryId(ordinary.getInventoryId());
         }
       }
       
@@ -618,15 +618,15 @@ public class InterServerHandler
       }
       
       /*  471 */
-      if (player.returnscroll != null)
+      if (player.returnScroll != null)
       {
         /*  472 */
-        Item ordinary = player.getInventory(MapleInventoryType.EQUIP).getItem(player.returnscroll.getPosition());
+        Item ordinary = player.getInventory(MapleInventoryType.EQUIP).getItem(player.returnScroll.getPosition());
         /*  473 */
         if (ordinary != null)
         {
           /*  474 */
-          player.returnscroll.setInventoryId(ordinary.getInventoryId());
+          player.returnScroll.setInventoryId(ordinary.getInventoryId());
         }
       }
       /*  477 */
@@ -903,19 +903,19 @@ public class InterServerHandler
       c.getSession().writeAndFlush(CWvsContext.updateMaplePoint(player));
       
       /*  609 */
-      if (player.returnscroll != null)
+      if (player.returnScroll != null)
       {
         /*  610 */
-        c.getSession().writeAndFlush(CWvsContext.returnEffectConfirm(player.returnscroll, player.returnSc));
+        c.getSession().writeAndFlush(CWvsContext.returnEffectConfirm(player.returnScroll, player.returnSc));
         /*  611 */
-        c.getSession().writeAndFlush(CWvsContext.returnEffectModify(player.returnscroll, player.returnSc));
+        c.getSession().writeAndFlush(CWvsContext.returnEffectModify(player.returnScroll, player.returnSc));
       }
       
       /*  614 */
-      if (player.choicepotential != null && player.memorialcube != null)
+      if (player.choicePotential != null && player.memorialcube != null)
       {
         /*  616 */
-        c.getSession().writeAndFlush(CField.getBlackCubeStart(player, player.choicepotential, false, player.memorialcube.getItemId(), player.memorialcube.getPosition(), player.getItemQuantity(5062010, false)));
+        c.getSession().writeAndFlush(CField.getBlackCubeStart(player, player.choicePotential, false, player.memorialcube.getItemId(), player.memorialcube.getPosition(), player.getItemQuantity(5062010, false)));
       }
       /*  618 */
       if (GameConstants.isBlaster(player.getJob()))

@@ -131,16 +131,16 @@ public class VerifyDamage
         //per_mhp += equip.get
         
         total_damage += equip.getTotalDamage();
-        base_boss_damage += equip.getBossDamage();
+        base_boss_damage += equip.getTotalBossDamage();
         
-        add_mhp += equip.getHp();
-        add_mmp += equip.getMp();
-        add_dex += equip.getDex();
-        add_int += equip.getInt();
-        add_str += equip.getStr();
-        add_luk += equip.getLuk();
-        add_watk += equip.getWatk();
-        add_matk += equip.getMatk();
+        add_mhp += equip.getTotalHp();
+        add_mmp += equip.getTotalMp();
+        add_dex += equip.getTotalDex();
+        add_int += equip.getTotalInt();
+        add_str += equip.getTotalStr();
+        add_luk += equip.getTotalLuk();
+        add_watk += equip.getTotalWatk();
+        add_matk += equip.getTotalMatk();
       }
     }
     //====================================== Calculating Equipment Set Option ======================================

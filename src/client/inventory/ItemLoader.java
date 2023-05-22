@@ -234,30 +234,65 @@ public enum ItemLoader
           }
           if (rs.getInt("itemid") / 1000000 == 1)
           {
-            Equip equip = new Equip(rs.getInt("itemid"), rs.getShort("position"), rs.getLong("uniqueid"), rs.getInt("flag"));
+            int itemId = rs.getInt("itemid");
+            
+            short position = rs.getShort("position");
+            
+            long uniqueId =  rs.getLong("uniqueid");
+            
+            int flag = rs.getInt("flag");
+            
+            Equip equip = MapleItemInformationProvider.getInstance().generateEquipById(itemId, uniqueId);
+            
+            equip.setPosition(position);
+            
+            equip.setFlag(flag);
+            
+            
+            EquipTemplate template = MapleItemInformationProvider.getInstance().getTempateByItemId(itemId);
             if (!login)
             {
+              byte enchantLevel = rs.getByte("enchantLevel");
+              
+              byte totalUpgradeSlots = rs.getByte("upgradeslots");
+              
+              byte hammerCount =  rs.getByte("ViciousHammer");
+              
+              equip.setSuccessUpgradeSlots(enchantLevel);
+              
+              equip.setExtraUpgradeSlots(hammerCount);
+              
+              equip.setFailUpgradeSlots((byte)(template.getUpgradeSlots() + hammerCount - enchantLevel - totalUpgradeSlots));
+              
               equip.setQuantity((short) 1);
               equip.setInventoryId(rs.getLong("inventoryitemid"));
               equip.setOwner(rs.getString("owner"));
               equip.setExpiration(rs.getLong("expiredate"));
-              equip.setUpgradeSlots(rs.getByte("upgradeslots"));
-              equip.setLevel(rs.getByte("level"));
-              equip.setStr(rs.getShort("str"));
-              equip.setDex(rs.getShort("dex"));
-              equip.setInt(rs.getShort("int"));
-              equip.setLuk(rs.getShort("luk"));
-              equip.setHp(rs.getShort("hp"));
-              equip.setMp(rs.getShort("mp"));
-              equip.setWatk(rs.getShort("watk"));
-              equip.setMatk(rs.getShort("matk"));
-              equip.setWdef(rs.getShort("wdef"));
-              equip.setMdef(rs.getShort("mdef"));
-              equip.setAcc(rs.getShort("acc"));
-              equip.setAvoid(rs.getShort("avoid"));
-              equip.setHands(rs.getShort("hands"));
-              equip.setSpeed(rs.getShort("speed"));
-              equip.setJump(rs.getShort("jump"));
+              if (equip.getItemId() >= 1113098 && equip.getItemId() <= 1113128)
+              {
+                equip.setItemLevel(enchantLevel);
+                equip.setEnchantLevel((byte) 0);
+              }
+              else
+              {
+                equip.setItemLevel((byte)0);
+                equip.setEnchantLevel(enchantLevel);
+              }
+              equip.setEnchantStr(rs.getShort("str"));
+              equip.setEnchantDex(rs.getShort("dex"));
+              equip.setEnchantInt(rs.getShort("int"));
+              equip.setEnchantLuk(rs.getShort("luk"));
+              equip.setEnchantHp(rs.getShort("hp"));
+              equip.setEnchantMp(rs.getShort("mp"));
+              equip.setEnchantWatk(rs.getShort("watk"));
+              equip.setEnchantMatk(rs.getShort("matk"));
+              equip.setEnchantWdef(rs.getShort("wdef"));
+              equip.setEnchantMdef(rs.getShort("mdef"));
+              equip.setEnchantAccuracy(rs.getShort("accuracy"));
+              equip.setEnchantAvoid(rs.getShort("avoid"));
+              equip.setEnchantCraft(rs.getShort("craft"));
+              equip.setEnchantMovementSpeed(rs.getShort("movementSpeed"));
+              equip.setEnchantJump(rs.getShort("jump"));
               equip.setViciousHammer(rs.getByte("ViciousHammer"));
               equip.setItemEXP(rs.getInt("itemEXP"));
               equip.setGMLog(rs.getString("GM_Log"));
@@ -273,11 +308,10 @@ public enum ItemLoader
               equip.setPotential6(rs.getInt("potential6"));
               equip.setGiftFrom(rs.getString("sender"));
               equip.setIncSkill(rs.getInt("incSkill"));
-              equip.setPVPDamage(rs.getShort("pvpDamage"));
               equip.setCharmEXP(rs.getShort("charmEXP"));
               if (equip.getCharmEXP() < 0)
               {
-                equip.setCharmEXP(((Equip) ii.getEquipById(equip.getItemId())).getCharmEXP());
+                equip.setCharmEXP(template.getCharmEXP());
               }
               if (equip.getUniqueId() > -1L)
               {
@@ -300,25 +334,23 @@ public enum ItemLoader
               }
               equip.calcStarForceStats();
               equip.setEnchantBuff(rs.getShort("enchantbuff"));
-              equip.setReqLevel(rs.getByte("reqLevel"));
               equip.setYggdrasilWisdom(rs.getByte("yggdrasilWisdom"));
               equip.setFinalStrike((rs.getByte("finalStrike") > 0));
-              equip.setBossDamage(rs.getByte("bossDamage"));
-              equip.setIgnorePDR(rs.getByte("ignorePDR"));
-              equip.setTotalDamage(rs.getByte("totalDamage"));
-              equip.setAllStat(rs.getByte("allStat"));
+              equip.setEnchantBossDamage(rs.getByte("bossDamage"));
+              equip.setEnchantIgnorePDR(rs.getByte("ignorePDR"));
+              equip.setEnchantDamage(rs.getByte("totalDamage"));
+              equip.setEnchantAllStat(rs.getByte("allStat"));
               equip.setKarmaCount(rs.getByte("karmaCount"));
               equip.setSoulEnchanter(rs.getShort("soulenchanter"));
               equip.setSoulName(rs.getShort("soulname"));
               equip.setSoulPotential(rs.getShort("soulpotential"));
               equip.setSoulSkill(rs.getInt("soulskill"));
-              equip.setFire((rs.getLong("fire") < 0L) ? 0L : rs.getLong("fire"));
+              equip.setFlame((rs.getLong("flame") < 0L) ? 0L : rs.getLong("flame"));
               equip.setArc(rs.getShort("arc"));
               equip.setArcEXP(rs.getInt("arcexp"));
               equip.setArcLevel(rs.getInt("arclevel"));
               equip.setEquipmentType(rs.getInt("equipmenttype"));
               equip.setMoru(rs.getInt("moru"));
-              equip.setAttackSpeed(rs.getInt("attackSpeed"));
               equip.setOptionExpiration(rs.getLong("optionexpiration"));
               equip.setCoption1(rs.getInt("coption1"));
               equip.setCoption2(rs.getInt("coption2"));
@@ -340,7 +372,7 @@ public enum ItemLoader
                   equip.setEnchantMatk(rs1.getShort("matk"));
                   equip.setEnchantWdef(rs1.getShort("wdef"));
                   equip.setEnchantMdef(rs1.getShort("mdef"));
-                  equip.setEnchantAcc(rs1.getShort("acc"));
+                  equip.setEnchantAccuracy(rs1.getShort("accuracy"));
                   equip.setEnchantAvoid(rs1.getShort("avoid"));
                 }
                 rs1.close();
@@ -576,33 +608,33 @@ public enum ItemLoader
             continue;
           }
           pse.setLong(1, iid);
-          pse.setInt(2, (equip.getUpgradeSlots() <= 0) ? 0 : equip.getUpgradeSlots());
+          pse.setInt(2, (equip.getTotalUpgradeSlots() <= 0) ? 0 : equip.getTotalUpgradeSlots());
           if (equip.getItemId() >= 1113098 && equip.getItemId() <= 1113128)
           {
-            pse.setInt(3, equip.getBaseLevel());
+            pse.setInt(3, equip.getItemLevel());
           }
           else
           {
-            pse.setInt(3, equip.getLevel());
+            pse.setInt(3, equip.getEnchantLevel());
           }
-          pse.setInt(4, equip.getStr());
-          pse.setInt(5, equip.getDex());
-          pse.setInt(6, equip.getInt());
-          pse.setInt(7, equip.getLuk());
+          pse.setInt(4, equip.getEnchantStr());
+          pse.setInt(5, equip.getEnchantDex());
+          pse.setInt(6, equip.getEnchantInt());
+          pse.setInt(7, equip.getEnchantLuk());
           pse.setShort(8, equip.getArc());
           pse.setInt(9, equip.getArcEXP());
           pse.setInt(10, equip.getArcLevel());
-          pse.setInt(11, equip.getHp());
-          pse.setInt(12, equip.getMp());
-          pse.setInt(13, equip.getWatk());
-          pse.setInt(14, equip.getMatk());
-          pse.setInt(15, equip.getWdef());
-          pse.setInt(16, equip.getMdef());
-          pse.setInt(17, equip.getAcc());
-          pse.setInt(18, equip.getAvoid());
-          pse.setInt(19, equip.getHands());
-          pse.setInt(20, equip.getSpeed());
-          pse.setInt(21, equip.getJump());
+          pse.setInt(11, equip.getEnchantHp());
+          pse.setInt(12, equip.getEnchantMp());
+          pse.setInt(13, equip.getEnchantWatk());
+          pse.setInt(14, equip.getEnchantMatk());
+          pse.setInt(15, equip.getEnchantWdef());
+          pse.setInt(16, equip.getEnchantMdef());
+          pse.setInt(17, equip.getEnchantAccuracy());
+          pse.setInt(18, equip.getEnchantAvoid());
+          pse.setInt(19, equip.getEnchantCraft());
+          pse.setInt(20, equip.getEnchantMovementSpeed());
+          pse.setInt(21, equip.getEnchantJump());
           pse.setInt(22, equip.getViciousHammer());
           pse.setInt(23, equip.getItemEXP());
           pse.setInt(24, equip.getDurability());
@@ -617,13 +649,13 @@ public enum ItemLoader
           pse.setInt(33, equip.getPotential6());
           pse.setInt(34, equip.getIncSkill());
           pse.setShort(35, equip.getCharmEXP());
-          pse.setShort(36, equip.getPVPDamage());
+          pse.setShort(36, (short) 0);
           pse.setShort(37, equip.getEnchantBuff());
-          pse.setByte(38, equip.getReqLevel());
+          pse.setByte(38, (byte) 0);
           pse.setByte(39, equip.getYggdrasilWisdom());
           pse.setByte(40, (byte) (equip.getFinalStrike() ? 1 : 0));
-          pse.setShort(41, equip.getBossDamage());
-          pse.setShort(42, equip.getIgnorePDR());
+          pse.setShort(41, equip.getEnchantBossDamage());
+          pse.setShort(42, equip.getEnchantIgnorePDR());
           pse.setByte(43, equip.getTotalDamage());
           pse.setByte(44, equip.getAllStat());
           pse.setByte(45, equip.getKarmaCount());
@@ -631,10 +663,10 @@ public enum ItemLoader
           pse.setShort(47, equip.getSoulEnchanter());
           pse.setShort(48, equip.getSoulPotential());
           pse.setInt(49, equip.getSoulSkill());
-          pse.setLong(50, equip.getFire());
+          pse.setLong(50, equip.getFlame());
           pse.setInt(51, equip.getEquipmentType());
           pse.setInt(52, equip.getMoru());
-          pse.setInt(53, equip.getAttackSpeed());
+          pse.setInt(53, (int) 0);
           pse.setLong(54, equip.getOptionExpiration());
           pse.setInt(55, equip.getCoption1());
           pse.setInt(56, equip.getCoption2());
@@ -659,7 +691,7 @@ public enum ItemLoader
             ps2.setShort(9, equip.getEnchantMatk());
             ps2.setShort(10, equip.getEnchantWdef());
             ps2.setShort(11, equip.getEnchantMdef());
-            ps2.setShort(12, equip.getEnchantAcc());
+            ps2.setShort(12, equip.getEnchantAccuracy());
             ps2.setShort(13, equip.getEnchantAvoid());
             ps2.executeUpdate();
             ps2.close();
@@ -829,33 +861,33 @@ public enum ItemLoader
               continue;
             }
             pse.setLong(1, iid);
-            pse.setInt(2, equip.getUpgradeSlots());
+            pse.setInt(2, equip.getTotalUpgradeSlots());
             if (equip.getItemId() >= 1113098 && equip.getItemId() <= 1113128)
             {
-              pse.setInt(3, equip.getBaseLevel());
+              pse.setInt(3, equip.getItemLevel());
             }
             else
             {
-              pse.setInt(3, equip.getLevel());
+              pse.setInt(3, equip.getEnchantLevel());
             }
-            pse.setInt(4, equip.getStr());
-            pse.setInt(5, equip.getDex());
-            pse.setInt(6, equip.getInt());
-            pse.setInt(7, equip.getLuk());
+            pse.setInt(4, equip.getEnchantStr());
+            pse.setInt(5, equip.getEnchantDex());
+            pse.setInt(6, equip.getEnchantInt());
+            pse.setInt(7, equip.getEnchantLuk());
             pse.setShort(8, equip.getArc());
             pse.setInt(9, equip.getArcEXP());
             pse.setInt(10, equip.getArcLevel());
-            pse.setInt(11, equip.getHp());
-            pse.setInt(12, equip.getMp());
-            pse.setInt(13, equip.getWatk());
-            pse.setInt(14, equip.getMatk());
-            pse.setInt(15, equip.getWdef());
-            pse.setInt(16, equip.getMdef());
-            pse.setInt(17, equip.getAcc());
-            pse.setInt(18, equip.getAvoid());
-            pse.setInt(19, equip.getHands());
-            pse.setInt(20, equip.getSpeed());
-            pse.setInt(21, equip.getJump());
+            pse.setInt(11, equip.getEnchantHp());
+            pse.setInt(12, equip.getEnchantMp());
+            pse.setInt(13, equip.getEnchantWatk());
+            pse.setInt(14, equip.getEnchantMatk());
+            pse.setInt(15, equip.getEnchantWdef());
+            pse.setInt(16, equip.getEnchantMdef());
+            pse.setInt(17, equip.getEnchantAccuracy());
+            pse.setInt(18, equip.getEnchantAvoid());
+            pse.setInt(19, equip.getEnchantCraft());
+            pse.setInt(20, equip.getEnchantMovementSpeed());
+            pse.setInt(21, equip.getEnchantJump());
             pse.setInt(22, equip.getViciousHammer());
             pse.setInt(23, equip.getItemEXP());
             pse.setInt(24, equip.getDurability());
@@ -870,13 +902,13 @@ public enum ItemLoader
             pse.setInt(33, equip.getPotential6());
             pse.setInt(34, equip.getIncSkill());
             pse.setShort(35, equip.getCharmEXP());
-            pse.setShort(36, equip.getPVPDamage());
+            pse.setShort(36, (short) 0);
             pse.setShort(37, equip.getEnchantBuff());
-            pse.setByte(38, equip.getReqLevel());
+            pse.setByte(38, (byte) 0);
             pse.setByte(39, equip.getYggdrasilWisdom());
             pse.setByte(40, (byte) (equip.getFinalStrike() ? 1 : 0));
-            pse.setShort(41, equip.getBossDamage());
-            pse.setShort(42, equip.getIgnorePDR());
+            pse.setShort(41, equip.getEnchantBossDamage());
+            pse.setShort(42, equip.getEnchantIgnorePDR());
             pse.setByte(43, equip.getTotalDamage());
             pse.setByte(44, equip.getAllStat());
             pse.setByte(45, equip.getKarmaCount());
@@ -884,10 +916,10 @@ public enum ItemLoader
             pse.setShort(47, equip.getSoulEnchanter());
             pse.setShort(48, equip.getSoulPotential());
             pse.setInt(49, equip.getSoulSkill());
-            pse.setLong(50, equip.getFire());
+            pse.setLong(50, equip.getFlame());
             pse.setInt(51, equip.getEquipmentType());
             pse.setInt(52, equip.getMoru());
-            pse.setInt(53, equip.getAttackSpeed());
+            pse.setInt(53, 0);
             pse.setLong(54, equip.getOptionExpiration());
             pse.setInt(55, equip.getCoption1());
             pse.setInt(56, equip.getCoption2());
@@ -954,30 +986,70 @@ public enum ItemLoader
           MapleInventoryType mit = MapleInventoryType.getByType(rs.getByte("inventorytype"));
           if (mit.equals(MapleInventoryType.EQUIP) || mit.equals(MapleInventoryType.EQUIPPED) || mit.equals(MapleInventoryType.CODY))
           {
-            Equip equip = new Equip(rs.getInt("itemid"), rs.getShort("position"), rs.getInt("uniqueid"), rs.getInt("flag"));
+            int itemId = rs.getInt("itemid");
+            
+            short position = rs.getShort("position");
+            
+            long uniqueId =  rs.getLong("uniqueid");
+            
+            int flag = rs.getInt("flag");
+            
+            Equip equip = MapleItemInformationProvider.getInstance().generateEquipById(itemId, uniqueId);
+            
+            equip.setPosition(position);
+            
+            equip.setFlag(flag);
+            
+            EquipTemplate template = MapleItemInformationProvider.getInstance().getTempateByItemId(itemId);
+            
             if (!login && equip.getPosition() != -55)
             {
+              
+              byte enchantLevel = rs.getByte("enchantLevel");
+              
+              byte totalUpgradeSlots = rs.getByte("upgradeslots");
+              
+              byte hammerCount =  rs.getByte("ViciousHammer");
+              
+              equip.setSuccessUpgradeSlots(enchantLevel);
+              
+              equip.setExtraUpgradeSlots(hammerCount);
+              
+              equip.setFailUpgradeSlots((byte)(template.getUpgradeSlots() + hammerCount - enchantLevel - totalUpgradeSlots));
+              
               equip.setQuantity((short) 1);
+              
               equip.setInventoryId(rs.getLong("inventoryitemid"));
+              
               equip.setOwner(rs.getString("owner"));
+              
               equip.setExpiration(rs.getLong("expiredate"));
-              equip.setUpgradeSlots(rs.getByte("upgradeslots"));
-              equip.setLevel(rs.getByte("level"));
-              equip.setStr(rs.getShort("str"));
-              equip.setDex(rs.getShort("dex"));
-              equip.setInt(rs.getShort("int"));
-              equip.setLuk(rs.getShort("luk"));
-              equip.setHp(rs.getShort("hp"));
-              equip.setMp(rs.getShort("mp"));
-              equip.setWatk(rs.getShort("watk"));
-              equip.setMatk(rs.getShort("matk"));
-              equip.setWdef(rs.getShort("wdef"));
-              equip.setMdef(rs.getShort("mdef"));
-              equip.setAcc(rs.getShort("acc"));
-              equip.setAvoid(rs.getShort("avoid"));
-              equip.setHands(rs.getShort("hands"));
-              equip.setSpeed(rs.getShort("speed"));
-              equip.setJump(rs.getShort("jump"));
+              
+              if (equip.getItemId() >= 1113098 && equip.getItemId() <= 1113128)
+              {
+                equip.setItemLevel(enchantLevel);
+                equip.setEnchantLevel((byte) 0);
+              }
+              else
+              {
+                equip.setItemLevel((byte)0);
+                equip.setEnchantLevel(enchantLevel);
+              }
+              equip.setEnchantStr(rs.getShort("str"));
+              equip.setEnchantDex(rs.getShort("dex"));
+              equip.setEnchantInt(rs.getShort("int"));
+              equip.setEnchantLuk(rs.getShort("luk"));
+              equip.setEnchantHp(rs.getShort("hp"));
+              equip.setEnchantMp(rs.getShort("mp"));
+              equip.setEnchantWatk(rs.getShort("watk"));
+              equip.setEnchantMatk(rs.getShort("matk"));
+              equip.setEnchantWdef(rs.getShort("wdef"));
+              equip.setEnchantMdef(rs.getShort("mdef"));
+              equip.setEnchantAccuracy(rs.getShort("accuracy"));
+              equip.setEnchantAvoid(rs.getShort("avoid"));
+              equip.setEnchantCraft(rs.getShort("craft"));
+              equip.setEnchantMovementSpeed(rs.getShort("movementSpeed"));
+              equip.setEnchantJump(rs.getShort("jump"));
               equip.setViciousHammer(rs.getByte("ViciousHammer"));
               equip.setItemEXP(rs.getInt("itemEXP"));
               equip.setGMLog(rs.getString("GM_Log"));
@@ -993,11 +1065,10 @@ public enum ItemLoader
               equip.setPotential6(rs.getInt("potential6"));
               equip.setGiftFrom(rs.getString("sender"));
               equip.setIncSkill(rs.getInt("incSkill"));
-              equip.setPVPDamage(rs.getShort("pvpDamage"));
               equip.setCharmEXP(rs.getShort("charmEXP"));
               if (equip.getCharmEXP() < 0)
               {
-                equip.setCharmEXP(((Equip) ii.getEquipById(equip.getItemId())).getCharmEXP());
+                equip.setCharmEXP(template.getCharmEXP());
               }
               if (equip.getUniqueId() > -1L)
               {
@@ -1020,25 +1091,23 @@ public enum ItemLoader
               }
               equip.calcStarForceStats();
               equip.setEnchantBuff(rs.getShort("enchantbuff"));
-              equip.setReqLevel(rs.getByte("reqLevel"));
               equip.setYggdrasilWisdom(rs.getByte("yggdrasilWisdom"));
               equip.setFinalStrike((rs.getByte("finalStrike") > 0));
-              equip.setBossDamage(rs.getByte("bossDamage"));
-              equip.setIgnorePDR(rs.getByte("ignorePDR"));
-              equip.setTotalDamage(rs.getByte("totalDamage"));
-              equip.setAllStat(rs.getByte("allStat"));
+              equip.setEnchantBossDamage(rs.getByte("bossDamage"));
+              equip.setEnchantIgnorePDR(rs.getByte("ignorePDR"));
+              equip.setEnchantDamage(rs.getByte("totalDamage"));
+              equip.setEnchantAllStat(rs.getByte("allStat"));
               equip.setKarmaCount(rs.getByte("karmaCount"));
               equip.setSoulEnchanter(rs.getShort("soulenchanter"));
               equip.setSoulName(rs.getShort("soulname"));
               equip.setSoulPotential(rs.getShort("soulpotential"));
               equip.setSoulSkill(rs.getInt("soulskill"));
-              equip.setFire((rs.getLong("fire") < 0L) ? 0L : rs.getLong("fire"));
+              equip.setFlame((rs.getLong("flame") < 0L) ? 0L : rs.getLong("flame"));
               equip.setArc(rs.getShort("arc"));
               equip.setArcEXP(rs.getInt("arcexp"));
               equip.setArcLevel(rs.getInt("arclevel"));
               equip.setEquipmentType(rs.getInt("equipmenttype"));
               equip.setMoru(rs.getInt("moru"));
-              equip.setAttackSpeed(rs.getInt("attackSpeed"));
               equip.setOptionExpiration(rs.getLong("optionexpiration"));
               equip.setCoption1(rs.getInt("coption1"));
               equip.setCoption2(rs.getInt("coption2"));

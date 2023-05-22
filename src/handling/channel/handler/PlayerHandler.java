@@ -7840,139 +7840,49 @@ public class PlayerHandler
       c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
       return;
     }
-    long fire1 = nalphatype.getFire();
-    long fire2 = nbetatype.getFire();
-    nalphatype.resetRebirth(ii.getReqLevel(nalphatype.getItemId()));
-    nbetatype.resetRebirth(ii.getReqLevel(nbetatype.getItemId()));
+    
+    int nextBetaItemId = nbetatype.getItemId() + 1;
+    
+    int nextAlphaItemId = nalphatype.getItemId() + 1;
+    
     nbetatype.setItemId(nbetatype.getItemId() + 1);
+    
     nalphatype.setItemId(nalphatype.getItemId() + 1);
-    if (nbetatype.getItemId() == 1562001)
+    
+    nbetatype.setTemplate(MapleItemInformationProvider.getInstance().getTempateByItemId(nextBetaItemId));
+    
+    nbetatype.calcFlameStats();
+    
+    nbetatype.calcStarForceStats();
+    
+    nbetatype.setTemplate(MapleItemInformationProvider.getInstance().getTempateByItemId(nextAlphaItemId));
+    
+    nbetatype.calcFlameStats();
+    
+    nbetatype.calcStarForceStats();
+    
+     if (nbetatype.getItemId() == 1562008)
     {
-      nalphatype.setWatk((short) 100);
-      nbetatype.setWatk((short) 102);
-      nbetatype.setWdef((short) 80);
-      nbetatype.setMdef((short) 35);
-      nalphatype.addUpgradeSlots((byte) 7);
-      nbetatype.addUpgradeSlots((byte) 7);
-    }
-    else if (nbetatype.getItemId() == 1562002)
-    {
-      nalphatype.addWatk((short) 3);
-      nbetatype.addWatk((short) 3);
-      nbetatype.addWdef((short) 10);
-      nbetatype.addMdef((short) 5);
-    }
-    else if (nbetatype.getItemId() == 1562003)
-    {
-      nalphatype.addWatk((short) 2);
-      nbetatype.addWatk((short) 2);
-      nbetatype.addWdef((short) 10);
-      nbetatype.addMdef((short) 5);
-    }
-    else if (nbetatype.getItemId() == 1562004)
-    {
-      nalphatype.addWatk((short) 7);
-      nbetatype.addWatk((short) 7);
-      nbetatype.addWdef((short) 10);
-      nbetatype.addMdef((short) 5);
-    }
-    else if (nbetatype.getItemId() == 1562005)
-    {
-      nalphatype.addStr((short) 8);
-      nalphatype.addDex((short) 4);
-      nalphatype.addWatk((short) 5);
-      nalphatype.addAcc((short) 50);
-      nalphatype.addUpgradeSlots((byte) 1);
-      nbetatype.addStr((short) 8);
-      nbetatype.addDex((short) 4);
-      nbetatype.addWatk((short) 7);
-      nbetatype.addWdef((short) 10);
-      nbetatype.addMdef((short) 5);
-      nbetatype.addAcc((short) 50);
-      nbetatype.addUpgradeSlots((byte) 1);
-    }
-    else if (nbetatype.getItemId() == 1562006)
-    {
-      nalphatype.addStr((short) 27);
-      nalphatype.addDex((short) 16);
-      nalphatype.addWatk((short) 18);
-      nalphatype.addAcc((short) 50);
-      nbetatype.addStr((short) 27);
-      nbetatype.addDex((short) 16);
-      nbetatype.addWatk((short) 18);
-      nbetatype.addWdef((short) 10);
-      nbetatype.addMdef((short) 5);
-      nbetatype.addAcc((short) 50);
-    }
-    else if (nbetatype.getItemId() == 1562007)
-    {
-      nalphatype.addStr((short) 5);
-      nalphatype.addDex((short) 20);
-      nalphatype.addWatk((short) 34);
-      nalphatype.addAcc((short) 20);
-      nalphatype.addBossDamage((byte) 30);
-      nalphatype.addIgnoreWdef((short) 10);
-      nbetatype.addStr((short) 5);
-      nbetatype.addDex((short) 20);
-      nbetatype.addWatk((short) 34);
-      nbetatype.addWdef((short) 20);
-      nbetatype.addMdef((short) 10);
-      nbetatype.addAcc((short) 20);
-      nbetatype.addBossDamage((byte) 30);
-      nbetatype.addIgnoreWdef((short) 10);
-    }
-    else if (nbetatype.getItemId() == 1562008)
-    {
-      nalphatype.addStr((short) 20);
-      nalphatype.addDex((short) 20);
-      nalphatype.addWatk((short) 34);
-      nalphatype.addAcc((short) 20);
-      nbetatype.addStr((short) 20);
-      nbetatype.addDex((short) 20);
-      nbetatype.addWatk((short) 34);
-      nbetatype.addWdef((short) 10);
-      nbetatype.addMdef((short) 10);
-      nbetatype.addAcc((short) 20);
+
       MapleInventoryManipulator.removeById(c, MapleInventoryType.ETC, 4310216, 1, false, false);
     }
     else if (nbetatype.getItemId() == 1562009)
     {
-      nalphatype.addStr((short) 40);
-      nalphatype.addDex((short) 40);
-      nalphatype.addWatk((short) 90);
-      nalphatype.addAcc((short) 20);
-      nalphatype.addIgnoreWdef((short) 10);
-      nbetatype.addStr((short) 40);
-      nbetatype.addDex((short) 40);
-      nbetatype.addWatk((short) 90);
-      nbetatype.addWdef((short) 40);
-      nbetatype.addMdef((short) 40);
-      nbetatype.addAcc((short) 20);
-      nbetatype.addIgnoreWdef((short) 10);
+
       MapleInventoryManipulator.removeById(c, MapleInventoryType.ETC, 4310217, 1, false, false);
     }
     else if (nbetatype.getItemId() == 1562010)
     {
-      nalphatype.addStr((short) 50);
-      nalphatype.addDex((short) 50);
-      nalphatype.addWatk((short) 44);
-      nalphatype.addAcc((short) 20);
-      nbetatype.addStr((short) 50);
-      nbetatype.addDex((short) 50);
-      nbetatype.addWatk((short) 45);
-      nbetatype.addWdef((short) 50);
-      nbetatype.addMdef((short) 50);
-      nbetatype.addAcc((short) 20);
+
       MapleInventoryManipulator.removeById(c, MapleInventoryType.ETC, 4310260, 1, false, false);
     }
-    if (fire1 > 0L && fire2 > 0L)
-    {
-      nalphatype.refreshFire(nalphatype, fire1, false);
-      nbetatype.refreshFire(nbetatype, fire2, false);
-    }
+
     c.getSession().writeAndFlush(CField.WeaponLevelUp());
+    
     c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, nalphatype));
+    
     c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, nbetatype));
+    
   }
   
   public static void ZeroTag(LittleEndianAccessor slea, MapleClient c)
@@ -8095,7 +8005,7 @@ public class PlayerHandler
     }
     dst -= kind;
     dst2 -= secondkind;
-    Equip source = (Equip) ii.getEquipById((int) chr.getSkillCustomValue0(10112));
+    Equip source = (Equip) ii.generateEquipById((int) chr.getSkillCustomValue0(10112), -1L);
     Equip target2 = (Equip) chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) dst2);
     if (check == 1)
     {
@@ -8640,10 +8550,15 @@ public class PlayerHandler
             if (!ArcneSymbol)
             {
               stats *= 2;
+              item.setAuthenticStr((short) (item.getAuthenticStr() + stats));
+              item.setAuthenticDex((short) (item.getAuthenticDex() + stats));
+              item.setAuthenticLuk((short) (item.getAuthenticLuk() + stats));
+            } else
+            {
+              item.setArcStr((short) (item.getArcStr() + stats));
+              item.setArcDex((short) (item.getArcDex() + stats));
+              item.setArcLuk((short) (item.getArcLuk() + stats));
             }
-            item.setStr((short) (item.getStr() + stats));
-            item.setDex((short) (item.getDex() + stats));
-            item.setLuk((short) (item.getLuk() + stats));
           }
           else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
           {
@@ -8651,28 +8566,67 @@ public class PlayerHandler
             if (!ArcneSymbol)
             {
               stats *= 2;
+              item.setAuthenticHp((short) (item.getAuthenticHp() + stats));
             }
-            item.setHp((short) (item.getHp() + stats));
+            else
+            {
+              item.setArcHp((short) (item.getArcHp() + stats));
+            }
           }
           else if (GameConstants.isWarrior(c.getPlayer().getJob()))
           {
-            item.setStr((short) (item.getStr() + astats));
+            if (!ArcneSymbol)
+            {
+              item.setAuthenticStr((short) (item.getAuthenticStr() + astats));
+            }
+            else
+            {
+              item.setArcStr((short) (item.getArcStr() + astats));
+            }
           }
           else if (GameConstants.isMagician(c.getPlayer().getJob()))
           {
-            item.setInt((short) (item.getInt() + astats));
+            if (!ArcneSymbol)
+            {
+              item.setAuthenticInt((short) (item.getAuthenticInt() + astats));
+            }
+            else
+            {
+              item.setArcInt((short) (item.getArcInt() + astats));
+            }
           }
           else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
           {
-            item.setDex((short) (item.getDex() + astats));
+            if (!ArcneSymbol)
+            {
+              item.setAuthenticDex((short) (item.getAuthenticDex() + astats));
+            }
+            else
+            {
+              item.setArcDex((short) (item.getArcDex() + astats));
+            }
           }
           else if (GameConstants.isThief(c.getPlayer().getJob()))
           {
-            item.setLuk((short) (item.getLuk() + astats));
+            if (!ArcneSymbol)
+            {
+              item.setAuthenticLuk((short) (item.getAuthenticLuk() + astats));
+            }
+            else
+            {
+              item.setArcLuk((short) (item.getArcLuk() + astats));
+            }
           }
           else if (GameConstants.isPirate(c.getPlayer().getJob()))
           {
-            item.setStr((short) (item.getStr() + astats));
+            if (!ArcneSymbol)
+            {
+              item.setAuthenticStr((short) (item.getAuthenticStr() + astats));
+            }
+            else
+            {
+              item.setArcStr((short) (item.getArcStr() + astats));
+            }
           }
           c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, item));
         }
@@ -9430,7 +9384,7 @@ public class PlayerHandler
         }
         if (GameConstants.getInventoryType(itemId) == MapleInventoryType.EQUIP)
         {
-          addItem = MapleItemInformationProvider.getInstance().getEquipById(itemId);
+          addItem = MapleItemInformationProvider.getInstance().generateEquipById(itemId, -1L);
         }
         else
         {
@@ -11557,7 +11511,7 @@ public class PlayerHandler
           }
           if (GameConstants.getInventoryType(item.mid.intValue()) == MapleInventoryType.EQUIP || GameConstants.getInventoryType(item.mid.intValue()) == MapleInventoryType.CODY)
           {
-            addItem = MapleItemInformationProvider.getInstance().getEquipById(item.mid.intValue());
+            addItem = MapleItemInformationProvider.getInstance().generateEquipById(item.mid.intValue(), -1L);
           }
           else
           {
@@ -13694,7 +13648,7 @@ public class PlayerHandler
               Calendar ocal = Calendar.getInstance();
               int day2 = ocal.get(7);
               int check = (day2 == 1) ? 1 : ((day2 == 2) ? 7 : ((day2 == 3) ? 6 : ((day2 == 4) ? 5 : ((day2 == 5) ? 4 : ((day2 == 6) ? 3 : ((day2 == 7) ? 2 : 0))))));
-              Equip item = (Equip) MapleItemInformationProvider.getInstance().getEquipById(list1.get(get - 1).getItemid());
+              Equip item = (Equip) MapleItemInformationProvider.getInstance().generateEquipById(list1.get(get - 1).getItemid(), -1L);
               Calendar targetCal = new GregorianCalendar(ocal.get(1), ocal.get(2), ocal.get(5));
               item.setExpiration(targetCal.getTimeInMillis() + (86400000 * check));
               if (item.getItemId() == 1672083)

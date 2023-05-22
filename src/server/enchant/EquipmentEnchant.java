@@ -20,8 +20,8 @@ import java.util.List;
 public class EquipmentEnchant
 {
   public static int[] usejuhun = new int[4];
-
-  public static int scrollType (String name)
+  
+  public static int scrollType(String name)
   {
     if (name.contains("100%"))
     {
@@ -49,8 +49,8 @@ public class EquipmentEnchant
     }
     return 0;
   }
-
-  public static boolean isMagicWeapon (MapleWeaponType type)
+  
+  public static boolean isMagicWeapon(MapleWeaponType type)
   {
     switch (type)
     {
@@ -63,14 +63,14 @@ public class EquipmentEnchant
     }
     return false;
   }
-
-  public static List<EquipmentScroll> equipmentScrolls (Equip equip)
+  
+  public static List<EquipmentScroll> equipmentScrolls(Equip equip)
   {
     List<EquipmentScroll> ess = new ArrayList<>();
     MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     MapleWeaponType weaponType = GameConstants.getWeaponType(equip.getItemId());
     List<Pair<EnchantFlag, Integer>> stats = new ArrayList<>();
-    if (equip.getUpgradeSlots() > 0)
+    if (equip.getTotalUpgradeSlots() > 0)
     {
       if (GameConstants.isWeapon(equip.getItemId()))
       {
@@ -85,7 +85,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Mp, 100));
           ess.add(new EquipmentScroll("100% 攻擊力卷軸", 35, stats));
           stats.clear();
-
+          
           stats.add(new Pair<>(EnchantFlag.Watk, 8));
           stats.add(new Pair<>(EnchantFlag.Str, 8));
           stats.add(new Pair<>(EnchantFlag.Dex, 8));
@@ -95,7 +95,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Mp, 160));
           ess.add(new EquipmentScroll("70% 攻擊力卷軸", 2500, stats));
           stats.clear();
-
+          
           stats.add(new Pair<>(EnchantFlag.Watk, 11));
           stats.add(new Pair<>(EnchantFlag.Str, 11));
           stats.add(new Pair<>(EnchantFlag.Dex, 11));
@@ -105,7 +105,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Mp, 220));
           ess.add(new EquipmentScroll("30% 攻擊力卷軸", 5000, stats));
           stats.clear();
-
+          
           stats.add(new Pair<>(EnchantFlag.Watk, 15));
           stats.add(new Pair<>(EnchantFlag.Str, 15));
           stats.add(new Pair<>(EnchantFlag.Dex, 15));
@@ -127,7 +127,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Mp, 100));
           ess.add(new EquipmentScroll("100% 魔法攻擊力卷軸", 35, stats));
           stats.clear();
-
+          
           stats.add(new Pair<>(EnchantFlag.Matk, 8));
           stats.add(new Pair<>(EnchantFlag.Str, 8));
           stats.add(new Pair<>(EnchantFlag.Dex, 8));
@@ -137,7 +137,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Mp, 160));
           ess.add(new EquipmentScroll("70% 魔法攻擊力卷軸", 2500, stats));
           stats.clear();
-
+          
           stats.add(new Pair<>(EnchantFlag.Matk, 11));
           stats.add(new Pair<>(EnchantFlag.Str, 11));
           stats.add(new Pair<>(EnchantFlag.Dex, 11));
@@ -147,7 +147,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Mp, 220));
           ess.add(new EquipmentScroll("30% 魔法攻擊力卷軸", 5000, stats));
           stats.clear();
-
+          
           stats.add(new Pair<>(EnchantFlag.Matk, 15));
           stats.add(new Pair<>(EnchantFlag.Str, 15));
           stats.add(new Pair<>(EnchantFlag.Dex, 15));
@@ -172,7 +172,7 @@ public class EquipmentEnchant
         stats.add(new Pair<>(EnchantFlag.Mdef, 4));
         ess.add(new EquipmentScroll("100% 攻擊力卷軸", 35, stats));
         stats.clear();
-
+        
         stats.add(new Pair<>(EnchantFlag.Watk, 4));
         stats.add(new Pair<>(EnchantFlag.Str, 4));
         stats.add(new Pair<>(EnchantFlag.Dex, 4));
@@ -184,7 +184,7 @@ public class EquipmentEnchant
         stats.add(new Pair<>(EnchantFlag.Mdef, 8));
         ess.add(new EquipmentScroll("70% 攻擊力卷軸", 2500, stats));
         stats.clear();
-
+        
         stats.add(new Pair<>(EnchantFlag.Watk, 6));
         stats.add(new Pair<>(EnchantFlag.Str, 6));
         stats.add(new Pair<>(EnchantFlag.Dex, 6));
@@ -196,7 +196,7 @@ public class EquipmentEnchant
         stats.add(new Pair<>(EnchantFlag.Mdef, 12));
         ess.add(new EquipmentScroll("30% 攻擊力卷軸", 5000, stats));
         stats.clear();
-
+        
         stats.add(new Pair<>(EnchantFlag.Watk, 8));
         stats.add(new Pair<>(EnchantFlag.Str, 8));
         stats.add(new Pair<>(EnchantFlag.Dex, 8));
@@ -208,7 +208,7 @@ public class EquipmentEnchant
         stats.add(new Pair<>(EnchantFlag.Mdef, 16));
         ess.add(new EquipmentScroll("10% 攻擊力卷軸", 10000, stats));
         stats.clear();
-
+        
         stats.add(new Pair<>(EnchantFlag.Matk, 2));
         stats.add(new Pair<>(EnchantFlag.Str, 2));
         stats.add(new Pair<>(EnchantFlag.Dex, 2));
@@ -220,7 +220,7 @@ public class EquipmentEnchant
         stats.add(new Pair<>(EnchantFlag.Mdef, 4));
         ess.add(new EquipmentScroll("100% 魔法攻擊力卷軸", 35, stats));
         stats.clear();
-
+        
         stats.add(new Pair<>(EnchantFlag.Matk, 4));
         stats.add(new Pair<>(EnchantFlag.Str, 4));
         stats.add(new Pair<>(EnchantFlag.Dex, 4));
@@ -232,7 +232,7 @@ public class EquipmentEnchant
         stats.add(new Pair<>(EnchantFlag.Mdef, 8));
         ess.add(new EquipmentScroll("70% 魔法攻擊力卷軸", 2500, stats));
         stats.clear();
-
+        
         stats.add(new Pair<>(EnchantFlag.Matk, 6));
         stats.add(new Pair<>(EnchantFlag.Str, 6));
         stats.add(new Pair<>(EnchantFlag.Dex, 6));
@@ -244,7 +244,7 @@ public class EquipmentEnchant
         stats.add(new Pair<>(EnchantFlag.Mdef, 12));
         ess.add(new EquipmentScroll("30% 魔法攻擊力卷軸", 5000, stats));
         stats.clear();
-
+        
         stats.add(new Pair<>(EnchantFlag.Matk, 8));
         stats.add(new Pair<>(EnchantFlag.Str, 8));
         stats.add(new Pair<>(EnchantFlag.Dex, 8));
@@ -259,7 +259,7 @@ public class EquipmentEnchant
       }
       ess.add(new EquipmentScroll("回真卷軸 50%", 5000, stats));
       ess.add(new EquipmentScroll("亞克回真卷軸 50%", 10000, stats));
-
+      
       if (equip.getFailUpgradeSlots() > 0)
       {
         ess.add(new EquipmentScroll("純白的卷軸 10%", 3000, stats));
@@ -267,76 +267,76 @@ public class EquipmentEnchant
     }
     return ess;
   }
-
-
-  public static StarForceStats calcNextLevelStarForceStats (Equip item)
+  
+  
+  public static StarForceStats calcNextLevelStarForceStats(Equip item)
   {
     MapleItemInformationProvider itemInfo = MapleItemInformationProvider.getInstance();
-
+    
     int reqLevel = itemInfo.getReqLevel(item.getItemId());
-
+    
     List<Pair<EnchantFlag, Integer>> stats = new ArrayList<>();
-
+    
     int starForceLevel = item.getStarForceLevel();
-
+    
     int nextStarForceLevel = starForceLevel + 1;
-
-    int equipLevel = item.getReqLevel();
-
+    
+    int equipLevel = item.getTemplate().getReqLevel();
+    
     boolean isSuperial = GameConstants.isSuperior(item.getItemId());
-
+    
     int incAllStat = 0;
-
+    
     int incWAtk = 0;
-
+    
     int incMAtk = 0;
-
+    
     int incDef = 0;
-
+    
     int incHp = 0;
-
+    
     int incMp = 0;
-
+    
     int incAcc = 0;
-
+    
     int incAvoid = 0;
-
+    
     int currentDef = item.getTotalWdef();
-
+    
     int itemId = item.getItemId();
-
+    
     boolean isWeapon = GameConstants.isWeapon(itemId);
-
+    
     boolean isGlove = GameConstants.isGlove(itemId);
-
+    
     if (isSuperial)
     {
       // check https://strategywiki.org/wiki/MapleStory/Spell_Trace_and_Star_Force#Superior_Items
       incDef = (int) Math.ceil(currentDef * 1.05);
-
+      
       // TODO: every star should add Visible DEF +5%
       if (nextStarForceLevel < 5)
       {
         if (equipLevel == 80)
         {
           // Heliseum
-          int[] statusArr = new int[] { 2, 3, 5 };
-
+          int[] statusArr = new int[]{2, 3, 5};
+          
           incAllStat += statusArr[nextStarForceLevel];
-
+          
         }
         else if (equipLevel == 110)
         {
           // Nova
-          int[] statusArr = new int[] { 9, 10, 12, 15, 19 };
-
+          int[] statusArr = new int[]{9, 10, 12, 15, 19};
+          
           incAllStat += statusArr[nextStarForceLevel];
         }
         else if (equipLevel >= 150)
         {
           // Tyrant and MindPendent
-          int[] statusArr = new int[] { 19, 20, 22, 25, 29 };
-
+          int[] statusArr = new int[]{19, 20, 22, 25, 29};
+          
           incAllStat += statusArr[nextStarForceLevel];
         }
       }
@@ -346,14 +346,14 @@ public class EquipmentEnchant
         if (equipLevel == 110)
         {
           // Nova 10 star
-          int[] statusArr = new int[] { 5, 6, 7, 9, 10 };
+          int[] statusArr = new int[]{5, 6, 7, 9, 10};
           incWAtk += statusArr[nextStarForceLevel];
           incMAtk += statusArr[nextStarForceLevel];
         }
         else if (equipLevel == 110)
         {
           // Tyrant and MindPendent 15 star
-          int[] statusArr = new int[] { 9, 10, 11, 12, 13, 15, 17, 19, 21, 23 };
+          int[] statusArr = new int[]{9, 10, 11, 12, 13, 15, 17, 19, 21, 23};
           incWAtk += statusArr[nextStarForceLevel];
           incMAtk += statusArr[nextStarForceLevel];
         }
@@ -385,10 +385,10 @@ public class EquipmentEnchant
           incHp += 25;
         }
       }
-
+      
       if (isWeapon)
       {
-
+        
         if (nextStarForceLevel < 4)
         {
           incMp += 5;
@@ -410,23 +410,23 @@ public class EquipmentEnchant
           incMp += 25;
         }
       }
-
+      
       if (GameConstants.isShoe(itemId))
       {
         if (nextStarForceLevel < 11)
         {
           incAcc += 1;
-
+          
           incAvoid += 1;
         }
         else
         {
           incAcc += 2;
-
+          
           incAvoid += 2;
         }
       }
-
+      
       if (isGlove)
       {
         if (nextStarForceLevel == 5 || nextStarForceLevel == 7 || nextStarForceLevel == 9 || nextStarForceLevel == 11 || nextStarForceLevel > 12)
@@ -435,7 +435,7 @@ public class EquipmentEnchant
           incMAtk += 1;
         }
       }
-
+      
       if (nextStarForceLevel < 5)
       {
         incAllStat += 2;
@@ -447,12 +447,12 @@ public class EquipmentEnchant
     }
     else if (nextStarForceLevel < 21)
     {
-
+      
       if (reqLevel < 128)
       {
         return new StarForceStats(new ArrayList<>());
       }
-
+      
       if (isWeapon == false)
       {
         incDef = (int) Math.ceil(currentDef * 1.05);
@@ -502,13 +502,13 @@ public class EquipmentEnchant
       {
         return new StarForceStats(new ArrayList<>());
       }
-
+      
       if (isWeapon == false)
       {
         incDef = (int) Math.ceil(currentDef * 1.05);
       }
-
-
+      
+      
       if (reqLevel >= 138 && reqLevel <= 149)
       {
         incAllStat += (15 + (nextStarForceLevel - 21) * 2);
@@ -540,135 +540,135 @@ public class EquipmentEnchant
         incMAtk += (23 + (nextStarForceLevel - 21) * 2);
       }
     }
-
+    
     if (incDef > 0)
     {
       stats.add(new Pair<>(EnchantFlag.Mdef, Integer.valueOf(incDef)));
-
+      
       stats.add(new Pair<>(EnchantFlag.Wdef, Integer.valueOf(incDef)));
     }
-
+    
     if (incWAtk > 0)
-
+    
     {
       stats.add(new Pair<>(EnchantFlag.Watk, Integer.valueOf(incWAtk)));
     }
-
+    
     if (incMAtk > 0)
-
+    
     {
       stats.add(new Pair<>(EnchantFlag.Matk, Integer.valueOf(incMAtk)));
     }
-
+    
     if (incAllStat > 0)
-
+    
     {
       stats.add(new Pair<>(EnchantFlag.Str, Integer.valueOf(incAllStat)));
       stats.add(new Pair<>(EnchantFlag.Dex, Integer.valueOf(incAllStat)));
       stats.add(new Pair<>(EnchantFlag.Int, Integer.valueOf(incAllStat)));
       stats.add(new Pair<>(EnchantFlag.Luk, Integer.valueOf(incAllStat)));
     }
-
+    
     if (incHp > 0)
-
+    
     {
       stats.add(new Pair<>(EnchantFlag.Hp, Integer.valueOf(incHp)));
     }
-
+    
     if (incMp > 0)
-
+    
     {
       stats.add(new Pair<>(EnchantFlag.Mp, Integer.valueOf(incMp)));
     }
-
+    
     if (incAcc > 0)
-
+    
     {
       stats.add(new Pair<>(EnchantFlag.Acc, Integer.valueOf(incAcc)));
     }
-
+    
     if (incAvoid > 0)
-
+    
     {
       stats.add(new Pair<>(EnchantFlag.Avoid, Integer.valueOf(incAvoid)));
     }
-
+    
     return new StarForceStats(stats);
   }
-
-  public static StarForceStats calcStarForceStats (Equip item)
+  
+  public static StarForceStats calcStarForceStats(Equip item)
   {
     MapleItemInformationProvider itemInfo = MapleItemInformationProvider.getInstance();
-
+    
     int reqLevel = itemInfo.getReqLevel(item.getItemId());
-
+    
     List<Pair<EnchantFlag, Integer>> stats = new ArrayList<>();
-
+    
     int starForceLevel = item.getStarForceLevel();
-
-    int equipLevel = item.getReqLevel();
-
+    
+    int equipLevel = item.getTemplate().getReqLevel();
+    
     boolean isSuperial = GameConstants.isSuperior(item.getItemId());
-
+    
     int incAllStat = 0;
-
+    
     int incWAtk = 0;
-
+    
     int incMAtk = 0;
-
+    
     int incDef = 0;
-
+    
     int incHp = 0;
-
+    
     int incMp = 0;
-
+    
     int incAcc = 0;
-
+    
     int incAvoid = 0;
-
+    
     int currentDef = item.getTotalWdef();
-
+    
     int currentWatk = item.getTotalWatk();
-
+    
     int currentMatk = item.getTotalMatk();
-
+    
     int itemId = item.getItemId();
-
+    
     boolean isWeapon = GameConstants.isWeapon(itemId);
-
+    
     boolean isGlove = GameConstants.isGlove(itemId);
-
-
+    
+    
     for (int currentStarForceLevel = 1; currentStarForceLevel <= starForceLevel; currentStarForceLevel++)
     {
       if (isSuperial)
       {
         // check https://strategywiki.org/wiki/MapleStory/Spell_Trace_and_Star_Force#Superior_Items
         currentDef = (int) Math.ceil(currentDef * 1.05);
-
+        
         // TODO: every star should add Visible DEF +5%
         if (currentStarForceLevel < 5)
         {
           if (equipLevel == 80)
           {
             // Heliseum
-            int[] statusArr = new int[] { 2, 3, 5 };
-
+            int[] statusArr = new int[]{2, 3, 5};
+            
             incAllStat += statusArr[currentStarForceLevel];
-
+            
           }
           else if (equipLevel == 110)
           {
             // Nova
-            int[] statusArr = new int[] { 9, 10, 12, 15, 19 };
-
+            int[] statusArr = new int[]{9, 10, 12, 15, 19};
+            
             incAllStat += statusArr[currentStarForceLevel];
           }
           else if (equipLevel >= 150)
           {
             // Tyrant and MindPendent
-            int[] statusArr = new int[] { 19, 20, 22, 25, 29 };
-
+            int[] statusArr = new int[]{19, 20, 22, 25, 29};
+            
             incAllStat += statusArr[currentStarForceLevel];
           }
         }
@@ -678,14 +678,14 @@ public class EquipmentEnchant
           if (equipLevel == 110)
           {
             // Nova 10 star
-            int[] statusArr = new int[] { 5, 6, 7, 9, 10 };
+            int[] statusArr = new int[]{5, 6, 7, 9, 10};
             incWAtk += statusArr[currentStarForceLevel];
             incMAtk += statusArr[currentStarForceLevel];
           }
           else if (equipLevel == 110)
           {
             // Tyrant and MindPendent 15 star
-            int[] statusArr = new int[] { 9, 10, 11, 12, 13, 15, 17, 19, 21, 23 };
+            int[] statusArr = new int[]{9, 10, 11, 12, 13, 15, 17, 19, 21, 23};
             incWAtk += statusArr[currentStarForceLevel];
             incMAtk += statusArr[currentStarForceLevel];
           }
@@ -717,14 +717,14 @@ public class EquipmentEnchant
             incHp += 25;
           }
         }
-
+        
         if (isWeapon)
         {
-
+          
           currentWatk = (int) Math.ceil(currentWatk * 1.02);
-
+          
           currentMatk = (int) Math.ceil(currentMatk * 1.02);
-
+          
           if (currentStarForceLevel < 4)
           {
             incMp += 5;
@@ -746,28 +746,28 @@ public class EquipmentEnchant
             incMp += 25;
           }
         }
-
+        
         if (GameConstants.isShoe(itemId))
         {
           if (currentStarForceLevel < 11)
           {
             incAcc += 1;
-
+            
             incAvoid += 1;
           }
           else
           {
             incAcc += 2;
-
+            
             incAvoid += 2;
           }
         }
-
+        
         if (isWeapon == false)
         {
           currentDef = (int) Math.ceil(currentDef * 1.05);
         }
-
+        
         if (isGlove)
         {
           if (currentStarForceLevel == 5 || currentStarForceLevel == 7 || currentStarForceLevel == 9 || currentStarForceLevel == 11 || currentStarForceLevel > 12)
@@ -776,7 +776,7 @@ public class EquipmentEnchant
             incMAtk += 1;
           }
         }
-
+        
         if (currentStarForceLevel < 5)
         {
           incAllStat += 2;
@@ -788,12 +788,12 @@ public class EquipmentEnchant
       }
       else if (currentStarForceLevel < 21)
       {
-
+        
         if (reqLevel < 128)
         {
           break;
         }
-
+        
         if (isWeapon == false)
         {
           currentDef = (int) Math.ceil(currentDef * 1.05);
@@ -843,13 +843,13 @@ public class EquipmentEnchant
         {
           break;
         }
-
+        
         if (isWeapon == false)
         {
           currentDef = (int) Math.ceil(currentDef * 1.05);
         }
-
-
+        
+        
         if (reqLevel >= 138 && reqLevel <= 149)
         {
           incAllStat += (13 + (currentStarForceLevel - 21) * 2);
@@ -882,70 +882,70 @@ public class EquipmentEnchant
         }
       }
     }
-
+    
     incDef = currentDef - item.getTotalWdef();
-
+    
     incWAtk = currentWatk - item.getTotalWatk();
-
+    
     incMAtk = currentMatk - item.getTotalMatk();
-
+    
     if (incDef > 0)
-
+    
     {
       stats.add(new Pair<>(EnchantFlag.Mdef, Integer.valueOf(incDef)));
-
+      
       stats.add(new Pair<>(EnchantFlag.Wdef, Integer.valueOf(incDef)));
     }
-
+    
     if (incWAtk > 0)
-
+    
     {
       stats.add(new Pair<>(EnchantFlag.Watk, Integer.valueOf(incWAtk)));
     }
-
+    
     if (incMAtk > 0)
-
+    
     {
       stats.add(new Pair<>(EnchantFlag.Matk, Integer.valueOf(incMAtk)));
     }
-
+    
     if (incAllStat > 0)
-
+    
     {
       stats.add(new Pair<>(EnchantFlag.Str, Integer.valueOf(incAllStat)));
       stats.add(new Pair<>(EnchantFlag.Dex, Integer.valueOf(incAllStat)));
       stats.add(new Pair<>(EnchantFlag.Int, Integer.valueOf(incAllStat)));
       stats.add(new Pair<>(EnchantFlag.Luk, Integer.valueOf(incAllStat)));
     }
-
+    
     if (incHp > 0)
-
+    
     {
       stats.add(new Pair<>(EnchantFlag.Hp, Integer.valueOf(incHp)));
     }
-
+    
     if (incMp > 0)
-
+    
     {
       stats.add(new Pair<>(EnchantFlag.Mp, Integer.valueOf(incMp)));
     }
-
+    
     if (incAcc > 0)
-
+    
     {
       stats.add(new Pair<>(EnchantFlag.Acc, Integer.valueOf(incAcc)));
     }
-
+    
     if (incAvoid > 0)
-
+    
     {
       stats.add(new Pair<>(EnchantFlag.Avoid, Integer.valueOf(incAvoid)));
     }
-
+    
     return new StarForceStats(stats);
   }
-
-  public static void handleEnchant (LittleEndianAccessor slea, MapleClient c)
+  
+  public static void handleEnchant(LittleEndianAccessor slea, MapleClient c)
   {
     Equip item;
     short pos;
@@ -967,12 +967,12 @@ public class EquipmentEnchant
     int downChance;
     int chance;
     long mesoCost;
-
-
+    
+    
     int result;
-
+    
     byte type = slea.readByte();
-
+    
     switch (type)
     {
       case 0:
@@ -999,9 +999,9 @@ public class EquipmentEnchant
         }
         es = ess.get(index);
         i = 0;
-
+        
         percent = Integer.parseInt(es.getName().replaceAll("[\\D]*", ""));
-
+        
         if (ServerConstants.feverTime)
         {
           if (es.getName().startsWith("純白的卷軸"))
@@ -1017,17 +1017,17 @@ public class EquipmentEnchant
             percent += 10;
           }
         }
-
+        
         if (percent > 100)
         {
           percent = 100;
         }
-
+        
         if (percent < 0)
         {
           percent = 0;
         }
-
+        
         if (Randomizer.nextInt(100) < percent)
         {
           i = 1;
@@ -1051,53 +1051,21 @@ public class EquipmentEnchant
           {
             if (es.getName().contains("亞克回真卷軸"))
             {
-              item.setStarForceLevel((byte) 0);
-
-              item.calcStarForceStats();
-
+              item.亞克回真();
+              
               if (equip1 != null)
               {
-                equip1.setStarForceLevel((byte) 0);
-
-                equip1.calcStarForceStats();
+                equip1.亞克回真();
               }
             }
             else
             {
-              Equip origin = (Equip) MapleItemInformationProvider.getInstance().getEquipById(item.getItemId(), false);
-              origin.setState(item.getState());
-              origin.setPotential1(item.getPotential1());
-              origin.setPotential2(item.getPotential2());
-              origin.setPotential3(item.getPotential3());
-              origin.setPotential4(item.getPotential4());
-              origin.setPotential5(item.getPotential5());
-              origin.setPotential6(item.getPotential6());
-              origin.setSoulEnchanter(item.getSoulEnchanter());
-              origin.setSoulName(item.getSoulName());
-              origin.setSoulPotential(item.getSoulPotential());
-              origin.setSoulSkill(item.getSoulSkill());
-              origin.setKarmaCount(item.getKarmaCount());
-              item.set(origin);
-
+              item.普通回真();
+              
               if (equip1 != null)
               {
-                Equip origin1 = (Equip) MapleItemInformationProvider.getInstance().getEquipById(equip1.getItemId(), false);
-
-                origin1.setState(item.getState());
-                origin1.setPotential1(item.getPotential1());
-                origin1.setPotential2(item.getPotential2());
-                origin1.setPotential3(item.getPotential3());
-                origin1.setPotential4(item.getPotential4());
-                origin1.setPotential5(item.getPotential5());
-                origin1.setPotential6(item.getPotential6());
-                origin1.setSoulEnchanter(item.getSoulEnchanter());
-                origin1.setSoulName(item.getSoulName());
-                origin1.setSoulPotential(item.getSoulPotential());
-                origin1.setSoulSkill(item.getSoulSkill());
-                origin1.setKarmaCount(item.getKarmaCount());
-
-                equip1.set(origin1);
-
+                equip1.普通回真();
+                
                 equip1.setEquipmentType(4352);
               }
               item.setEquipmentType(4352);
@@ -1206,10 +1174,10 @@ public class EquipmentEnchant
             }
             if (EnchantFlag.Acc.check(es.getFlag()))
             {
-              item.setEnchantAcc((short) (item.getEnchantAcc() + (es.getFlag(EnchantFlag.Acc)).right.intValue()));
+              item.setEnchantAccuracy((short) (item.getEnchantAccuracy() + (es.getFlag(EnchantFlag.Acc)).right.intValue()));
               if (equip1 != null)
               {
-                equip1.setEnchantAcc((short) (equip1.getEnchantAcc() + (es.getFlag(EnchantFlag.Acc)).right.intValue()));
+                equip1.setEnchantAccuracy((short) (equip1.getEnchantAccuracy() + (es.getFlag(EnchantFlag.Acc)).right.intValue()));
               }
             }
             if (EnchantFlag.Avoid.check(es.getFlag()))
@@ -1247,9 +1215,9 @@ public class EquipmentEnchant
             c.getPlayer().dropMessage(5, "세이프티 실드의 효과로 업그레이드 횟수가 차감되지 않았습니다.");
           }
         }
-
+        
         c.getSession().writeAndFlush(CWvsContext.equipmentEnchantResult(100, equip3, item, es, null, i));
-
+        
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, item));
         if (equip1 != null)
         {
@@ -1272,36 +1240,36 @@ public class EquipmentEnchant
         {
           item2 = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) ((pos == -11) ? -10 : -11));
         }
-
+        
         catchStar = slea.readByte();
-
+        
         if (catchStar == 1)
         {
           slea.skip(4);
         }
-
+        
         slea.readInt();
-
+        
         slea.readInt();
-
+        
         isStarShield = (c.getPlayer()).shield;
-
+        
         equip2 = (Equip) item.copy();
-
+        
         chance = starForcePercent(item);
-
+        
         mesoCost = calcStarForceMeso(item);
-
+        
         if (catchStar == 1)
         {
           chance += 50;
         }
-
+        
         downChance = 1000 - chance;
-
+        
         currentStarForceLevel = item.getStarForceLevel();
-
-
+        
+        
         if (isStarShield || currentStarForceLevel < 16 || currentStarForceLevel == 20)
         {
           downChance = 0;
@@ -1310,53 +1278,53 @@ public class EquipmentEnchant
 //        {
 //          i = 1000;
 //        }
-
+        
         if (chance >= 1000)
         {
           chance = 1000;
         }
-
+        
         if (c.getPlayer().getMeso() < mesoCost)
         {
           c.getPlayer().dropMessage(1, "메소가 부족합니다.");
           return;
         }
-
+        
         if (isStarShield)
         {
           mesoCost *= 2;
         }
-
-
+        
+        
         c.getPlayer().gainMeso(mesoCost * -1, false);
-
+        
         if (Randomizer.nextInt(1000) <= chance)
         {
           result = 1;
-
+          
           item.setStarForceLevel((byte) (currentStarForceLevel + 1));
-
+          
           item.calcStarForceStats();
-
+          
           if (item2 != null)
           {
             item2.setStarForceLevel((byte) (currentStarForceLevel + 1));
-
+            
             item.calcStarForceStats();
           }
         }
         else if (Randomizer.nextInt(1000) <= downChance)
         {
           result = 2;
-
+          
           item.setStarForceLevel((byte) (item.getStarForceLevel() - 1));
-
+          
           item.calcStarForceStats();
-
+          
           if (item2 != null)
           {
             item2.setStarForceLevel((byte) (item2.getStarForceLevel() * 1));
-
+            
             item.calcStarForceStats();
           }
         }
@@ -1364,18 +1332,18 @@ public class EquipmentEnchant
         {
           result = 3;
         }
-
+        
         (c.getPlayer()).shield = false;
-
+        
         c.getSession().writeAndFlush(CWvsContext.equipmentEnchantResult(101, equip2, item, null, null, result));
-
+        
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, item));
-
+        
         if (item2 != null)
         {
           c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, item2));
         }
-
+        
         break;
       case 2:
         slea.skip(4);
@@ -1437,42 +1405,42 @@ public class EquipmentEnchant
         {
           item = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(pos);
         }
-
+        
         isStarShield = (slea.readByte() == 1);
-
+        
         (c.getPlayer()).shield = isStarShield;
-
+        
         chance = starForcePercent(item);
-
+        
         mesoCost = calcStarForceMeso(item);
-
+        
         if (isStarShield)
         {
           mesoCost *= 2;
         }
-
+        
         if (chance >= 1000)
         {
           chance = 1000;
         }
-
+        
         downChance = 1000 - chance;
-
+        
         stats = calcNextLevelStarForceStats(item);
-
+        
         currentStarForceLevel = item.getStarForceLevel();
-
+        
         if (isStarShield || currentStarForceLevel < 16 || currentStarForceLevel == 20)
         {
           downChance = 0;
         }
-
+        
         if (c.getPlayer().getInventory(MapleInventoryType.EQUIP).getNumFreeSlot() < (GameConstants.isZeroWeapon(item.getItemId()) ? 2 : 1))
         {
           c.getPlayer().dropMessage(1, "장비 창에 " + (GameConstants.isZeroWeapon(item.getItemId()) ? 2 : 1) + "칸 이상의 공간이 필요합니다.");
           return;
         }
-
+        
         c.getSession().writeAndFlush(CWvsContext.equipmentEnchantResult(type, item, null, null, stats, 0, mesoCost, chance, downChance, 0));
         break;
       case 53:
@@ -1480,18 +1448,17 @@ public class EquipmentEnchant
         break;
     }
   }
-
-  public static int starForcePercent (Equip item)
+  
+  public static int starForcePercent(Equip item)
   {
     // check https://strategywiki.org/wiki/MapleStory/Spell_Trace_and_Star_Force#Star_Limit
     // 概率魔改一下, 让强化到 25 星成为可能, 同时去除失败炸装备的设定, 官服就受够了这点了!
     // 1 到 16失败保持! 16 到 20失败减 1 星, 20 到 21 失败保持! 21 到 25 失败减 1 星
     // 抓到星星加 5% 成功率, 不是官方的1.05倍! 多少星都加 5%
     // 暴君强化几率恒定 15% 失败不炸不掉级!
-    MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
-
-    boolean superial = (ii.isSuperial(item.getItemId())).right.booleanValue();
-
+    
+    boolean superial = GameConstants.isSuperior(item.getItemId());
+    
     switch (item.getStarForceLevel())
     {
       case 0:
@@ -1547,33 +1514,36 @@ public class EquipmentEnchant
     }
     return 0;
   }
-
-  public static long calcStarForceMeso (Equip item)
+  
+  public static long calcStarForceMeso(Equip item)
   {
-
+    
     MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     Integer ReqLevel = ii.getEquipStats(item.getItemId()).get("reqLevel");
-
+    
     int equipLevel = ReqLevel != null ? ReqLevel.intValue() : 1;
-
+    
     int starForceLevel = item.getStarForceLevel();
-    if ((ii.isSuperial(item.getItemId())).right.booleanValue())
+    if (GameConstants.isSuperior(item.getItemId()))
     {
-      switch ((ii.isSuperial(item.getItemId())).left)
+      if (equipLevel < 110)
       {
-        case "Helisium":
-          return 5956600;
-        case "Nova":
-          return 18507900;
-        case "Tyrant":
-          return 55832200;
+        return 5956600;
+      }
+      else if (equipLevel < 150)
+      {
+        return 18507900;
+      }
+      else if (equipLevel < 160)
+      {
+        return 55832200;
       }
     }
     else
     {
       // check https://strategywiki.org/wiki/MapleStory/Spell_Trace_and_Star_Force#Star_Force_Enhancement
       int nextstarForceLevel = starForceLevel + 1;
-
+      
       if (starForceLevel < 10)
       {
         return 100 * Math.round(Math.pow(equipLevel, 3) * nextstarForceLevel / 2500 + 10);
@@ -1590,135 +1560,8 @@ public class EquipmentEnchant
           return 100 * Math.round(v / 20000 + 10);
         }
       }
-
+      
     }
     return 0L;
-  }
-
-  private static void setJuhun (int level, boolean weapon)
-  {
-    switch (level / 10)
-    {
-      case 1:
-        usejuhun[0] = 2;
-        usejuhun[1] = 3;
-        usejuhun[2] = 4;
-        usejuhun[3] = 5;
-        break;
-      case 2:
-        usejuhun[0] = 3;
-        usejuhun[1] = 4;
-        usejuhun[2] = 5;
-        usejuhun[3] = 6;
-        break;
-      case 3:
-        usejuhun[0] = 5;
-        usejuhun[1] = 7;
-        usejuhun[2] = 8;
-        usejuhun[3] = 10;
-        break;
-      case 4:
-        usejuhun[0] = 6;
-        usejuhun[1] = 8;
-        usejuhun[2] = 10;
-        usejuhun[3] = 12;
-        break;
-      case 5:
-        usejuhun[0] = 8;
-        usejuhun[1] = 10;
-        usejuhun[2] = 12;
-        usejuhun[3] = 14;
-        break;
-      case 6:
-        usejuhun[0] = 9;
-        usejuhun[1] = 12;
-        usejuhun[2] = 14;
-        usejuhun[3] = 17;
-        break;
-      case 7:
-        usejuhun[0] = 11;
-        usejuhun[1] = 14;
-        usejuhun[2] = 17;
-        usejuhun[3] = 20;
-        break;
-      case 8:
-        usejuhun[0] = 23;
-        usejuhun[1] = 30;
-        usejuhun[2] = 36;
-        usejuhun[3] = 43;
-        break;
-      case 9:
-        usejuhun[0] = 29;
-        usejuhun[1] = 38;
-        usejuhun[2] = 46;
-        usejuhun[3] = 55;
-        break;
-      case 10:
-        usejuhun[0] = 36;
-        usejuhun[1] = 47;
-        usejuhun[2] = 56;
-        usejuhun[3] = 67;
-        break;
-      case 11:
-        usejuhun[0] = 43;
-        usejuhun[1] = 56;
-        usejuhun[2] = 67;
-        usejuhun[3] = 80;
-        break;
-      case 12:
-        if (!weapon)
-        {
-          usejuhun[0] = 95;
-          usejuhun[1] = 120;
-          usejuhun[2] = 145;
-          break;
-        }
-        usejuhun[0] = 155;
-        usejuhun[1] = 200;
-        usejuhun[2] = 240;
-        usejuhun[3] = 290;
-        break;
-      case 13:
-        if (!weapon)
-        {
-          usejuhun[0] = 120;
-          usejuhun[1] = 155;
-          usejuhun[2] = 190;
-          break;
-        }
-        usejuhun[0] = 200;
-        usejuhun[1] = 260;
-        usejuhun[2] = 310;
-        usejuhun[3] = 370;
-        break;
-      case 14:
-        if (!weapon)
-        {
-          usejuhun[0] = 150;
-          usejuhun[1] = 195;
-          usejuhun[2] = 230;
-          break;
-        }
-        usejuhun[0] = 240;
-        usejuhun[1] = 320;
-        usejuhun[2] = 380;
-        usejuhun[3] = 460;
-        break;
-      case 15:
-      case 16:
-      case 20:
-        if (!weapon)
-        {
-          usejuhun[0] = 185;
-          usejuhun[1] = 240;
-          usejuhun[2] = 290;
-          break;
-        }
-        usejuhun[0] = 280;
-        usejuhun[1] = 380;
-        usejuhun[2] = 450;
-        usejuhun[3] = 570;
-        break;
-    }
   }
 }

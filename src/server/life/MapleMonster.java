@@ -3347,7 +3347,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
           Item idrop;
           if (GameConstants.getInventoryType(d.itemId) == MapleInventoryType.EQUIP)
           {
-            idrop = MapleItemInformationProvider.getInstance().getEquipById(d.itemId);
+            idrop = MapleItemInformationProvider.getInstance().generateEquipById(d.itemId, -1L);
           }
           else
           {

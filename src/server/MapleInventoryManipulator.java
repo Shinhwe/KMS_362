@@ -80,33 +80,33 @@ public class MapleInventoryManipulator
         equip.setArcEXP(1);
         if (GameConstants.isXenon(c.getPlayer().getJob()))
         {
-          equip.setStr((short) 117);
-          equip.setDex((short) 117);
-          equip.setLuk((short) 117);
+          equip.setArcStr((short) 117);
+          equip.setArcDex((short) 117);
+          equip.setArcLuk((short) 117);
         }
         else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
         {
-          equip.setHp((short) 525);
+          equip.setArcHp((short) 525);
         }
         else if (GameConstants.isWarrior(c.getPlayer().getJob()))
         {
-          equip.setStr((short) 300);
+          equip.setArcStr((short) 300);
         }
         else if (GameConstants.isMagician(c.getPlayer().getJob()))
         {
-          equip.setInt((short) 300);
+          equip.setArcInt((short) 300);
         }
         else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
         {
-          equip.setDex((short) 300);
+          equip.setArcDex((short) 300);
         }
         else if (GameConstants.isThief(c.getPlayer().getJob()))
         {
-          equip.setLuk((short) 300);
+          equip.setArcLuk((short) 300);
         }
         else if (GameConstants.isPirate(c.getPlayer().getJob()))
         {
-          equip.setStr((short) 300);
+          equip.setArcStr((short) 300);
         }
       }
     }
@@ -120,43 +120,43 @@ public class MapleInventoryManipulator
         equip.setArcEXP(1);
         if (GameConstants.isXenon(c.getPlayer().getJob()))
         {
-          equip.setStr((short) 317);
-          equip.setDex((short) 317);
-          equip.setLuk((short) 317);
+          equip.setAuthenticStr((short) 317);
+          equip.setAuthenticDex((short) 317);
+          equip.setAuthenticLuk((short) 317);
         }
         else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
         {
-          equip.setHp((short) 725);
+          equip.setAuthenticHp((short) 725);
         }
         else if (GameConstants.isWarrior(c.getPlayer().getJob()))
         {
-          equip.setStr((short) 500);
+          equip.setAuthenticStr((short) 500);
         }
         else if (GameConstants.isMagician(c.getPlayer().getJob()))
         {
-          equip.setInt((short) 500);
+          equip.setAuthenticInt((short) 500);
         }
         else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
         {
-          equip.setDex((short) 500);
+          equip.setAuthenticDex((short) 500);
         }
         else if (GameConstants.isThief(c.getPlayer().getJob()))
         {
-          equip.setLuk((short) 500);
+          equip.setAuthenticLuk((short) 500);
         }
         else if (GameConstants.isPirate(c.getPlayer().getJob()))
         {
-          equip.setStr((short) 500);
+          equip.setAuthenticStr((short) 500);
         }
       }
     }
     if (item.getItemId() >= 1113098 && item.getItemId() <= 1113128 && !sort)
     {
       final Equip equip = (Equip) item;
-      if (equip.getBaseLevel() == 0)
+      if (equip.getItemLevel() == 0)
       {
         final byte lvl = (byte) Randomizer.rand(1, 4);
-        equip.setLevel(lvl);
+        equip.setItemLevel(lvl);
       }
     }
     c.getSession().writeAndFlush(CWvsContext.InventoryPacket.addInventorySlot(type, item));
@@ -391,7 +391,7 @@ public class MapleInventoryManipulator
       {
         throw new InventoryException("Trying to create equip with non-one quantity");
       }
-      final Item nEquip = ii.getEquipById(itemId, uniqueid);
+      final Item nEquip = ii.generateEquipById(itemId, uniqueid);
       if (owner != null)
       {
         nEquip.setOwner(owner);
@@ -576,7 +576,7 @@ public class MapleInventoryManipulator
       {
         throw new InventoryException("Trying to create equip with non-one quantity");
       }
-      final Item nEquip = ii.getEquipById(itemId, uniqueid);
+      final Item nEquip = ii.generateEquipById(itemId, uniqueid);
       if (owner != null)
       {
         nEquip.setOwner(owner);
@@ -700,7 +700,7 @@ public class MapleInventoryManipulator
       {
         throw new InventoryException("Trying to create equip with non-one quantity");
       }
-      final Item item = ii.getEquipById(itemId);
+      final Item item = ii.generateEquipById(itemId, -1L);
       final short newSlot3 = c.getPlayer().getInventory(type).addItem(item);
       if (newSlot3 == -1)
       {
@@ -875,7 +875,7 @@ public class MapleInventoryManipulator
     if (before instanceof Equip)
     {
       final Equip eq = (Equip) before;
-      if (eq.getState() == 0 && (eq.getUpgradeSlots() >= 1 || eq.getLevel() >= 1) && GameConstants.canScroll(eq.getItemId()) && Randomizer.nextInt(100) >= 80)
+      if (eq.getState() == 0 && (eq.getTotalUpgradeSlots() >= 1 || eq.getEnchantLevel() >= 1) && GameConstants.canScroll(eq.getItemId()) && Randomizer.nextInt(100) >= 80)
       {
         eq.resetPotential();
       }
@@ -1430,7 +1430,7 @@ public class MapleInventoryManipulator
     }
     if (source.getItemId() >= 1113098 && source.getItemId() <= 1113128)
     {
-      chr.changeSkillLevel(SkillFactory.getSkill(80001455 + (source.getItemId() - 1113098)), (byte) source.getBaseLevel(), (byte) 4);
+      chr.changeSkillLevel(SkillFactory.getSkill(80001455 + (source.getItemId() - 1113098)), (byte) source.getItemLevel(), (byte) 4);
     }
     if (target != null && target.getItemId() >= 1113098 && target.getItemId() <= 1113128)
     {

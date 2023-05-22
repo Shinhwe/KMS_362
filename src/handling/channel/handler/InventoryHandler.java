@@ -20,7 +20,6 @@ import scripting.EventManager;
 import scripting.NPCScriptManager;
 import server.Timer;
 import server.*;
-import server.enchant.EquipmentEnchant;
 import server.life.MapleLifeFactory;
 import server.life.MapleMonster;
 import server.life.MobSkill;
@@ -223,13 +222,13 @@ public class InventoryHandler
           }
           if (GameConstants.getInventoryType(reward.itemid) == MapleInventoryType.EQUIP)
           {
-            final Item item = ii.getEquipById(reward.itemid);
+            final Equip equip = ii.generateEquipById(reward.itemid, -1);
             if (reward.period > 0L)
             {
-              item.setExpiration(System.currentTimeMillis() + reward.period * 60L * 60L * 10L);
+              equip.setExpiration(System.currentTimeMillis() + reward.period * 60L * 60L * 10L);
             }
-            item.setGMLog("Reward item: " + itemId + " on " + FileoutputUtil.CurrentReadable_Date());
-            MapleInventoryManipulator.addbyItem(c, item);
+            equip.setGMLog("Reward item: " + itemId + " on " + FileoutputUtil.CurrentReadable_Date());
+            MapleInventoryManipulator.addbyItem(c, equip);
           }
           else
           {
@@ -244,11 +243,11 @@ public class InventoryHandler
         {
           final int reward2 = 1113097 + Randomizer.rand(1, 31);
           MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.getByType((byte) (toUse.getItemId() / 1000000)), slot, (short) 1, false);
-          final Equip item2 = (Equip) ii.getEquipById(reward2);
+          final Equip item2 = (Equip) ii.generateEquipById(reward2, -1L);
           MapleInventoryManipulator.addbyItem(c, item2);
           c.getSession().writeAndFlush(CField.EffectPacket.showEffect(c.getPlayer(), reward2, 0, 38, 1, 0, (byte) 0, true, null, "", null));
           c.getSession().writeAndFlush(CField.EffectPacket.showRewardItemEffect(c.getPlayer(), itemId, true, ""));
-          if (item2.getBaseLevel() >= 4 && (reward2 == 1113098 || reward2 == 1113099 || (reward2 >= 1113113 && reward2 <= 1113116) || reward2 == 1113122))
+          if (item2.getItemLevel() >= 4 && (reward2 == 1113098 || reward2 == 1113099 || (reward2 >= 1113113 && reward2 <= 1113116) || reward2 == 1113122))
           {
             World.Broadcast.broadcastMessage(CWvsContext.serverMessage(11, c.getChannel(), c.getPlayer().getName(), c.getPlayer().getName() + "님이 상자에서 [" + ii.getName(reward2) + "] 아이템을 획득했습니다.", true, item2));
           }
@@ -364,7 +363,7 @@ public class InventoryHandler
     }
   }
   
-  public static final void UsereturnScroll(LittleEndianAccessor slea, MapleClient c, MapleCharacter chr)
+  public static final void UseReturnScroll(LittleEndianAccessor slea, MapleClient c, MapleCharacter chr)
   {
     if (!chr.isAlive() || chr.getMapId() == 749040100 || chr.inPVP())
     {
@@ -383,7 +382,7 @@ public class InventoryHandler
     FileoutputUtil.log(FileoutputUtil.아이템사용로그, "[주문서 사용] 계정 아이디 : " + c.getAccID() + " | " + c.getPlayer().getName() + "이 " + MapleItemInformationProvider.getInstance().getName(toUse.getItemId()) + "를 " + MapleItemInformationProvider.getInstance().getName(itemId) + "에 사용함.");
     if (!FieldLimitType.PotionUse.check(chr.getMap().getFieldLimit()))
     {
-      if (MapleItemInformationProvider.getInstance().getItemEffect(toUse.getItemId()).applyreturnScroll(chr))
+      if (MapleItemInformationProvider.getInstance().getItemEffect(toUse.getItemId()).applyReturnScroll(chr))
       {
         MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (short) 1, false);
       }
@@ -828,11 +827,11 @@ public class InventoryHandler
     {
       return false;
     }
-    final byte oldLevel = toScroll.getLevel();
+    final byte oldLevel = toScroll.getEnchantLevel();
     final byte oldEnhance = toScroll.getStarForceLevel();
     final byte oldState = toScroll.getState();
     final int oldFlag = toScroll.getFlag();
-    final byte oldSlots = toScroll.getUpgradeSlots();
+    final byte oldSlots = toScroll.getTotalUpgradeSlots();
     if (scroll == null || header == RecvPacketOpcode.USE_FLAG_SCROLL)
     {
       scroll = chr.getInventory(MapleInventoryType.CASH).getItem(slot);
@@ -854,26 +853,15 @@ public class InventoryHandler
     }
     if (scroll.getItemId() / 100 == 20496)
     {
-      final Equip origin = (Equip) MapleItemInformationProvider.getInstance().getEquipById(toScroll.getItemId());
-      toScroll.setAcc(origin.getAcc());
-      toScroll.setAvoid(origin.getAvoid());
-      toScroll.setDex(origin.getDex());
-      toScroll.setHands(origin.getHands());
-      toScroll.setHp(origin.getHp());
-      toScroll.setInt(origin.getInt());
-      toScroll.setJump(origin.getJump());
-      toScroll.setLevel(origin.getLevel());
-      toScroll.setLuk(origin.getLuk());
-      toScroll.setMatk(origin.getMatk());
-      toScroll.setMdef(origin.getMdef());
-      toScroll.setMp(origin.getMp());
-      toScroll.setSpeed(origin.getSpeed());
-      toScroll.setStr(origin.getStr());
-      toScroll.setUpgradeSlots(origin.getUpgradeSlots());
-      toScroll.setWatk(origin.getWatk());
-      toScroll.setWdef(origin.getWdef());
-      toScroll.setStarForceLevel((byte) 0);
-      toScroll.setViciousHammer((byte) 0);
+      if (scroll.getItemId() == 2049615 || scroll.getItemId() == 2049616 ||scroll.getItemId() ==2049618||scroll.getItemId() ==2049622||scroll.getItemId() ==2049625)
+      {
+        toScroll.完美回真();
+      }
+      else
+      {
+        toScroll.普通回真();
+      }
+      
       chr.getInventory(MapleInventoryType.USE).removeItem(scroll.getPosition());
       c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateScrollandItem(scroll, toScroll));
       c.getPlayer().getMap().broadcastMessage(c.getPlayer(), CField.getScrollEffect(c.getPlayer().getId(), Equip.ScrollResult.SUCCESS, legendarySpirit, scroll.getItemId(), toScroll.getItemId()), true);
@@ -881,14 +869,14 @@ public class InventoryHandler
     }
     if (!GameConstants.isSpecialScroll(scroll.getItemId()) && !GameConstants.isCleanSlate(scroll.getItemId()) && !GameConstants.isEquipScroll(scroll.getItemId()) && scroll.getItemId() != 2049360 && scroll.getItemId() != 2049361 && !GameConstants.isPotentialScroll(scroll.getItemId()) && !GameConstants.isRebirthFireScroll(scroll.getItemId()) && !GameConstants.isLuckyScroll(scroll.getItemId()))
     {
-      if (toScroll.getUpgradeSlots() < 1 && scroll.getItemId() != 2644001 && scroll.getItemId() != 2644002 && scroll.getItemId() != 2644004 && scroll.getItemId() != 2049371 && scroll.getItemId() != 2049372 && GameConstants.isStarForceScroll(scroll.getItemId()) < 0)
+      if (toScroll.getTotalUpgradeSlots() < 1 && scroll.getItemId() != 2644001 && scroll.getItemId() != 2644002 && scroll.getItemId() != 2644004 && scroll.getItemId() != 2049371 && scroll.getItemId() != 2049372 && GameConstants.isStarForceScroll(scroll.getItemId()) < 0)
       {
         c.getSession().writeAndFlush(CWvsContext.enableActions(chr));
         chr.dropMessage(1, "업그레이드 슬롯이 부족합니다.");
         return false;
       }
     }
-    else if (GameConstants.isEquipScroll(scroll.getItemId()) && ((scroll.getItemId() != 2049360 && scroll.getItemId() != 2049361 && toScroll.getUpgradeSlots() >= 1) || toScroll.getStarForceLevel() >= 15 || ii.isCash(toScroll.getItemId())))
+    else if (GameConstants.isEquipScroll(scroll.getItemId()) && ((scroll.getItemId() != 2049360 && scroll.getItemId() != 2049361 && toScroll.getTotalUpgradeSlots() >= 1) || toScroll.getStarForceLevel() >= 15 || ii.isCash(toScroll.getItemId())))
     {
       c.getSession().writeAndFlush(CWvsContext.enableActions(chr));
       chr.dropMessage(1, "더 이상 강화할 수 없는 아이템입니다.");
@@ -980,7 +968,7 @@ public class InventoryHandler
       chr.dropMessage(1, "악세서리 주문서를 사용하실 수 없는 아이템입니다.");
       return false;
     }
-    if (toScroll.getUpgradeSlots() > 0 && scroll.getItemId() >= 2049370 && scroll.getItemId() <= 2049377)
+    if (toScroll.getTotalUpgradeSlots() > 0 && scroll.getItemId() >= 2049370 && scroll.getItemId() <= 2049377)
     {
       c.getSession().writeAndFlush(CWvsContext.enableActions(chr));
       chr.dropMessage(1, "아직 업그레이드 슬롯이 남아있습니다.");
@@ -996,17 +984,16 @@ public class InventoryHandler
       chr.returnSc = scroll.getItemId();
       chr.returnScroll = (Equip) toScroll.copy();
     }
-    if (header == RecvPacketOpcode.USE_BLACK_REBIRTH_SCROLL)
+    if (header == RecvPacketOpcode.USE_BLACK_FLAME_SCROLL)
     {
-      boolean isBossItem = GameConstants.isBossItem(toScroll.getItemId());
-      final long newRebirth = toScroll.newRebirth(ii.getReqLevel(toScroll.getItemId()), scroll.getItemId(), false, isBossItem);
-      c.getSession().writeAndFlush(CWvsContext.useBlackRebirthScroll(toScroll, scroll, newRebirth, false));
+      long newFlame = toScroll.calcNewFlame(scroll.getItemId());
+      c.getSession().writeAndFlush(CWvsContext.useBlackRebirthScroll(toScroll, scroll, newFlame, false));
       MapleInventoryManipulator.removeFromSlot(c, GameConstants.getInventoryType(scroll.getItemId()), scroll.getPosition(), (short) 1, false, false);
-      c.getSession().writeAndFlush(CWvsContext.blackRebirthResult(true, toScroll.getFire(), toScroll));
-      c.getSession().writeAndFlush(CWvsContext.blackRebirthResult(false, newRebirth, toScroll));
-      chr.blackRebirth = newRebirth;
-      chr.blackRebirthScroll = (Equip) toScroll.copy();
-      chr.blackRebirthPos = slot;
+      c.getSession().writeAndFlush(CWvsContext.blackRebirthResult(true, toScroll.getFlame(), toScroll));
+      c.getSession().writeAndFlush(CWvsContext.blackRebirthResult(false, newFlame, toScroll));
+      chr.blackFlame = newFlame;
+      chr.blackFlameScroll = (Equip) toScroll.copy();
+      chr.blackFlamePosition = slot;
       return false;
     }
     final Equip scrolled = (Equip) ii.scrollEquipWithId(toScroll, scroll, whiteScroll, chr);
@@ -1021,11 +1008,11 @@ public class InventoryHandler
     {
       scrollSuccess = Equip.ScrollResult.SUCCESS;
     }
-    else if (scrolled.getLevel() > oldLevel || scrolled.getStarForceLevel() > oldEnhance || scrolled.getState() != oldState || scrolled.getFlag() > oldFlag)
+    else if (scrolled.getEnchantLevel() > oldLevel || scrolled.getStarForceLevel() > oldEnhance || scrolled.getState() != oldState || scrolled.getFlag() > oldFlag)
     {
       scrollSuccess = Equip.ScrollResult.SUCCESS;
     }
-    else if (GameConstants.isCleanSlate(scroll.getItemId()) && scrolled.getUpgradeSlots() > oldSlots)
+    else if (GameConstants.isCleanSlate(scroll.getItemId()) && scrolled.getTotalUpgradeSlots() > oldSlots)
     {
       scrollSuccess = Equip.ScrollResult.SUCCESS;
     }
@@ -1119,7 +1106,7 @@ public class InventoryHandler
       {
         c.getPlayer().returnScroll = null;
         toScroll.setFlag(toScroll.getFlag() - ItemFlag.RETURN_SCROLL.getValue());
-        toScroll.setUpgradeSlots((byte) (toScroll.getUpgradeSlots() + 1));
+        toScroll.setExtraUpgradeSlots((byte) (toScroll.getExtraUpgradeSlots() + 1));
         chr.getClient().getSession().writeAndFlush(CWvsContext.InventoryPacket.updateEquipSlot(toScroll));
       }
     }
@@ -1140,7 +1127,7 @@ public class InventoryHandler
     {
       chr.equipChanged();
     }
-    if (header == RecvPacketOpcode.USE_REBIRTH_SCROLL)
+    if (header == RecvPacketOpcode.USE_FLAME_SCROLL)
     {
       chr.getClient().send(CWvsContext.RebirthScrollWindow(scroll.getItemId(), toScroll.getPosition()));
     }
@@ -3984,7 +3971,7 @@ public class InventoryHandler
             }
             if (GameConstants.getInventoryType(itemid) == MapleInventoryType.EQUIP)
             {
-              item13 = mapleItemInformationProvider.getEquipById(itemid);
+              item13 = mapleItemInformationProvider.generateEquipById(itemid, -1);
             }
             /* 2991 */
             if (MapleItemInformationProvider.getInstance().isCash(itemid))
@@ -4356,45 +4343,8 @@ public class InventoryHandler
         if (equip2 != null)
         {
           /* 3206 */
-          Equip origin = (Equip) MapleItemInformationProvider.getInstance().getEquipById(equip2.getItemId());
           /* 3207 */
-          equip2.setAcc(origin.getAcc());
-          /* 3208 */
-          equip2.setAvoid(origin.getAvoid());
-          /* 3209 */
-          equip2.setDex(origin.getDex());
-          /* 3210 */
-          equip2.setHands(origin.getHands());
-          /* 3211 */
-          equip2.setHp(origin.getHp());
-          /* 3212 */
-          equip2.setInt(origin.getInt());
-          /* 3213 */
-          equip2.setJump(origin.getJump());
-          /* 3214 */
-          equip2.setLevel(origin.getLevel());
-          /* 3215 */
-          equip2.setLuk(origin.getLuk());
-          /* 3216 */
-          equip2.setMatk(origin.getMatk());
-          /* 3217 */
-          equip2.setMdef(origin.getMdef());
-          /* 3218 */
-          equip2.setMp(origin.getMp());
-          /* 3219 */
-          equip2.setSpeed(origin.getSpeed());
-          /* 3220 */
-          equip2.setStr(origin.getStr());
-          /* 3221 */
-          equip2.setUpgradeSlots(origin.getUpgradeSlots());
-          /* 3222 */
-          equip2.setWatk(origin.getWatk());
-          /* 3223 */
-          equip2.setWdef(origin.getWdef());
-          /* 3224 */
-          equip2.setStarForceLevel((byte) 0);
-          /* 3225 */
-          equip2.setViciousHammer((byte) 0);
+          equip2.完美回真();
           /* 3226 */
           c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, equip2));
           /* 3227 */
@@ -5347,7 +5297,7 @@ public class InventoryHandler
           {
             if (GameConstants.getInventoryType(itemid) == MapleInventoryType.EQUIP)
             {
-              item6 = ii7.getEquipById(itemid);
+              item6 = ii7.generateEquipById(itemid, -1L);
             }
             else
             {
@@ -5395,7 +5345,7 @@ public class InventoryHandler
             if (GameConstants.getInventoryType(itemid[i8][0]) == MapleInventoryType.EQUIP)
             {
               /* 3828 */
-              item13 = mapleItemInformationProvider.getEquipById(itemid[i8][0]);
+              item13 = mapleItemInformationProvider.generateEquipById(itemid[i8][0], -1L);
             }
             else
             {
@@ -5500,7 +5450,7 @@ public class InventoryHandler
             if (GameConstants.getInventoryType(itemid) == MapleInventoryType.EQUIP)
             {
               /* 3905 */
-              item13 = mapleItemInformationProvider.getEquipById(itemid);
+              item13 = mapleItemInformationProvider.generateEquipById(itemid, -1L);
             }
             else
             {
@@ -5601,7 +5551,7 @@ public class InventoryHandler
             /* 3962 */
             equip1.setViciousHammer((byte) (equip1.getViciousHammer() + 1));
             /* 3963 */
-            equip1.setExtraUpgradeSlots((byte) (equip1.getUpgradeSlots() + 1));
+            equip1.setExtraUpgradeSlots((byte) (equip1.getExtraUpgradeSlots() + 1));
             /* 3964 */
             c.getPlayer().forceReAddItem(equip1, MapleInventoryType.EQUIP);
             /* 3965 */
@@ -6120,7 +6070,7 @@ public class InventoryHandler
             return;
           }
           /* 4231 */
-          Equip equip6 = (Equip) mapleItemInformationProvider5.getEquipById(MItemidselect);
+          Equip equip6 = (Equip) mapleItemInformationProvider5.generateEquipById(MItemidselect, -1L);
           /* 4232 */
           if (equip6 == null)
           {
@@ -6504,7 +6454,7 @@ public class InventoryHandler
           toScroll = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(s1);
         }
         /* 4474 */
-        if (toScroll.getUpgradeSlots() == 0)
+        if (toScroll.getTotalUpgradeSlots() == 0)
         {
           break;
         }
@@ -8548,7 +8498,7 @@ public class InventoryHandler
           int[] itemlist = new int[]{1082608, 1082609, 1082610, 1082611, 1082612, 1072967, 1072968, 1072969, 1072970, 1072971, 1052799, 0x101080, 0x101081, 1052802, 1052803, 1004229, 1004230, 1004231, 1004232, 1004233, 1102718, 1102719, 1102720, 1102721, 1102722};
           int Random3 = (int) Math.floor(Math.random() * (double) itemlist.length);
           int finalitemid = itemlist[Random3];
-          Equip Item2 = (Equip) MapleItemInformationProvider.getInstance().getEquipById(finalitemid);
+          Equip Item2 = (Equip) MapleItemInformationProvider.getInstance().generateEquipById(finalitemid, -1L);
           if (Item2 == null)
           {
             InventoryHandler.removeItem(chr, mapitem, ob);
@@ -8567,7 +8517,7 @@ public class InventoryHandler
           int[] itemlist = new int[]{1212101, 1222095, 1232095, 1242102, 1242133, 1262011, 1272013, 1282013, 1292014, 1302315, 1312185, 1322236, 1332260, 1342100, 1362121, 1372207, 1382245, 1402236, 1412164, 1422171, 1432200, 1442254, 1452238, 1462225, 1472247, 1482202, 1492212, 1522124, 1532130, 1582011, 1592016};
           int Random4 = (int) Math.floor(Math.random() * (double) itemlist.length);
           int finalitemid = itemlist[Random4];
-          Equip Item3 = (Equip) MapleItemInformationProvider.getInstance().getEquipById(finalitemid);
+          Equip Item3 = (Equip) MapleItemInformationProvider.getInstance().generateEquipById(finalitemid, -1L);
           if (Item3 == null)
           {
             InventoryHandler.removeItem(chr, mapitem, ob);
@@ -8812,33 +8762,33 @@ public class InventoryHandler
           equip2.setArcEXP(1);
           if (GameConstants.isXenon(c.getPlayer().getJob()))
           {
-            equip2.setStr((short) 117);
-            equip2.setDex((short) 117);
-            equip2.setLuk((short) 117);
+            equip2.setArcStr((short) 117);
+            equip2.setArcDex((short) 117);
+            equip2.setArcLuk((short) 117);
           }
           else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
           {
-            equip2.setHp((short) 525);
+            equip2.setArcHp((short) 525);
           }
           else if (GameConstants.isWarrior(c.getPlayer().getJob()))
           {
-            equip2.setStr((short) 300);
+            equip2.setArcStr((short) 300);
           }
           else if (GameConstants.isMagician(c.getPlayer().getJob()))
           {
-            equip2.setInt((short) 300);
+            equip2.setArcInt((short) 300);
           }
           else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
           {
-            equip2.setDex((short) 300);
+            equip2.setArcDex((short) 300);
           }
           else if (GameConstants.isThief(c.getPlayer().getJob()))
           {
-            equip2.setLuk((short) 300);
+            equip2.setArcLuk((short) 300);
           }
           else if (GameConstants.isPirate(c.getPlayer().getJob()))
           {
-            equip2.setStr((short) 300);
+            equip2.setArcStr((short) 300);
           }
         }
         else if (GameConstants.isAuthenticSymbol(mapitem.getItemId()) && (equip = (Equip) mapitem.getItem()).getArcLevel() == 0)
@@ -8848,33 +8798,33 @@ public class InventoryHandler
           equip.setArcEXP(1);
           if (GameConstants.isXenon(c.getPlayer().getJob()))
           {
-            equip.setStr((short) 317);
-            equip.setDex((short) 317);
-            equip.setLuk((short) 317);
+            equip.setAuthenticStr((short) 317);
+            equip.setAuthenticDex((short) 317);
+            equip.setAuthenticLuk((short) 317);
           }
           else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
           {
-            equip.setHp((short) 725);
+            equip.setAuthenticHp((short) 725);
           }
           else if (GameConstants.isWarrior(c.getPlayer().getJob()))
           {
-            equip.setStr((short) 500);
+            equip.setAuthenticStr((short) 500);
           }
           else if (GameConstants.isMagician(c.getPlayer().getJob()))
           {
-            equip.setInt((short) 500);
+            equip.setAuthenticInt((short) 500);
           }
           else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
           {
-            equip.setDex((short) 500);
+            equip.setAuthenticDex((short) 500);
           }
           else if (GameConstants.isThief(c.getPlayer().getJob()))
           {
-            equip.setLuk((short) 500);
+            equip.setAuthenticLuk((short) 500);
           }
           else if (GameConstants.isPirate(c.getPlayer().getJob()))
           {
-            equip.setStr((short) 500);
+            equip.setAuthenticStr((short) 500);
           }
         }
         if (mapitem.getItem().getItemId() == 4001886)
@@ -9276,33 +9226,33 @@ public class InventoryHandler
           equip.setArcEXP(1);
           if (GameConstants.isXenon(c.getPlayer().getJob()))
           {
-            equip.setStr((short) 117);
-            equip.setDex((short) 117);
-            equip.setLuk((short) 117);
+            equip.setArcStr((short) 117);
+            equip.setArcDex((short) 117);
+            equip.setArcLuk((short) 117);
           }
           else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
           {
-            equip.setHp((short) 525);
+            equip.setArcHp((short) 525);
           }
           else if (GameConstants.isWarrior(c.getPlayer().getJob()))
           {
-            equip.setStr((short) 300);
+            equip.setArcStr((short) 300);
           }
           else if (GameConstants.isMagician(c.getPlayer().getJob()))
           {
-            equip.setInt((short) 300);
+            equip.setArcInt((short) 300);
           }
           else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
           {
-            equip.setDex((short) 300);
+            equip.setArcDex((short) 300);
           }
           else if (GameConstants.isThief(c.getPlayer().getJob()))
           {
-            equip.setLuk((short) 300);
+            equip.setArcLuk((short) 300);
           }
           else if (GameConstants.isPirate(c.getPlayer().getJob()))
           {
-            equip.setStr((short) 300);
+            equip.setArcStr((short) 300);
           }
         }
         else if (GameConstants.isAuthenticSymbol(mapitem.getItemId()))
@@ -9315,33 +9265,33 @@ public class InventoryHandler
             equip.setArcEXP(1);
             if (GameConstants.isXenon(c.getPlayer().getJob()))
             {
-              equip.setStr((short) 317);
-              equip.setDex((short) 317);
-              equip.setLuk((short) 317);
+              equip.setAuthenticStr((short) 317);
+              equip.setAuthenticDex((short) 317);
+              equip.setAuthenticLuk((short) 317);
             }
             else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
             {
-              equip.setHp((short) 725);
+              equip.setAuthenticHp((short) 725);
             }
             else if (GameConstants.isWarrior(c.getPlayer().getJob()))
             {
-              equip.setStr((short) 500);
+              equip.setAuthenticStr((short) 500);
             }
             else if (GameConstants.isMagician(c.getPlayer().getJob()))
             {
-              equip.setInt((short) 500);
+              equip.setAuthenticInt((short) 500);
             }
             else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
             {
-              equip.setDex((short) 500);
+              equip.setAuthenticDex((short) 500);
             }
             else if (GameConstants.isThief(c.getPlayer().getJob()))
             {
-              equip.setLuk((short) 500);
+              equip.setAuthenticLuk((short) 500);
             }
             else if (GameConstants.isPirate(c.getPlayer().getJob()))
             {
-              equip.setStr((short) 500);
+              equip.setAuthenticStr((short) 500);
             }
           }
         }
@@ -9667,13 +9617,13 @@ public class InventoryHandler
   
   public static void resetZeroWeapon(final MapleCharacter chr)
   {
-    final Equip newa = (Equip) MapleItemInformationProvider.getInstance().getEquipById(chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-11)).getItemId());
-    final Equip newb = (Equip) MapleItemInformationProvider.getInstance().getEquipById(chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-10)).getItemId());
+    final Equip newa = (Equip) MapleItemInformationProvider.getInstance().generateEquipById(chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-11)).getItemId(), -1L);
+    final Equip newb = (Equip) MapleItemInformationProvider.getInstance().generateEquipById(chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-10)).getItemId(),-1L);
     ((Equip) chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-11))).set(newa);
     ((Equip) chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-10))).set(newb);
     chr.getClient().getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-11))));
     chr.getClient().getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-10))));
-    chr.dropMessage(5, "\uc81c\ub85c\uc758 \uc7a5\ube44\ub294 \ud30c\uad34\ub418\ub294\ub300\uc2e0 \ucc98\uc74c \uc0c1\ud0dc\ub85c \ub418\ub3cc\uc544\uac11\ub2c8\ub2e4.");
+    chr.dropMessage(5, "제로의 장비는 파괴되는대신 처음 상태로 되돌아갑니다.");
   }
   
   public static void UseNameChangeCoupon(final LittleEndianAccessor slea, final MapleClient c)
@@ -10296,55 +10246,55 @@ public class InventoryHandler
     }
     if ((itemId == 2470001 || itemId == 2470002) && Randomizer.nextInt(100) > 50)
     {
-      victim.setUpgradeSlots((byte) (victim.getUpgradeSlots() + 1));
+      victim.setExtraUpgradeSlots((byte) (victim.getExtraUpgradeSlots() + 1));
       if (victim_ != null)
       {
-        victim_.setUpgradeSlots((byte) (victim.getUpgradeSlots() + 1));
+        victim_.setExtraUpgradeSlots((byte) (victim.getExtraUpgradeSlots() + 1));
       }
       c.getPlayer().vh = true;
     }
     else if (itemId == 2470000)
     {
-      victim.setUpgradeSlots((byte) (victim.getUpgradeSlots() + 1));
+      victim.setExtraUpgradeSlots((byte) (victim.getExtraUpgradeSlots() + 1));
       if (victim_ != null)
       {
-        victim_.setUpgradeSlots((byte) (victim_.getUpgradeSlots() + 1));
+        victim_.setExtraUpgradeSlots((byte) (victim_.getExtraUpgradeSlots() + 1));
       }
       c.getPlayer().vh = true;
     }
     else if (itemId == 2470003)
     {
-      victim.setUpgradeSlots((byte) (victim.getUpgradeSlots() + 1));
+      victim.setExtraUpgradeSlots((byte) (victim.getExtraUpgradeSlots() + 1));
       if (victim_ != null)
       {
-        victim_.setUpgradeSlots((byte) (victim_.getUpgradeSlots() + 1));
+        victim_.setExtraUpgradeSlots((byte) (victim_.getExtraUpgradeSlots() + 1));
       }
       c.getPlayer().vh = true;
     }
     else if (itemId == 2470007)
     {
-      victim.setUpgradeSlots((byte) (victim.getUpgradeSlots() + 1));
+      victim.setExtraUpgradeSlots((byte) (victim.getExtraUpgradeSlots() + 1));
       if (victim_ != null)
       {
-        victim_.setUpgradeSlots((byte) (victim_.getUpgradeSlots() + 1));
+        victim_.setExtraUpgradeSlots((byte) (victim_.getExtraUpgradeSlots() + 1));
       }
       c.getPlayer().vh = true;
     }
     else if (itemId == 2470010)
     {
-      victim.setUpgradeSlots((byte) (victim.getUpgradeSlots() + 1));
+      victim.setExtraUpgradeSlots((byte) (victim.getExtraUpgradeSlots() + 1));
       if (victim_ != null)
       {
-        victim_.setUpgradeSlots((byte) (victim_.getUpgradeSlots() + 1));
+        victim_.setExtraUpgradeSlots((byte) (victim_.getExtraUpgradeSlots() + 1));
       }
       c.getPlayer().vh = true;
     }
     else if (itemId == 2470021)
     {//황망 5회
-      victim.setUpgradeSlots((byte) (victim.getUpgradeSlots() + 5));
+      victim.setExtraUpgradeSlots((byte) (victim.getExtraUpgradeSlots() + 5));
       if (victim_ != null)
       {
-        victim_.setUpgradeSlots((byte) (victim_.getUpgradeSlots() + 5));
+        victim_.setExtraUpgradeSlots((byte) (victim_.getExtraUpgradeSlots() + 5));
       }
       c.getPlayer().vh = true;
     }
@@ -10435,33 +10385,33 @@ public class InventoryHandler
     equip.setArcEXP((int) Math.floor(totalexp * 0.8));
     if (GameConstants.isXenon(c.getPlayer().getJob()))
     {
-      equip.setStr((short) 117);
-      equip.setDex((short) 117);
-      equip.setLuk((short) 117);
+      equip.setArcStr((short) 117);
+      equip.setArcDex((short) 117);
+      equip.setArcLuk((short) 117);
     }
     else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
     {
-      equip.setHp((short) 4200);
+      equip.setArcHp((short) 4200);
     }
     else if (GameConstants.isWarrior(c.getPlayer().getJob()))
     {
-      equip.setStr((short) 300);
+      equip.setArcStr((short) 300);
     }
     else if (GameConstants.isMagician(c.getPlayer().getJob()))
     {
-      equip.setInt((short) 300);
+      equip.setArcInt((short) 300);
     }
     else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
     {
-      equip.setDex((short) 300);
+      equip.setArcDex((short) 300);
     }
     else if (GameConstants.isThief(c.getPlayer().getJob()))
     {
-      equip.setLuk((short) 300);
+      equip.setArcLuk((short) 300);
     }
     else if (GameConstants.isPirate(c.getPlayer().getJob()))
     {
-      equip.setStr((short) 300);
+      equip.setArcStr((short) 300);
     }
     c.getSession().writeAndFlush(CWvsContext.ArcaneCatalyst(equip, slot));
   }
@@ -10484,33 +10434,33 @@ public class InventoryHandler
       equip.setArcLevel(1);
       if (GameConstants.isXenon(c.getPlayer().getJob()))
       {
-        equip.setStr((short) 117);
-        equip.setDex((short) 117);
-        equip.setLuk((short) 117);
+        equip.setArcStr((short) 117);
+        equip.setArcDex((short) 117);
+        equip.setArcLuk((short) 117);
       }
       else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
       {
-        equip.setHp((short) 4200);
+        equip.setArcHp((short) 4200);
       }
       else if (GameConstants.isWarrior(c.getPlayer().getJob()))
       {
-        equip.setStr((short) 300);
+        equip.setArcStr((short) 300);
       }
       else if (GameConstants.isMagician(c.getPlayer().getJob()))
       {
-        equip.setInt((short) 300);
+        equip.setArcInt((short) 300);
       }
       else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
       {
-        equip.setDex((short) 300);
+        equip.setArcDex((short) 300);
       }
       else if (GameConstants.isThief(c.getPlayer().getJob()))
       {
-        equip.setLuk((short) 300);
+        equip.setArcLuk((short) 300);
       }
       else if (GameConstants.isPirate(c.getPlayer().getJob()))
       {
-        equip.setStr((short) 300);
+        equip.setArcStr((short) 300);
       }
       equip.setEquipmentType(equip.getEquipmentType() | 0x4000);
     }
@@ -10553,7 +10503,7 @@ public class InventoryHandler
       equip.setMoru(0);
       c.getPlayer().forceReAddItem(equip, MapleInventoryType.EQUIP);
       String msg = "[" + MapleItemInformationProvider.getInstance().getName(equip.getItemId()) +
-          "]\uc758 \uc678\ud615\uc774 \uc6d0\ub798\ub300\ub85c \ubcf5\uad6c\ub418\uc5c8\uc2b5\ub2c8\ub2e4.";
+          "]의 외형이 원래대로 복구되었습니다.";
       c.getSession().writeAndFlush(CWvsContext.showPopupMessage(msg));
       c.getPlayer().gainItem(scrollId, -1);
     }
@@ -10563,10 +10513,10 @@ public class InventoryHandler
   {
     final int result = slea.readInt();
     final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
-    Equip eq = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(c.getPlayer().blackRebirthScroll.getPosition());
+    Equip eq = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(c.getPlayer().blackFlameScroll.getPosition());
     if (eq == null)
     {
-      eq = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(c.getPlayer().blackRebirthScroll.getPosition());
+      eq = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(c.getPlayer().blackFlameScroll.getPosition());
       if (eq == null)
       {
         return;
@@ -10583,79 +10533,33 @@ public class InventoryHandler
     }
     if (result == 2)
     {
-      eq.resetRebirth(ii.getReqLevel(eq.getItemId()));
-      final int[] rebirth = new int[4];
-      final String fire = String.valueOf(c.getPlayer().blackRebirth);
-      final Equip ordinary = (Equip) MapleItemInformationProvider.getInstance().getEquipById(eq.getItemId(), false);
-      Equip ordinary2 = null;
-      int ordinaryPad2 = 0;
-      int ordinaryMad2 = 0;
-      if (zeroequip != null)
-      {
-        zeroequip.resetRebirth(ii.getReqLevel(zeroequip.getItemId()));
-        ordinary2 = (Equip) MapleItemInformationProvider.getInstance().getEquipById(zeroequip.getItemId(), false);
-        ordinaryPad2 = ((ordinary2.getWatk() > 0) ? ordinary2.getWatk() : ordinary2.getMatk());
-        ordinaryMad2 = ((ordinary2.getMatk() > 0) ? ordinary2.getMatk() : ordinary2.getWatk());
-      }
-      final int ordinaryPad3 = (ordinary.getWatk() > 0) ? ordinary.getWatk() : ordinary.getMatk();
-      final int ordinaryMad3 = (ordinary.getMatk() > 0) ? ordinary.getMatk() : ordinary.getWatk();
-      if (fire.length() == 12)
-      {
-        rebirth[0] = Integer.parseInt(fire.substring(0, 3));
-        rebirth[1] = Integer.parseInt(fire.substring(3, 6));
-        rebirth[2] = Integer.parseInt(fire.substring(6, 9));
-        rebirth[3] = Integer.parseInt(fire.substring(9));
-      }
-      else if (fire.length() == 11)
-      {
-        rebirth[0] = Integer.parseInt(fire.substring(0, 2));
-        rebirth[1] = Integer.parseInt(fire.substring(2, 5));
-        rebirth[2] = Integer.parseInt(fire.substring(5, 8));
-        rebirth[3] = Integer.parseInt(fire.substring(8));
-      }
-      else if (fire.length() == 10)
-      {
-        rebirth[0] = Integer.parseInt(fire.substring(0, 1));
-        rebirth[1] = Integer.parseInt(fire.substring(1, 4));
-        rebirth[2] = Integer.parseInt(fire.substring(4, 7));
-        rebirth[3] = Integer.parseInt(fire.substring(7));
-      }
-      eq.setFire(c.getPlayer().blackRebirth);
-      if (zeroequip != null)
-      {
-        zeroequip.setFire(c.getPlayer().blackRebirth);
-      }
-      for (int i = 0; i < rebirth.length; ++i)
-      {
-        final int value = rebirth[i] - rebirth[i] / 10 * 10;
-        eq.setFireOption(rebirth[i] / 10, ii.getReqLevel(eq.getItemId()), value, ordinaryPad3, ordinaryMad3);
-        if (zeroequip != null && ordinaryPad2 != 0)
-        {
-          zeroequip.setFireOption(rebirth[i] / 10, ii.getReqLevel(zeroequip.getItemId()), value, ordinaryPad2, ordinaryMad2);
-        }
-      }
+      long newFlame = c.getPlayer().blackFlame;
+      eq.setFlame(newFlame);
+      eq.calcFlameStats();
       c.getPlayer().forceReAddItem(eq, MapleInventoryType.EQUIP);
       if (zeroequip != null)
       {
+        zeroequip.setFlame(newFlame);
+        zeroequip.calcFlameStats();
         c.getPlayer().forceReAddItem(zeroequip, MapleInventoryType.EQUIP);
       }
     }
     else if (result == 3)
     {
-      final Item scroll = c.getPlayer().getInventory(MapleInventoryType.USE).getItem(c.getPlayer().blackRebirthPos);
+      final Item scroll = c.getPlayer().getInventory(MapleInventoryType.USE).getItem(c.getPlayer().blackFlamePosition);
       if (scroll != null)
       {
         final Equip neweqs = (Equip) eq.copy();
         boolean isBossItem = GameConstants.isBossItem(neweqs.getItemId());
-        neweqs.resetRebirth(ii.getReqLevel(neweqs.getItemId()));
-        neweqs.setFire(neweqs.newRebirth(ii.getReqLevel(neweqs.getItemId()), scroll.getItemId(), true, isBossItem));
-        final long newRebirth = neweqs.getFire();
-        c.getSession().writeAndFlush(CWvsContext.useBlackRebirthScroll(eq, scroll, newRebirth, false));
+        long newFlame = neweqs.calcNewFlame(scroll.getItemId());
+        neweqs.setFlame(newFlame);
+        neweqs.calcFlameStats();
+        c.getSession().writeAndFlush(CWvsContext.useBlackRebirthScroll(eq, scroll, newFlame, false));
         MapleInventoryManipulator.removeFromSlot(c, GameConstants.getInventoryType(scroll.getItemId()), scroll.getPosition(), (short) 1, false, false);
-        c.getSession().writeAndFlush(CWvsContext.blackRebirthResult(true, eq.getFire(), eq));
-        c.getSession().writeAndFlush(CWvsContext.blackRebirthResult(false, newRebirth, neweqs));
-        c.getPlayer().blackRebirth = newRebirth;
-        c.getPlayer().blackRebirthScroll = (Equip) eq.copy();
+        c.getSession().writeAndFlush(CWvsContext.blackRebirthResult(true, eq.getFlame(), eq));
+        c.getSession().writeAndFlush(CWvsContext.blackRebirthResult(false, newFlame, neweqs));
+        c.getPlayer().blackFlame = newFlame;
+        c.getPlayer().blackFlameScroll = (Equip) eq.copy();
       }
     }
     if (result == 1 || result == 2)

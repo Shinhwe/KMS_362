@@ -1,6 +1,6 @@
 package server;
 
-import client.inventory.Equip;
+import client.inventory.EquipTemplate;
 import tools.Triple;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class ItemInformation
   
   public short itemMakeLevel;
   
-  public Equip eq = null;
+  public EquipTemplate template  = null;
   
   public Map<String, Integer> equipStats;
   

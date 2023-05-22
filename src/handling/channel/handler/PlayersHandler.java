@@ -465,13 +465,13 @@ public class PlayersHandler
           data.setBrideName(c.getPlayer().getName());
           data.setGroomName(chr.getName());
           long[] ringID = MapleRing.makeRing(newItemId, c.getPlayer(), chr);
-          Equip eq = (Equip) MapleItemInformationProvider.getInstance().getEquipById(newItemId, ringID[1]);
-          eq.setStr((short) 300);
-          eq.setDex((short) 300);
-          eq.setInt((short) 300);
-          eq.setLuk((short) 300);
-          eq.setWatk((short) 300);
-          eq.setMatk((short) 300);
+          Equip eq = (Equip) MapleItemInformationProvider.getInstance().generateEquipById(newItemId, ringID[1]);
+          eq.setEnchantStr((short) 300);
+          eq.setEnchantDex((short) 300);
+          eq.setEnchantInt((short) 300);
+          eq.setEnchantLuk((short) 300);
+          eq.setEnchantWatk((short) 300);
+          eq.setEnchantMatk((short) 300);
           MapleRing ring = MapleRing.loadFromDb(ringID[1]);
           if (ring != null)
           {

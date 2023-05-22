@@ -317,7 +317,6 @@ public class CaltechEval
   
   private double eval(String s)
   {
-    Double D = new Double(0.0D);
     Vector<String> tokens = toTokens(s);
     while (tokens.size() > 1)
     {
@@ -328,7 +327,6 @@ public class CaltechEval
   
   public Vector reduceTokens(Vector<String> tokens)
   {
-    Double D = new Double(0.0D);
     double leftValue = 0.0D;
     while (tokens.contains("("))
     {

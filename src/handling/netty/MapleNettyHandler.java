@@ -810,8 +810,8 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
       case USE_POTENTIAL_SCROLL:
       case USE_UPGRADE_SCROLL:
       case USE_EQUIP_SCROLL:
-      case USE_REBIRTH_SCROLL:
-      case USE_BLACK_REBIRTH_SCROLL:
+      case USE_FLAME_SCROLL:
+      case USE_BLACK_FLAME_SCROLL:
       {
         slea.readInt();
         final short scroll = slea.readShort();
@@ -2064,7 +2064,7 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
         NPCHandler.dimentionMirror(slea, c);
         break;
       }
-      case USE_BLACK_REBIRTH_RESULT:
+      case USE_BLACK_FLAME_RESULT:
       {
         InventoryHandler.blackRebirthResult(slea, c);
         break;

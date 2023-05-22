@@ -1173,14 +1173,14 @@ public abstract class AbstractPlayerInteraction
       }
       if (type.equals(MapleInventoryType.EQUIP) && !GameConstants.isThrowingStar(id) && !GameConstants.isBullet(id))
       {
-        Equip item = (Equip) ii.getEquipById(id);
+        Equip item = (Equip) ii.generateEquipById(id, -1L);
         if (period > 0L)
         {
           item.setExpiration(System.currentTimeMillis() + period * 24L * 60L * 60L * 1000L);
         }
         if (slots > 0)
         {
-          item.setUpgradeSlots((byte) (item.getUpgradeSlots() + slots));
+          item.setExtraUpgradeSlots((byte) (item.getExtraUpgradeSlots() + slots));
         }
         if (owner != null)
         {
@@ -2180,29 +2180,29 @@ public abstract class AbstractPlayerInteraction
   public void addEquip(short pos, int itemid, short watk, short wdef, short mdef, byte upslot, short hp, short mp)
   {
     MapleInventory equip = this.c.getPlayer().getInventory(MapleInventoryType.EQUIPPED);
-    Item item = MapleItemInformationProvider.getInstance().getEquipById(itemid);
+    Item item = MapleItemInformationProvider.getInstance().generateEquipById(itemid, -1L);
     Equip eq = (Equip) item;
-    eq.setWatk(watk);
-    eq.setWdef(wdef);
-    eq.setMdef(mdef);
-    eq.setMp(mp);
-    eq.setHp(hp);
+    eq.setEnchantWatk(watk);
+    eq.setEnchantWdef(wdef);
+    eq.setEnchantMdef(mdef);
+    eq.setEnchantMp(mp);
+    eq.setEnchantHp(hp);
     if (itemid == 1099004)
     {
-      eq.setStr((short) 12);
-      eq.setDex((short) 12);
+      eq.setEnchantStr((short) 12);
+      eq.setEnchantDex((short) 12);
     }
     if (itemid == 1098002)
     {
-      eq.setStr((short) 7);
-      eq.setDex((short) 7);
+      eq.setEnchantStr((short) 7);
+      eq.setEnchantDex((short) 7);
     }
     if (itemid == 1098003)
     {
-      eq.setStr((short) 12);
-      eq.setDex((short) 12);
+      eq.setEnchantStr((short) 12);
+      eq.setEnchantDex((short) 12);
     }
-    eq.setUpgradeSlots(upslot);
+    eq.setExtraUpgradeSlots(upslot);
     eq.setExpiration(-1L);
     eq.setPosition(pos);
     equip.addFromDB(eq);
@@ -2765,7 +2765,7 @@ public abstract class AbstractPlayerInteraction
         }
         if (EnchantFlag.Acc.check(stat.left.getValue()))
         {
-          nEquip.setEnchantAcc((short) (nEquip.getEnchantAcc() + stat.right.intValue()));
+          nEquip.setEnchantAccuracy((short) (nEquip.getEnchantAccuracy() + stat.right.intValue()));
         }
         if (EnchantFlag.Avoid.check(stat.left.getValue()))
         {

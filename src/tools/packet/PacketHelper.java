@@ -828,11 +828,11 @@ public class PacketHelper
     {
       if (equip.getStats().contains(EquipStat.SLOTS))
       {
-        mplew.write(equip.getUpgradeSlots());
+        mplew.write(equip.getTotalUpgradeSlots());
       }
-      if (equip.getStats().contains(EquipStat.LEVEL))
+      if (equip.getStats().contains(EquipStat.ENCHANTLEVEL))
       {
-        mplew.write(equip.getLevel());
+        mplew.write(equip.getEnchantLevel());
       }
       if (equip.getStats().contains(EquipStat.STR))
       {
@@ -874,25 +874,25 @@ public class PacketHelper
       {
         mplew.writeShort(equip.getTotalMdef());
       }
-      if (equip.getStats().contains(EquipStat.ACC))
+      if (equip.getStats().contains(EquipStat.ACCURACY))
       {
-        mplew.writeShort(equip.getTotalAcc());
+        mplew.writeShort(equip.getTotalAccuracy());
       }
       if (equip.getStats().contains(EquipStat.AVOID))
       {
         mplew.writeShort(equip.getTotalAvoid());
       }
-      if (equip.getStats().contains(EquipStat.HANDS))
+      if (equip.getStats().contains(EquipStat.CRAFT))
       {
-        mplew.writeShort(equip.getHands());
+        mplew.writeShort(equip.getTotalCraft());
       }
-      if (equip.getStats().contains(EquipStat.SPEED))
+      if (equip.getStats().contains(EquipStat.MOVEMENTSPEED))
       {
-        mplew.writeShort(equip.getSpeed());
+        mplew.writeShort(equip.getTotalMovementSpeed());
       }
       if (equip.getStats().contains(EquipStat.JUMP))
       {
-        mplew.writeShort(equip.getJump());
+        mplew.writeShort(equip.getTotalJump());
       }
       if (equip.getStats().contains(EquipStat.FLAG))
       {
@@ -904,7 +904,7 @@ public class PacketHelper
       }
       if (equip.getStats().contains(EquipStat.ITEM_LEVEL))
       {
-        mplew.write(Math.max(equip.getBaseLevel(), equip.getEquipLevel()));
+        mplew.write(equip.getItemLevel());
       }
       if (equip.getStats().contains(EquipStat.ITEM_EXP))
       {
@@ -920,11 +920,11 @@ public class PacketHelper
       }
       if (equip.getStats().contains(EquipStat.PVP_DAMAGE))
       {
-        mplew.writeShort(equip.getPVPDamage());
+        mplew.writeShort(equip.getTemplate().getPVPDamage());
       }
       if (equip.getStats().contains(EquipStat.DOWNLEVEL))
       {
-        mplew.write(-equip.getReqLevel());
+        mplew.write(equip.getFlameReductReqLevel());
       }
       if (equip.getStats().contains(EquipStat.ENHANCT_BUFF))
       {
@@ -936,7 +936,7 @@ public class PacketHelper
       }
       if (equip.getStats().contains(EquipStat.REQUIRED_LEVEL))
       {
-        mplew.write(equip.getReqLevel());
+        mplew.write(equip.getTemplate().getReqLevel());
       }
       if (equip.getStats().contains(EquipStat.YGGDRASIL_WISDOM))
       {
@@ -948,11 +948,11 @@ public class PacketHelper
       }
       if (equip.getStats().contains(EquipStat.IndieBdr))
       {
-        mplew.write(equip.getBossDamage());
+        mplew.write(equip.getTotalBossDamage());
       }
       if (equip.getStats().contains(EquipStat.IGNORE_PDR))
       {
-        mplew.write(equip.getIgnorePDR());
+        mplew.write(equip.getTotalIgnorePDR());
       }
     }
     addEquipSpecialStats(mplew, equip);
@@ -985,7 +985,7 @@ public class PacketHelper
       }
       if (equip.getSpecialStats().contains(EquipSpecialStat.REBIRTH_FIRE))
       {
-        mplew.writeLong(equip.getFire());
+        mplew.writeLong(equip.getFlame());
       }
       if (equip.getSpecialStats().contains(EquipSpecialStat.EQUIPMENT_TYPE))
       {
@@ -1248,10 +1248,10 @@ public class PacketHelper
     mplew.write(1);
     mplew.writeShort(0);
     
-    mplew.write((chr.returnscroll != null));
-    if (chr.returnscroll != null)
+    mplew.write((chr.returnScroll != null));
+    if (chr.returnScroll != null)
     {
-      addItemInfo(mplew, chr.returnscroll);
+      addItemInfo(mplew, chr.returnScroll);
       mplew.writeInt(chr.returnSc);
     }
     boolean tr = GameConstants.isAngelicBuster(chr.getJob());
@@ -1277,12 +1277,12 @@ public class PacketHelper
     mplew.writeInt(0);
     mplew.writeInt(0);
     
-    mplew.write((chr.choicepotential != null && chr.memorialcube != null));
-    if (chr.choicepotential != null && chr.memorialcube != null)
+    mplew.write((chr.choicePotential != null && chr.memorialcube != null));
+    if (chr.choicePotential != null && chr.memorialcube != null)
     {
-      addItemInfo(mplew, chr.choicepotential);
+      addItemInfo(mplew, chr.choicePotential);
       mplew.writeInt(chr.memorialcube.getItemId());
-      mplew.writeInt(chr.choicepotential.getPosition());
+      mplew.writeInt(chr.choicePotential.getPosition());
     }
     mplew.writeLong(0L);
     mplew.writeLong(0L);

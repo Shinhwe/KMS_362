@@ -271,7 +271,7 @@ public class GMCommand
           MapleInventoryType type = GameConstants.getInventoryType(itemId);
           if (type == MapleInventoryType.EQUIP || type == MapleInventoryType.CODY)
           {
-            item = ii.getEquipById(itemId);
+            item = ii.generateEquipById(itemId, -1L);
           }
           else
           {

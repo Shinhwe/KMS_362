@@ -124,8 +124,8 @@ public class CharacterTransfer implements Externalizable
   public Object cs;
   public Object anticheat;
   public Object innerSkills;
-  public Object choicepotential;
-  public Object returnscroll;
+  public Object choicePotential;
+  public Object returnScroll;
   public Object memorialcube;
   public int[] savedlocation;
   public int[] wishlist;
@@ -271,8 +271,8 @@ public class CharacterTransfer implements Externalizable
     this.secondaddcolor = chr.getSecondAddColor();
     this.secondbaseprob = chr.getSecondBaseProb();
     this.linkskills = chr.getLinkSkills();
-    this.choicepotential = chr.choicepotential;
-    this.returnscroll = chr.returnscroll;
+    this.choicePotential = chr.choicePotential;
+    this.returnScroll = chr.returnScroll;
     this.memorialcube = chr.memorialcube;
     this.returnSc = chr.returnSc;
     this.lastCharGuildId = chr.getLastCharGuildId();

@@ -110,7 +110,7 @@ public class ItemMakerHandler
           c.getPlayer().gainMeso(-gem.getCost(), false);
           if (GameConstants.getInventoryType(toCreate) == MapleInventoryType.EQUIP)
           {
-            MapleInventoryManipulator.addbyItem(c, MapleItemInformationProvider.getInstance().getEquipById(toCreate));
+            MapleInventoryManipulator.addbyItem(c, MapleItemInformationProvider.getInstance().generateEquipById(toCreate, -1L));
           }
           else
           {
@@ -149,7 +149,7 @@ public class ItemMakerHandler
         }
         c.getPlayer().gainMeso(-create.getCost(), false);
         mapleItemInformationProvider1 = MapleItemInformationProvider.getInstance();
-        toGive = (Equip) mapleItemInformationProvider1.getEquipById(toCreate);
+        toGive = (Equip) mapleItemInformationProvider1.generateEquipById(toCreate, -1L);
         if (stimulator || numEnchanter > 0)
         {
           if (c.getPlayer().haveItem(create.getStimulator(), 1, false, true))
@@ -318,95 +318,95 @@ public class ItemMakerHandler
     Integer s = stats.get("PAD");
     if (s != null && s.intValue() != 0)
     {
-      item.setWatk((short) (item.getWatk() + s.intValue()));
+      item.setEnchantWatk((short) (item.getEnchantWatk() + s.intValue()));
     }
     s = stats.get("MAD");
     if (s != null && s.intValue() != 0)
     {
-      item.setMatk((short) (item.getMatk() + s.intValue()));
+      item.setEnchantMatk((short) (item.getEnchantMatk() + s.intValue()));
     }
     s = stats.get("ACC");
     if (s != null && s.intValue() != 0)
     {
-      item.setAcc((short) (item.getAcc() + s.intValue()));
+      item.setEnchantAccuracy((short) (item.getEnchantAccuracy() + s.intValue()));
     }
     s = stats.get("EVA");
     if (s != null && s.intValue() != 0)
     {
-      item.setAvoid((short) (item.getAvoid() + s.intValue()));
+      item.setEnchantAvoid((short) (item.getEnchantAvoid() + s.intValue()));
     }
     s = stats.get("Speed");
     if (s != null && s.intValue() != 0)
     {
-      item.setSpeed((short) (item.getSpeed() + s.intValue()));
+      item.setEnchantMovementSpeed((short) (item.getEnchantMovementSpeed() + s.intValue()));
     }
     s = stats.get("Jump");
     if (s != null && s.intValue() != 0)
     {
-      item.setJump((short) (item.getJump() + s.intValue()));
+      item.setEnchantJump((short) (item.getEnchantJump() + s.intValue()));
     }
     s = stats.get("MaxHP");
     if (s != null && s.intValue() != 0)
     {
-      item.setHp((short) (item.getHp() + s.intValue()));
+      item.setEnchantHp((short) (item.getEnchantHp() + s.intValue()));
     }
     s = stats.get("MaxMP");
     if (s != null && s.intValue() != 0)
     {
-      item.setMp((short) (item.getMp() + s.intValue()));
+      item.setEnchantMp((short) (item.getEnchantMp() + s.intValue()));
     }
     s = stats.get("STR");
     if (s != null && s.intValue() != 0)
     {
-      item.setStr((short) (item.getStr() + s.intValue()));
+      item.setEnchantStr((short) (item.getEnchantStr() + s.intValue()));
     }
     s = stats.get("DEX");
     if (s != null && s.intValue() != 0)
     {
-      item.setDex((short) (item.getDex() + s.intValue()));
+      item.setEnchantDex((short) (item.getEnchantDex() + s.intValue()));
     }
     s = stats.get("INT");
     if (s != null && s.intValue() != 0)
     {
-      item.setInt((short) (item.getInt() + s.intValue()));
+      item.setEnchantInt((short) (item.getEnchantInt() + s.intValue()));
     }
     s = stats.get("LUK");
     if (s != null && s.intValue() != 0)
     {
-      item.setLuk((short) (item.getLuk() + s.intValue()));
+      item.setEnchantLuk((short) (item.getEnchantLuk() + s.intValue()));
     }
     s = stats.get("randOption");
     if (s != null && s.intValue() != 0)
     {
-      int ma = item.getMatk(), wa = item.getWatk();
+      int ma = item.getEnchantMatk(), wa = item.getEnchantWatk();
       if (wa > 0)
       {
-        item.setWatk((short) (Randomizer.nextBoolean() ? (wa + s.intValue()) : (wa - s.intValue())));
+        item.setEnchantWatk((short) (Randomizer.nextBoolean() ? (wa + s.intValue()) : (wa - s.intValue())));
       }
       if (ma > 0)
       {
-        item.setMatk((short) (Randomizer.nextBoolean() ? (ma + s.intValue()) : (ma - s.intValue())));
+        item.setEnchantMatk((short) (Randomizer.nextBoolean() ? (ma + s.intValue()) : (ma - s.intValue())));
       }
     }
     s = stats.get("randStat");
     if (s != null && s.intValue() != 0)
     {
-      int str = item.getStr(), dex = item.getDex(), luk = item.getLuk(), int_ = item.getInt();
+      int str = item.getEnchantStr(), dex = item.getEnchantDex(), luk = item.getEnchantLuk(), int_ = item.getEnchantInt();
       if (str > 0)
       {
-        item.setStr((short) (Randomizer.nextBoolean() ? (str + s.intValue()) : (str - s.intValue())));
+        item.setEnchantStr((short) (Randomizer.nextBoolean() ? (str + s.intValue()) : (str - s.intValue())));
       }
       if (dex > 0)
       {
-        item.setDex((short) (Randomizer.nextBoolean() ? (dex + s.intValue()) : (dex - s.intValue())));
+        item.setEnchantDex((short) (Randomizer.nextBoolean() ? (dex + s.intValue()) : (dex - s.intValue())));
       }
       if (int_ > 0)
       {
-        item.setInt((short) (Randomizer.nextBoolean() ? (int_ + s.intValue()) : (int_ - s.intValue())));
+        item.setEnchantInt((short) (Randomizer.nextBoolean() ? (int_ + s.intValue()) : (int_ - s.intValue())));
       }
       if (luk > 0)
       {
-        item.setLuk((short) (Randomizer.nextBoolean() ? (luk + s.intValue()) : (luk - s.intValue())));
+        item.setEnchantLuk((short) (Randomizer.nextBoolean() ? (luk + s.intValue()) : (luk - s.intValue())));
       }
     }
   }
@@ -747,25 +747,9 @@ public class ItemMakerHandler
       {
         return;
       }
-      int potentialState = 17, potentialChance = theLevl * 2;
-      if (item1.getState() > 0 && item2.getState() > 0)
-      {
-        potentialChance = 100;
-      }
-      else if (item1.getState() > 0 || item2.getState() > 0)
-      {
-        potentialChance *= 2;
-      }
-      if (item1.getState() == item2.getState() && item1.getState() > 17)
-      {
-        potentialState = item1.getState();
-      }
-      Equip newEquip = (Equip) ii.getEquipById(itemId);
-      int newStat = ii.getTotalStat(newEquip);
-      cr = CraftRanking.COOL;
-      if (Randomizer.nextInt(100) < ((newEquip.getUpgradeSlots() > 0 || potentialChance >= 100) ? potentialChance : (potentialChance / 2)))
-        ;
-      toGet = newEquip.getItemId();
+
+      Equip newEquip = (Equip) ii.generateEquipById(itemId, -1L);
+      
       MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.EQUIP, item1.getPosition(), (short) 1, false);
       MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.EQUIP, item2.getPosition(), (short) 1, false);
       MapleInventoryManipulator.addbyItem(c, newEquip);
@@ -810,13 +794,13 @@ public class ItemMakerHandler
               cr = CraftRanking.COOL;
               if (GameConstants.getInventoryType(toGet) == MapleInventoryType.EQUIP)
               {
-                Equip first = (Equip) ii.getEquipById(toGet);
+                Equip first = (Equip) ii.generateEquipById(toGet, -1L);
                 if (Randomizer.nextInt(100) < theLevl * 2)
                 {
                   first = ii.randomizeStats(first);
                   cr = CraftRanking.COOL;
                 }
-                if (Randomizer.nextInt(100) < theLevl * ((first.getUpgradeSlots() > 0) ? 2 : 1))
+                if (Randomizer.nextInt(100) < theLevl * ((first.getTemplate().getUpgradeSlots() > 0) ? 2 : 1))
                 {
                   first.resetPotential();
                   cr = CraftRanking.COOL;

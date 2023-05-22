@@ -562,7 +562,7 @@ public class SuperGMCommand
         Item toDrop;
         if (GameConstants.getInventoryType(itemId) == MapleInventoryType.EQUIP)
         {
-          toDrop = ii.getEquipById(itemId);
+          toDrop = ii.generateEquipById(itemId, -1L);
         }
         else
         {
@@ -608,7 +608,7 @@ public class SuperGMCommand
             MapleCharacter[] chrz = {fff, c.getPlayer()};
             for (int i = 0; i < chrz.length; i++)
             {
-              Equip eq = (Equip) MapleItemInformationProvider.getInstance().getEquipById(itemId, ringID[i]);
+              Equip eq = (Equip) MapleItemInformationProvider.getInstance().generateEquipById(itemId, ringID[i]);
               if (eq == null)
               {
                 c.getPlayer().dropMessage(6, "Invalid itemID.");

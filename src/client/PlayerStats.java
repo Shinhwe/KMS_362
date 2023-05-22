@@ -915,8 +915,8 @@ public class PlayerStats
             this.dam_r *= (ii.getPotentialInfo(potential).get(lv).incDAMr + 100.0) / 100.0;
           }
         }
-        chra.getTrait(MapleTrait.MapleTraitType.craft).addLocalExp(equip.getHands());
-        this.accuracy += equip.getAcc();
+        chra.getTrait(MapleTrait.MapleTraitType.craft).addLocalExp(equip.getTotalCraft());
+        this.accuracy += equip.getTotalAccuracy();
         if (GameConstants.isDemonAvenger(chra.getJob()) && equip.getStarForceLevel() > 0)
         {
           starforce += equip.getStarForceLevel();
@@ -931,34 +931,34 @@ public class PlayerStats
           }
         }
         this.DamagePercent += equip.getTotalDamage();
-        this.BossDamage += equip.getBossDamage();
-        this.ignoreMobpdpR.add((int) equip.getIgnorePDR());
+        this.BossDamage += equip.getTotalBossDamage();
+        this.ignoreMobpdpR.add((int) equip.getTotalIgnorePDR());
         if (GameConstants.isArcaneSymbol(equip.getItemId()) || GameConstants.isAuthenticSymbol(equip.getItemId()))
         {
           this.arc += equip.getArc();
-          this.Nlocalhp += equip.getHp() * 10;
-          this.Nlocalmp += equip.getMp();
-          this.Nlocalstr += equip.getStr();
-          this.Nlocaldex += equip.getDex();
-          this.Nlocalint += equip.getInt();
-          this.Nlocalluk += equip.getLuk();
+          this.Nlocalhp += equip.getTotalHp();
+          this.Nlocalmp += equip.getTotalMp();
+          this.Nlocalstr += equip.getTotalStr();
+          this.Nlocaldex += equip.getTotalDex();
+          this.Nlocalint += equip.getTotalInt();
+          this.Nlocalluk += equip.getTotalLuk();
         }
         else
         {
-          localmaxhp_ += ((GameConstants.isDemonAvenger(chra.getJob()) || (GameConstants.isZero(chra.getJob()) && GameConstants.isWeapon(equip.getItemId()))) ? (equip.getHp() / 2) : equip.getHp());
-          localmaxmp_ += equip.getMp();
-          this.localstr += equip.getStr();
-          this.localdex += equip.getDex();
-          this.localint_ += equip.getInt();
-          this.localluk += equip.getLuk();
+          localmaxhp_ +=  equip.getTotalHp();
+          localmaxmp_ += equip.getTotalMp();
+          this.localstr += equip.getTotalStr();
+          this.localdex += equip.getTotalDex();
+          this.localint_ += equip.getTotalInt();
+          this.localluk += equip.getTotalLuk();
         }
         this.starforce += (GameConstants.isOverall(equip.getItemId()) ? (equip.getStarForceLevel() * 2) : equip.getStarForceLevel());
-        this.watk += equip.getWatk();
-        this.magic += equip.getMatk();
-        this.wdef += equip.getWdef();
-        this.mdef += equip.getMdef();
-        this.speed += equip.getSpeed();
-        this.jump += equip.getJump();
+        this.watk += equip.getTotalWatk();
+        this.magic += equip.getTotalMatk();
+        this.wdef += equip.getTotalWdef();
+        this.mdef += equip.getTotalMdef();
+        this.speed += equip.getTotalMovementSpeed();
+        this.jump += equip.getTotalJump();
         if (equip.getAllStat() > 0)
         {
           this.percent_str += equip.getAllStat();
@@ -966,7 +966,7 @@ public class PlayerStats
           this.percent_int += equip.getAllStat();
           this.percent_luk += equip.getAllStat();
         }
-        this.pvpDamage += equip.getPVPDamage();
+        this.pvpDamage += equip.getTemplate().getPVPDamage();
         final Integer set = ii.getSetItemID(equip.getItemId());
         if (set != null && set > 0)
         {

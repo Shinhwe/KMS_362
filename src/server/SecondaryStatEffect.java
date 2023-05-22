@@ -3714,7 +3714,7 @@ public class SecondaryStatEffect
         }
         if (GameConstants.getInventoryType(reward.left) == MapleInventoryType.EQUIP)
         {
-          Item item = MapleItemInformationProvider.getInstance().getEquipById(reward.left);
+          Item item = MapleItemInformationProvider.getInstance().generateEquipById(reward.left, -1L);
           item.setGMLog("Reward item (effect): " + this.sourceid + " on " + FileoutputUtil.CurrentReadable_Date());
           MapleInventoryManipulator.addbyItem(applyto.getClient(), item);
           continue;
@@ -6288,8 +6288,7 @@ public class SecondaryStatEffect
           System.out.println("무기 없이 버프를 어떻게 써 ㅡㅡ " + applyto.getName());
           break;
         }
-        eq = (Equip) MapleItemInformationProvider.getInstance().getEquipById(eq.getItemId());
-        localstatups.put(SecondaryStat.IndieStr, new Pair<Integer, Integer>(eq.getWatk() * this.x / 100, localDuration));
+        localstatups.put(SecondaryStat.IndieStr, new Pair<Integer, Integer>(eq.getTemplate().getWatk() * this.x / 100, localDuration));
         break;
       }
       case 80001471:
@@ -6300,8 +6299,7 @@ public class SecondaryStatEffect
           System.out.println("무기 없이 버프를 어떻게 써 ㅡㅡ " + applyto.getName());
           break;
         }
-        eq = (Equip) MapleItemInformationProvider.getInstance().getEquipById(eq.getItemId());
-        localstatups.put(SecondaryStat.IndieDex, new Pair<Integer, Integer>(eq.getWatk() * this.x / 100, localDuration));
+        localstatups.put(SecondaryStat.IndieDex, new Pair<Integer, Integer>(eq.getTemplate().getWatk() * this.x / 100, localDuration));
         break;
       }
       case 80001472:
@@ -6312,8 +6310,7 @@ public class SecondaryStatEffect
           System.out.println("무기 없이 버프를 어떻게 써 ㅡㅡ " + applyto.getName());
           break;
         }
-        eq = (Equip) MapleItemInformationProvider.getInstance().getEquipById(eq.getItemId());
-        localstatups.put(SecondaryStat.IndieInt, new Pair<Integer, Integer>(eq.getMatk() * this.x / 100, localDuration));
+        localstatups.put(SecondaryStat.IndieInt, new Pair<Integer, Integer>(eq.getTemplate().getMatk() * this.x / 100, localDuration));
         break;
       }
       case 80001473:
@@ -6321,11 +6318,10 @@ public class SecondaryStatEffect
         Equip eq = (Equip) applyto.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
         if (eq == null)
         {
-          System.out.println("\ubb34\uae30 \uc5c6\uc774 \ubc84\ud504\ub97c \uc5b4\ub5bb\uac8c \uc368 \u3161\u3161 " + applyto.getName());
+          System.out.println("무기 없이 버프를 어떻게 써 ㅡㅡ " + applyto.getName());
           break;
         }
-        eq = (Equip) MapleItemInformationProvider.getInstance().getEquipById(eq.getItemId());
-        localstatups.put(SecondaryStat.IndieLuk, new Pair<Integer, Integer>(eq.getWatk() * this.x / 100, localDuration));
+        localstatups.put(SecondaryStat.IndieLuk, new Pair<Integer, Integer>(eq.getTemplate().getWatk() * this.x / 100, localDuration));
         break;
       }
       case 80001474:

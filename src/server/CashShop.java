@@ -189,7 +189,7 @@ import java.util.List;
     if (GameConstants.getInventoryType(cItem.getId()) == MapleInventoryType.CODY || GameConstants.getInventoryType(cItem.getId()) == MapleInventoryType.EQUIP)
     {
       /* 112 */
-      Equip eq = (Equip) MapleItemInformationProvider.getInstance().getEquipById(cItem.getId(), uniqueid);
+      Equip eq = (Equip) MapleItemInformationProvider.getInstance().generateEquipById(cItem.getId(), uniqueid);
       /* 113 */
       if (period > 0L)
       {

@@ -1695,7 +1695,7 @@ public final class MapleMap
       Item idrop;
       if (GameConstants.getInventoryType(de.itemId) == MapleInventoryType.EQUIP)
       {
-        idrop = ii.getEquipById(de.itemId);
+        idrop = ii.generateEquipById(de.itemId, -1);
         if (mob.isExtreme())
         {
           int[] items = {
@@ -1719,7 +1719,7 @@ public final class MapleMap
             if (item == idrop.getItemId())
             {
               Equip equip = (Equip) idrop;
-              equip.addTotalDamage((byte) 10);
+              equip.setEnchantDamage((byte) (equip.getEnchantDamage() + 10));
             }
           }
           for (int item : items2)
@@ -1727,7 +1727,7 @@ public final class MapleMap
             if (item == idrop.getItemId())
             {
               Equip equip = (Equip) idrop;
-              equip.addTotalDamage((byte) 10);
+              equip.setEnchantDamage((byte) (equip.getEnchantDamage() + 10));
             }
           }
           switch (mob.getId())
@@ -1736,28 +1736,28 @@ public final class MapleMap
               if (idrop.getItemId() == 1012632)
               {
                 Equip equip = (Equip) idrop;
-                equip.addTotalDamage((byte) 10);
+                equip.setEnchantDamage((byte) (equip.getEnchantDamage() + 10));
               }
               break;
             case 8880101:
               if (idrop.getItemId() == 1022278 || idrop.getItemId() == 1672077)
               {
                 Equip equip = (Equip) idrop;
-                equip.addTotalDamage((byte) 10);
+                equip.setEnchantDamage((byte) (equip.getEnchantDamage() + 10));
               }
               break;
             case 8880177:
               if (idrop.getItemId() == 1132308)
               {
                 Equip equip = (Equip) idrop;
-                equip.addTotalDamage((byte) 10);
+                equip.setEnchantDamage((byte) (equip.getEnchantDamage() + 10));
               }
               break;
             case 8880302:
               if (idrop.getItemId() == 1162080 || idrop.getItemId() == 1162081 || idrop.getItemId() == 1162082 || idrop.getItemId() == 1162083)
               {
                 Equip equip = (Equip) idrop;
-                equip.addTotalDamage((byte) 15);
+                equip.setEnchantDamage((byte) (equip.getEnchantDamage() + 15));
               }
               break;
           }
@@ -6065,7 +6065,7 @@ public final class MapleMap
     MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     if (GameConstants.getInventoryType(itemid) == MapleInventoryType.EQUIP)
     {
-      idrop = ii.getEquipById(itemid);
+      idrop = ii.generateEquipById(itemid, -1L);
     }
     else
     {

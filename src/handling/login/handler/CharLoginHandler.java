@@ -509,7 +509,7 @@ public class CharLoginHandler
     {
       if (i[0] > 0)
       {
-        Item item = li.getEquipById(i[0], false);
+        Item item = li.generateEquipById(i[0], -1L);
         item.setPosition((byte) i[1]);
         item.setGMLog("Chraracter Creation");
         equip.addFromDB(item);
@@ -774,7 +774,7 @@ public class CharLoginHandler
     byte j;
     for (j = 0; j < items.length; j = (byte) (j + 1))
     {
-      Item item = li.getEquipById(items[j]);
+      Item item = li.generateEquipById(items[j], -1L);
       item.setPosition((byte) (j + 1));
       newchar.getInventory(MapleInventoryType.EQUIP).addFromDB(item);
     }

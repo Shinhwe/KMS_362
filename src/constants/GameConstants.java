@@ -683,307 +683,307 @@ public class GameConstants
     price.put(Integer.valueOf(8880405), Integer.valueOf(2350));
     price.put(Integer.valueOf(8880504), Integer.valueOf(6000));
     price.put(Integer.valueOf(8880614), Integer.valueOf(8000));
-
-    exp[1]=15L;
-    exp[2]=34L;
-    exp[3]=57L;
-    exp[4]=92L;
-    exp[5]=135L;
-    exp[6]=372L;
-    exp[7]=560L;
-    exp[8]=840L;
-    exp[9]=1242L;
-    exp[10]=1242L;
-    exp[11]=1242L;
-    exp[12]=1242L;
-    exp[13]=1242L;
-    exp[14]=1242L;
-    exp[15]=1490L;
-    exp[16]=1788L;
-    exp[17]=2145L;
-    exp[18]=2574L;
-    exp[19]=3088L;
-    exp[20]=3705L;
-    exp[21]=4446L;
-    exp[22]=5335L;
-    exp[23]=6402L;
-    exp[24]=7682L;
-    exp[25]=9218L;
-    exp[26]=11061L;
-    exp[27]=13273L;
-    exp[28]=15927L;
-    exp[29]=19112L;
-    exp[30]=19112L;
-    exp[31]=19112L;
-    exp[32]=19112L;
-    exp[33]=19112L;
-    exp[34]=19112L;
-    exp[35]=22934L;
-    exp[36]=27520L;
-    exp[37]=33024L;
-    exp[38]=39628L;
-    exp[39]=47553L;
-    exp[40]=51357L;
-    exp[41]=55465L;
-    exp[42]=59902L;
-    exp[43]=64694L;
-    exp[44]=69869L;
-    exp[45]=75458L;
-    exp[46]=81494L;
-    exp[47]=88013L;
-    exp[48]=95054L;
-    exp[49]=102658L;
-    exp[50]=110870L;
-    exp[51]=119739L;
-    exp[52]=129318L;
-    exp[53]=139663L;
-    exp[54]=150836L;
-    exp[55]=162902L;
-    exp[56]=175934L;
-    exp[57]=190008L;
-    exp[58]=205208L;
-    exp[59]=221624L;
-    exp[60]=221624L;
-    exp[61]=221624L;
-    exp[62]=221624L;
-    exp[63]=221624L;
-    exp[64]=221624L;
-    exp[65]=238245L;
-    exp[66]=256113L;
-    exp[67]=275321L;
-    exp[68]=295970L;
-    exp[69]=318167L;
-    exp[70]=342029L;
-    exp[71]=367681L;
-    exp[72]=395257L;
-    exp[73]=424901L;
-    exp[74]=456768L;
-    exp[75]=488741L;
-    exp[76]=522952L;
-    exp[77]=559558L;
-    exp[78]=598727L;
-    exp[79]=640637L;
-    exp[80]=685481L;
-    exp[81]=733464L;
-    exp[82]=784806L;
-    exp[83]=839742L;
-    exp[84]=898523L;
-    exp[85]=961419L;
-    exp[86]=1028718L;
-    exp[87]=1100728L;
-    exp[88]=1177778L;
-    exp[89]=1260222L;
-    exp[90]=1342136L;
-    exp[91]=1429374L;
-    exp[92]=1522283L;
-    exp[93]=1621231L;
-    exp[94]=1726611L;
-    exp[95]=1838840L;
-    exp[96]=1958364L;
-    exp[97]=2085657L;
-    exp[98]=2221224L;
-    exp[99]=2365603L;
-    exp[100]=2365603L;
-    exp[101]=2365603L;
-    exp[102]=2365603L;
-    exp[103]=2365603L;
-    exp[104]=2365603L;
-    exp[105]=2519367L;
-    exp[106]=2683125L;
-    exp[107]=2857528L;
-    exp[108]=3043267L;
-    exp[109]=3241079L;
-    exp[110]=3451749L;
-    exp[111]=3676112L;
-    exp[112]=3915059L;
-    exp[113]=4169537L;
-    exp[114]=4440556L;
-    exp[115]=4729192L;
-    exp[116]=5036589L;
-    exp[117]=5363967L;
-    exp[118]=5712624L;
-    exp[119]=6083944L;
-    exp[120]=6479400L;
-    exp[121]=6900561L;
-    exp[122]=7349097L;
-    exp[123]=7826788L;
-    exp[124]=8335529L;
-    exp[125]=8877338L;
-    exp[126]=9454364L;
-    exp[127]=10068897L;
-    exp[128]=10723375L;
-    exp[129]=11420394L;
-    exp[130]=12162719L;
-    exp[131]=12953295L;
-    exp[132]=13795259L;
-    exp[133]=14691950L;
-    exp[134]=15646926L;
-    exp[135]=16663976L;
-    exp[136]=17747134L;
-    exp[137]=18900697L;
-    exp[138]=20129242L;
-    exp[139]=21437642L;
-    exp[140]=22777494L;
-    exp[141]=24201087L;
-    exp[142]=25713654L;
-    exp[143]=27320757L;
-    exp[144]=29028304L;
-    exp[145]=30842573L;
-    exp[146]=32770233L;
-    exp[147]=34818372L;
-    exp[148]=36994520L;
-    exp[149]=39306677L;
-    exp[150]=41763344L;
-    exp[151]=44373553L;
-    exp[152]=47146900L;
-    exp[153]=50093581L;
-    exp[154]=53224429L;
-    exp[155]=56550955L;
-    exp[156]=60085389L;
-    exp[157]=63840725L;
-    exp[158]=67830770L;
-    exp[159]=72070193L;
-    exp[160]=76574580L;
-    exp[161]=81360491L;
-    exp[162]=86445521L;
-    exp[163]=91848366L;
-    exp[164]=97588888L;
-    exp[165]=103688193L;
-    exp[166]=110168705L;
-    exp[167]=117054249L;
-    exp[168]=124370139L;
-    exp[169]=132143272L;
-    exp[170]=138750435L;
-    exp[171]=145687956L;
-    exp[172]=152972353L;
-    exp[173]=160620970L;
-    exp[174]=168652018L;
-    exp[175]=177084618L;
-    exp[176]=185938848L;
-    exp[177]=195235790L;
-    exp[178]=204997579L;
-    exp[179]=215247457L;
-    exp[180]=226009829L;
-    exp[181]=237310320L;
-    exp[182]=249175836L;
-    exp[183]=261634627L;
-    exp[184]=274716358L;
-    exp[185]=288452175L;
-    exp[186]=302874783L;
-    exp[187]=318018522L;
-    exp[188]=333919448L;
-    exp[189]=350615420L;
-    exp[190]=368146191L;
-    exp[191]=386553500L;
-    exp[192]=405881175L;
-    exp[193]=426175233L;
-    exp[194]=447483994L;
-    exp[195]=469858193L;
-    exp[196]=493351102L;
-    exp[197]=518018657L;
-    exp[198]=543919589L;
-    exp[199]=571115568L;
-    exp[200]=2207026470L;
-    exp[201]=2471869646L;
-    exp[202]=2768494003L;
-    exp[203]=3100713283L;
-    exp[204]=3472798876L;
-    exp[205]=3889534741L;
-    exp[206]=4356278909L;
-    exp[207]=4879032378L;
-    exp[208]=5464516263L;
-    exp[209]=6120258214L;
-    exp[210]=9792413142L;
-    exp[211]=10869578587L;
-    exp[212]=12065232231L;
-    exp[213]=13392407776L;
-    exp[214]=14865572631L;
-    exp[215]=19325244420L;
-    exp[216]=21064516417L;
-    exp[217]=22960322894L;
-    exp[218]=25026751954L;
-    exp[219]=27279159629L;
-    exp[220]=43646655406L;
-    exp[221]=46701921284L;
-    exp[222]=49971055773L;
-    exp[223]=53469029677L;
-    exp[224]=57211861754L;
-    exp[225]=74375420280L;
-    exp[226]=78094191294L;
-    exp[227]=81998900858L;
-    exp[228]=86098845900L;
-    exp[229]=90403788195L;
-    exp[230]=144646061112L;
-    exp[231]=148985442945L;
-    exp[232]=153455006233L;
-    exp[233]=158058656419L;
-    exp[234]=162800416111L;
-    exp[235]=211640540944L;
-    exp[236]=217989757172L;
-    exp[237]=224529449887L;
-    exp[238]=231265333383L;
-    exp[239]=238203293384L;
-    exp[240]=381125269414L;
-    exp[241]=392559027496L;
-    exp[242]=404335798320L;
-    exp[243]=416465872269L;
-    exp[244]=428959848437L;
-    exp[245]=557647802968L;
-    exp[246]=574377237057L;
-    exp[247]=591608554168L;
-    exp[248]=609356810793L;
-    exp[249]=627637515116L;
-    exp[250]=4220024185L;
-    exp[251]=4346624910L;
-    exp[252]=4477023657L;
-    exp[253]=4611334366L;
-    exp[254]=4749674396L;
-    exp[255]=4892164627L;
-    exp[256]=5038929565L;
-    exp[257]=5190097451L;
-    exp[258]=5345800374L;
-    exp[259]=5506174385L;
-    exp[260]=902427248152L;
-    exp[261]=911451520633L;
-    exp[262]=920566035839L;
-    exp[263]=929771696197L;
-    exp[264]=939069413158L;
-    exp[265]=948460107289L;
-    exp[266]=957944708361L;
-    exp[267]=967524155444L;
-    exp[268]=977199396998L;
-    exp[269]=986971390967L;
-    exp[270]=993682209753L;
-    exp[271]=3619031850L;
-    exp[272]=3655222168L;
-    exp[273]=3691774389L;
-    exp[274]=3728692132L;
-    exp[275]=7531958106L;
-    exp[276]=8285153916L;
-    exp[277]=9113669307L;
-    exp[278]=10025036237L;
-    exp[279]=11027539860L;
-    exp[280]=22275630517L;
-    exp[281]=24503193568L;
-    exp[282]=26953512924L;
-    exp[283]=29648864216L;
-    exp[284]=32613750637L;
-    exp[285]=65879776286L;
-    exp[286]=72467753914L;
-    exp[287]=79714529305L;
-    exp[288]=87685982235L;
-    exp[289]=96454580458L;
-    exp[290]=194838252525L;
-    exp[291]=214322077777L;
-    exp[292]=235754285554L;
-    exp[293]=259329714109L;
-    exp[294]=285262685519L;
-    exp[295]=576230624748L;
-    exp[296]=633853687222L;
-    exp[297]=697239055944L;
-    exp[298]=766962961538L;
-    exp[299]=150444442307L;
-    exp[300]=0L;
+    
+    exp[1] = 15L;
+    exp[2] = 34L;
+    exp[3] = 57L;
+    exp[4] = 92L;
+    exp[5] = 135L;
+    exp[6] = 372L;
+    exp[7] = 560L;
+    exp[8] = 840L;
+    exp[9] = 1242L;
+    exp[10] = 1242L;
+    exp[11] = 1242L;
+    exp[12] = 1242L;
+    exp[13] = 1242L;
+    exp[14] = 1242L;
+    exp[15] = 1490L;
+    exp[16] = 1788L;
+    exp[17] = 2145L;
+    exp[18] = 2574L;
+    exp[19] = 3088L;
+    exp[20] = 3705L;
+    exp[21] = 4446L;
+    exp[22] = 5335L;
+    exp[23] = 6402L;
+    exp[24] = 7682L;
+    exp[25] = 9218L;
+    exp[26] = 11061L;
+    exp[27] = 13273L;
+    exp[28] = 15927L;
+    exp[29] = 19112L;
+    exp[30] = 19112L;
+    exp[31] = 19112L;
+    exp[32] = 19112L;
+    exp[33] = 19112L;
+    exp[34] = 19112L;
+    exp[35] = 22934L;
+    exp[36] = 27520L;
+    exp[37] = 33024L;
+    exp[38] = 39628L;
+    exp[39] = 47553L;
+    exp[40] = 51357L;
+    exp[41] = 55465L;
+    exp[42] = 59902L;
+    exp[43] = 64694L;
+    exp[44] = 69869L;
+    exp[45] = 75458L;
+    exp[46] = 81494L;
+    exp[47] = 88013L;
+    exp[48] = 95054L;
+    exp[49] = 102658L;
+    exp[50] = 110870L;
+    exp[51] = 119739L;
+    exp[52] = 129318L;
+    exp[53] = 139663L;
+    exp[54] = 150836L;
+    exp[55] = 162902L;
+    exp[56] = 175934L;
+    exp[57] = 190008L;
+    exp[58] = 205208L;
+    exp[59] = 221624L;
+    exp[60] = 221624L;
+    exp[61] = 221624L;
+    exp[62] = 221624L;
+    exp[63] = 221624L;
+    exp[64] = 221624L;
+    exp[65] = 238245L;
+    exp[66] = 256113L;
+    exp[67] = 275321L;
+    exp[68] = 295970L;
+    exp[69] = 318167L;
+    exp[70] = 342029L;
+    exp[71] = 367681L;
+    exp[72] = 395257L;
+    exp[73] = 424901L;
+    exp[74] = 456768L;
+    exp[75] = 488741L;
+    exp[76] = 522952L;
+    exp[77] = 559558L;
+    exp[78] = 598727L;
+    exp[79] = 640637L;
+    exp[80] = 685481L;
+    exp[81] = 733464L;
+    exp[82] = 784806L;
+    exp[83] = 839742L;
+    exp[84] = 898523L;
+    exp[85] = 961419L;
+    exp[86] = 1028718L;
+    exp[87] = 1100728L;
+    exp[88] = 1177778L;
+    exp[89] = 1260222L;
+    exp[90] = 1342136L;
+    exp[91] = 1429374L;
+    exp[92] = 1522283L;
+    exp[93] = 1621231L;
+    exp[94] = 1726611L;
+    exp[95] = 1838840L;
+    exp[96] = 1958364L;
+    exp[97] = 2085657L;
+    exp[98] = 2221224L;
+    exp[99] = 2365603L;
+    exp[100] = 2365603L;
+    exp[101] = 2365603L;
+    exp[102] = 2365603L;
+    exp[103] = 2365603L;
+    exp[104] = 2365603L;
+    exp[105] = 2519367L;
+    exp[106] = 2683125L;
+    exp[107] = 2857528L;
+    exp[108] = 3043267L;
+    exp[109] = 3241079L;
+    exp[110] = 3451749L;
+    exp[111] = 3676112L;
+    exp[112] = 3915059L;
+    exp[113] = 4169537L;
+    exp[114] = 4440556L;
+    exp[115] = 4729192L;
+    exp[116] = 5036589L;
+    exp[117] = 5363967L;
+    exp[118] = 5712624L;
+    exp[119] = 6083944L;
+    exp[120] = 6479400L;
+    exp[121] = 6900561L;
+    exp[122] = 7349097L;
+    exp[123] = 7826788L;
+    exp[124] = 8335529L;
+    exp[125] = 8877338L;
+    exp[126] = 9454364L;
+    exp[127] = 10068897L;
+    exp[128] = 10723375L;
+    exp[129] = 11420394L;
+    exp[130] = 12162719L;
+    exp[131] = 12953295L;
+    exp[132] = 13795259L;
+    exp[133] = 14691950L;
+    exp[134] = 15646926L;
+    exp[135] = 16663976L;
+    exp[136] = 17747134L;
+    exp[137] = 18900697L;
+    exp[138] = 20129242L;
+    exp[139] = 21437642L;
+    exp[140] = 22777494L;
+    exp[141] = 24201087L;
+    exp[142] = 25713654L;
+    exp[143] = 27320757L;
+    exp[144] = 29028304L;
+    exp[145] = 30842573L;
+    exp[146] = 32770233L;
+    exp[147] = 34818372L;
+    exp[148] = 36994520L;
+    exp[149] = 39306677L;
+    exp[150] = 41763344L;
+    exp[151] = 44373553L;
+    exp[152] = 47146900L;
+    exp[153] = 50093581L;
+    exp[154] = 53224429L;
+    exp[155] = 56550955L;
+    exp[156] = 60085389L;
+    exp[157] = 63840725L;
+    exp[158] = 67830770L;
+    exp[159] = 72070193L;
+    exp[160] = 76574580L;
+    exp[161] = 81360491L;
+    exp[162] = 86445521L;
+    exp[163] = 91848366L;
+    exp[164] = 97588888L;
+    exp[165] = 103688193L;
+    exp[166] = 110168705L;
+    exp[167] = 117054249L;
+    exp[168] = 124370139L;
+    exp[169] = 132143272L;
+    exp[170] = 138750435L;
+    exp[171] = 145687956L;
+    exp[172] = 152972353L;
+    exp[173] = 160620970L;
+    exp[174] = 168652018L;
+    exp[175] = 177084618L;
+    exp[176] = 185938848L;
+    exp[177] = 195235790L;
+    exp[178] = 204997579L;
+    exp[179] = 215247457L;
+    exp[180] = 226009829L;
+    exp[181] = 237310320L;
+    exp[182] = 249175836L;
+    exp[183] = 261634627L;
+    exp[184] = 274716358L;
+    exp[185] = 288452175L;
+    exp[186] = 302874783L;
+    exp[187] = 318018522L;
+    exp[188] = 333919448L;
+    exp[189] = 350615420L;
+    exp[190] = 368146191L;
+    exp[191] = 386553500L;
+    exp[192] = 405881175L;
+    exp[193] = 426175233L;
+    exp[194] = 447483994L;
+    exp[195] = 469858193L;
+    exp[196] = 493351102L;
+    exp[197] = 518018657L;
+    exp[198] = 543919589L;
+    exp[199] = 571115568L;
+    exp[200] = 2207026470L;
+    exp[201] = 2471869646L;
+    exp[202] = 2768494003L;
+    exp[203] = 3100713283L;
+    exp[204] = 3472798876L;
+    exp[205] = 3889534741L;
+    exp[206] = 4356278909L;
+    exp[207] = 4879032378L;
+    exp[208] = 5464516263L;
+    exp[209] = 6120258214L;
+    exp[210] = 9792413142L;
+    exp[211] = 10869578587L;
+    exp[212] = 12065232231L;
+    exp[213] = 13392407776L;
+    exp[214] = 14865572631L;
+    exp[215] = 19325244420L;
+    exp[216] = 21064516417L;
+    exp[217] = 22960322894L;
+    exp[218] = 25026751954L;
+    exp[219] = 27279159629L;
+    exp[220] = 43646655406L;
+    exp[221] = 46701921284L;
+    exp[222] = 49971055773L;
+    exp[223] = 53469029677L;
+    exp[224] = 57211861754L;
+    exp[225] = 74375420280L;
+    exp[226] = 78094191294L;
+    exp[227] = 81998900858L;
+    exp[228] = 86098845900L;
+    exp[229] = 90403788195L;
+    exp[230] = 144646061112L;
+    exp[231] = 148985442945L;
+    exp[232] = 153455006233L;
+    exp[233] = 158058656419L;
+    exp[234] = 162800416111L;
+    exp[235] = 211640540944L;
+    exp[236] = 217989757172L;
+    exp[237] = 224529449887L;
+    exp[238] = 231265333383L;
+    exp[239] = 238203293384L;
+    exp[240] = 381125269414L;
+    exp[241] = 392559027496L;
+    exp[242] = 404335798320L;
+    exp[243] = 416465872269L;
+    exp[244] = 428959848437L;
+    exp[245] = 557647802968L;
+    exp[246] = 574377237057L;
+    exp[247] = 591608554168L;
+    exp[248] = 609356810793L;
+    exp[249] = 627637515116L;
+    exp[250] = 4220024185L;
+    exp[251] = 4346624910L;
+    exp[252] = 4477023657L;
+    exp[253] = 4611334366L;
+    exp[254] = 4749674396L;
+    exp[255] = 4892164627L;
+    exp[256] = 5038929565L;
+    exp[257] = 5190097451L;
+    exp[258] = 5345800374L;
+    exp[259] = 5506174385L;
+    exp[260] = 902427248152L;
+    exp[261] = 911451520633L;
+    exp[262] = 920566035839L;
+    exp[263] = 929771696197L;
+    exp[264] = 939069413158L;
+    exp[265] = 948460107289L;
+    exp[266] = 957944708361L;
+    exp[267] = 967524155444L;
+    exp[268] = 977199396998L;
+    exp[269] = 986971390967L;
+    exp[270] = 993682209753L;
+    exp[271] = 3619031850L;
+    exp[272] = 3655222168L;
+    exp[273] = 3691774389L;
+    exp[274] = 3728692132L;
+    exp[275] = 7531958106L;
+    exp[276] = 8285153916L;
+    exp[277] = 9113669307L;
+    exp[278] = 10025036237L;
+    exp[279] = 11027539860L;
+    exp[280] = 22275630517L;
+    exp[281] = 24503193568L;
+    exp[282] = 26953512924L;
+    exp[283] = 29648864216L;
+    exp[284] = 32613750637L;
+    exp[285] = 65879776286L;
+    exp[286] = 72467753914L;
+    exp[287] = 79714529305L;
+    exp[288] = 87685982235L;
+    exp[289] = 96454580458L;
+    exp[290] = 194838252525L;
+    exp[291] = 214322077777L;
+    exp[292] = 235754285554L;
+    exp[293] = 259329714109L;
+    exp[294] = 285262685519L;
+    exp[295] = 576230624748L;
+    exp[296] = 633853687222L;
+    exp[297] = 697239055944L;
+    exp[298] = 766962961538L;
+    exp[299] = 150444442307L;
+    exp[300] = 0L;
   }
   
   static
@@ -5151,61 +5151,6 @@ public class GameConstants
     return (itemId == 4030003 || itemId == 4030004);
   }
   
-  public static short getStat(int itemId, int def)
-  {
-    switch (itemId)
-    {
-      case 1002419:
-        return 5;
-      case 1002959:
-        return 25;
-      case 1142002:
-        return 10;
-      case 1122121:
-        return 7;
-    }
-    return (short) def;
-  }
-  
-  public static short getHpMp(int itemId, int def)
-  {
-    switch (itemId)
-    {
-      case 1122121:
-        return 500;
-      case 1002959:
-      case 1142002:
-        return 1000;
-    }
-    return (short) def;
-  }
-  
-  public static short getATK(int itemId, int def)
-  {
-    switch (itemId)
-    {
-      case 1122121:
-        return 3;
-      case 1002959:
-        return 4;
-      case 1142002:
-        return 9;
-    }
-    return (short) def;
-  }
-  
-  public static short getDEF(int itemId, int def)
-  {
-    switch (itemId)
-    {
-      case 1122121:
-        return 250;
-      case 1002959:
-        return 500;
-    }
-    return (short) def;
-  }
-  
   public static boolean isDojo(int mapId)
   {
     return (mapId >= 925020100 && mapId <= 925023814);
@@ -5616,29 +5561,29 @@ public class GameConstants
   
   public static int getMPByJob(MapleCharacter chr)
   {
-    int force = 30;
+    int mp = 30;
     switch (chr.getJob())
     {
       case 3110:
-        force = 50;
+        mp = 50;
         break;
       case 3111:
-        force = 100;
+        mp = 100;
         break;
       case 3112:
-        force = 120;
+        mp = 120;
         break;
     }
     Equip shield = (Equip) chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10);
     if (chr.getSkillLevel(80000406) > 0)
     {
-      force += SkillFactory.getSkill(80000406).getEffect(chr.getSkillLevel(80000406)).getMaxDemonForce();
+      mp += SkillFactory.getSkill(80000406).getEffect(chr.getSkillLevel(80000406)).getMaxDemonForce();
     }
     if (shield != null)
     {
-      force += shield.getMp();
+      mp += shield.getTotalMp();
     }
-    return force;
+    return mp;
   }
   
   public static int getSkillLevel(int level)
@@ -5862,7 +5807,27 @@ public class GameConstants
   
   public static final boolean isSuperior(int itemId)
   {
-    return ((itemId >= 1102471 && itemId <= 1102485) || (itemId >= 1072732 && itemId <= 1072747) || (itemId >= 1132164 && itemId <= 1132178) || (itemId >= 1122241 && itemId <= 1122245) || (itemId >= 1082543 && itemId <= 1082547));
+    if ((itemId >= 1102471 && itemId <= 1102475) || (itemId >= 1072732 && itemId <= 1072736) || (itemId >= 1132164 && itemId <= 1132168))
+    {
+      // Helisium
+      return true;
+    }
+    if ((itemId >= 1102476 && itemId <= 1102480) || (itemId >= 1072737 && itemId <= 1072741) || (itemId >= 1132169 && itemId <= 1132173))
+    {
+      // Nova
+      return true;
+    }
+    if ((itemId >= 1102481 && itemId <= 1102485) || (itemId >= 1072743 && itemId <= 1072747) || (itemId >= 1132174 && itemId <= 1132178) || (itemId >= 1082543 && itemId <= 1082547))
+    {
+      // Tyrant
+      return true;
+    }
+    if (itemId >= 1122241 && itemId <= 1122245)
+    {
+      // MindPendent
+      return true;
+    }
+    return false;
   }
   
   public static int getOptionType(int itemId)
@@ -14227,11 +14192,9 @@ public class GameConstants
   public static void sendFireOption(MaplePacketLittleEndianWriter mplew, long newRebirth, Equip equip)
   {
     int[] rebirth = new int[4];
+    
     String fire = String.valueOf(newRebirth);
-    MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
-    Equip ordinary = (Equip) MapleItemInformationProvider.getInstance().getEquipById(equip.getItemId(), false);
-    int ordinaryPad = (ordinary.getWatk() > 0) ? ordinary.getWatk() : ordinary.getMatk();
-    int ordinaryMad = (ordinary.getMatk() > 0) ? ordinary.getMatk() : ordinary.getWatk();
+    
     if (fire.length() == 12)
     {
       rebirth[0] = Integer.parseInt(fire.substring(0, 3));
@@ -14254,10 +14217,11 @@ public class GameConstants
       rebirth[3] = Integer.parseInt(fire.substring(7));
     }
     Map<Integer, Integer> zz = new HashMap<>();
+    
     for (int i = 0; i < rebirth.length; i++)
     {
       int value = rebirth[i] - rebirth[i] / 10 * 10;
-      fireValue(rebirth[i] / 10, ii.getReqLevel(equip.getItemId()), value, ordinaryPad, ordinaryMad, equip.getItemId(), zz);
+      fireValue(equip, rebirth[i] / 10, value, zz);
     }
     mplew.writeInt(zz.size());
     for (Map.Entry<Integer, Integer> z : zz.entrySet())
@@ -14267,8 +14231,14 @@ public class GameConstants
     }
   }
   
-  public static void fireValue(int randomOption, int reqLevel, int randomValue, int ordinaryPad, int ordinaryMad, int itemId, Map<Integer, Integer> zz)
+  public static void fireValue(Equip equip, int randomOption,  int randomValue, Map<Integer, Integer> zz)
   {
+    short reqLevel = equip.getTemplate().getReqLevel();
+    
+    short ordinaryPad = equip.getTemplate().getWatk();
+    
+    short ordinaryMad = equip.getTemplate().getMatk();
+    
     switch (randomOption)
     {
       case 0:
@@ -14388,7 +14358,7 @@ public class GameConstants
         zz.put(Integer.valueOf(randomOption), Integer.valueOf((reqLevel / 20 + 1) * randomValue));
         break;
       case 17:
-        if (isWeapon(itemId))
+        if (isWeapon(equip.getItemId()))
         {
           switch (randomValue)
           {
@@ -14463,7 +14433,7 @@ public class GameConstants
         zz.put(Integer.valueOf(randomOption), Integer.valueOf(randomValue));
         break;
       case 18:
-        if (isWeapon(itemId))
+        if (isWeapon(equip.getItemId()))
         {
           switch (randomValue)
           {
@@ -15308,7 +15278,7 @@ public class GameConstants
     Equip weapon = (Equip) chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
     if (weapon != null)
     {
-      speed = weapon.getAttackSpeed();
+      speed = weapon.getTemplate().getAttackSpeed();
     }
     speed += chr.getStat().getAttackSpeed();
     if (speed < 2)
@@ -17648,5 +17618,5 @@ public class GameConstants
     return -1;
   }
   
-
+  
 }

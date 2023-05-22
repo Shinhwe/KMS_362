@@ -100,8 +100,8 @@ public class MarriageMiniBox extends AbstractPlayerStore
     update();
     closeMarriageBox(false, 3);
     MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
-    Item item = ii.getEquipById(1112744);
-    Item item1 = ii.getEquipById(1112744);
+    Item item = ii.generateEquipById(1112744, -1L);
+    Item item1 = ii.generateEquipById(1112744, -1L);
     item.setUniqueId(MapleInventoryIdentifier.getInstance());
     Equip eitem = (Equip) item;
     eitem.setEnchantStr((short) 300);

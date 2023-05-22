@@ -83,7 +83,7 @@ public class ReactorActionManager extends AbstractPlayerInteraction
         }
         else
         {
-          drop = ii.getEquipById(d.itemId);
+          drop = ii.generateEquipById(d.itemId, -1L);
         }
         drop.setGMLog("Dropped from reactor " + this.reactor.getReactorId() + " on map " + getPlayer().getMapId());
         try
@@ -109,7 +109,7 @@ public class ReactorActionManager extends AbstractPlayerInteraction
     }
     else
     {
-      drop = MapleItemInformationProvider.getInstance().getEquipById(itemId);
+      drop = MapleItemInformationProvider.getInstance().generateEquipById(itemId, -1L);
     }
     drop.setGMLog("Dropped from reactor " + this.reactor.getReactorId() + " on map " + getPlayer().getMapId());
     this.reactor.getMap().spawnItemDrop(this.reactor, getPlayer(), drop, this.reactor.getPosition(), false, false);

@@ -395,28 +395,28 @@ import java.util.concurrent.ConcurrentHashMap;
           /* 231 */
           pse.setLong(1, iid);
           /* 232 */
-          pse.setInt(2, equip.getUpgradeSlots());
+          pse.setInt(2, equip.getTotalUpgradeSlots());
           /* 233 */
           if (equip.getItemId() >= 1113098 && equip.getItemId() <= 1113128)
           {
             /* 234 */
-            pse.setInt(3, equip.getBaseLevel());
+            pse.setInt(3, equip.getItemLevel());
             /*     */
           }
           else
           {
             /* 236 */
-            pse.setInt(3, equip.getLevel());
+            pse.setInt(3, equip.getEnchantLevel());
             /*     */
           }
           /* 238 */
-          pse.setInt(4, equip.getStr());
+          pse.setInt(4, equip.getEnchantStr());
           /* 239 */
-          pse.setInt(5, equip.getDex());
+          pse.setInt(5, equip.getEnchantDex());
           /* 240 */
-          pse.setInt(6, equip.getInt());
+          pse.setInt(6, equip.getEnchantInt());
           /* 241 */
-          pse.setInt(7, equip.getLuk());
+          pse.setInt(7, equip.getEnchantLuk());
           /* 242 */
           pse.setShort(8, equip.getArc());
           /* 243 */
@@ -424,27 +424,27 @@ import java.util.concurrent.ConcurrentHashMap;
           /* 244 */
           pse.setInt(10, equip.getArcLevel());
           /* 245 */
-          pse.setInt(11, equip.getHp());
+          pse.setInt(11, equip.getEnchantHp());
           /* 246 */
-          pse.setInt(12, equip.getMp());
+          pse.setInt(12, equip.getEnchantMp());
           /* 247 */
-          pse.setInt(13, equip.getWatk());
+          pse.setInt(13, equip.getEnchantWatk());
           /* 248 */
-          pse.setInt(14, equip.getMatk());
+          pse.setInt(14, equip.getEnchantMatk());
           /* 249 */
-          pse.setInt(15, equip.getWdef());
+          pse.setInt(15, equip.getEnchantWdef());
           /* 250 */
-          pse.setInt(16, equip.getMdef());
+          pse.setInt(16, equip.getEnchantMdef());
           /* 251 */
-          pse.setInt(17, equip.getAcc());
+          pse.setInt(17, equip.getEnchantAccuracy());
           /* 252 */
-          pse.setInt(18, equip.getAvoid());
+          pse.setInt(18, equip.getEnchantAvoid());
           /* 253 */
-          pse.setInt(19, equip.getHands());
+          pse.setInt(19, equip.getEnchantCraft());
           /* 254 */
-          pse.setInt(20, equip.getSpeed());
+          pse.setInt(20, equip.getEnchantMovementSpeed());
           /* 255 */
-          pse.setInt(21, equip.getJump());
+          pse.setInt(21, equip.getEnchantJump());
           /* 256 */
           pse.setInt(22, equip.getViciousHammer());
           /* 257 */
@@ -474,19 +474,19 @@ import java.util.concurrent.ConcurrentHashMap;
           /* 269 */
           pse.setShort(35, equip.getCharmEXP());
           /* 270 */
-          pse.setShort(36, equip.getPVPDamage());
+          pse.setShort(36, (byte) 0);
           /* 271 */
           pse.setShort(37, equip.getEnchantBuff());
           /* 272 */
-          pse.setByte(38, equip.getReqLevel());
+          pse.setByte(38, (byte) 0);
           /* 273 */
           pse.setByte(39, equip.getYggdrasilWisdom());
           /* 274 */
           pse.setByte(40, (byte) (equip.getFinalStrike() ? 1 : 0));
           /* 275 */
-          pse.setShort(41, equip.getBossDamage());
+          pse.setShort(41, equip.getEnchantBossDamage());
           /* 276 */
-          pse.setShort(42, equip.getIgnorePDR());
+          pse.setShort(42, equip.getEnchantIgnorePDR());
           /* 277 */
           pse.setByte(43, equip.getTotalDamage());
           /* 278 */
@@ -502,13 +502,13 @@ import java.util.concurrent.ConcurrentHashMap;
           /* 283 */
           pse.setInt(49, equip.getSoulSkill());
           /* 284 */
-          pse.setLong(50, equip.getFire());
+          pse.setLong(50, equip.getFlame());
           /* 285 */
           pse.setInt(51, equip.getEquipmentType());
           /* 286 */
           pse.setInt(52, equip.getMoru());
           /* 287 */
-          pse.setInt(53, equip.getAttackSpeed());
+          pse.setInt(53, equip.getTemplate().getAttackSpeed());
           /* 288 */
           pse.setLong(54, equip.getOptionExpiration());
           /* 289 */
@@ -558,7 +558,7 @@ import java.util.concurrent.ConcurrentHashMap;
             /* 312 */
             ps2.setShort(11, equip.getEnchantMdef());
             /* 313 */
-            ps2.setShort(12, equip.getEnchantAcc());
+            ps2.setShort(12, equip.getEnchantAccuracy());
             /* 314 */
             ps2.setShort(13, equip.getEnchantAvoid());
             /* 315 */
@@ -978,10 +978,24 @@ import java.util.concurrent.ConcurrentHashMap;
             /* 512 */
             if (rs1.getInt("itemid") / 1000000 == 1)
             {
+              EquipTemplate template = MapleItemInformationProvider.getInstance().getTempateByItemId(rs1.getInt("itemid"));
               /* 513 */
-              Equip equip = new Equip(rs1.getInt("itemid"), rs1.getShort("position"), rs1.getInt("uniqueid"), rs1.getInt("flag"));
+              Equip equip = new Equip(template, rs1.getShort("position"), rs1.getInt("uniqueid"), rs1.getInt("flag"));
               /* 514 */
               equip.setQuantity((short) 1);
+              
+              byte enchantLevel = rs1.getByte("enchantLevel");
+              
+              byte totalUpgradeSlots = rs1.getByte("upgradeslots");
+              
+              byte hammerCount =  rs1.getByte("ViciousHammer");
+              
+              equip.setSuccessUpgradeSlots(enchantLevel);
+              
+              equip.setExtraUpgradeSlots(hammerCount);
+              
+              equip.setFailUpgradeSlots((byte)(template.getUpgradeSlots() + hammerCount - enchantLevel - totalUpgradeSlots));
+
               /* 515 */
               equip.setInventoryId(rs1.getLong("inventoryitemid"));
               /* 516 */
@@ -989,41 +1003,40 @@ import java.util.concurrent.ConcurrentHashMap;
               /* 517 */
               equip.setExpiration(rs1.getLong("expiredate"));
               /* 518 */
-              equip.setUpgradeSlots(rs1.getByte("upgradeslots"));
               /* 519 */
-              equip.setLevel(rs1.getByte("level"));
+              equip.setEnchantLevel(enchantLevel);
               /* 520 */
-              equip.setStr(rs1.getShort("str"));
+              equip.setEnchantStr(rs1.getShort("str"));
               /* 521 */
-              equip.setDex(rs1.getShort("dex"));
+              equip.setEnchantDex(rs1.getShort("dex"));
               /* 522 */
-              equip.setInt(rs1.getShort("int"));
+              equip.setEnchantInt(rs1.getShort("int"));
               /* 523 */
-              equip.setLuk(rs1.getShort("luk"));
+              equip.setEnchantLuk(rs1.getShort("luk"));
               /* 524 */
-              equip.setHp(rs1.getShort("hp"));
+              equip.setEnchantHp(rs1.getShort("hp"));
               /* 525 */
-              equip.setMp(rs1.getShort("mp"));
+              equip.setEnchantMp(rs1.getShort("mp"));
               /* 526 */
-              equip.setWatk(rs1.getShort("watk"));
+              equip.setEnchantWatk(rs1.getShort("watk"));
               /* 527 */
-              equip.setMatk(rs1.getShort("matk"));
+              equip.setEnchantMatk(rs1.getShort("matk"));
               /* 528 */
-              equip.setWdef(rs1.getShort("wdef"));
+              equip.setEnchantWdef(rs1.getShort("wdef"));
               /* 529 */
-              equip.setMdef(rs1.getShort("mdef"));
+              equip.setEnchantMdef(rs1.getShort("mdef"));
               /* 530 */
-              equip.setAcc(rs1.getShort("acc"));
+              equip.setEnchantAccuracy(rs1.getShort("acc"));
               /* 531 */
-              equip.setAvoid(rs1.getShort("avoid"));
+              equip.setEnchantAvoid(rs1.getShort("avoid"));
               /* 532 */
-              equip.setHands(rs1.getShort("hands"));
+              equip.setEnchantCraft(rs1.getShort("craft"));
               /* 533 */
-              equip.setSpeed(rs1.getShort("speed"));
+              equip.setEnchantMovementSpeed(rs1.getShort("movementSpeed"));
               /* 534 */
-              equip.setJump(rs1.getShort("jump"));
+              equip.setEnchantJump(rs1.getShort("jump"));
               /* 535 */
-              equip.setViciousHammer(rs1.getByte("ViciousHammer"));
+              equip.setViciousHammer(hammerCount);
               /* 536 */
               equip.setItemEXP(rs1.getInt("itemEXP"));
               /* 537 */
@@ -1052,15 +1065,13 @@ import java.util.concurrent.ConcurrentHashMap;
               equip.setGiftFrom(rs1.getString("sender"));
               /* 549 */
               equip.setIncSkill(rs1.getInt("incSkill"));
-              /* 550 */
-              equip.setPVPDamage(rs1.getShort("pvpDamage"));
               /* 551 */
               equip.setCharmEXP(rs1.getShort("charmEXP"));
               /* 552 */
               if (equip.getCharmEXP() < 0)
               {
                 /* 553 */
-                equip.setCharmEXP(((Equip) ii.getEquipById(equip.getItemId())).getCharmEXP());
+                equip.setCharmEXP(template.getCharmEXP());
                 /*     */
               }
               /* 555 */
@@ -1099,20 +1110,18 @@ import java.util.concurrent.ConcurrentHashMap;
               equip.calcStarForceStats();
               /* 568 */
               equip.setEnchantBuff(rs1.getShort("enchantbuff"));
-              /* 569 */
-              equip.setReqLevel(rs1.getByte("reqLevel"));
               /* 570 */
               equip.setYggdrasilWisdom(rs1.getByte("yggdrasilWisdom"));
               /* 571 */
               equip.setFinalStrike((rs1.getByte("finalStrike") > 0));
               /* 572 */
-              equip.setBossDamage(rs1.getByte("bossDamage"));
+              equip.setEnchantBossDamage(rs1.getByte("bossDamage"));
               /* 573 */
-              equip.setIgnorePDR(rs1.getByte("ignorePDR"));
+              equip.setEnchantIgnorePDR(rs1.getByte("ignorePDR"));
               /* 574 */
-              equip.setTotalDamage(rs1.getByte("totalDamage"));
+              equip.setEnchantDamage(rs1.getByte("totalDamage"));
               /* 575 */
-              equip.setAllStat(rs1.getByte("allStat"));
+              equip.setEnchantAllStat(rs1.getByte("allStat"));
               /* 576 */
               equip.setKarmaCount(rs1.getByte("karmaCount"));
               /* 577 */
@@ -1124,7 +1133,7 @@ import java.util.concurrent.ConcurrentHashMap;
               /* 580 */
               equip.setSoulSkill(rs1.getInt("soulskill"));
               /* 581 */
-              equip.setFire((rs1.getLong("fire") < 0L) ? 0L : rs1.getLong("fire"));
+              equip.setFlame((rs1.getLong("fire") < 0L) ? 0L : rs1.getLong("fire"));
               /* 582 */
               equip.setArc(rs1.getShort("arc"));
               /* 583 */
@@ -1136,7 +1145,6 @@ import java.util.concurrent.ConcurrentHashMap;
               /* 586 */
               equip.setMoru(rs1.getInt("moru"));
               /* 587 */
-              equip.setAttackSpeed(rs1.getInt("attackSpeed"));
               /* 588 */
               equip.setOptionExpiration(rs1.getLong("optionexpiration"));
               /* 589 */
@@ -1179,7 +1187,7 @@ import java.util.concurrent.ConcurrentHashMap;
                   /* 607 */
                   equip.setEnchantMdef(rs2.getShort("mdef"));
                   /* 608 */
-                  equip.setEnchantAcc(rs2.getShort("acc"));
+                  equip.setEnchantAccuracy(rs2.getShort("acc"));
                   /* 609 */
                   equip.setEnchantAvoid(rs2.getShort("avoid"));
                   /*     */

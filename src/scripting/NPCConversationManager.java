@@ -1938,25 +1938,23 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 1115 */
     MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     /* 1116 */
-    Equip item = (Equip) ii.getEquipById(itemid);
+    Equip item = (Equip) ii.generateEquipById(itemid, -1L);
     /* 1117 */
-    item.setStr((short) str);
+    item.setEnchantStr((short) str);
     /* 1118 */
-    item.setDex((short) dex);
+    item.setEnchantDex((short) dex);
     /* 1119 */
-    item.setInt((short) int_);
+    item.setEnchantInt((short) int_);
     /* 1120 */
-    item.setLuk((short) luk);
+    item.setEnchantLuk((short) luk);
     /* 1121 */
-    item.setWatk((short) watk);
+    item.setEnchantWatk((short) watk);
     /* 1122 */
-    item.setMatk((short) matk);
+    item.setEnchantMatk((short) matk);
     /* 1123 */
-    item.setHp((short) hp);
-    /* 1124 */
-    item.setUpgradeSlots((byte) slot);
+    item.setEnchantHp((short) hp);
     /* 1125 */
-    item.setLevel((byte) upg);
+    item.setEnchantLevel((byte) upg);
     /* 1126 */
     MapleInventoryManipulator.addbyItem(this.c, item);
   }
@@ -3713,9 +3711,9 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       /* 2195 */
       MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
       /* 2196 */
-      Item item = ii.getEquipById(itemid);
+      Item item = ii.generateEquipById(itemid, -1L);
       /* 2197 */
-      Item item1 = ii.getEquipById(itemid);
+      Item item1 = ii.generateEquipById(itemid, -1L);
       /* 2198 */
       item.setUniqueId(MapleInventoryIdentifier.getInstance());
       /* 2199 */
@@ -3752,41 +3750,41 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       /* 2215 */
       MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
       /* 2216 */
-      Item item = ii.getEquipById(itemid);
+      Item item = ii.generateEquipById(itemid, -1L);
       /* 2217 */
-      Item item1 = ii.getEquipById(itemid);
+      Item item1 = ii.generateEquipById(itemid,-1L);
       /* 2218 */
       item.setUniqueId(MapleInventoryIdentifier.getInstance());
       /* 2219 */
       Equip eitem = (Equip) item;
       /* 2220 */
-      eitem.setStr((short) 300);
+      eitem.setEnchantStr((short) 300);
       /* 2221 */
-      eitem.setDex((short) 300);
+      eitem.setEnchantDex((short) 300);
       /* 2222 */
-      eitem.setInt((short) 300);
+      eitem.setEnchantInt((short) 300);
       /* 2223 */
-      eitem.setLuk((short) 300);
+      eitem.setEnchantLuk((short) 300);
       /* 2224 */
-      eitem.setWatk((short) 300);
+      eitem.setEnchantWatk((short) 300);
       /* 2225 */
-      eitem.setMatk((short) 300);
+      eitem.setEnchantMatk((short) 300);
       /* 2226 */
       item1.setUniqueId(MapleInventoryIdentifier.getInstance());
       /* 2227 */
       Equip eitem1 = (Equip) item1;
       /* 2228 */
-      eitem1.setStr((short) 300);
+      eitem1.setEnchantStr((short) 300);
       /* 2229 */
-      eitem1.setDex((short) 300);
+      eitem1.setEnchantDex((short) 300);
       /* 2230 */
-      eitem1.setInt((short) 300);
+      eitem1.setEnchantInt((short) 300);
       /* 2231 */
-      eitem1.setLuk((short) 300);
+      eitem1.setEnchantLuk((short) 300);
       /* 2232 */
-      eitem1.setWatk((short) 300);
+      eitem1.setEnchantWatk((short) 300);
       /* 2233 */
-      eitem1.setMatk((short) 300);
+      eitem1.setEnchantMatk((short) 300);
       /* 2234 */
       MapleRing.makeRing(itemid, chr, eitem.getUniqueId(), eitem1.getUniqueId());
       /* 2235 */
@@ -3823,41 +3821,41 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       /* 2251 */
       MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
       /* 2252 */
-      Item item = ii.getEquipById(itemid);
+      Item item = ii.generateEquipById(itemid, -1L);
       /* 2253 */
-      Item item1 = ii.getEquipById(itemid);
+      Item item1 = ii.generateEquipById(itemid, -1L);
       /* 2254 */
       item.setUniqueId(MapleInventoryIdentifier.getInstance());
       /* 2255 */
       Equip eitem = (Equip) item;
       /* 2256 */
-      eitem.setStr((short) asd);
+      eitem.setEnchantStr((short) asd);
       /* 2257 */
-      eitem.setDex((short) asd);
+      eitem.setEnchantDex((short) asd);
       /* 2258 */
-      eitem.setInt((short) asd);
+      eitem.setEnchantInt((short) asd);
       /* 2259 */
-      eitem.setLuk((short) asd);
+      eitem.setEnchantLuk((short) asd);
       /* 2260 */
-      eitem.setWatk((short) asd2);
+      eitem.setEnchantWatk((short) asd2);
       /* 2261 */
-      eitem.setMatk((short) asd2);
+      eitem.setEnchantMatk((short) asd2);
       /* 2262 */
       item1.setUniqueId(MapleInventoryIdentifier.getInstance());
       /* 2263 */
       Equip eitem1 = (Equip) item1;
       /* 2264 */
-      eitem1.setStr((short) asd);
+      eitem1.setEnchantStr((short) asd);
       /* 2265 */
-      eitem1.setDex((short) asd);
+      eitem1.setEnchantDex((short) asd);
       /* 2266 */
-      eitem1.setInt((short) asd);
+      eitem1.setEnchantInt((short) asd);
       /* 2267 */
-      eitem1.setLuk((short) asd);
+      eitem1.setEnchantLuk((short) asd);
       /* 2268 */
-      eitem1.setWatk((short) asd2);
+      eitem1.setEnchantWatk((short) asd2);
       /* 2269 */
-      eitem1.setMatk((short) asd2);
+      eitem1.setEnchantMatk((short) asd2);
       /* 2270 */
       MapleRing.makeRing(itemid, chr, eitem.getUniqueId(), eitem1.getUniqueId());
       /* 2271 */
@@ -4181,67 +4179,67 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     {
       case 0:
         /* 2454 */
-        sel.setStr((short) amount);
+        sel.setEnchantStr((short) amount);
         break;
       case 1:
         /* 2457 */
-        sel.setDex((short) amount);
+        sel.setEnchantDex((short) amount);
         break;
       case 2:
         /* 2460 */
-        sel.setInt((short) amount);
+        sel.setEnchantInt((short) amount);
         break;
       case 3:
         /* 2463 */
-        sel.setLuk((short) amount);
+        sel.setEnchantLuk((short) amount);
         break;
       case 4:
         /* 2466 */
-        sel.setHp((short) amount);
+        sel.setEnchantHp((short) amount);
         break;
       case 5:
         /* 2469 */
-        sel.setMp((short) amount);
+        sel.setEnchantMp((short) amount);
         break;
       case 6:
         /* 2472 */
-        sel.setWatk((short) amount);
+        sel.setEnchantWatk((short) amount);
         break;
       case 7:
         /* 2475 */
-        sel.setMatk((short) amount);
+        sel.setEnchantMatk((short) amount);
         break;
       case 8:
         /* 2478 */
-        sel.setWdef((short) amount);
+        sel.setEnchantWdef((short) amount);
         break;
       case 9:
         /* 2481 */
-        sel.setMdef((short) amount);
+        sel.setEnchantMdef((short) amount);
         break;
       case 10:
         /* 2484 */
-        sel.setAcc((short) amount);
+        sel.setEnchantAccuracy((short) amount);
         break;
       case 11:
         /* 2487 */
-        sel.setAvoid((short) amount);
+        sel.setEnchantAvoid((short) amount);
         break;
       case 12:
         /* 2490 */
-        sel.setHands((short) amount);
+        sel.setEnchantCraft((short) amount);
         break;
       case 13:
         /* 2493 */
-        sel.setSpeed((short) amount);
+        sel.setEnchantMovementSpeed((short) amount);
         break;
       case 14:
         /* 2496 */
-        sel.setJump((short) amount);
+        sel.setEnchantJump((short) amount);
         break;
       case 15:
         /* 2499 */
-        sel.setUpgradeSlots((byte) amount);
+        sel.setExtraUpgradeSlots((byte) amount);
         break;
       case 16:
         /* 2502 */
@@ -4249,7 +4247,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         break;
       case 17:
         /* 2505 */
-        sel.setLevel((byte) amount);
+        sel.setEnchantLevel((byte) amount);
         break;
       case 18:
         /* 2508 */
@@ -4532,7 +4530,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
   public Equip getEquip(int itemid)
   {
     /* 2679 */
-    return (Equip) MapleItemInformationProvider.getInstance().getEquipById(itemid);
+    return (Equip) MapleItemInformationProvider.getInstance().generateEquipById(itemid, -1L);
   }
   
   public void setExpiration(Object statsSel, long expire)
@@ -4619,13 +4617,13 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       if (takeSlot)
       {
         /* 2726 */
-        if (eq.getUpgradeSlots() < 1)
+        if (eq.getTotalUpgradeSlots() < 1)
         {
           /* 2727 */
           return false;
         }
         /* 2729 */
-        eq.setUpgradeSlots((byte) (eq.getUpgradeSlots() - 1));
+        eq.setSuccessUpgradeSlots((byte) (eq.getSuccessUpgradeSlots() - 1));
         
         /* 2731 */
         if (eq.getExpiration() == -1L)
@@ -4643,7 +4641,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       if (type.equalsIgnoreCase("Slots"))
       {
         /* 2738 */
-        eq.setUpgradeSlots((byte) (eq.getUpgradeSlots() + offset));
+        eq.setExtraUpgradeSlots((byte) (eq.getExtraUpgradeSlots() + offset));
         /* 2739 */
         eq.setViciousHammer((byte) (eq.getViciousHammer() + offset));
         /* 2740 */
@@ -4651,7 +4649,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       else if (type.equalsIgnoreCase("Level"))
       {
         /* 2741 */
-        eq.setLevel((byte) (eq.getLevel() + offset));
+        eq.setEnchantLevel((byte) (eq.getEnchantLevel() + offset));
         /* 2742 */
       }
       else if (type.equalsIgnoreCase("Hammer"))
@@ -4663,91 +4661,91 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       else if (type.equalsIgnoreCase("STR"))
       {
         /* 2745 */
-        eq.setStr((short) (eq.getStr() + offset));
+        eq.setEnchantStr((short) (eq.getEnchantStr() + offset));
         /* 2746 */
       }
       else if (type.equalsIgnoreCase("DEX"))
       {
         /* 2747 */
-        eq.setDex((short) (eq.getDex() + offset));
+        eq.setEnchantDex((short) (eq.getEnchantDex() + offset));
         /* 2748 */
       }
       else if (type.equalsIgnoreCase("INT"))
       {
         /* 2749 */
-        eq.setInt((short) (eq.getInt() + offset));
+        eq.setEnchantInt((short) (eq.getEnchantInt() + offset));
         /* 2750 */
       }
       else if (type.equalsIgnoreCase("LUK"))
       {
         /* 2751 */
-        eq.setLuk((short) (eq.getLuk() + offset));
+        eq.setEnchantLuk((short) (eq.getEnchantLuk() + offset));
         /* 2752 */
       }
       else if (type.equalsIgnoreCase("HP"))
       {
         /* 2753 */
-        eq.setHp((short) (eq.getHp() + offset));
+        eq.setEnchantHp((short) (eq.getEnchantHp() + offset));
         /* 2754 */
       }
       else if (type.equalsIgnoreCase("MP"))
       {
         /* 2755 */
-        eq.setMp((short) (eq.getMp() + offset));
+        eq.setEnchantMp((short) (eq.getEnchantMp() + offset));
         /* 2756 */
       }
       else if (type.equalsIgnoreCase("WATK"))
       {
         /* 2757 */
-        eq.setWatk((short) (eq.getWatk() + offset));
+        eq.setEnchantWatk((short) (eq.getEnchantWatk() + offset));
         /* 2758 */
       }
       else if (type.equalsIgnoreCase("MATK"))
       {
         /* 2759 */
-        eq.setMatk((short) (eq.getMatk() + offset));
+        eq.setEnchantMatk((short) (eq.getEnchantMatk() + offset));
         /* 2760 */
       }
       else if (type.equalsIgnoreCase("WDEF"))
       {
         /* 2761 */
-        eq.setWdef((short) (eq.getWdef() + offset));
+        eq.setEnchantWdef((short) (eq.getEnchantWdef() + offset));
         /* 2762 */
       }
       else if (type.equalsIgnoreCase("MDEF"))
       {
         /* 2763 */
-        eq.setMdef((short) (eq.getMdef() + offset));
+        eq.setEnchantMdef((short) (eq.getEnchantMdef() + offset));
         /* 2764 */
       }
       else if (type.equalsIgnoreCase("ACC"))
       {
         /* 2765 */
-        eq.setAcc((short) (eq.getAcc() + offset));
+        eq.setEnchantAccuracy((short) (eq.getEnchantAccuracy() + offset));
         /* 2766 */
       }
       else if (type.equalsIgnoreCase("Avoid"))
       {
         /* 2767 */
-        eq.setAvoid((short) (eq.getAvoid() + offset));
+        eq.setEnchantAvoid((short) (eq.getEnchantAvoid() + offset));
         /* 2768 */
       }
       else if (type.equalsIgnoreCase("Hands"))
       {
         /* 2769 */
-        eq.setHands((short) (eq.getHands() + offset));
+        eq.setEnchantCraft((short) (eq.getEnchantCraft() + offset));
         /* 2770 */
       }
       else if (type.equalsIgnoreCase("Speed"))
       {
         /* 2771 */
-        eq.setSpeed((short) (eq.getSpeed() + offset));
+        eq.setEnchantMovementSpeed((short) (eq.getEnchantMovementSpeed() + offset));
         /* 2772 */
       }
       else if (type.equalsIgnoreCase("Jump"))
       {
         /* 2773 */
-        eq.setJump((short) (eq.getJump() + offset));
+        eq.setEnchantJump((short) (eq.getEnchantJump() + offset));
         /* 2774 */
       }
       else if (type.equalsIgnoreCase("ItemEXP"))
@@ -4786,12 +4784,6 @@ public class NPCConversationManager extends AbstractPlayerInteraction
   {
     /* 2792 */
     return MapleItemInformationProvider.getInstance().isCash(itemId);
-  }
-  
-  public int getTotalStat(int itemId)
-  {
-    /* 2796 */
-    return MapleItemInformationProvider.getInstance().getTotalStat((Equip) MapleItemInformationProvider.getInstance().getEquipById(itemId));
   }
   
   public int getReqLevel(int itemId)
@@ -6065,23 +6057,21 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     if (GameConstants.isEquip(item))
     {
       /* 3462 */
-      Equip Item = (Equip) MapleItemInformationProvider.getInstance().getEquipById(item);
+      Equip Item = (Equip) MapleItemInformationProvider.getInstance().generateEquipById(item, -1L);
       /* 3463 */
       Item.setOwner(name);
       /* 3464 */
-      Item.setStr(allstat);
+      Item.setEnchantStr(allstat);
       /* 3465 */
-      Item.setDex(allstat);
+      Item.setEnchantDex(allstat);
       /* 3466 */
-      Item.setInt(allstat);
+      Item.setEnchantInt(allstat);
       /* 3467 */
-      Item.setLuk(allstat);
+      Item.setEnchantLuk(allstat);
       /* 3468 */
-      Item.setWatk(damage);
+      Item.setEnchantWatk(damage);
       /* 3469 */
-      Item.setMatk(damage);
-      /* 3470 */
-      Item.setUpgradeSlots(upgradeslot);
+      Item.setEnchantMatk(damage);
       /* 3471 */
       MapleInventoryManipulator.addFromDrop(this.c, Item, false);
     }

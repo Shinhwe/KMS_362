@@ -681,7 +681,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     this.isDrVote = false;
     this.isPoliceVote = false;
     this.mapiajob = "";
-    this.blackRebirthPos = 0;
+    this.blackFlamePosition = 0;
     this.voteamount = 0;
     this.getmapiavote = 0;
     this.getpolicevote = 0;
@@ -690,10 +690,10 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     this.CrystalCharge = 0;
     this.returnSc = 0;
     this.peaceMaker = 0;
-    this.blackRebirth = 0L;
-    this.choicepotential = null;
-    this.returnscroll = null;
-    this.blackRebirthScroll = null;
+    this.blackFlame = 0L;
+    this.choicePotential = null;
+    this.returnScroll = null;
+    this.blackFlameScroll = null;
     this.memorialcube = null;
     this.slowAttackCount = 0;
     this.isdressup = false;
@@ -1097,8 +1097,8 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     ret.honourExp = ct.honourexp;
     ret.honorLevel = ct.honourlevel;
     ret.innerSkills = (List<InnerSkillValueHolder>) ct.innerSkills;
-    ret.returnscroll = (Equip) ct.returnscroll;
-    ret.choicepotential = (Equip) ct.choicepotential;
+    ret.returnScroll = (Equip) ct.returnScroll;
+    ret.choicePotential = (Equip) ct.choicePotential;
     ret.memorialcube = (Item) ct.memorialcube;
     ret.returnSc = ct.returnSc;
     ret.lastCharGuildId = ct.lastCharGuildId;
@@ -1302,7 +1302,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       ret.betaclothes = rs.getInt("betaclothes");
       
       /*  2578 */
-      long choiceId = rs.getLong("choicepotential"), memorialId = rs.getLong("memorialcube"), returnscroll = rs.getLong("returnscroll");
+      long choiceId = rs.getLong("choicePotential"), memorialId = rs.getLong("memorialcube"), returnScroll = rs.getLong("returnScroll");
       
       /*  2580 */
       ret.returnSc = rs.getInt("returnsc");
@@ -1524,7 +1524,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
               if (mit.getValue().getInventoryId() == choiceId && choiceId > 0L)
               {
                 /*  2702 */
-                ret.choicepotential = (Equip) mit.getValue();
+                ret.choicePotential = (Equip) mit.getValue();
                 /*  2703 */
               }
               else if (mit.getValue().getInventoryId() == memorialId && memorialId > 0L)
@@ -1533,10 +1533,10 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
                 ret.memorialcube = mit.getValue();
                 /*  2705 */
               }
-              else if (mit.getValue().getInventoryId() == returnscroll && returnscroll > 0L)
+              else if (mit.getValue().getInventoryId() == returnScroll && returnScroll > 0L)
               {
                 /*  2706 */
-                ret.returnscroll = (Equip) mit.getValue();
+                ret.returnScroll = (Equip) mit.getValue();
               }
               else
               {
@@ -4620,10 +4620,10 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   {
     try
     {
-      final PreparedStatement ps = con.prepareStatement("UPDATE characters SET choicepotential = ?, memorialcube = ?, returnscroll = ?, returnsc = ? WHERE id = ?", 1);
-      if (this.choicepotential != null)
+      final PreparedStatement ps = con.prepareStatement("UPDATE characters SET choicePotential = ?, memorialcube = ?, returnScroll = ?, returnsc = ? WHERE id = ?", 1);
+      if (this.choicePotential != null)
       {
-        ps.setLong(1, this.choicepotential.getInventoryId());
+        ps.setLong(1, this.choicePotential.getInventoryId());
       }
       else
       {
@@ -4637,9 +4637,9 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       {
         ps.setLong(2, 0L);
       }
-      if (this.returnscroll != null)
+      if (this.returnScroll != null)
       {
-        ps.setLong(3, this.returnscroll.getInventoryId());
+        ps.setLong(3, this.returnScroll.getInventoryId());
       }
       else
       {
@@ -5283,9 +5283,9 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
         {
           items.add(this.memorialcube);
         }
-        if (this.returnscroll != null && type.getType() == 2)
+        if (this.returnScroll != null && type.getType() == 2)
         {
-          items.add(this.returnscroll);
+          items.add(this.returnScroll);
         }
         if (con != null)
         {
@@ -5306,9 +5306,9 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     {
       equips.add(item);
     }
-    if (this.choicepotential != null)
+    if (this.choicePotential != null)
     {
-      equips.add(this.choicepotential);
+      equips.add(this.choicePotential);
     }
     if (con != null)
     {
@@ -9476,7 +9476,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       }
       if ((type.equals(MapleInventoryType.EQUIP) || type.equals(MapleInventoryType.CODY)) && !GameConstants.isThrowingStar(id) && !GameConstants.isBullet(id))
       {
-        final Equip item = (Equip) ii.getEquipById(id);
+        final Equip item = (Equip) ii.generateEquipById(id, -1L);
         if (period > 0L)
         {
           item.setExpiration(System.currentTimeMillis() + period * 24L * 60L * 60L * 1000L);
@@ -9612,7 +9612,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
         Item theNewItem = null;
         if (GameConstants.getInventoryType(replace2.left) == MapleInventoryType.EQUIP)
         {
-          theNewItem = ii.getEquipById(replace2.left);
+          theNewItem = ii.generateEquipById(replace2.left, -1L);
           theNewItem.setPosition(item2.getPosition());
         }
         else
@@ -10313,7 +10313,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     if (change)
     {
       final MapleInventory equip = this.getInventory(MapleInventoryType.EQUIPPED);
-      final Item ii = MapleItemInformationProvider.getInstance().getEquipById(itemid);
+      final Item ii = MapleItemInformationProvider.getInstance().generateEquipById(itemid, -1L);
       ii.setPosition((short) (-10));
       final Equip equiped = (Equip) this.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-10));
       if (equiped != null)
@@ -23028,7 +23028,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   
   public void gainItemAllStat(int itemid, short quantity, short allstat, short wmtk)
   {
-    Equip equip = new Equip(itemid, quantity, (byte) 0);
+    Equip equip = MapleItemInformationProvider.getInstance().generateEquipById(itemid, -1L);
     equip.setEnchantStr(allstat);
     equip.setEnchantDex(allstat);
     equip.setEnchantInt(allstat);
@@ -23518,7 +23518,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   
   public void 아이템지급(int f, int t, int itemid)
   {
-    Equip 장비 = (Equip) MapleItemInformationProvider.getInstance().getEquipById(itemid);
+    Equip 장비 = (Equip) MapleItemInformationProvider.getInstance().generateEquipById(itemid, -1L);
     short str = 0;
     short dex = 0;
     short int_ = 0;
@@ -23707,9 +23707,9 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     장비.setEnchantDex(dex);
     장비.setEnchantInt(int_);
     장비.setEnchantLuk(luk);
-    장비.setBossDamage((byte) unlimited);
-    장비.setTotalDamage((byte) unlimited);
-    장비.setAllStat((byte) unlimited);
+    장비.setEnchantBossDamage((byte) unlimited);
+    장비.setEnchantDamage((byte) unlimited);
+    장비.setEnchantAllStat((byte) unlimited);
     MapleInventoryManipulator.addbyItem(client, 장비, false);
   }
   
@@ -23824,7 +23824,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     
     public void handleEtcs(final long time)
     {
-      if (time - MapleCharacter.this.lastSaveTime >= 600000L && MapleCharacter.this.choicepotential == null && MapleCharacter.this.returnscroll == null && MapleCharacter.this.memorialcube == null)
+      if (time - MapleCharacter.this.lastSaveTime >= 600000L && MapleCharacter.this.choicePotential == null && MapleCharacter.this.returnScroll == null && MapleCharacter.this.memorialcube == null)
       {
         MapleCharacter.this.saveToDB(false, false);
       }
