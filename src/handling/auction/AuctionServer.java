@@ -530,43 +530,6 @@ import java.util.concurrent.ConcurrentHashMap;
           /*     */
           /*     */
           /* 299 */
-          if (GameConstants.getInventoryType(item.getItemId()).getType() != 6)
-          {
-            /*     */
-            /* 301 */
-            PreparedStatement ps2 = con.prepareStatement("INSERT INTO inventoryequipenchant VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            /* 302 */
-            ps2.setLong(1, iid);
-            /* 303 */
-            ps2.setShort(2, equip.getEnchantStr());
-            /* 304 */
-            ps2.setShort(3, equip.getEnchantDex());
-            /* 305 */
-            ps2.setShort(4, equip.getEnchantInt());
-            /* 306 */
-            ps2.setShort(5, equip.getEnchantLuk());
-            /* 307 */
-            ps2.setShort(6, equip.getEnchantHp());
-            /* 308 */
-            ps2.setShort(7, equip.getEnchantMp());
-            /* 309 */
-            ps2.setShort(8, equip.getEnchantWatk());
-            /* 310 */
-            ps2.setShort(9, equip.getEnchantMatk());
-            /* 311 */
-            ps2.setShort(10, equip.getEnchantWdef());
-            /* 312 */
-            ps2.setShort(11, equip.getEnchantMdef());
-            /* 313 */
-            ps2.setShort(12, equip.getEnchantAccuracy());
-            /* 314 */
-            ps2.setShort(13, equip.getEnchantAvoid());
-            /* 315 */
-            ps2.executeUpdate();
-            /* 316 */
-            ps2.close();
-            /*     */
-          }
           /*     */
         }
         /* 319 */
@@ -1155,49 +1118,6 @@ import java.util.concurrent.ConcurrentHashMap;
               equip.setCoption3(rs1.getInt("coption3"));
               /*     */
               /* 593 */
-              if (!column.equals("inventoryitemscody"))
-              {
-                /* 594 */
-                ps2 = con.prepareStatement("SELECT * FROM inventoryequipenchant WHERE inventoryitemid = ?");
-                /* 595 */
-                ps2.setLong(1, equip.getInventoryId());
-                /* 596 */
-                rs2 = ps2.executeQuery();
-                /* 597 */
-                if (rs2.next())
-                {
-                  /* 598 */
-                  equip.setEnchantStr(rs2.getShort("str"));
-                  /* 599 */
-                  equip.setEnchantDex(rs2.getShort("dex"));
-                  /* 600 */
-                  equip.setEnchantInt(rs2.getShort("int"));
-                  /* 601 */
-                  equip.setEnchantLuk(rs2.getShort("luk"));
-                  /* 602 */
-                  equip.setEnchantHp(rs2.getShort("hp"));
-                  /* 603 */
-                  equip.setEnchantMp(rs2.getShort("mp"));
-                  /* 604 */
-                  equip.setEnchantWatk(rs2.getShort("watk"));
-                  /* 605 */
-                  equip.setEnchantMatk(rs2.getShort("matk"));
-                  /* 606 */
-                  equip.setEnchantWdef(rs2.getShort("wdef"));
-                  /* 607 */
-                  equip.setEnchantMdef(rs2.getShort("mdef"));
-                  /* 608 */
-                  equip.setEnchantAccuracy(rs2.getShort("acc"));
-                  /* 609 */
-                  equip.setEnchantAvoid(rs2.getShort("avoid"));
-                  /*     */
-                }
-                /* 611 */
-                rs2.close();
-                /* 612 */
-                ps2.close();
-                /*     */
-              }
               /* 614 */
               item_ = equip.copy();
               /*     */

@@ -16,9 +16,9 @@ public class EquipTemplate
   
   private short luk = 0;
   
-  private short Watk = 0;
+  private short watk = 0;
   
-  private short Matk = 0;
+  private short matk = 0;
   
   private int attackSpeed = 0;
   
@@ -150,22 +150,22 @@ public class EquipTemplate
   
   public short getWatk()
   {
-    return Watk;
+    return watk;
   }
   
   public void setWatk(short watk)
   {
-    Watk = watk;
+    this.watk = watk;
   }
   
   public short getMatk()
   {
-    return Matk;
+    return matk;
   }
   
   public void setMatk(short matk)
   {
-    Matk = matk;
+    this.matk = matk;
   }
   
   public short getHp()

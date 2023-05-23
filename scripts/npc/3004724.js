@@ -290,7 +290,7 @@ function action(mode, type, sel) {
 			if (seld != 430)
 				cm.changeJob(cjob);
                                            addMedal();
-			cm.gainItem(2000005, 300);
+			cm.gainItem(2000005, 500);
                                            cm.gainItem(3018469, 1);
                                           cm.gainItem(2431307, 1);
 			cm.gainMeso(3000000);
@@ -390,7 +390,7 @@ function action(mode, type, sel) {
                                            cm.gainItem(2431307, 1);
                                          cm.gainItem(2433444, 1);
                                          cm.gainItem(3018469, 1);
-										 cm.gainItem(2000005, 300);
+										 cm.gainItem(2000005, 500);
 			cm.gainItem(2431774, 1);
                         cm.gainItem(3700011, 1);
 			cm.gainMeso(3000000);
@@ -528,14 +528,14 @@ function FirstJob(i) {
 
 function addMedal()
 {
-	item = Packages.server.MapleItemInformationProvider.getInstance().getEquipById(1142358);
-	item.setEncnatStr(50);
-	item.setEncnatDex(50);
-	item.setEncnatInt(50);
-	item.setEncnatLuk(50);
-	item.setEncnatWatk(20);
-	item.setEncnatMatk(20);
-	item.setEncnatHp(1000);
-	item.setEncnatMp(1000);
+	item = Packages.server.MapleItemInformationProvider.getInstance().generateEquipById(1142358, -1, false);
+	item.setEnchantStr(50);
+	item.setEnchantDex(50);
+	item.setEnchantInt(50);
+	item.setEnchantLuk(50);
+	item.setEnchantWatk(20);
+	item.setEnchantMatk(20);
+	item.setEnchantHp(1000);
+	item.setEnchantMp(1000);
 	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), item, false);
 }

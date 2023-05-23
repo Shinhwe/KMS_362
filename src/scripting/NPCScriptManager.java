@@ -14,30 +14,30 @@ public class NPCScriptManager extends AbstractScriptManager
 {
   private static final NPCScriptManager instance = new NPCScriptManager();
   private final Map<MapleClient, NPCConversationManager> cms = new WeakHashMap<>();
-  
-  public static final NPCScriptManager getInstance()
+
+  public static final NPCScriptManager getInstance ()
   {
     return instance;
   }
-  
-  public final void start(MapleClient c, int npc)
+
+  public final void start (MapleClient c, int npc)
   {
     start(c, npc, null);
   }
-  
-  public final void start(MapleClient c, String script)
+
+  public final void start (MapleClient c, String script)
   {
     start(c, 0, script);
   }
-  
-  public final boolean UseScript(MapleClient c, int quest)
+
+  public final boolean UseScript (MapleClient c, int quest)
   {
     Invocable iv = null;
     iv = getInvocable("quest/" + quest + ".js", c, true);
     return (iv != null);
   }
-  
-  public final void startHairRoom(MapleClient c, int npc, String script, byte result, int slot, byte temp)
+
+  public final void startHairRoom (MapleClient c, int npc, String script, byte result, int slot, byte temp)
   {
     try
     {
@@ -83,8 +83,8 @@ public class NPCScriptManager extends AbstractScriptManager
       dispose(c);
     }
   }
-  
-  public final void start(MapleClient c, int npc, String script, String method)
+
+  public final void start (MapleClient c, int npc, String script, String method)
   {
     try
     {
@@ -131,12 +131,16 @@ public class NPCScriptManager extends AbstractScriptManager
       dispose(c);
     }
   }
-  
-  public final void start(MapleClient c, int npc, String script)
+
+  public final void start (MapleClient c, int npc, String script)
   {
+    if (c.canClickNPC() == false)
+    {
+      return;
+    }
     try
     {
-      if (!this.cms.containsKey(c) && c.canClickNPC())
+      if (!this.cms.containsKey(c))
       {
         Invocable iv;
         if (script == null)
@@ -183,8 +187,8 @@ public class NPCScriptManager extends AbstractScriptManager
       dispose(c);
     }
   }
-  
-  public final void startItem(MapleClient c, int npc, String script)
+
+  public final void startItem (MapleClient c, int npc, String script)
   {
     try
     {
@@ -223,8 +227,8 @@ public class NPCScriptManager extends AbstractScriptManager
       dispose(c);
     }
   }
-  
-  public final void action(MapleClient c, byte mode, byte type, int selection)
+
+  public final void action (MapleClient c, byte mode, byte type, int selection)
   {
     if (mode != -1)
     {
@@ -253,8 +257,8 @@ public class NPCScriptManager extends AbstractScriptManager
       }
     }
   }
-  
-  public final void zeroaction(MapleClient c, byte mode, byte type, int selection1, int selection2)
+
+  public final void zeroaction (MapleClient c, byte mode, byte type, int selection1, int selection2)
   {
     if (mode != -1)
     {
@@ -283,8 +287,8 @@ public class NPCScriptManager extends AbstractScriptManager
       }
     }
   }
-  
-  public final void startQuest(MapleClient c, int npc, int quest)
+
+  public final void startQuest (MapleClient c, int npc, int quest)
   {
     try
     {
@@ -320,8 +324,8 @@ public class NPCScriptManager extends AbstractScriptManager
       dispose(c);
     }
   }
-  
-  public final void startQuest(MapleClient c, byte mode, byte type, int selection)
+
+  public final void startQuest (MapleClient c, byte mode, byte type, int selection)
   {
     NPCConversationManager cm = this.cms.get(c);
     if (cm == null || cm.getLastMsg() > -1)
@@ -347,8 +351,8 @@ public class NPCScriptManager extends AbstractScriptManager
       dispose(c);
     }
   }
-  
-  public final void endQuest(MapleClient c, int npc, int quest, boolean customEnd)
+
+  public final void endQuest (MapleClient c, int npc, int quest, boolean customEnd)
   {
     try
     {
@@ -377,8 +381,8 @@ public class NPCScriptManager extends AbstractScriptManager
       dispose(c);
     }
   }
-  
-  public final void endQuest(MapleClient c, byte mode, byte type, int selection)
+
+  public final void endQuest (MapleClient c, byte mode, byte type, int selection)
   {
     NPCConversationManager cm = this.cms.get(c);
     if (cm == null || cm.getLastMsg() > -1)
@@ -404,8 +408,8 @@ public class NPCScriptManager extends AbstractScriptManager
       dispose(c);
     }
   }
-  
-  public final void dispose(MapleClient c)
+
+  public final void dispose (MapleClient c)
   {
     NPCConversationManager npccm = this.cms.get(c);
     if (npccm != null)
@@ -437,13 +441,13 @@ public class NPCScriptManager extends AbstractScriptManager
       c.getPlayer().setConversation(0);
     }
   }
-  
-  public final NPCConversationManager getCM(MapleClient c)
+
+  public final NPCConversationManager getCM (MapleClient c)
   {
     return this.cms.get(c);
   }
-  
-  public void scriptClear()
+
+  public void scriptClear ()
   {
     this.cms.clear();
   }

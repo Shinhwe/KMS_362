@@ -841,7 +841,10 @@ public class NPCHandler
   
   public static void quickMove(LittleEndianAccessor slea, MapleClient c)
   {
-    NPCScriptManager.getInstance().start(c, slea.readInt());
+    c.removeClickedNPC();
+    NPCScriptManager.getInstance().dispose(c);
+    c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+    NPCScriptManager.getInstance().start(c, 9001174);
   }
   
   public static void dimentionMirror(LittleEndianAccessor slea, MapleClient c)

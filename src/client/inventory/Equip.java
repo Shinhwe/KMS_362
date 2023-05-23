@@ -27,17 +27,17 @@ public class Equip extends Item implements Serializable
   private byte enchantLevel = 0;
   private byte vicioushammer = 0;
   private int itemLevel = 0;
-  
+
   private short charmEXP = 0;
-  
+
   private EquipTemplate template;
-  
-  
+
+
   private int itemEXP = 0;
   private byte starForceLevel = 0;
   private byte yggdrasilWisdom = 0;
   private byte karmaCount = (byte) -1;
-  
+
   private short soulname = 0;
   private short soulenchanter = 0;
   private short soulpotential = 0;
@@ -52,19 +52,21 @@ public class Equip extends Item implements Serializable
   private short enchantMdef = 0;
   private byte enchantBossDamage = 0;
   private byte enchantDamage = 0;
-  
+
   private short enchantCraft = 0;
-  
+
   private byte enchantAllStat = 0;
-  
+
   private byte enchantIgnorePDR = 0;
   private short enchantAccuracy = 0;
   private short enchantAvoid = 0;
   private short enchantWatk = 0;
   private short enchantMatk = 0;
   private short enchantJump = 0;
+
+  private byte enchantReductReqLevel = 0;
   private short arc;
-  
+
   private short enchantMovementSpeed = 0;
   private short flameStr = 0;
   private short flameDex = 0;
@@ -97,23 +99,23 @@ public class Equip extends Item implements Serializable
   private short starForceMovementSpeed = 0;
   private int arcexp = 0;
   private int arclevel = 0;
-  
+
   private int arcStr = 0;
-  
+
   private int arcDex = 0;
-  
+
   private int arcInt = 0;
-  
+
   private int arcLuk = 0;
-  
+
   private int arcHp = 0;
-  
+
   private int authenticStr = 0;
-  
+
   private int authenticDex = 0;
   private int authenticInt = 0;
   private int authenticLuk = 0;
-  
+
   private int authenticHp = 0;
   private int durability = -1;
   private int incSkill = -1;
@@ -132,29 +134,29 @@ public class Equip extends Item implements Serializable
   private long flame = 0L;
   private long optionexpiration = 0L;
   private boolean finalStrike = false;
-  
+
   private EquipmentScroll showScrollOption;
   private List<EquipStat> stats = new LinkedList<EquipStat>();
   private List<EquipSpecialStat> specialStats = new LinkedList<EquipSpecialStat>();
-  
-  public Equip(EquipTemplate template, short position, int flag, long uniqueid)
+
+  public Equip (EquipTemplate template, short position, int flag, long uniqueid)
   {
     super(template.getItemId(), position, (short) 1, flag, uniqueid);
     this.template = template;
     charmEXP = template.getCharmEXP();
     durability = template.getDurability();
   }
-  
-  public static Equip calculateEquipStats(Equip eq)
+
+  public static Equip calculateEquipStats (Equip eq)
   {
     eq.getStats().clear();
-    
+
     eq.getSpecialStats().clear();
-    
-    eq.calcStarForceStats();
-    
+
     eq.calcFlameStats();
-    
+
+    eq.calcStarForceStats();
+
     if (eq.getTotalUpgradeSlots() > 0)
     {
       eq.getStats().add(EquipStat.SLOTS);
@@ -243,7 +245,7 @@ public class Equip extends Item implements Serializable
     {
       eq.getStats().add(EquipStat.ENHANCT_BUFF);
     }
-    if (eq.getFlameReductReqLevel() > 0)
+    if (eq.getTotalReductReqLevel() > 0)
     {
       eq.getStats().add(EquipStat.DOWNLEVEL);
     }
@@ -289,11 +291,11 @@ public class Equip extends Item implements Serializable
     }
     return (Equip) eq.copy();
   }
-  
-  public void set(Equip set)
+
+  public void set (Equip set)
   {
     this.template = set.template;
-    
+
     this.arc = set.arc;
     this.arclevel = set.arclevel;
     this.arcexp = set.arcexp;
@@ -336,6 +338,7 @@ public class Equip extends Item implements Serializable
     this.enchantCraft = set.enchantCraft;
     this.enchantHp = set.enchantHp;
     this.enchantMp = set.enchantMp;
+    this.enchantReductReqLevel = set.enchantReductReqLevel;
     this.enchantAccuracy = set.enchantAccuracy;
     this.enchantAvoid = set.enchantAvoid;
     this.enchantWatk = set.enchantWatk;
@@ -365,6 +368,8 @@ public class Equip extends Item implements Serializable
     this.starForceAvoid = set.starForceAvoid;
     this.starForceMovementSpeed = set.starForceMovementSpeed;
     this.starForceJump = set.starForceJump;
+    this.starForceHp = set.starForceHp;
+    this.starForceMp = set.starForceMp;
     this.flameStr = set.flameStr;
     this.flameDex = set.flameDex;
     this.flameInt = set.flameInt;
@@ -381,9 +386,9 @@ public class Equip extends Item implements Serializable
     this.flameReductReqLevel = set.flameReductReqLevel;
     this.flameDef = set.flameDef;
   }
-  
+
   @Override
-  public Item copy()
+  public Item copy ()
   {
     Equip ret = new Equip(this.getTemplate(), this.getPosition(), this.getFlag(), this.getUniqueId());
     ret.arc = this.arc;
@@ -433,6 +438,7 @@ public class Equip extends Item implements Serializable
     ret.enchantLuk = this.enchantLuk;
     ret.enchantHp = this.enchantHp;
     ret.enchantMp = this.enchantMp;
+    ret.enchantReductReqLevel = this.enchantReductReqLevel;
     ret.enchantAccuracy = this.enchantAccuracy;
     ret.enchantAvoid = this.enchantAvoid;
     ret.enchantWatk = this.enchantWatk;
@@ -463,6 +469,8 @@ public class Equip extends Item implements Serializable
     ret.starForceAvoid = this.starForceAvoid;
     ret.starForceMovementSpeed = this.starForceMovementSpeed;
     ret.starForceJump = this.starForceJump;
+    ret.starForceHp = this.starForceHp;
+    ret.starForceMp = this.starForceMp;
     ret.flameStr = this.flameStr;
     ret.flameDex = this.flameDex;
     ret.flameInt = this.flameInt;
@@ -480,15 +488,15 @@ public class Equip extends Item implements Serializable
     ret.flameDef = this.flameDef;
     return ret;
   }
-  
-  
+
+
   @Override
-  public byte getType()
+  public byte getType ()
   {
     return 1;
   }
-  
-  public byte getTotalUpgradeSlots()
+
+  public byte getTotalUpgradeSlots ()
   {
     return (byte) (this.template.getUpgradeSlots() + this.extraUpgradeSlots - this.failUpgradeSlots - this.successUpgradeSlots);
   }
@@ -498,44 +506,44 @@ public class Equip extends Item implements Serializable
 //  {
 //    this.upgradeSlots = upgradeSlots;
 //  }
-  
-  public byte getExtraUpgradeSlots()
+
+  public byte getExtraUpgradeSlots ()
   {
     return extraUpgradeSlots;
   }
-  
-  public void setExtraUpgradeSlots(byte extraUpgradeSlots)
+
+  public void setExtraUpgradeSlots (byte extraUpgradeSlots)
   {
     this.extraUpgradeSlots = extraUpgradeSlots;
   }
-  
-  public byte getFailUpgradeSlots()
+
+  public byte getFailUpgradeSlots ()
   {
     return failUpgradeSlots;
   }
-  
-  public void setFailUpgradeSlots(byte failUpgradeSlots)
+
+  public void setFailUpgradeSlots (byte failUpgradeSlots)
   {
     this.failUpgradeSlots = failUpgradeSlots;
   }
-  
-  public byte getSuccessUpgradeSlots()
+
+  public byte getSuccessUpgradeSlots ()
   {
     return successUpgradeSlots;
   }
-  
-  public void setSuccessUpgradeSlots(byte successUpgradeSlots)
+
+  public void setSuccessUpgradeSlots (byte successUpgradeSlots)
   {
     this.successUpgradeSlots = successUpgradeSlots;
   }
-  
-  
-  public short getArc()
+
+
+  public short getArc ()
   {
     return this.arc;
   }
-  
-  public void setArc(short arc)
+
+  public void setArc (short arc)
   {
     if (arc < 0)
     {
@@ -543,53 +551,53 @@ public class Equip extends Item implements Serializable
     }
     this.arc = arc;
   }
-  
-  
-  public short getTotalCraft()
+
+
+  public short getTotalCraft ()
   {
     return (short) (this.template.getCraft() + this.enchantCraft);
   }
-  
-  
-  public short getTotalMovementSpeed()
+
+
+  public short getTotalMovementSpeed ()
   {
     return (short) (this.template.getMoveMentSpeed() + enchantMovementSpeed + flameMovementSpeed + starForceMovementSpeed);
   }
-  
-  
-  public short getTotalJump()
+
+
+  public short getTotalJump ()
   {
     return (short) (this.template.getJump() + enchantJump + flameJump + starForceJump);
   }
-  
-  
-  public byte getEnchantLevel()
+
+
+  public byte getEnchantLevel ()
   {
     return this.enchantLevel;
   }
-  
-  public void setEnchantLevel(byte enchantLevel)
+
+  public void setEnchantLevel (byte enchantLevel)
   {
     this.enchantLevel = enchantLevel;
   }
-  
-  public byte getViciousHammer()
+
+  public byte getViciousHammer ()
   {
     return this.vicioushammer;
   }
-  
-  public void setViciousHammer(byte ham)
+
+  public void setViciousHammer (byte ham)
   {
     this.vicioushammer = ham;
   }
-  
-  
-  public int getItemEXP()
+
+
+  public int getItemEXP ()
   {
     return this.itemEXP;
   }
-  
-  public void setItemEXP(int itemEXP)
+
+  public void setItemEXP (int itemEXP)
   {
     if (itemEXP < 0)
     {
@@ -597,8 +605,8 @@ public class Equip extends Item implements Serializable
     }
     this.itemEXP = itemEXP;
   }
-  
-  public int getEquipExp()
+
+  public int getEquipExp ()
   {
     if (this.itemEXP <= 0)
     {
@@ -610,8 +618,8 @@ public class Equip extends Item implements Serializable
     }
     return this.itemEXP / 350000;
   }
-  
-  public int getEquipExpForLevel()
+
+  public int getEquipExpForLevel ()
   {
     if (this.getEquipExp() <= 0)
     {
@@ -623,8 +631,8 @@ public class Equip extends Item implements Serializable
     }
     return expz;
   }
-  
-  public int getExpPercentage()
+
+  public int getExpPercentage ()
   {
     if (this.getEquipLevel() < 0 || this.getEquipLevel() > GameConstants.getMaxLevel(this.getItemId()) || GameConstants.getExpForLevel(this.getEquipLevel(), this.getItemId()) <= 0)
     {
@@ -632,8 +640,8 @@ public class Equip extends Item implements Serializable
     }
     return this.getEquipExpForLevel() * 100 / GameConstants.getExpForLevel(this.getEquipLevel(), this.getItemId());
   }
-  
-  public int getEquipLevel()
+
+  public int getEquipLevel ()
   {
     if (GameConstants.getMaxLevel(this.getItemId()) <= 0)
     {
@@ -651,126 +659,126 @@ public class Equip extends Item implements Serializable
     }
     return levelz;
   }
-  
-  public void setItemLevel(int itemLevel)
+
+  public void setItemLevel (int itemLevel)
   {
     this.itemLevel = itemLevel;
   }
-  
-  public int getItemLevel()
+
+  public int getItemLevel ()
   {
     return this.itemLevel;
   }
-  
+
   @Override
-  public void setQuantity(short quantity)
+  public void setQuantity (short quantity)
   {
     // 设置数量无效, 但是父类提供了这个方法, 这里覆写掉
     super.setQuantity((short) 1);
   }
-  
-  public void setDurability(int durability)
+
+  public void setDurability (int durability)
   {
     this.durability = durability;
   }
-  
-  public int getDurability()
+
+  public int getDurability ()
   {
     return this.durability;
   }
-  
-  
-  public byte getStarForceLevel()
+
+
+  public byte getStarForceLevel ()
   {
     return this.starForceLevel;
   }
-  
-  public void setStarForceLevel(byte en)
+
+  public void setStarForceLevel (byte en)
   {
     this.starForceLevel = en;
   }
-  
-  public int getPotential1()
+
+  public int getPotential1 ()
   {
     return this.potential1;
   }
-  
-  public void setPotential1(int en)
+
+  public void setPotential1 (int en)
   {
     this.potential1 = en;
   }
-  
-  public int getPotential2()
+
+  public int getPotential2 ()
   {
     return this.potential2;
   }
-  
-  public void setPotential2(int en)
+
+  public void setPotential2 (int en)
   {
     this.potential2 = en;
   }
-  
-  public int getPotential3()
+
+  public int getPotential3 ()
   {
     return this.potential3;
   }
-  
-  public void setPotential3(int en)
+
+  public void setPotential3 (int en)
   {
     this.potential3 = en;
   }
-  
-  public int getPotential4()
+
+  public int getPotential4 ()
   {
     return this.potential4;
   }
-  
-  public void setPotential4(int en)
+
+  public void setPotential4 (int en)
   {
     this.potential4 = en;
   }
-  
-  public int getPotential5()
+
+  public int getPotential5 ()
   {
     return this.potential5;
   }
-  
-  public void setPotential5(int en)
+
+  public void setPotential5 (int en)
   {
     this.potential5 = en;
   }
-  
-  public int getPotential6()
+
+  public int getPotential6 ()
   {
     return this.potential6;
   }
-  
-  public void setPotential6(int en)
+
+  public void setPotential6 (int en)
   {
     this.potential6 = en;
   }
-  
-  public byte getState()
+
+  public byte getState ()
   {
     return this.state;
   }
-  
-  public void setState(byte state)
+
+  public void setState (byte state)
   {
     this.state = state;
   }
-  
-  public byte getLines()
+
+  public byte getLines ()
   {
     return this.lines;
   }
-  
-  public void setLines(byte lines)
+
+  public void setLines (byte lines)
   {
     this.lines = lines;
   }
-  
-  public void resetPotential_Fuse(boolean half, int potentialState)
+
+  public void resetPotential_Fuse (boolean half, int potentialState)
   {
     potentialState = -potentialState;
     if (Randomizer.nextInt(100) < 4)
@@ -783,8 +791,8 @@ public class Equip extends Item implements Serializable
     this.setPotential4(0);
     this.setPotential5(0);
   }
-  
-  public void resetPotential()
+
+  public void resetPotential ()
   {
     int rank = Randomizer.nextInt(100) < 4 ? (Randomizer.nextInt(100) < 4 ? -19 : -18) : -17;
     this.setPotential1(rank);
@@ -793,8 +801,8 @@ public class Equip extends Item implements Serializable
     this.setPotential4(0);
     this.setPotential5(0);
   }
-  
-  public void renewPotential()
+
+  public void renewPotential ()
   {
     int epic = 7;
     int unique = 5;
@@ -815,177 +823,181 @@ public class Equip extends Item implements Serializable
     }
     this.setState((byte) (this.getState() - 16));
   }
-  
-  public long getFlame()
+
+  public long getFlame ()
   {
     return this.flame;
   }
-  
-  public void setFlame(long flame)
+
+  public void setFlame (long flame)
   {
     this.flame = flame;
   }
-  
-  
-  public short getFlameStr()
+
+
+  public short getFlameStr ()
   {
     return flameStr;
   }
-  
-  public void setFlameStr(short flameStr)
+
+  public void setFlameStr (short flameStr)
   {
     this.flameStr = flameStr;
   }
-  
-  public short getFlameDex()
+
+  public short getFlameDex ()
   {
     return flameDex;
   }
-  
-  public void setFlameDex(short flameDex)
+
+  public void setFlameDex (short flameDex)
   {
     this.flameDex = flameDex;
   }
-  
-  public short getFlameInt()
+
+  public short getFlameInt ()
   {
     return flameInt;
   }
-  
-  public void setFlameInt(short flameInt)
+
+  public void setFlameInt (short flameInt)
   {
     this.flameInt = flameInt;
   }
-  
-  public short getFlameLuk()
+
+  public short getFlameLuk ()
   {
     return flameLuk;
   }
-  
-  public void setFlameLuk(short flameLuk)
+
+  public void setFlameLuk (short flameLuk)
   {
     this.flameLuk = flameLuk;
   }
-  
-  public short getFlameWatk()
+
+  public short getFlameWatk ()
   {
     return flameWatk;
   }
-  
-  public void setFlameWatk(short flameWatk)
+
+  public void setFlameWatk (short flameWatk)
   {
     this.flameWatk = flameWatk;
   }
-  
-  public short getFlameMatk()
+
+  public short getFlameMatk ()
   {
     return flameMatk;
   }
-  
-  public void setFlameMatk(short flameMatk)
+
+  public void setFlameMatk (short flameMatk)
   {
     this.flameMatk = flameMatk;
   }
-  
-  public short getFlameHp()
+
+  public short getFlameHp ()
   {
     return flameHp;
   }
-  
-  public void setFlameHp(short flameHp)
+
+  public void setFlameHp (short flameHp)
   {
     this.flameHp = flameHp;
   }
-  
-  public short getFlameMp()
+
+  public short getFlameMp ()
   {
     return flameMp;
   }
-  
-  public void setFlameMp(short flameMp)
+
+  public void setFlameMp (short flameMp)
   {
     this.flameMp = flameMp;
   }
-  
-  
-  public short getFlameJump()
+
+
+  public short getFlameJump ()
   {
     return flameJump;
   }
-  
-  public void setFlameJump(short flameJump)
+
+  public void setFlameJump (short flameJump)
   {
     this.flameJump = flameJump;
   }
-  
-  public short getFlameDamage()
+
+  public short getFlameDamage ()
   {
     return flameDamage;
   }
-  
-  public void setFlameDamage(short flameDamage)
+
+  public void setFlameDamage (short flameDamage)
   {
     this.flameDamage = flameDamage;
   }
-  
-  public short getFlameBossDamage()
+
+  public short getFlameBossDamage ()
   {
     return flameBossDamage;
   }
-  
-  public void setFlameBossDamage(short flameBossDamage)
+
+  public void setFlameBossDamage (short flameBossDamage)
   {
     this.flameBossDamage = flameBossDamage;
   }
-  
-  public short getFlameAllStat()
+
+  public short getFlameAllStat ()
   {
     return flameAllStat;
   }
-  
-  public void setFlameAllStat(short flameAllStat)
+
+  public void setFlameAllStat (short flameAllStat)
   {
     this.flameAllStat = flameAllStat;
   }
-  
-  
-  public byte getFlameReductReqLevel()
+
+  public byte getTotalReductReqLevel ()
+  {
+    return (byte) Math.min(template.getReqLevel(), enchantReductReqLevel + flameReductReqLevel);
+  }
+
+  public byte getFlameReductReqLevel ()
   {
     return flameReductReqLevel;
   }
-  
-  public void setFlameReductReqLevel(byte flameReductReqLevel)
+
+  public void setFlameReductReqLevel (byte flameReductReqLevel)
   {
     this.flameReductReqLevel = flameReductReqLevel;
   }
-  
-  public short getFlameDef()
+
+  public short getFlameDef ()
   {
     return flameDef;
   }
-  
-  public void setFlameDef(short flameDef)
+
+  public void setFlameDef (short flameDef)
   {
     this.flameDef = flameDef;
   }
-  
-  public int getIncSkill()
+
+  public int getIncSkill ()
   {
     return this.incSkill;
   }
-  
-  public void setIncSkill(int inc)
+
+  public void setIncSkill (int inc)
   {
     this.incSkill = inc;
   }
-  
-  
-  public short getEnchantBuff()
+
+
+  public short getEnchantBuff ()
   {
     return this.enchantBuff;
   }
-  
-  public void setEnchantBuff(short enchantBuff)
+
+  public void setEnchantBuff (short enchantBuff)
   {
     this.enchantBuff = enchantBuff;
   }
@@ -994,48 +1006,48 @@ public class Equip extends Item implements Serializable
 //  {
 //    this.reqLevel = reqLevel;
 //  }
-  
-  public byte getYggdrasilWisdom()
+
+  public byte getYggdrasilWisdom ()
   {
     return this.yggdrasilWisdom;
   }
-  
-  public void setYggdrasilWisdom(byte yggdrasilWisdom)
+
+  public void setYggdrasilWisdom (byte yggdrasilWisdom)
   {
     this.yggdrasilWisdom = yggdrasilWisdom;
   }
-  
-  public boolean getFinalStrike()
+
+  public boolean getFinalStrike ()
   {
     return this.finalStrike;
   }
-  
-  public void setFinalStrike(boolean finalStrike)
+
+  public void setFinalStrike (boolean finalStrike)
   {
     this.finalStrike = finalStrike;
   }
-  
+
   public byte getEnchantDamage ()
   {
-    return  this.enchantDamage;
+    return this.enchantDamage;
   }
-  
+
   public void setEnchantDamage (byte enchantDamage)
   {
-     this.enchantDamage = enchantDamage;
+    this.enchantDamage = enchantDamage;
   }
-  
+
   public byte getEnchantAllStat ()
   {
-    return  this.enchantAllStat;
+    return this.enchantAllStat;
   }
-  
+
   public void setEnchantAllStat (byte enchantAllStat)
   {
     this.enchantAllStat = enchantAllStat;
   }
-  
-  public byte getTotalBossDamage()
+
+  public byte getTotalBossDamage ()
   {
     return (byte) (this.template.getBossDamage() + enchantBossDamage + flameBossDamage);
   }
@@ -1044,8 +1056,8 @@ public class Equip extends Item implements Serializable
 //  {
 //    this.bossDamage = bossDamage;
 //  }
-  
-  public short getTotalIgnorePDR()
+
+  public short getTotalIgnorePDR ()
   {
     return (short) (this.template.getIgnorePDR() + enchantIgnorePDR);
   }
@@ -1054,8 +1066,8 @@ public class Equip extends Item implements Serializable
 //  {
 //    this.ignorePDR = ignorePDR;
 //  }
-  
-  public byte getTotalDamage()
+
+  public byte getTotalDamage ()
   {
     return (byte) (this.template.getDamage() + enchantDamage + flameDamage);
   }
@@ -1064,8 +1076,8 @@ public class Equip extends Item implements Serializable
 //  {
 //    this.totalDamage = totalDamage;
 //  }
-  
-  public byte getAllStat()
+
+  public byte getAllStat ()
   {
     return (byte) (this.template.getAllStat() + enchantAllStat + flameAllStat);
   }
@@ -1074,88 +1086,88 @@ public class Equip extends Item implements Serializable
 //  {
 //    this.allStat = allStat;
 //  }
-  
-  public byte getKarmaCount()
+
+  public byte getKarmaCount ()
   {
     return this.karmaCount;
   }
-  
-  public void setKarmaCount(byte karmaCount)
+
+  public void setKarmaCount (byte karmaCount)
   {
     this.karmaCount = karmaCount;
   }
-  
-  public short getSoulName()
+
+  public short getSoulName ()
   {
     return this.soulname;
   }
-  
-  public void setSoulName(short soulname)
+
+  public void setSoulName (short soulname)
   {
     this.soulname = soulname;
   }
-  
-  public short getSoulEnchanter()
+
+  public short getSoulEnchanter ()
   {
     return this.soulenchanter;
   }
-  
-  public void setSoulEnchanter(short soulenchanter)
+
+  public void setSoulEnchanter (short soulenchanter)
   {
     this.soulenchanter = soulenchanter;
   }
-  
-  public short getSoulPotential()
+
+  public short getSoulPotential ()
   {
     return this.soulpotential;
   }
-  
-  public void setSoulPotential(short soulpotential)
+
+  public void setSoulPotential (short soulpotential)
   {
     this.soulpotential = soulpotential;
   }
-  
-  public int getSoulSkill()
+
+  public int getSoulSkill ()
   {
     return this.soulskill;
   }
-  
-  public void setSoulSkill(int skillid)
+
+  public void setSoulSkill (int skillid)
   {
     this.soulskill = skillid;
   }
-  
-  public List<EquipStat> getStats()
+
+  public List<EquipStat> getStats ()
   {
     return this.stats;
   }
-  
-  public List<EquipSpecialStat> getSpecialStats()
+
+  public List<EquipSpecialStat> getSpecialStats ()
   {
     return this.specialStats;
   }
-  
-  public int getArcEXP()
+
+  public int getArcEXP ()
   {
     return this.arcexp;
   }
-  
-  public void setArcEXP(int exp)
+
+  public void setArcEXP (int exp)
   {
     this.arcexp = exp;
   }
-  
-  public int getArcLevel()
+
+  public int getArcLevel ()
   {
     return this.arclevel;
   }
-  
-  public void setArcLevel(int lv)
+
+  public void setArcLevel (int lv)
   {
     this.arclevel = lv;
   }
-  
-  public void resetEnchantScroll()
+
+  public void resetEnchantScroll ()
   {
     this.enchantMovementSpeed = 0;
     this.enchantJump = 0;
@@ -1180,20 +1192,20 @@ public class Equip extends Item implements Serializable
     this.enchantIgnorePDR = 0;
     this.enchantAllStat = 0;
   }
-  
-  public void calcFlameStats()
+
+  public void calcFlameStats ()
   {
     if (this.getFlame() == 0L)
     {
       return;
     }
-    
+
     this.resetFlame();
-    
+
     int[] rebirth = new int[4];
-    
+
     String fire = String.valueOf(this.getFlame());
-    
+
     if (fire.length() == 12)
     {
       rebirth[0] = Integer.parseInt(fire.substring(0, 3));
@@ -1219,50 +1231,50 @@ public class Equip extends Item implements Serializable
     {
       return;
     }
-    
+
     byte reqLevel = this.template.getReqLevel();
-    
+
     short incStr = 0;
-    
+
     short incDex = 0;
-    
+
     short incInt = 0;
-    
+
     short incLuk = 0;
-    
+
     short incWatk = 0;
-    
+
     short incMatk = 0;
-    
+
     short incMp = 0;
-    
+
     short incHp = 0;
-    
+
     short incBossDamage = 0;
-    
+
     short incDamage = 0;
-    
+
     short incAllStat = 0;
-    
+
     short incDef = 0;
-    
+
     short incSpeed = 0;
-    
+
     short incJump = 0;
-    
+
     byte reductReqLevel = 0;
-    
+
     for (int i = 0; i < 4; ++i)
     {
       int randomOption = rebirth[i] / 10;
-      
+
       int randomValue = rebirth[i] - rebirth[i] / 10 * 10;
-      
+
       if (randomValue == 0)
       {
         continue;
       }
-      
+
       switch (randomOption)
       {
         case 0:
@@ -1419,9 +1431,9 @@ public class Equip extends Item implements Serializable
             }
             continue;
           }
-          
+
           incWatk += (short) randomValue;
-          
+
           continue;
         }
         case 18:
@@ -1541,42 +1553,41 @@ public class Equip extends Item implements Serializable
         }
       }
     }
-    
+
     this.flameStr = incStr;
-    
+
     this.flameDex = incDex;
-    
+
     this.flameInt = incInt;
-    
+
     this.flameLuk = incLuk;
-    
+
     this.flameWatk = incWatk;
-    
+
     this.flameMatk = incMatk;
-    
+
     this.flameDef = incDef;
-    
+
     this.flameAllStat = incAllStat;
-    
+
     this.flameBossDamage = incBossDamage;
-    
+
     this.flameDamage = incDamage;
-    
+
     this.flameJump = incJump;
-    
+
     this.flameMovementSpeed = incSpeed;
-    
+
     this.flameReductReqLevel = reductReqLevel;
-    
+
     this.flameHp = incHp;
-    
+
     this.flameMp = incMp;
-    
+
   }
-  
-  public void resetFlame()
+
+  public void resetFlame ()
   {
-    this.flame = 0;
     this.flameStr = 0;
     this.flameDex = 0;
     this.flameInt = 0;
@@ -1592,36 +1603,36 @@ public class Equip extends Item implements Serializable
     this.flameReductReqLevel = 0;
     this.flameJump = 0;
   }
-  
-  public long calcNewFlame(int scrollId)
+
+  public long calcNewFlame (int scrollId)
   {
     if (GameConstants.isRing(this.getItemId()) || this.getItemId() / 1000 == 1092 || this.getItemId() / 1000 == 1342 || this.getItemId() / 1000 == 1713 || this.getItemId() / 1000 == 1712 || this.getItemId() / 1000 == 1152 || this.getItemId() / 1000 == 1142 || this.getItemId() / 1000 == 1143 || this.getItemId() / 1000 == 1672 || GameConstants.isSecondaryWeapon(this.getItemId()) || this.getItemId() / 1000 == 1190 || this.getItemId() / 1000 == 1191 || this.getItemId() / 1000 == 1182 || this.getItemId() / 1000 == 1662 || this.getItemId() / 1000 == 1802)
     {
       return 0L;
     }
-    
+
     boolean isBossItem = GameConstants.isBossItem(getItemId());
-    
+
     System.out.println("开始砸火花啦, 是BOSS物品吗? " + isBossItem);
-    
+
     // check https://strategywiki.org/wiki/MapleStory/Bonus_Stats
-    
+
     // 条件有点多, 简化一下, 普通装备1到5级, boss装备4到8级, 用强力火花的BOSS装备可以达到5到9级和7到12级(魔改)
     // 保持最大最小值差距是4, 简化了概率计算
     int minValue = 1;
-    
+
     int maxValue = 5;
-    
+
     // 普通装备不总是 4 条火花的, 概率也不是等分的
     // 参照wiki, 进行一部分的简化 40 40 15 5
     //  5% 很少? 官服只有4%!
-    
+
     int chance = Randomizer.nextInt(100);
-    
+
     System.out.println("计算火花条数的Chance =  " + chance);
-    
+
     int numberOfLines = 1;
-    
+
     if (chance > 95)
     {
       numberOfLines = 4;
@@ -1634,17 +1645,17 @@ public class Equip extends Item implements Serializable
     {
       numberOfLines = 2;
     }
-    
+
     // 但是BOSS物品肯定是4条, 再别说了, BOSS装备就是强力
     if (isBossItem)
     {
       numberOfLines = 4;
-      
+
       minValue = 4;
-      
+
       maxValue = 8;
     }
-    
+
     if (MapleItemInformationProvider.getInstance().getName(scrollId) != null)
     {
       if (MapleItemInformationProvider.getInstance().getName(scrollId).contains("강력한 환생의"))
@@ -1674,48 +1685,48 @@ public class Equip extends Item implements Serializable
         }
       }
     }
-    
+
     System.out.println("经过一顿夏姬八计算 numberOfLines = " + numberOfLines + "; minValue = " + minValue + "; maxValue = " + maxValue);
-    
-    
+
+
     MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
-    
+
     if ((ii.isKarmaEnabled(this.getItemId()) || ii.isPKarmaEnabled(this.getItemId())) && this.getKarmaCount() < 0)
     {
       this.setKarmaCount((byte) 10);
     }
-    long[] rebirth = new long[]{-1L, -1L, -1L, -1L};
-    
-    int[] rebirthOptions = new int[]{-1, -1, -1, -1};
-    
-    
+    long[] rebirth = new long[] { 1L, 1L, 1L, 1L };
+
+    int[] rebirthOptions = new int[] { -1, -1, -1, -1 };
+
+
     for (int i = 0; i < 4; ++i)
     {
       int randomOption = 0;
-      
+
       int randomValue = 0;
-      
+
       if (numberOfLines > i)
       {
         randomOption = Randomizer.nextInt(25);
-        
+
         while (rebirthOptions[0] == randomOption || rebirthOptions[1] == randomOption || rebirthOptions[2] == randomOption || rebirthOptions[3] == randomOption || randomOption == 12 || randomOption == 14 || randomOption == 15 || randomOption == 16 || !GameConstants.isWeapon(this.getItemId()) && (randomOption == 21 || randomOption == 23))
         {
           randomOption = Randomizer.nextInt(25);
         }
-        
+
         rebirthOptions[i] = randomOption;
-        
+
         randomValue = minValue;
-        
-        
+
+
         // 最大最小值差4, 概率分布
         // 普通装备 40 40 10 5 5
         // BOSS装备 8 32 32 20 8
         // 5% 很少? 官服只有 1%!
-        
+
         chance = Randomizer.nextInt(100);
-        
+
         if (isBossItem)
         {
           if (chance > 92)
@@ -1754,42 +1765,46 @@ public class Equip extends Item implements Serializable
             randomValue = maxValue - 3;
           }
         }
-        
+
         System.out.println("当前随机第 " + i + " 条火花! randomValue = " + randomValue + "; chance = " + chance + "; randomOption = " + randomOption);
+
+        rebirth[i] = randomOption * 10L + randomValue;
       }
-      
-      rebirth[i] = randomOption * 10L + randomValue;
-      
+
+
+
       for (int j = 0; j < i; ++j)
       {
         int n = i;
         rebirth[n] = rebirth[n] * 1000L;
       }
-      
+
     }
-    
+
     long flame = rebirth[0] + rebirth[1] + rebirth[2] + rebirth[3];
-    
+
+    System.out.println("flame = " + flame);
+
     // 不会更新火花, 只是计算出结果
     return flame;
   }
-  
-  public void setZeroRebirth(MapleCharacter chr, int scrollId)
+
+  public void setZeroRebirth (MapleCharacter chr, int scrollId)
   {
     if (GameConstants.isRing(this.getItemId()) || this.getItemId() / 1000 == 1092 || this.getItemId() / 1000 == 1342 || this.getItemId() / 1000 == 1713 || this.getItemId() / 1000 == 1712 || this.getItemId() / 1000 == 1152 || this.getItemId() / 1000 == 1142 || this.getItemId() / 1000 == 1143 || this.getItemId() / 1000 == 1672 || GameConstants.isSecondaryWeapon(this.getItemId()) || this.getItemId() / 1000 == 1190 || this.getItemId() / 1000 == 1191 || this.getItemId() / 1000 == 1182 || this.getItemId() / 1000 == 1662 || this.getItemId() / 1000 == 1802)
     {
       return;
     }
-    
+
     Equip nEquip2 = (Equip) chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
-    
+
     // 再别说了, 神之子的武器就是BOSS武器, 别问, 问就是我的怜悯
     int minValue = 4;
-    
+
     int maxValue = 8;
-    
+
     int numberOfLines = 4;
-    
+
     if (MapleItemInformationProvider.getInstance().getName(scrollId) != null)
     {
       if (MapleItemInformationProvider.getInstance().getName(scrollId).contains("강력한 환생의"))
@@ -1803,40 +1818,40 @@ public class Equip extends Item implements Serializable
         maxValue = 12;
       }
     }
-    
-    long[] rebirth = new long[]{-1L, -1L, -1L, -1L};
-    
-    int[] rebirthOptions = new int[]{-1, -1, -1, -1};
-    
-    
+
+    long[] rebirth = new long[] { -1L, -1L, -1L, -1L };
+
+    int[] rebirthOptions = new int[] { -1, -1, -1, -1 };
+
+
     for (int i = 0; i < 4; ++i)
     {
       int randomOption = 0;
-      
+
       int randomValue = 0;
-      
+
       if (numberOfLines > i)
       {
         randomOption = Randomizer.nextInt(25);
-        
+
         while (rebirthOptions[0] == randomOption || rebirthOptions[1] == randomOption || rebirthOptions[2] == randomOption || rebirthOptions[3] == randomOption || randomOption == 12 || randomOption == 14 || randomOption == 15 || randomOption == 16 || !GameConstants.isWeapon(this.getItemId()) && (randomOption == 21 || randomOption == 23))
         {
           randomOption = Randomizer.nextInt(25);
         }
-        
+
         rebirthOptions[i] = randomOption;
-        
+
         randomValue = minValue;
-        
-        
+
+
         // 最大最小值差4, 概率分布
         // 普通装备 40 40 10 5 5
         // BOSS装备 8 32 32 20 8
         // 5% 很少? 官服只有 1%!
-        
+
         int chance = Randomizer.nextInt(100);
-        
-        
+
+
         if (chance > 92)
         {
           randomValue = maxValue;
@@ -1853,739 +1868,750 @@ public class Equip extends Item implements Serializable
         {
           randomValue = maxValue - 3;
         }
-        
-        
+
+
         System.out.println("当前随机第 " + i + " 条火花! randomValue = " + randomValue + "; chance = " + chance + "; randomOption = " + randomOption);
       }
-      
+
       rebirth[i] = randomOption * 10L + randomValue;
-      
+
       for (int j = 0; j < i; ++j)
       {
         int n = i;
         rebirth[n] = rebirth[n] * 1000L;
       }
-      
+
     }
-    
+
     long flame = rebirth[0] + rebirth[1] + rebirth[2] + rebirth[3];
-    
-    
+
+
     setFlame(flame);
-    
+
     calcFlameStats();
-    
+
     nEquip2.setFlame(flame);
-    
+
     nEquip2.calcFlameStats();
-    
+
   }
-  
-  public int getMoru()
+
+  public int getMoru ()
   {
     return this.moru;
   }
-  
-  public void setMoru(int moru)
+
+  public void setMoru (int moru)
   {
     this.moru = moru;
   }
-  
-  public void 亞克回真()
+
+  public void 亞克回真 ()
   {
     this.setStarForceLevel((byte) 0);
     this.calcStarForceStats();
   }
-  
-  public void 普通回真()
+
+  public void 普通回真 ()
   {
     this.亞克回真();
     this.resetFlame();
     this.resetEnchantScroll();
   }
-  
-  public void 完美回真()
+
+  public void 完美回真 ()
   {
     this.普通回真();
     this.设置装备后不可交易();
   }
-  
-  public void 设置装备后不可交易()
+
+  public void 设置装备后不可交易 ()
   {
-  
+
   }
-  
-  public byte 剩余升级次数()
+
+  public byte 剩余升级次数 ()
   {
     return (byte) (this.getTemplate().getUpgradeSlots() + this.extraUpgradeSlots - this.successUpgradeSlots - this.failUpgradeSlots);
   }
-  
-  public int getEquipmentType()
+
+  public int getEquipmentType ()
   {
     return this.equipmentType;
   }
-  
-  public void setEquipmentType(int equipmentType)
+
+  public void setEquipmentType (int equipmentType)
   {
     this.equipmentType = equipmentType;
   }
-  
-  public short getEnchantBossDamage()
+
+  public short getEnchantBossDamage ()
   {
     return enchantBossDamage;
   }
-  
-  
-  public void setEnchantBossDamage(byte enchantBossDamage)
+
+
+  public void setEnchantBossDamage (byte enchantBossDamage)
   {
-     this.enchantBossDamage = enchantBossDamage;
+    this.enchantBossDamage = enchantBossDamage;
   }
-  
-  public short getEnchantIgnorePDR()
+
+  public short getEnchantIgnorePDR ()
   {
     return enchantIgnorePDR;
   }
-  
-  
-  public void setEnchantIgnorePDR(byte enchantIgnorePDR)
+
+
+  public void setEnchantIgnorePDR (byte enchantIgnorePDR)
   {
     this.enchantIgnorePDR = enchantIgnorePDR;
   }
-  public short getEnchantStr()
+
+  public short getEnchantStr ()
   {
     return this.enchantStr;
   }
-  
-  public short getStarForceStr()
+
+  public short getStarForceStr ()
   {
     return starForceStr;
   }
-  
-  public void setStarForceStr(short starForceStr)
+
+  public void setStarForceStr (short starForceStr)
   {
     this.starForceStr = starForceStr;
   }
-  
-  public short getStarForceDex()
+
+  public short getStarForceDex ()
   {
     return starForceDex;
   }
-  
-  public void setStarForceDex(short starForceDex)
+
+  public void setStarForceDex (short starForceDex)
   {
     this.starForceDex = starForceDex;
   }
-  
-  public short getStarForceInt()
+
+  public short getStarForceInt ()
   {
     return starForceInt;
   }
-  
-  public void setStarForceInt(short starForceInt)
+
+  public void setStarForceInt (short starForceInt)
   {
     this.starForceInt = starForceInt;
   }
-  
-  public short getStarForceLuk()
+
+  public short getStarForceLuk ()
   {
     return starForceLuk;
   }
-  
-  public void setStarForceLuk(short starForceLuk)
+
+  public void setStarForceLuk (short starForceLuk)
   {
     this.starForceLuk = starForceLuk;
   }
-  
-  public short getStarForceHp()
+
+  public short getStarForceHp ()
   {
     return starForceHp;
   }
-  
-  public void setStarForceHp(short starForceHp)
+
+  public void setStarForceHp (short starForceHp)
   {
     this.starForceHp = starForceHp;
   }
-  
-  public short getStarForceMp()
+
+  public short getStarForceMp ()
   {
     return starForceMp;
   }
-  
-  public void setStarForceMp(short starForceMp)
+
+  public void setStarForceMp (short starForceMp)
   {
     this.starForceMp = starForceMp;
   }
-  
-  public short getStarForceWdef()
+
+  public short getStarForceWdef ()
   {
     return starForceWdef;
   }
-  
-  public void setStarForceWdef(short starForceWdef)
+
+  public void setStarForceWdef (short starForceWdef)
   {
     this.starForceWdef = starForceWdef;
   }
-  
-  public short getStarForceMdef()
+
+  public short getStarForceMdef ()
   {
     return starForceMdef;
   }
-  
-  public void setStarForceMdef(short starForceMdef)
+
+  public void setStarForceMdef (short starForceMdef)
   {
     this.starForceMdef = starForceMdef;
   }
-  
-  public short getStarForceAccuracy()
+
+  public short getStarForceAccuracy ()
   {
     return starForceAccuracy;
   }
-  
-  public void setStarForceAccuracy(short starForceAccuracy)
+
+  public void setStarForceAccuracy (short starForceAccuracy)
   {
     this.starForceAccuracy = starForceAccuracy;
   }
-  
-  public short getStarForceAvoid()
+
+  public short getStarForceAvoid ()
   {
     return starForceAvoid;
   }
-  
-  public void setStarForceAvoid(short starForceAvoid)
+
+  public void setStarForceAvoid (short starForceAvoid)
   {
     this.starForceAvoid = starForceAvoid;
   }
-  
-  public short getStarForceWatk()
+
+  public short getStarForceWatk ()
   {
     return starForceWatk;
   }
-  
-  public void setStarForceWatk(short starForceWatk)
+
+  public void setStarForceWatk (short starForceWatk)
   {
     this.starForceWatk = starForceWatk;
   }
-  
-  public short getStarForceMatk()
+
+  public short getStarForceMatk ()
   {
     return starForceMatk;
   }
-  
-  public void setStarForceMatk(short starForceMatk)
+
+  public void setStarForceMatk (short starForceMatk)
   {
     this.starForceMatk = starForceMatk;
   }
-  
-  public void resetStarForceStats()
+
+  public void resetStarForceStats ()
   {
     this.starForceAvoid = 0;
-    
+
     this.starForceAccuracy = 0;
-    
+
     this.starForceMdef = 0;
-    
+
     this.starForceWdef = 0;
-    
+
     this.starForceMatk = 0;
-    
+
     this.starForceWatk = 0;
-    
+
     this.starForceStr = 0;
-    
+
     this.starForceDex = 0;
-    
+
     this.starForceInt = 0;
-    
+
     this.starForceLuk = 0;
-    
+
     this.starForceHp = 0;
-    
+
     this.starForceMp = 0;
-    
+
     this.starForceMovementSpeed = 0;
-    
+
     this.starForceJump = 0;
   }
-  
-  public void calcStarForceStats()
+
+  public void calcStarForceStats ()
   {
     this.resetStarForceStats();
-    
+
     StarForceStats starForceStats = EquipmentEnchant.calcStarForceStats(this);
-    
+
     this.starForceStats = starForceStats;
-    
+
     if (starForceStats.getFlag(EnchantFlag.Str) != null)
     {
       setStarForceStr(starForceStats.getFlag(EnchantFlag.Str).right.shortValue());
     }
-    
+
     if (starForceStats.getFlag(EnchantFlag.Dex) != null)
     {
       setStarForceDex(starForceStats.getFlag(EnchantFlag.Dex).right.shortValue());
     }
-    
+
     if (starForceStats.getFlag(EnchantFlag.Int) != null)
     {
       setStarForceInt(starForceStats.getFlag(EnchantFlag.Int).right.shortValue());
     }
-    
+
     if (starForceStats.getFlag(EnchantFlag.Luk) != null)
     {
       setStarForceLuk(starForceStats.getFlag(EnchantFlag.Luk).right.shortValue());
     }
-    
+
     if (starForceStats.getFlag(EnchantFlag.Watk) != null)
     {
       setStarForceWatk(starForceStats.getFlag(EnchantFlag.Watk).right.shortValue());
     }
-    
+
     if (starForceStats.getFlag(EnchantFlag.Matk) != null)
     {
       setStarForceMatk(starForceStats.getFlag(EnchantFlag.Matk).right.shortValue());
     }
-    
+
     if (starForceStats.getFlag(EnchantFlag.Wdef) != null)
     {
       setStarForceWdef(starForceStats.getFlag(EnchantFlag.Wdef).right.shortValue());
     }
-    
+
     if (starForceStats.getFlag(EnchantFlag.Mdef) != null)
     {
       setStarForceMdef(starForceStats.getFlag(EnchantFlag.Mdef).right.shortValue());
     }
-    
+
     if (starForceStats.getFlag(EnchantFlag.Hp) != null)
     {
       setStarForceHp(starForceStats.getFlag(EnchantFlag.Hp).right.shortValue());
     }
-    
+
     if (starForceStats.getFlag(EnchantFlag.Mp) != null)
     {
       setStarForceMp(starForceStats.getFlag(EnchantFlag.Mp).right.shortValue());
     }
-    
+
     if (starForceStats.getFlag(EnchantFlag.Acc) != null)
     {
       setStarForceAccuracy(starForceStats.getFlag(EnchantFlag.Acc).right.shortValue());
     }
-    
+
     if (starForceStats.getFlag(EnchantFlag.Avoid) != null)
     {
       setStarForceAvoid(starForceStats.getFlag(EnchantFlag.Avoid).right.shortValue());
     }
   }
-  
-  public short getEnchantJump()
+
+  public short getEnchantJump ()
   {
     return enchantJump;
   }
-  
-  public void setEnchantJump(short enchantJump)
+
+  public void setEnchantJump (short enchantJump)
   {
     this.enchantJump = enchantJump;
   }
-  
-  public void setEnchantStr(short enchantStr)
+
+  public void setEnchantStr (short enchantStr)
   {
     this.enchantStr = enchantStr;
   }
-  
-  public short getEnchantDex()
+
+  public short getEnchantDex ()
   {
     return this.enchantDex;
   }
-  
-  public void setEnchantDex(short enchantDex)
+
+  public void setEnchantDex (short enchantDex)
   {
     this.enchantDex = enchantDex;
   }
-  
-  public short getEnchantInt()
+
+  public short getEnchantInt ()
   {
     return this.enchantInt;
   }
-  
-  public void setEnchantInt(short enchantInt)
+
+  public void setEnchantInt (short enchantInt)
   {
     this.enchantInt = enchantInt;
   }
-  
-  public short getEnchantLuk()
+
+  public short getEnchantLuk ()
   {
     return this.enchantLuk;
   }
-  
-  public void setEnchantLuk(short enchantLuk)
+
+  public void setEnchantLuk (short enchantLuk)
   {
     this.enchantLuk = enchantLuk;
   }
-  
-  public short getEnchantHp()
+
+  public short getEnchantHp ()
   {
     return this.enchantHp;
   }
-  
-  public void setEnchantHp(short enchantHp)
+
+  public void setEnchantHp (short enchantHp)
   {
     this.enchantHp = enchantHp;
   }
-  
-  public short getEnchantMp()
+
+  public short getEnchantMp ()
   {
     return this.enchantMp;
   }
-  
-  public void setEnchantMp(short enchantMp)
+
+  public void setEnchantMp (short enchantMp)
   {
     this.enchantMp = enchantMp;
   }
-  
-  public short getEnchantAccuracy()
+
+  public short getEnchantAccuracy ()
   {
     return this.enchantAccuracy;
   }
-  
-  public void setEnchantAccuracy(short enchantAccuracy)
+
+  public void setEnchantAccuracy (short enchantAccuracy)
   {
     this.enchantAccuracy = enchantAccuracy;
   }
-  
-  public short getEnchantAvoid()
+
+  public short getEnchantAvoid ()
   {
     return this.enchantAvoid;
   }
-  
-  public void setEnchantAvoid(short enchantAvoid)
+
+  public void setEnchantAvoid (short enchantAvoid)
   {
     this.enchantAvoid = enchantAvoid;
   }
-  
-  public short getEnchantWatk()
+
+  public short getEnchantWatk ()
   {
     return this.enchantWatk;
   }
-  
-  public void setEnchantWatk(short enchantWatk)
+
+  public void setEnchantWatk (short enchantWatk)
   {
     this.enchantWatk = enchantWatk;
   }
-  
-  public short getEnchantMatk()
+
+  public short getEnchantMatk ()
   {
     return this.enchantMatk;
   }
-  
-  public void setEnchantMatk(short enchantMatk)
+
+  public void setEnchantMatk (short enchantMatk)
   {
     this.enchantMatk = enchantMatk;
   }
-  
-  public short getTotalStr()
+
+  public short getTotalStr ()
   {
     return (short) (this.getTemplate().getStr() + enchantStr + starForceStr + flameStr + authenticStr);
   }
-  
-  public short getTotalDex()
+
+  public short getTotalDex ()
   {
     return (short) (this.getTemplate().getDex() + enchantDex + starForceDex + flameDex + arcDex + authenticDex);
   }
-  
-  public short getTotalInt()
+
+  public short getTotalInt ()
   {
     return (short) (this.getTemplate().getInt() + enchantInt + starForceInt + flameInt + arcInt + authenticInt);
   }
-  
-  public short getTotalLuk()
+
+  public short getTotalLuk ()
   {
     return (short) (this.getTemplate().getLuk() + enchantLuk + starForceLuk + flameLuk + arcLuk + authenticLuk);
   }
-  
-  public short getTotalHp()
+
+  public short getTotalHp ()
   {
     return (short) (this.getTemplate().getHp() + enchantHp + starForceHp + flameHp + arcHp + authenticHp);
   }
-  
-  public short getTotalMp()
+
+  public short getTotalMp ()
   {
     return (short) (this.getTemplate().getMp() + enchantMp + starForceMp + flameMp);
   }
-  
-  public short getTotalAccuracy()
+
+  public short getTotalAccuracy ()
   {
     return (short) (this.getTemplate().getAccuracy() + enchantAccuracy + starForceAccuracy);
   }
-  
-  public short getTotalAvoid()
+
+  public short getTotalAvoid ()
   {
     return (short) (this.getTemplate().getAvoid() + enchantAvoid + starForceAvoid);
   }
-  
-  public short getTotalWatk()
+
+  public short getTotalWatk ()
   {
     return (short) (this.getTemplate().getWatk() + enchantWatk + starForceWatk + flameWatk);
   }
-  
-  public short getTotalMatk()
+
+  public short getTotalMatk ()
   {
     return (short) (this.getTemplate().getMatk() + enchantMatk + starForceMatk + flameMatk);
   }
-  
-  public short getTotalWdef()
+
+  public short getTotalWdef ()
   {
     return (short) (this.getTemplate().getWdef() + enchantWdef + starForceWdef + flameDef);
   }
-  
-  public short getTotalMdef()
+
+  public short getTotalMdef ()
   {
     return (short) (this.getTemplate().getMdef() + enchantMdef + starForceMdef + flameDef);
   }
-  
-  public short getEnchantWdef()
+
+  public short getEnchantWdef ()
   {
     return this.enchantWdef;
   }
-  
-  public void setEnchantWdef(short enchantWdef)
+
+  public void setEnchantWdef (short enchantWdef)
   {
     this.enchantWdef = enchantWdef;
   }
-  
-  public short getEnchantMdef()
+
+  public short getEnchantMdef ()
   {
     return this.enchantMdef;
   }
-  
-  public void setEnchantMdef(short enchantMdef)
+
+  public void setEnchantMdef (short enchantMdef)
   {
     this.enchantMdef = enchantMdef;
   }
-  
-  public long getOptionExpiration()
+
+  public long getOptionExpiration ()
   {
     return this.optionexpiration;
   }
-  
-  public void setOptionExpiration(long a)
+
+  public void setOptionExpiration (long a)
   {
     this.optionexpiration = a;
   }
-  
-  public int getCoption1()
+
+  public int getCoption1 ()
   {
     return this.Coption1;
   }
-  
-  public void setCoption1(int a)
+
+  public void setCoption1 (int a)
   {
     this.Coption1 = a;
   }
-  
-  public int getCoption2()
+
+  public int getCoption2 ()
   {
     return this.Coption2;
   }
-  
-  public void setCoption2(int a)
+
+  public void setCoption2 (int a)
   {
     this.Coption2 = a;
   }
-  
-  public int getCoption3()
+
+  public int getCoption3 ()
   {
     return this.Coption3;
   }
-  
-  public void setCoption3(int a)
+
+  public void setCoption3 (int a)
   {
     this.Coption3 = a;
   }
-  
-  public EquipmentScroll getShowScrollOption()
+
+  public EquipmentScroll getShowScrollOption ()
   {
     return showScrollOption;
   }
-  
-  public void setShowScrollOption(EquipmentScroll showScrollOption)
+
+  public void setShowScrollOption (EquipmentScroll showScrollOption)
   {
     this.showScrollOption = showScrollOption;
   }
-  
-  public short getStarForceMovementSpeed()
+
+  public short getStarForceMovementSpeed ()
   {
     return starForceMovementSpeed;
   }
-  
-  public void setStarForceMovementSpeed(short starForceMovementSpeed)
+
+  public void setStarForceMovementSpeed (short starForceMovementSpeed)
   {
     this.starForceMovementSpeed = starForceMovementSpeed;
   }
-  
-  public short getFlameMovementSpeed()
+
+  public short getFlameMovementSpeed ()
   {
     return flameMovementSpeed;
   }
-  
-  public void setFlameMovementSpeed(short flameMovementSpeed)
+
+  public void setFlameMovementSpeed (short flameMovementSpeed)
   {
     this.flameMovementSpeed = flameMovementSpeed;
   }
-  
-  public short getEnchantMovementSpeed()
+
+  public short getEnchantMovementSpeed ()
   {
     return enchantMovementSpeed;
   }
-  
-  public void setEnchantMovementSpeed(short enchantMovementSpeed)
+
+  public void setEnchantMovementSpeed (short enchantMovementSpeed)
   {
     this.enchantMovementSpeed = enchantMovementSpeed;
   }
-  
-  public short getStarForceJump()
+
+  public short getStarForceJump ()
   {
     return starForceJump;
   }
-  
-  public void setStarForceJump(short starForceJump)
+
+  public void setStarForceJump (short starForceJump)
   {
     this.starForceJump = starForceJump;
   }
-  
-  public short getEnchantCraft()
+
+  public short getEnchantCraft ()
   {
     return enchantCraft;
   }
-  
-  public void setEnchantCraft(short enchantCraft)
+
+  public void setEnchantCraft (short enchantCraft)
   {
     this.enchantCraft = enchantCraft;
   }
-  
-  public int getArcStr()
+
+  public int getArcStr ()
   {
     return arcStr;
   }
-  
-  public void setArcStr(int arcStr)
+
+  public void setArcStr (int arcStr)
   {
     this.arcStr = arcStr;
   }
-  
-  public int getArcDex()
+
+  public int getArcDex ()
   {
     return arcDex;
   }
-  
-  public void setArcDex(int arcDex)
+
+  public void setArcDex (int arcDex)
   {
     this.arcDex = arcDex;
   }
-  
-  public int getArcInt()
+
+  public int getArcInt ()
   {
     return arcInt;
   }
-  
-  public void setArcInt(int arcInt)
+
+  public void setArcInt (int arcInt)
   {
     this.arcInt = arcInt;
   }
-  
-  public int getArcLuk()
+
+  public int getArcLuk ()
   {
     return arcLuk;
   }
-  
-  public void setArcLuk(int arcLuk)
+
+  public void setArcLuk (int arcLuk)
   {
     this.arcLuk = arcLuk;
   }
-  
-  public int getArcHp()
+
+  public int getArcHp ()
   {
     return arcHp;
   }
-  
-  public void setArcHp(int arcHp)
+
+  public void setArcHp (int arcHp)
   {
     this.arcHp = arcHp;
   }
-  
-  public int getAuthenticStr()
+
+  public int getAuthenticStr ()
   {
     return authenticStr;
   }
-  
-  public void setAuthenticStr(int authenticStr)
+
+  public void setAuthenticStr (int authenticStr)
   {
     this.authenticStr = authenticStr;
   }
-  
-  public int getAuthenticDex()
+
+  public int getAuthenticDex ()
   {
     return authenticDex;
   }
-  
-  public void setAuthenticDex(int authenticDex)
+
+  public void setAuthenticDex (int authenticDex)
   {
     this.authenticDex = authenticDex;
   }
-  
-  public int getAuthenticInt()
+
+  public int getAuthenticInt ()
   {
     return authenticInt;
   }
-  
-  public void setAuthenticInt(int authenticInt)
+
+  public void setAuthenticInt (int authenticInt)
   {
     this.authenticInt = authenticInt;
   }
-  
-  public int getAuthenticLuk()
+
+  public int getAuthenticLuk ()
   {
     return authenticLuk;
   }
-  
-  public void setAuthenticLuk(int authenticLuk)
+
+  public void setAuthenticLuk (int authenticLuk)
   {
     this.authenticLuk = authenticLuk;
   }
-  
-  public int getAuthenticHp()
+
+  public int getAuthenticHp ()
   {
     return authenticHp;
   }
-  
-  public void setAuthenticHp(int authenticHp)
+
+  public void setAuthenticHp (int authenticHp)
   {
     this.authenticHp = authenticHp;
   }
-  
-  public EquipTemplate getTemplate()
+
+  public EquipTemplate getTemplate ()
   {
     return template;
   }
-  
-  public void setTemplate(EquipTemplate template)
+
+  public void setTemplate (EquipTemplate template)
   {
     this.template = template;
   }
-  
-  public short getCharmEXP()
+
+  public short getCharmEXP ()
   {
     return charmEXP;
   }
-  
-  public void setCharmEXP(short charmEXP)
+
+  public void setCharmEXP (short charmEXP)
   {
     this.charmEXP = charmEXP;
   }
-  
-  
+
+  public byte getEnchantReductReqLevel ()
+  {
+    return enchantReductReqLevel;
+  }
+
+  public void setEnchantReductReqLevel (byte enchantReductReqLevel)
+  {
+    this.enchantReductReqLevel = enchantReductReqLevel;
+  }
+
+
   public enum ScrollResult
   {
     SUCCESS, FAIL, CURSE
-    
+
   }
 }
 

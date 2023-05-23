@@ -2754,7 +2754,7 @@ public class MapleClient
 
   public boolean canClickNPC ()
   {
-    return (this.lastNpcClick + 500L < System.currentTimeMillis());
+    return (this.lastNpcClick + 1000L < System.currentTimeMillis());
   }
 
   public void setClickedNPC ()

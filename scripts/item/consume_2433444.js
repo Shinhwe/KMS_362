@@ -342,31 +342,23 @@ function hpJobCheck(i)
 
 function addOption(i, isWeapon)
 {
-	item = Packages.server.MapleItemInformationProvider.getInstance().getEquipById(i);
+	item = Packages.server.MapleItemInformationProvider.getInstance().generateEquipById(i, -1);
 	if(!isWeapon)
 	{
 		if(hpJobCheck(cm.getPlayer().getJob()))
 		{
-			item.setHp(item.getHp() + 2500);
+			item.setEnchantHp(item.getEnchantHp() + 2500);
 			item.setState(19);
 			item.setPotential1(20045);
 			item.setPotential2(20045);
 			item.setPotential3(20045);
-			item.setWatk(item.getWatk() + 50);
 		}
 		else
 		{
-			item.setStr(item.getStr() + 50);
-			item.setDex(item.getDex() + 50);
-			item.setInt(item.getInt() + 50);
-			item.setLuk(item.getLuk() + 50);
-
-			if(isMagician(cm.getPlayer().getJob()))
-			item.setMatk(item.getMatk() + 50);
-
-			else
-			item.setWatk(item.getWatk() + 50);
-
+			item.setEnchantStr(item.getEnchantStr() + 50);
+			item.setEnchantDex(item.getEnchantDex() + 50);
+			item.setEnchantInt(item.getEnchantInt() + 50);
+			item.setEnchantLuk(item.getEnchantLuk() + 50);
 			item.setState(19);
 			item.setPotential1(20086);
 			item.setPotential2(20086);
@@ -375,43 +367,42 @@ function addOption(i, isWeapon)
 	}
 	else
 	{
-
 		if(hpJobCheck(cm.getPlayer().getJob()))
 		{
-			item.setHp(item.getHp() + 5000);
-			item.setWatk(item.getWatk() + 100);
+			item.setEnchantHp(item.getEnchantHp() + 5000);
+			item.setEnchantWatk(item.getEnchantWatk() + 100);
 			item.setState(19);
-			item.setPotential1(30051);
-			item.setPotential2(30051);
-			item.setPotential3(30051);
+			item.setPotential1(20045);
+			item.setPotential2(20045);
+			item.setPotential3(20045);
 		}
 		else
 		{
-			item.setStr(item.getStr() + 100);
-			item.setDex(item.getDex() + 100);
-			item.setInt(item.getInt() + 100);
-			item.setLuk(item.getLuk() + 100);
+			item.setEnchantStr(item.getEnchantStr() + 100);
+			item.setEnchantDex(item.getEnchantDex() + 100);
+			item.setEnchantInt(item.getEnchantInt() + 100);
+			item.setEnchantLuk(item.getEnchantLuk() + 100);
 			item.setState(19);
 			if(isMagician(cm.getPlayer().getJob()))
 			{
-				item.setMatk(item.getMatk() + 100);
-				item.setPotential1(30052);
-				item.setPotential2(30052);
-				item.setPotential3(30052);
+				item.setEnchantMatk(item.getEnchantMatk() + 100);
 			}
 			else
 			{
-				item.setWatk(item.getWatk() + 100);
-				item.setPotential1(30051);
-				item.setPotential2(30051);
-				item.setPotential3(30051);
+				item.setEnchantWatk(item.getEnchantWatk() + 100);
 			}
+
+			item.setPotential1(20086);
+			item.setPotential2(20086);
+			item.setPotential3(20086);
 		}
 	}
-	item.setReqLevel(-90);
-	item.setLevel(item.getUpgradeSlots());
-	item.setUpgradeSlots(0);
+	item.setEnchantReductReqLevel(90);
+	item.setEnchantDamage(10);
+	item.setEnchantLevel(item.getTemplate().getUpgradeSlots());
+	item.setSuccessUpgradeSlots(item.getTemplate().getUpgradeSlots());
 	item.setStarForceLevel(8)
+	item.calcStarForceStats();
 	// item.setExpiration(System.currentTimeMillis() + (7 * 24 * 3600 * 1000));
 	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), item, false);
 }

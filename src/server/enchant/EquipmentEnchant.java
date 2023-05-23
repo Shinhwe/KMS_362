@@ -359,7 +359,7 @@ public class EquipmentEnchant
         if (equipLevel == 80)
         {
           // Heliseum
-          int[] statusArr = new int[] { 2, 3, 5 };
+          int[] statusArr = new int[]{2, 3, 5};
 
           incAllStat += statusArr[nextStarForceLevel - 1];
 
@@ -367,14 +367,14 @@ public class EquipmentEnchant
         else if (equipLevel == 110)
         {
           // Nova
-          int[] statusArr = new int[] { 9, 10, 12, 15, 19 };
+          int[] statusArr = new int[]{9, 10, 12, 15, 19};
 
           incAllStat += statusArr[nextStarForceLevel - 1];
         }
         else if (equipLevel >= 150)
         {
           // Tyrant and MindPendent
-          int[] statusArr = new int[] { 19, 20, 22, 25, 29 };
+          int[] statusArr = new int[]{19, 20, 22, 25, 29};
 
           incAllStat += statusArr[nextStarForceLevel - 1];
         }
@@ -385,14 +385,14 @@ public class EquipmentEnchant
         if (equipLevel == 110)
         {
           // Nova 10 star
-          int[] statusArr = new int[] { 5, 6, 7, 9, 10 };
+          int[] statusArr = new int[]{5, 6, 7, 9, 10};
           incWAtk += statusArr[nextStarForceLevel - 1];
           incMAtk += statusArr[nextStarForceLevel - 1];
         }
         else if (equipLevel == 110)
         {
           // Tyrant and MindPendent 15 star
-          int[] statusArr = new int[] { 9, 10, 11, 12, 13, 15, 17, 19, 21, 23 };
+          int[] statusArr = new int[]{9, 10, 11, 12, 13, 15, 17, 19, 21, 23};
           incWAtk += statusArr[nextStarForceLevel - 1];
           incMAtk += statusArr[nextStarForceLevel - 1];
         }
@@ -691,7 +691,7 @@ public class EquipmentEnchant
           if (equipLevel == 80)
           {
             // Heliseum
-            int[] statusArr = new int[] { 2, 3, 5 };
+            int[] statusArr = new int[]{2, 3, 5};
 
             incAllStat += statusArr[currentStarForceLevel - 1];
 
@@ -699,14 +699,14 @@ public class EquipmentEnchant
           else if (equipLevel == 110)
           {
             // Nova
-            int[] statusArr = new int[] { 9, 10, 12, 15, 19 };
+            int[] statusArr = new int[]{9, 10, 12, 15, 19};
 
             incAllStat += statusArr[currentStarForceLevel - 1];
           }
           else if (equipLevel >= 150)
           {
             // Tyrant and MindPendent
-            int[] statusArr = new int[] { 19, 20, 22, 25, 29 };
+            int[] statusArr = new int[]{19, 20, 22, 25, 29};
 
             incAllStat += statusArr[currentStarForceLevel - 1];
           }
@@ -717,14 +717,14 @@ public class EquipmentEnchant
           if (equipLevel == 110)
           {
             // Nova 10 star
-            int[] statusArr = new int[] { 5, 6, 7, 9, 10 };
+            int[] statusArr = new int[]{5, 6, 7, 9, 10};
             incWAtk += statusArr[currentStarForceLevel - 1];
             incMAtk += statusArr[currentStarForceLevel - 1];
           }
           else if (equipLevel == 110)
           {
             // Tyrant and MindPendent 15 star
-            int[] statusArr = new int[] { 9, 10, 11, 12, 13, 15, 17, 19, 21, 23 };
+            int[] statusArr = new int[]{9, 10, 11, 12, 13, 15, 17, 19, 21, 23};
             incWAtk += statusArr[currentStarForceLevel - 1];
             incMAtk += statusArr[currentStarForceLevel - 1];
           }
@@ -759,7 +759,6 @@ public class EquipmentEnchant
 
         if (isWeapon)
         {
-
           currentWatk = (int) Math.ceil(currentWatk * 1.02);
 
           currentMatk = (int) Math.ceil(currentMatk * 1.02);
@@ -929,7 +928,6 @@ public class EquipmentEnchant
     incMAtk = currentMatk - item.getTotalMatk();
 
     if (incDef > 0)
-
     {
       stats.add(new Pair<>(EnchantFlag.Mdef, Integer.valueOf(incDef)));
 
@@ -937,19 +935,16 @@ public class EquipmentEnchant
     }
 
     if (incWAtk > 0)
-
     {
       stats.add(new Pair<>(EnchantFlag.Watk, Integer.valueOf(incWAtk)));
     }
 
     if (incMAtk > 0)
-
     {
       stats.add(new Pair<>(EnchantFlag.Matk, Integer.valueOf(incMAtk)));
     }
 
     if (incAllStat > 0)
-
     {
       stats.add(new Pair<>(EnchantFlag.Str, Integer.valueOf(incAllStat)));
       stats.add(new Pair<>(EnchantFlag.Dex, Integer.valueOf(incAllStat)));
@@ -958,25 +953,21 @@ public class EquipmentEnchant
     }
 
     if (incHp > 0)
-
     {
       stats.add(new Pair<>(EnchantFlag.Hp, Integer.valueOf(incHp)));
     }
 
     if (incMp > 0)
-
     {
       stats.add(new Pair<>(EnchantFlag.Mp, Integer.valueOf(incMp)));
     }
 
     if (incAcc > 0)
-
     {
       stats.add(new Pair<>(EnchantFlag.Acc, Integer.valueOf(incAcc)));
     }
 
     if (incAvoid > 0)
-
     {
       stats.add(new Pair<>(EnchantFlag.Avoid, Integer.valueOf(incAvoid)));
     }

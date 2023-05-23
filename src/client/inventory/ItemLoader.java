@@ -18,32 +18,26 @@ import java.util.Map;
 
 public enum ItemLoader
 {
-  INVENTORY("inventoryitems", "inventoryequipment", "inventoryequipenchant", 0, "characterid"),
-  STORAGE("inventoryitems", "inventoryequipment", "inventoryequipenchant", 1, "accountid"),
-  CASHSHOP("csitems", "csequipment", null, 2, "accountid"),
-  HIRED_MERCHANT("hiredmerchitems", "hiredmerchequipment", null, 5, "packageid"),
-  DUEY("dueyitems", "dueyequipment", "dueyequipenchant", 6, "packageid");
-  
+  INVENTORY("inventoryitems", "inventoryequipment", 0, "characterid"), STORAGE("inventoryitems", "inventoryequipment", 1, "accountid"), CASHSHOP("csitems", "csequipment", 2, "accountid"), HIRED_MERCHANT("hiredmerchitems", "hiredmerchequipment", 5, "packageid"), DUEY("dueyitems", "dueyequipment", 6, "packageid");
+
   private final int value;
-  
+
   private final String table;
-  
+
   private final String table_equip;
-  
-  private final String table_enchant;
-  
+
+
   private final String arg;
-  
-  ItemLoader(String table, String table_equip, String table_enchant, int value, String arg)
+
+  ItemLoader (String table, String table_equip, int value, String arg)
   {
     this.table = table;
     this.table_equip = table_equip;
-    this.table_enchant = table_enchant;
     this.value = value;
     this.arg = arg;
   }
-  
-  public static boolean isCanMadeItem(Equip equip)
+
+  public static boolean isCanMadeItem (Equip equip)
   {
     MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     if (ii.getName(equip.getItemId()) == null)
@@ -58,7 +52,7 @@ public enum ItemLoader
     {
       equip.setFlame(0L);
     }
-    
+
     if (equip.getArcLevel() > 20)
     {
       equip.setArcLevel(20);
@@ -123,8 +117,7 @@ public enum ItemLoader
         equip.setFlag(equip.getFlag() | ItemFlag.RECOVERY_SHIELD.getValue());
       }
     }
-    if (equip.getItemId() == 1162002
-        && equip.getKarmaCount() > 0)
+    if (equip.getItemId() == 1162002 && equip.getKarmaCount() > 0)
     {
       equip.setKarmaCount((byte) -1);
     }
@@ -161,13 +154,13 @@ public enum ItemLoader
     }
     return true;
   }
-  
-  public int getValue()
+
+  public int getValue ()
   {
     return this.value;
   }
-  
-  public Map<Long, Item> loadItems(boolean login, int id, MapleInventoryType type) throws SQLException
+
+  public Map<Long, Item> loadItems (boolean login, int id, MapleInventoryType type) throws SQLException
   {
     Map<Long, Item> items = new LinkedHashMap<>();
     StringBuilder query = new StringBuilder();
@@ -228,20 +221,20 @@ public enum ItemLoader
         MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
         while (rs.next())
         {
-          if (!ii.itemExists(rs.getInt("itemid")))
+          int itemId = rs.getInt("itemid");
+
+          if (!ii.itemExists(itemId))
           {
             continue;
           }
           if (rs.getInt("itemid") / 1000000 == 1)
           {
-            int itemId = rs.getInt("itemid");
-            
             short position = rs.getShort("position");
-            
-            long uniqueId =  rs.getLong("uniqueid");
-            
+
+            long uniqueId = rs.getLong("uniqueid");
+
             int flag = rs.getInt("flag");
-            
+
             EquipTemplate template = MapleItemInformationProvider.getInstance().getTempateByItemId(itemId);
 
             Equip equip = new Equip(template, position, flag, uniqueId);
@@ -249,17 +242,17 @@ public enum ItemLoader
             if (!login)
             {
               byte enchantLevel = rs.getByte("enchantLevel");
-              
+
               byte totalUpgradeSlots = rs.getByte("upgradeslots");
-              
-              byte hammerCount =  rs.getByte("ViciousHammer");
-              
+
+              byte hammerCount = rs.getByte("ViciousHammer");
+
               equip.setSuccessUpgradeSlots(enchantLevel);
-              
+
               equip.setExtraUpgradeSlots(hammerCount);
-              
-              equip.setFailUpgradeSlots((byte)(template.getUpgradeSlots() + hammerCount - enchantLevel - totalUpgradeSlots));
-              
+
+              equip.setFailUpgradeSlots((byte) (template.getUpgradeSlots() + hammerCount - enchantLevel - totalUpgradeSlots));
+
               equip.setQuantity((short) 1);
 
               equip.setInventoryId(rs.getLong("inventoryitemid"));
@@ -268,6 +261,13 @@ public enum ItemLoader
 
               equip.setExpiration(rs.getLong("expiredate"));
 
+              int reqLevel = rs.getInt("reqLevel");
+
+              if (reqLevel > 0)
+              {
+                equip.setEnchantReductReqLevel((byte) (template.getReqLevel() - reqLevel));
+              }
+
               if (equip.getItemId() >= 1113098 && equip.getItemId() <= 1113128)
               {
                 equip.setItemLevel(enchantLevel);
@@ -275,7 +275,7 @@ public enum ItemLoader
               }
               else
               {
-                equip.setItemLevel((byte)0);
+                equip.setItemLevel((byte) 0);
                 equip.setEnchantLevel(enchantLevel);
               }
               equip.setEnchantStr(rs.getShort("str"));
@@ -354,30 +354,6 @@ public enum ItemLoader
               equip.setCoption1(rs.getInt("coption1"));
               equip.setCoption2(rs.getInt("coption2"));
               equip.setCoption3(rs.getInt("coption3"));
-
-              if (this.table_enchant != null && type.getType() != 6)
-              {
-                PreparedStatement ps1 = con.prepareStatement("SELECT * FROM `" + this.table_enchant + "` WHERE inventoryitemid = ?");
-                ps1.setLong(1, equip.getInventoryId());
-                ResultSet rs1 = ps1.executeQuery();
-                if (rs1.next())
-                {
-                  equip.setEnchantStr(rs1.getShort("str"));
-                  equip.setEnchantDex(rs1.getShort("dex"));
-                  equip.setEnchantInt(rs1.getShort("int"));
-                  equip.setEnchantLuk(rs1.getShort("luk"));
-                  equip.setEnchantHp(rs1.getShort("hp"));
-                  equip.setEnchantMp(rs1.getShort("mp"));
-                  equip.setEnchantWatk(rs1.getShort("watk"));
-                  equip.setEnchantMatk(rs1.getShort("matk"));
-                  equip.setEnchantWdef(rs1.getShort("wdef"));
-                  equip.setEnchantMdef(rs1.getShort("mdef"));
-                  equip.setEnchantAccuracy(rs1.getShort("accuracy"));
-                  equip.setEnchantAvoid(rs1.getShort("avoid"));
-                }
-                rs1.close();
-                ps1.close();
-              }
             }
 
             equip.calcStarForceStats();
@@ -437,8 +413,8 @@ public enum ItemLoader
     }
     return items;
   }
-  
-  public void saveItems(List<Item> items, int id, MapleInventoryType type, boolean dc)
+
+  public void saveItems (List<Item> items, int id, MapleInventoryType type, boolean dc)
   {
     try
     {
@@ -451,8 +427,8 @@ public enum ItemLoader
       e.printStackTrace();
     }
   }
-  
-  public void saveItems(List<Item> items, Connection con, int id, MapleInventoryType type, boolean dc)
+
+  public void saveItems (List<Item> items, Connection con, int id, MapleInventoryType type, boolean dc)
   {
     StringBuilder query = new StringBuilder();
     query.append("DELETE FROM `");
@@ -656,7 +632,7 @@ public enum ItemLoader
           pse.setShort(35, equip.getCharmEXP());
           pse.setShort(36, (short) 0);
           pse.setShort(37, equip.getEnchantBuff());
-          pse.setByte(38, (byte) 0);
+          pse.setByte(38, (byte) (equip.getTemplate().getReqLevel() - equip.getTotalReductReqLevel()));
           pse.setByte(39, equip.getYggdrasilWisdom());
           pse.setByte(40, (byte) (equip.getFinalStrike() ? 1 : 0));
           pse.setShort(41, equip.getEnchantBossDamage());
@@ -677,29 +653,9 @@ public enum ItemLoader
           pse.setInt(56, equip.getCoption2());
           pse.setInt(57, equip.getCoption3());
           pse.executeUpdate();
-          if (equip.getItemId() / 10000 == 166
-              && equip.getAndroid() != null)
+          if (equip.getItemId() / 10000 == 166 && equip.getAndroid() != null)
           {
             equip.getAndroid().saveToDb();
-          }
-          if (this.table_enchant != null && type.getType() != 6)
-          {
-            PreparedStatement ps2 = con.prepareStatement("INSERT INTO `" + this.table_enchant + "` VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            ps2.setLong(1, iid);
-            ps2.setShort(2, equip.getEnchantStr());
-            ps2.setShort(3, equip.getEnchantDex());
-            ps2.setShort(4, equip.getEnchantInt());
-            ps2.setShort(5, equip.getEnchantLuk());
-            ps2.setShort(6, equip.getEnchantHp());
-            ps2.setShort(7, equip.getEnchantMp());
-            ps2.setShort(8, equip.getEnchantWatk());
-            ps2.setShort(9, equip.getEnchantMatk());
-            ps2.setShort(10, equip.getEnchantWdef());
-            ps2.setShort(11, equip.getEnchantMdef());
-            ps2.setShort(12, equip.getEnchantAccuracy());
-            ps2.setShort(13, equip.getEnchantAvoid());
-            ps2.executeUpdate();
-            ps2.close();
           }
         }
       }
@@ -711,8 +667,8 @@ public enum ItemLoader
       e.printStackTrace();
     }
   }
-  
-  public void saveItems(List<Pair<Item, MapleInventoryType>> items, int id)
+
+  public void saveItems (List<Pair<Item, MapleInventoryType>> items, int id)
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -749,8 +705,8 @@ public enum ItemLoader
       }
     }
   }
-  
-  public void saveCSItems(List<Pair<Item, MapleInventoryType>> items, Connection con, int id, MapleClient c) throws SQLException
+
+  public void saveCSItems (List<Pair<Item, MapleInventoryType>> items, Connection con, int id, MapleClient c) throws SQLException
   {
     StringBuilder query = new StringBuilder();
     query.append("DELETE FROM `");
@@ -778,14 +734,7 @@ public enum ItemLoader
       {
         return;
       }
-      String query_2 = "INSERT INTO `" + this.table +
-          "` (" +
-          this.arg +
-          ", itemid, inventorytype, position, quantity, owner, GM_Log, uniqueid, expiredate, flag, `type`, sender, marriageId" +
-          ", price, partyid, mobid, objectid" +
-          ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?" +
-          ", ?, ?, ?, ?" +
-          ")";
+      String query_2 = "INSERT INTO `" + this.table + "` (" + this.arg + ", itemid, inventorytype, position, quantity, owner, GM_Log, uniqueid, expiredate, flag, `type`, sender, marriageId" + ", price, partyid, mobid, objectid" + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?" + ", ?, ?, ?, ?" + ")";
       ps = con.prepareStatement(query_2, 1);
       PreparedStatement pse = con.prepareStatement("INSERT INTO " + this.table_equip + " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
       Iterator<Pair<Item, MapleInventoryType>> iter = items.iterator();
@@ -909,7 +858,7 @@ public enum ItemLoader
             pse.setShort(35, equip.getCharmEXP());
             pse.setShort(36, (short) 0);
             pse.setShort(37, equip.getEnchantBuff());
-            pse.setByte(38, (byte) 0);
+            pse.setByte(38, (byte) (equip.getTemplate().getReqLevel() - equip.getTotalReductReqLevel()));
             pse.setByte(39, equip.getYggdrasilWisdom());
             pse.setByte(40, (byte) (equip.getFinalStrike() ? 1 : 0));
             pse.setShort(41, equip.getEnchantBossDamage());
@@ -930,8 +879,7 @@ public enum ItemLoader
             pse.setInt(56, equip.getCoption2());
             pse.setInt(57, equip.getCoption3());
             pse.executeUpdate();
-            if (equip.getItemId() / 10000 == 166
-                && equip.getAndroid() != null)
+            if (equip.getItemId() / 10000 == 166 && equip.getAndroid() != null)
             {
               equip.getAndroid().saveToDb();
             }
@@ -946,8 +894,8 @@ public enum ItemLoader
       e.printStackTrace();
     }
   }
-  
-  public Map<Long, Pair<Item, MapleInventoryType>> loadCSItems(boolean login, int id) throws SQLException
+
+  public Map<Long, Pair<Item, MapleInventoryType>> loadCSItems (boolean login, int id) throws SQLException
   {
     Map<Long, Pair<Item, MapleInventoryType>> items = new LinkedHashMap<>();
     StringBuilder query = new StringBuilder();
@@ -992,40 +940,47 @@ public enum ItemLoader
           if (mit.equals(MapleInventoryType.EQUIP) || mit.equals(MapleInventoryType.EQUIPPED) || mit.equals(MapleInventoryType.CODY))
           {
             int itemId = rs.getInt("itemid");
-            
+
             short position = rs.getShort("position");
-            
-            long uniqueId =  rs.getLong("uniqueid");
-            
+
+            long uniqueId = rs.getLong("uniqueid");
+
             int flag = rs.getInt("flag");
 
             EquipTemplate template = MapleItemInformationProvider.getInstance().getTempateByItemId(itemId);
 
-            Equip equip = new Equip(template, position, flag ,uniqueId);
-            
+            Equip equip = new Equip(template, position, flag, uniqueId);
+
             if (!login && equip.getPosition() != -55)
             {
-              
+
               byte enchantLevel = rs.getByte("enchantLevel");
-              
+
               byte totalUpgradeSlots = rs.getByte("upgradeslots");
-              
-              byte hammerCount =  rs.getByte("ViciousHammer");
-              
+
+              byte hammerCount = rs.getByte("ViciousHammer");
+
               equip.setSuccessUpgradeSlots(enchantLevel);
-              
+
               equip.setExtraUpgradeSlots(hammerCount);
-              
-              equip.setFailUpgradeSlots((byte)(template.getUpgradeSlots() + hammerCount - enchantLevel - totalUpgradeSlots));
-              
+
+              equip.setFailUpgradeSlots((byte) (template.getUpgradeSlots() + hammerCount - enchantLevel - totalUpgradeSlots));
+
               equip.setQuantity((short) 1);
-              
+
               equip.setInventoryId(rs.getLong("inventoryitemid"));
-              
+
               equip.setOwner(rs.getString("owner"));
-              
+
               equip.setExpiration(rs.getLong("expiredate"));
-              
+
+              int reqLevel = rs.getInt("reqLevel");
+
+              if (reqLevel > 0)
+              {
+                equip.setEnchantReductReqLevel((byte) (template.getReqLevel() - reqLevel));
+              }
+
               if (equip.getItemId() >= 1113098 && equip.getItemId() <= 1113128)
               {
                 equip.setItemLevel(enchantLevel);
@@ -1033,7 +988,7 @@ public enum ItemLoader
               }
               else
               {
-                equip.setItemLevel((byte)0);
+                equip.setItemLevel((byte) 0);
                 equip.setEnchantLevel(enchantLevel);
               }
               equip.setEnchantStr(rs.getShort("str"));
@@ -1165,8 +1120,8 @@ public enum ItemLoader
       }
     }
     catch (SQLException e
-    
-    
+
+
     )
     {
       e.printStackTrace();

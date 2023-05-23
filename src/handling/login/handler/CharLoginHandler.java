@@ -159,7 +159,7 @@ public class CharLoginHandler
         c.getSession().close();
       }
     }
-    else if (tempbannedTill != null)
+    else if (tempbannedTill != null && tempbannedTill.getTimeInMillis() > 0L)
     {
       if (!loginFailCount(c))
       {
