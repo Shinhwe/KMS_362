@@ -242,14 +242,10 @@ public enum ItemLoader
             
             int flag = rs.getInt("flag");
             
-            Equip equip = MapleItemInformationProvider.getInstance().generateEquipById(itemId, uniqueId);
-            
-            equip.setPosition(position);
-            
-            equip.setFlag(flag);
-            
-            
             EquipTemplate template = MapleItemInformationProvider.getInstance().getTempateByItemId(itemId);
+
+            Equip equip = new Equip(template, position, flag, uniqueId);
+
             if (!login)
             {
               byte enchantLevel = rs.getByte("enchantLevel");
@@ -265,9 +261,13 @@ public enum ItemLoader
               equip.setFailUpgradeSlots((byte)(template.getUpgradeSlots() + hammerCount - enchantLevel - totalUpgradeSlots));
               
               equip.setQuantity((short) 1);
+
               equip.setInventoryId(rs.getLong("inventoryitemid"));
+
               equip.setOwner(rs.getString("owner"));
+
               equip.setExpiration(rs.getLong("expiredate"));
+
               if (equip.getItemId() >= 1113098 && equip.getItemId() <= 1113128)
               {
                 equip.setItemLevel(enchantLevel);
@@ -332,7 +332,6 @@ public enum ItemLoader
                   }
                 }
               }
-              equip.calcStarForceStats();
               equip.setEnchantBuff(rs.getShort("enchantbuff"));
               equip.setYggdrasilWisdom(rs.getByte("yggdrasilWisdom"));
               equip.setFinalStrike((rs.getByte("finalStrike") > 0));
@@ -355,6 +354,7 @@ public enum ItemLoader
               equip.setCoption1(rs.getInt("coption1"));
               equip.setCoption2(rs.getInt("coption2"));
               equip.setCoption3(rs.getInt("coption3"));
+
               if (this.table_enchant != null && type.getType() != 6)
               {
                 PreparedStatement ps1 = con.prepareStatement("SELECT * FROM `" + this.table_enchant + "` WHERE inventoryitemid = ?");
@@ -379,6 +379,11 @@ public enum ItemLoader
                 ps1.close();
               }
             }
+
+            equip.calcStarForceStats();
+
+            equip.calcFlameStats();
+
             Item item1 = equip.copy();
             if (isCanMadeItem((Equip) item1))
             {
@@ -415,8 +420,8 @@ public enum ItemLoader
           Item item_ = item.copy();
           items.put(Long.valueOf(rs.getLong("inventoryitemid")), item_);
         }
-        ps.close();
         rs.close();
+        ps.close();
       }
     }
     catch (SQLException e)
@@ -993,14 +998,10 @@ public enum ItemLoader
             long uniqueId =  rs.getLong("uniqueid");
             
             int flag = rs.getInt("flag");
-            
-            Equip equip = MapleItemInformationProvider.getInstance().generateEquipById(itemId, uniqueId);
-            
-            equip.setPosition(position);
-            
-            equip.setFlag(flag);
-            
+
             EquipTemplate template = MapleItemInformationProvider.getInstance().getTempateByItemId(itemId);
+
+            Equip equip = new Equip(template, position, flag ,uniqueId);
             
             if (!login && equip.getPosition() != -55)
             {
@@ -1089,7 +1090,6 @@ public enum ItemLoader
                   }
                 }
               }
-              equip.calcStarForceStats();
               equip.setEnchantBuff(rs.getShort("enchantbuff"));
               equip.setYggdrasilWisdom(rs.getByte("yggdrasilWisdom"));
               equip.setFinalStrike((rs.getByte("finalStrike") > 0));
@@ -1113,13 +1113,20 @@ public enum ItemLoader
               equip.setCoption2(rs.getInt("coption2"));
               equip.setCoption3(rs.getInt("coption3"));
             }
+
+            equip.calcStarForceStats();
+
+            equip.calcFlameStats();
+
             Item item1 = equip.copy();
+
             if (isCanMadeItem((Equip) item1))
             {
               items.put(Long.valueOf(rs.getLong("inventoryitemid")), new Pair<>(item1, mit));
             }
             continue;
           }
+
           Item item = new Item(rs.getInt("itemid"), rs.getShort("position"), rs.getShort("quantity"), rs.getInt("flag"), rs.getLong("uniqueid"));
           item.setOwner(rs.getString("owner"));
           item.setInventoryId(rs.getLong("inventoryitemid"));

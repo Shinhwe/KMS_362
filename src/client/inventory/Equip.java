@@ -243,14 +243,14 @@ public class Equip extends Item implements Serializable
     {
       eq.getStats().add(EquipStat.ENHANCT_BUFF);
     }
-    if (eq.getFlameReductReqLevel() < 0)
+    if (eq.getFlameReductReqLevel() > 0)
     {
       eq.getStats().add(EquipStat.DOWNLEVEL);
     }
-    else
-    {
-      eq.getStats().add(EquipStat.REQUIRED_LEVEL);
-    }
+    // else
+    // {
+    //   eq.getStats().add(EquipStat.REQUIRED_LEVEL);
+    // }
     if (eq.getYggdrasilWisdom() > 0)
     {
       eq.getStats().add(EquipStat.YGGDRASIL_WISDOM);
@@ -1527,7 +1527,7 @@ public class Equip extends Item implements Serializable
         }
         case 22:
         {
-          reductReqLevel = (byte) (randomValue * 5 * -1);
+          reductReqLevel = (byte) (randomValue * 5);
           continue;
         }
         case 23:

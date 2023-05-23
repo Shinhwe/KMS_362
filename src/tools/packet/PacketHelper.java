@@ -924,6 +924,7 @@ public class PacketHelper
       }
       if (equip.getStats().contains(EquipStat.DOWNLEVEL))
       {
+        // 这里传的值是整数, 客户端会自己减掉对应的等级
         mplew.write(equip.getFlameReductReqLevel());
       }
       if (equip.getStats().contains(EquipStat.ENHANCT_BUFF))
@@ -936,7 +937,8 @@ public class PacketHelper
       }
       if (equip.getStats().contains(EquipStat.REQUIRED_LEVEL))
       {
-        mplew.write(equip.getTemplate().getReqLevel());
+        // 需求等级会加在装备原有等级上, 所以这里要传0
+        mplew.write((byte)0);
       }
       if (equip.getStats().contains(EquipStat.YGGDRASIL_WISDOM))
       {

@@ -26,8 +26,6 @@ public class DreamBreakerRank
       con = DatabaseConnection.getConnection();
       ps = con.prepareStatement("SELECT * FROM dreambreaker");
       rs = ps.executeQuery();
-      rs.last();
-      rs.beforeFirst();
       while (rs.next())
       {
         String Name = rs.getString("name");
@@ -122,9 +120,6 @@ public class DreamBreakerRank
     {
       con = DatabaseConnection.getConnection();
       ps = con.prepareStatement("SELECT * FROM dreambreaker");
-      rs = ps.executeQuery();
-      rs.last();
-      rs.beforeFirst();
       rs = ps.executeQuery();
       while (rs.next())
       {

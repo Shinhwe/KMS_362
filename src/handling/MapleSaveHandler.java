@@ -190,9 +190,8 @@ public class MapleSaveHandler implements Runnable
         connection = DatabaseConnection.getConnection();
         preparedStatement1 = connection.prepareStatement("SELECT * FROM dojorankings order by floor DESC, time DESC", 1005, 1008);
         resultSet1 = preparedStatement1.executeQuery();
-        resultSet1.last();
-        resultSet1.first();
-        for (int i = 1; i <= resultSet1.getRow(); i++)
+        int i = 0;
+        while (resultSet1.next())
         {
           int id = resultSet1.getInt("playerid");
           String name = "";
@@ -240,7 +239,8 @@ public class MapleSaveHandler implements Runnable
           {
             break;
           }
-          resultSet1.next();
+
+          i += 1;
         }
         resultSet1.close();
         preparedStatement1.close();

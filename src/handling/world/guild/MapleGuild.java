@@ -127,7 +127,7 @@ public class MapleGuild implements Comparable<MapleGuild>
       ps = con.prepareStatement("SELECT id, name, level, job, guildrank, guildContribution, alliancerank, lastattendance FROM characters WHERE guildid = ? ORDER BY guildrank ASC, name ASC", 1008);
       ps.setInt(1, guildid);
       rs = ps.executeQuery();
-      if (!rs.first())
+      if (!rs.next())
       {
         //System.err.println("No members in guild " + this.id + ".  Impossible... guild is disbanding");
         rs.close();
@@ -342,7 +342,7 @@ public class MapleGuild implements Comparable<MapleGuild>
       rs = ps.executeQuery();
       
       /*  861 */
-      if (rs.first())
+      if (rs.next())
       {
         /*  862 */
         rs.close();

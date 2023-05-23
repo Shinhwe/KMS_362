@@ -529,16 +529,13 @@ function FirstJob(i) {
 function addMedal()
 {
 	item = Packages.server.MapleItemInformationProvider.getInstance().getEquipById(1142358);
-	item.setStr(50);
-	item.setDex(50);
-	item.setInt(50);
-	item.setLuk(50);
-	item.setWatk(20);
-	item.setMatk(20);
-	item.setHp(item.getHp() + 1000);
-	item.setMp(item.getMp() + 1000);
-	item.setPotential1(20086);
-	item.setPotential2(20086);
-	item.setPotential3(20086);
+	item.setEncnatStr(50);
+	item.setEncnatDex(50);
+	item.setEncnatInt(50);
+	item.setEncnatLuk(50);
+	item.setEncnatWatk(20);
+	item.setEncnatMatk(20);
+	item.setEncnatHp(1000);
+	item.setEncnatMp(1000);
 	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), item, false);
 }

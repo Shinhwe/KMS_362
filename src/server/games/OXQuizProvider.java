@@ -13,7 +13,7 @@ import java.util.List;
 
 public class OXQuizProvider
 {
-  public static OXQuiz[] getQuizList(int amount)
+  public static OXQuiz[] getQuizList (int amount)
   {
     OXQuiz[] list = new OXQuiz[amount];
     Connection con = null;
@@ -21,17 +21,19 @@ public class OXQuizProvider
     ResultSet rs = null;
     try
     {
+      int rowCount = 0;
       con = DatabaseConnection.getConnection();
-      ps = con.prepareStatement("SELECT * FROM OXQuiz", 1004, 1007);
+      ps = con.prepareStatement("SELECT count(*) rowCount FROM OXQuiz", 1004, 1007);
       rs = ps.executeQuery();
-      rs.last();
-      int rowcount = rs.getRow();
-      rs.beforeFirst();
+      if (rs.next())
+      {
+        rowCount = rs.getInt("rowCount");
+      }
       ps.close();
       rs.close();
       for (int a = 0; a < amount; a++)
       {
-        int quizid = Randomizer.rand(0, rowcount);
+        int quizid = Randomizer.rand(0, rowCount);
         ps = con.prepareStatement("SELECT * FROM OXQuiz WHERE Id = ?");
         ps.setInt(1, quizid);
         rs = ps.executeQuery();
@@ -81,8 +83,8 @@ public class OXQuizProvider
     }
     return list;
   }
-  
-  public static List<OXQuiz> getQuizList2(int amount)
+
+  public static List<OXQuiz> getQuizList2 (int amount)
   {
     List<OXQuiz> quizes = new ArrayList<>();
     Collections.addAll(quizes, getQuizList(amount));

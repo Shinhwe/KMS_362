@@ -3021,15 +3021,20 @@ public abstract class AbstractPlayerInteraction
       ps.setInt(20, (chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10) != null) ? chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10).getItemId() : -1);
       ps.setInt(21, chr.getId());
       ps.executeUpdate();
+      ps.close();
+      int count = 0;
+      ps = con.prepareStatement("SELECT count(*) rowCount FROM dojorankings order by floor DESC, time DESC", 1005, 1008);
+      rs = ps.executeQuery();
+      if (rs.next())
+      {
+        count = rs.getInt("rowCount");
+      }
+      rs.close();
+      ps.close();
       ps = con.prepareStatement("SELECT * FROM dojorankings order by floor DESC, time DESC", 1005, 1008);
       rs = ps.executeQuery();
-      rs.last();
-      int count = rs.getRow();
-      rs.first();
       ps1 = con.prepareStatement("SELECT * FROM dojorankings order by floor DESC, time DESC", 1005, 1008);
       rs1 = ps1.executeQuery();
-      rs1.last();
-      rs1.first();
       this.c.send(CField.DojangRank(rs, rs1, count));
       rs.close();
       ps.close();
