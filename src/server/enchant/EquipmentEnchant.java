@@ -361,7 +361,7 @@ public class EquipmentEnchant
           // Heliseum
           int[] statusArr = new int[] { 2, 3, 5 };
 
-          incAllStat += statusArr[nextStarForceLevel];
+          incAllStat += statusArr[nextStarForceLevel - 1];
 
         }
         else if (equipLevel == 110)
@@ -369,14 +369,14 @@ public class EquipmentEnchant
           // Nova
           int[] statusArr = new int[] { 9, 10, 12, 15, 19 };
 
-          incAllStat += statusArr[nextStarForceLevel];
+          incAllStat += statusArr[nextStarForceLevel - 1];
         }
         else if (equipLevel >= 150)
         {
           // Tyrant and MindPendent
           int[] statusArr = new int[] { 19, 20, 22, 25, 29 };
 
-          incAllStat += statusArr[nextStarForceLevel];
+          incAllStat += statusArr[nextStarForceLevel - 1];
         }
       }
       else
@@ -386,15 +386,15 @@ public class EquipmentEnchant
         {
           // Nova 10 star
           int[] statusArr = new int[] { 5, 6, 7, 9, 10 };
-          incWAtk += statusArr[nextStarForceLevel];
-          incMAtk += statusArr[nextStarForceLevel];
+          incWAtk += statusArr[nextStarForceLevel - 1];
+          incMAtk += statusArr[nextStarForceLevel - 1];
         }
         else if (equipLevel == 110)
         {
           // Tyrant and MindPendent 15 star
           int[] statusArr = new int[] { 9, 10, 11, 12, 13, 15, 17, 19, 21, 23 };
-          incWAtk += statusArr[nextStarForceLevel];
-          incMAtk += statusArr[nextStarForceLevel];
+          incWAtk += statusArr[nextStarForceLevel - 1];
+          incMAtk += statusArr[nextStarForceLevel - 1];
         }
       }
     }
@@ -475,7 +475,7 @@ public class EquipmentEnchant
         }
       }
 
-      if (nextStarForceLevel < 5)
+      if (nextStarForceLevel < 6)
       {
         incAllStat += 2;
       }
@@ -686,14 +686,14 @@ public class EquipmentEnchant
         currentDef = (int) Math.ceil(currentDef * 1.05);
 
         // TODO: every star should add Visible DEF +5%
-        if (currentStarForceLevel < 5)
+        if (currentStarForceLevel < 6)
         {
           if (equipLevel == 80)
           {
             // Heliseum
             int[] statusArr = new int[] { 2, 3, 5 };
 
-            incAllStat += statusArr[currentStarForceLevel];
+            incAllStat += statusArr[currentStarForceLevel - 1];
 
           }
           else if (equipLevel == 110)
@@ -701,14 +701,14 @@ public class EquipmentEnchant
             // Nova
             int[] statusArr = new int[] { 9, 10, 12, 15, 19 };
 
-            incAllStat += statusArr[currentStarForceLevel];
+            incAllStat += statusArr[currentStarForceLevel - 1];
           }
           else if (equipLevel >= 150)
           {
             // Tyrant and MindPendent
             int[] statusArr = new int[] { 19, 20, 22, 25, 29 };
 
-            incAllStat += statusArr[currentStarForceLevel];
+            incAllStat += statusArr[currentStarForceLevel - 1];
           }
         }
         else
@@ -718,15 +718,15 @@ public class EquipmentEnchant
           {
             // Nova 10 star
             int[] statusArr = new int[] { 5, 6, 7, 9, 10 };
-            incWAtk += statusArr[currentStarForceLevel];
-            incMAtk += statusArr[currentStarForceLevel];
+            incWAtk += statusArr[currentStarForceLevel - 1];
+            incMAtk += statusArr[currentStarForceLevel - 1];
           }
           else if (equipLevel == 110)
           {
             // Tyrant and MindPendent 15 star
             int[] statusArr = new int[] { 9, 10, 11, 12, 13, 15, 17, 19, 21, 23 };
-            incWAtk += statusArr[currentStarForceLevel];
-            incMAtk += statusArr[currentStarForceLevel];
+            incWAtk += statusArr[currentStarForceLevel - 1];
+            incMAtk += statusArr[currentStarForceLevel - 1];
           }
         }
       }
@@ -816,7 +816,7 @@ public class EquipmentEnchant
           }
         }
 
-        if (currentStarForceLevel < 5)
+        if (currentStarForceLevel < 6)
         {
           incAllStat += 2;
         }
