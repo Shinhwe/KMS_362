@@ -367,6 +367,7 @@ function addOption(i, isWeapon)
 	}
 	else
 	{
+		item.setEnchantDamage(10);
 		if(hpJobCheck(cm.getPlayer().getJob()))
 		{
 			item.setEnchantHp(item.getEnchantHp() + 5000);
@@ -398,7 +399,6 @@ function addOption(i, isWeapon)
 		}
 	}
 	item.setEnchantReductReqLevel(90);
-	item.setEnchantDamage(10);
 	item.setEnchantLevel(item.getTemplate().getUpgradeSlots());
 	item.setSuccessUpgradeSlots(item.getTemplate().getUpgradeSlots());
 	item.setStarForceLevel(8)
