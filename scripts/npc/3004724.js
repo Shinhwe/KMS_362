@@ -290,6 +290,7 @@ function action(mode, type, sel) {
 			if (seld != 430)
 				cm.changeJob(cjob);
                                            addMedal();
+										   addPet();
 			cm.gainItem(2000005, 500);
                                            cm.gainItem(3018469, 1);
                                           cm.gainItem(2431307, 1);
@@ -387,6 +388,7 @@ function action(mode, type, sel) {
 			cm.getPlayer().setReborns(sel);
 			cm.getPlayer().AutoTeachSkill();
 			addMedal();
+			addPet();
                                            cm.gainItem(2431307, 1);
                                          cm.gainItem(2433444, 1);
                                          cm.gainItem(3018469, 1);
@@ -538,4 +540,17 @@ function addMedal()
 	item.setEnchantHp(1000);
 	item.setEnchantMp(1000);
 	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), item, false);
+}
+
+function addPet()
+{
+	Packages.server.MapleInventoryManipulator.addId_Item(cm.getClient(), 5000707, 1, "", Packages.client.inventory.MaplePet.createPet(5000707, -1), -1, "", false);
+	Packages.server.MapleInventoryManipulator.addId_Item(cm.getClient(), 5000708, 1, "", Packages.client.inventory.MaplePet.createPet(5000708, -1), -1, "", false);
+	Packages.server.MapleInventoryManipulator.addId_Item(cm.getClient(), 5000709, 1, "", Packages.client.inventory.MaplePet.createPet(5000709, -1), -1, "", false);
+	petEquip1 = Packages.server.MapleItemInformationProvider.getInstance().generateEquipById(1802597, -1, false);
+	petEquip2 = Packages.server.MapleItemInformationProvider.getInstance().generateEquipById(1802597, -1, false);
+	petEquip3 = Packages.server.MapleItemInformationProvider.getInstance().generateEquipById(1802597, -1, false);
+	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), petEquip1, false);
+	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), petEquip2, false);
+	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), petEquip3, false);
 }
