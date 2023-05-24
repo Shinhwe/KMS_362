@@ -1484,7 +1484,8 @@ public final class MapleMap
   {
     MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     byte droptype = (byte) ((mob.getStats().isExplosiveReward() && mob.getStats().isBoss()) ? 3 : ((chr.getParty() != null) ? 1 : 0));
-    int mobpos = (mob.getTruePosition()).x, cmServerrate = ChannelServer.getInstance(this.channel).getMesoRate();
+    int mobpos = (mob.getTruePosition()).x;
+    int cmServerrate = ChannelServer.getInstance(this.channel).getMesoRate();
     if (GameConstants.isYeti(chr.getJob()) || GameConstants.isPinkBean(chr.getJob()))
     {
       cmServerrate = 1;
