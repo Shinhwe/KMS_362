@@ -9354,8 +9354,6 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     while (effects.hasNext())
     {
       Pair<SecondaryStat, SecondaryStatValueHolder> effect = effects.next();
-
-      System.out.println("sourceId = " + effect.right.effect.getSourceId());
     }
   }
 

@@ -119,8 +119,6 @@ public class PlayerStats implements Serializable
   public transient int percent_mp;
   public transient int before_percent_mp;
   public transient int before_maxmp;
-  public transient int multi_lateral_hp;
-  public transient int multi_lateral_mp;
   public transient int percent_str;
   public transient int percent_dex;
   public transient int percent_int;
@@ -143,7 +141,9 @@ public class PlayerStats implements Serializable
   public transient int trueMastery;
   public transient int damX;
   public transient int DAMreduceR;
+
   public transient int randCooldown;
+
   public transient int stance;
   public transient int ppd;
   public transient int damAbsorbShieldR;
@@ -167,8 +167,8 @@ public class PlayerStats implements Serializable
   private transient int localdex;
   private transient int localluk;
   private transient int localint_;
-  private transient int ms_maxhp;
-  private transient int ms_maxmp;
+  private transient int xenonMultilateralHpPercent = 0;
+  private transient int xenonMultilateralMpPercent = 0;
   private transient int Nlocalstr;
   private transient int Nlocaldex;
   private transient int Nlocalint;
@@ -662,8 +662,6 @@ public class PlayerStats implements Serializable
     this.percent_hp = 0;
     this.percent_mp = 0;
     this.before_percent_mp = 0;
-    this.multi_lateral_hp = 0;
-    this.multi_lateral_mp = 0;
     this.percent_str = 0;
     this.percent_dex = 0;
     this.percent_int = 0;
@@ -688,6 +686,8 @@ public class PlayerStats implements Serializable
     this.cashBuff = 100.0;
     this.dropBuff = 100.0;
     this.mesoBuff = 100.0;
+    this.xenonMultilateralHpPercent = 0;
+    this.xenonMultilateralMpPercent = 0;
     //        this.reduceCooltime = new ArrayList<Integer>();
     reduceCooltime = 0;
     this.randCooldown = 0;
@@ -781,8 +781,6 @@ public class PlayerStats implements Serializable
     long localmaxhp_ = this.getMaxHp();
     long localmaxmp_ = this.getMaxMp();
     this.resetLocalStats(chra.getJob());
-    localmaxhp_ += (long) Math.floor(this.ms_maxhp * localmaxhp_ / 100.0f);
-    localmaxmp_ += (long) Math.floor(this.ms_maxmp * localmaxmp_ / 100.0f);
     for (final MapleTrait.MapleTraitType t : MapleTrait.MapleTraitType.values())
     {
       chra.getTrait(t).clearLocalExp();
@@ -932,7 +930,18 @@ public class PlayerStats implements Serializable
         }
         else
         {
-          localmaxhp_ += ((GameConstants.isDemonAvenger(chra.getJob()) || (GameConstants.isZero(chra.getJob()) && GameConstants.isWeapon(equip.getItemId()))) ? (equip.getTotalHp() / 2) : equip.getTotalHp());
+          if (GameConstants.isDemonAvenger(chra.getJob()))
+          {
+            localmaxhp_ += equip.getTotalHp() / 2;
+          }
+          else if (GameConstants.isZero(chra.getJob()) && GameConstants.isWeapon(equip.getItemId()))
+          {
+            localmaxhp_ += equip.getTotalHp() / 2;
+          }
+          else
+          {
+            localmaxhp_ += equip.getTotalHp();
+          }
           localmaxmp_ += equip.getTotalMp();
           this.localstr += equip.getTotalStr();
           this.localdex += equip.getTotalDex();
@@ -1038,7 +1047,6 @@ public class PlayerStats implements Serializable
 
     if (GameConstants.isDemonAvenger(chra.getJob()) && this.starforce > 0)
     {
-
       int hpPerStar = 0;
 
       if (starforce < 20)
@@ -1137,11 +1145,11 @@ public class PlayerStats implements Serializable
     {
       // https://strategywiki.org/wiki/MapleStory/Spell_Trace_and_Star_Force
 
-      //For Xenons, since Star Force enhancement gives lesser stats if the item is restricted to thieves or pirates only, a small bonus is given to compensate for this.
+      // For Xenons, since Star Force enhancement gives lesser stats if the item is restricted to thieves or pirates only, a small bonus is given to compensate for this.
       // Every 10 equipped star force, gain 7 STR, 7 DEX and 7 LUK, up to 100 equipped star force.
       // 这里就不设置上限了, 有多少给我加多少
 
-      int inc = (int)(starforce / 10 * 7);
+      int inc = (int) (starforce / 10 * 7);
 
       localstr += inc;
       localdex += inc;
@@ -1200,17 +1208,13 @@ public class PlayerStats implements Serializable
     this.wdef += (int) Math.min(30000.0, Math.floor(this.wdef * this.percent_wdef / 100.0f));
     this.mdef += (int) Math.min(30000.0, Math.floor(this.wdef * this.percent_mdef / 100.0f));
     this.critical_rate = (short) Math.min(100, this.critical_rate);
-    localmaxhp_ += (long) Math.floor(this.multi_lateral_hp * localmaxhp_ / 100.0f);
     localmaxhp_ += chra.getTrait(MapleTrait.MapleTraitType.will).getLevel() / 5 * 100L;
+    localmaxhp_ += (long) Math.floor(localmaxhp_ * xenonMultilateralHpPercent / 100.0f + 0.5f);
     localmaxhp_ += (long) Math.floor(this.percent_hp * localmaxhp_ / 100.0f);
     localmaxhp_ += this.Nlocalhp;
-    if (this.multi_lateral_hp >= 30)
-    {
-      localmaxhp = (long) (localmaxhp_ * 0.977202581369248);
-    }
     localmaxhp_ += this.fixHp;
-    localmaxmp_ += (long) Math.floor(this.multi_lateral_mp * localmaxmp_ / 100.0f);
-    localmaxmp_ += (long) Math.floor(this.percent_mp * localmaxmp_ / 100.0f);
+    localmaxmp_ += (long) Math.floor(localmaxmp_ * xenonMultilateralMpPercent / 100.0f);
+    localmaxmp_ += (long) Math.floor(this.percent_mp * localmaxmp_ / 100.0f + 0.5f);
     localmaxmp_ += (long) Math.floor(this.before_percent_mp * this.before_maxmp / 100.0f);
     localmaxmp_ += chra.getTrait(MapleTrait.MapleTraitType.sense).getLevel() / 5 * 100L;
     localmaxmp_ += this.Nlocalmp;
@@ -6227,20 +6231,29 @@ public class PlayerStats implements Serializable
           this.percent_int += eff.getStrR();
           this.percent_luk += eff.getStrR();
         }
-        bx = SkillFactory.getSkill(36101003);
-        bof = chra.getSkillLevel(bx);
-        if (bof > 0)
-        {
-          eff = bx.getEffect(bof);
-          localmaxhp_ += eff.getMhpX();
-          localmaxmp_ += eff.getMhpX();
-        }
         bx = SkillFactory.getSkill(36100002);
         bof = chra.getSkillLevel(bx);
         if (bof > 0)
         {
           eff = bx.getEffect(bof);
           this.critical_rate += (short) eff.getCr();
+        }
+        bx = SkillFactory.getSkill(36100003);
+        bof = chra.getSkillLevel(bx);
+        if (bof > 0)
+        {
+          eff = bx.getEffect(bof);
+          this.percent_hp += (short) eff.getPercentHP();
+          this.percent_mp += (short) eff.getPercentMP();
+        }
+        bx = SkillFactory.getSkill(36100004);
+        bof = chra.getSkillLevel(bx);
+        if (bof > 0)
+        {
+          eff = bx.getEffect(bof);
+          localmaxhp_ += (short) eff.getMaxHpX();
+          localmaxmp_ += (short) eff.getMaxMpX();
+          this.attackSpeed += eff.getAttackSpeed();
         }
         bx = SkillFactory.getSkill(36100005);
         bof = chra.getSkillLevel(bx);
@@ -6337,8 +6350,6 @@ public class PlayerStats implements Serializable
               if (this.luk >= eff.getX())
               {
                 this.DamagePercent += eff.getW();
-                this.multi_lateral_hp += eff.getS();
-                this.multi_lateral_mp += eff.getS();
               }
             }
           }
@@ -6363,8 +6374,8 @@ public class PlayerStats implements Serializable
               if (this.luk >= eff.getX())
               {
                 this.DamagePercent += eff.getW();
-                this.multi_lateral_hp += eff.getS();
-                this.multi_lateral_mp += eff.getS();
+                this.xenonMultilateralHpPercent += eff.getS();
+                this.xenonMultilateralMpPercent += eff.getS();
               }
             }
           }
@@ -6389,12 +6400,13 @@ public class PlayerStats implements Serializable
               if (this.luk >= eff.getX())
               {
                 this.DamagePercent += eff.getW();
-                this.multi_lateral_hp += eff.getS();
-                this.multi_lateral_mp += eff.getS();
+                this.xenonMultilateralHpPercent += eff.getS();
+                this.xenonMultilateralMpPercent += eff.getS();
               }
             }
           }
         }
+
         bx = SkillFactory.getSkill(36110007);
         bof = chra.getSkillLevel(bx);
         if (bof > 0)
@@ -6415,23 +6427,66 @@ public class PlayerStats implements Serializable
               if (this.luk >= eff.getX())
               {
                 this.DamagePercent += eff.getW();
-                this.multi_lateral_hp += eff.getS();
-                this.multi_lateral_mp += eff.getS();
+                this.xenonMultilateralHpPercent += eff.getS();
+                this.xenonMultilateralMpPercent += eff.getS();
               }
             }
           }
+        }
 
-          if (chra.getLevel() >= 200)
-          { // xenon error 임시로 지워둠
-            bx = SkillFactory.getSkill(36120010);
-            eff = bx.getEffect(1);
-            if (str >= eff.getX() && dex >= eff.getX() && luk >= eff.getX())
+        bx = SkillFactory.getSkill(36120010);
+        bof = chra.getSkillLevel(bx);
+        if (bof > 0)
+        {
+          eff = bx.getEffect(bof);
+          if (this.str >= eff.getX())
+          {
+            this.stance += eff.getY();
+          }
+          if (this.dex >= eff.getX())
+          {
+            this.ASR += eff.getY();
+          }
+          if (this.str >= eff.getX())
+          {
+            if (this.dex >= eff.getX())
             {
-              multi_lateral_hp += eff.getS();
-              multi_lateral_mp += eff.getS();
+              if (this.luk >= eff.getX())
+              {
+                this.DamagePercent += eff.getW();
+                this.xenonMultilateralHpPercent += eff.getS();
+                this.xenonMultilateralMpPercent += eff.getS();
+              }
             }
           }
         }
+
+        bx = SkillFactory.getSkill(36120016);
+        bof = chra.getSkillLevel(bx);
+        if (bof > 0)
+        {
+          eff = bx.getEffect(bof);
+          InsertFinalDamage(eff.getPdR());
+          if (this.str >= eff.getX())
+          {
+            this.stance += eff.getY();
+          }
+          if (this.dex >= eff.getX())
+          {
+            this.ASR += eff.getZ();
+          }
+          if (this.str >= eff.getX())
+          {
+            if (this.dex >= eff.getX())
+            {
+              if (this.luk >= eff.getX())
+              {
+                this.DamagePercent += eff.getW();
+              }
+            }
+          }
+        }
+
         bx = SkillFactory.getSkill(36120044);
         bof = chra.getTotalSkillLevel(bx);
         if (bof > 0)
@@ -9973,16 +10028,6 @@ public class PlayerStats implements Serializable
     return this.localint_;
   }
 
-  public int getMs_maxhp ()
-  {
-    return this.ms_maxhp;
-  }
-
-  public int getMs_maxmp ()
-  {
-    return this.ms_maxmp;
-  }
-
   public long getLocalmaxhp ()
   {
     return this.localmaxhp;
@@ -10361,16 +10406,6 @@ public class PlayerStats implements Serializable
   public int getBefore_maxmp ()
   {
     return this.before_maxmp;
-  }
-
-  public int getMulti_lateral_hp ()
-  {
-    return this.multi_lateral_hp;
-  }
-
-  public int getMulti_lateral_mp ()
-  {
-    return this.multi_lateral_mp;
   }
 
   public int getPercent_str ()

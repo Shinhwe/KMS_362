@@ -231,6 +231,8 @@ public class SecondaryStatEffect
   private int accX;
   private int mhpX;
   private int mmpX;
+
+  private int attackSpeed;
   private int cooltime;
   private int cooltimeMS;
   private int coolTimeR;
@@ -464,6 +466,7 @@ public class SecondaryStatEffect
       ret.accX = SecondaryStatEffect.parseEval("accX", source, 0, variables, level);
       ret.setMhpX(SecondaryStatEffect.parseEval("mhpX", source, 0, variables, level));
       ret.mmpX = SecondaryStatEffect.parseEval("mmpX", source, 0, variables, level);
+      ret.attackSpeed = SecondaryStatEffect.parseEval("actionSpeed", source, 0, variables, level);
       int priceUnit = SecondaryStatEffect.parseEval("priceUnit", source, 0, variables, level);
       ret.indieDamReduceR = (short) SecondaryStatEffect.parseEval("indieDamReduceR", source, 0, variables, level);
       ret.lv2mhp = (short) SecondaryStatEffect.parseEval("lv2mhp", source, 0, variables, level);
@@ -11079,6 +11082,16 @@ public class SecondaryStatEffect
   public final int getMaxMpX()
   {
     return this.mmpX;
+  }
+
+  public final int getAttackSpeed()
+  {
+    return this.attackSpeed;
+  }
+
+  public final void setAttackSpeed(int attackSpeed)
+  {
+     this.attackSpeed = attackSpeed;
   }
   
   public short getIndieDamR()

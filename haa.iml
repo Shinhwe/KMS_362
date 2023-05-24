@@ -13,5 +13,6 @@
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="activation-1.1" level="project" />
     <orderEntry type="library" name="mysql.connector.j" level="project" />
+    <orderEntry type="library" name="alibaba.fastjson2" level="project" />
   </component>
 </module>
