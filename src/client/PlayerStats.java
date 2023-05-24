@@ -26,12 +26,11 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class PlayerStats
-    implements Serializable
+public class PlayerStats implements Serializable
 {
-  public static final int[] pvpSkills = new int[]{1000007, 2000007, 3000006, 4000010, 5000006, 5010004, 11000006, 12000006, 13000005, 14000006, 15000005, 21000005, 22000002, 23000004, 31000005, 32000012, 33000004, 35000005};
+  public static final int[] pvpSkills = new int[] { 1000007, 2000007, 3000006, 4000010, 5000006, 5010004, 11000006, 12000006, 13000005, 14000006, 15000005, 21000005, 22000002, 23000004, 31000005, 32000012, 33000004, 35000005 };
   private static final long serialVersionUID = -679541993413738569L;
-  private static final int[] allJobs = new int[]{0, 10000, 10000000, 20000000, 20010000, 20020000, 30000000, 30010000};
+  private static final int[] allJobs = new int[] { 0, 10000, 10000000, 20000000, 20010000, 20020000, 30000000, 30010000 };
   private final Map<Integer, Integer> setHandling = new ConcurrentHashMap<Integer, Integer>();
   private final Map<Integer, Integer> skillsIncrement = new HashMap<Integer, Integer>();
   private final Map<Integer, Integer> damageIncrease = new HashMap<Integer, Integer>();
@@ -161,7 +160,7 @@ public class PlayerStats
   private transient WeakReference<MapleCharacter> chr;
   private transient float shouldHealHP;
   private transient float shouldHealMP;
-  
+
   public long heroNextSelfRecoverTime = 0;
   private transient byte passive_mastery;
   private transient int localstr;
@@ -206,8 +205,8 @@ public class PlayerStats
   private double MatkPercent;
   private double Mastery;
   private Skill skil;
-  
-  public static int getSkillByJob(int skillID, int job)
+
+  public static int getSkillByJob (int skillID, int job)
   {
     if (GameConstants.isKOC(job))
     {
@@ -295,82 +294,82 @@ public class PlayerStats
     }
     return skillID;
   }
-  
-  public static long getSerialVersionUID()
+
+  public static long getSerialVersionUID ()
   {
     return -679541993413738569L;
   }
-  
-  public static int[] getAllJobs()
+
+  public static int[] getAllJobs ()
   {
     return allJobs;
   }
-  
-  public static int[] getPvpSkills()
+
+  public static int[] getPvpSkills ()
   {
     return pvpSkills;
   }
-  
-  public final void init(MapleCharacter chra)
+
+  public final void init (MapleCharacter chra)
   {
     this.recalcLocalStats(chra);
   }
-  
-  public final short getStr()
+
+  public final short getStr ()
   {
     return this.str;
   }
-  
-  public final short getDex()
+
+  public final short getDex ()
   {
     return this.dex;
   }
-  
-  public final short getLuk()
+
+  public final short getLuk ()
   {
     return this.luk;
   }
-  
-  public final short getInt()
+
+  public final short getInt ()
   {
     return this.int_;
   }
-  
-  public final void setStr(short str, MapleCharacter chra)
+
+  public final void setStr (short str, MapleCharacter chra)
   {
     this.str = str;
     this.recalcLocalStats(chra);
   }
-  
-  public final void setDex(short dex, MapleCharacter chra)
+
+  public final void setDex (short dex, MapleCharacter chra)
   {
     this.dex = dex;
     this.recalcLocalStats(chra);
   }
-  
-  public final void setLuk(short luk, MapleCharacter chra)
+
+  public final void setLuk (short luk, MapleCharacter chra)
   {
     this.luk = luk;
     this.recalcLocalStats(chra);
   }
-  
-  public final void setInt(short int_, MapleCharacter chra)
+
+  public final void setInt (short int_, MapleCharacter chra)
   {
     this.int_ = int_;
     this.recalcLocalStats(chra);
   }
-  
-  public final boolean setHp(long newhp, MapleCharacter chra)
+
+  public final boolean setHp (long newhp, MapleCharacter chra)
   {
     return this.setHp(newhp, false, chra, false);
   }
-  
-  public final boolean setHp(long newhp, MapleCharacter chra, boolean igskill)
+
+  public final boolean setHp (long newhp, MapleCharacter chra, boolean igskill)
   {
     return this.setHp(newhp, false, chra, igskill);
   }
-  
-  public final boolean setHp(long newhp, boolean silent, MapleCharacter chra, boolean igskill)
+
+  public final boolean setHp (long newhp, boolean silent, MapleCharacter chra, boolean igskill)
   {
     long oldHp = this.hp;
     long thp = newhp;
@@ -498,8 +497,8 @@ public class PlayerStats
     }
     return this.hp != oldHp;
   }
-  
-  public final boolean setMp(long newmp, MapleCharacter chra)
+
+  public final boolean setMp (long newmp, MapleCharacter chra)
   {
     long oldMp = this.mp;
     long tmp = newmp;
@@ -523,93 +522,93 @@ public class PlayerStats
     this.mp = tmp;
     return this.mp != oldMp;
   }
-  
-  public final void setInfo(long maxhp, long maxmp, long hp, long mp)
+
+  public final void setInfo (long maxhp, long maxmp, long hp, long mp)
   {
     this.maxhp = maxhp;
     this.maxmp = maxmp;
     this.hp = hp;
     this.mp = mp;
   }
-  
-  public final void setMaxHp(long hp, MapleCharacter chra)
+
+  public final void setMaxHp (long hp, MapleCharacter chra)
   {
     this.maxhp = hp;
     this.recalcLocalStats(chra);
   }
-  
-  public final void setMaxMp(long mp, MapleCharacter chra)
+
+  public final void setMaxMp (long mp, MapleCharacter chra)
   {
     this.maxmp = mp;
     this.recalcLocalStats(chra);
   }
-  
-  public final long getHp()
+
+  public final long getHp ()
   {
     return this.hp;
   }
-  
-  public final long getMaxHp()
+
+  public final long getMaxHp ()
   {
     return this.maxhp;
   }
-  
-  public final long getMp()
+
+  public final long getMp ()
   {
     return this.mp;
   }
-  
-  public final long getMaxMp()
+
+  public final long getMaxMp ()
   {
     return this.maxmp;
   }
-  
-  public final int getTotalDex()
+
+  public final int getTotalDex ()
   {
     return this.localdex;
   }
-  
-  public final int getTotalInt()
+
+  public final int getTotalInt ()
   {
     return this.localint_;
   }
-  
-  public final int getTotalStr()
+
+  public final int getTotalStr ()
   {
     return this.localstr;
   }
-  
-  public final int getTotalLuk()
+
+  public final int getTotalLuk ()
   {
     return this.localluk;
   }
-  
-  public final int getTotalMagic()
+
+  public final int getTotalMagic ()
   {
     return this.magic;
   }
-  
-  public final int getSpeed()
+
+  public final int getSpeed ()
   {
     return this.speed;
   }
-  
-  public final int getJump()
+
+  public final int getJump ()
   {
     return this.jump;
   }
-  
-  public final int getTotalWatk()
+
+  public final int getTotalWatk ()
   {
     return this.watk;
   }
-  
-  public final long getCurrentMaxHp()
+
+  public final long getCurrentMaxHp ()
   {
     return this.localmaxhp;
   }
-  
-  public final long getCurrentMaxMp(MapleCharacter chr)
+
+  public final long getCurrentMaxMp (MapleCharacter chr)
   {
     if (GameConstants.isDemonSlayer(chr.getJob()))
     {
@@ -617,28 +616,28 @@ public class PlayerStats
     }
     return this.localmaxmp;
   }
-  
-  public final int getHands()
+
+  public final int getHands ()
   {
     return this.hands;
   }
-  
-  public final float getCurrentMaxBaseDamage()
+
+  public final float getCurrentMaxBaseDamage ()
   {
     return this.localmaxbasedamage;
   }
-  
-  public final float getCurrentMaxBasePVPDamage()
+
+  public final float getCurrentMaxBasePVPDamage ()
   {
     return this.localmaxbasepvpdamage;
   }
-  
-  public final float getCurrentMaxBasePVPDamageL()
+
+  public final float getCurrentMaxBasePVPDamageL ()
   {
     return this.localmaxbasepvpdamageL;
   }
-  
-  private void resetLocalStats(final int job)
+
+  private void resetLocalStats (final int job)
   {
     this.accuracy = 0;
     this.wdef = 0;
@@ -689,7 +688,7 @@ public class PlayerStats
     this.cashBuff = 100.0;
     this.dropBuff = 100.0;
     this.mesoBuff = 100.0;
-//        this.reduceCooltime = new ArrayList<Integer>();
+    //        this.reduceCooltime = new ArrayList<Integer>();
     reduceCooltime = 0;
     this.randCooldown = 0;
     this.recoverHP = 0;
@@ -769,13 +768,13 @@ public class PlayerStats
     this.ignoreMobpdpR.clear();
     this.ApplyStatFinalDamage.clear();
   }
-  
-  public void recalcLocalStats(final MapleCharacter chra)
+
+  public void recalcLocalStats (final MapleCharacter chra)
   {
     this.recalcLocalStats(false, chra);
   }
-  
-  public void recalcLocalStats(final boolean first_login, final MapleCharacter chra)
+
+  public void recalcLocalStats (final boolean first_login, final MapleCharacter chra)
   {
     final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     final long oldmaxhp = this.localmaxhp;
@@ -815,7 +814,7 @@ public class PlayerStats
         }
       }
     }
-    int jokerItemId = 0, starforce = 0, plushp = 0, itemid = 0;
+    int jokerItemId = 0;
     Map<Skill, SkillEntry> sData = new HashMap<>();
     synchronized (chra.getInventory(MapleInventoryType.EQUIPPED))
     {
@@ -904,7 +903,7 @@ public class PlayerStats
             {
               this.localstr += ii.getPotentialInfo(potential).get(lv).incSTR;
             }
-            //this.reduceCooltime.add((int)ii.getPotentialInfo(potential).get(lv).reduceCooltime);
+            // this.reduceCooltime.add((int)ii.getPotentialInfo(potential).get(lv).reduceCooltime);
             reduceCooltime += ii.getPotentialInfo(potential).get(lv).reduceCooltime; // mush
             this.localdex += ii.getPotentialInfo(potential).get(lv).incDEX;
             this.localint_ += ii.getPotentialInfo(potential).get(lv).incINT;
@@ -917,19 +916,7 @@ public class PlayerStats
         }
         chra.getTrait(MapleTrait.MapleTraitType.craft).addLocalExp(equip.getTotalCraft());
         this.accuracy += equip.getTotalAccuracy();
-        if (GameConstants.isDemonAvenger(chra.getJob()) && equip.getStarForceLevel() > 0)
-        {
-          starforce += equip.getStarForceLevel();
-          if (GameConstants.isOverall(equip.getItemId()))
-          {
-            starforce += equip.getStarForceLevel();
-          }
-          if (starforce > 0 && starforce <= 425)
-          {
-            plushp = ((starforce > 391) ? 168 : ((starforce > 380 && starforce <= 390) ? 166 : ((starforce > 370 && starforce <= 380) ? 164 : ((starforce > 360 && starforce <= 370) ? 162 : ((starforce > 350 && starforce <= 360) ? 160 : ((starforce > 340 && starforce <= 350) ? 158 : ((starforce > 330 && starforce <= 340) ? 156 : ((starforce > 320 && starforce <= 330) ? 154 : ((starforce > 310 && starforce <= 320) ? 152 : ((starforce > 290 && starforce <= 310) ? 150 : ((starforce > 270 && starforce <= 290) ? 148 : ((starforce > 250 && starforce <= 270) ? 146 : ((starforce > 225 && starforce <= 250) ? 144 : ((starforce > 200 && starforce <= 225) ? 142 : ((starforce > 175 && starforce <= 200) ? 140 : ((starforce > 150 && starforce <= 175) ? 138 : ((starforce > 125 && starforce <= 150) ? 135 : ((starforce > 90 && starforce <= 125) ? 120 : ((starforce > 60 && starforce <= 90) ? 100 : ((starforce > 35 && starforce <= 60) ? 80 : ((starforce > 15 && starforce <= 35) ? 60 : 35)))))))))))))))))))));
-            plushp *= starforce;
-          }
-        }
+
         this.DamagePercent += equip.getTotalDamage();
         this.BossDamage += equip.getTotalBossDamage();
         this.ignoreMobpdpR.add((int) equip.getTotalIgnorePDR());
@@ -945,7 +932,7 @@ public class PlayerStats
         }
         else
         {
-          localmaxhp_ +=  equip.getTotalHp();
+          localmaxhp_ += ((GameConstants.isDemonAvenger(chra.getJob()) || (GameConstants.isZero(chra.getJob()) && GameConstants.isWeapon(equip.getItemId()))) ? (equip.getTotalHp() / 2) : equip.getTotalHp());
           localmaxmp_ += equip.getTotalMp();
           this.localstr += equip.getTotalStr();
           this.localdex += equip.getTotalDex();
@@ -1048,10 +1035,119 @@ public class PlayerStats
         }
       }
     }
-    if (GameConstants.isDemonAvenger(chra.getJob()) && plushp > 0)
+
+    if (GameConstants.isDemonAvenger(chra.getJob()) && this.starforce > 0)
     {
-      localmaxhp_ += plushp;
+
+      int hpPerStar = 0;
+
+      if (starforce < 20)
+      {
+        hpPerStar = 35;
+      }
+      else if (starforce < 36)
+      {
+        hpPerStar = 60;
+      }
+      else if (starforce < 60)
+      {
+        hpPerStar = 80;
+      }
+      else if (starforce < 91)
+      {
+        hpPerStar = 100;
+      }
+      else if (starforce < 126)
+      {
+        hpPerStar = 120;
+      }
+      else if (starforce < 151)
+      {
+        hpPerStar = 135;
+      }
+      else if (starforce < 176)
+      {
+        hpPerStar = 138;
+      }
+      else if (starforce < 201)
+      {
+        hpPerStar = 140;
+      }
+      else if (starforce < 226)
+      {
+        hpPerStar = 142;
+      }
+      else if (starforce < 251)
+      {
+        hpPerStar = 144;
+      }
+      else if (starforce < 271)
+      {
+        hpPerStar = 146;
+      }
+      else if (starforce < 291)
+      {
+        hpPerStar = 148;
+      }
+      else if (starforce < 311)
+      {
+        hpPerStar = 150;
+      }
+      else if (starforce < 321)
+      {
+        hpPerStar = 152;
+      }
+      else if (starforce < 331)
+      {
+        hpPerStar = 154;
+      }
+      else if (starforce < 341)
+      {
+        hpPerStar = 156;
+      }
+      else if (starforce < 351)
+      {
+        hpPerStar = 158;
+      }
+      else if (starforce < 361)
+      {
+        hpPerStar = 160;
+      }
+      else if (starforce < 371)
+      {
+        hpPerStar = 162;
+      }
+      else if (starforce < 381)
+      {
+        hpPerStar = 164;
+      }
+      else if (starforce < 391)
+      {
+        hpPerStar = 166;
+      }
+      else if (starforce >= 391)
+      {
+        hpPerStar = 168;
+      }
+
+      localmaxhp_ += starforce * hpPerStar;
     }
+
+    if (GameConstants.isXenon(chra.getJob()) && this.starforce > 0)
+    {
+      // https://strategywiki.org/wiki/MapleStory/Spell_Trace_and_Star_Force
+
+      //For Xenons, since Star Force enhancement gives lesser stats if the item is restricted to thieves or pirates only, a small bonus is given to compensate for this.
+      // Every 10 equipped star force, gain 7 STR, 7 DEX and 7 LUK, up to 100 equipped star force.
+      // 这里就不设置上限了, 有多少给我加多少
+
+      int inc = (int)(starforce / 10 * 7);
+
+      localstr += inc;
+      localdex += inc;
+      localluk += inc;
+    }
+
     this.handleProfessionTool(chra);
     if (first_login && chra.getLevel() >= 30)
     {
@@ -1189,8 +1285,8 @@ public class PlayerStats
       chra.updatePartyMemberHP();
     }
   }
-  
-  private Pair<Long, Long> handleUnionSkills(MapleCharacter chra)
+
+  private Pair<Long, Long> handleUnionSkills (MapleCharacter chra)
   {
     long localmaxhp_ = 0L;
     long localmaxmp_ = 0L;
@@ -1907,16 +2003,16 @@ public class PlayerStats
     }
     return new Pair<Long, Long>(localmaxhp_, localmaxmp_);
   }
-  
-  public List<Triple<Integer, String, Integer>> getPsdSkills()
+
+  public List<Triple<Integer, String, Integer>> getPsdSkills ()
   {
     return this.psdSkills;
   }
-  
+
   /*
    * Opcode count of 22319 triggered aggressive code reduction.  Override with --aggressivesizethreshold.
    */
-  private Pair<Long, Long> handlePassiveSkills(MapleCharacter chra)
+  private Pair<Long, Long> handlePassiveSkills (MapleCharacter chra)
   {
     int[] skilllist1;
     int n;
@@ -2173,7 +2269,7 @@ public class PlayerStats
         this.arc += up;
       }
     }
-    int[] up2 = skilllist = new int[]{400001000, 400001001, 400001002, 400001003, 400001004, 400001006, 400001007, 400001021, 400011066, 400021068, 400021095, 400031005, 400041032, 400051000, 400051072};
+    int[] up2 = skilllist = new int[] { 400001000, 400001001, 400001002, 400001003, 400001004, 400001006, 400001007, 400001021, 400011066, 400021068, 400021095, 400031005, 400041032, 400051000, 400051072 };
     i = up2.length;
     block71:
     for (n = 0; n < i; ++n)
@@ -2231,7 +2327,7 @@ public class PlayerStats
         }
       }
     }
-    int[] i2 = skilllist1 = new int[]{80000654, 80000655, 80000656, 80000657, 80000658, 80000659, 80000660, 80000661};
+    int[] i2 = skilllist1 = new int[] { 80000654, 80000655, 80000656, 80000657, 80000658, 80000659, 80000660, 80000661 };
     n = i2.length;
     for (int skill = 0; skill < n; ++skill)
     {
@@ -2261,7 +2357,7 @@ public class PlayerStats
       this.ignoreMobpdpR.add(Integer.valueOf(bx.getEffect(bof).getIgnoreMob()));
       this.BossDamage += bx.getEffect(bof).getBdR();
     }
-    int[] linkskills = new int[]{80002766, 80002774, 80000055, 80000002, 80000005, 80000050, 80000001, 80000047, 80000110, 80000188, 80002857, 80000609, 80000006};
+    int[] linkskills = new int[] { 80002766, 80002774, 80000055, 80000002, 80000005, 80000050, 80000001, 80000047, 80000110, 80000188, 80002857, 80000609, 80000006 };
     int mylinkskillid = GameConstants.getMyLinkSkill(chra.getJob());
     Object skill = linkskills;
     int skill2 = ((int[]) skill).length;
@@ -3114,11 +3210,11 @@ public class PlayerStats
         {
           this.InsertFinalDamage(bx.getEffect(bof).getPdR());
         }
-//                bx = SkillFactory.getSkill(3220046);
-//                bof = chra.getTotalSkillLevel(bx);
-//                if (bof > 0) {
-//                    this.InsertDamageIncrease(3221019, bx.getEffect(bof).getDAMRate());
-//                }
+        //                bx = SkillFactory.getSkill(3220046);
+        //                bof = chra.getTotalSkillLevel(bx);
+        //                if (bof > 0) {
+        //                    this.InsertDamageIncrease(3221019, bx.getEffect(bof).getDAMRate());
+        //                }
         bx = SkillFactory.getSkill(3220049);
         bof = chra.getTotalSkillLevel(bx);
         if (bof > 0)
@@ -6068,7 +6164,7 @@ public class PlayerStats
           int[] skillid2;
           eff = bx.getEffect(bof);
           this.BuffUP_Summon += eff.getY();
-          int[] a = skillid2 = new int[]{35121003, 35101012, 35121009, 35120002, 35111008, 35111002, 400051068, 400051009};
+          int[] a = skillid2 = new int[] { 35121003, 35101012, 35121009, 35120002, 35111008, 35111002, 400051068, 400051009 };
           int n4 = a.length;
           for (int j = 0; j < n4; ++j)
           {
@@ -6324,7 +6420,7 @@ public class PlayerStats
               }
             }
           }
-          
+
           if (chra.getLevel() >= 200)
           { // xenon error 임시로 지워둠
             bx = SkillFactory.getSkill(36120010);
@@ -8391,8 +8487,8 @@ public class PlayerStats
     }
     return new Pair<Long, Long>(localmaxhp_, localmaxmp_);
   }
-  
-  private Pair<Long, Long> handleBuffStats(MapleCharacter chra)
+
+  private Pair<Long, Long> handleBuffStats (MapleCharacter chra)
   {
     int up;
     int skillid;
@@ -8808,7 +8904,7 @@ public class PlayerStats
           int watk = chra.getBuffedEffect(buffs.getLeft()).getAttackX();
           int cr = chra.getBuffedEffect(buffs.getLeft()).getCr();
           int bdr = chra.getBuffedEffect(buffs.getLeft()).getBdR();
-          int[] arrn = skilllist = new int[]{61100008, 61110010, 61120013};
+          int[] arrn = skilllist = new int[] { 61100008, 61110010, 61120013 };
           int n = arrn.length;
           for (int i = 0; i < n; ++i)
           {
@@ -8872,8 +8968,8 @@ public class PlayerStats
     }
     return new Pair<Long, Long>(localmaxhp_, localmaxmp_);
   }
-  
-  public boolean checkEquipLevels(MapleCharacter chr, long gain)
+
+  public boolean checkEquipLevels (MapleCharacter chr, long gain)
   {
     boolean changed = false;
     MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
@@ -8918,13 +9014,13 @@ public class PlayerStats
     }
     return changed;
   }
-  
-  public boolean checkEquipDurabilitys(MapleCharacter chr, int gain)
+
+  public boolean checkEquipDurabilitys (MapleCharacter chr, int gain)
   {
     return this.checkEquipDurabilitys(chr, gain, false);
   }
-  
-  public boolean checkEquipDurabilitys(MapleCharacter chr, int gain, boolean aboveZero)
+
+  public boolean checkEquipDurabilitys (MapleCharacter chr, int gain, boolean aboveZero)
   {
     if (chr.inPVP())
     {
@@ -8967,11 +9063,11 @@ public class PlayerStats
     }
     return true;
   }
-  
+
   /*
    * WARNING - Removed try catching itself - possible behaviour change.
    */
-  public final void handleProfessionTool(MapleCharacter chra)
+  public final void handleProfessionTool (MapleCharacter chra)
   {
     if (chra.getProfessionLevel(92000000) > 0 || chra.getProfessionLevel(92010000) > 0)
     {
@@ -8994,8 +9090,8 @@ public class PlayerStats
       }
     }
   }
-  
-  private void CalcPassive_Mastery(final MapleCharacter player)
+
+  private void CalcPassive_Mastery (final MapleCharacter player)
   {
     if (player.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11) == null)
     {
@@ -9028,13 +9124,13 @@ public class PlayerStats
         break;
       case AXE1H:
       case BLUNT1H:
-        skil = GameConstants.isResist(player.getJob()) ? 31100004 : (GameConstants.isKOC(player.getJob()) ? 11100000 : (player.getJob() > 112 ? 1200000 : 1100000)); //hero/pally
+        skil = GameConstants.isResist(player.getJob()) ? 31100004 : (GameConstants.isKOC(player.getJob()) ? 11100000 : (player.getJob() > 112 ? 1200000 : 1100000)); // hero/pally
         break;
       case AXE2H:
       case SWORD1H:
       case SWORD2H:
       case BLUNT2H:
-        skil = GameConstants.isKOC(player.getJob()) ? 11100000 : (player.getJob() > 112 ? 1200000 : 1100000); //hero/pally
+        skil = GameConstants.isKOC(player.getJob()) ? 11100000 : (player.getJob() > 112 ? 1200000 : 1100000); // hero/pally
         break;
       case POLE_ARM:
         skil = GameConstants.isAran(player.getJob()) ? 21100000 : 1300000;
@@ -9059,7 +9155,7 @@ public class PlayerStats
       default:
         passive_mastery = 0;
         return;
-      
+
     }
     if (player.getSkillLevel(skil) <= 0)
     {
@@ -9079,11 +9175,11 @@ public class PlayerStats
     {
       magic += eff.getX();
     }
-    passive_mastery = eff.getMastery(); //after bb, simpler?
+    passive_mastery = eff.getMastery(); // after bb, simpler?
     trueMastery += eff.getMastery() + weaponType.getBaseMastery();
   }
-  
-  private void calculateFame(MapleCharacter player)
+
+  private void calculateFame (MapleCharacter player)
   {
     player.getTrait(MapleTrait.MapleTraitType.charm).addLocalExp(player.getFame());
     for (MapleTrait.MapleTraitType t : MapleTrait.MapleTraitType.values())
@@ -9091,13 +9187,13 @@ public class PlayerStats
       player.getTrait(t).recalcLevel();
     }
   }
-  
-  public final byte passive_mastery()
+
+  public final byte passive_mastery ()
   {
     return this.passive_mastery;
   }
-  
-  public int calculateMinBaseDamage(MapleCharacter player)
+
+  public int calculateMinBaseDamage (MapleCharacter player)
   {
     int minbasedamage = 0;
     int atk = player.getStat().getTotalWatk();
@@ -9201,8 +9297,8 @@ public class PlayerStats
     }
     return minbasedamage;
   }
-  
-  public final float calculateMaxBaseDamage(int watk)
+
+  public final float calculateMaxBaseDamage (int watk)
   {
     float maxbasedamage;
     MapleCharacter chra = this.chr.get();
@@ -9278,22 +9374,22 @@ public class PlayerStats
     }
     return maxbasedamage;
   }
-  
-  public final void calculateMaxBaseDamage(int watk, int pvpDamage, MapleCharacter chra)
+
+  public final void calculateMaxBaseDamage (int watk, int pvpDamage, MapleCharacter chra)
   {
   }
-  
-  public final float getHealHP()
+
+  public final float getHealHP ()
   {
     return this.shouldHealHP;
   }
-  
-  public final float getHealMP()
+
+  public final float getHealMP ()
   {
     return this.shouldHealMP;
   }
-  
-  public final void relocHeal(MapleCharacter chra)
+
+  public final void relocHeal (MapleCharacter chra)
   {
     float recvRate;
     int lvl;
@@ -9357,8 +9453,8 @@ public class PlayerStats
       this.shouldHealMP *= recvRate;
     }
   }
-  
-  public final void connectData(MaplePacketLittleEndianWriter mplew)
+
+  public final void connectData (MaplePacketLittleEndianWriter mplew)
   {
     mplew.writeShort(this.str);
     mplew.writeShort(this.dex);
@@ -9369,8 +9465,8 @@ public class PlayerStats
     mplew.writeInt(this.mp);
     mplew.writeInt(this.maxmp);
   }
-  
-  public final int getSkillIncrement(int skillID)
+
+  public final int getSkillIncrement (int skillID)
   {
     if (this.skillsIncrement.containsKey(skillID))
     {
@@ -9378,8 +9474,8 @@ public class PlayerStats
     }
     return 0;
   }
-  
-  public final int getElementBoost(Element key)
+
+  public final int getElementBoost (Element key)
   {
     if (this.elemBoosts.containsKey(key))
     {
@@ -9387,8 +9483,8 @@ public class PlayerStats
     }
     return 0;
   }
-  
-  public final int getDamageIncrease(int key)
+
+  public final int getDamageIncrease (int key)
   {
     if (this.damageIncrease.containsKey(key))
     {
@@ -9396,19 +9492,19 @@ public class PlayerStats
     }
     return this.damX;
   }
-  
-  public final int getAccuracy()
+
+  public final int getAccuracy ()
   {
     return this.accuracy;
   }
-  
-  public void heal_noUpdate(MapleCharacter chra)
+
+  public void heal_noUpdate (MapleCharacter chra)
   {
     this.setHp(this.getCurrentMaxHp(), chra);
     this.setMp(this.getCurrentMaxMp(chra), chra);
   }
-  
-  public void heal(MapleCharacter chra)
+
+  public void heal (MapleCharacter chra)
   {
     this.heal_noUpdate(chra);
     if (chra.getBattleGroundChr() != null)
@@ -9422,8 +9518,8 @@ public class PlayerStats
       chra.updateSingleStat(MapleStat.MP, this.getCurrentMaxMp(chra));
     }
   }
-  
-  public Pair<Long, Long> handleEquipAdditions(final MapleItemInformationProvider ii, final MapleCharacter chra, final boolean first_login, final Map<Skill, SkillEntry> sData, final int itemId)
+
+  public Pair<Long, Long> handleEquipAdditions (final MapleItemInformationProvider ii, final MapleCharacter chra, final boolean first_login, final Map<Skill, SkillEntry> sData, final int itemId)
   {
     final List<Triple<String, String, String>> additions = ii.getEquipAdditions(itemId);
     final Map<Integer, Map<String, Integer>> addz = ii.getEquipIncrements(itemId);
@@ -9720,8 +9816,8 @@ public class PlayerStats
     }
     return new Pair<Long, Long>(localmaxhp_a, localmaxmp_a);
   }
-  
-  public void recalcPVPRank(MapleCharacter chra)
+
+  public void recalcPVPRank (MapleCharacter chra)
   {
     this.pvpRank = 10;
     this.pvpExp = chra.getTotalBattleExp();
@@ -9735,18 +9831,18 @@ public class PlayerStats
       this.pvpExp -= GameConstants.getPVPExpNeededForLevel(i + 1);
     }
   }
-  
-  public int getHPPercent()
+
+  public int getHPPercent ()
   {
     return (int) Math.ceil((double) this.hp * 100.0 / (double) this.localmaxhp);
   }
-  
-  public int getMPPercent()
+
+  public int getMPPercent ()
   {
     return (int) Math.ceil((double) this.mp * 100.0 / (double) this.localmaxmp);
   }
-  
-  public int getForce(int room)
+
+  public int getForce (int room)
   {
     if (this.demonForce.containsKey(room))
     {
@@ -9754,160 +9850,160 @@ public class PlayerStats
     }
     return 0;
   }
-  
-  public final boolean isRangedJob(int job)
+
+  public final boolean isRangedJob (int job)
   {
     return GameConstants.isArcher(job) || GameConstants.isCannon(job) || GameConstants.isNightLord(job) || GameConstants.isCaptain(job) || GameConstants.isNightWalker(job) || GameConstants.isMechanic(job) || GameConstants.isAngelicBuster(job);
   }
-  
-  public final int d(int variable)
+
+  public final int d (int variable)
   {
     return (int) Math.floor(variable);
   }
-  
-  public int getRandomage(MapleCharacter player)
+
+  public int getRandomage (MapleCharacter player)
   {
     int maxdamage = (int) this.localmaxbasedamage;
     int mindamage = this.calculateMinBaseDamage(player);
     return Randomizer.rand(mindamage, maxdamage);
   }
-  
-  public Map<Integer, Integer> getSetHandling()
+
+  public Map<Integer, Integer> getSetHandling ()
   {
     return this.setHandling;
   }
-  
-  public Map<Integer, Integer> getSkillsIncrement()
+
+  public Map<Integer, Integer> getSkillsIncrement ()
   {
     return this.skillsIncrement;
   }
-  
-  public Map<Integer, Integer> getDamageIncrease()
+
+  public Map<Integer, Integer> getDamageIncrease ()
   {
     return this.damageIncrease;
   }
-  
-  public Map<String, Integer> getApplyStatFinalDamage()
+
+  public Map<String, Integer> getApplyStatFinalDamage ()
   {
     return this.ApplyStatFinalDamage;
   }
-  
-  public EnumMap<Element, Integer> getElemBoosts()
+
+  public EnumMap<Element, Integer> getElemBoosts ()
   {
     return this.elemBoosts;
   }
-  
-  public WeakReference<MapleCharacter> getChr()
+
+  public WeakReference<MapleCharacter> getChr ()
   {
     return this.chr;
   }
-  
-  public Map<Integer, Integer> getDemonForce()
+
+  public Map<Integer, Integer> getDemonForce ()
   {
     return this.demonForce;
   }
-  
-  public List<Equip> getDurabilityHandling()
+
+  public List<Equip> getDurabilityHandling ()
   {
     return this.durabilityHandling;
   }
-  
-  public List<Equip> getEquipLevelHandling()
+
+  public List<Equip> getEquipLevelHandling ()
   {
     return this.equipLevelHandling;
   }
-  
-  public float getShouldHealHP()
+
+  public float getShouldHealHP ()
   {
     return this.shouldHealHP;
   }
-  
-  public float getShouldHealMP()
+
+  public float getShouldHealMP ()
   {
     return this.shouldHealMP;
   }
-  
-  public short getInt_()
+
+  public short getInt_ ()
   {
     return this.int_;
   }
-  
-  public long getMaxhp()
+
+  public long getMaxhp ()
   {
     return this.maxhp;
   }
-  
-  public long getMaxmp()
+
+  public long getMaxmp ()
   {
     return this.maxmp;
   }
-  
-  public short getCritical_rate()
+
+  public short getCritical_rate ()
   {
     return this.critical_rate;
   }
-  
-  public short getCritical_damage()
+
+  public short getCritical_damage ()
   {
     return this.critical_damage;
   }
-  
-  public byte getPassive_mastery()
+
+  public byte getPassive_mastery ()
   {
     return this.passive_mastery;
   }
-  
-  public int getLocalstr()
+
+  public int getLocalstr ()
   {
     return this.localstr;
   }
-  
-  public int getLocaldex()
+
+  public int getLocaldex ()
   {
     return this.localdex;
   }
-  
-  public int getLocalluk()
+
+  public int getLocalluk ()
   {
     return this.localluk;
   }
-  
-  public int getLocalint_()
+
+  public int getLocalint_ ()
   {
     return this.localint_;
   }
-  
-  public int getMs_maxhp()
+
+  public int getMs_maxhp ()
   {
     return this.ms_maxhp;
   }
-  
-  public int getMs_maxmp()
+
+  public int getMs_maxmp ()
   {
     return this.ms_maxmp;
   }
-  
-  public long getLocalmaxhp()
+
+  public long getLocalmaxhp ()
   {
     return this.localmaxhp;
   }
-  
-  public long getLocalmaxmp()
+
+  public long getLocalmaxmp ()
   {
     return this.localmaxmp;
   }
-  
-  public int getMagic()
+
+  public int getMagic ()
   {
     return this.magic;
   }
-  
-  public int getWatk()
+
+  public int getWatk ()
   {
     return this.watk;
   }
-  
-  public double getFinalDamage()
+
+  public double getFinalDamage ()
   {
     double finaldamage = 0.0;
     double t = 1.0;
@@ -9923,13 +10019,13 @@ public class PlayerStats
     finaldamage = Math.round(finaldamage);
     return finaldamage;
   }
-  
-  public int getBossDamage()
+
+  public int getBossDamage ()
   {
     return this.BossDamage;
   }
-  
-  public double getIgnoreMobpdpR()
+
+  public double getIgnoreMobpdpR ()
   {
     double pdr = 0.0;
     double t = 1.0;
@@ -9946,606 +10042,606 @@ public class PlayerStats
     pdr = Math.round(pdr);
     return pdr;
   }
-  
-  public void setIgnoreMobpdpR(List<Integer> ignoreMobpdpR)
+
+  public void setIgnoreMobpdpR (List<Integer> ignoreMobpdpR)
   {
     this.ignoreMobpdpR = ignoreMobpdpR;
   }
-  
-  public boolean isEquippedWelcomeBackRing()
+
+  public boolean isEquippedWelcomeBackRing ()
   {
     return this.equippedWelcomeBackRing;
   }
-  
-  public boolean isHasClone()
+
+  public boolean isHasClone ()
   {
     return this.hasClone;
   }
-  
-  public boolean isHasPartyBonus()
+
+  public boolean isHasPartyBonus ()
   {
     return this.hasPartyBonus;
   }
-  
-  public boolean isBerserk()
+
+  public boolean isBerserk ()
   {
     return this.Berserk;
   }
-  
-  public double getExpBuff()
+
+  public double getExpBuff ()
   {
     return this.expBuff;
   }
-  
-  public double getExpBuffZero()
+
+  public double getExpBuffZero ()
   {
     return this.expBuffZero;
   }
-  
-  public double getExpBuffUnion()
+
+  public double getExpBuffUnion ()
   {
     return this.expBuffUnion;
   }
-  
-  public double getDropBuff()
+
+  public double getDropBuff ()
   {
     return this.dropBuff;
   }
-  
-  public double getMesoBuff()
+
+  public double getMesoBuff ()
   {
     return this.mesoBuff;
   }
-  
-  public double getCashBuff()
+
+  public double getCashBuff ()
   {
     return this.cashBuff;
   }
-  
-  public double getMesoGuard()
+
+  public double getMesoGuard ()
   {
     return this.MesoGuard;
   }
-  
-  public double getMesoGuardMeso()
+
+  public double getMesoGuardMeso ()
   {
     return this.MesoGuardMeso;
   }
-  
-  public double getExpMod()
+
+  public double getExpMod ()
   {
     return this.expMod;
   }
-  
-  public double getPickupRange()
+
+  public double getPickupRange ()
   {
     return this.pickupRange;
   }
-  
-  public double getDam_r()
+
+  public double getDam_r ()
   {
     return this.dam_r;
   }
-  
-  public double getBossdam_r()
+
+  public double getBossdam_r ()
   {
     return this.bossdam_r;
   }
-  
-  public int getRecoverHP()
+
+  public int getRecoverHP ()
   {
     return this.recoverHP;
   }
-  
-  public int getRecoverMP()
+
+  public int getRecoverMP ()
   {
     return this.recoverMP;
   }
-  
-  public int getMpconReduce()
+
+  public int getMpconReduce ()
   {
     return this.mpconReduce;
   }
-  
-  public int getMpconPercent()
+
+  public int getMpconPercent ()
   {
     return this.mpconPercent;
   }
-  
-  public int getIncMesoProp()
+
+  public int getIncMesoProp ()
   {
     return this.incMesoProp;
   }
-  
-  public int getCoolTimeR()
+
+  public int getCoolTimeR ()
   {
     return this.coolTimeR;
   }
-  
-  public int getSuddenDeathR()
+
+  public int getSuddenDeathR ()
   {
     return this.suddenDeathR;
   }
-  
-  public int getExpLossReduceR()
+
+  public int getExpLossReduceR ()
   {
     return this.expLossReduceR;
   }
-  
-  public int getDAMreflect()
+
+  public int getDAMreflect ()
   {
     return this.DAMreflect;
   }
-  
-  public int getDAMreflect_rate()
+
+  public int getDAMreflect_rate ()
   {
     return this.DAMreflect_rate;
   }
-  
-  public int getIgnoreDAMr()
+
+  public int getIgnoreDAMr ()
   {
     return this.ignoreDAMr;
   }
-  
-  public int getIgnoreDAMr_rate()
+
+  public int getIgnoreDAMr_rate ()
   {
     return this.ignoreDAMr_rate;
   }
-  
-  public int getIgnoreDAM()
+
+  public int getIgnoreDAM ()
   {
     return this.ignoreDAM;
   }
-  
-  public int getIgnoreDAM_rate()
+
+  public int getIgnoreDAM_rate ()
   {
     return this.ignoreDAM_rate;
   }
-  
-  public int getMpRestore()
+
+  public int getMpRestore ()
   {
     return this.mpRestore;
   }
-  
-  public int getHpRecover()
+
+  public int getHpRecover ()
   {
     return this.hpRecover;
   }
-  
-  public int getHpRecoverProp()
+
+  public int getHpRecoverProp ()
   {
     return this.hpRecoverProp;
   }
-  
-  public int getHpRecoverPercent()
+
+  public int getHpRecoverPercent ()
   {
     return this.hpRecoverPercent;
   }
-  
-  public int getMpRecover()
+
+  public int getMpRecover ()
   {
     return this.mpRecover;
   }
-  
-  public int getMpRecoverProp()
+
+  public int getMpRecoverProp ()
   {
     return this.mpRecoverProp;
   }
-  
-  public int getRecoveryUP()
+
+  public int getRecoveryUP ()
   {
     return this.RecoveryUP;
   }
-  
-  public int getBuffUP()
+
+  public int getBuffUP ()
   {
     return this.BuffUP;
   }
-  
-  public int getRecoveryUP_Skill()
+
+  public int getRecoveryUP_Skill ()
   {
     return this.RecoveryUP_Skill;
   }
-  
-  public int getBuffUP_Skill()
+
+  public int getBuffUP_Skill ()
   {
     return this.BuffUP_Skill;
   }
-  
-  public int getIncAllskill()
+
+  public int getIncAllskill ()
   {
     return this.incAllskill;
   }
-  
-  public int getCombatOrders()
+
+  public int getCombatOrders ()
   {
     return this.combatOrders;
   }
-  
-  public int getIgnoreTargetDEF()
+
+  public int getIgnoreTargetDEF ()
   {
     return this.ignoreTargetDEF;
   }
-  
-  public int getDefRange()
+
+  public int getDefRange ()
   {
     return this.defRange;
   }
-  
-  public int getBuffUP_Summon()
+
+  public int getBuffUP_Summon ()
   {
     return this.BuffUP_Summon;
   }
-  
-  public int getDodgeChance()
+
+  public int getDodgeChance ()
   {
     return this.dodgeChance;
   }
-  
-  public int getHarvestingTool()
+
+  public int getHarvestingTool ()
   {
     return this.harvestingTool;
   }
-  
-  public int getEvaR()
+
+  public int getEvaR ()
   {
     return this.evaR;
   }
-  
-  public int getEquipmentBonusExp()
+
+  public int getEquipmentBonusExp ()
   {
     return this.equipmentBonusExp;
   }
-  
-  public int getDropMod()
+
+  public int getDropMod ()
   {
     return this.dropMod;
   }
-  
-  public int getCashMod()
+
+  public int getCashMod ()
   {
     return this.cashMod;
   }
-  
-  public int getLevelBonus()
+
+  public int getLevelBonus ()
   {
     return this.levelBonus;
   }
-  
-  public int getASR()
+
+  public int getASR ()
   {
     return this.ASR;
   }
-  
-  public int getTER()
+
+  public int getTER ()
   {
     return this.TER;
   }
-  
-  public int getPickRate()
+
+  public int getPickRate ()
   {
     return this.pickRate;
   }
-  
-  public int getDecreaseDebuff()
+
+  public int getDecreaseDebuff ()
   {
     return this.decreaseDebuff;
   }
-  
-  public int getEquippedFairy()
+
+  public int getEquippedFairy ()
   {
     return this.equippedFairy;
   }
-  
-  public int getEquippedSummon()
+
+  public int getEquippedSummon ()
   {
     return this.equippedSummon;
   }
-  
-  public int getPercent_hp()
+
+  public int getPercent_hp ()
   {
     return this.percent_hp;
   }
-  
-  public int getBefore_maxhp()
+
+  public int getBefore_maxhp ()
   {
     return this.before_maxhp;
   }
-  
-  public int getPercent_mp()
+
+  public int getPercent_mp ()
   {
     return this.percent_mp;
   }
-  
-  public int getBefore_percent_mp()
+
+  public int getBefore_percent_mp ()
   {
     return this.before_percent_mp;
   }
-  
-  public int getBefore_maxmp()
+
+  public int getBefore_maxmp ()
   {
     return this.before_maxmp;
   }
-  
-  public int getMulti_lateral_hp()
+
+  public int getMulti_lateral_hp ()
   {
     return this.multi_lateral_hp;
   }
-  
-  public int getMulti_lateral_mp()
+
+  public int getMulti_lateral_mp ()
   {
     return this.multi_lateral_mp;
   }
-  
-  public int getPercent_str()
+
+  public int getPercent_str ()
   {
     return this.percent_str;
   }
-  
-  public int getPercent_dex()
+
+  public int getPercent_dex ()
   {
     return this.percent_dex;
   }
-  
-  public int getPercent_int()
+
+  public int getPercent_int ()
   {
     return this.percent_int;
   }
-  
-  public int getPercent_luk()
+
+  public int getPercent_luk ()
   {
     return this.percent_luk;
   }
-  
-  public int getPercent_acc()
+
+  public int getPercent_acc ()
   {
     return this.percent_acc;
   }
-  
-  public int getPercent_atk()
+
+  public int getPercent_atk ()
   {
     return this.percent_atk;
   }
-  
-  public int getPercent_matk()
+
+  public int getPercent_matk ()
   {
     return this.percent_matk;
   }
-  
-  public int getPercent_wdef()
+
+  public int getPercent_wdef ()
   {
     return this.percent_wdef;
   }
-  
-  public int getPercent_mdef()
+
+  public int getPercent_mdef ()
   {
     return this.percent_mdef;
   }
-  
-  public int getPvpDamage()
+
+  public int getPvpDamage ()
   {
     return this.pvpDamage;
   }
-  
-  public int getHpRecoverTime()
+
+  public int getHpRecoverTime ()
   {
     return this.hpRecoverTime;
   }
-  
-  public int getMpRecoverTime()
+
+  public int getMpRecoverTime ()
   {
     return this.mpRecoverTime;
   }
-  
-  public int getDot()
+
+  public int getDot ()
   {
     return this.dot;
   }
-  
-  public int getDotTime()
+
+  public int getDotTime ()
   {
     return this.dotTime;
   }
-  
-  public int getQuestBonus()
+
+  public int getQuestBonus ()
   {
     return this.questBonus;
   }
-  
-  public int getPvpRank()
+
+  public int getPvpRank ()
   {
     return this.pvpRank;
   }
-  
-  public int getPvpExp()
+
+  public int getPvpExp ()
   {
     return this.pvpExp;
   }
-  
-  public int getWdef()
+
+  public int getWdef ()
   {
     return this.wdef;
   }
-  
-  public int getMdef()
+
+  public int getMdef ()
   {
     return this.mdef;
   }
-  
-  public int getTrueMastery()
+
+  public int getTrueMastery ()
   {
     return this.trueMastery;
   }
-  
-  public int getDamX()
+
+  public int getDamX ()
   {
     return this.damX;
   }
-  
-  public int getDAMreduceR()
+
+  public int getDAMreduceR ()
   {
     return this.DAMreduceR;
   }
-  
-  public int getRandCooldown()
+
+  public int getRandCooldown ()
   {
     return this.randCooldown;
   }
-  
-  public int getStance()
+
+  public int getStance ()
   {
     return this.stance;
   }
-  
-  public int getPpd()
+
+  public int getPpd ()
   {
     return this.ppd;
   }
-  
-  public int getDamAbsorbShieldR()
+
+  public int getDamAbsorbShieldR ()
   {
     return this.damAbsorbShieldR;
   }
-  
-  public double getMastery()
+
+  public double getMastery ()
   {
     return this.Mastery;
   }
-  
-  public long getFixHp()
+
+  public long getFixHp ()
   {
     return this.fixHp;
   }
-  
-  public float getLocalmaxbasedamage()
+
+  public float getLocalmaxbasedamage ()
   {
     return this.localmaxbasedamage;
   }
-  
-  public float getLocalmaxbasepvpdamage()
+
+  public float getLocalmaxbasepvpdamage ()
   {
     return this.localmaxbasepvpdamage;
   }
-  
-  public float getLocalmaxbasepvpdamageL()
+
+  public float getLocalmaxbasepvpdamageL ()
   {
     return this.localmaxbasepvpdamageL;
   }
-  
-  public int getDef()
+
+  public int getDef ()
   {
     return this.def;
   }
-  
-  public int getElement_ice()
+
+  public int getElement_ice ()
   {
     return this.element_ice;
   }
-  
-  public int getElement_fire()
+
+  public int getElement_fire ()
   {
     return this.element_fire;
   }
-  
-  public int getElement_light()
+
+  public int getElement_light ()
   {
     return this.element_light;
   }
-  
-  public int getElement_psn()
+
+  public int getElement_psn ()
   {
     return this.element_psn;
   }
-  
+
   /*public List<Integer> getReduceCooltime() {
         return this.reduceCooltime;
     }*/
-  public int getReduceCooltime()
+  public int getReduceCooltime ()
   {
     return reduceCooltime;
   }
-  
-  public double getSword()
+
+  public double getSword ()
   {
     return this.sword;
   }
-  
-  public double getBlunt()
+
+  public double getBlunt ()
   {
     return this.blunt;
   }
-  
-  public double getAxe()
+
+  public double getAxe ()
   {
     return this.axe;
   }
-  
-  public double getSpear()
+
+  public double getSpear ()
   {
     return this.spear;
   }
-  
-  public double getPolearm()
+
+  public double getPolearm ()
   {
     return this.polearm;
   }
-  
-  public double getClaw()
+
+  public double getClaw ()
   {
     return this.claw;
   }
-  
-  public double getDagger()
+
+  public double getDagger ()
   {
     return this.dagger;
   }
-  
-  public double getStaffwand()
+
+  public double getStaffwand ()
   {
     return this.staffwand;
   }
-  
-  public double getCROSSBOW()
+
+  public double getCROSSBOW ()
   {
     return this.CROSSBOW;
   }
-  
-  public double getBow()
+
+  public double getBow ()
   {
     return this.bow;
   }
-  
-  public int getSkill()
+
+  public int getSkill ()
   {
     return this.skill;
   }
-  
-  public Skill getSkil()
+
+  public Skill getSkil ()
   {
     return this.skil;
   }
-  
-  public ReentrantLock getLock()
+
+  public ReentrantLock getLock ()
   {
     return this.lock;
   }
-  
-  public int getArc()
+
+  public int getArc ()
   {
     return this.arc;
   }
-  
-  public void setArc(int arc)
+
+  public void setArc (int arc)
   {
     this.arc = arc;
   }
-  
-  public double getDamagePercent()
+
+  public double getDamagePercent ()
   {
     return this.DamagePercent;
   }
-  
-  public void InsertDamageIncrease(int key, int value)
+
+  public void InsertDamageIncrease (int key, int value)
   {
     if (this.damageIncrease.containsKey(key))
     {
@@ -10564,8 +10660,8 @@ public class PlayerStats
       this.damageIncrease.put(key, value);
     }
   }
-  
-  public void InsertIgIncrease(int key, int value)
+
+  public void InsertIgIncrease (int key, int value)
   {
     if (this.IgIncrease.containsKey(key))
     {
@@ -10584,8 +10680,8 @@ public class PlayerStats
       this.IgIncrease.put(key, value);
     }
   }
-  
-  public void InsertBossDamIncrease(int key, int value)
+
+  public void InsertBossDamIncrease (int key, int value)
   {
     if (this.BossDamIncrease.containsKey(key))
     {
@@ -10604,8 +10700,8 @@ public class PlayerStats
       this.BossDamIncrease.put(key, value);
     }
   }
-  
-  public int BeforeStatWatk(MapleCharacter chr)
+
+  public int BeforeStatWatk (MapleCharacter chr)
   {
     int a;
     short job = chr.getJob();
@@ -10622,8 +10718,8 @@ public class PlayerStats
     }
     return (int) Math.round(mas / 100.0 * (double) this.AfterStatWatk(chr));
   }
-  
-  public int AfterStatWatk(final MapleCharacter chr)
+
+  public int AfterStatWatk (final MapleCharacter chr)
   {
     int statwatk = 0;
     int mainstat = GameConstants.isWarrior(chr.getJob()) ? this.getTotalStr() : (GameConstants.isMagician(chr.getJob()) ? this.getTotalInt() : (GameConstants.isArcher(chr.getJob()) ? this.getTotalDex() : (GameConstants.isThief(chr.getJob()) ? this.getTotalLuk() : 0)));
@@ -10663,23 +10759,23 @@ public class PlayerStats
     }
     return statwatk;
   }
-  
-  public int getNomarbdR()
+
+  public int getNomarbdR ()
   {
     return this.NomarbdR;
   }
-  
-  public int getStarforce()
+
+  public int getStarforce ()
   {
     return this.starforce;
   }
-  
-  public void InsertFinalDamage(int dam)
+
+  public void InsertFinalDamage (int dam)
   {
     this.FinalDamage.add(dam);
   }
-  
-  public Pair<Long, Long> handleInnerSkills(MapleCharacter chra)
+
+  public Pair<Long, Long> handleInnerSkills (MapleCharacter chra)
   {
     long localmaxhp_ = 0L;
     long localmaxmp_ = 0L;
@@ -10982,13 +11078,13 @@ public class PlayerStats
     }
     return new Pair<Long, Long>(localmaxhp_, localmaxmp_);
   }
-  
-  public int getAttackSpeed()
+
+  public int getAttackSpeed ()
   {
     return this.attackSpeed;
   }
-  
-  public long test(final MapleCharacter chr, final MapleMonster mob, final int skillid)
+
+  public long test (final MapleCharacter chr, final MapleMonster mob, final int skillid)
   {
     long dam = 0L;
     final SecondaryStatEffect effect = SkillFactory.getSkill(skillid).getEffect(chr.getSkillLevel(skillid));

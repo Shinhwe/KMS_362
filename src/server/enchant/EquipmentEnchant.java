@@ -92,7 +92,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Luk, 8));
           stats.add(new Pair<>(EnchantFlag.Hp, 160));
           stats.add(new Pair<>(EnchantFlag.Mp, 160));
-          ess.add(new EquipmentScroll("70% 攻擊力卷軸", 2500, stats));
+          ess.add(new EquipmentScroll("70% 攻擊力卷軸", 3000, stats));
           stats.clear();
 
           stats.add(new Pair<>(EnchantFlag.Watk, 11));
@@ -102,7 +102,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Luk, 11));
           stats.add(new Pair<>(EnchantFlag.Hp, 220));
           stats.add(new Pair<>(EnchantFlag.Mp, 220));
-          ess.add(new EquipmentScroll("30% 攻擊力卷軸", 5000, stats));
+          ess.add(new EquipmentScroll("30% 攻擊力卷軸", 10000, stats));
           stats.clear();
 
           stats.add(new Pair<>(EnchantFlag.Watk, 15));
@@ -112,7 +112,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Luk, 15));
           stats.add(new Pair<>(EnchantFlag.Hp, 300));
           stats.add(new Pair<>(EnchantFlag.Mp, 300));
-          ess.add(new EquipmentScroll("10% 攻擊力卷軸", 10000, stats));
+          ess.add(new EquipmentScroll("10% 攻擊力卷軸", 20000, stats));
           stats.clear();
         }
         else
@@ -134,7 +134,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Luk, 8));
           stats.add(new Pair<>(EnchantFlag.Hp, 160));
           stats.add(new Pair<>(EnchantFlag.Mp, 160));
-          ess.add(new EquipmentScroll("70% 魔法攻擊力卷軸", 2500, stats));
+          ess.add(new EquipmentScroll("70% 魔法攻擊力卷軸", 3000, stats));
           stats.clear();
 
           stats.add(new Pair<>(EnchantFlag.Matk, 11));
@@ -144,7 +144,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Luk, 11));
           stats.add(new Pair<>(EnchantFlag.Hp, 220));
           stats.add(new Pair<>(EnchantFlag.Mp, 220));
-          ess.add(new EquipmentScroll("30% 魔法攻擊力卷軸", 5000, stats));
+          ess.add(new EquipmentScroll("30% 魔法攻擊力卷軸", 10000, stats));
           stats.clear();
 
           stats.add(new Pair<>(EnchantFlag.Matk, 15));
@@ -154,7 +154,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Luk, 15));
           stats.add(new Pair<>(EnchantFlag.Hp, 300));
           stats.add(new Pair<>(EnchantFlag.Mp, 300));
-          ess.add(new EquipmentScroll("10% 魔法攻擊力卷軸", 10000, stats));
+          ess.add(new EquipmentScroll("10% 魔法攻擊力卷軸", 20000, stats));
           stats.clear();
         }
       }
@@ -191,7 +191,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Avoid, 2));
           stats.add(new Pair<>(EnchantFlag.Acc, 2));
         }
-        ess.add(new EquipmentScroll("70% 攻擊力卷軸", 2500, stats));
+        ess.add(new EquipmentScroll("70% 攻擊力卷軸", 3000, stats));
         stats.clear();
 
         stats.add(new Pair<>(EnchantFlag.Watk, 6));
@@ -208,7 +208,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Avoid, 2));
           stats.add(new Pair<>(EnchantFlag.Acc, 2));
         }
-        ess.add(new EquipmentScroll("30% 攻擊力卷軸", 5000, stats));
+        ess.add(new EquipmentScroll("30% 攻擊力卷軸", 10000, stats));
         stats.clear();
 
         stats.add(new Pair<>(EnchantFlag.Watk, 9));
@@ -225,7 +225,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Avoid, 2));
           stats.add(new Pair<>(EnchantFlag.Acc, 2));
         }
-        ess.add(new EquipmentScroll("10% 攻擊力卷軸", 10000, stats));
+        ess.add(new EquipmentScroll("10% 攻擊力卷軸", 20000, stats));
         stats.clear();
 
         stats.add(new Pair<>(EnchantFlag.Matk, 2));
@@ -259,7 +259,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Avoid, 2));
           stats.add(new Pair<>(EnchantFlag.Acc, 2));
         }
-        ess.add(new EquipmentScroll("70% 魔法攻擊力卷軸", 2500, stats));
+        ess.add(new EquipmentScroll("70% 魔法攻擊力卷軸", 3000, stats));
         stats.clear();
 
         stats.add(new Pair<>(EnchantFlag.Matk, 6));
@@ -276,7 +276,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Avoid, 2));
           stats.add(new Pair<>(EnchantFlag.Acc, 2));
         }
-        ess.add(new EquipmentScroll("30% 魔法攻擊力卷軸", 5000, stats));
+        ess.add(new EquipmentScroll("30% 魔法攻擊力卷軸", 10000, stats));
         stats.clear();
 
         stats.add(new Pair<>(EnchantFlag.Matk, 9));
@@ -293,7 +293,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Avoid, 2));
           stats.add(new Pair<>(EnchantFlag.Acc, 2));
         }
-        ess.add(new EquipmentScroll("10% 魔法攻擊力卷軸", 10000, stats));
+        ess.add(new EquipmentScroll("10% 魔法攻擊力卷軸", 20000, stats));
         stats.clear();
       }
       ess.add(new EquipmentScroll("回真卷軸 50%", 5000, stats));
@@ -301,7 +301,7 @@ public class EquipmentEnchant
 
       if (equip.getFailUpgradeSlots() > 0)
       {
-        ess.add(new EquipmentScroll("純白的卷軸 10%", 3000, stats));
+        ess.add(new EquipmentScroll("純白的卷軸 15%", 3000, stats));
       }
     }
     return ess;
