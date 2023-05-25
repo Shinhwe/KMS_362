@@ -71,7 +71,10 @@ public final class MapleMap
   private final List<Point> willpoison = new ArrayList<>();
   public long lastStigmaTime = 0L;
   public long lastIncinerateTime = 0L;
-  public long burningIncreasetime = System.currentTimeMillis();
+  public long nextBurningLevelIncreaseTime = 0;
+
+  public long nextBurningLeveDecreaseTime = 0;
+
   public String[] name = new String[10];
   public int voteamount = 0;
   public int runeCurseTime = 0;
@@ -151,8 +154,12 @@ public final class MapleMap
   private int lvLimit = 0;
   private int permanentWeather = 0;
   private int partyBonusRate = 0;
-  private int burning = 15;
-  private int burningDecreasetime = 0;
+  private int burningLevel = 15;
+
+  private int maxBurningLevel = 15;
+  private int burningLevelDecreaseTime = 15 * 60 * 1000;
+
+  private int burningLevelIncreaseTime = 60 * 60 * 1000;
   private int runeCurse = 0;
   private int stigmaDeath = 0;
   private int BattleGroundTimer = 0;
@@ -1033,11 +1040,11 @@ public final class MapleMap
     {
       showdown += mse.getValue();
     }
-    MapleMonsterInformationProvider mi = MapleMonsterInformationProvider.getInstance();
+    MapleMonsterDropDataProvider mi = MapleMonsterDropDataProvider.getInstance();
 
     List<MonsterDropEntry> derp = new ArrayList<>();
 
-    derp.addAll(mi.retrieveDrop(mob.getId()));
+    derp.addAll(mi.getDropListByMonster(mob));
 
     if (mob.getStats().isBoss())
     {
@@ -1283,9 +1290,12 @@ public final class MapleMap
     for (MonsterDropEntry de : finals)
     {
       double d1 = 0;
+
       if (de.itemId == 0)
       {
-        d1 = 500000 + 500000 * (dropBuff / 400.0D);
+        d1 = de.chance + ((1000000 - de.chance) * (dropBuff / 400.0D));
+
+        System.out.println("掉落枫币概率计算, 概率 = " + d1);
       }
       else
       {
@@ -1296,6 +1306,7 @@ public final class MapleMap
       {
         d1 = Math.floor(d1 * 0.2D);
       }
+
       if (Randomizer.nextInt(1000000) <= (int) d1)
       {
         realfinals.add(de);
@@ -1303,6 +1314,9 @@ public final class MapleMap
     }
 
     int currentDropIndex = 0;
+
+    System.out.println("掉落计算结束, 掉落列表 = " + JSON.toJSONString(realfinals));
+
     if (realfinals != null && !realfinals.isEmpty())
     {
       Collections.shuffle(realfinals);
@@ -1498,7 +1512,7 @@ public final class MapleMap
       mesoBuff = Math.min(mesoBuff, 400.0D);
 
       mesos = (int) (mesos * mesoBuff / 100.0D * mesoRate);
-//            System.out.println("meso calc result, meso = " + mesos + "    mobLevel = " + mobLevel);
+      //            System.out.println("meso calc result, meso = " + mesos + "    mobLevel = " + mobLevel);
       if (mesos > 0)
       {
         if (GameConstants.isLinkMap(chr.getMapId()))
@@ -2562,7 +2576,7 @@ public final class MapleMap
         {
           setEliteCount(this.eliteCount + 1);
         }
-//                chr.checkLiveQuest(1, false);
+        //                chr.checkLiveQuest(1, false);
         if (chr.getKeyValue(51351, "startquestid") == 49012L || chr.getKeyValue(51351, "startquestid") == 49013L || chr.getKeyValue(51351, "startquestid") == 49014L)
         {
           int maxmob = (chr.getKeyValue(51351, "startquestid") == 49012L) ? 1 : ((chr.getKeyValue(51351, "startquestid") == 49013L) ? 2 : 3);
@@ -6479,10 +6493,10 @@ public final class MapleMap
       }
       broadcastMessage(CField.specialMapEffect(3, true, "Bgm36.img/HappyTimeShort", "Map/Map/Map9/924050000.img/back", "Effect/EliteMobEff.img/eliteBonusStage", "", ""));
     }
-    if (this.burning > 0 && getAllNormalMonstersThreadsafe().size() > 0 && !isTown() && !GameConstants.로미오줄리엣(getId()) && !GameConstants.사냥컨텐츠맵(getId()) && isSpawnPoint() && !GameConstants.isContentsMap(getId()))
+    if (this.burningLevel > 0 && getAllNormalMonstersThreadsafe().size() > 0 && !isTown() && !GameConstants.로미오줄리엣(getId()) && !GameConstants.사냥컨텐츠맵(getId()) && isSpawnPoint() && !GameConstants.isContentsMap(getId()))
     {
       chr.getClient().getSession().writeAndFlush(CField.playSound("Sound/FarmSE.img/boxResult"));
-      chr.getClient().getSession().writeAndFlush(CField.EffectPacket.showBurningFieldEffect("#fn나눔고딕 ExtraBold##fs26#          버닝 " + this.burning + "단계 : 경험치 " + (this.burning * 10) + "% 추가지급!!          "));
+      chr.getClient().getSession().writeAndFlush(CField.EffectPacket.showBurningFieldEffect("#fn나눔고딕 ExtraBold##fs26#          버닝 " + this.burningLevel + "단계 : 경험치 " + (this.burningLevel * 10) + "% 추가지급!!          "));
       if (chr.getKeyValue(51351, "startquestid") == 49011L)
       {
         chr.setKeyValue(51351, "queststat", "3");
@@ -6953,19 +6967,19 @@ public final class MapleMap
     if (first && spawnSize > 0)
     {
       this.lastSpawnTime = System.currentTimeMillis();
-//            if (this.barrierArc == 0 && this.barrierAut == 0 && getId() != 310070200 && getId() != 310070210 && getId() != 310070220) {
-//                this.createMobInterval = (short) (this.createMobInterval / 3);
-//            } else if (getId() != 450006000 && getId() != 450006010 && getId() != 450006020 && getId() != 450006030 && getId() != 450006040) {
-//                this.createMobInterval = (short) (this.createMobInterval - 2000);
-//            } else if (getId() == 450006000 || getId() == 450006010 || getId() == 450006020 || getId() == 450006030 || getId() == 450006040) {
-//                this.createMobInterval = (short) (this.createMobInterval + 2000);
-//            }
-//            if (GameConstants.isForceRespawn(this.mapid)) {
-//                this.createMobInterval = 15000;
-//            }
+      //            if (this.barrierArc == 0 && this.barrierAut == 0 && getId() != 310070200 && getId() != 310070210 && getId() != 310070220) {
+      //                this.createMobInterval = (short) (this.createMobInterval / 3);
+      //            } else if (getId() != 450006000 && getId() != 450006010 && getId() != 450006020 && getId() != 450006030 && getId() != 450006040) {
+      //                this.createMobInterval = (short) (this.createMobInterval - 2000);
+      //            } else if (getId() == 450006000 || getId() == 450006010 || getId() == 450006020 || getId() == 450006030 || getId() == 450006040) {
+      //                this.createMobInterval = (short) (this.createMobInterval + 2000);
+      //            }
+      //            if (GameConstants.isForceRespawn(this.mapid)) {
+      //                this.createMobInterval = 15000;
+      //            }
       respawn(false);
     }
-//        System.out.println("mapId = " + getId() + "    createMobInterval = " + createMobInterval);
+    //        System.out.println("mapId = " + getId() + "    createMobInterval = " + createMobInterval);
   }
 
   public SpawnPoint addMonsterSpawn (MapleMonster monster, int mobTime, byte carnivalTeam, String msg)
@@ -8195,35 +8209,6 @@ public final class MapleMap
     chr.setSoulMP((Equip) weapon);
   }
 
-  public int getBurning ()
-  {
-    return this.burning;
-  }
-
-  public void setBurning (int burning)
-  {
-    this.burning = burning;
-  }
-
-  public long getBurningIncreasetime ()
-  {
-    return this.burningIncreasetime;
-  }
-
-  public void setBurningIncreasetime (long burningtime)
-  {
-    this.burningIncreasetime = burningtime;
-  }
-
-  public int getBurningDecreasetime ()
-  {
-    return this.burningDecreasetime;
-  }
-
-  public void setBurningDecreasetime (int burningtime)
-  {
-    this.burningDecreasetime = burningtime;
-  }
 
   public List<Rectangle> makeRandomSplitAreas (Point position, Point lt, Point rb, int i, boolean b)
   {
@@ -8796,6 +8781,11 @@ public final class MapleMap
         break;
       }
     }
+  }
+
+  public int getBurningLevel ()
+  {
+    return this.burningLevel;
   }
 
   public void 하늘보상 ()
@@ -9542,30 +9532,56 @@ public final class MapleMap
       {
         if (MapleMap.this.getAllCharactersThreadsafe().size() == 0)
         {
-          if (MapleMap.this.getBurning() < 10)
+          // 地图没人
+          MapleMap.this.nextBurningLeveDecreaseTime = 0;
+
+          if (MapleMap.this.nextBurningLevelIncreaseTime > 0)
           {
-            if (time - MapleMap.this.getBurningIncreasetime() > 500000L)
+            if (time > MapleMap.this.nextBurningLevelIncreaseTime)
             {
-              MapleMap.this.setBurningIncreasetime(time);
-              MapleMap.this.setBurning(MapleMap.this.getBurning() + 1);
+
+              MapleMap.this.burningLevel += 1;
+
+              if (MapleMap.this.burningLevel < MapleMap.this.maxBurningLevel)
+              {
+                MapleMap.this.nextBurningLevelIncreaseTime = time + MapleMap.this.burningLevelIncreaseTime;
+              }
+              else
+              {
+                MapleMap.this.burningLevelIncreaseTime = 0;
+              }
             }
           }
-          else if (MapleMap.this.getBurning() == 10)
+          else if (MapleMap.this.burningLevel < MapleMap.this.maxBurningLevel)
           {
-            MapleMap.this.setBurningIncreasetime(time);
+            MapleMap.this.nextBurningLevelIncreaseTime = time + MapleMap.this.burningLevelIncreaseTime;
           }
         }
-        else if (MapleMap.this.getBurning() > 0 && time - MapleMap.this.getBurningIncreasetime() > 1200000L)
+        else
         {
-          MapleMap.this.setBurningIncreasetime(time);
-          MapleMap.this.setBurning(MapleMap.this.getBurning() - 1);
-          if (MapleMap.this.getBurning() > 0)
+          MapleMap.this.nextBurningLevelIncreaseTime = 0;
+
+          if (MapleMap.this.nextBurningLeveDecreaseTime > 0)
           {
-            MapleMap.this.broadcastMessage(CField.EffectPacket.showBurningFieldEffect("#fn나눔고딕 ExtraBold##fs26#          버닝 " + MapleMap.this.burning + "단계 : 경험치 " + (MapleMap.this.burning * 10) + "% 추가지급!!          "));
+            if (time > MapleMap.this.nextBurningLeveDecreaseTime)
+            {
+              MapleMap.this.burningLevel -= 1;
+
+              if (MapleMap.this.burningLevel > 0)
+              {
+                MapleMap.this.nextBurningLeveDecreaseTime = time + MapleMap.this.burningLevelDecreaseTime;
+                MapleMap.this.broadcastMessage(CField.EffectPacket.showBurningFieldEffect("#fn나눔고딕 ExtraBold##fs26#          버닝 " + MapleMap.this.burningLevel + "단계 : 경험치 " + (MapleMap.this.burningLevel * 10) + "% 추가지급!!          "));
+              }
+              else
+              {
+                MapleMap.this.nextBurningLeveDecreaseTime = 0;
+                MapleMap.this.broadcastMessage(CField.EffectPacket.showBurningFieldEffect("#fn나눔고딕 ExtraBold##fs26#          버닝필드 소멸!          "));
+              }
+            }
           }
-          else
+          else if (MapleMap.this.burningLevel > 0)
           {
-            MapleMap.this.broadcastMessage(CField.EffectPacket.showBurningFieldEffect("#fn나눔고딕 ExtraBold##fs26#          버닝필드 소멸!          "));
+            MapleMap.this.nextBurningLeveDecreaseTime = time + MapleMap.this.burningLevelDecreaseTime;
           }
         }
       }

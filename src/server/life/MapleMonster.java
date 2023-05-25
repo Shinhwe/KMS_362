@@ -1300,24 +1300,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
   
   private final void giveExpToCharacter(MapleCharacter attacker, long exp, boolean highestDamage, int numExpSharers, byte pty, byte Class_Bonus_EXP_PERCENT, byte Premium_Bonus_EXP_PERCENT, int lastskillID)
   {
-    int[] linkMobs = {
-        9010152, 9010153, 9010154, 9010155, 9010156, 9010157, 9010158, 9010159, 9010160, 9010161,
-        9010162, 9010163, 9010164, 9010165, 9010166, 9010167, 9010168, 9010169, 9010170, 9010171,
-        9010172, 9010173, 9010174, 9010175, 9010176, 9010177, 9010178, 9010179, 9010180, 9010181};
-    for (int linkMob : linkMobs)
-    {
-      if (getId() == linkMob)
-      {
-        double plus = 1.0E-4D;
-        plus *= (276 - attacker.getLevel()) * 0.025D;
-        exp = (int) (GameConstants.getExpNeededForLevel(attacker.getLevel()) * plus);
-      }
-    }
 
-//       if (attacker.getMapId() == 1 || attacker.getMapId() == 2 || attacker.getMapId() == 3 ) {
-//              exp *= 100000L;
-//          }
-    
     if (exp > 0L)
     {//레벨별 배율
       MonsterStatusEffect ms = getBuff(MonsterStatus.MS_Showdown);
@@ -1329,56 +1312,26 @@ public class MapleMonster extends AbstractLoadedMapleLife
       {
         exp /= 2L;
       }
-//            /* 1095 */ if (attacker.getLevel() <= 100) { // ~100까지
-//                /* 1096 */ exp *= 1000L; // 배율
-//                /* 1097 */            } else if (attacker.getLevel() <= 150) { // 101 ~ 150까지
-//                /* 1098 */ exp *= 1000L; // 배율
-//                /* 1099 */            } else if (attacker.getLevel() <= 200) {
-//                /* 1100 */ exp *= 1000L;
-//                /* 1101 */            } else if (attacker.getLevel() <= 210) {
-//                /* 1102 */ exp *= 70L;
-//                /* 1103 */            } else if (attacker.getLevel() <= 220) {
-//                /* 1104 */ exp *= 60L;
-//                /* 1105 */            } else if (attacker.getLevel() <= 230) {
-//                /* 1106 */ exp *= 50L;
-//                /* 1107 */            } else if (attacker.getLevel() <= 240) {
-//                /* 1108 */ exp *= 40L;
-//                /* 1109 */            } else if (attacker.getLevel() <= 250) {
-//                /* 1110 */ exp *= 30L;
-//                /* 1111 */            } else if (attacker.getLevel() <= 260) {
-//                /* 1112 */ exp *= 30L;
-//                /* 1113 */            } else if (attacker.getLevel() <= 270) {
-//                /* 1114 */ exp *= 20L;
-//                /* 1115 */            } else if (attacker.getLevel() <= 275) {
-//                /* 1116 */ exp *= 20L;
-//                /* 1117 */            } else if (attacker.getLevel() <= 285) {
-//                /* 1118 */ exp *= 15L;
-//                /* 1119 */            } else if (attacker.getLevel() <= 295) {
-//                /* 1120 */ exp *= 15L;
-//                /* 1121 */            } else if (attacker.getLevel() <= 300) {
-//                /* 1122 */ exp *= 10L;
-//            } else {
-//                /* 1124 */ exp *= 10L;
-//            }
       exp *= ((GameConstants.isPinkBean(attacker.getJob()) || GameConstants.isYeti(attacker.getJob())) ? 4L : 2L);
+
       if (!attacker.getBuffedValue(80002282) && attacker.getMap().getRuneCurse() > 0 && !GameConstants.보스맵(getMap().getId()) && !GameConstants.isContentsMap(getMap().getId()))
       {
         attacker.getClient().getSession().writeAndFlush(CField.runeCurse("룬을 해방하여 엘리트 보스의 저주를 풀어야 합니다!!\\n저주 " + attacker.getMap().getRuneCurse() + "단계 :  경험치 획득, 드롭률 " + attacker.getMap().getRuneCurseDecrease() + "% 감소 효과 적용 중", false));
         exp -= exp * attacker.getMap().getRuneCurseDecrease() / 100L;
       }
-      if (attacker.getLevel() >= 200)
-      {
-        int level = 20;
-        if (attacker.getMap().isSpawnPoint() && !getStats().isBoss() && (getStats().getLevel() - level > attacker.getLevel() || attacker.getLevel() > getStats().getLevel() + level))
-        {
-          exp -= exp * 80L / 100L;
-          if (attacker.getSkillCustomValue0(60524) == 0L)
-          {
-            attacker.setSkillCustomInfo(60524, 1L, 0L);
-            attacker.getClient().getSession().writeAndFlush(CField.UIPacket.detailShowInfo("레벨 범위를 벗어난 몬스터를 사냥 시 경험치와 메소 획득량이 크게 감소합니다.", 3, 20, 20));
-          }
-        }
-      }
+      // if (attacker.getLevel() >= 200)
+      // {
+      //   int level = 20;
+      //   if (attacker.getMap().isSpawnPoint() && !getStats().isBoss() && (getStats().getLevel() - level > attacker.getLevel() || attacker.getLevel() > getStats().getLevel() + level))
+      //   {
+      //     exp -= exp * 80L / 100L;
+      //     if (attacker.getSkillCustomValue0(60524) == 0L)
+      //     {
+      //       attacker.setSkillCustomInfo(60524, 1L, 0L);
+      //       attacker.getClient().getSession().writeAndFlush(CField.UIPacket.detailShowInfo("레벨 범위를 벗어난 몬스터를 사냥 시 경험치와 메소 획득량이 크게 감소합니다.", 3, 20, 20));
+      //     }
+      //   }
+      // }
       if (isBuffed(MonsterStatus.MS_SeperateSoulP) || isBuffed(MonsterStatus.MS_SeperateSoulC))
       {
         exp *= 2L;
@@ -1389,17 +1342,25 @@ public class MapleMonster extends AbstractLoadedMapleLife
       }
       if ((getId() >= 9830000 && getId() <= 9830018) || (getId() >= 9831000 && getId() <= 9831014))
       {
-        if (attacker.getLevel() <= 210)
+        if (attacker.getLevel() <= 150)
+        {
+          exp = (int) (GameConstants.getExpNeededForLevel(attacker.getLevel()) * 0.05D);
+        }
+        else if (attacker.getLevel() <= 200)
+        {
+          exp = (int) (GameConstants.getExpNeededForLevel(attacker.getLevel()) * 0.02D);
+        }
+        else if (attacker.getLevel() <= 210)
         {
           exp = (int) (GameConstants.getExpNeededForLevel(attacker.getLevel()) * 0.005D);
         }
         else if (attacker.getLevel() <= 230)
         {
-          exp = (int) (GameConstants.getExpNeededForLevel(attacker.getLevel()) * 1.0E-4D);
+          exp = (int) (GameConstants.getExpNeededForLevel(attacker.getLevel()) * 1.0E-5D);
         }
         else
         {
-          exp = (int) (GameConstants.getExpNeededForLevel(attacker.getLevel()) * 1.0E-5D);
+          exp = (int) (GameConstants.getExpNeededForLevel(attacker.getLevel()) * 1.0E-6D);
         }
       }
       exp *= attacker.getClient().getChannelServer().getExpRate();
@@ -3331,8 +3292,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
     int level = chr.getTotalSkillLevel(steal), chServerrate = ChannelServer.getInstance(chr.getClient().getChannel()).getDropRate();
     if (level > 0 && !getStats().isBoss() && this.stolen == -1 && steal.getEffect(level).makeChanceResult())
     {
-      MapleMonsterInformationProvider mi = MapleMonsterInformationProvider.getInstance();
-      List<MonsterDropEntry> de = mi.retrieveDrop(getId());
+      MapleMonsterDropDataProvider mi = MapleMonsterDropDataProvider.getInstance();
+      List<MonsterDropEntry> de = mi.getDropListByMonster(this);
       if (de == null)
       {
         this.stolen = 0;

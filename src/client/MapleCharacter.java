@@ -9175,7 +9175,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     Pair<Integer, Integer> burningExp = null;
     if (this.getMap().getAllNormalMonstersThreadsafe().size() > 0 && !this.getMap().isTown() && !GameConstants.로미오줄리엣(this.getMap().getId()) && !GameConstants.사냥컨텐츠맵(this.getId()) && this.getMap().isSpawnPoint())
     {
-      burningExp = new Pair<Integer, Integer>((int) (gain * this.getMap().getBurning() / 10L), this.getMap().getBurning() * 10);
+      burningExp = new Pair<Integer, Integer>((int) (gain * this.getMap().getBurningLevel() / 10L), this.getMap().getBurningLevel() * 10);
     }
     final int hpLiskExp = (int) (ServerConstants.HpLiskExp / 100.0 * gain);
     final int fieldBonusExp = (int) (ServerConstants.FieldBonusExp / 100.0 * gain);
@@ -9349,11 +9349,6 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       {
         this.client.getSession().writeAndFlush(CWvsContext.InfoPacket.GainEXP_Monster(this, gain, white, flag, eventBonusExp, weddingExp, partyExp, itemEquipExp, pcExp, rainbowWeekExp, boomupExp, portionExp, skillExp, buffExp, restExp, itemExp, valueExp, bonusExp, bloodExp, iceExp, burningExp, hpLiskExp, fieldBonusExp, eventBonusExp2, fieldBonusExp2));
       }
-    }
-    Iterator<Pair<SecondaryStat, SecondaryStatValueHolder>> effects = this.effects.iterator();
-    while (effects.hasNext())
-    {
-      Pair<SecondaryStat, SecondaryStatValueHolder> effect = effects.next();
     }
   }
 
@@ -9699,9 +9694,6 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     }
     this.meso += gain;
     final int jan = 0;
-    if (!monster || this.getGuild() != null)
-    {
-    }
     final Map<MapleStat, Long> statup = new EnumMap<MapleStat, Long>(MapleStat.class);
     statup.put(MapleStat.MESO, this.meso);
     if (isPet)
@@ -23983,7 +23975,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
           MapleCharacter.this.addKV("lastSudden", String.valueOf(System.currentTimeMillis() + 1000000000L));
         }
       }
-      if (MapleCharacter.this.getKeyValue(51351, "startquestid") == 49011L && MapleCharacter.this.getMap().getBurning() > 0 && MapleCharacter.this.getKeyValue(51351, "queststat") != 3L && !MapleCharacter.this.getMap().isTown() && !GameConstants.로미오줄리엣(MapleCharacter.this.getMapId()) && !GameConstants.사냥컨텐츠맵(MapleCharacter.this.getMapId()) && MapleCharacter.this.getMap().isSpawnPoint() && !GameConstants.isContentsMap(MapleCharacter.this.getMapId()))
+      if (MapleCharacter.this.getKeyValue(51351, "startquestid") == 49011L && MapleCharacter.this.getMap().getBurningLevel() > 0 && MapleCharacter.this.getKeyValue(51351, "queststat") != 3L && !MapleCharacter.this.getMap().isTown() && !GameConstants.로미오줄리엣(MapleCharacter.this.getMapId()) && !GameConstants.사냥컨텐츠맵(MapleCharacter.this.getMapId()) && MapleCharacter.this.getMap().isSpawnPoint() && !GameConstants.isContentsMap(MapleCharacter.this.getMapId()))
       {
         MapleCharacter.this.setKeyValue(51351, "queststat", "3");
         MapleCharacter.this.getClient().send(CWvsContext.updateSuddenQuest((int) MapleCharacter.this.getKeyValue(51351, "midquestid"), false, PacketHelper.getKoreanTimestamp(System.currentTimeMillis()) + 600000000L, "count=1;Quest=" + MapleCharacter.this.getKeyValue(51351, "startquestid") + ";state=3;"));

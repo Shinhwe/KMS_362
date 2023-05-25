@@ -1,8 +1,6 @@
 package handling;
 
 import client.MapleCharacter;
-import client.SecondaryStat;
-import client.SkillFactory;
 import client.inventory.AuctionHistory;
 import client.inventory.AuctionItem;
 import constants.KoreaCalendar;
@@ -17,7 +15,7 @@ import handling.farm.FarmServer;
 import handling.world.World;
 import handling.world.guild.MapleGuild;
 import server.games.BattleGroundGameHandler;
-import server.life.MapleMonsterInformationProvider;
+import server.life.MapleMonsterDropDataProvider;
 import tools.CurrentTime;
 import tools.packet.CField;
 import tools.packet.CWvsContext;
@@ -410,9 +408,7 @@ public class MapleSaveHandler implements Runnable
     if (time - this.lastClearDropTime >= 3600000L)
     {
       this.lastClearDropTime = time;
-      MapleMonsterInformationProvider.getInstance().clearDrops();
       AuctionServer.saveItems();
-      System.out.println("드롭 데이터를 초기화했습니다.");
     }
     
     

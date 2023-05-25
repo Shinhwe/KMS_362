@@ -3,12 +3,14 @@ package handling.channel.handler;
 import client.*;
 import client.inventory.*;
 import constants.GameConstants;
+import handling.world.MaplePartyCharacter;
 import server.MapleInventoryManipulator;
 import server.MapleItemInformationProvider;
 import server.Randomizer;
 import server.StructSetItem;
 import server.maps.FieldLimitType;
 import server.maps.MapleMapItem;
+import server.maps.MapleMapObjectType;
 import server.movement.LifeMovementFragment;
 import tools.data.LittleEndianAccessor;
 import tools.packet.CField;
@@ -21,7 +23,7 @@ import java.util.*;
 
 public class PetHandler
 {
-  public static void SpawnPet(final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
+  public static void SpawnPet (final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
   {
     slea.skip(4);
     final byte slot = slea.readByte();
@@ -68,8 +70,8 @@ public class PetHandler
     }
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
   }
-  
-  public static final void Pet_AutoPotion(final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
+
+  public static final void Pet_AutoPotion (final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
   {
     slea.skip(1);
     slea.readInt();
@@ -97,8 +99,8 @@ public class PetHandler
       }
     }
   }
-  
-  public static final void PetChat(final int petid, final short command, final String text, final MapleCharacter chr)
+
+  public static final void PetChat (final int petid, final short command, final String text, final MapleCharacter chr)
   {
     if (chr == null || chr.getMap() == null || chr.getPet(petid) == null)
     {
@@ -106,8 +108,8 @@ public class PetHandler
     }
     chr.getMap().broadcastMessage(chr, PetPacket.petChat(chr.getId(), command, text, (byte) petid), true);
   }
-  
-  public static final void PetCommand(final MaplePet pet, final PetCommand petCommand, final MapleClient c, final MapleCharacter chr)
+
+  public static final void PetCommand (final MaplePet pet, final PetCommand petCommand, final MapleClient c, final MapleCharacter chr)
   {
     if (petCommand == null)
     {
@@ -137,8 +139,8 @@ public class PetHandler
     }
     chr.getMap().broadcastMessage(PetPacket.commandResponse(chr.getId(), (byte) petCommand.getSkillId(), petIndex, success));
   }
-  
-  public static void PetFood(final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
+
+  public static void PetFood (final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
   {
     int previousFullness = 100;
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
@@ -203,8 +205,8 @@ public class PetHandler
       }
     }
   }
-  
-  public static final void MovePet(final LittleEndianAccessor slea, final MapleCharacter chr)
+
+  public static final void MovePet (final LittleEndianAccessor slea, final MapleCharacter chr)
   {
     final int petId = slea.readInt();
     slea.skip(13);
@@ -219,13 +221,56 @@ public class PetHandler
       Iterator<MapleMapItem> dropsIterator = chr.getMap().getAllItems().iterator();
       while (dropsIterator.hasNext())
       {
-        MapleMapItem mapleMapItem = dropsIterator.next();
-        if (mapleMapItem.getMeso() > 0)
+        MapleMapItem mapItem = dropsIterator.next();
+        if (mapItem.getMeso() > 0)
         {
-          chr.gainMeso(mapleMapItem.getMeso(), true, true, true, true);
-          mapleMapItem.setPickedUp(true);
-          chr.getMap().broadcastMessage(CField.removeItemFromMap(mapleMapItem.getObjectId(), 5, chr.getId(), 0));
-          chr.getMap().removeMapObject(mapleMapItem);
+          int meso = mapItem.getMeso();
+
+          if (chr.getParty() != null && mapItem.getOwner() != chr.getId())
+          {
+            LinkedList<MapleCharacter> toGive = new LinkedList<MapleCharacter>();
+
+            for (MaplePartyCharacter member : chr.getParty().getMembers())
+            {
+              MapleCharacter memberCharacter = member.getPlayer();
+
+              if (member.isOnline() && memberCharacter.isAlive() && memberCharacter.getMapId() == chr.getMapId())
+              {
+                toGive.add(memberCharacter);
+              }
+            }
+
+            int partySize = toGive.size();
+
+
+            if (partySize > 1)
+            {
+              meso = (int) Math.floor(meso * (1.2 + (partySize - 2) * 0.1d));
+            }
+
+            for (MapleCharacter member : toGive)
+            {
+              if (member.getId() == chr.getId())
+              {
+                member.gainMeso((long) Math.floor(meso * (0.4 + 0.6 / partySize)), true, false, true, true);
+              }
+              else
+              {
+                member.gainMeso((long) Math.floor(meso * 0.6 / partySize), true, false, true, true);
+              }
+            }
+          }
+          else
+          {
+            chr.gainMeso(meso, true, false, true, true);
+          }
+          if (mapItem.getDropper().getType() == MapleMapObjectType.MONSTER)
+          {
+            chr.getClient().getSession().writeAndFlush(CWvsContext.onMesoPickupResult(mapItem.getMeso()));
+          }
+          mapItem.setPickedUp(true);
+          chr.getMap().broadcastMessage(CField.removeItemFromMap(mapItem.getObjectId(), 5, chr.getId(), 0));
+          chr.getMap().removeMapObject(mapItem);
         }
       }
       pet.updatePosition(res);
@@ -237,8 +282,8 @@ public class PetHandler
       chr.setScrolledPosition((short) 0);
     }
   }
-  
-  public static void ChangePetBuff(final LittleEndianAccessor slea, final MapleCharacter chr)
+
+  public static void ChangePetBuff (final LittleEndianAccessor slea, final MapleCharacter chr)
   {
     final int type = slea.readInt();
     int skillsize = slea.readInt();
@@ -310,8 +355,8 @@ public class PetHandler
     chr.getClient().getSession().writeAndFlush(CWvsContext.InfoPacket.showPetSkills(2, "20=" + chr.getKeyValue(9999, "skillid5") + ";21=" + chr.getKeyValue(9999, "skillid6")));
     chr.getClient().getSession().writeAndFlush(PetPacket.updatePet(chr, pet, chr.getInventory(MapleInventoryType.CASH).getItem(pet.getInventoryPosition()), false, chr.getPetLoot()));
   }
-  
-  public static void petExceptionList(final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
+
+  public static void petExceptionList (final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
   {
     final int petindex = slea.readInt();
     final byte size = slea.readByte();
@@ -337,8 +382,8 @@ public class PetHandler
     pet.setExceptionList(list);
     c.getSession().writeAndFlush(PetPacket.petExceptionList(chr, pet));
   }
-  
-  public static void updatePetSkills(final MapleCharacter player, final MaplePet unequip)
+
+  public static void updatePetSkills (final MapleCharacter player, final MaplePet unequip)
   {
     final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     final Map<Skill, SkillEntry> newL = new HashMap<Skill, SkillEntry>();

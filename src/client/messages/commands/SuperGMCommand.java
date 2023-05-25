@@ -1645,8 +1645,6 @@ public class SuperGMCommand
   {
     public int execute(MapleClient c, String[] splitted)
     {
-      MapleMonsterInformationProvider.getInstance().clearDrops();
-      ReactorScriptManager.getInstance().clearDrops();
       return 1;
     }
   }

@@ -44,8 +44,8 @@ import java.util.*;
 
 public class InventoryHandler
 {
-  
-  public static final void ItemMove(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static final void ItemMove (final LittleEndianAccessor slea, final MapleClient c)
   {
     try
     {
@@ -78,8 +78,8 @@ public class InventoryHandler
       e.printStackTrace();
     }
   }
-  
-  public static final void SwitchBag(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static final void SwitchBag (final LittleEndianAccessor slea, final MapleClient c)
   {
     c.getPlayer().setScrolledPosition((short) 0);
     slea.readInt();
@@ -91,8 +91,8 @@ public class InventoryHandler
     }
     MapleInventoryManipulator.move(c, MapleInventoryType.ETC, src, dst);
   }
-  
-  public static final void MoveBag(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static final void MoveBag (final LittleEndianAccessor slea, final MapleClient c)
   {
     c.getPlayer().setScrolledPosition((short) 0);
     slea.readInt();
@@ -106,8 +106,8 @@ public class InventoryHandler
     final short src = slea.readShort();
     MapleInventoryManipulator.move(c, MapleInventoryType.ETC, srcFirst ? dst : src, srcFirst ? src : dst);
   }
-  
-  public static final void ItemSort(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static final void ItemSort (final LittleEndianAccessor slea, final MapleClient c)
   {
     slea.readInt();
     c.getPlayer().setScrolledPosition((short) 0);
@@ -142,8 +142,8 @@ public class InventoryHandler
     c.getSession().writeAndFlush(CWvsContext.InventoryPacket.moveInventoryItem(pInvType, updateSlots));
     c.getSession().writeAndFlush(CWvsContext.finishedSort(pInvType.getType()));
   }
-  
-  public static final void ItemGather(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static final void ItemGather (final LittleEndianAccessor slea, final MapleClient c)
   {
     slea.readInt();
     c.getPlayer().setScrolledPosition((short) 0);
@@ -169,8 +169,8 @@ public class InventoryHandler
     }
     c.getSession().writeAndFlush(CWvsContext.finishedGather(mode));
   }
-  
-  private static final List<Item> sortItems(final List<Item> passedMap)
+
+  private static final List<Item> sortItems (final List<Item> passedMap)
   {
     final List<Integer> itemIds = new ArrayList<Integer>();
     for (final Item item : passedMap)
@@ -193,8 +193,8 @@ public class InventoryHandler
     }
     return sortedList;
   }
-  
-  public static final boolean UseRewardItem(final short slot, final int itemId, final MapleClient c, final MapleCharacter chr)
+
+  public static final boolean UseRewardItem (final short slot, final int itemId, final MapleClient c, final MapleCharacter chr)
   {
     final Item toUse = c.getPlayer().getInventory(GameConstants.getInventoryType(itemId)).getItem(slot);
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
@@ -321,8 +321,8 @@ public class InventoryHandler
     }
     return false;
   }
-  
-  public static final void UseItem(final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
+
+  public static final void UseItem (final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
   {
     if (chr == null || !chr.isAlive() || chr.getBuffedEffect(SecondaryStat.DebuffIncHp) != null || chr.getMap() == null || chr.hasDisease(SecondaryStat.StopPortion) || chr.getBuffedValue(SecondaryStat.StopPortion) != null)
     {
@@ -362,8 +362,8 @@ public class InventoryHandler
       e.printStackTrace();
     }
   }
-  
-  public static final void UseReturnScroll(LittleEndianAccessor slea, MapleClient c, MapleCharacter chr)
+
+  public static final void UseReturnScroll (LittleEndianAccessor slea, MapleClient c, MapleCharacter chr)
   {
     if (!chr.isAlive() || chr.getMapId() == 749040100 || chr.inPVP())
     {
@@ -396,8 +396,8 @@ public class InventoryHandler
       c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
     }
   }
-  
-  public static void UseMagnify(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void UseMagnify (final LittleEndianAccessor slea, final MapleClient c)
   {
     try
     {
@@ -516,20 +516,20 @@ public class InventoryHandler
       e.printStackTrace();
     }
   }
-  
-  public static int potential(final int itemid, final int level)
+
+  public static int potential (final int itemid, final int level)
   {
     return potential(itemid, level, false);
   }
-  
-  public static int potential(final int itemid, final int level, final boolean editional)
+
+  public static int potential (final int itemid, final int level, final boolean editional)
   {
     final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     final int itemtype = itemid / 1000;
     return ii.getPotentialOptionID(Math.max(1, level), editional, itemtype);
   }
-  
-  public static void UseStamp(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void UseStamp (final LittleEndianAccessor slea, final MapleClient c)
   {
     slea.skip(4);
     final short slot = slea.readShort();
@@ -585,8 +585,8 @@ public class InventoryHandler
     c.getPlayer().getMap().broadcastMessage(CField.showPotentialReset(c.getPlayer().getId(), sucstamp, stamp.getItemId(), toStamp.getItemId()));
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
   }
-  
-  public static void UseEditionalStamp(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void UseEditionalStamp (final LittleEndianAccessor slea, final MapleClient c)
   {
     slea.skip(4);
     final short slot = slea.readShort();
@@ -626,8 +626,8 @@ public class InventoryHandler
     c.getPlayer().getMap().broadcastMessage(CField.showPotentialReset(c.getPlayer().getId(), sucstamp, stamp.getItemId(), toStamp.getItemId()));
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
   }
-  
-  public static void UseChooseCube(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void UseChooseCube (final LittleEndianAccessor slea, final MapleClient c)
   {
     slea.skip(4);
     final byte type = slea.readByte();
@@ -679,8 +679,8 @@ public class InventoryHandler
       c.getPlayer().forceReAddItem(equip, MapleInventoryType.EQUIP);
     }
   }
-  
-  public static final void addToScrollLog(final int accountID, final int charID, final int scrollID, final int itemID, final byte oldSlots, final byte newSlots, final byte viciousHammer, final String result, final boolean ws, final boolean ls, final int vega)
+
+  public static final void addToScrollLog (final int accountID, final int charID, final int scrollID, final int itemID, final byte oldSlots, final byte newSlots, final byte viciousHammer, final String result, final boolean ws, final boolean ls, final int vega)
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -750,8 +750,8 @@ public class InventoryHandler
       }
     }
   }
-  
-  public static void useSilverKarma(final LittleEndianAccessor slea, final MapleCharacter chr)
+
+  public static void useSilverKarma (final LittleEndianAccessor slea, final MapleCharacter chr)
   {
     slea.skip(4);
     final Item scroll = chr.getInventory(MapleInventoryType.USE).getItem(slea.readShort());
@@ -790,8 +790,8 @@ public class InventoryHandler
     chr.removeItem(scroll.getItemId(), -1);
     chr.getClient().getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, GameConstants.getInventoryType(toScroll.getItemId()), toScroll));
   }
-  
-  public static boolean UseUpgradeScroll(final RecvPacketOpcode header, final short slot, final short dst, final byte ws, final MapleClient c, final MapleCharacter chr)
+
+  public static boolean UseUpgradeScroll (final RecvPacketOpcode header, final short slot, final short dst, final byte ws, final MapleClient c, final MapleCharacter chr)
   {
     boolean whiteScroll = false;
     final boolean legendarySpirit = false;
@@ -853,7 +853,7 @@ public class InventoryHandler
     }
     if (scroll.getItemId() / 100 == 20496)
     {
-      if (scroll.getItemId() == 2049615 || scroll.getItemId() == 2049616 ||scroll.getItemId() ==2049618||scroll.getItemId() ==2049622||scroll.getItemId() ==2049625)
+      if (scroll.getItemId() == 2049615 || scroll.getItemId() == 2049616 || scroll.getItemId() == 2049618 || scroll.getItemId() == 2049622 || scroll.getItemId() == 2049625)
       {
         toScroll.完美回真();
       }
@@ -861,7 +861,7 @@ public class InventoryHandler
       {
         toScroll.普通回真();
       }
-      
+
       chr.getInventory(MapleInventoryType.USE).removeItem(scroll.getPosition());
       c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateScrollandItem(scroll, toScroll));
       c.getPlayer().getMap().broadcastMessage(c.getPlayer(), CField.getScrollEffect(c.getPlayer().getId(), Equip.ScrollResult.SUCCESS, legendarySpirit, scroll.getItemId(), toScroll.getItemId()), true);
@@ -882,8 +882,7 @@ public class InventoryHandler
       chr.dropMessage(1, "더 이상 강화할 수 없는 아이템입니다.");
       return false;
     }
-    if ((scroll.getItemId() == 2049166 || scroll.getItemId() == 2049167)
-        && !GameConstants.isWeapon(toScroll.getItemId()))
+    if ((scroll.getItemId() == 2049166 || scroll.getItemId() == 2049167) && !GameConstants.isWeapon(toScroll.getItemId()))
     {
       chr.dropMessage(1, "해당 아이템에 주문서를 사용할 수 없습니다.");
       chr.getClient().send(CWvsContext.enableActions(chr));
@@ -997,9 +996,9 @@ public class InventoryHandler
       return false;
     }
     final Equip scrolled = (Equip) ii.scrollEquipWithId(toScroll, scroll, whiteScroll, chr);
-    
+
     Equip.ScrollResult scrollSuccess;
-    
+
     if (scrolled == null)
     {
       scrollSuccess = Equip.ScrollResult.CURSE;
@@ -1134,8 +1133,8 @@ public class InventoryHandler
     c.getSession().writeAndFlush(CWvsContext.enableActions(chr));
     return true;
   }
-  
-  public static void UseEditionalScroll(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void UseEditionalScroll (final LittleEndianAccessor slea, final MapleClient c)
   {
     try
     {
@@ -1257,8 +1256,8 @@ public class InventoryHandler
       ex.printStackTrace();
     }
   }
-  
-  public static final boolean UseSkillBook(final short slot, final int itemId, final MapleClient c, final MapleCharacter chr)
+
+  public static final boolean UseSkillBook (final short slot, final int itemId, final MapleClient c, final MapleCharacter chr)
   {
     final Item toUse = chr.getInventory(GameConstants.getInventoryType(itemId)).getItem(slot);
     if (toUse == null || toUse.getQuantity() < 1 || toUse.getItemId() != itemId)
@@ -1311,8 +1310,8 @@ public class InventoryHandler
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
     return canuse;
   }
-  
-  public static final void UseCatchItem(final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
+
+  public static final void UseCatchItem (final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
   {
     slea.readInt();
     c.getPlayer().setScrolledPosition((short) 0);
@@ -1341,8 +1340,8 @@ public class InventoryHandler
     }
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
   }
-  
-  public static final void UseMountFood(final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
+
+  public static final void UseMountFood (final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
   {
     slea.readInt();
     final short slot = slea.readShort();
@@ -1369,8 +1368,8 @@ public class InventoryHandler
     }
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
   }
-  
-  public static final void UseScriptedNPCItem(final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
+
+  public static final void UseScriptedNPCItem (final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
   {
     final short slot = slea.readShort();
     final int itemId = slea.readInt();
@@ -1409,7 +1408,7 @@ public class InventoryHandler
           MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (short) 1, false);
           break;
         }
-        
+
         case 2430732:
         {
           int id = 0;
@@ -1514,7 +1513,7 @@ public class InventoryHandler
           MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (byte) 1, false);
           break;
         }
-        
+
         case 2433509:
         {
           NPCScriptManager.getInstance().startItem(c, 9000162, "consume_2433509");
@@ -1602,7 +1601,7 @@ public class InventoryHandler
           MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (byte) 1, false);
           break;
         }
-        
+
         case 2350000:
         {
           if (c.getCharacterSlots() >= 48)
@@ -2871,8 +2870,8 @@ public class InventoryHandler
     }
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
   }
-  
-  public static final void UseSummonBag(final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
+
+  public static final void UseSummonBag (final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
   {
     if (!chr.isAlive() || chr.inPVP())
     {
@@ -2910,8 +2909,8 @@ public class InventoryHandler
     }
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
   }
-  
-  public static final void UseCashItem(LittleEndianAccessor slea, MapleClient c)
+
+  public static final void UseCashItem (LittleEndianAccessor slea, MapleClient c)
   {
     int unk;
     short questid;
@@ -3065,7 +3064,7 @@ public class InventoryHandler
     {
       /* 2500 */
       c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
-      
+
       return;
     }
     /* 2504 */
@@ -3093,7 +3092,7 @@ public class InventoryHandler
         /* 2516 */
         if (itemId == 5150132)
         {
-          
+
           /* 2518 */
           if (c.getPlayer().getDressup() || (GameConstants.isZero(c.getPlayer().getJob()) && c.getPlayer().getGender() == 1))
           {
@@ -3124,7 +3123,7 @@ public class InventoryHandler
         }
         else if (itemId == 5153015)
         {
-          
+
           /* 2532 */
           if (c.getPlayer().getDressup() || (GameConstants.isZero(c.getPlayer().getJob()) && c.getPlayer().getGender() == 1))
           {
@@ -3155,7 +3154,7 @@ public class InventoryHandler
         }
         else if (itemId == 5152020)
         {
-          
+
           /* 2546 */
           if (c.getPlayer().getDressup() || (GameConstants.isZero(c.getPlayer().getJob()) && c.getPlayer().getGender() == 1))
           {
@@ -3188,7 +3187,7 @@ public class InventoryHandler
         /* 2560 */
         c.send(CWvsContext.enableActions(c.getPlayer()));
         return;
-      
+
       case 5043000:
       case 5043001:
         /* 2565 */
@@ -3197,7 +3196,7 @@ public class InventoryHandler
         npcid = slea.readInt();
         /* 2567 */
         quest = MapleQuest.getInstance(questid);
-        
+
         /* 2569 */
         if (c.getPlayer().getQuest(quest).getStatus() == 1 && quest.canComplete(c.getPlayer(), Integer.valueOf(npcid)))
         {
@@ -3222,7 +3221,7 @@ public class InventoryHandler
           c.getPlayer().dropMessage(1, "Unknown error has occurred.");
         }
         break;
-      
+
       case 2320000:
       case 5040000:
       case 5040001:
@@ -3234,14 +3233,14 @@ public class InventoryHandler
         /* 2591 */
         used = UseTeleRock(slea, c, itemId);
         break;
-      
+
       case 5450005:
         /* 2595 */
         c.getPlayer().setConversation(4);
         /* 2596 */
         c.getPlayer().getStorage().sendStorage(c, 1022005);
         break;
-      
+
       case 5050000:
         /* 2600 */
         statupdate = new EnumMap<>(MapleStat.class);
@@ -3249,7 +3248,7 @@ public class InventoryHandler
         apto = slea.readInt();
         /* 2602 */
         apfrom = slea.readInt();
-        
+
         /* 2604 */
         if (apto == apfrom)
         {
@@ -3261,7 +3260,7 @@ public class InventoryHandler
         playerst = c.getPlayer().getStat();
         /* 2609 */
         used = true;
-        
+
         /* 2611 */
         switch (apto)
         {
@@ -3388,7 +3387,7 @@ public class InventoryHandler
               /* 2682 */
               statupdate.put(MapleStat.STR, Long.valueOf(i8));
               break;
-            
+
             case 128:
               /* 2686 */
               i8 = playerst.getDex() + 1;
@@ -3397,7 +3396,7 @@ public class InventoryHandler
               /* 2688 */
               statupdate.put(MapleStat.DEX, Long.valueOf(i8));
               break;
-            
+
             case 256:
               /* 2692 */
               i8 = playerst.getInt() + 1;
@@ -3406,7 +3405,7 @@ public class InventoryHandler
               /* 2694 */
               statupdate.put(MapleStat.INT, Long.valueOf(i8));
               break;
-            
+
             case 512:
               /* 2698 */
               i8 = playerst.getLuk() + 1;
@@ -3415,7 +3414,7 @@ public class InventoryHandler
               /* 2700 */
               statupdate.put(MapleStat.LUK, Long.valueOf(i8));
               break;
-            
+
             case 2048:
               /* 2704 */
               l2 = playerst.getMaxHp();
@@ -3475,11 +3474,11 @@ public class InventoryHandler
               /* 2725 */
               statupdate.put(MapleStat.MAXHP, Long.valueOf(l2));
               break;
-            
+
             case 8192:
               /* 2729 */
               maxmp = playerst.getMaxMp();
-              
+
               /* 2731 */
               if (GameConstants.isBeginnerJob(job)) /* 2732 */
               {
@@ -3536,7 +3535,7 @@ public class InventoryHandler
               /* 2754 */
               statupdate.put(MapleStat.STR, Long.valueOf(toSet));
               break;
-            
+
             case 128:
               /* 2758 */
               toSet = playerst.getDex() - 1;
@@ -3545,7 +3544,7 @@ public class InventoryHandler
               /* 2760 */
               statupdate.put(MapleStat.DEX, Long.valueOf(toSet));
               break;
-            
+
             case 256:
               /* 2764 */
               toSet = playerst.getInt() - 1;
@@ -3554,7 +3553,7 @@ public class InventoryHandler
               /* 2766 */
               statupdate.put(MapleStat.INT, Long.valueOf(toSet));
               break;
-            
+
             case 512:
               /* 2770 */
               toSet = playerst.getLuk() - 1;
@@ -3563,7 +3562,7 @@ public class InventoryHandler
               /* 2772 */
               statupdate.put(MapleStat.LUK, Long.valueOf(toSet));
               break;
-            
+
             case 2048:
               /* 2776 */
               maxhp = playerst.getMaxHp();
@@ -3671,7 +3670,7 @@ public class InventoryHandler
           c.getSession().writeAndFlush(CWvsContext.updatePlayerStats(statupdate, false, c.getPlayer()));
         }
         break;
-      
+
       case 5050001:
       case 5050002:
       case 5050003:
@@ -3707,7 +3706,7 @@ public class InventoryHandler
           {
             /* 2843 */
             c.getPlayer().dropMessage(1, "You may not add this skill.");
-            
+
             return;
           }
         }
@@ -3715,7 +3714,7 @@ public class InventoryHandler
         skillSPTo = SkillFactory.getSkill(skill1);
         /* 2849 */
         skillSPFrom = SkillFactory.getSkill(skill2);
-        
+
         /* 2851 */
         if (skillSPTo.isBeginnerSkill() || skillSPFrom.isBeginnerSkill())
         {
@@ -3728,10 +3727,10 @@ public class InventoryHandler
         {
           /* 2856 */
           c.getPlayer().dropMessage(1, "You may not add different job skills.");
-          
+
           break;
         }
-        
+
         /* 2863 */
         if (c.getPlayer().getSkillLevel(skillSPTo) + 1 <= skillSPTo.getMaxLevel() && c.getPlayer().getSkillLevel(skillSPFrom) > 0 && skillSPTo.canBeLearnedBy(c.getPlayer()))
         {
@@ -3798,7 +3797,7 @@ public class InventoryHandler
           used = true;
         }
         break;
-      
+
       case 5062800:
       case 5062801:
         /* 2905 */
@@ -3902,7 +3901,7 @@ public class InventoryHandler
           /* 2947 */
           newValues.add(ivholder3);
         }
-        
+
         /* 2950 */
         (c.getPlayer()).innerCirculator = newValues;
         /* 2951 */
@@ -3910,17 +3909,14 @@ public class InventoryHandler
         /* 2952 */
         used = true;
         break;
-      
+
       case 5060048:
         /* 2956 */
-        if (c.getPlayer().getInventory(MapleInventoryType.EQUIP).getNumFreeSlot() > 0
-            && /* 2957 */ c.getPlayer().getInventory(MapleInventoryType.USE).getNumFreeSlot() >= 2
-            && /* 2958 */ c.getPlayer().getInventory(MapleInventoryType.SETUP).getNumFreeSlot() > 0
-            && /* 2959 */ c.getPlayer().getInventory(MapleInventoryType.ETC).getNumFreeSlot() > 0)
+        if (c.getPlayer().getInventory(MapleInventoryType.EQUIP).getNumFreeSlot() > 0 && /* 2957 */ c.getPlayer().getInventory(MapleInventoryType.USE).getNumFreeSlot() >= 2 && /* 2958 */ c.getPlayer().getInventory(MapleInventoryType.SETUP).getNumFreeSlot() > 0 && /* 2959 */ c.getPlayer().getInventory(MapleInventoryType.ETC).getNumFreeSlot() > 0)
         {
           /* 2960 */
           boolean fromSpecial = Randomizer.isSuccess(ServerConstants.SgoldappleSuc);
-          
+
           /* 2962 */
           List<Triple<Integer, Integer, Integer>> list = ServerConstants.goldapple;
           /* 2963 */
@@ -3929,12 +3925,12 @@ public class InventoryHandler
             /* 2964 */
             list = ServerConstants.Sgoldapple;
           }
-          
+
           /* 2967 */
           int itemid = 0, count = 0;
           /* 2968 */
           double bestValue = Double.MAX_VALUE;
-          
+
           /* 2970 */
           for (Triple<Integer, Integer, Integer> element : list)
           {
@@ -3961,7 +3957,7 @@ public class InventoryHandler
             /* 2981 */
             Item item13 = new Item(itemid, (short) 0, (short) count);
             MapleItemInformationProvider mapleItemInformationProvider = MapleItemInformationProvider.getInstance();
-            
+
             /* 2983 */
             if (GameConstants.isPet(itemid))
             {
@@ -3979,14 +3975,14 @@ public class InventoryHandler
               /* 2992 */
               item13.setUniqueId(MapleInventoryIdentifier.getInstance());
             }
-            
+
             /* 2998 */
             MapleInventoryManipulator.addbyItem(c, item13);
             /* 2999 */
             c.getSession().writeAndFlush(CWvsContext.goldApple(item13, toUse));
             /* 3000 */
             c.getPlayer().gainItem(2435458, 1);
-            
+
             /* 3002 */
             used = true;
             /* 3003 */
@@ -3998,7 +3994,7 @@ public class InventoryHandler
           }
         }
         break;
-      
+
       case 5155000:
       case 5155004:
       case 5155005:
@@ -4069,7 +4065,7 @@ public class InventoryHandler
         /* 3053 */
         used = true;
         break;
-      
+
       case 5155001:
         /* 3057 */
         if (GameConstants.isKaiser(c.getPlayer().getJob()))
@@ -4094,7 +4090,7 @@ public class InventoryHandler
         /* 3066 */
         c.getPlayer().dropMessage(5, "드래곤 테일 쉬프트는 카이저에게만 효과가 있는것 같다.");
         break;
-      
+
       case 5500000:
         /* 3071 */
         item3 = c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(slea.readShort());
@@ -4133,7 +4129,7 @@ public class InventoryHandler
           c.getPlayer().dropMessage(1, "It may not be used on this item.");
         }
         break;
-      
+
       case 5500001:
         /* 3092 */
         item3 = c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(slea.readShort());
@@ -4172,7 +4168,7 @@ public class InventoryHandler
           c.getPlayer().dropMessage(1, "It may not be used on this item.");
         }
         break;
-      
+
       case 5500002:
         /* 3113 */
         item3 = c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(slea.readShort());
@@ -4211,7 +4207,7 @@ public class InventoryHandler
           c.getPlayer().dropMessage(1, "It may not be used on this item.");
         }
         break;
-      
+
       case 5500005:
         /* 3134 */
         item3 = c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(slea.readShort());
@@ -4250,7 +4246,7 @@ public class InventoryHandler
           c.getPlayer().dropMessage(1, "It may not be used on this item.");
         }
         break;
-      
+
       case 5044000:
       case 5044001:
       case 5044002:
@@ -4273,7 +4269,7 @@ public class InventoryHandler
         target = c.getChannelServer().getMapFactory().getMap(mapid);
         /* 3167 */
         c.getPlayer().changeMap(target, target.getPortal(0));
-        
+
         /* 3169 */
         if (ItemFlag.KARMA_USE.check(toUse.getFlag()))
         {
@@ -4283,7 +4279,7 @@ public class InventoryHandler
           c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.CASH, toUse));
         }
         break;
-      
+
       case 5500006:
         /* 3176 */
         item2 = c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(slea.readShort());
@@ -4322,7 +4318,7 @@ public class InventoryHandler
           c.getPlayer().dropMessage(1, "It may not be used on this item.");
         }
         break;
-      
+
       case 5064200:
         /* 3198 */
         slea.skip(4);
@@ -4356,7 +4352,7 @@ public class InventoryHandler
         /* 3230 */
         c.getPlayer().dropMessage(1, "널 오류가 발생했습니다. 오류게시판에 어떤아이템을 사용하셨는지 자세히 설명해주세요.");
         break;
-      
+
       case 5060000:
         /* 3235 */
         item1 = c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(slea.readShort());
@@ -4388,7 +4384,7 @@ public class InventoryHandler
           }
         }
         break;
-      
+
       case 5062500:
         /* 3252 */
         up = false;
@@ -4413,7 +4409,7 @@ public class InventoryHandler
           /* 3262 */
           if (c.getPlayer().getInventory(MapleInventoryType.USE).getNumFreeSlot() >= 1)
           {
-            
+
             /* 3264 */
             int level = 0;
             /* 3265 */
@@ -4466,7 +4462,7 @@ public class InventoryHandler
                 equip.setPotential6(EdiCubeOption.getEdiCubePotentialId(item10.getItemId(), level, 3, equip.getPotential4(), equip.getPotential5()));
               }
             }
-            
+
             /* 3291 */
             if (GameConstants.isZeroWeapon(equip.getItemId()))
             {
@@ -4485,7 +4481,7 @@ public class InventoryHandler
                 c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, zeroequip));
               }
             }
-            
+
             /* 3301 */
             c.getSession().writeAndFlush(CField.getEditionalCubeStart(c.getPlayer(), item10, up, itemId, c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
             /* 3302 */
@@ -4496,7 +4492,7 @@ public class InventoryHandler
             MapleInventoryManipulator.addById(c, 2430915, (short) 1, null, null, 0L, "Reward item: " + itemId + " on " + FileoutputUtil.CurrentReadable_Date());
             /* 3305 */
             used = true;
-            
+
             /* 3306 */
             c.getPlayer().gainMeso(-GameConstants.getCubeMeso(equip.getItemId()), false);
             break;
@@ -4505,7 +4501,7 @@ public class InventoryHandler
           c.getPlayer().dropMessage(5, "소비 아이템 여유 공간이 부족하여 잠재능력 재설정을 실패하였습니다.");
         }
         break;
-      
+
       case 5062503:
         /* 3315 */
         i = slea.readInt();
@@ -4524,7 +4520,7 @@ public class InventoryHandler
         {
           /* 3322 */
           Equip eq = (Equip) item8;
-          
+
           /* 3324 */
           Equip neq = (Equip) eq.copy();
           /* 3325 */
@@ -4568,18 +4564,18 @@ public class InventoryHandler
                 neq.setPotential6(EdiCubeOption.getEdiCubePotentialId(item8.getItemId(), level, 3, neq.getPotential4(), neq.getPotential5()));
               }
             }
-            
+
             /* 3346 */
             c.getPlayer().gainMeso(-GameConstants.getCubeMeso(neq.getItemId()), false);
-            
+
             /* 3348 */
             c.getSession().writeAndFlush(CField.getWhiteCubeStart(c.getPlayer(), neq, bool4, 5062503, c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
             /* 3349 */
             c.getPlayer().getMap().broadcastMessage(CField.getBlackCubeEffect(c.getPlayer().getId(), bool4, 5062503, neq.getItemId()));
-            
+
             /* 3351 */
             (c.getPlayer()).choicePotential = neq;
-            
+
             /* 3353 */
             if ((c.getPlayer()).memorialcube == null)
             {
@@ -4597,9 +4593,9 @@ public class InventoryHandler
         /* 3361 */
         c.getPlayer().dropMessage(5, "소비 인벤토리의 공간이 부족하여 잠재 설정을 할 수 없습니다.");
         break;
-      
+
       case 5062009:
-      { //레드 큐브
+      { // 레드 큐브
         ii = MapleItemInformationProvider.getInstance();
         pos = slea.readInt();
         item = c.getPlayer().getInventory(pos < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP).getItem((short) pos);
@@ -4651,7 +4647,7 @@ public class InventoryHandler
           eq.setPotential3(eq.getPotential3() != 0 ? potential(item.getItemId(), ((level == 1) || (Randomizer.nextInt(100) < 1)) ? level : (level - 1)) : 0);
           eq.setLines((byte) (eq.getPotential3() > 0 ? 3 : 2));
           c.getPlayer().gainMeso(-GameConstants.getCubeMeso(eq.getItemId()), false);
-          
+
           if (GameConstants.isZeroWeapon(eq.getItemId()))
           {
             Equip zeroequip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
@@ -4665,11 +4661,11 @@ public class InventoryHandler
               c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, zeroequip));
             }
           }
-          
+
           c.getPlayer().forceReAddItem(item, pos < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
           c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, itemId, eq.getItemId()));
           c.getSession().writeAndFlush(CField.getRedCubeStart(c.getPlayer(), item, up, itemId, c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
-//                    c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+          //                    c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
           used = true;
         }
         else
@@ -4678,7 +4674,7 @@ public class InventoryHandler
         }
         break;
       }
-      
+
       case 5062010:
         /* 3517 */
         mapleItemInformationProvider1 = MapleItemInformationProvider.getInstance();
@@ -4773,20 +4769,20 @@ public class InventoryHandler
                 neq.setPotential3(CubeOption.getBlackCubePotentialId(item9.getItemId(), level, 3, neq.getPotential1(), neq.getPotential2()));
               }
             }
-            
+
             /* 3560 */
             neq.setLines((byte) ((neq.getPotential3() > 0) ? 3 : 2));
             /* 3561 */
             c.getPlayer().gainMeso(-GameConstants.getCubeMeso(neq.getItemId()), false);
-            
+
             /* 3563 */
             c.getSession().writeAndFlush(CField.getBlackCubeStart(c.getPlayer(), neq, bool5, 5062010, toUse.getPosition(), c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
             /* 3564 */
             c.getPlayer().getMap().broadcastMessage(CField.getBlackCubeEffect(c.getPlayer().getId(), bool5, 5062010, neq.getItemId()));
-            
+
             /* 3566 */
             (c.getPlayer()).choicePotential = neq;
-            
+
             /* 3568 */
             if ((c.getPlayer()).memorialcube == null)
             {
@@ -4804,9 +4800,9 @@ public class InventoryHandler
         /* 3576 */
         c.getPlayer().dropMessage(5, "소비 인벤토리의 공간이 부족하여 잠재 설정을 할 수 없습니다.");
         break;
-      
-      
-      case 5062005://어메이징 미라클 큐브
+
+
+      case 5062005:// 어메이징 미라클 큐브
         /* 3432 */
         pos = slea.readInt();
         /* 3433 */
@@ -4841,8 +4837,8 @@ public class InventoryHandler
           c.getPlayer().getMap().broadcastMessage(CField.showPotentialReset(c.getPlayer().getId(), true, itemId, eq.getItemId()));
           c.getPlayer().forceReAddItem_NoUpdate(item7, MapleInventoryType.EQUIP);
           used = true;
-          
-          
+
+
           /* 3453 */
           if (GameConstants.isZeroWeapon(eq.getItemId()))
           {
@@ -4878,7 +4874,7 @@ public class InventoryHandler
         /* 3469 */
         c.getPlayer().getMap().broadcastMessage(CField.showPotentialReset(c.getPlayer().getId(), false, itemId, 0));
         break;
-      
+
       case 5062006:
         /* 3475 */
         pos = slea.readInt();
@@ -4957,12 +4953,12 @@ public class InventoryHandler
         /* 3512 */
         c.getPlayer().getMap().broadcastMessage(CField.showPotentialReset(c.getPlayer().getId(), false, itemId, 0));
         break;
-      
-      
+
+
       case 5152300:
         /* 3581 */
-        forbiddenFaces = new int[]{22100, 22200, 22300, 22400, 22500, 22600, 22700, 22800};
-        
+        forbiddenFaces = new int[] { 22100, 22200, 22300, 22400, 22500, 22600, 22700, 22800 };
+
         for (int face : forbiddenFaces)
         {
           if (c.getPlayer().getFace() == face)
@@ -4972,7 +4968,7 @@ public class InventoryHandler
             return;
           }
         }
-        
+
         /* 3590 */
         bool1 = (slea.readByte() == 1);
         /* 3591 */
@@ -4981,12 +4977,12 @@ public class InventoryHandler
         isAlphaBeta = (slea.readByte() == 1);
         /* 3593 */
         slea.readByte();
-        
+
         /* 3595 */
         ordinaryColor = slea.readInt();
         /* 3596 */
         addColor = slea.readInt();
-        
+
         /* 3598 */
         i6 = (c.getPlayer().getFace() < 100000) ? c.getPlayer().getFace() : (c.getPlayer().getFace() / 1000);
         /* 3599 */
@@ -4997,10 +4993,10 @@ public class InventoryHandler
         }
         /* 3602 */
         i6 = i6 - i6 % 1000 + i6 % 100 + ordinaryColor * 100;
-        
+
         /* 3604 */
         newFace = i6 * 1000 + addColor * 100 + slea.readInt();
-        
+
         /* 3606 */
         if (bool1)
         {
@@ -5034,7 +5030,7 @@ public class InventoryHandler
           /* 3618 */
           c.getPlayer().updateSingleStat(MapleStat.FACE, newFace);
         }
-        
+
         /* 3621 */
         c.getSession().writeAndFlush(CWvsContext.mixLense(itemId, i6, newFace, bool1, bool3, isAlphaBeta, c.getPlayer()));
         /* 3622 */
@@ -5042,11 +5038,11 @@ public class InventoryHandler
         /* 3623 */
         used = true;
         break;
-      
+
       case 5152301:
         /* 3627 */
-        forbiddenFaces = new int[]{22100, 22200, 22300, 22400, 22500, 22600, 22700, 22800};
-        
+        forbiddenFaces = new int[] { 22100, 22200, 22300, 22400, 22500, 22600, 22700, 22800 };
+
         for (int face : forbiddenFaces)
         {
           if (c.getPlayer().getFace() == face)
@@ -5056,7 +5052,7 @@ public class InventoryHandler
             return;
           }
         }
-        
+
         /* 3636 */
         dressUp = (slea.readByte() == 1);
         /* 3637 */
@@ -5065,7 +5061,7 @@ public class InventoryHandler
         isAlphaBeta = (slea.readByte() == 1);
         /* 3639 */
         baseFace = (c.getPlayer().getFace() < 100000) ? c.getPlayer().getFace() : (c.getPlayer().getFace() / 1000);
-        
+
         /* 3641 */
         i4 = Randomizer.nextInt(8);
         /* 3642 */
@@ -5076,16 +5072,16 @@ public class InventoryHandler
           /* 3644 */
           i5 = Randomizer.nextInt(8);
         }
-        
+
         /* 3647 */
         baseFace = baseFace - baseFace % 1000 + baseFace % 100 + i4 * 100;
-        
+
         /* 3649 */
         newFace = baseFace * 1000 + i5 * 100 + Randomizer.rand(1, 99);
-        
+
         /* 3651 */
         c.getSession().writeAndFlush(CWvsContext.mixLense(itemId, baseFace, newFace, dressUp, isBeta, isAlphaBeta, c.getPlayer()));
-        
+
         /* 3653 */
         if (dressUp)
         {
@@ -5125,22 +5121,21 @@ public class InventoryHandler
           /* 3668 */
           c.getPlayer().updateSingleStat(MapleStat.FACE, newFace);
         }
-        
+
         /* 3671 */
         c.getPlayer().equipChanged();
         /* 3672 */
         used = true;
         break;
-      
+
       case 5521000:
         /* 3676 */
         mapleInventoryType2 = MapleInventoryType.getByType((byte) slea.readInt());
         /* 3677 */
         item6 = c.getPlayer().getInventory(mapleInventoryType2).getItem((short) slea.readInt());
-        
+
         /* 3679 */
-        if (item6 != null && !ItemFlag.TRADEABLE_ONETIME_EQUIP.check(item6.getFlag())
-            && /* 3680 */ MapleItemInformationProvider.getInstance().isShareTagEnabled(item6.getItemId()))
+        if (item6 != null && !ItemFlag.TRADEABLE_ONETIME_EQUIP.check(item6.getFlag()) && /* 3680 */ MapleItemInformationProvider.getInstance().isShareTagEnabled(item6.getItemId()))
         {
           /* 3681 */
           int i8 = item6.getFlag();
@@ -5165,10 +5160,10 @@ public class InventoryHandler
         }
         break;
 
-//5000930, 5000931, 5000932,5002079,5002080,5002081,5002254,5002255,5002256
-      case 5069100://루나 크리스탈
-        wonderblack = new int[]{5000762, 5000763, 5000764, 5000790, 5000791, 5000792, 5000918, 5000919, 5000920, 5000933, 5000934, 5000935, 5000963, 5000964, 5000965, 5002033, 5002034, 5002035, 5002082, 5002083, 5002084, 5002137, 5002138, 5002139, 5002161, 5002162, 5002163, 5002186, 5002187, 5002188, 5002200, 5002201, 5002202, 5002226, 5002227, 5002228};
-        luna = new int[]{5000930, 5000931, 5000932, 5002079, 5002080, 5002081, 5002254, 5002255, 5002256};
+      // 5000930, 5000931, 5000932,5002079,5002080,5002081,5002254,5002255,5002256
+      case 5069100:// 루나 크리스탈
+        wonderblack = new int[] { 5000762, 5000763, 5000764, 5000790, 5000791, 5000792, 5000918, 5000919, 5000920, 5000933, 5000934, 5000935, 5000963, 5000964, 5000965, 5002033, 5002034, 5002035, 5002082, 5002083, 5002084, 5002137, 5002138, 5002139, 5002161, 5002162, 5002163, 5002186, 5002187, 5002188, 5002200, 5002201, 5002202, 5002226, 5002227, 5002228 };
+        luna = new int[] { 5000930, 5000931, 5000932, 5002079, 5002080, 5002081, 5002254, 5002255, 5002256 };
         slea.skip(4);
         baseslot = slea.readShort();
         slea.skip(12);
@@ -5180,18 +5175,18 @@ public class InventoryHandler
         {
           return;
         }
-        
+
         MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.CASH, baseitem.getPosition(), (short) 1, false);
         MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.CASH, usingitem.getPosition(), (short) 1, false);
-        
+
         random = new ArrayList<>();
-        
+
         event = (Calendar.getInstance().get(7) == 3);
         sp = false;
-        
+
         maplePet3 = null;
         item12 = null;
-        
+
         if (basegrade == 1)
         {
           random.add(new Pair(Integer.valueOf(1), Integer.valueOf(9140 + (event ? -500 : 0))));
@@ -5204,10 +5199,10 @@ public class InventoryHandler
           random.add(new Pair(Integer.valueOf(2), Integer.valueOf(1140 + (event ? 500 : 0))));
           random.add(new Pair(Integer.valueOf(3), Integer.valueOf(400)));
         }
-        
+
         i7 = GameConstants.getWeightedRandom(random);
         itemidselect = 0;
-        
+
         if (i7 == 1 || i7 == 2)
         {
           itemidselect = wonderblack[Randomizer.rand(0, wonderblack.length - 1)];
@@ -5226,7 +5221,7 @@ public class InventoryHandler
             maplePet3.setWonderGrade(5);
           }
           Connection con = null;
-          
+
           try
           {
             con = DatabaseConnection.getConnection();
@@ -5259,7 +5254,7 @@ public class InventoryHandler
             {
             }
           }
-          
+
           item12 = MapleInventoryManipulator.addId_Item(c, itemidselect, (short) 1, "", maplePet3, 30L, "", false);
                /* } else if (i7 == 3) {
                     equip3 = (Equip) MapleItemInformationProvider.getInstance().getEquipById(4310027);
@@ -5277,12 +5272,12 @@ public class InventoryHandler
           }
           break;
         }
-      
+
       case 5068301:
         if (c.getPlayer().getInventory(MapleInventoryType.CASH).getNumFreeSlot() >= 1 && c.getPlayer().getInventory(MapleInventoryType.EQUIP).getNumFreeSlot() >= 1 && c.getPlayer().getInventory(MapleInventoryType.USE).getNumFreeSlot() >= 1)
         {
           final List<Pair<Integer, Integer>> random3 = new ArrayList<Pair<Integer, Integer>>();
-          final int[] UniqueItem = {5000762, 5000763, 5000764, 5000790, 5000791, 5000792, 5000918, 5000919, 5000920, 5000933, 5000934, 5000935, 5000963, 5000964, 5000965, 5002033, 5002034, 5002035, 5002082, 5002083, 5002084, 5002137, 5002138, 5002139, 5002161, 5002162, 5002163, 5002186, 5002187, 5002188, 5002200, 5002201, 5002202, 5002226, 5002227, 5002228};
+          final int[] UniqueItem = { 5000762, 5000763, 5000764, 5000790, 5000791, 5000792, 5000918, 5000919, 5000920, 5000933, 5000934, 5000935, 5000963, 5000964, 5000965, 5002033, 5002034, 5002035, 5002082, 5002083, 5002084, 5002137, 5002138, 5002139, 5002161, 5002162, 5002163, 5002186, 5002187, 5002188, 5002200, 5002201, 5002202, 5002226, 5002227, 5002228 };
           int itemid = 0;
           final int count = 1;
           final int rand3 = Randomizer.rand(0, UniqueItem.length - 1);
@@ -5319,19 +5314,19 @@ public class InventoryHandler
         }
         c.getPlayer().dropMessage(5, "소비, 캐시, 장비 여유 공간이 각각 한칸이상 부족합니다.");
         break;
-      
+
       case 5068302:
         /* 3818 */
         if (c.getPlayer().getInventory(MapleInventoryType.CASH).getNumFreeSlot() >= 1 && c.getPlayer().getInventory(MapleInventoryType.EQUIP).getNumFreeSlot() >= 1 && c.getPlayer().getInventory(MapleInventoryType.USE).getNumFreeSlot() >= 1)
         {
           /* 3819 */
           Item item13;
-          int[][] itemid = {{1113070, 1}, {1152155, 1}, {1032216, 1}, {2435755, 1}, {2439653, 1}, {2046996, 1}, {2046997, 1}, {2047818, 1}, {5000930, 1}, {5000931, 1}, {5000932, 1}, {2591659, 1}, {2438686, 1}, {2591640, 1}, {2591676, 1}, {1113063, 1}, {1113064, 1}, {1022232, 1}, {1672077, 1}, {1113063, 1}, {1113064, 1}, {1113065, 1}, {1113066, 1}, {1112663, 1}, {1112586, 1}, {2438686, 1}, {5002079, 1}, {5002080, 1}, {5002081, 1}, {2438686, 1}};
+          int[][] itemid = { { 1113070, 1 }, { 1152155, 1 }, { 1032216, 1 }, { 2435755, 1 }, { 2439653, 1 }, { 2046996, 1 }, { 2046997, 1 }, { 2047818, 1 }, { 5000930, 1 }, { 5000931, 1 }, { 5000932, 1 }, { 2591659, 1 }, { 2438686, 1 }, { 2591640, 1 }, { 2591676, 1 }, { 1113063, 1 }, { 1113064, 1 }, { 1022232, 1 }, { 1672077, 1 }, { 1113063, 1 }, { 1113064, 1 }, { 1113065, 1 }, { 1113066, 1 }, { 1112663, 1 }, { 1112586, 1 }, { 2438686, 1 }, { 5002079, 1 }, { 5002080, 1 }, { 5002081, 1 }, { 2438686, 1 } };
           /* 3820 */
           int i8 = Randomizer.nextInt(itemid.length);
           /* 3821 */
           MapleItemInformationProvider mapleItemInformationProvider = MapleItemInformationProvider.getInstance();
-          
+
           /* 3823 */
           if (GameConstants.isPet(itemid[i8][0]))
           {
@@ -5340,7 +5335,7 @@ public class InventoryHandler
           }
           else
           {
-            
+
             /* 3827 */
             if (GameConstants.getInventoryType(itemid[i8][0]) == MapleInventoryType.EQUIP)
             {
@@ -5358,7 +5353,7 @@ public class InventoryHandler
               /* 3833 */
               item13.setUniqueId(MapleInventoryIdentifier.getInstance());
             }
-            
+
             /* 3836 */
             MapleInventoryManipulator.addbyItem(c, item13);
           }
@@ -5375,7 +5370,7 @@ public class InventoryHandler
         /* 3843 */
         c.getPlayer().dropMessage(5, "소비, 캐시, 장비 여유 공간이 각각 한칸이상 부족합니다.");
         break;
-      
+
       case 5068300:
         /* 3848 */
         if (c.getPlayer().getInventory(MapleInventoryType.CASH).getNumFreeSlot() >= 1 && c.getPlayer().getInventory(MapleInventoryType.EQUIP).getNumFreeSlot() >= 1 && c.getPlayer().getInventory(MapleInventoryType.USE).getNumFreeSlot() >= 1)
@@ -5383,17 +5378,17 @@ public class InventoryHandler
           /* 3849 */
           Item item13;
           List<Pair<Integer, Integer>> list = new ArrayList<>();
-          
+
           /* 3851 */
-          int[][] NormalItem = {{5068300, 1}};
+          int[][] NormalItem = { { 5068300, 1 } };
           /* 3852 */
-          int[] HighuerItem = {5000765, 5000766, 5000767, 5000768, 5000769, 5000793, 5000794, 5000795, 5000796, 5000797, 5000921, 5000922, 5000923, 5000924, 5000925, 5000936, 5000937, 5000938, 5000939, 5000940, 5000966, 5000967, 5000968, 5000965, 5000970, 5002036, 5002037, 5002038, 5002039, 5002040, 5002085, 5002086, 5002140, 5002141, 5002164, 5002165, 5002189, 5002190, 5002203, 5002204, 5002229, 5002230, 5002231};
+          int[] HighuerItem = { 5000765, 5000766, 5000767, 5000768, 5000769, 5000793, 5000794, 5000795, 5000796, 5000797, 5000921, 5000922, 5000923, 5000924, 5000925, 5000936, 5000937, 5000938, 5000939, 5000940, 5000966, 5000967, 5000968, 5000965, 5000970, 5002036, 5002037, 5002038, 5002039, 5002040, 5002085, 5002086, 5002140, 5002141, 5002164, 5002165, 5002189, 5002190, 5002203, 5002204, 5002229, 5002230, 5002231 };
           /* 3853 */
-          int[] UniqueItem = {5000762, 5000763, 5000764, 5000790, 5000791, 5000792, 5000918, 5000919, 5000920, 5000933, 5000934, 5000935, 5000963, 5000964, 5000965, 5002033, 5002034, 5002035, 5002082, 5002083, 5002084, 5002137, 5002138, 5002139, 5002161, 5002162, 5002163, 5002186, 5002187, 5002188, 5002200, 5002201, 5002202, 5002226, 5002227, 5002228};
-          
+          int[] UniqueItem = { 5000762, 5000763, 5000764, 5000790, 5000791, 5000792, 5000918, 5000919, 5000920, 5000933, 5000934, 5000935, 5000963, 5000964, 5000965, 5002033, 5002034, 5002035, 5002082, 5002083, 5002084, 5002137, 5002138, 5002139, 5002161, 5002162, 5002163, 5002186, 5002187, 5002188, 5002200, 5002201, 5002202, 5002226, 5002227, 5002228 };
+
           /* 3855 */
           boolean bool = (Calendar.getInstance().get(7) == 2);
-          
+
           /* 3857 */
           list.add(new Pair(Integer.valueOf(1), Integer.valueOf(3004)));
           /* 3858 */
@@ -5404,7 +5399,7 @@ public class InventoryHandler
           int itemid = 0;
           /* 3861 */
           int count = 1;
-          
+
           /* 3885 */
           int i8 = GameConstants.getWeightedRandom(list);
           /* 3886 */
@@ -5433,10 +5428,10 @@ public class InventoryHandler
             /* 3895 */
             itemid = UniqueItem[rand];
           }
-          
+
           /* 3898 */
           MapleItemInformationProvider mapleItemInformationProvider = MapleItemInformationProvider.getInstance();
-          
+
           /* 3900 */
           if (GameConstants.isPet(itemid))
           {
@@ -5445,7 +5440,7 @@ public class InventoryHandler
           }
           else
           {
-            
+
             /* 3904 */
             if (GameConstants.getInventoryType(itemid) == MapleInventoryType.EQUIP)
             {
@@ -5463,7 +5458,7 @@ public class InventoryHandler
               /* 3910 */
               item13.setUniqueId(MapleInventoryIdentifier.getInstance());
             }
-            
+
             /* 3913 */
             MapleInventoryManipulator.addbyItem(c, item13);
           }
@@ -5486,15 +5481,15 @@ public class InventoryHandler
         /* 3923 */
         c.getPlayer().dropMessage(5, "소비, 캐시, 장비 여유 공간이 각각 한칸이상 부족합니다.");
         break;
-      
-      
+
+
       case 5520000:
       case 5520001:
         /* 3929 */
         mapleInventoryType1 = MapleInventoryType.getByType((byte) slea.readInt());
         /* 3930 */
         item5 = c.getPlayer().getInventory(mapleInventoryType1).getItem((short) slea.readInt());
-        
+
         /* 3932 */
         if (item5 != null && !ItemFlag.KARMA_EQUIP.check(item5.getFlag()) && !ItemFlag.KARMA_USE.check(item5.getFlag()) && (( /* 3933 */itemId == 5520000 && MapleItemInformationProvider.getInstance().isKarmaEnabled(item5.getItemId())) || (itemId == 5520001 && MapleItemInformationProvider.getInstance().isPKarmaEnabled(item5.getItemId()))))
         {
@@ -5511,7 +5506,7 @@ public class InventoryHandler
             /* 3938 */
             i8 += ItemFlag.KARMA_USE.getValue();
           }
-          
+
           /* 3941 */
           if (item5.getType() == 1)
           {
@@ -5524,7 +5519,7 @@ public class InventoryHandler
               eq.setKarmaCount((byte) (eq.getKarmaCount() - 1));
             }
           }
-          
+
           /* 3948 */
           item5.setFlag(i8);
           /* 3949 */
@@ -5535,13 +5530,13 @@ public class InventoryHandler
           used = true;
         }
         break;
-      
+
       case 5570000:
         /* 3957 */
         slea.readInt();
         /* 3958 */
         equip1 = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem((short) slea.readInt());
-        
+
         /* 3960 */
         if (equip1 != null)
         {
@@ -5566,30 +5561,30 @@ public class InventoryHandler
           c.getSession().writeAndFlush(CSPacket.ViciousHammer(true, false));
         }
         break;
-      
+
       case 5069000:
       case 5069001:
         /* 3977 */
-        SLabel = new int[]{1003548, 1003549, 1050234, 1051284, 1702357, 1102420, 1003831, 1052605, 1702415, 1072808, 1082520, 1003867, 1042264, 1060182, 1061206, 1702424, 1082527, 1003892, 1050285, 1051352, 1702433, 1072831, 1102583, 1003909, 1050291, 1051357, 1702442, 1072836, 1102593, 1003945, 1050296, 1051362, 1702451, 1072852, 1102608, 1003957, 1003958, 1050300, 1051367, 1702457, 1072862, 1102619, 1003971, 1003972, 1051369, 1050302, 1702464, 1072868, 1102621, 1004002, 1050305, 1051373, 1702473, 1070057, 1071074, 1102632, 1003998, 1050304, 1051372, 1702468, 1072876, 1082565, 1000069, 1050311, 1051383, 1702486, 1072901, 1102667, 1000072, 1001095, 1050310, 1051382, 1702485, 1072897, 1102669, 1000074, 1001097, 1050319, 1051390, 1702503, 1071076, 1102674, 1004158, 1050322, 1051392, 1702512, 1070061, 1071078, 1102688, 1004180, 1042319, 1062207, 1702523, 1072934, 1004192, 1050335, 1051405, 1702528, 1072943, 1102706, 1004213, 1050337, 1051406, 1702535, 1072951, 1102712, 1004279, 1050341, 1051410, 1702540, 1072998, 1102748, 1004327, 1050346, 1051415, 1702549, 1073011, 1102758, 1000079, 1001100, 1050351, 1051420, 1702553, 1070064, 1100004, 1101000, 1004411, 1050353, 1051422, 1702561, 1070065, 1081014, 1004453, 1050359, 1051429, 1702570, 1070067, 1071083, 1102811, 1004468, 1050362, 1051432, 1702574, 1073050, 1102816, 1004486, 1050364, 1051434, 1702586, 1073056, 1102822, 1004527, 1050368, 1051437, 1702591, 1071085, 1070069, 1102831, 1004541, 1050370, 1051439, 1702595, 1073075, 1102836, 1004568, 1050372, 1051441, 1702607, 1073079, 1102844, 1000088, 1001110, 1050380, 1051450, 1702620, 1073084, 1102848, 1004590, 1050386, 1051456, 1073088, 1702625, 1102859, 1004602, 1050389, 1051459, 1702628, 1070072, 1071089, 1102864, 1000091, 1001113, 1050392, 1051463, 1702631, 1070073, 1071090, 1102869, 1004602, 1050394, 1051465, 1702637, 1073105, 1102876, 1002447, 1004690, 1050414, 1051483, 1702654, 1073127, 1102900, 1004701, 1050417, 1051486, 1702668, 1073128, 1102907, 1004716, 1050422, 1051490, 1070078, 1071095, 1102915, 1702676, 1004739, 1050423, 1051491, 1702681, 1070079, 1071096, 1102920, 1004774, 1004775, 1050424, 1051492, 1702687, 1073148, 1102928, 1004797, 1050430, 1051498, 1702696, 1073152, 1102936, 1004794, 1050429, 1051497, 1702694, 1070082, 1071099, 1102934, 1004814, 1050432, 1051500, 1702706, 1070083, 1071100, 1102951, 1004845, 1004846, 1050435, 1051503, 1702715, 1073170, 1073171, 1102959, 1102960, 1004852, 1050438, 1051506, 1702717, 1073175, 1073176, 1102964, 1004873, 1050441, 1051509, 1702726, 1073183, 1073184, 1102974, 1004881, 1004882, 1003460, 1050442, 1051510, 1702728, 1070084, 1071101, 1102976, 1004894, 1004895, 1050444, 1051512, 1070085, 1071102, 1102992, 1004923, 1050452, 1051519, 1702744, 1073200, 1102998, 1004947, 1004948, 1050454, 1051521, 1702755, 1073212, 1103010, 1004954, 1004955, 1050456, 1051523, 1702759, 1070088, 1071105, 1103013, 1004965, 1050461, 1051528, 1702766, 1070089, 1071106, 1103018, 1004975, 1050463, 1051530, 1702770, 1073226, 1103023, 1004988, 1050464, 1051531, 1702774, 1070090, 1071107, 1103029, 1005000, 1050468, 1051535, 1702779, 1073237, 1103035, 1005032, 1005033, 1050470, 1051537, 1702790, 1073246, 1103050, 1005043, 1050474, 1051541, 1702795, 1070093, 1071110, 1103055, 1005065, 1005066, 1053257, 1702804, 1073254, 1103067, 1005083, 1005084, 1050477, 1051544, 1702807, 1073255, 1103072, 1005092, 1050481, 1051548, 1702810, 1073258, 1103074, 1005111, 1050484, 1051551, 1702815, 1070097, 1071114, 1103079, 1005143, 1050486, 1051553, 1702826, 1073271, 1103094, 1005152, 1053305, 1702830, 1073273, 1103096, 1005166, 1050491, 1051559, 1702837, 1073280, 1103101, 1005184, 1005185, 1050492, 1051560, 1073290, 1702844, 1103114, 1005193, 1050495, 1051563, 1702850, 1073298, 1103118, 1005217, 1005218, 1050499, 1051567, 1702858, 1073302, 1103130, 1005231, 1005232, 1053351, 1053352, 1702865, 1073308, 1103138, 1005243, 1005244, 1050503, 1051573, 1702870, 1070103, 1103144, 1005260, 1005261, 1050505, 1051575, 1702876, 1070105, 1071121, 1103148, 1005272, 1050507, 1051577, 1702882, 1073322, 1103152, 1005280, 1005281, 1050509, 1051579, 1702887, 1070107, 1071123, 1103157, 1005319, 1050514, 1051584, 1702901, 1073335, 1103171, 1005324, 1050516, 1051586, 1702905, 1070110, 1071126, 1103175, 1005327, 1053416, 1702907, 1073342, 1103177, 1005354, 1053435, 1702918, 1073355, 1103185, 1005368, 1005369, 1050523, 1051593, 1702928, 1070113, 1071129, 1082744, 1005386, 1050525, 1051595, 1702937, 1070114, 1071130, 1103202, 1005399, 1050530, 1051601, 1702945, 1073378, 1103212, 1005412, 1050531, 1051602, 1103219, 1073362, 1702951, 1005419, 1005420, 1050534, 1051605, 1073390, 1103221, 1702956, 1005437, 1005438, 1050535, 1051606, 1073394, 1103224, 1702961, 1005458, 1053516, 1073402, 1103232, 1702970, 1005477, 1005478, 1050538, 1051609, 1073415, 1103235, 1702973, 1005499, 1053543, 1073428, 1103243, 1702981};
-        
+        SLabel = new int[] { 1003548, 1003549, 1050234, 1051284, 1702357, 1102420, 1003831, 1052605, 1702415, 1072808, 1082520, 1003867, 1042264, 1060182, 1061206, 1702424, 1082527, 1003892, 1050285, 1051352, 1702433, 1072831, 1102583, 1003909, 1050291, 1051357, 1702442, 1072836, 1102593, 1003945, 1050296, 1051362, 1702451, 1072852, 1102608, 1003957, 1003958, 1050300, 1051367, 1702457, 1072862, 1102619, 1003971, 1003972, 1051369, 1050302, 1702464, 1072868, 1102621, 1004002, 1050305, 1051373, 1702473, 1070057, 1071074, 1102632, 1003998, 1050304, 1051372, 1702468, 1072876, 1082565, 1000069, 1050311, 1051383, 1702486, 1072901, 1102667, 1000072, 1001095, 1050310, 1051382, 1702485, 1072897, 1102669, 1000074, 1001097, 1050319, 1051390, 1702503, 1071076, 1102674, 1004158, 1050322, 1051392, 1702512, 1070061, 1071078, 1102688, 1004180, 1042319, 1062207, 1702523, 1072934, 1004192, 1050335, 1051405, 1702528, 1072943, 1102706, 1004213, 1050337, 1051406, 1702535, 1072951, 1102712, 1004279, 1050341, 1051410, 1702540, 1072998, 1102748, 1004327, 1050346, 1051415, 1702549, 1073011, 1102758, 1000079, 1001100, 1050351, 1051420, 1702553, 1070064, 1100004, 1101000, 1004411, 1050353, 1051422, 1702561, 1070065, 1081014, 1004453, 1050359, 1051429, 1702570, 1070067, 1071083, 1102811, 1004468, 1050362, 1051432, 1702574, 1073050, 1102816, 1004486, 1050364, 1051434, 1702586, 1073056, 1102822, 1004527, 1050368, 1051437, 1702591, 1071085, 1070069, 1102831, 1004541, 1050370, 1051439, 1702595, 1073075, 1102836, 1004568, 1050372, 1051441, 1702607, 1073079, 1102844, 1000088, 1001110, 1050380, 1051450, 1702620, 1073084, 1102848, 1004590, 1050386, 1051456, 1073088, 1702625, 1102859, 1004602, 1050389, 1051459, 1702628, 1070072, 1071089, 1102864, 1000091, 1001113, 1050392, 1051463, 1702631, 1070073, 1071090, 1102869, 1004602, 1050394, 1051465, 1702637, 1073105, 1102876, 1002447, 1004690, 1050414, 1051483, 1702654, 1073127, 1102900, 1004701, 1050417, 1051486, 1702668, 1073128, 1102907, 1004716, 1050422, 1051490, 1070078, 1071095, 1102915, 1702676, 1004739, 1050423, 1051491, 1702681, 1070079, 1071096, 1102920, 1004774, 1004775, 1050424, 1051492, 1702687, 1073148, 1102928, 1004797, 1050430, 1051498, 1702696, 1073152, 1102936, 1004794, 1050429, 1051497, 1702694, 1070082, 1071099, 1102934, 1004814, 1050432, 1051500, 1702706, 1070083, 1071100, 1102951, 1004845, 1004846, 1050435, 1051503, 1702715, 1073170, 1073171, 1102959, 1102960, 1004852, 1050438, 1051506, 1702717, 1073175, 1073176, 1102964, 1004873, 1050441, 1051509, 1702726, 1073183, 1073184, 1102974, 1004881, 1004882, 1003460, 1050442, 1051510, 1702728, 1070084, 1071101, 1102976, 1004894, 1004895, 1050444, 1051512, 1070085, 1071102, 1102992, 1004923, 1050452, 1051519, 1702744, 1073200, 1102998, 1004947, 1004948, 1050454, 1051521, 1702755, 1073212, 1103010, 1004954, 1004955, 1050456, 1051523, 1702759, 1070088, 1071105, 1103013, 1004965, 1050461, 1051528, 1702766, 1070089, 1071106, 1103018, 1004975, 1050463, 1051530, 1702770, 1073226, 1103023, 1004988, 1050464, 1051531, 1702774, 1070090, 1071107, 1103029, 1005000, 1050468, 1051535, 1702779, 1073237, 1103035, 1005032, 1005033, 1050470, 1051537, 1702790, 1073246, 1103050, 1005043, 1050474, 1051541, 1702795, 1070093, 1071110, 1103055, 1005065, 1005066, 1053257, 1702804, 1073254, 1103067, 1005083, 1005084, 1050477, 1051544, 1702807, 1073255, 1103072, 1005092, 1050481, 1051548, 1702810, 1073258, 1103074, 1005111, 1050484, 1051551, 1702815, 1070097, 1071114, 1103079, 1005143, 1050486, 1051553, 1702826, 1073271, 1103094, 1005152, 1053305, 1702830, 1073273, 1103096, 1005166, 1050491, 1051559, 1702837, 1073280, 1103101, 1005184, 1005185, 1050492, 1051560, 1073290, 1702844, 1103114, 1005193, 1050495, 1051563, 1702850, 1073298, 1103118, 1005217, 1005218, 1050499, 1051567, 1702858, 1073302, 1103130, 1005231, 1005232, 1053351, 1053352, 1702865, 1073308, 1103138, 1005243, 1005244, 1050503, 1051573, 1702870, 1070103, 1103144, 1005260, 1005261, 1050505, 1051575, 1702876, 1070105, 1071121, 1103148, 1005272, 1050507, 1051577, 1702882, 1073322, 1103152, 1005280, 1005281, 1050509, 1051579, 1702887, 1070107, 1071123, 1103157, 1005319, 1050514, 1051584, 1702901, 1073335, 1103171, 1005324, 1050516, 1051586, 1702905, 1070110, 1071126, 1103175, 1005327, 1053416, 1702907, 1073342, 1103177, 1005354, 1053435, 1702918, 1073355, 1103185, 1005368, 1005369, 1050523, 1051593, 1702928, 1070113, 1071129, 1082744, 1005386, 1050525, 1051595, 1702937, 1070114, 1071130, 1103202, 1005399, 1050530, 1051601, 1702945, 1073378, 1103212, 1005412, 1050531, 1051602, 1103219, 1073362, 1702951, 1005419, 1005420, 1050534, 1051605, 1073390, 1103221, 1702956, 1005437, 1005438, 1050535, 1051606, 1073394, 1103224, 1702961, 1005458, 1053516, 1073402, 1103232, 1702970, 1005477, 1005478, 1050538, 1051609, 1073415, 1103235, 1702973, 1005499, 1053543, 1073428, 1103243, 1702981 };
+
         /* 3979 */
-        모자 = new int[]{1000070, 1000076, 1004897, 1001093, 1001098, 1004898, 1003955, 1004450, 1004591, 1004592, 1004777, 1005037, 1005038, 1005209, 1005210, 1005356, 1005495};
-        
+        모자 = new int[] { 1000070, 1000076, 1004897, 1001093, 1001098, 1004898, 1003955, 1004450, 1004591, 1004592, 1004777, 1005037, 1005038, 1005209, 1005210, 1005356, 1005495 };
+
         /* 3981 */
-        한벌남 = new int[]{1050299, 1050312, 1050339, 1050356, 1050385, 1050427, 1050445, 1050472, 1050497, 1050520, 1050542};
-        
+        한벌남 = new int[] { 1050299, 1050312, 1050339, 1050356, 1050385, 1050427, 1050445, 1050472, 1050497, 1050520, 1050542 };
+
         /* 3983 */
-        한벌여 = new int[]{1051366, 1051384, 1051408, 1051426, 1051455, 1051495, 1051513, 1051539, 1051565, 1051589, 1051613};
-        
+        한벌여 = new int[] { 1051366, 1051384, 1051408, 1051426, 1051455, 1051495, 1051513, 1051539, 1051565, 1051589, 1051613 };
+
         /* 3985 */
-        신발 = new int[]{1070071, 1070080, 1070086, 1070091, 1070100, 1070111, 1071088, 1071097, 1071103, 1071108, 1071117, 1071127, 1072860, 1072908, 1072978, 1073041, 1073425};
-        
+        신발 = new int[] { 1070071, 1070080, 1070086, 1070091, 1070100, 1070111, 1071088, 1071097, 1071103, 1071108, 1071117, 1071127, 1072860, 1072908, 1072978, 1073041, 1073425 };
+
         /* 3987 */
-        무기 = new int[]{1702456, 1702488, 1702538, 1702565, 1702624, 1702689, 1702736, 1702786, 1702856, 1702919, 1702976};
-        
+        무기 = new int[] { 1702456, 1702488, 1702538, 1702565, 1702624, 1702689, 1702736, 1702786, 1702856, 1702919, 1702976 };
+
         /* 3989 */
-        망토장갑 = new int[]{1102729, 1102809, 1102858, 1102932, 1102988, 1103053, 1103126, 1103127, 1103187, 1103241, 1082555, 1082580};
-        
+        망토장갑 = new int[] { 1102729, 1102809, 1102858, 1102932, 1102988, 1103053, 1103126, 1103127, 1103187, 1103241, 1082555, 1082580 };
+
         /* 3991 */
         mapleItemInformationProvider5 = MapleItemInformationProvider.getInstance();
         /* 3992 */
@@ -5608,10 +5603,10 @@ public class InventoryHandler
         equip4 = (Equip) c.getPlayer().getInventory(MapleInventoryType.CODY).getItem(baseitempos);
         /* 3999 */
         equip5 = (Equip) c.getPlayer().getInventory(MapleInventoryType.CODY).getItem(useitempos);
-        
+
         /* 4007 */
         마라벨나올확률 = (equip4.getEquipmentType() == 1) ? 7 : (ServerConstants.ServerTest ? 100 : 5);
-        
+
         /* 4017 */
         MItemidselect = 0;
         Label = 0;
@@ -5655,7 +5650,7 @@ public class InventoryHandler
               }
               else
               {
-                
+
                 /* 4035 */
                 while (a)
                 {
@@ -5671,7 +5666,7 @@ public class InventoryHandler
                   /* 4040 */
                   a = false;
                 }
-                
+
               }
               /* 4044 */
             }
@@ -5731,7 +5726,7 @@ public class InventoryHandler
               }
               else
               {
-                
+
                 /* 4069 */
                 while (a)
                 {
@@ -5747,7 +5742,7 @@ public class InventoryHandler
                   /* 4074 */
                   a = false;
                 }
-                
+
               }
               /* 4078 */
             }
@@ -5810,11 +5805,11 @@ public class InventoryHandler
                   /* 4103 */
                   a = false;
                 }
-                
+
               }
               else
               {
-                
+
                 /* 4108 */
                 while (a)
                 {
@@ -5839,9 +5834,9 @@ public class InventoryHandler
                   /* 4117 */
                   a = false;
                 }
-                
+
               }
-              
+
               /* 4122 */
             }
             else if (GameConstants.isOverall(baseitemid))
@@ -5879,11 +5874,11 @@ public class InventoryHandler
                   /* 4136 */
                   a = false;
                 }
-                
+
               }
               else
               {
-                
+
                 /* 4141 */
                 while (a)
                 {
@@ -5908,9 +5903,9 @@ public class InventoryHandler
                   /* 4150 */
                   a = false;
                 }
-                
+
               }
-              
+
               /* 4155 */
             }
             else if (GameConstants.isCape(baseitemid))
@@ -5936,7 +5931,7 @@ public class InventoryHandler
                 /* 4164 */
                 a = false;
               }
-              
+
               /* 4167 */
             }
             else if (GameConstants.isGlove(baseitemid))
@@ -5962,7 +5957,7 @@ public class InventoryHandler
                 /* 4176 */
                 a = false;
               }
-              
+
               /* 4179 */
             }
             else if (GameConstants.isShoe(baseitemid))
@@ -6000,11 +5995,11 @@ public class InventoryHandler
                   /* 4193 */
                   a = false;
                 }
-                
+
               }
               else
               {
-                
+
                 /* 4198 */
                 while (a)
                 {
@@ -6029,9 +6024,9 @@ public class InventoryHandler
                   /* 4207 */
                   a = false;
                 }
-                
+
               }
-              
+
               /* 4212 */
             }
             else if (GameConstants.isWeapon(baseitemid))
@@ -6055,7 +6050,7 @@ public class InventoryHandler
               }
             }
           }
-          
+
           /* 4224 */
           if (MItemidselect <= 0)
           {
@@ -6088,7 +6083,7 @@ public class InventoryHandler
           Equip equip = equip6;
           /* 4240 */
           equip.setEquipmentType(Label);
-          
+
           /* 4255 */
           if (GameConstants.isWeapon(equip.getItemId()))
           {
@@ -6096,7 +6091,7 @@ public class InventoryHandler
             boolean 공 = false, suc = false;
             /* 4257 */
             int attack = 0, stat = 0;
-            
+
             /* 4259 */
             attack = Randomizer.isSuccess(50) ? 21 : 22;
             /* 4260 */
@@ -6125,23 +6120,23 @@ public class InventoryHandler
               {
                 /* 4271 */
                 three = (공 ? 22 : 21) * 1000 + (마라벨인가 ? 60 : Randomizer.rand(25, 35));
-                
+
               }
-              
+
             }
-            
+
           }
           else
           {
-            
+
             /* 4290 */
             boolean suc = false;
             /* 4291 */
             int stat = 0, stat1 = 0, stat2 = 0;
-            
+
             /* 4293 */
             stat = Randomizer.rand(11, 14);
-            
+
             /* 4295 */
             own = stat * 1000 + (마라벨인가 ? 60 : Randomizer.rand(25, 35));
             /* 4296 */
@@ -6161,8 +6156,7 @@ public class InventoryHandler
               two = stat1 * 1000 + (마라벨인가 ? 60 : Randomizer.rand(25, 35));
             }
             /* 4304 */
-            if (마라벨인가
-                && /* 4305 */ Randomizer.isSuccess(30))
+            if (마라벨인가 && /* 4305 */ Randomizer.isSuccess(30))
             {
               /* 4306 */
               if (!suc)
@@ -6193,7 +6187,7 @@ public class InventoryHandler
               }
             }
           }
-          
+
           /* 4322 */
           if (c.getPlayer().getQuestStatus(50008) == 1)
           {
@@ -6255,13 +6249,13 @@ public class InventoryHandler
           return;
         }
         break;
-      
+
       case 5060001:
         /* 4356 */
         type = MapleInventoryType.getByType((byte) slea.readInt());
         /* 4357 */
         item4 = c.getPlayer().getInventory(type).getItem((short) slea.readInt());
-        
+
         /* 4359 */
         if (item4 != null && item4.getExpiration() == -1L)
         {
@@ -6271,20 +6265,20 @@ public class InventoryHandler
           i8 |= ItemFlag.LOCK.getValue();
           /* 4362 */
           item4.setFlag(i8);
-          
+
           /* 4364 */
           c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, item4));
           /* 4365 */
           used = true;
         }
         break;
-      
+
       case 5061000:
         /* 4370 */
         type = MapleInventoryType.getByType((byte) slea.readInt());
         /* 4371 */
         item4 = c.getPlayer().getInventory(type).getItem((short) slea.readInt());
-        
+
         /* 4373 */
         if (item4 != null && item4.getExpiration() == -1L)
         {
@@ -6296,20 +6290,20 @@ public class InventoryHandler
           item4.setFlag(i8);
           /* 4377 */
           item4.setExpiration(System.currentTimeMillis() + 604800000L);
-          
+
           /* 4379 */
           c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, item4));
           /* 4380 */
           used = true;
         }
         break;
-      
+
       case 5061001:
         /* 4385 */
         type = MapleInventoryType.getByType((byte) slea.readInt());
         /* 4386 */
         item4 = c.getPlayer().getInventory(type).getItem((short) slea.readInt());
-        
+
         /* 4388 */
         if (item4 != null && item4.getExpiration() == -1L)
         {
@@ -6319,23 +6313,23 @@ public class InventoryHandler
           i8 |= ItemFlag.LOCK.getValue();
           /* 4391 */
           item4.setFlag(i8);
-          
+
           /* 4393 */
           item4.setExpiration(System.currentTimeMillis() + -1702967296L);
-          
+
           /* 4395 */
           c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, item4));
           /* 4396 */
           used = true;
         }
         break;
-      
+
       case 5061002:
         /* 4401 */
         type = MapleInventoryType.getByType((byte) slea.readInt());
         /* 4402 */
         item4 = c.getPlayer().getInventory(type).getItem((short) slea.readInt());
-        
+
         /* 4404 */
         if (item4 != null && item4.getExpiration() == -1L)
         {
@@ -6345,23 +6339,23 @@ public class InventoryHandler
           i8 |= ItemFlag.LOCK.getValue();
           /* 4407 */
           item4.setFlag(i8);
-          
+
           /* 4409 */
           item4.setExpiration(System.currentTimeMillis() + -813934592L);
-          
+
           /* 4411 */
           c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, item4));
           /* 4412 */
           used = true;
         }
         break;
-      
+
       case 5061003:
         /* 4417 */
         type = MapleInventoryType.getByType((byte) slea.readInt());
         /* 4418 */
         item4 = c.getPlayer().getInventory(type).getItem((short) slea.readInt());
-        
+
         /* 4420 */
         if (item4 != null && item4.getExpiration() == -1L)
         {
@@ -6371,23 +6365,23 @@ public class InventoryHandler
           i8 |= ItemFlag.LOCK.getValue();
           /* 4423 */
           item4.setFlag(i8);
-          
+
           /* 4425 */
           item4.setExpiration(System.currentTimeMillis() + 1471228928L);
-          
+
           /* 4427 */
           c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, item4));
           /* 4428 */
           used = true;
         }
         break;
-      
+
       case 5063000:
         /* 4433 */
         type = MapleInventoryType.getByType((byte) slea.readInt());
         /* 4434 */
         item4 = c.getPlayer().getInventory(type).getItem((short) slea.readInt());
-        
+
         /* 4436 */
         if (item4 != null && item4.getType() == 1)
         {
@@ -6397,14 +6391,14 @@ public class InventoryHandler
           i8 |= ItemFlag.LUCKY_PROTECT_SHIELD.getValue();
           /* 4439 */
           item4.setFlag(i8);
-          
+
           /* 4441 */
           c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, item4));
           /* 4442 */
           used = true;
         }
         break;
-      
+
       case 5064000:
         /* 4448 */
         s2 = slea.readShort();
@@ -6430,7 +6424,7 @@ public class InventoryHandler
         flag |= ItemFlag.PROTECT_SHIELD.getValue();
         /* 4459 */
         toScroll.setFlag(flag);
-        
+
         /* 4461 */
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, toScroll));
         /* 4462 */
@@ -6438,7 +6432,7 @@ public class InventoryHandler
         /* 4463 */
         used = true;
         break;
-      
+
       case 5064100:
         /* 4468 */
         s1 = slea.readShort();
@@ -6464,7 +6458,7 @@ public class InventoryHandler
         flag |= ItemFlag.SAFETY_SHIELD.getValue();
         /* 4479 */
         toScroll.setFlag(flag);
-        
+
         /* 4481 */
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, toScroll));
         /* 4482 */
@@ -6472,7 +6466,7 @@ public class InventoryHandler
         /* 4483 */
         used = true;
         break;
-      
+
       case 5064300:
         /* 4488 */
         dst = slea.readShort();
@@ -6502,7 +6496,7 @@ public class InventoryHandler
         /* 4500 */
         used = true;
         break;
-      
+
       case 5064400:
         /* 4505 */
         dst = slea.readShort();
@@ -6523,7 +6517,7 @@ public class InventoryHandler
         flag |= ItemFlag.RETURN_SCROLL.getValue();
         /* 4513 */
         toScroll.setFlag(flag);
-        
+
         /* 4515 */
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, toScroll));
         /* 4516 */
@@ -6531,7 +6525,7 @@ public class InventoryHandler
         /* 4517 */
         used = true;
         break;
-      
+
       case 5060003:
       case 5060004:
         /* 4525 */
@@ -6542,7 +6536,7 @@ public class InventoryHandler
           return;
         }
         break;
-      
+
       case 5070000:
         /* 4533 */
         if (c.getPlayer().getLevel() < 10)
@@ -6563,7 +6557,7 @@ public class InventoryHandler
         {
           /* 4542 */
           String str = slea.readMapleAsciiString();
-          
+
           /* 4544 */
           if (str.length() > 65)
           {
@@ -6579,7 +6573,7 @@ public class InventoryHandler
           stringBuilder.append(" : ");
           /* 4551 */
           stringBuilder.append(str);
-          
+
           /* 4553 */
           c.getPlayer().getMap().broadcastMessage(CWvsContext.serverNotice(2, c.getPlayer().getName(), stringBuilder.toString()));
           /* 4554 */
@@ -6591,7 +6585,7 @@ public class InventoryHandler
         /* 4557 */
         c.getPlayer().dropMessage(5, "The usage of Megaphone is currently disabled.");
         break;
-      
+
       case 5071000:
         /* 4562 */
         if (c.getPlayer().getLevel() < 10)
@@ -6612,7 +6606,7 @@ public class InventoryHandler
         {
           /* 4571 */
           String str = slea.readMapleAsciiString();
-          
+
           /* 4573 */
           if (str.length() > 65)
           {
@@ -6628,7 +6622,7 @@ public class InventoryHandler
           stringBuilder.append(" : ");
           /* 4580 */
           stringBuilder.append(str);
-          
+
           /* 4582 */
           if (System.currentTimeMillis() - World.Broadcast.chatDelay >= 3000L)
           {
@@ -6649,7 +6643,7 @@ public class InventoryHandler
         /* 4591 */
         c.getPlayer().dropMessage(5, "The usage of Megaphone is currently disabled.");
         break;
-      
+
       case 5077000:
         /* 4596 */
         if (c.getPlayer().getLevel() < 10)
@@ -6677,7 +6671,7 @@ public class InventoryHandler
           }
           /* 4609 */
           List<String> messages = new LinkedList<>();
-          
+
           /* 4611 */
           for (int i8 = 0; i8 < numLines; i8++)
           {
@@ -6695,7 +6689,7 @@ public class InventoryHandler
           }
           /* 4619 */
           boolean bool = (slea.readByte() > 0);
-          
+
           /* 4621 */
           if (System.currentTimeMillis() - World.Broadcast.chatDelay >= 3000L)
           {
@@ -6714,7 +6708,7 @@ public class InventoryHandler
         /* 4629 */
         c.getPlayer().dropMessage(5, "The usage of Megaphone is currently disabled.");
         break;
-      
+
       case 5079004:
         /* 4634 */
         if (c.getPlayer().getLevel() < 10)
@@ -6735,13 +6729,13 @@ public class InventoryHandler
         {
           /* 4643 */
           String str = slea.readMapleAsciiString();
-          
+
           /* 4645 */
           if (str.length() > 65)
           {
             break;
           }
-          
+
           /* 4649 */
           if (System.currentTimeMillis() - World.Broadcast.chatDelay >= 3000L)
           {
@@ -6762,7 +6756,7 @@ public class InventoryHandler
         /* 4658 */
         c.getPlayer().dropMessage(5, "The usage of Megaphone is currently disabled.");
         break;
-      
+
       case 5073000:
         /* 4663 */
         if (c.getPlayer().getLevel() < 10)
@@ -6783,7 +6777,7 @@ public class InventoryHandler
         {
           /* 4672 */
           String str = slea.readMapleAsciiString();
-          
+
           /* 4674 */
           if (str.length() > 65)
           {
@@ -6799,10 +6793,10 @@ public class InventoryHandler
           stringBuilder.append(" : ");
           /* 4681 */
           stringBuilder.append(str);
-          
+
           /* 4683 */
           boolean bool = (slea.readByte() != 0);
-          
+
           /* 4685 */
           if (System.currentTimeMillis() - World.Broadcast.chatDelay >= 3000L)
           {
@@ -6823,7 +6817,7 @@ public class InventoryHandler
         /* 4694 */
         c.getPlayer().dropMessage(5, "The usage of Megaphone is currently disabled.");
         break;
-      
+
       case 5074000:
         /* 4699 */
         if (c.getPlayer().getLevel() < 10)
@@ -6844,7 +6838,7 @@ public class InventoryHandler
         {
           /* 4708 */
           String str = slea.readMapleAsciiString();
-          
+
           /* 4710 */
           if (str.length() > 65)
           {
@@ -6860,10 +6854,10 @@ public class InventoryHandler
           stringBuilder.append(" : ");
           /* 4717 */
           stringBuilder.append(str);
-          
+
           /* 4719 */
           boolean bool = (slea.readByte() != 0);
-          
+
           /* 4721 */
           if (System.currentTimeMillis() - World.Broadcast.chatDelay >= 3000L)
           {
@@ -6884,7 +6878,7 @@ public class InventoryHandler
         /* 4730 */
         c.getPlayer().dropMessage(5, "The usage of Megaphone is currently disabled.");
         break;
-      
+
       case 5072000:
         /* 4735 */
         if (c.getPlayer().getLevel() < 10)
@@ -6905,7 +6899,7 @@ public class InventoryHandler
         {
           /* 4744 */
           String str = slea.readMapleAsciiString();
-          
+
           /* 4746 */
           if (str.length() > 65)
           {
@@ -6921,10 +6915,10 @@ public class InventoryHandler
           stringBuilder.append(" : ");
           /* 4753 */
           stringBuilder.append(str);
-          
+
           /* 4755 */
           boolean bool = (slea.readByte() != 0);
-          
+
           /* 4757 */
           if (System.currentTimeMillis() - World.Broadcast.chatDelay >= 3000L)
           {
@@ -6945,7 +6939,7 @@ public class InventoryHandler
         /* 4766 */
         c.getPlayer().dropMessage(5, "The usage of Megaphone is currently disabled.");
         break;
-      
+
       case 5076000:
         /* 4771 */
         if (c.getPlayer().getLevel() < 10)
@@ -6966,7 +6960,7 @@ public class InventoryHandler
         {
           /* 4780 */
           String str = slea.readMapleAsciiString();
-          
+
           /* 4782 */
           if (str.length() > 65)
           {
@@ -6982,10 +6976,10 @@ public class InventoryHandler
           stringBuilder.append(" : ");
           /* 4789 */
           stringBuilder.append(str);
-          
+
           /* 4791 */
           boolean bool = (slea.readByte() > 0);
-          
+
           /* 4793 */
           Item item13 = null;
           /* 4794 */
@@ -7004,7 +6998,7 @@ public class InventoryHandler
             /* 4800 */
             item13 = c.getPlayer().getInventory(MapleInventoryType.getByType(invType)).getItem(b1);
           }
-          
+
           /* 4803 */
           if (System.currentTimeMillis() - World.Broadcast.chatDelay >= 3000L)
           {
@@ -7025,7 +7019,7 @@ public class InventoryHandler
         /* 4812 */
         c.getPlayer().dropMessage(5, "The usage of Megaphone is currently disabled.");
         break;
-      
+
       case 5076100:
       {
         message = slea.readMapleAsciiString();
@@ -7046,8 +7040,7 @@ public class InventoryHandler
           }
           item = c.getPlayer().getInventory(MapleInventoryType.getByType(invType)).getItem(pos2);
         }
-        World.Broadcast.broadcastSmega(CWvsContext.HyperMegaPhone(sb.toString(), c.getPlayer().getName(), message,
-            c.getChannel(), ear, item));
+        World.Broadcast.broadcastSmega(CWvsContext.HyperMegaPhone(sb.toString(), c.getPlayer().getName(), message, c.getChannel(), ear, item));
         used = true;
         break;
       }
@@ -7095,7 +7088,7 @@ public class InventoryHandler
         }
         /* 4865 */
         str1 = slea.readMapleAsciiString();
-        
+
         /* 4867 */
         if (System.currentTimeMillis() - World.Broadcast.chatDelay >= 3000L)
         {
@@ -7112,14 +7105,14 @@ public class InventoryHandler
         /* 4873 */
         c.getSession().writeAndFlush(CWvsContext.serverNotice(1, "", "전체 채팅은 3초마다 하실 수 있습니다."));
         break;
-      
+
       case 5100000:
         /* 4878 */
         c.getPlayer().getMap().broadcastMessage(CField.musicChange("Jukebox/Congratulation"));
         /* 4879 */
         used = true;
         break;
-      
+
       case 5190000:
       case 5190001:
       case 5190002:
@@ -7166,7 +7159,7 @@ public class InventoryHandler
         /* 4910 */
         used = true;
         break;
-      
+
       case 5191000:
       case 5191001:
       case 5191002:
@@ -7207,7 +7200,7 @@ public class InventoryHandler
         /* 4934 */
         used = true;
         break;
-      
+
       case 5781002:
         /* 4938 */
         l1 = slea.readLong();
@@ -7240,8 +7233,7 @@ public class InventoryHandler
               /* 4951 */
               i3 = 2;
               /* 4952 */
-              if (maplePet2 == null
-                  || /* 4953 */ maplePet2.getUniqueId() != l1)
+              if (maplePet2 == null || /* 4953 */ maplePet2.getUniqueId() != l1)
               {
                 break;
               }
@@ -7252,13 +7244,13 @@ public class InventoryHandler
             break;
           }
         }
-        
+
         /* 4964 */
         maplePet2.setColor(color);
         /* 4965 */
         c.getPlayer().getMap().broadcastMessage(c.getPlayer(), PetPacket.showPet(c.getPlayer(), maplePet2, false, false), true);
         break;
-      
+
       case 5501001:
       case 5501002:
         /* 4970 */
@@ -7282,7 +7274,7 @@ public class InventoryHandler
         /* 4980 */
         used = true;
         break;
-      
+
       case 5170000:
         /* 4984 */
         uniqueid = slea.readLong();
@@ -7290,7 +7282,7 @@ public class InventoryHandler
         pet = c.getPlayer().getPet(0L);
         /* 4986 */
         slo = 0;
-        
+
         /* 4988 */
         if (pet == null)
         {
@@ -7314,8 +7306,7 @@ public class InventoryHandler
               /* 4997 */
               slo = 2;
               /* 4998 */
-              if (pet == null
-                  || /* 4999 */ pet.getUniqueId() != uniqueid)
+              if (pet == null || /* 4999 */ pet.getUniqueId() != uniqueid)
               {
                 break;
               }
@@ -7326,7 +7317,7 @@ public class InventoryHandler
             break;
           }
         }
-        
+
         /* 5010 */
         str2 = slea.readMapleAsciiString();
         /* 5011 */
@@ -7349,7 +7340,7 @@ public class InventoryHandler
         /* 5020 */
         used = true;
         break;
-      
+
       case 5700000:
         /* 5024 */
         slea.skip(8);
@@ -7376,7 +7367,7 @@ public class InventoryHandler
         /* 5037 */
         used = true;
         break;
-      
+
       case 5240000:
       case 5240001:
       case 5240002:
@@ -7423,8 +7414,7 @@ public class InventoryHandler
         for (MaplePet maplePet : c.getPlayer().getPets())
         {
           /* 5083 */
-          if (maplePet != null
-              && /* 5084 */ !maplePet.canConsume(itemId))
+          if (maplePet != null && /* 5084 */ !maplePet.canConsume(itemId))
           {
             /* 5085 */
             int petindex = c.getPlayer().getPetIndex(maplePet);
@@ -7461,17 +7451,17 @@ public class InventoryHandler
             c.getPlayer().getMap().broadcastMessage(c.getPlayer(), PetPacket.commandResponse(c.getPlayer().getId(), (byte) 1, (byte) petindex, true), true);
           }
         }
-        
+
         /* 5104 */
         used = true;
         break;
-      
+
       case 5370000:
       case 5370001:
         /* 5121 */
         c.getPlayer().setChalkboard(slea.readMapleAsciiString());
         break;
-      
+
       case 5079000:
       case 5079001:
       case 5390000:
@@ -7550,7 +7540,7 @@ public class InventoryHandler
           }
           /* 5180 */
           boolean bool = (slea.readByte() != 0);
-          
+
           /* 5182 */
           if (System.currentTimeMillis() - World.Broadcast.chatDelay >= 3000L)
           {
@@ -7571,7 +7561,7 @@ public class InventoryHandler
         /* 5191 */
         c.getPlayer().dropMessage(5, "The usage of Megaphone is currently disabled.");
         break;
-      
+
       case 5450000:
       case 5450003:
       case 5452001:
@@ -7605,7 +7595,7 @@ public class InventoryHandler
         /* 5210 */
         MapleShopFactory.getInstance().getShop(61).sendShop(c);
         break;
-      
+
       case 5300000:
       case 5300001:
       case 5300002:
@@ -7616,14 +7606,14 @@ public class InventoryHandler
         /* 5220 */
         used = true;
         break;
-      
+
       case 5330000:
         /* 5224 */
         c.getPlayer().setConversation(2);
         /* 5225 */
         c.getSession().writeAndFlush(CField.sendDuey((byte) 9, null, null));
         break;
-      
+
       case 5062400:
       case 5062402:
       case 5062405:
@@ -7652,11 +7642,11 @@ public class InventoryHandler
         }
         /* 5252 */
         c.getPlayer().forceReAddItem(desc_Item, MapleInventoryType.EQUIP);
-        
+
         /* 5254 */
         used = true;
         break;
-      
+
       case 5130000:
         /* 5258 */
         if (c.getPlayer().getKeyValue(210416, "TotalDeadTime") <= 0L)
@@ -7674,7 +7664,7 @@ public class InventoryHandler
         /* 5264 */
         used = true;
         break;
-      
+
       case 5155006:
         /* 5269 */
         if (c.getPlayer().getKeyValue(7786, "sw") == 0L)
@@ -7694,7 +7684,7 @@ public class InventoryHandler
         /* 5276 */
         used = true;
         break;
-      
+
       case 5155002:
         /* 5280 */
         if (c.getPlayer().getKeyValue(7786, "sw") == 0L)
@@ -7714,7 +7704,7 @@ public class InventoryHandler
         /* 5287 */
         used = true;
         break;
-      
+
       case 5155003:
         /* 5291 */
         if (c.getPlayer().getKeyValue(7786, "sw") == 0L)
@@ -7734,7 +7724,7 @@ public class InventoryHandler
         /* 5298 */
         used = true;
         break;
-      
+
       default:
         /* 5302 */
         if (itemId / 10000 == 512 || itemId == 2432290)
@@ -7745,10 +7735,10 @@ public class InventoryHandler
           String msg = mapleItemInformationProvider.getMsg(itemId);
           /* 5305 */
           String ourMsg = slea.readMapleAsciiString();
-          
+
           /* 5320 */
           c.getPlayer().getMap().startMapEffect(ourMsg, itemId);
-          
+
           /* 5322 */
           int buff = mapleItemInformationProvider.getStateChangeItem(itemId);
           /* 5323 */
@@ -7798,8 +7788,7 @@ public class InventoryHandler
           for (MaplePet maplePet : c.getPlayer().getPets())
           {
             /* 5340 */
-            if (maplePet != null
-                && /* 5341 */ maplePet.canConsume(itemId))
+            if (maplePet != null && /* 5341 */ maplePet.canConsume(itemId))
             {
               /* 5342 */
               int petindex = c.getPlayer().getPetIndex(maplePet);
@@ -7836,7 +7825,7 @@ public class InventoryHandler
               c.getPlayer().getMap().broadcastMessage(c.getPlayer(), PetPacket.commandResponse(c.getPlayer().getId(), (byte) 1, (byte) petindex, true), true);
             }
           }
-          
+
           /* 5361 */
           used = true;
           break;
@@ -7849,7 +7838,7 @@ public class InventoryHandler
         }
         break;
     }
-    
+
     /* 5369 */
     if (used)
     {
@@ -7861,11 +7850,11 @@ public class InventoryHandler
         /* 5372 */
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.CASH, toUse));
       }
-      
+
       /* 5375 */
       MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.CASH, slot, (short) 1, false, true);
     }
-    
+
     /* 5379 */
     c.getSession()
         /* 5380 */.writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
@@ -7885,8 +7874,8 @@ public class InventoryHandler
       c.getPlayer().fakeRelog();
     }
   }
-  
-  public static final void Pickup_Player(LittleEndianAccessor slea, MapleClient c, MapleCharacter chr)
+
+  public static final void Pickup_Player (LittleEndianAccessor slea, MapleClient c, MapleCharacter chr)
   {
     slea.readInt();
     slea.skip(1);
@@ -7902,52 +7891,52 @@ public class InventoryHandler
       c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
       return;
     }
-    MapleMapItem mapitem = (MapleMapItem) ob;
+    MapleMapItem mapItem = (MapleMapItem) ob;
     try
     {
-      mapitem.getLock().lock();
-      if (mapitem.isPickedUp())
+      mapItem.getLock().lock();
+      if (mapItem.isPickedUp())
       {
         c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         return;
       }
-      if (mapitem.getItemId() == 2431174)
+      if (mapItem.getItemId() == 2431174)
       {
         int rand = Randomizer.rand(1, 10) * 10;
         c.getPlayer().gainHonor(rand);
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.getInventoryStatus(true));
-        InventoryHandler.removeItem(chr, mapitem, ob);
+        InventoryHandler.removeItem(chr, mapItem, ob);
         return;
       }
-      
-      if (mapitem.getItemId() == 2433103)
+
+      if (mapItem.getItemId() == 2433103)
       {
         c.getPlayer().gainHonor(10000);
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.getInventoryStatus(true));
-        InventoryHandler.removeItem(chr, mapitem, ob);
+        InventoryHandler.removeItem(chr, mapItem, ob);
         return;
       }
-      
-      if (mapitem.getItemId() == 2433019)
+
+      if (mapItem.getItemId() == 2433019)
       {
         int ranmeso = Randomizer.rand(1000000, 100000000);
         chr.gainMeso(ranmeso, true);
-        InventoryHandler.removeItem(chr, mapitem, ob);
+        InventoryHandler.removeItem(chr, mapItem, ob);
         c.getPlayer().dropMessage(-8, "메소럭키백에서 메소를 " + ranmeso + "메소 만큼 휙득 하였습니다.");
         return;
       }
-      
-      if (mapitem.getItemId() == 2433979)
+
+      if (mapItem.getItemId() == 2433979)
       {
         int ranmeso = Randomizer.rand(1000000, 100000000);
         chr.gainMeso(ranmeso, true);
-        InventoryHandler.removeItem(chr, mapitem, ob);
+        InventoryHandler.removeItem(chr, mapItem, ob);
         c.getPlayer().dropMessage(-8, "메소럭키백에서 메소를 " + ranmeso + "메소 만큼 휙득 하였습니다.");
         return;
       }
-      
+
       /* 4813 */
-      if (mapitem.getItemId() == 4001169 && c.getPlayer().getMap().getMonstermarble() != 20)
+      if (mapItem.getItemId() == 4001169 && c.getPlayer().getMap().getMonstermarble() != 20)
       {
         /* 4814 */
         c.getPlayer().getMap().setMonstermarble(c.getPlayer().getMap().getMonstermarble() + 1);
@@ -7956,23 +7945,23 @@ public class InventoryHandler
         /* 4816 */
         c.getPlayer().getMap().broadcastMessage(CWvsContext.getTopMsg("몬스터구슬 " + c.getPlayer().getMap().getMonstermarble() + " / 20"));
         /* 4817 */
-        removeItem(chr, mapitem, ob);
+        removeItem(chr, mapItem, ob);
         return;
         /*      */
       }
       /* 4819 */
-      if (mapitem.getItemId() == 4001169)
+      if (mapItem.getItemId() == 4001169)
       {
         /* 4820 */
-        removeItem(chr, mapitem, ob);
+        removeItem(chr, mapItem, ob);
         /*      */
         /*      */
         return;
         /*      */
       }
-      //파티퀘스트 시작
+      // 파티퀘스트 시작
       /* 4824 */
-      if (mapitem.getItemId() == 4001101 && c.getPlayer().getMap().getMoonCake() != 80)
+      if (mapItem.getItemId() == 4001101 && c.getPlayer().getMap().getMoonCake() != 80)
       {
         /* 4825 */
         c.getPlayer().getMap().setMoonCake(c.getPlayer().getMap().getMoonCake() + 1);
@@ -7981,29 +7970,29 @@ public class InventoryHandler
         /* 4827 */
         c.getPlayer().getMap().broadcastMessage(CWvsContext.getTopMsg("어흥이를 위해 월묘의 떡 " + c.getPlayer().getMap().getMoonCake() + "개를 모았습니다.  앞으로 " + (80 - c.getPlayer().getMap().getMoonCake()) + "개 더!"));
         /* 4828 */
-        removeItem(chr, mapitem, ob);
+        removeItem(chr, mapItem, ob);
         return;
         /*      */
       }
       /* 4830 */
-      if (mapitem.getItemId() == 4001101)
+      if (mapItem.getItemId() == 4001101)
       {
         /* 4831 */
-        removeItem(chr, mapitem, ob);
+        removeItem(chr, mapItem, ob);
         /*      */
         return;
         /*      */
       }
       /* 4834 */
-      if (mapitem.getItemId() == 4000884)
+      if (mapItem.getItemId() == 4000884)
       {
         /* 4835 */
         c.getPlayer().getMap().broadcastMessage(CField.startMapEffect("달맞이꽃 씨앗을 되찾았습니다.", 5120016, true));
         /*      */
       }
-      
+
       /* 4837 */
-      if (mapitem.getItemId() >= 2432139 && mapitem.getItemId() < 2432149)
+      if (mapItem.getItemId() >= 2432139 && mapItem.getItemId() < 2432149)
       {
         /* 4838 */
         EventManager em = c.getChannelServer().getEventSM().getEventManager("KerningPQ");
@@ -8017,7 +8006,7 @@ public class InventoryHandler
         for (int i = 1; i < 10; i++)
         {
           /* 4843 */
-          if (mapitem.getItemId() == 2432139 + i)
+          if (mapItem.getItemId() == 2432139 + i)
           {
             /* 4844 */
             if (getPQ != c.getPlayer().getMap().getKerningPQ())
@@ -8113,7 +8102,7 @@ public class InventoryHandler
             /* 4886 */
             c.getSession().writeAndFlush(CWvsContext.InventoryPacket.getInventoryStatus(true));
             /* 4887 */
-            removeItem(chr, mapitem, ob);
+            removeItem(chr, mapItem, ob);
             /*      */
             return;
             /*      */
@@ -8122,9 +8111,9 @@ public class InventoryHandler
         }
         /*      */
       }
-      
+
       /* 4892 */
-      if (mapitem.getItemId() == 4001022)
+      if (mapItem.getItemId() == 4001022)
       {
         /* 4893 */
         c.getPlayer().getMap().setRPTicket(c.getPlayer().getMap().getRPTicket() + 1);
@@ -8144,52 +8133,65 @@ public class InventoryHandler
           /*      */
         }
         /* 4901 */
-        removeItem(chr, mapitem, ob);
+        removeItem(chr, mapItem, ob);
         return;
         /*      */
       }
       /* 4903 */
-      if (mapitem.getItemId() == 4001022)
+      if (mapItem.getItemId() == 4001022)
       {
         /* 4904 */
-        removeItem(chr, mapitem, ob);
+        removeItem(chr, mapItem, ob);
         /*      */
         return;
         /*      */
       }
-      
-      if (mapitem.getItemId() == 2023484 || mapitem.getItemId() == 2023494 || mapitem.getItemId() == 2023495 || mapitem.getItemId() == 2023669 || mapitem.getItemId() == 2023927)
+
+      if (mapItem.getItemId() == 2023484 || mapItem.getItemId() == 2023494 || mapItem.getItemId() == 2023495 || mapItem.getItemId() == 2023669 || mapItem.getItemId() == 2023927)
       {
-        if (mapitem.getDropper() instanceof MapleMonster)
+        if (mapItem.getDropper() instanceof MapleMonster)
         {
           if (chr.getClient().getKeyValue("combokill") == null)
           {
             chr.getClient().setKeyValue("combokill", "1");
             chr.getClient().send(CField.ImageTalkNpc(9010049, 10000, "#b[안내] 콤보킬 퍼레이드#k\r\n\r\n콤보를 50단위씩 쌓아서 얻는 #b[콤보킬 퍼레이드]#k를 획득 하셨어요!\r\n\r\n#b[콤보킬 퍼레이드]#k에 접촉 시 #b추가 보너스 경험치#k를 획득할 수 있어요!"));
           }
-          int bonus = mapitem.getItemId() % 100 == 84 ? 5 : (mapitem.getItemId() % 100 == 94 ? 7 : (mapitem.getItemId() % 100 == 95 ? 10 : 12));
+          int bonus = 30;
+
+          switch (mapItem.getItemId())
+          {
+            case 2023484:
+              bonus = 5;
+              break;
+            case 2023494:
+              bonus = 10;
+              break;
+            case 2023495:
+              bonus = 15;
+              break;
+            case 2023669:
+              bonus = 20;
+              break;
+          }
           if (chr.getSkillLevel(20000297) > 0)
           {
-            bonus += SkillFactory.getSkill(20000297).getEffect(chr.getSkillLevel(20000297)).getX() / 100;
+            bonus = (int) Math.floor(bonus * SkillFactory.getSkill(20000297).getEffect(chr.getSkillLevel(20000297)).getX() / 100.0D + 0.5);
           }
           else if (chr.getSkillLevel(80000370) > 0)
           {
-            bonus += SkillFactory.getSkill(80000370).getEffect(chr.getSkillLevel(80000370)).getX() / 100;
+            bonus = (int) Math.floor(bonus * SkillFactory.getSkill(80000370).getEffect(chr.getSkillLevel(80000370)).getX() / 100.0D + 0.5);
           }
-          if (mapitem.getItemId() == 2023927)
-          {
-            bonus = 30;
-          }
-          MapleMonster mob = (MapleMonster) mapitem.getDropper();
-          long exp = mob.getMobExp() * (long) bonus;
+
+          MapleMonster mob = (MapleMonster) mapItem.getDropper();
+          long exp = mob.getMobExp() * bonus * chr.getClient().getChannelServer().getExpRate();
           chr.gainExp(exp, true, true, false);
           c.send(CField.EffectPacket.gainExp(exp));
         }
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.getInventoryStatus(true));
-        InventoryHandler.removeItem(chr, mapitem, ob);
+        InventoryHandler.removeItem(chr, mapItem, ob);
         return;
       }
-      if (mapitem.getItemId() == 2434851)
+      if (mapItem.getItemId() == 2434851)
       {
         if (!chr.getBuffedValue(25121133))
         {
@@ -8204,35 +8206,35 @@ public class InventoryHandler
         }
         effect.applyTo(chr, chr, false, chr.getPosition(), (int) duration, (byte) 0, false);
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.getInventoryStatus(true));
-        InventoryHandler.removeItem(chr, mapitem, ob);
+        InventoryHandler.removeItem(chr, mapItem, ob);
         return;
       }
-      if (mapitem.getItemId() == 2002058)
+      if (mapItem.getItemId() == 2002058)
       {
         if (c.getPlayer().hasDisease(SecondaryStat.DeathMark))
         {
           c.getPlayer().cancelDisease(SecondaryStat.DeathMark);
         }
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.getInventoryStatus(true));
-        InventoryHandler.removeItem(chr, mapitem, ob);
+        InventoryHandler.removeItem(chr, mapItem, ob);
         return;
       }
-      if (mapitem.getItemId() == 4310229)
+      if (mapItem.getItemId() == 4310229)
       {
         if (c.getKeyValue("유니온코인") == null)
         {
           c.setKeyValue("유니온코인", "0");
         }
-        short qty = mapitem.getItem().getQuantity();
+        short qty = mapItem.getItem().getQuantity();
         c.getPlayer().setKeyValue(500629, "point", String.valueOf(Integer.parseInt(c.getKeyValue("유니온코인")) + qty));
         c.setKeyValue("유니온코인", String.valueOf(Integer.parseInt(c.getKeyValue("유니온코인")) + qty));
         c.getPlayer().setKeyValue(500629, "point", String.valueOf(c.getPlayer().getKeyValue(500629, "point") + qty));
         c.getPlayer().dropMessage(-8, "유니온 코인을 " + qty + "개 획득하여 " + c.getPlayer().getKeyValue(500629, "point") + "개를 소지하고 있습니다.");
-        removeItem(chr, mapitem, ob);
+        removeItem(chr, mapItem, ob);
         c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         return;
       }
-      if (mapitem.getItemId() == 4001849 || mapitem.getItemId() == 4001847)
+      if (mapItem.getItemId() == 4001849 || mapItem.getItemId() == 4001847)
       {
         if (chr.getBattleGroundChr() != null)
         {
@@ -8243,31 +8245,31 @@ public class InventoryHandler
           chr.getClient().send(BattleGroundPacket.UpdateAvater(chr.getBattleGroundChr(), GameConstants.BattleGroundJobType(chr.getBattleGroundChr())));
         }
         c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
-        InventoryHandler.removeItem(chr, mapitem, ob);
+        InventoryHandler.removeItem(chr, mapItem, ob);
         return;
       }
-      if (mapitem.getItemId() >= 4034942 && mapitem.getItemId() <= 4034958)
+      if (mapItem.getItemId() >= 4034942 && mapItem.getItemId() <= 4034958)
       {
-        if (c.getPlayer().getRecipe().left.intValue() == mapitem.getItemId())
+        if (c.getPlayer().getRecipe().left.intValue() == mapItem.getItemId())
         {
-          c.getPlayer().setRecipe(new Pair<Integer, Integer>(mapitem.getItemId(), c.getPlayer().getRecipe().right + 1));
+          c.getPlayer().setRecipe(new Pair<Integer, Integer>(mapItem.getItemId(), c.getPlayer().getRecipe().right + 1));
         }
         else
         {
-          c.getPlayer().setRecipe(new Pair<Integer, Integer>(mapitem.getItemId(), 1));
+          c.getPlayer().setRecipe(new Pair<Integer, Integer>(mapItem.getItemId(), 1));
         }
         chr.getMap().broadcastMessage(CField.addItemMuto(chr));
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.getInventoryStatus(true));
-        InventoryHandler.removeItem(chr, mapitem, ob);
+        InventoryHandler.removeItem(chr, mapItem, ob);
         return;
       }
       boolean touchitem = false;
-      switch (mapitem.getItemId())
+      switch (mapItem.getItemId())
       {
         case 2633304:
         case 2633609:
         {
-          String[] bossname = new String[]{"이지 시그너스", "하드 힐라", "카오스 핑크빈", "노멀 시그너스", "카오스 자쿰", "카오스 피에르", "카오스 반반", "카오스 블러디퀸", "하드 매그너스", "카오스 벨룸", "카오스 파풀라투스", "노멀 스우", "노멀 데미안", "이지 루시드", "노멀 루시드", "노멀 윌", "노멀 더스크", "노멀 듄켈", "하드 데미안", "하드 스우", "하드 루시드", "하드 윌", "카오스 더스크", "하드 듄켈", "진 힐라", "세렌"};
+          String[] bossname = new String[] { "이지 시그너스", "하드 힐라", "카오스 핑크빈", "노멀 시그너스", "카오스 자쿰", "카오스 피에르", "카오스 반반", "카오스 블러디퀸", "하드 매그너스", "카오스 벨룸", "카오스 파풀라투스", "노멀 스우", "노멀 데미안", "이지 루시드", "노멀 루시드", "노멀 윌", "노멀 더스크", "노멀 듄켈", "하드 데미안", "하드 스우", "하드 루시드", "하드 윌", "카오스 더스크", "하드 듄켈", "진 힐라", "세렌" };
           String[] wishCoinCheck = null;
           if (ServerConstants.Event_Blooming)
           {
@@ -8281,7 +8283,7 @@ public class InventoryHandler
           int i = 0;
           for (Pair<Integer, Integer> list : ServerConstants.NeoPosList)
           {
-            MapleMonster mob = (MapleMonster) mapitem.getDropper();
+            MapleMonster mob = (MapleMonster) mapItem.getDropper();
             if (list.getLeft().intValue() == mob.getId())
             {
               int questid;
@@ -8383,7 +8385,7 @@ public class InventoryHandler
             /* 5555 */
             chr.setKeyValue(100803, "count", String.valueOf(now + 1));
             /* 5556 */
-            chr.AddBloomingCoin((Calendar.getInstance().get(7) == 7 || Calendar.getInstance().get(7) == 1) ? 2 : 1, mapitem.getPosition());
+            chr.AddBloomingCoin((Calendar.getInstance().get(7) == 7 || Calendar.getInstance().get(7) == 1) ? 2 : 1, mapItem.getPosition());
             /* 5557 */
             chr.getClient().send(SLFCGPacket.EventSkillOnFlowerEffect(7, 1));
             /* 5558 */
@@ -8395,7 +8397,7 @@ public class InventoryHandler
             }
             else if (chr.getKeyValue(100803, "count") == 10L)
             {
-              
+
               /* 5562 */
               chr.setKeyValue(100803, "count", "0");
               /* 5563 */
@@ -8411,28 +8413,26 @@ public class InventoryHandler
               {
                 /* 5568 */
                 Timer.BuffTimer.getInstance().schedule(() ->
-                    {
-                      /* 5569 */
-                      chr.AddBloomingCoin((Calendar.getInstance().get(7) == 7 || Calendar.getInstance().get(7) == 1) ? 20 : 10, chr.getPosition());
-                      chr.getClient().send(CField.enforceMsgNPC(9062528, 1000, "#r꽃비#k가 쏴아아!\r\n너무 예뻐!"));
-                      /* 5571 */
-                      chr.getClient().send(CField.UIPacket.detailShowInfo("두나의 꽃비로 블루밍 코인 " + ((Calendar.getInstance().get(7) == 7 || Calendar.getInstance().get(7) == 1) ? 20 : 10) + "개를 획득했습니다.", 3, 20, 20));
-                    },
-                    2500L);
+                {
+                  /* 5569 */
+                  chr.AddBloomingCoin((Calendar.getInstance().get(7) == 7 || Calendar.getInstance().get(7) == 1) ? 20 : 10, chr.getPosition());
+                  chr.getClient().send(CField.enforceMsgNPC(9062528, 1000, "#r꽃비#k가 쏴아아!\r\n너무 예뻐!"));
+                  /* 5571 */
+                  chr.getClient().send(CField.UIPacket.detailShowInfo("두나의 꽃비로 블루밍 코인 " + ((Calendar.getInstance().get(7) == 7 || Calendar.getInstance().get(7) == 1) ? 20 : 10) + "개를 획득했습니다.", 3, 20, 20));
+                }, 2500L);
               }
               /* 5574 */
               if (added == 2 && chr.getQuestStatus(100802) == 2)
               {
                 /* 5575 */
                 Timer.BuffTimer.getInstance().schedule(() ->
-                    {
-                      /* 5576 */
-                      chr.AddBloomingCoin((Calendar.getInstance().get(7) == 7 || Calendar.getInstance().get(7) == 1) ? 40 : 20, chr.getPosition());
-                      chr.getClient().send(CField.enforceMsgNPC(9062529, 1000, "#r햇살#k이 샤라랑!\r\n꽃들아 잘 자라라~!"));
-                      /* 5578 */
-                      chr.getClient().send(CField.UIPacket.detailShowInfo("세나의 햇살 비추기로 블루밍 코인 " + ((Calendar.getInstance().get(7) == 7 || Calendar.getInstance().get(7) == 1) ? 40 : 20) + "개를 획득했습니다.", 3, 20, 20));
-                    },
-                    4500L);
+                {
+                  /* 5576 */
+                  chr.AddBloomingCoin((Calendar.getInstance().get(7) == 7 || Calendar.getInstance().get(7) == 1) ? 40 : 20, chr.getPosition());
+                  chr.getClient().send(CField.enforceMsgNPC(9062529, 1000, "#r햇살#k이 샤라랑!\r\n꽃들아 잘 자라라~!"));
+                  /* 5578 */
+                  chr.getClient().send(CField.UIPacket.detailShowInfo("세나의 햇살 비추기로 블루밍 코인 " + ((Calendar.getInstance().get(7) == 7 || Calendar.getInstance().get(7) == 1) ? 40 : 20) + "개를 획득했습니다.", 3, 20, 20));
+                }, 4500L);
               }
             }
             /* 5582 */
@@ -8448,7 +8448,7 @@ public class InventoryHandler
               chr.getClient().send(SLFCGPacket.FollowNpctoSkill(false, 9062525, 0));
               /* 5587 */
               chr.getClient().send(SLFCGPacket.FollowNpctoSkill(false, 9062526, 0));
-              
+
               /* 5589 */
               chr.cancelEffect(chr.getBuffedEffect(SecondaryStat.EventSpecialSkill));
             }
@@ -8486,7 +8486,7 @@ public class InventoryHandler
         }
         case 2432395:
         {
-          int[] itemlist = new int[]{2000005, 2001556, 2001554, 2001530};
+          int[] itemlist = new int[] { 2000005, 2001556, 2001554, 2001530 };
           int Random2 = (int) Math.floor(Math.random() * (double) itemlist.length);
           int finalitemid = itemlist[Random2];
           chr.gainItem(finalitemid, Randomizer.rand(1, 10));
@@ -8495,13 +8495,13 @@ public class InventoryHandler
         }
         case 2432396:
         {
-          int[] itemlist = new int[]{1082608, 1082609, 1082610, 1082611, 1082612, 1072967, 1072968, 1072969, 1072970, 1072971, 1052799, 0x101080, 0x101081, 1052802, 1052803, 1004229, 1004230, 1004231, 1004232, 1004233, 1102718, 1102719, 1102720, 1102721, 1102722};
+          int[] itemlist = new int[] { 1082608, 1082609, 1082610, 1082611, 1082612, 1072967, 1072968, 1072969, 1072970, 1072971, 1052799, 0x101080, 0x101081, 1052802, 1052803, 1004229, 1004230, 1004231, 1004232, 1004233, 1102718, 1102719, 1102720, 1102721, 1102722 };
           int Random3 = (int) Math.floor(Math.random() * (double) itemlist.length);
           int finalitemid = itemlist[Random3];
           Equip Item2 = (Equip) MapleItemInformationProvider.getInstance().generateEquipById(finalitemid, -1L);
           if (Item2 == null)
           {
-            InventoryHandler.removeItem(chr, mapitem, ob);
+            InventoryHandler.removeItem(chr, mapItem, ob);
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
             return;
           }
@@ -8514,13 +8514,13 @@ public class InventoryHandler
         }
         case 2432397:
         {
-          int[] itemlist = new int[]{1212101, 1222095, 1232095, 1242102, 1242133, 1262011, 1272013, 1282013, 1292014, 1302315, 1312185, 1322236, 1332260, 1342100, 1362121, 1372207, 1382245, 1402236, 1412164, 1422171, 1432200, 1442254, 1452238, 1462225, 1472247, 1482202, 1492212, 1522124, 1532130, 1582011, 1592016};
+          int[] itemlist = new int[] { 1212101, 1222095, 1232095, 1242102, 1242133, 1262011, 1272013, 1282013, 1292014, 1302315, 1312185, 1322236, 1332260, 1342100, 1362121, 1372207, 1382245, 1402236, 1412164, 1422171, 1432200, 1442254, 1452238, 1462225, 1472247, 1482202, 1492212, 1522124, 1532130, 1582011, 1592016 };
           int Random4 = (int) Math.floor(Math.random() * (double) itemlist.length);
           int finalitemid = itemlist[Random4];
           Equip Item3 = (Equip) MapleItemInformationProvider.getInstance().generateEquipById(finalitemid, -1L);
           if (Item3 == null)
           {
-            InventoryHandler.removeItem(chr, mapitem, ob);
+            InventoryHandler.removeItem(chr, mapItem, ob);
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
             return;
           }
@@ -8535,9 +8535,9 @@ public class InventoryHandler
         {
           int rand;
           ArrayList<Pair<Integer, Integer>> random = new ArrayList<Pair<Integer, Integer>>();
-          int[][] NormalItem = new int[][]{{5062009, 5}, {5062009, 10}, {5062500, 10}, {2435719, 1}, {2435719, 2}, {2435719, 3}, {4001832, 100}, {4001832, 150}, {4001832, 200}, {4310012, 15}, {4310012, 20}, {4310012, 25}, {4310012, 30}, {4310012, 35}};
-          int[][] HighuerItem = new int[][]{{2048716, 1}, {2048716, 2}, {2048716, 3}, {2048717, 1}, {2048717, 2}, {2049752, 1}, {4310005, 1}, {4310005, 2}, {5069000, 1}};
-          int[][] UniqueItem = new int[][]{{5062503, 10}, {5062503, 15}, {2049153, 1}, {2049153, 2}, {2049153, 3}, {5068300, 1}, {5069001, 1}, {2048753, 1}, {2049370, 1}, {5062503, 5}};
+          int[][] NormalItem = new int[][] { { 5062009, 5 }, { 5062009, 10 }, { 5062500, 10 }, { 2435719, 1 }, { 2435719, 2 }, { 2435719, 3 }, { 4001832, 100 }, { 4001832, 150 }, { 4001832, 200 }, { 4310012, 15 }, { 4310012, 20 }, { 4310012, 25 }, { 4310012, 30 }, { 4310012, 35 } };
+          int[][] HighuerItem = new int[][] { { 2048716, 1 }, { 2048716, 2 }, { 2048716, 3 }, { 2048717, 1 }, { 2048717, 2 }, { 2049752, 1 }, { 4310005, 1 }, { 4310005, 2 }, { 5069000, 1 } };
+          int[][] UniqueItem = new int[][] { { 5062503, 10 }, { 5062503, 15 }, { 2049153, 1 }, { 2049153, 2 }, { 2049153, 3 }, { 5068300, 1 }, { 5069001, 1 }, { 2048753, 1 }, { 2049370, 1 }, { 5062503, 5 } };
           random.add(new Pair<Integer, Integer>(1, 6400));
           random.add(new Pair<Integer, Integer>(2, 3500));
           random.add(new Pair<Integer, Integer>(3, 100));
@@ -8568,11 +8568,11 @@ public class InventoryHandler
           break;
         }
       }
-      if (mapitem.getItemId() >= 2437659 && mapitem.getItemId() <= 2437664)
+      if (mapItem.getItemId() >= 2437659 && mapItem.getItemId() <= 2437664)
       {
         int plushour = 0;
         int plusmit = 0;
-        switch (mapitem.getItemId())
+        switch (mapItem.getItemId())
         {
           case 2437659:
           {
@@ -8617,33 +8617,33 @@ public class InventoryHandler
         }
         c.getPlayer().getMap().broadcastMessage(CField.startMapEffect("파풀라투스의 시계가 움직입니다. 차원의 포탈을 통해 시간을 봉인하세요.", 5120177, true));
         c.getPlayer().getMap().broadcastMessage(MobPacket.BossPapuLatus.PapulLatusTimePatten(1, plushour, plusmit, 0));
-        InventoryHandler.removeItem(chr, mapitem, ob);
+        InventoryHandler.removeItem(chr, mapItem, ob);
         c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         return;
       }
-      if (mapitem.getItemId() == 4310229)
+      if (mapItem.getItemId() == 4310229)
       {
         if (c.getKeyValue("유니온코인") == null)
         {
           c.setKeyValue("유니온코인", "0");
         }
-        
-        short qty = mapitem.getItem().getQuantity();
+
+        short qty = mapItem.getItem().getQuantity();
         c.getPlayer().setKeyValue(500629, "point", String.valueOf(Integer.parseInt(c.getKeyValue("유니온코인")) + qty));
         c.setKeyValue("유니온코인", String.valueOf(Integer.parseInt(c.getKeyValue("유니온코인")) + qty));
         c.getPlayer().setKeyValue(500629, "point", String.valueOf(c.getPlayer().getKeyValue(500629, "point") + qty));
         c.getPlayer().dropMessage(-8, "유니온 코인을 " + qty + "개 획득하여 " + c.getPlayer().getKeyValue(500629, "point") + "개를 소지하고 있습니다.");
-        removeItem(chr, mapitem, ob);
+        removeItem(chr, mapItem, ob);
         c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         return;
       }
-      if (mapitem.getItemId() == 2437606 || mapitem.getItemId() == 2437607)
+      if (mapItem.getItemId() == 2437606 || mapItem.getItemId() == 2437607)
       {
         MobSkill ms1 = MobSkillFactory.getMobSkill(241, 3);
         int duration = 0;
         if (chr.getSkillCustomTime(241) != null)
         {
-          duration = mapitem.getItemId() == 2437606 ? chr.getSkillCustomTime(241) * 2 : chr.getSkillCustomTime(241) / 2;
+          duration = mapItem.getItemId() == 2437606 ? chr.getSkillCustomTime(241) * 2 : chr.getSkillCustomTime(241) / 2;
           chr.cancelDisease(SecondaryStat.PapulCuss);
           if (duration > 60000)
           {
@@ -8656,78 +8656,79 @@ public class InventoryHandler
             chr.giveDebuff(SecondaryStat.PapulCuss, ms1);
           }
         }
-        InventoryHandler.removeItem(chr, mapitem, ob);
+        InventoryHandler.removeItem(chr, mapItem, ob);
         c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         return;
       }
       if (touchitem)
       {
-        InventoryHandler.removeItem(chr, mapitem, ob);
+        InventoryHandler.removeItem(chr, mapItem, ob);
         c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         return;
       }
-      if (mapitem.getQuest() > 0 && chr.getQuestStatus(mapitem.getQuest()) != 1)
+      if (mapItem.getQuest() > 0 && chr.getQuestStatus(mapItem.getQuest()) != 1)
       {
         c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         return;
       }
-      if (mapitem.getOwner() != chr.getId() && (!mapitem.isPlayerDrop() && mapitem.getDropType() == 0 || mapitem.isPlayerDrop() && chr.getMap().getEverlast()))
+      if (mapItem.getOwner() != chr.getId() && (!mapItem.isPlayerDrop() && mapItem.getDropType() == 0 || mapItem.isPlayerDrop() && chr.getMap().getEverlast()))
       {
         c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         return;
       }
-      if (!(mapitem.isPlayerDrop() || mapitem.getDropType() != 1 || mapitem.getOwner() == chr.getId() || chr.getParty() != null && chr.getParty().getMemberById(mapitem.getOwner()) != null))
+      if (!(mapItem.isPlayerDrop() || mapItem.getDropType() != 1 || mapItem.getOwner() == chr.getId() || chr.getParty() != null && chr.getParty().getMemberById(mapItem.getOwner()) != null))
       {
         c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         return;
       }
-      if (mapitem.getMeso() > 0)
+      if (mapItem.getMeso() > 0)
       {
-        if (chr.getParty() != null && mapitem.getOwner() != chr.getId())
+        int meso = mapItem.getMeso();
+
+        if (chr.getParty() != null && mapItem.getOwner() != chr.getId())
         {
           LinkedList<MapleCharacter> toGive = new LinkedList<MapleCharacter>();
-          int splitMeso = mapitem.getMeso() * 40 / 100;
-          for (MaplePartyCharacter z : chr.getParty().getMembers())
+
+          for (MaplePartyCharacter member : chr.getParty().getMembers())
           {
-            MapleCharacter m = chr.getMap().getCharacterById(z.getId());
-            if (m == null || m.getId() == chr.getId())
+            MapleCharacter memberCharacter = member.getPlayer();
+            if (member.isOnline() && memberCharacter.isAlive() && memberCharacter.getMapId() == chr.getMapId())
             {
-              continue;
+              toGive.add(memberCharacter);
             }
-            toGive.add(m);
           }
+
+          int partySize = toGive.size();
+
+
+          if (partySize > 1)
+          {
+            meso = (int) Math.floor(meso * (1.2 + (partySize - 2) * 0.1d));
+          }
+
           for (MapleCharacter m : toGive)
           {
-            int mesos = splitMeso / toGive.size() + (m.getStat().hasPartyBonus ? (int) ((double) mapitem.getMeso() / 20.0) : 0);
-            if (mapitem.getDropper() instanceof MapleMonster && m.getStat().incMesoProp > 0)
+            if (m.getId() == chr.getId())
             {
-              mesos = (int) ((double) mesos + Math.floor((float) (m.getStat().incMesoProp * mesos) / 100.0f));
+              m.gainMeso((long) Math.floor(meso * (0.4 + 0.6 / partySize)), true, false, false, true);
             }
-            m.gainMeso(mesos, true, false, false, true);
+            else
+            {
+              m.gainMeso((long) Math.floor(meso * 0.6 / partySize), true, false, false, true);
+            }
           }
-          int mesos = mapitem.getMeso() - splitMeso;
-          if (mapitem.getDropper() instanceof MapleMonster && chr.getStat().incMesoProp > 0)
-          {
-            mesos = (int) ((double) mesos + Math.floor((float) (chr.getStat().incMesoProp * mesos) / 100.0f));
-          }
-          chr.gainMeso(mesos, true, false, false, true);
         }
         else
         {
-          int mesos = mapitem.getMeso();
-          if (mapitem.getDropper() instanceof MapleMonster && chr.getStat().incMesoProp > 0)
-          {
-            mesos = (int) ((double) mesos + Math.floor((float) (chr.getStat().incMesoProp * mesos) / 100.0f));
-          }
-          chr.gainMeso(mesos, true, false, false, true);
+          chr.gainMeso(meso, true, false, false, true);
         }
-        if (mapitem.getDropper().getType() == MapleMapObjectType.MONSTER)
+        if (mapItem.getDropper().getType() == MapleMapObjectType.MONSTER)
         {
-          c.getSession().writeAndFlush(CWvsContext.onMesoPickupResult(mapitem.getMeso()));
+          c.getSession().writeAndFlush(CWvsContext.onMesoPickupResult(mapItem.getMeso()));
         }
-        InventoryHandler.removeItem(chr, mapitem, ob);
+        InventoryHandler.removeItem(chr, mapItem, ob);
       }
-      else if (MapleItemInformationProvider.getInstance().isPickupBlocked(mapitem.getItemId()))
+      else if (MapleItemInformationProvider.getInstance().isPickupBlocked(mapItem.getItemId()))
       {
         c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         c.getPlayer().dropMessage(5, "This item cannot be picked up.");
@@ -8738,25 +8739,25 @@ public class InventoryHandler
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.getShowInventoryFull());
         c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
       }
-      else if (mapitem.getItemId() == 2431835)
+      else if (mapItem.getItemId() == 2431835)
       {
         MapleItemInformationProvider.getInstance().getItemEffect(2002093).applyTo(chr, true);
-        InventoryHandler.removeItem(chr, mapitem, ob);
+        InventoryHandler.removeItem(chr, mapItem, ob);
       }
-      else if (mapitem.getItemId() / 10000 != 291 && MapleInventoryManipulator.checkSpace(c, mapitem.getItemId(), mapitem.getItem().getQuantity(), mapitem.getItem().getOwner()))
+      else if (mapItem.getItemId() / 10000 != 291 && MapleInventoryManipulator.checkSpace(c, mapItem.getItemId(), mapItem.getItem().getQuantity(), mapItem.getItem().getOwner()))
       {
         Equip equip;
-        if (mapitem.getItem().getQuantity() >= 50 && mapitem.getItemId() == 2340000)
+        if (mapItem.getItem().getQuantity() >= 50 && mapItem.getItemId() == 2340000)
         {
           c.setMonitored(true);
         }
-        if (mapitem.getEquip() != null && mapitem.getDropper().getType() == MapleMapObjectType.MONSTER && mapitem.getEquip().getState() > 0)
+        if (mapItem.getEquip() != null && mapItem.getDropper().getType() == MapleMapObjectType.MONSTER && mapItem.getEquip().getState() > 0)
         {
-          c.getSession().writeAndFlush(CField.EffectPacket.showEffect(chr, 0, 0, 65, 0, 0, (byte) 0, true, null, null, mapitem.getItem()));
+          c.getSession().writeAndFlush(CField.EffectPacket.showEffect(chr, 0, 0, 65, 0, 0, (byte) 0, true, null, null, mapItem.getItem()));
         }
-        if (GameConstants.isArcaneSymbol(mapitem.getItemId()))
+        if (GameConstants.isArcaneSymbol(mapItem.getItemId()))
         {
-          Equip equip2 = (Equip) mapitem.getItem();
+          Equip equip2 = (Equip) mapItem.getItem();
           equip2.setArc((short) 30);
           equip2.setArcLevel(1);
           equip2.setArcEXP(1);
@@ -8791,7 +8792,7 @@ public class InventoryHandler
             equip2.setArcStr((short) 300);
           }
         }
-        else if (GameConstants.isAuthenticSymbol(mapitem.getItemId()) && (equip = (Equip) mapitem.getItem()).getArcLevel() == 0)
+        else if (GameConstants.isAuthenticSymbol(mapItem.getItemId()) && (equip = (Equip) mapItem.getItem()).getArcLevel() == 0)
         {
           equip.setArc((short) 10);
           equip.setArcLevel(1);
@@ -8827,9 +8828,9 @@ public class InventoryHandler
             equip.setAuthenticStr((short) 500);
           }
         }
-        if (mapitem.getItem().getItemId() == 4001886)
+        if (mapItem.getItem().getItemId() == 4001886)
         {
-          if (mapitem.getItem().getBossid() != 0)
+          if (mapItem.getItem().getBossid() != 0)
           {
             int party = chr.getParty() != null ? chr.getParty().getMembers().size() : 1;
             int meso = 0, mobid = 0;
@@ -8840,24 +8841,24 @@ public class InventoryHandler
               {
                 bossid = list.getLeft();
               }
-              if (bossid == mapitem.getItem().getBossid() || list.getMid() == mapitem.getItem().getBossid())
+              if (bossid == mapItem.getItem().getBossid() || list.getMid() == mapItem.getItem().getBossid())
               {
                 meso = list.getRight();
                 mobid = list.getMid();
                 break;
               }
             }
-            mapitem.getItem().setReward(new BossReward(chr.getInventory(MapleInventoryType.ETC).countById(4001886) + 1, mobid, party, meso));
-            mapitem.getItem().setExpiration(System.currentTimeMillis() + (7 * 24 * 60 * 60 * 1000));
+            mapItem.getItem().setReward(new BossReward(chr.getInventory(MapleInventoryType.ETC).countById(4001886) + 1, mobid, party, meso));
+            mapItem.getItem().setExpiration(System.currentTimeMillis() + (7 * 24 * 60 * 60 * 1000));
           }
           else
           {
-            mapitem.getItem().setReward(new BossReward(chr.getInventory(MapleInventoryType.ETC).countById(4001886) + 1, 100100, 1, 1));
+            mapItem.getItem().setReward(new BossReward(chr.getInventory(MapleInventoryType.ETC).countById(4001886) + 1, 100100, 1, 1));
           }
         }
-        FileoutputUtil.log(FileoutputUtil.아이템획득로그, "[PickUP_Player] 계정번호 : " + chr.getClient().getAccID() + " | " + chr.getName() + "이 " + c.getPlayer().getMapId() + "에서 " + MapleItemInformationProvider.getInstance().getName(mapitem.getItem().getItemId()) + "(" + mapitem.getItem().getItemId() + ")를 " + mapitem.getItem().getQuantity() + " 개 획득");
-        MapleInventoryManipulator.addFromDrop(c, mapitem.getItem(), true, mapitem.getDropper() instanceof MapleMonster, false);
-        InventoryHandler.removeItem(chr, mapitem, ob);
+        FileoutputUtil.log(FileoutputUtil.아이템획득로그, "[PickUP_Player] 계정번호 : " + chr.getClient().getAccID() + " | " + chr.getName() + "이 " + c.getPlayer().getMapId() + "에서 " + MapleItemInformationProvider.getInstance().getName(mapItem.getItem().getItemId()) + "(" + mapItem.getItem().getItemId() + ")를 " + mapItem.getItem().getQuantity() + " 개 획득");
+        MapleInventoryManipulator.addFromDrop(c, mapItem.getItem(), true, mapItem.getDropper() instanceof MapleMonster, false);
+        InventoryHandler.removeItem(chr, mapItem, ob);
       }
       else
       {
@@ -8868,11 +8869,11 @@ public class InventoryHandler
     }
     finally
     {
-      mapitem.getLock().unlock();
+      mapItem.getLock().unlock();
     }
   }
-  
-  public static final void Pickup_Pet(final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
+
+  public static final void Pickup_Pet (final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
   {
     if (chr == null)
     {
@@ -8893,73 +8894,73 @@ public class InventoryHandler
     {
       return;
     }
-    final MapleMapItem mapitem = (MapleMapItem) ob;
+    final MapleMapItem mapItem = (MapleMapItem) ob;
     try
     {
-      mapitem.getLock().lock();
-      if (mapitem.isPickedUp())
+      mapItem.getLock().lock();
+      if (mapItem.isPickedUp())
       {
         return;
       }
-      if ((mapitem.getOwner() != chr.getId() && mapitem.isPlayerDrop()) || mapitem.getItemId() == 2023484 || mapitem.getItemId() == 2023494 || mapitem.getItemId() == 2023495 || mapitem.getItemId() == 2023669 || mapitem.getItemId() == 2023927)
+      if ((mapItem.getOwner() != chr.getId() && mapItem.isPlayerDrop()) || mapItem.getItemId() == 2023484 || mapItem.getItemId() == 2023494 || mapItem.getItemId() == 2023495 || mapItem.getItemId() == 2023669 || mapItem.getItemId() == 2023927)
       {
         return;
       }
-      if (mapitem.getItemId() == 4310229)
+      if (mapItem.getItemId() == 4310229)
       {
         if (c.getKeyValue("유니온코인") == null)
         {
           c.setKeyValue("유니온코인", "0");
         }
-        
-        short qty = mapitem.getItem().getQuantity();
+
+        short qty = mapItem.getItem().getQuantity();
         c.getPlayer().setKeyValue(500629, "point", String.valueOf(Integer.parseInt(c.getKeyValue("유니온코인")) + qty));
         c.setKeyValue("유니온코인", String.valueOf(Integer.parseInt(c.getKeyValue("유니온코인")) + qty));
         c.getPlayer().setKeyValue(500629, "point", String.valueOf(c.getPlayer().getKeyValue(500629, "point") + qty));
         c.getPlayer().dropMessage(-8, "유니온 코인을 " + qty + "개 획득하여 " + c.getPlayer().getKeyValue(500629, "point") + "개를 소지하고 있습니다.");
-        removeItem(chr, mapitem, ob);
+        removeItem(chr, mapItem, ob);
         c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         return;
       }
-      if (mapitem.getItemId() == 2431174)
+      if (mapItem.getItemId() == 2431174)
       {
         final int rand = Randomizer.rand(1, 10) * 10;
         c.getPlayer().gainHonor(rand);
-        removeItem_Pet(chr, mapitem, petz, pet.getPetItemId());
+        removeItem_Pet(chr, mapItem, petz, pet.getPetItemId());
         return;
       }
-      if (mapitem.getItemId() == 2433103)
+      if (mapItem.getItemId() == 2433103)
       {
         final int rand = Randomizer.rand(1, 10) * 10;
         c.getPlayer().gainHonor(10000);
-        removeItem_Pet(chr, mapitem, petz, pet.getPetItemId());
+        removeItem_Pet(chr, mapItem, petz, pet.getPetItemId());
         return;
       }
-      
+
       /* 5181 */
-      if (mapitem.getItemId() == 4001169 && c.getPlayer().getMap().getMonstermarble() != 20)
+      if (mapItem.getItemId() == 4001169 && c.getPlayer().getMap().getMonstermarble() != 20)
       {
         /* 5182 */
         c.getPlayer().getMap().setMonstermarble(c.getPlayer().getMap().getMonstermarble() + 1);
         /* 5183 */
         c.getPlayer().getMap().broadcastMessage(CWvsContext.getTopMsg("몬스터구슬 " + c.getPlayer().getMap().getMonstermarble() + " / 20"));
         /* 5184 */
-        removeItem_Pet(chr, mapitem, petz, pet.getPetItemId());
+        removeItem_Pet(chr, mapItem, petz, pet.getPetItemId());
         return;
         /*      */
       }
       /* 5186 */
-      if (mapitem.getItemId() == 4001169)
+      if (mapItem.getItemId() == 4001169)
       {
         /* 5187 */
-        removeItem_Pet(chr, mapitem, petz, pet.getPetItemId());
+        removeItem_Pet(chr, mapItem, petz, pet.getPetItemId());
         /*      */
         /*      */
         return;
         /*      */
       }
-      //파티퀘스트 시작
-      if (mapitem.getItemId() == 4001101 && c.getPlayer().getMap().getMoonCake() != 80)
+      // 파티퀘스트 시작
+      if (mapItem.getItemId() == 4001101 && c.getPlayer().getMap().getMoonCake() != 80)
       {
         /* 5192 */
         c.getPlayer().getMap().setMoonCake(c.getPlayer().getMap().getMoonCake() + 1);
@@ -8968,29 +8969,29 @@ public class InventoryHandler
         /* 5194 */
         c.getPlayer().getMap().broadcastMessage(CWvsContext.getTopMsg("어흥이를 위해 월묘의 떡 " + c.getPlayer().getMap().getMoonCake() + "개를 모았습니다.  앞으로 " + (80 - c.getPlayer().getMap().getMoonCake()) + "개 더!"));
         /* 5195 */
-        removeItem(chr, mapitem, ob);
+        removeItem(chr, mapItem, ob);
         return;
         /*      */
       }
       /* 5197 */
-      if (mapitem.getItemId() == 4001101)
+      if (mapItem.getItemId() == 4001101)
       {
         /* 5198 */
-        removeItem(chr, mapitem, ob);
+        removeItem(chr, mapItem, ob);
         /*      */
         return;
         /*      */
       }
       /* 5201 */
-      if (mapitem.getItemId() == 4000884)
+      if (mapItem.getItemId() == 4000884)
       {
         /* 5202 */
         c.getPlayer().getMap().broadcastMessage(CField.startMapEffect("달맞이꽃 씨앗을 되찾았습니다.", 5120016, true));
         /*      */
       }
-      
+
       /* 4892 */
-      if (mapitem.getItemId() == 4001022)
+      if (mapItem.getItemId() == 4001022)
       {
         /* 4893 */
         c.getPlayer().getMap().setRPTicket(c.getPlayer().getMap().getRPTicket() + 1);
@@ -9010,23 +9011,23 @@ public class InventoryHandler
           /*      */
         }
         /* 4901 */
-        removeItem(chr, mapitem, ob);
+        removeItem(chr, mapItem, ob);
         return;
         /*      */
       }
       /* 4903 */
-      if (mapitem.getItemId() == 4001022)
+      if (mapItem.getItemId() == 4001022)
       {
         /* 4904 */
-        removeItem(chr, mapitem, ob);
+        removeItem(chr, mapItem, ob);
         /*      */
         return;
         /*      */
       }
-      
-      if (mapitem.getItemId() == 2633304 || mapitem.getItemId() == 2633609)
+
+      if (mapItem.getItemId() == 2633304 || mapItem.getItemId() == 2633609)
       {
-        final String[] bossname = {"이지 시그너스", "하드 힐라", "카오스 핑크빈", "노멀 시그너스", "카오스 자쿰", "카오스 피에르", "카오스 반반", "카오스 블러디퀸", "하드 매그너스", "카오스 벨룸", "카오스 파풀라투스", "노멀 스우", "노멀 데미안", "이지 루시드", "노멀 루시드", "노멀 윌", "노멀 더스크", "노멀 듄켈", "하드 데미안", "하드 스우", "하드 루시드", "하드 윌", "카오스 더스크", "하드 듄켈", "진 힐라", "세렌"};
+        final String[] bossname = { "이지 시그너스", "하드 힐라", "카오스 핑크빈", "노멀 시그너스", "카오스 자쿰", "카오스 피에르", "카오스 반반", "카오스 블러디퀸", "하드 매그너스", "카오스 벨룸", "카오스 파풀라투스", "노멀 스우", "노멀 데미안", "이지 루시드", "노멀 루시드", "노멀 윌", "노멀 더스크", "노멀 듄켈", "하드 데미안", "하드 스우", "하드 루시드", "하드 윌", "카오스 더스크", "하드 듄켈", "진 힐라", "세렌" };
         String[] wishCoinCheck = null;
         if (ServerConstants.Event_Blooming)
         {
@@ -9040,7 +9041,7 @@ public class InventoryHandler
         int i = 0;
         for (final Pair<Integer, Integer> list : ServerConstants.NeoPosList)
         {
-          final MapleMonster mob = (MapleMonster) mapitem.getDropper();
+          final MapleMonster mob = (MapleMonster) mapItem.getDropper();
           if (list.getLeft() == mob.getId())
           {
             int coincount = list.getRight();
@@ -9114,10 +9115,10 @@ public class InventoryHandler
             ++i;
           }
         }
-        removeItem_Pet(chr, mapitem, petz, pet.getPetItemId());
+        removeItem_Pet(chr, mapItem, petz, pet.getPetItemId());
         return;
       }
-      if (mapitem.getItemId() == 2633343)
+      if (mapItem.getItemId() == 2633343)
       {
         if (chr.getBuffedValue(80003046))
         {
@@ -9135,7 +9136,7 @@ public class InventoryHandler
             now = 0;
           }
           chr.setKeyValue(100803, "count", String.valueOf(now + 1));
-          chr.AddBloomingCoin((Calendar.getInstance().get(7) == 7 || Calendar.getInstance().get(7) == 1) ? 2 : 1, mapitem.getPosition());
+          chr.AddBloomingCoin((Calendar.getInstance().get(7) == 7 || Calendar.getInstance().get(7) == 1) ? 2 : 1, mapItem.getPosition());
           chr.getClient().send(SLFCGPacket.EventSkillOnFlowerEffect(7, 1));
           if (chr.getKeyValue(100803, "count") == 5L)
           {
@@ -9177,20 +9178,20 @@ public class InventoryHandler
             chr.cancelEffect(chr.getBuffedEffect(SecondaryStat.EventSpecialSkill));
           }
         }
-        removeItem_Pet(chr, mapitem, petz, pet.getPetItemId());
+        removeItem_Pet(chr, mapItem, petz, pet.getPetItemId());
         return;
       }
-      if (mapitem.getItemId() == 2002058)
+      if (mapItem.getItemId() == 2002058)
       {
         if (c.getPlayer().hasDisease(SecondaryStat.DeathMark))
         {
           c.getPlayer().cancelDisease(SecondaryStat.DeathMark);
         }
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.getInventoryStatus(true));
-        removeItem_Pet(chr, mapitem, petz, pet.getPetItemId());
+        removeItem_Pet(chr, mapItem, petz, pet.getPetItemId());
         return;
       }
-      if (mapitem.getItemId() == 2434851)
+      if (mapItem.getItemId() == 2434851)
       {
         if (!chr.getBuffedValue(25121133))
         {
@@ -9206,21 +9207,21 @@ public class InventoryHandler
         }
         effect.applyTo(chr, chr, false, chr.getPosition(), (int) duration, (byte) 0, false);
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.getInventoryStatus(true));
-        removeItem_Pet(chr, mapitem, petz, pet.getPetItemId());
+        removeItem_Pet(chr, mapItem, petz, pet.getPetItemId());
       }
       else
       {
-        if (mapitem.getOwner() != chr.getId() && ((!mapitem.isPlayerDrop() && mapitem.getDropType() == 0) || (mapitem.isPlayerDrop() && chr.getMap().getEverlast())))
+        if (mapItem.getOwner() != chr.getId() && ((!mapItem.isPlayerDrop() && mapItem.getDropType() == 0) || (mapItem.isPlayerDrop() && chr.getMap().getEverlast())))
         {
           return;
         }
-        if (!mapitem.isPlayerDrop() && mapitem.getDropType() == 1 && mapitem.getOwner() != chr.getId() && (chr.getParty() == null || chr.getParty().getMemberById(mapitem.getOwner()) == null))
+        if (!mapItem.isPlayerDrop() && mapItem.getDropType() == 1 && mapItem.getOwner() != chr.getId() && (chr.getParty() == null || chr.getParty().getMemberById(mapItem.getOwner()) == null))
         {
           return;
         }
-        if (GameConstants.isArcaneSymbol(mapitem.getItemId()))
+        if (GameConstants.isArcaneSymbol(mapItem.getItemId()))
         {
-          final Equip equip = (Equip) mapitem.getItem();
+          final Equip equip = (Equip) mapItem.getItem();
           equip.setArc((short) 30);
           equip.setArcLevel(1);
           equip.setArcEXP(1);
@@ -9255,9 +9256,9 @@ public class InventoryHandler
             equip.setArcStr((short) 300);
           }
         }
-        else if (GameConstants.isAuthenticSymbol(mapitem.getItemId()))
+        else if (GameConstants.isAuthenticSymbol(mapItem.getItemId()))
         {
-          final Equip equip = (Equip) mapitem.getItem();
+          final Equip equip = (Equip) mapItem.getItem();
           if (equip.getArcLevel() == 0)
           {
             equip.setArc((short) 10);
@@ -9295,35 +9296,78 @@ public class InventoryHandler
             }
           }
         }
-        if (mapitem.isPickpoket())
+        if (mapItem.isPickpoket())
         {
           return;
         }
-        if (mapitem.getMeso() > 0)
+        if (mapItem.getMeso() > 0)
         {
-          chr.gainMeso(mapitem.getMeso(), true, true, true, true);
-          removeItem_Pet(chr, mapitem, petz, pet.getPetItemId());
+          int meso = mapItem.getMeso();
+
+          if (chr.getParty() != null && mapItem.getOwner() != chr.getId())
+          {
+            LinkedList<MapleCharacter> toGive = new LinkedList<MapleCharacter>();
+
+            for (MaplePartyCharacter member : chr.getParty().getMembers())
+            {
+              MapleCharacter memberCharacter = member.getPlayer();
+
+              if (member.isOnline() && memberCharacter.isAlive() && memberCharacter.getMapId() == chr.getMapId())
+              {
+                toGive.add(memberCharacter);
+              }
+            }
+
+            int partySize = toGive.size();
+
+
+            if (partySize > 1)
+            {
+              meso = (int) Math.floor(meso * (1.2 + (partySize - 2) * 0.1d));
+            }
+
+            for (MapleCharacter m : toGive)
+            {
+              if (m.getId() == chr.getId())
+              {
+                m.gainMeso((long) Math.floor(meso * (0.4 + 0.6 / partySize)), true, false, true, true);
+              }
+              else
+              {
+                m.gainMeso((long) Math.floor(meso * 0.6 / partySize), true, false, true, true);
+              }
+            }
+          }
+          else
+          {
+            chr.gainMeso(meso, true, false, true, true);
+          }
+          if (mapItem.getDropper().getType() == MapleMapObjectType.MONSTER)
+          {
+            c.getSession().writeAndFlush(CWvsContext.onMesoPickupResult(mapItem.getMeso()));
+          }
+          removeItem_Pet(chr, mapItem, petz, pet.getPetItemId());
         }
         else
         {
-          if (MapleItemInformationProvider.getInstance().isPickupBlocked(mapitem.getItemId()) || mapitem.getItemId() / 10000 == 291)
+          if (MapleItemInformationProvider.getInstance().isPickupBlocked(mapItem.getItemId()) || mapItem.getItemId() / 10000 == 291)
           {
             return;
           }
-          if (useItem(c, mapitem.getItemId()))
+          if (useItem(c, mapItem.getItemId()))
           {
-            removeItem_Pet(chr, mapitem, petz, pet.getPetItemId());
+            removeItem_Pet(chr, mapItem, petz, pet.getPetItemId());
           }
-          else if (mapitem.getItemId() == 2431835)
+          else if (mapItem.getItemId() == 2431835)
           {
             MapleItemInformationProvider.getInstance().getItemEffect(2002093).applyTo(chr, true);
-            removeItem_Pet(chr, mapitem, petz, pet.getPetItemId());
+            removeItem_Pet(chr, mapItem, petz, pet.getPetItemId());
           }
-          else if (MapleInventoryManipulator.checkSpace(c, mapitem.getItemId(), mapitem.getItem().getQuantity(), mapitem.getItem().getOwner()))
+          else if (MapleInventoryManipulator.checkSpace(c, mapItem.getItemId(), mapItem.getItem().getQuantity(), mapItem.getItem().getOwner()))
           {
-            if (mapitem.getItem().getItemId() == 4001886)
+            if (mapItem.getItem().getItemId() == 4001886)
             {
-              if (mapitem.getItem().getBossid() != 0)
+              if (mapItem.getItem().getBossid() != 0)
               {
                 int party = chr.getParty() != null ? chr.getParty().getMembers().size() : 1;
                 int meso = 0, mobid = 0;
@@ -9334,27 +9378,27 @@ public class InventoryHandler
                   {
                     bossid = list.getLeft();
                   }
-                  
-                  if (bossid == mapitem.getItem().getBossid() || list.getMid() == mapitem.getItem().getBossid())
+
+                  if (bossid == mapItem.getItem().getBossid() || list.getMid() == mapItem.getItem().getBossid())
                   {
                     meso = list.getRight();
                     mobid = list.getMid();
                     break;
                   }
                 }
-                mapitem.getItem().setExpiration(System.currentTimeMillis() + (7 * 24 * 60 * 60 * 1000));
-                mapitem.getItem().setReward(new BossReward(chr.getInventory(MapleInventoryType.ETC).countById(4001886) + 1, mobid, party, meso));
+                mapItem.getItem().setExpiration(System.currentTimeMillis() + (7 * 24 * 60 * 60 * 1000));
+                mapItem.getItem().setReward(new BossReward(chr.getInventory(MapleInventoryType.ETC).countById(4001886) + 1, mobid, party, meso));
               }
               else
               {
-                mapitem.getItem().setReward(new BossReward(chr.getInventory(MapleInventoryType.ETC).countById(4001886) + 1, 100100, 1, 1));
+                mapItem.getItem().setReward(new BossReward(chr.getInventory(MapleInventoryType.ETC).countById(4001886) + 1, 100100, 1, 1));
               }
             }
-            MapleInventoryManipulator.addFromDrop(c, mapitem.getItem(), true, mapitem.getDropper() instanceof MapleMonster, true);
-            removeItem_Pet(chr, mapitem, petz, pet.getPetItemId());
-            if (mapitem.getEquip() != null && mapitem.getDropper().getType() == MapleMapObjectType.MONSTER && mapitem.getEquip().getState() > 0)
+            MapleInventoryManipulator.addFromDrop(c, mapItem.getItem(), true, mapItem.getDropper() instanceof MapleMonster, true);
+            removeItem_Pet(chr, mapItem, petz, pet.getPetItemId());
+            if (mapItem.getEquip() != null && mapItem.getDropper().getType() == MapleMapObjectType.MONSTER && mapItem.getEquip().getState() > 0)
             {
-              c.getSession().writeAndFlush(CField.EffectPacket.showEffect(chr, 0, 0, 65, 0, 0, (byte) 0, true, null, null, mapitem.getItem()));
+              c.getSession().writeAndFlush(CField.EffectPacket.showEffect(chr, 0, 0, 65, 0, 0, (byte) 0, true, null, null, mapItem.getItem()));
             }
           }
         }
@@ -9362,11 +9406,11 @@ public class InventoryHandler
     }
     finally
     {
-      mapitem.getLock().unlock();
+      mapItem.getLock().unlock();
     }
   }
-  
-  public static final boolean useItem(final MapleClient c, final int id)
+
+  public static final boolean useItem (final MapleClient c, final int id)
   {
     if (GameConstants.isUse(id))
     {
@@ -9430,8 +9474,8 @@ public class InventoryHandler
     }
     return false;
   }
-  
-  public static final void consumeItem(final MapleClient c, final SecondaryStatEffect eff)
+
+  public static final void consumeItem (final MapleClient c, final SecondaryStatEffect eff)
   {
     if (eff == null)
     {
@@ -9460,30 +9504,30 @@ public class InventoryHandler
       eff.applyTo(c.getPlayer(), true);
     }
   }
-  
-  public static final void removeItem_Pet(final MapleCharacter chr, final MapleMapItem mapitem, final int index, final int id)
+
+  public static final void removeItem_Pet (final MapleCharacter chr, final MapleMapItem mapItem, final int index, final int id)
   {
-    mapitem.setPickedUp(true);
-    chr.getMap().broadcastMessage(CField.removeItemFromMap(mapitem.getObjectId(), 5, chr.getId(), index));
-    chr.getMap().removeMapObject(mapitem);
-    if (mapitem.isRandDrop())
+    mapItem.setPickedUp(true);
+    chr.getMap().broadcastMessage(CField.removeItemFromMap(mapItem.getObjectId(), 5, chr.getId(), index));
+    chr.getMap().removeMapObject(mapItem);
+    if (mapItem.isRandDrop())
     {
       chr.getMap().spawnRandDrop();
     }
   }
-  
-  public static final void removeItem(final MapleCharacter chr, final MapleMapItem mapitem, final MapleMapObject ob)
+
+  public static final void removeItem (final MapleCharacter chr, final MapleMapItem mapItem, final MapleMapObject ob)
   {
-    mapitem.setPickedUp(true);
-    chr.getMap().broadcastMessage(CField.removeItemFromMap(mapitem.getObjectId(), 2, chr.getId()), mapitem.getPosition());
-    chr.getMap().removeMapObject(mapitem);
-    if (mapitem.isRandDrop())
+    mapItem.setPickedUp(true);
+    chr.getMap().broadcastMessage(CField.removeItemFromMap(mapItem.getObjectId(), 2, chr.getId()), mapItem.getPosition());
+    chr.getMap().removeMapObject(mapItem);
+    if (mapItem.isRandDrop())
     {
       chr.getMap().spawnRandDrop();
     }
   }
-  
-  public static final void addMedalString(final MapleCharacter c, final StringBuilder sb)
+
+  public static final void addMedalString (final MapleCharacter c, final StringBuilder sb)
   {
     final Item medal = c.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-21));
     if (medal != null)
@@ -9509,8 +9553,8 @@ public class InventoryHandler
       sb.append("> ");
     }
   }
-  
-  public static final void TeleRock(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static final void TeleRock (final LittleEndianAccessor slea, final MapleClient c)
   {
     final short slot = slea.readShort();
     final int itemId = slea.readInt();
@@ -9527,8 +9571,8 @@ public class InventoryHandler
     }
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
   }
-  
-  public static final boolean UseTeleRock(final LittleEndianAccessor slea, final MapleClient c, final int itemId)
+
+  public static final boolean UseTeleRock (final LittleEndianAccessor slea, final MapleClient c, final int itemId)
   {
     boolean used = false;
     if (slea.readByte() == 0)
@@ -9581,8 +9625,8 @@ public class InventoryHandler
     }
     return used;
   }
-  
-  public static void UsePetLoot(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void UsePetLoot (final LittleEndianAccessor slea, final MapleClient c)
   {
     slea.readInt();
     final short mode = slea.readShort();
@@ -9596,8 +9640,8 @@ public class InventoryHandler
     }
     c.getSession().writeAndFlush(PetPacket.updatePetLootStatus(mode));
   }
-  
-  public static void SelectPQReward(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void SelectPQReward (final LittleEndianAccessor slea, final MapleClient c)
   {
     slea.skip(1);
     final int randval = RandomRewards.getRandomReward();
@@ -9614,19 +9658,19 @@ public class InventoryHandler
     }
     c.getSession().writeAndFlush(CField.EffectPacket.showCharmEffect(c.getPlayer(), randval, 1, true, ""));
   }
-  
-  public static void resetZeroWeapon(final MapleCharacter chr)
+
+  public static void resetZeroWeapon (final MapleCharacter chr)
   {
     final Equip newa = (Equip) MapleItemInformationProvider.getInstance().generateEquipById(chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-11)).getItemId(), -1L);
-    final Equip newb = (Equip) MapleItemInformationProvider.getInstance().generateEquipById(chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-10)).getItemId(),-1L);
+    final Equip newb = (Equip) MapleItemInformationProvider.getInstance().generateEquipById(chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-10)).getItemId(), -1L);
     ((Equip) chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-11))).set(newa);
     ((Equip) chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-10))).set(newb);
     chr.getClient().getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-11))));
     chr.getClient().getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-10))));
     chr.dropMessage(5, "제로의 장비는 파괴되는대신 처음 상태로 되돌아갑니다.");
   }
-  
-  public static void UseNameChangeCoupon(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void UseNameChangeCoupon (final LittleEndianAccessor slea, final MapleClient c)
   {
     final short slot = slea.readShort();
     final int itemId = slea.readInt();
@@ -9642,8 +9686,8 @@ public class InventoryHandler
     c.getSession().writeAndFlush(CWvsContext.nameChangeUI(true));
     MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (short) 1, false);
   }
-  
-  public static void UseKaiserColorChange(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void UseKaiserColorChange (final LittleEndianAccessor slea, final MapleClient c)
   {
     final short slot = slea.readShort();
     slea.skip(2);
@@ -9653,7 +9697,7 @@ public class InventoryHandler
     {
       return;
     }
-    final int[] colors = {841, 842, 843, 758, 291, 317, 338, 339, 444, 445, 446, 458, 461, 447, 450, 454, 455, 456, 457, 459, 460, 462, 463, 464, 289, 4, 34, 35, 64, 9, 10, 12, 11, 16, 17, 22, 24, 53, 61, 62, 63, 67, 68, 109, 110, 111, 112, 113, 114, 115, 116, 117, 121, 125, 128, 129, 145, 150};
+    final int[] colors = { 841, 842, 843, 758, 291, 317, 338, 339, 444, 445, 446, 458, 461, 447, 450, 454, 455, 456, 457, 459, 460, 462, 463, 464, 289, 4, 34, 35, 64, 9, 10, 12, 11, 16, 17, 22, 24, 53, 61, 62, 63, 67, 68, 109, 110, 111, 112, 113, 114, 115, 116, 117, 121, 125, 128, 129, 145, 150 };
     if (itemId == 2350004)
     {
       c.getPlayer().setKeyValue(12860, "extern", String.valueOf(colors[Randomizer.nextInt(colors.length)]));
@@ -9688,8 +9732,8 @@ public class InventoryHandler
     MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (short) 1, false);
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
   }
-  
-  public static final void UseSoulEnchanter(final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
+
+  public static final void UseSoulEnchanter (final LittleEndianAccessor slea, final MapleClient c, final MapleCharacter chr)
   {
     slea.skip(4);
     final short useslot = slea.readShort();
@@ -9712,8 +9756,8 @@ public class InventoryHandler
     MapleInventoryManipulator.removeById(chr.getClient(), MapleInventoryType.USE, enchanter.getItemId(), 1, true, false);
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
   }
-  
-  public static final void UseSoulScroll(final LittleEndianAccessor rh, final MapleClient c, final MapleCharacter chr)
+
+  public static final void UseSoulScroll (final LittleEndianAccessor rh, final MapleClient c, final MapleCharacter chr)
   {
     rh.skip(4);
     final short useslot = rh.readShort();
@@ -9789,8 +9833,8 @@ public class InventoryHandler
     MapleInventoryManipulator.removeById(chr.getClient(), MapleInventoryType.USE, soulid, 1, true, false);
     c.getSession().writeAndFlush(CWvsContext.enableActions(chr));
   }
-  
-  public static void UseCube(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void UseCube (final LittleEndianAccessor slea, final MapleClient c)
   {
     int pos = 0;
     final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
@@ -10202,8 +10246,8 @@ public class InventoryHandler
     }
     c.getPlayer().removeItem(cube.getItemId(), -1);
   }
-  
-  public static void UseGoldenHammer(final LittleEndianAccessor rh, final MapleClient c)
+
+  public static void UseGoldenHammer (final LittleEndianAccessor rh, final MapleClient c)
   {
     c.getPlayer().vh = false;
     rh.skip(4);
@@ -10290,7 +10334,7 @@ public class InventoryHandler
       c.getPlayer().vh = true;
     }
     else if (itemId == 2470021)
-    {//황망 5회
+    {// 황망 5회
       victim.setExtraUpgradeSlots((byte) (victim.getExtraUpgradeSlots() + 5));
       if (victim_ != null)
       {
@@ -10307,26 +10351,26 @@ public class InventoryHandler
       c.getPlayer().getMap().broadcastMessage(CField.getScrollEffect(c.getPlayer().getId(), Equip.ScrollResult.SUCCESS, false, itemId, victim_.getItemId()));
     }
   }
-  
-  public static void Todd(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void Todd (final LittleEndianAccessor slea, final MapleClient c)
   {
   }
-  
-  public static void returnScrollResult(LittleEndianAccessor slea, MapleClient c)
+
+  public static void returnScrollResult (LittleEndianAccessor slea, MapleClient c)
   {
     slea.skip(4);
     byte type = slea.readByte();
     Equip equip = null;
     Equip zeroequip = null;
-    
+
     MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
-    
+
     if (c.getPlayer().returnScroll == null)
     {
       c.getPlayer().dropMessage(1, "리턴 스크롤 사용 중 오류가 발생하였습니다.");
       return;
     }
-    
+
     equip = c.getPlayer().returnScroll.getPosition() > 0 ? (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(c.getPlayer().returnScroll.getPosition()) : (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(c.getPlayer().returnScroll.getPosition());
     if (equip == null)
     {
@@ -10368,8 +10412,8 @@ public class InventoryHandler
     c.getPlayer().returnScroll = null;
     c.getPlayer().returnSc = 0;
   }
-  
-  public static void ArcaneCatalyst(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void ArcaneCatalyst (final LittleEndianAccessor slea, final MapleClient c)
   {
     slea.skip(4);
     final int slot = slea.readInt();
@@ -10415,8 +10459,8 @@ public class InventoryHandler
     }
     c.getSession().writeAndFlush(CWvsContext.ArcaneCatalyst(equip, slot));
   }
-  
-  public static void ArcaneCatalyst2(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void ArcaneCatalyst2 (final LittleEndianAccessor slea, final MapleClient c)
   {
     slea.skip(4);
     final int slot = slea.readInt();
@@ -10472,16 +10516,16 @@ public class InventoryHandler
     c.getPlayer().removeItem(2535000, -1);
     c.getPlayer().forceReAddItem(equip, MapleInventoryType.EQUIP);
   }
-  
-  public static void ArcaneCatalyst3(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void ArcaneCatalyst3 (final LittleEndianAccessor slea, final MapleClient c)
   {
     final int slot = slea.readInt();
     final Equip equip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem((short) slot).copy();
     equip.setEquipmentType(equip.getEquipmentType() - 16384);
     c.getSession().writeAndFlush(CWvsContext.ArcaneCatalyst(equip, slot));
   }
-  
-  public static void ArcaneCatalyst4(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void ArcaneCatalyst4 (final LittleEndianAccessor slea, final MapleClient c)
   {
     final int slot = slea.readInt();
     final Equip equip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem((short) slot);
@@ -10489,8 +10533,8 @@ public class InventoryHandler
     c.getSession().writeAndFlush(CWvsContext.ArcaneCatalyst2(equip));
     c.getPlayer().forceReAddItem(equip, MapleInventoryType.EQUIP);
   }
-  
-  public static void ReturnSynthesizing(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void ReturnSynthesizing (final LittleEndianAccessor slea, final MapleClient c)
   {
     slea.skip(4);
     final int scrollId = slea.readInt();
@@ -10502,14 +10546,13 @@ public class InventoryHandler
     {
       equip.setMoru(0);
       c.getPlayer().forceReAddItem(equip, MapleInventoryType.EQUIP);
-      String msg = "[" + MapleItemInformationProvider.getInstance().getName(equip.getItemId()) +
-          "]의 외형이 원래대로 복구되었습니다.";
+      String msg = "[" + MapleItemInformationProvider.getInstance().getName(equip.getItemId()) + "]의 외형이 원래대로 복구되었습니다.";
       c.getSession().writeAndFlush(CWvsContext.showPopupMessage(msg));
       c.getPlayer().gainItem(scrollId, -1);
     }
   }
-  
-  public static void blackRebirthResult(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void blackRebirthResult (final LittleEndianAccessor slea, final MapleClient c)
   {
     final int result = slea.readInt();
     final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
@@ -10568,15 +10611,15 @@ public class InventoryHandler
     }
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
   }
-  
-  public static void UseCirculator(LittleEndianAccessor slea, MapleClient c)
+
+  public static void UseCirculator (LittleEndianAccessor slea, MapleClient c)
   {
     int itemId = slea.readInt();
     int slot = slea.readInt();
     Item item = c.getPlayer().getInventory(MapleInventoryType.USE).getItem((short) slot);
     if (item.getItemId() == itemId)
     {
-      
+
       List<InnerSkillValueHolder> newValues = new LinkedList<InnerSkillValueHolder>();
       InnerSkillValueHolder ivholder = null;
       InnerSkillValueHolder ivholder2 = null;
@@ -10589,7 +10632,7 @@ public class InventoryHandler
           {
             nowrank = c.getPlayer().getInnerSkills().get(0).getRank();
           }
-          
+
           for (InnerSkillValueHolder isvh : c.getPlayer().getInnerSkills())
           {
             newValues.add(InnerAbillity.getInstance().renewLevel(nowrank, isvh.getSkillId()));

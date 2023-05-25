@@ -396,6 +396,8 @@ public class Start
       CashShopServer.run_startup_configurations();
       System.out.println("[Loading Farm]");
       FarmServer.run_startup_configurations();
+      System.out.println("[Loading DropData]");
+      MapleMonsterDropDataProvider.getInstance().loadAllData();
       Runtime.getRuntime().addShutdownHook(new Thread(new Shutdown()));
       PlayerNPC.loadAll();
       LoginServer.setOn();

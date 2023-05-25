@@ -13,6 +13,10 @@ public class MonsterDropEntry
   public int questid;
   
   public int privated;
+
+  public int minLevel = 0;
+
+  public int maxLevel = 0;
   
   public MonsterDropEntry(int itemId, int chance, int Minimum, int Maximum, int questid)
   {
@@ -22,6 +26,8 @@ public class MonsterDropEntry
     this.Minimum = Minimum;
     this.Maximum = Maximum;
     this.privated = 0;
+    this.minLevel = 0;
+    this.maxLevel = 999;
   }
   
   public MonsterDropEntry(int itemId, int chance, int Minimum, int Maximum, int questid, int privated)
@@ -32,5 +38,19 @@ public class MonsterDropEntry
     this.Minimum = Minimum;
     this.Maximum = Maximum;
     this.privated = privated;
+    this.minLevel = 0;
+    this.maxLevel = 999;
+  }
+
+  public MonsterDropEntry(int itemId, int chance, int Minimum, int Maximum, int questid, int privated, int minLevel, int maxLevel)
+  {
+    this.itemId = itemId;
+    this.chance = chance;
+    this.questid = questid;
+    this.Minimum = Minimum;
+    this.Maximum = Maximum;
+    this.privated = privated;
+    this.minLevel = minLevel;
+    this.maxLevel = maxLevel;
   }
 }

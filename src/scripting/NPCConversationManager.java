@@ -23,7 +23,7 @@ import provider.MapleDataTool;
 import server.*;
 import server.life.MapleLifeFactory;
 import server.life.MapleMonster;
-import server.life.MapleMonsterInformationProvider;
+import server.life.MapleMonsterDropDataProvider;
 import server.life.MonsterDropEntry;
 import server.maps.Event_DojoAgent;
 import server.maps.MapleMap;
@@ -5653,10 +5653,10 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     return (MapleCharacterUtil.canCreateChar(t, getPlayer().isGM()) && (!LoginInformationProvider.getInstance().isForbiddenName(t) || getPlayer().isGM()));
   }
   
-  public String checkDrop(int mobId)
+  public String checkDrop(MapleMonster mob)
   {
     /* 3248 */
-    List<MonsterDropEntry> ranks = MapleMonsterInformationProvider.getInstance().retrieveDrop(mobId);
+    List<MonsterDropEntry> ranks = MapleMonsterDropDataProvider.getInstance().getDropListByMonster(mob);
     /* 3249 */
     if (ranks != null && ranks.size() > 0)
     {
@@ -5679,7 +5679,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
           if (num == 0)
           {
             /* 3258 */
-            name.append("Drops for #o" + mobId + "#\r\n");
+            name.append("Drops for #o" + mob.getId() + "#\r\n");
             /* 3259 */
             name.append("--------------------------------------\r\n");
           }

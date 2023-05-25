@@ -623,10 +623,6 @@ public class MapleMapFactory
               MapleDataTool.getInt("mobTime", life, 0),
               (byte) MapleDataTool.getInt("team", life, -1),
               (mob.getId() == bossid) ? msg : null);
-          if (map.getBurning() == 0)
-          {
-            map.setBurning(Randomizer.rand(5, 8));
-          }
           continue;
         }
         if (myLife instanceof MapleNPC)
