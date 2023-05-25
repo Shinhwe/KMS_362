@@ -84,7 +84,7 @@ public class MapleMonsterDropDataProvider
     }
   }
 
-  public List<MonsterDropEntry> getDropListByMonster (MapleMonster monster)
+  public List<MonsterDropEntry> getAllDropListByMonster (MapleMonster monster)
   {
     ArrayList<MonsterDropEntry> dropList = new ArrayList<>();
 
@@ -93,6 +93,35 @@ public class MapleMonsterDropDataProvider
     if (this.drops.containsKey(Integer.valueOf(monster.getId())))
     {
       dropList.addAll(this.drops.get(Integer.valueOf(monster.getId())));
+    }
+
+    return dropList;
+  }
+
+
+  public List<MonsterDropEntry> getPublicDropListByMonster (MapleMonster monster)
+  {
+    ArrayList<MonsterDropEntry> dropList = new ArrayList<>();
+
+    dropList.addAll(globalDrops.stream().filter(item -> monster.getStats().getLevel() >= item.minLevel && monster.getStats().getLevel() <= item.maxLevel && item.privated != 1).toList());
+
+    if (this.drops.containsKey(Integer.valueOf(monster.getId())))
+    {
+      dropList.addAll(this.drops.get(Integer.valueOf(monster.getId())).stream().filter(item -> item.privated != 1).toList());
+    }
+
+    return dropList;
+  }
+
+  public List<MonsterDropEntry> getPrivateDropListByMonster (MapleMonster monster)
+  {
+    ArrayList<MonsterDropEntry> dropList = new ArrayList<>();
+
+    dropList.addAll(globalDrops.stream().filter(item -> monster.getStats().getLevel() >= item.minLevel && monster.getStats().getLevel() <= item.maxLevel && item.privated == 1).toList());
+
+    if (this.drops.containsKey(Integer.valueOf(monster.getId())))
+    {
+      dropList.addAll(this.drops.get(Integer.valueOf(monster.getId())).stream().filter(item -> item.privated == 1).toList());
     }
 
     return dropList;

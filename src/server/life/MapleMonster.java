@@ -3292,8 +3292,9 @@ public class MapleMonster extends AbstractLoadedMapleLife
     int level = chr.getTotalSkillLevel(steal), chServerrate = ChannelServer.getInstance(chr.getClient().getChannel()).getDropRate();
     if (level > 0 && !getStats().isBoss() && this.stolen == -1 && steal.getEffect(level).makeChanceResult())
     {
+      // TODO: 只能偷钱
       MapleMonsterDropDataProvider mi = MapleMonsterDropDataProvider.getInstance();
-      List<MonsterDropEntry> de = mi.getDropListByMonster(this);
+      List<MonsterDropEntry> de = mi.getAllDropListByMonster(this);
       if (de == null)
       {
         this.stolen = 0;

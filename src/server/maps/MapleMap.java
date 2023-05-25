@@ -1032,7 +1032,7 @@ public final class MapleMap
 
     Point pos = new Point(0, (mob.getTruePosition()).y);
 
-    double showdown = 100.0D;
+    double showdown = 0.0D;
 
     MonsterStatusEffect mse = mob.getBuff(MonsterStatus.MS_Showdown);
 
@@ -1040,29 +1040,21 @@ public final class MapleMap
     {
       showdown += mse.getValue();
     }
-    MapleMonsterDropDataProvider mi = MapleMonsterDropDataProvider.getInstance();
 
-    List<MonsterDropEntry> derp = new ArrayList<>();
+    MapleMonsterDropDataProvider mmddp = MapleMonsterDropDataProvider.getInstance();
 
-    derp.addAll(mi.getDropListByMonster(mob));
-
-    if (mob.getStats().isBoss())
-    {
-      System.out.println("开始计算BOSS[" + mob.getId() + "]的掉落, 当前数据库存储的掉落 = " + JSON.toJSONString(derp));
-    }
-
-    List<MonsterDropEntry> customs = new ArrayList<>();
+    List<MonsterDropEntry> customDropList = new ArrayList<>();
 
     if (mob.isEliteboss())
     {
-      customs.add(new MonsterDropEntry(2432398, 1000000, 1, 15, 0));
+      customDropList.add(new MonsterDropEntry(2432398, 1000000, 1, 15, 0));
     }
     if (mob.isElitemonster() && !mob.isUserunespawn())
     {
-      customs.add(new MonsterDropEntry(5062009, 1000000, 2, 4, 0));
-      customs.add(new MonsterDropEntry(5062010, 500000, 1, 2, 0));
-      customs.add(new MonsterDropEntry(5062500, 100000, 1, 1, 0));
-      customs.add(new MonsterDropEntry(4001832, 1000000, 500, 1000, 0));
+      customDropList.add(new MonsterDropEntry(5062009, 1000000, 2, 4, 0));
+      customDropList.add(new MonsterDropEntry(5062010, 500000, 1, 2, 0));
+      customDropList.add(new MonsterDropEntry(5062500, 100000, 1, 1, 0));
+      customDropList.add(new MonsterDropEntry(4001832, 1000000, 500, 1000, 0));
     }
 
 
@@ -1071,31 +1063,31 @@ public final class MapleMap
       switch (mob.getId())
       {
         case 8641000:
-          customs.add(new MonsterDropEntry(4034922, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4034922, 1000000, 1, 1, 0));
           break;
         case 8641001:
-          customs.add(new MonsterDropEntry(4034923, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4034923, 1000000, 1, 1, 0));
           break;
         case 8641002:
-          customs.add(new MonsterDropEntry(4034924, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4034924, 1000000, 1, 1, 0));
           break;
         case 8641003:
-          customs.add(new MonsterDropEntry(4034925, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4034925, 1000000, 1, 1, 0));
           break;
         case 8641004:
-          customs.add(new MonsterDropEntry(4034926, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4034926, 1000000, 1, 1, 0));
           break;
         case 8641005:
-          customs.add(new MonsterDropEntry(4034927, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4034927, 1000000, 1, 1, 0));
           break;
         case 8641006:
-          customs.add(new MonsterDropEntry(4034928, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4034928, 1000000, 1, 1, 0));
           break;
         case 8641007:
-          customs.add(new MonsterDropEntry(4034929, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4034929, 1000000, 1, 1, 0));
           break;
         case 8641008:
-          customs.add(new MonsterDropEntry(4034930, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4034930, 1000000, 1, 1, 0));
           break;
       }
     }
@@ -1119,7 +1111,7 @@ public final class MapleMap
         case 8642013:
         case 8642014:
         case 8642015:
-          customs.add(new MonsterDropEntry(4036571, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036571, 1000000, 1, 1, 0));
           break;
       }
     }
@@ -1140,7 +1132,7 @@ public final class MapleMap
         case 8643010:
         case 8643011:
         case 8643012:
-          customs.add(new MonsterDropEntry(4036572, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036572, 1000000, 1, 1, 0));
           break;
       }
     }
@@ -1155,13 +1147,13 @@ public final class MapleMap
         case 8644004:
         case 8644005:
         case 8644006:
-          customs.add(new MonsterDropEntry(4036573, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036573, 1000000, 1, 1, 0));
           break;
         case 8644007:
         case 8644008:
         case 8644009:
         case 8644010:
-          customs.add(new MonsterDropEntry(4036574, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036574, 1000000, 1, 1, 0));
           break;
       }
     }
@@ -1170,36 +1162,36 @@ public final class MapleMap
       switch (mob.getId())
       {
         case 8644400:
-          customs.add(new MonsterDropEntry(4036333, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036333, 1000000, 1, 1, 0));
           break;
         case 8644401:
-          customs.add(new MonsterDropEntry(4036333, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036333, 1000000, 1, 1, 0));
           break;
         case 8644402:
-          customs.add(new MonsterDropEntry(4036329, 1000000, 1, 1, 0));
-          customs.add(new MonsterDropEntry(4036330, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036329, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036330, 1000000, 1, 1, 0));
           break;
         case 8644403:
-          customs.add(new MonsterDropEntry(4036330, 1000000, 1, 1, 0));
-          customs.add(new MonsterDropEntry(4036331, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036330, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036331, 1000000, 1, 1, 0));
           break;
         case 8644404:
-          customs.add(new MonsterDropEntry(4036330, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036330, 1000000, 1, 1, 0));
           break;
         case 8644405:
-          customs.add(new MonsterDropEntry(4036332, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036332, 1000000, 1, 1, 0));
           break;
         case 8644406:
-          customs.add(new MonsterDropEntry(4036332, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036332, 1000000, 1, 1, 0));
           break;
         case 8644407:
-          customs.add(new MonsterDropEntry(4036334, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036334, 1000000, 1, 1, 0));
           break;
         case 8644410:
-          customs.add(new MonsterDropEntry(4036335, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036335, 1000000, 1, 1, 0));
           break;
         case 8644412:
-          customs.add(new MonsterDropEntry(4036336, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036336, 1000000, 1, 1, 0));
           break;
       }
     }
@@ -1208,40 +1200,40 @@ public final class MapleMap
       switch (mob.getId())
       {
         case 8644500:
-          customs.add(new MonsterDropEntry(4036398, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036398, 1000000, 1, 1, 0));
           break;
         case 8644501:
-          customs.add(new MonsterDropEntry(4036399, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036399, 1000000, 1, 1, 0));
           break;
         case 8644502:
-          customs.add(new MonsterDropEntry(4036400, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036400, 1000000, 1, 1, 0));
           break;
         case 8644503:
-          customs.add(new MonsterDropEntry(4036401, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036401, 1000000, 1, 1, 0));
           break;
         case 8644504:
-          customs.add(new MonsterDropEntry(4036402, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036402, 1000000, 1, 1, 0));
           break;
         case 8644505:
-          customs.add(new MonsterDropEntry(4036403, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036403, 1000000, 1, 1, 0));
           break;
         case 8644506:
-          customs.add(new MonsterDropEntry(4036404, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036404, 1000000, 1, 1, 0));
           break;
         case 8644507:
-          customs.add(new MonsterDropEntry(4036405, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036405, 1000000, 1, 1, 0));
           break;
         case 8644508:
-          customs.add(new MonsterDropEntry(4036406, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036406, 1000000, 1, 1, 0));
           break;
         case 8644509:
-          customs.add(new MonsterDropEntry(4036407, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036407, 1000000, 1, 1, 0));
           break;
         case 8644510:
-          customs.add(new MonsterDropEntry(4036406, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036406, 1000000, 1, 1, 0));
           break;
         case 8644511:
-          customs.add(new MonsterDropEntry(4036407, 1000000, 1, 1, 0));
+          customDropList.add(new MonsterDropEntry(4036407, 1000000, 1, 1, 0));
           break;
       }
     }
@@ -1253,29 +1245,31 @@ public final class MapleMap
       {
         if (ServerConstants.Event_Blooming)
         {
-          customs.add(new MonsterDropEntry(2633304, 1000000, list.getRight().intValue(), list.getRight().intValue(), 0, 0));
+          customDropList.add(new MonsterDropEntry(2633304, 1000000, list.getRight().intValue(), list.getRight().intValue(), 0, 0));
           break;
         }
         if (ServerConstants.Event_MapleLive)
         {
-          customs.add(new MonsterDropEntry(2633609, 1000000, list.getRight().intValue(), list.getRight().intValue(), 0, 0));
+          customDropList.add(new MonsterDropEntry(2633609, 1000000, list.getRight().intValue(), list.getRight().intValue(), 0, 0));
         }
         break;
       }
     }
 
-    List<MonsterDropEntry> finals = new ArrayList<>();
-
-    List<MonsterDropEntry> realfinals = new ArrayList<>();
-
-    finals.addAll(derp);
-
-    finals.addAll(customs);
-
     if (GameConstants.isContentsMap(getId()) || chr.getMapId() / 100000 == 9530 || chr.getMapId() / 100000 == 9540 || (mob.getId() >= 9833935 && mob.getId() <= 9833946) || (mob.getId() >= 9833947 && mob.getId() <= 9833958))
     {
-      finals.clear();
+      return;
     }
+
+    List<MonsterDropEntry> publicDropList = mmddp.getPublicDropListByMonster(mob);
+
+    List<MonsterDropEntry> privateDropList = mmddp.getPrivateDropListByMonster(mob);
+
+    publicDropList.addAll(customDropList.stream().filter(item -> item.privated != 1).toList());
+
+    privateDropList.addAll(customDropList.stream().filter(item -> item.privated == 1).toList());
+
+    List<MonsterDropEntry> finalPublicDropList = new ArrayList<>();
 
     double dropBuff = chr.getStat().dropBuff - 100;
 
@@ -1286,8 +1280,7 @@ public final class MapleMap
 
     dropBuff = Math.min(dropBuff, 600.0D);
 
-
-    for (MonsterDropEntry de : finals)
+    for (MonsterDropEntry de : publicDropList)
     {
       int d1 = 0;
 
@@ -1295,7 +1288,7 @@ public final class MapleMap
       {
         d1 = de.chance + (int) Math.floor(((1000000 - de.chance) * (dropBuff / 400.0D)));
 
-        System.out.println("掉落枫币概率计算, 概率 = " + d1);
+        System.out.println("公共掉落枫币概率计算, 概率 = " + d1);
       }
       else
       {
@@ -1309,42 +1302,90 @@ public final class MapleMap
 
       if (Randomizer.nextInt(1000000) <= (int) d1)
       {
-        realfinals.add(de);
+        finalPublicDropList.add(de);
       }
     }
 
     int currentDropIndex = 0;
 
-    System.out.println("掉落计算结束, 掉落列表 = " + JSON.toJSONString(realfinals));
+    System.out.println("公共掉落计算结束, 掉落列表 = " + JSON.toJSONString(finalPublicDropList));
 
-    if (realfinals != null && !realfinals.isEmpty())
+    if (finalPublicDropList.size() > 0)
     {
-      Collections.shuffle(realfinals);
       currentDropIndex += 1;
-      for (MonsterDropEntry de : realfinals)
+      for (MonsterDropEntry de : finalPublicDropList)
       {
-        if (de.privated == 1)
+        // 不是独立掉落按照击杀者计算概率
+        drop(de, mob, chr, pos, currentDropIndex, finalPublicDropList.size());
+      }
+    }
+
+    if (privateDropList.size() > 0 && chr.getParty() != null)
+    {
+      List<MapleCharacter> memberList = new ArrayList<>();
+
+      for (MaplePartyCharacter member : chr.getParty().getMembers())
+      {
+        MapleCharacter memberCharacter = member.getPlayer();
+
+        if (member.isOnline() && memberCharacter.getMapId() == chr.getMapId())
         {
-          // TODO: 独立掉落根据队伍里面的每个人重新计算概率
-          if (chr.getParty() != null)
+          memberList.add(memberCharacter);
+        }
+      }
+
+      for (MapleCharacter member : memberList)
+      {
+        dropBuff = member.getStat().dropBuff - 100;
+
+        if (Calendar.getInstance().get(7) == 7)
+        {
+          dropBuff += 15.0D;
+        }
+
+        dropBuff = Math.min(dropBuff, 600.0D);
+
+        List<MonsterDropEntry> finalPrivateDropList = new ArrayList<>();
+
+        for (MonsterDropEntry de : privateDropList)
+        {
+          int d1 = 0;
+
+          if (de.itemId == 0)
           {
-            for (MaplePartyCharacter pc : chr.getParty().getMembers())
-            {
-              if (pc.isOnline() && pc.getId() != chr.getId() && pc.getMapid() == chr.getMapId())
-              {
-                MapleCharacter player = chr.getClient().getChannelServer().getPlayerStorage().getCharacterById(pc.getId());
-                if (player != null)
-                {
-                  drop(de, mob, player, pos, currentDropIndex, realfinals.size());
-                }
-              }
-            }
+            d1 = de.chance + (int) Math.floor(((1000000 - de.chance) * (dropBuff / 400.0D)));
+
+            System.out.println("独立掉落的枫币概率计算, 概率 = " + d1);
+          }
+          else
+          {
+            d1 = de.chance * (int) Math.floor((dropBuff + showdown) / 100.0D);
+          }
+
+          if (member.getKeyValue(210416, "TotalDeadTime") > 0L)
+          {
+            d1 = (int) Math.floor(d1 * 0.2D);
+          }
+
+          if (Randomizer.nextInt(1000000) <= (int) d1)
+          {
+            finalPrivateDropList.add(de);
           }
         }
-        else
+
+
+        currentDropIndex = 0;
+
+        System.out.println("独立掉落计算结束, 掉落列表 = " + JSON.toJSONString(finalPrivateDropList));
+
+        if (finalPrivateDropList.size() > 0)
         {
-          // 不是独立掉落按照击杀者计算概率
-          drop(de, mob, chr, pos, currentDropIndex, realfinals.size());
+          currentDropIndex += 1;
+          for (MonsterDropEntry de : finalPrivateDropList)
+          {
+            // 不是独立掉落按照击杀者计算概率
+            drop(de, mob, member, pos, currentDropIndex, finalPrivateDropList.size());
+          }
         }
       }
     }
@@ -1511,6 +1552,13 @@ public final class MapleMap
       {
         mesoBuff += 15.0D;
       }
+
+      // 打等级范围内的怪有20%额外枫币
+      if (chr.getLevel() >= mobLevel - 4 && chr.getLevel() <= mobLevel + 4)
+      {
+        mesos = (int) Math.floor(mesos * 1.2);
+      }
+
       mesoBuff = Math.min(mesoBuff, 400.0D);
 
       mesos = (int) (mesos * mesoBuff / 100.0D * mesoRate);
@@ -1548,13 +1596,13 @@ public final class MapleMap
         idrop.setBossid(mob.getId());
       }
 
-      if (de.privated == 0)
+      if (de.privated != 1)
       {
-        spawnMobPublicDrop(idrop, calcDropPos(dropPosition, mob.getTruePosition()), mob, chr, droptype, de.questid);
+        spawnMobDrop(idrop, calcDropPos(dropPosition, mob.getTruePosition()), mob, chr, droptype, de.questid);
       }
       else
       {
-        spawnMobDrop(idrop, calcDropPos(dropPosition, mob.getTruePosition()), mob, chr, droptype, de.questid);
+        spawnMobPublicDrop(idrop, calcDropPos(dropPosition, mob.getTruePosition()), mob, chr, droptype, de.questid);
       }
     }
   }

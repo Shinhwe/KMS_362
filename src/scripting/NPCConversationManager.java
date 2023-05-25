@@ -5656,7 +5656,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
   public String checkDrop(MapleMonster mob)
   {
     /* 3248 */
-    List<MonsterDropEntry> ranks = MapleMonsterDropDataProvider.getInstance().getDropListByMonster(mob);
+    List<MonsterDropEntry> ranks = MapleMonsterDropDataProvider.getInstance().getAllDropListByMonster(mob);
     /* 3249 */
     if (ranks != null && ranks.size() > 0)
     {
