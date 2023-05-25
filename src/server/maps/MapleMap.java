@@ -1277,7 +1277,7 @@ public final class MapleMap
       finals.clear();
     }
 
-    double dropBuff = chr.getStat().dropBuff;
+    double dropBuff = chr.getStat().dropBuff - 100;
 
     if (Calendar.getInstance().get(7) == 7)
     {
@@ -1289,22 +1289,22 @@ public final class MapleMap
 
     for (MonsterDropEntry de : finals)
     {
-      double d1 = 0;
+      int d1 = 0;
 
       if (de.itemId == 0)
       {
-        d1 = de.chance + ((1000000 - de.chance) * (dropBuff / 400.0D));
+        d1 = de.chance + (int) Math.floor(((1000000 - de.chance) * (dropBuff / 400.0D)));
 
         System.out.println("掉落枫币概率计算, 概率 = " + d1);
       }
       else
       {
-        d1 = de.chance * (dropBuff + showdown) / 100.0D;
+        d1 = de.chance * (int) Math.floor((dropBuff + showdown) / 100.0D);
       }
 
       if (chr.getKeyValue(210416, "TotalDeadTime") > 0L)
       {
-        d1 = Math.floor(d1 * 0.2D);
+        d1 = (int) Math.floor(d1 * 0.2D);
       }
 
       if (Randomizer.nextInt(1000000) <= (int) d1)
@@ -1325,6 +1325,7 @@ public final class MapleMap
       {
         if (de.privated == 1)
         {
+          // TODO: 独立掉落根据队伍里面的每个人重新计算概率
           if (chr.getParty() != null)
           {
             for (MaplePartyCharacter pc : chr.getParty().getMembers())
@@ -1342,6 +1343,7 @@ public final class MapleMap
         }
         else
         {
+          // 不是独立掉落按照击杀者计算概率
           drop(de, mob, chr, pos, currentDropIndex, realfinals.size());
         }
       }
@@ -1503,7 +1505,7 @@ public final class MapleMap
       }
       int mesos = Randomizer.nextInt(1 + maximumMesosDropped - minimumMesosDropped) + minimumMesosDropped;
 
-      double mesoBuff = chr.getStat().mesoBuff;
+      double mesoBuff = chr.getStat().mesoBuff - 100;
 
       if (Calendar.getInstance().get(7) == 1)
       {

@@ -36,7 +36,7 @@ public class MapleMonsterDropDataProvider
     try
     {
       con = DatabaseConnection.getConnection();
-      ps = con.prepareStatement("SELECT * FROM drop_data WHERE chance > 0");
+      ps = con.prepareStatement("SELECT * FROM drop_data WHERE chance > 0 ORDER BY monsterId ASC");
       rs = ps.executeQuery();
       while (rs.next())
       {

@@ -8988,8 +8988,8 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     int itemEquipExp = 0;
     if (this.getKeyValue(27040, "runnigtime") > 0L)
     {
-      boolean equip = this.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-31)) != null && MapleItemInformationProvider.getInstance().getName(this.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-31)).getItemId()).startsWith("\uc815\ub839\uc758");
-      if (this.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-17)) != null && MapleItemInformationProvider.getInstance().getName(this.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-17)).getItemId()).startsWith("\uc815\ub839\uc758"))
+      boolean equip = this.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-31)) != null && MapleItemInformationProvider.getInstance().getName(this.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-31)).getItemId()).startsWith("정령의");
+      if (this.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-17)) != null && MapleItemInformationProvider.getInstance().getName(this.getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-17)).getItemId()).startsWith("정령의"))
       {
         equip = true;
       }
