@@ -1209,12 +1209,12 @@ public class PlayerStats implements Serializable
     this.mdef += (int) Math.min(30000.0, Math.floor(this.wdef * this.percent_mdef / 100.0f));
     this.critical_rate = (short) Math.min(100, this.critical_rate);
     localmaxhp_ += chra.getTrait(MapleTrait.MapleTraitType.will).getLevel() / 5 * 100L;
-    localmaxhp_ += (long) Math.floor(localmaxhp_ * xenonMultilateralHpPercent / 100.0f + 0.5f);
     localmaxhp_ += (long) Math.floor(this.percent_hp * localmaxhp_ / 100.0f);
+    localmaxhp_ += (long) Math.floor(localmaxhp_ * xenonMultilateralHpPercent / 100.0f);
     localmaxhp_ += this.Nlocalhp;
     localmaxhp_ += this.fixHp;
+    localmaxmp_ += (long) Math.floor(this.percent_mp * localmaxmp_ / 100.0f);
     localmaxmp_ += (long) Math.floor(localmaxmp_ * xenonMultilateralMpPercent / 100.0f);
-    localmaxmp_ += (long) Math.floor(this.percent_mp * localmaxmp_ / 100.0f + 0.5f);
     localmaxmp_ += (long) Math.floor(this.before_percent_mp * this.before_maxmp / 100.0f);
     localmaxmp_ += chra.getTrait(MapleTrait.MapleTraitType.sense).getLevel() / 5 * 100L;
     localmaxmp_ += this.Nlocalmp;
@@ -6463,7 +6463,7 @@ public class PlayerStats implements Serializable
 
         bx = SkillFactory.getSkill(36120016);
         bof = chra.getSkillLevel(bx);
-        if (bof > 0)
+        if (bof > 0 && chra.getLevel() >= 200)
         {
           eff = bx.getEffect(bof);
           InsertFinalDamage(eff.getPdR());

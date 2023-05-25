@@ -210,8 +210,8 @@ public class MobPacket
     mplew.writeShort(SendPacketOpcode.BOSS_ENV.getValue());
     mplew.write(6);
     mplew.writeInt(mob.getId());
-    mplew.writeLong(mob.isEliteboss() ? mob.getHp() : (mob.getHp() + mob.getBarrier()));
-    mplew.writeLong(mob.isEliteboss() ? mob.getElitehp() : mob.getStats().getHp());
+    mplew.writeLong(mob.isEliteBoss() ? mob.getHp() : (mob.getHp() + mob.getBarrier()));
+    mplew.writeLong(mob.isEliteBoss() ? mob.getEliteHp() : mob.getStats().getHp());
     mplew.write(mob.getStats().getTagColor());
     mplew.write(mob.getStats().getTagBgColor());
     return mplew.getPacket();

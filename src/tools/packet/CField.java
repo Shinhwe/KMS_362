@@ -8524,7 +8524,7 @@ public class CField
     {
       MaplePacketLittleEndianWriter mplew = new MaplePacketLittleEndianWriter();
       mplew.writeShort(SendPacketOpcode.OPEN_NPC_SHOP.getValue() + 2);
-      List<Triple<Integer, Integer, Integer>> list = BossRewardMeso.getLists();
+      ArrayList<BossRewardMesoItem> bossRewardMesoList = BossRewardMeso.getBossRewardMesoList();
       mplew.write(1);
       mplew.writeInt(1);
       mplew.writeInt(0);
@@ -8537,13 +8537,13 @@ public class CField
       {
         mplew.writeLong(PacketHelper.getTime(-2));
         mplew.writeLong(PacketHelper.getKoreanTimestamp(System.currentTimeMillis() + (7 * 24 * 60 * 60 * 1000)));
-        mplew.writeInt(list.size());
-        for (Triple<Integer, Integer, Integer> info : list)
+        mplew.writeInt(bossRewardMesoList.size());
+        for (BossRewardMesoItem bossRewardMesoItem : bossRewardMesoList)
         {
-          mplew.writeInt(info.getMid());
-          mplew.writeInt(info.getRight());
+          mplew.writeInt(bossRewardMesoItem.intensePowerCrystalId);
+          mplew.writeInt(bossRewardMesoItem.meso);
           mplew.writeInt(0);
-          mplew.writeInt(info.getLeft());
+          mplew.writeInt(bossRewardMesoItem.bossId);
         }
       }
       return mplew.getPacket();

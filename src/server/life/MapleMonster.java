@@ -31,8 +31,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ScheduledFuture;
 
 public class MapleMonster extends AbstractLoadedMapleLife
-{//옹우ㅠㅇ
-  
+{// 옹우ㅠㅇ
+
   private final List<AttackerEntry> attackers = new CopyOnWriteArrayList<>();
   private final LinkedList<MonsterStatusEffect> poisons = new LinkedList<>();
   private final List<Pair<MonsterStatus, MonsterStatusEffect>> stati = new CopyOnWriteArrayList<>();
@@ -90,7 +90,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
   private long spawnTime = 0L, shield = 0L, shieldmax = 0L;
   private long lastBindTime = 0L;
   private long lastCriticalBindTime = 0L;
-  private long elitehp = 0L;
+  private long eliteHp = 0L;
   private long lastSpecialAttackTime = System.currentTimeMillis();
   private long lastSeedCountedTime = System.currentTimeMillis();
   private int nextSkill = 0, nextSkillLvl = 0, freezingOverlap = 0, curseBound = 0;
@@ -109,66 +109,66 @@ public class MapleMonster extends AbstractLoadedMapleLife
   private Map<Integer, Rectangle> rectangles = new LinkedHashMap<>();
   private ScheduledFuture<?> schedule = null;
   private List<MonsterStatusEffect> indielist = new ArrayList<>();
-  
-  private boolean elitemonster;
-  
+
+  private boolean eliteMonster;
+
   private boolean elitechmp;
-  
-  private boolean eliteboss;
-  
+
+  private boolean isEliteBoss;
+
   private boolean userunespawn;
-  
+
   private String specialtxt;
-  
+
   private int energycount;
-  
+
   private int energyspeed;
-  
+
   private int StigmaType;
-  
+
   private int TotalStigma;
-  
+
   private int SerenTimetype;
-  
+
   private int SerenNoonTotalTime;
-  
+
   private int SerenSunSetTotalTime;
-  
+
   private int SerenMidNightSetTotalTime;
-  
+
   private int SerenDawnSetTotalTime;
-  
+
   private int SerenNoonNowTime;
-  
+
   private int SerenSunSetNowTime;
-  
+
   private int SerenMidNightSetNowTime;
-  
+
   private int SerenDawnSetNowTime;
-  
+
   private boolean energyleft;
-  
+
   private boolean willSpecialPattern = false;
-  
-  public MapleMonster(int id, MapleMonsterStats stats)
+
+  public MapleMonster (int id, MapleMonsterStats stats)
   {
     super(id);
     initWithStats(stats);
   }
-  
-  public MapleMonster(int id, MapleMonsterStats stats, boolean extreme)
+
+  public MapleMonster (int id, MapleMonsterStats stats, boolean extreme)
   {
     super(id);
     initWithStats(stats, extreme);
   }
-  
-  public MapleMonster(MapleMonster monster)
+
+  public MapleMonster (MapleMonster monster)
   {
     super(monster);
     initWithStats(monster.stats);
   }
-  
-  public double bonusHp()
+
+  public double bonusHp ()
   {
     int level = this.stats.getLevel();
     double bonus = 1.0D;
@@ -239,16 +239,16 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     return 1.0D;
   }
-  
-  private final void initWithStats(MapleMonsterStats stats)
+
+  private final void initWithStats (MapleMonsterStats stats)
   {
     setStance(5);
     this.stats = stats;
     this.hp = (long) (stats.getHp() * bonusHp());
     this.mp = stats.getMp();
   }
-  
-  private final void initWithStats(MapleMonsterStats stats, boolean extreme)
+
+  private final void initWithStats (MapleMonsterStats stats, boolean extreme)
   {
     setStance(5);
     this.stats = stats;
@@ -256,8 +256,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
     this.hp = (long) (stats.getHp() * bonusHp());
     this.mp = stats.getMp();
   }
-  
-  public final List<AttackerEntry> getAttackers()
+
+  public final List<AttackerEntry> getAttackers ()
   {
     if (this.attackers == null || this.attackers.size() <= 0)
     {
@@ -273,53 +273,53 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     return ret;
   }
-  
-  public long getLastReceivedMovePacket()
+
+  public long getLastReceivedMovePacket ()
   {
     return this.lastReceivedMovePacket;
   }
-  
-  public void receiveMovePacket()
+
+  public void receiveMovePacket ()
   {
     this.lastReceivedMovePacket = System.currentTimeMillis();
   }
-  
-  public final MapleMonsterStats getStats()
+
+  public final MapleMonsterStats getStats ()
   {
     return this.stats;
   }
-  
-  public final void disableDrops()
+
+  public final void disableDrops ()
   {
     this.dropsDisabled = true;
   }
-  
-  public final boolean dropsDisabled()
+
+  public final boolean dropsDisabled ()
   {
     return this.dropsDisabled;
   }
-  
-  public int getOwner()
+
+  public int getOwner ()
   {
     return this.owner;
   }
-  
-  public void setOwner(int id)
+
+  public void setOwner (int id)
   {
     this.owner = id;
   }
-  
-  public final long getHp()
+
+  public final long getHp ()
   {
     return this.hp;
   }
-  
-  public final void setHp(long hp)
+
+  public final void setHp (long hp)
   {
     this.hp = hp;
   }
-  
-  public final void addHp(long hp, boolean brodcast)
+
+  public final void addHp (long hp, boolean brodcast)
   {
     this.hp = getHp() + hp;
     if (this.hp > getStats().getHp())
@@ -335,23 +335,23 @@ public class MapleMonster extends AbstractLoadedMapleLife
       this.map.killMonster(this, this.controller.get(), true, false, (byte) 1, 0);
     }
   }
-  
-  public final ChangeableStats getChangedStats()
+
+  public final ChangeableStats getChangedStats ()
   {
     return this.ostats;
   }
-  
-  public final long getMobMaxHp()
+
+  public final long getMobMaxHp ()
   {
     return this.stats.getHp();
   }
-  
-  public final int getMp()
+
+  public final int getMp ()
   {
     return this.mp;
   }
-  
-  public final void setMp(int mp)
+
+  public final void setMp (int mp)
   {
     if (mp < 0)
     {
@@ -359,8 +359,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     this.mp = mp;
   }
-  
-  public final int getMobMaxMp()
+
+  public final int getMobMaxMp ()
   {
     if (this.ostats != null)
     {
@@ -368,29 +368,29 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     return this.stats.getMp();
   }
-  
-  public final long getMobExp()
+
+  public final long getMobExp ()
   {
     if (this.ostats != null)
     {
       return this.ostats.exp;
     }
-    return this.stats.getExp();
+    return this.stats.getExp() * (isEliteBoss() ? 20 : (isEliteMonster() ? 5 : 1));
   }
-  
-  public final void setOverrideStats(OverrideMonsterStats ostats)
+
+  public final void setOverrideStats (OverrideMonsterStats ostats)
   {
     this.ostats = new ChangeableStats(this.stats, ostats);
     this.hp = ostats.getHp();
     this.mp = ostats.getMp();
   }
-  
-  public final void changeLevel(int newLevel)
+
+  public final void changeLevel (int newLevel)
   {
     changeLevel(newLevel, true);
   }
-  
-  public final void changeLevel(int newLevel, boolean pqMob)
+
+  public final void changeLevel (int newLevel, boolean pqMob)
   {
     if (!this.stats.isChangeable())
     {
@@ -400,13 +400,13 @@ public class MapleMonster extends AbstractLoadedMapleLife
     this.hp = this.ostats.getHp();
     this.mp = this.ostats.getMp();
   }
-  
-  public final MapleMonster getSponge()
+
+  public final MapleMonster getSponge ()
   {
     return this.sponge.get();
   }
-  
-  public final void setSponge(MapleMonster mob)
+
+  public final void setSponge (MapleMonster mob)
   {
     this.sponge = new WeakReference<>(mob);
     if (this.linkoid <= 0)
@@ -414,13 +414,13 @@ public class MapleMonster extends AbstractLoadedMapleLife
       this.linkoid = mob.getObjectId();
     }
   }
-  
-  public final void damage(MapleCharacter from, long damage, boolean updateAttackTime)
+
+  public final void damage (MapleCharacter from, long damage, boolean updateAttackTime)
   {
     damage(from, damage, updateAttackTime, 0);
   }
-  
-  public final void damage(MapleCharacter from, long damage, boolean updateAttackTime, int lastSkill)
+
+  public final void damage (MapleCharacter from, long damage, boolean updateAttackTime, int lastSkill)
   {
     if (from == null || damage <= 0L || !isAlive())
     {
@@ -471,8 +471,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
       {
         setHp(getMobMaxHp() * 50L / 100L);
         this.map.broadcastMessage(MobPacket.showBossHP(this));
-        if (getCustomValue(2420701) == null
-            && !this.isSkillForbid)
+        if (getCustomValue(2420701) == null && !this.isSkillForbid)
         {
           if (this.schedule != null)
           {
@@ -488,8 +487,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
       {
         setHp((long) (getMobMaxHp() * bonusHp() * 0.3D / 100.0D));
         this.map.broadcastMessage(MobPacket.showBossHP(this));
-        if (getCustomValue(2420702) == null
-            && !this.isSkillForbid)
+        if (getCustomValue(2420702) == null && !this.isSkillForbid)
         {
           if (this.schedule != null)
           {
@@ -547,9 +545,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
           this.hp = 1L;
           for (MapleMonster monster : getMap().getAllMonster())
           {
-            if (monster.getOwner() == from.getId()
-                && monster.getId() == getId() - 100
-                && monster.getBuff(MonsterStatus.MS_PowerImmune) == null)
+            if (monster.getOwner() == from.getId() && monster.getId() == getId() - 100 && monster.getBuff(MonsterStatus.MS_PowerImmune) == null)
             {
               List<Pair<MonsterStatus, MonsterStatusEffect>> stats = new ArrayList<>();
               stats.add(new Pair<>(MonsterStatus.MS_PowerImmune, new MonsterStatusEffect(146, 210000000, 1L)));
@@ -560,8 +556,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
           return;
       }
     }
-    if ((getId() == 9390612 || getId() == 9390610 || getId() == 9390911 || getId() == 8645066)
-        && from.getKeyValue(200106, "golrux_in") == 1L)
+    if ((getId() == 9390612 || getId() == 9390610 || getId() == 9390911 || getId() == 8645066) && from.getKeyValue(200106, "golrux_in") == 1L)
     {
       from.setKeyValue(200106, "golrux_dmg", String.valueOf(from.getKeyValue(200106, "golrux_dmg") + damage));
     }
@@ -582,8 +577,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
       }
       return;
     }
-    if (from.getBuffedEffect(SecondaryStat.Reincarnation) != null && this.stats.isBoss()
-        && from.getReinCarnation() > 0)
+    if (from.getBuffedEffect(SecondaryStat.Reincarnation) != null && this.stats.isBoss() && from.getReinCarnation() > 0)
     {
       from.setReinCarnation(from.getReinCarnation() - 1);
       if (from.getReinCarnation() == 0)
@@ -597,8 +591,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     if (getSeperateSoul() > 0)
     {
-      if (from.getMap() != null
-          && from.getMap().getMonsterByOid(getSeperateSoul()) != null)
+      if (from.getMap() != null && from.getMap().getMonsterByOid(getSeperateSoul()) != null)
       {
         from.getMap().getMonsterByOid(getSeperateSoul()).damage(from, damage, updateAttackTime);
       }
@@ -607,8 +600,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
     if (from.getMap().getId() == 270051100 || from.getMap().getId() == 270050100)
     {
       boolean choas = !(from.getMap().getId() == 270050100);
-      if (getId() >= 8820002 + (choas ? 100 : 0) && getId() <= 8820006 + (choas ? 100 : 0)
-          && from.getMap().getMonsterById(8820014 + (choas ? 100 : 0)) != null)
+      if (getId() >= 8820002 + (choas ? 100 : 0) && getId() <= 8820006 + (choas ? 100 : 0) && from.getMap().getMonsterById(8820014 + (choas ? 100 : 0)) != null)
       {
         from.getMap().getMonsterById(8820014 + (choas ? 100 : 0)).getStats().setTagColor(4);
         from.getMap().getMonsterById(8820014 + (choas ? 100 : 0)).getStats().setTagBgColor(1);
@@ -624,7 +616,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     if (this.map.isElitebossrewardmap() && this.map.getElitebossrewardtype() == 1 && getId() == 8220027)
     {
-      int[] itemlist = {2432391, 2432392, 2432393, 2432394, 2432395, 2432396, 2432397};
+      int[] itemlist = { 2432391, 2432392, 2432393, 2432394, 2432395, 2432396, 2432397 };
       int Random = 0;
       Random = (int) Math.floor(Math.random() * itemlist.length);
       for (int i = 0; i < Randomizer.rand(1, 3); i++)
@@ -636,7 +628,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
       }
     }
     attacker.addDamage(from, damage, updateAttackTime);
-    
+
     NumberFormat Number = NumberFormat.getInstance();
     if (getMobMaxHp() > Integer.MAX_VALUE)
     {
@@ -677,8 +669,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
                 {
                   for (AttackingMapleCharacter cattacker : mattacker.getAttackers())
                   {
-                    if (cattacker != null && cattacker.getAttacker().getMap() == from.getMap()
-                        && cattacker.getLastAttackTime() >= System.currentTimeMillis() - 4000L)
+                    if (cattacker != null && cattacker.getAttacker().getMap() == from.getMap() && cattacker.getLastAttackTime() >= System.currentTimeMillis() - 4000L)
                     {
                       cattacker.getAttacker().getClient().getSession().writeAndFlush(MobPacket.showMonsterHP(getObjectId(), getHPPercent()));
                     }
@@ -710,8 +701,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
       {
         return;
       }
-      if ((stage == 9 || stage == 13 || stage == 15 || stage == 45)
-          && damage >= getHp() && getCustomValue0(getId()) == 0L)
+      if ((stage == 9 || stage == 13 || stage == 15 || stage == 45) && damage >= getHp() && getCustomValue0(getId()) == 0L)
       {
         setCustomInfo(getId(), 1, 0);
         from.getMap().broadcastMessage(MobPacket.notDamage(getObjectId()));
@@ -944,8 +934,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
           {
             for (AttackingMapleCharacter cattacker : mattacker.getAttackers())
             {
-              if (cattacker.getAttacker().getMap() == from.getMap()
-                  && cattacker.getLastAttackTime() >= System.currentTimeMillis() - 4000L)
+              if (cattacker.getAttacker().getMap() == from.getMap() && cattacker.getLastAttackTime() >= System.currentTimeMillis() - 4000L)
               {
                 cattacker.getAttacker().getClient().getSession().writeAndFlush(MobPacket.showMonsterHP(getObjectId(), getHPPercent()));
               }
@@ -960,8 +949,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     else
     {
-      if (this.sponge.get() != null
-          && this.sponge.get().hp > 0L)
+      if (this.sponge.get() != null && this.sponge.get().hp > 0L)
       {
         if (getStats().getHp() < damage)
         {
@@ -1163,8 +1151,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
                 {
                   for (AttackingMapleCharacter cattacker : mattacker.getAttackers())
                   {
-                    if (cattacker != null && cattacker.getAttacker().getMap() == from.getMap()
-                        && cattacker.getLastAttackTime() >= System.currentTimeMillis() - 4000L)
+                    if (cattacker != null && cattacker.getAttacker().getMap() == from.getMap() && cattacker.getLastAttackTime() >= System.currentTimeMillis() - 4000L)
                     {
                       cattacker.getAttacker().getClient().getSession().writeAndFlush(MobPacket.showMonsterHP(getObjectId(), getHPPercent()));
                     }
@@ -1225,22 +1212,22 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     startDropItemSchedule();
   }
-  
-  public int getHPPercent()
+
+  public int getHPPercent ()
   {
-    if (this.elitemonster || this.eliteboss)
+    if (this.eliteMonster || this.isEliteBoss)
     {
-      return (int) Math.ceil(this.hp * 100.0D / this.elitehp);
+      return (int) Math.ceil(this.hp * 100.0D / this.eliteHp);
     }
     return (int) Math.ceil(this.hp * 100.0D / getStats().getHp());
   }
-  
-  public double getHPPercentDouble()
+
+  public double getHPPercentDouble ()
   {
     return Math.ceil(this.hp * 100.0D / getMobMaxHp());
   }
-  
-  public final void heal(long hp, long mp, boolean broadcast)
+
+  public final void heal (long hp, long mp, boolean broadcast)
   {
     if (getBuff(MonsterStatus.MS_DebuffHealing) != null)
     {
@@ -1277,8 +1264,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
       this.sponge.get().hp += hp;
     }
   }
-  
-  public final void killed()
+
+  public final void killed ()
   {
     for (Pair<MonsterStatus, MonsterStatusEffect> skill : this.stati)
     {
@@ -1297,12 +1284,12 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     this.listener = null;
   }
-  
-  private final void giveExpToCharacter(MapleCharacter attacker, long exp, boolean highestDamage, int numExpSharers, byte pty, byte Class_Bonus_EXP_PERCENT, byte Premium_Bonus_EXP_PERCENT, int lastskillID)
+
+  private final void giveExpToCharacter (MapleCharacter attacker, long exp, boolean highestDamage, int numExpSharers, byte pty, byte Class_Bonus_EXP_PERCENT, byte Premium_Bonus_EXP_PERCENT, int lastskillID)
   {
 
     if (exp > 0L)
-    {//레벨별 배율
+    {// 레벨별 배율
       MonsterStatusEffect ms = getBuff(MonsterStatus.MS_Showdown);
       if (ms != null)
       {
@@ -1368,8 +1355,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
       attacker.getTrait(MapleTrait.MapleTraitType.charisma).addExp(this.stats.getCharismaEXP(), attacker);
     }
   }
-  
-  public final int killBy(MapleCharacter killer, int lastSkill)
+
+  public final int killBy (MapleCharacter killer, int lastSkill)
   {
     if (this.killed)
     {
@@ -1509,8 +1496,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
         else
         {
           boolean v = Randomizer.isSuccess2(30);
-          if ((Randomizer.isSuccess(5) || v)
-              && !getStats().isBoss())
+          if ((Randomizer.isSuccess(5) || v) && !getStats().isBoss())
           {
             if (killer.getKeyValue(100711, "today") < 30000L)
             {
@@ -1740,8 +1726,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
     this.highestDamageChar = 0;
     return v1;
   }
-  
-  public final void spawnRevives(MapleMap map)
+
+  public final void spawnRevives (MapleMap map)
   { // 두마리 머쉬룸
     List<Integer> toSpawn = this.stats.getRevives();
     if (toSpawn == null || this.getLinkCID() > 0)
@@ -1909,33 +1895,33 @@ public class MapleMonster extends AbstractLoadedMapleLife
       }
     }
   }
-  
-  public final boolean isAlive()
+
+  public final boolean isAlive ()
   {
     return (this.hp > 0L);
   }
-  
-  public final byte getCarnivalTeam()
+
+  public final byte getCarnivalTeam ()
   {
     return this.carnivalTeam;
   }
-  
-  public final void setCarnivalTeam(byte team)
+
+  public final void setCarnivalTeam (byte team)
   {
     this.carnivalTeam = team;
   }
-  
-  public final MapleCharacter getController()
+
+  public final MapleCharacter getController ()
   {
     return this.controller.get();
   }
-  
-  public final void setController(MapleCharacter controller)
+
+  public final void setController (MapleCharacter controller)
   {
     this.controller = new WeakReference<>(controller);
   }
-  
-  public final void switchController(MapleCharacter newController, boolean immediateAggro)
+
+  public final void switchController (MapleCharacter newController, boolean immediateAggro)
   {
     MapleCharacter controllers = getController();
     if (controllers == newController)
@@ -1954,23 +1940,23 @@ public class MapleMonster extends AbstractLoadedMapleLife
       setControllerHasAggro(true);
     }
   }
-  
-  public final void addListener(MonsterListener listener)
+
+  public final void addListener (MonsterListener listener)
   {
     this.listener = listener;
   }
-  
-  public final boolean isControllerHasAggro()
+
+  public final boolean isControllerHasAggro ()
   {
     return this.controllerHasAggro;
   }
-  
-  public final void setControllerHasAggro(boolean controllerHasAggro)
+
+  public final void setControllerHasAggro (boolean controllerHasAggro)
   {
     this.controllerHasAggro = controllerHasAggro;
   }
-  
-  public final void sendSpawnData(MapleClient client)
+
+  public final void sendSpawnData (MapleClient client)
   {
     if (!isAlive() || (this.owner >= 0 && this.owner != client.getPlayer().getId()))
     {
@@ -1989,8 +1975,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
       this.map.updateMonsterController(this);
     }
   }
-  
-  public final void sendDestroyData(MapleClient client)
+
+  public final void sendDestroyData (MapleClient client)
   {
     if (this.stats.isEscort() && getEventInstance() != null && this.lastNode >= 0)
     {
@@ -2005,8 +1991,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
       }
     }
   }
-  
-  public final String toString()
+
+  public final String toString ()
   {
     StringBuilder sb = new StringBuilder();
     sb.append(this.stats.getName());
@@ -2033,55 +2019,54 @@ public class MapleMonster extends AbstractLoadedMapleLife
     sb.append((chr != null) ? chr.getName() : "none");
     return sb.toString();
   }
-  
-  public final MapleMapObjectType getType()
+
+  public final MapleMapObjectType getType ()
   {
     return MapleMapObjectType.MONSTER;
   }
-  
-  public final EventInstanceManager getEventInstance()
+
+  public final EventInstanceManager getEventInstance ()
   {
     return this.eventInstance;
   }
-  
-  public final void setEventInstance(EventInstanceManager eventInstance)
+
+  public final void setEventInstance (EventInstanceManager eventInstance)
   {
     this.eventInstance = eventInstance;
   }
-  
-  public final ElementalEffectiveness getEffectiveness(Element e)
+
+  public final ElementalEffectiveness getEffectiveness (Element e)
   {
     return this.stats.getEffectiveness(e);
   }
-  
-  public final void setTempEffectiveness(final Element e, long milli)
+
+  public final void setTempEffectiveness (final Element e, long milli)
   {
     this.stats.setEffectiveness(e, ElementalEffectiveness.WEAK);
     Timer.EtcTimer.getInstance().schedule(new Runnable()
     {
-      public void run()
+      public void run ()
       {
         MapleMonster.this.stats.removeEffectiveness(e);
       }
     }, milli);
   }
-  
-  public final boolean isBuffed(MonsterStatus status)
+
+  public final boolean isBuffed (MonsterStatus status)
   {
     Iterator<Pair<MonsterStatus, MonsterStatusEffect>> itr = this.stati.iterator();
     while (itr.hasNext())
     {
       Pair<MonsterStatus, MonsterStatusEffect> skill = itr.next();
-      if (skill != null
-          && skill.getLeft() == status)
+      if (skill != null && skill.getLeft() == status)
       {
         return true;
       }
     }
     return false;
   }
-  
-  public final boolean isBuffed(int skillid)
+
+  public final boolean isBuffed (int skillid)
   {
     Iterator<Pair<MonsterStatus, MonsterStatusEffect>> itr = this.stati.iterator();
     while (itr.hasNext())
@@ -2094,8 +2079,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     return false;
   }
-  
-  public final MonsterStatusEffect getBuff(MonsterStatus status)
+
+  public final MonsterStatusEffect getBuff (MonsterStatus status)
   {
     Iterator<Pair<MonsterStatus, MonsterStatusEffect>> itr = this.stati.iterator();
     while (itr.hasNext())
@@ -2108,8 +2093,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     return null;
   }
-  
-  public final MonsterStatusEffect getBuff(int skillid)
+
+  public final MonsterStatusEffect getBuff (int skillid)
   {
     Iterator<Pair<MonsterStatus, MonsterStatusEffect>> itr = this.stati.iterator();
     while (itr.hasNext())
@@ -2122,8 +2107,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     return null;
   }
-  
-  public final void cancelSingleStatus(MonsterStatusEffect stat, int skillid)
+
+  public final void cancelSingleStatus (MonsterStatusEffect stat, int skillid)
   {
     if (stat == null || !isAlive())
     {
@@ -2142,8 +2127,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
       }
     }
   }
-  
-  public final int getBurnedBuffSize(int skillid)
+
+  public final int getBurnedBuffSize (int skillid)
   {
     int size = 0;
     Iterator<Pair<MonsterStatus, MonsterStatusEffect>> itr = this.stati.iterator();
@@ -2157,8 +2142,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     return size;
   }
-  
-  public final int getBurnedBuffSize()
+
+  public final int getBurnedBuffSize ()
   {
     int size = 0;
     Iterator<Pair<MonsterStatus, MonsterStatusEffect>> itr = this.stati.iterator();
@@ -2172,39 +2157,39 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     return size;
   }
-  
-  public final boolean isFake()
+
+  public final boolean isFake ()
   {
     return this.fake;
   }
-  
-  public final void setFake(boolean fake)
+
+  public final void setFake (boolean fake)
   {
     this.fake = fake;
   }
-  
-  public final MapleMap getMap()
+
+  public final MapleMap getMap ()
   {
     return this.map;
   }
-  
-  public final void setMap(MapleMap map)
+
+  public final void setMap (MapleMap map)
   {
     this.map = map;
     startDropItemSchedule();
   }
-  
-  public final List<MobSkill> getSkills()
+
+  public final List<MobSkill> getSkills ()
   {
     return this.stats.getSkills();
   }
-  
-  public final boolean hasSkill(int skillId, int level)
+
+  public final boolean hasSkill (int skillId, int level)
   {
     return this.stats.hasSkill(skillId, level);
   }
-  
-  public final long getLastSkillUsed(int skillId, int skillLevel)
+
+  public final long getLastSkillUsed (int skillId, int skillLevel)
   {
     for (Map.Entry<MobSkill, Long> kvp : this.usedSkills.entrySet())
     {
@@ -2216,8 +2201,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     return 0L;
   }
-  
-  public final void setLastSkillUsed(MobSkill msi, long now, long cooltime)
+
+  public final void setLastSkillUsed (MobSkill msi, long now, long cooltime)
   {
     if ((this.getId() == 8880101 || this.getId() == 8880111) && msi.getSkillId() == 170)
     {
@@ -2225,23 +2210,23 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     this.usedSkills.put(msi, now + cooltime);
   }
-  
-  public final byte getNoSkills()
+
+  public final byte getNoSkills ()
   {
     return this.stats.getNoSkills();
   }
-  
-  public final boolean isFirstAttack()
+
+  public final boolean isFirstAttack ()
   {
     return this.stats.isFirstAttack();
   }
-  
-  public final int getBuffToGive()
+
+  public final int getBuffToGive ()
   {
     return this.stats.getBuffToGive();
   }
-  
-  public void applyStatus(MapleClient c, List<Pair<MonsterStatus, MonsterStatusEffect>> datas, SecondaryStatEffect effect)
+
+  public void applyStatus (MapleClient c, List<Pair<MonsterStatus, MonsterStatusEffect>> datas, SecondaryStatEffect effect)
   {
     int igkey = 0;
     boolean bind = false, alreadybind = false;
@@ -2270,8 +2255,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
         }
       }
       CancelStatusAction action = new CancelStatusAction(this, data.getLeft(), data.getRight());
-      ScheduledFuture<?> schedule = Timer.BuffTimer.getInstance().schedule(() -> action.run(), data
-          .getRight().getDuration());
+      ScheduledFuture<?> schedule = Timer.BuffTimer.getInstance().schedule(() -> action.run(), data.getRight().getDuration());
       data.getRight().setSchedule(schedule);
       data.getRight().setChr(c.getPlayer());
       data.getRight().setStati(data.getLeft());
@@ -2423,8 +2407,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
       }
     }
   }
-  
-  public void applyStatus(MapleClient c, MonsterStatus status, MonsterStatusEffect effect, int value, SecondaryStatEffect eff)
+
+  public void applyStatus (MapleClient c, MonsterStatus status, MonsterStatusEffect effect, int value, SecondaryStatEffect eff)
   {
     if (isBuffed(MonsterStatus.MS_PCounter) || isBuffed(MonsterStatus.MS_MCounter) || isBuffed(MonsterStatus.MS_PImmune) || isBuffed(MonsterStatus.MS_MImmune))
     {
@@ -2531,8 +2515,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
       getIndielist().add(effect);
     }
     CancelStatusAction action = new CancelStatusAction(this, status, effect);
-    ScheduledFuture<?> schedule = Timer.BuffTimer.getInstance().schedule(() -> action.run(), effect
-        .getDuration());
+    ScheduledFuture<?> schedule = Timer.BuffTimer.getInstance().schedule(() -> action.run(), effect.getDuration());
     effect.setSchedule(schedule);
     effect.setValue(value);
     effect.setStati(status);
@@ -2547,18 +2530,18 @@ public class MapleMonster extends AbstractLoadedMapleLife
       cancelStatus(status, effect);
     }
   }
-  
-  public int getSeperateSoul()
+
+  public int getSeperateSoul ()
   {
     return this.seperateSoul;
   }
-  
-  private void setSeperateSoul(int id)
+
+  private void setSeperateSoul (int id)
   {
     this.seperateSoul = id;
   }
-  
-  public final void cancelStatus(List<Pair<MonsterStatus, MonsterStatusEffect>> cancels)
+
+  public final void cancelStatus (List<Pair<MonsterStatus, MonsterStatusEffect>> cancels)
   {
     MapleCharacter con = getController();
     List<Pair<MonsterStatus, MonsterStatusEffect>> cancelsf = new ArrayList<>();
@@ -2593,19 +2576,18 @@ public class MapleMonster extends AbstractLoadedMapleLife
       this.map.broadcastMessage(MobPacket.applyMonsterStatus(this, this.stati, false, null));
     }
   }
-  
-  public final void cancelStatus(MonsterStatus stat, MonsterStatusEffect effect)
+
+  public final void cancelStatus (MonsterStatus stat, MonsterStatusEffect effect)
   {
     cancelStatus(stat, effect, false);
   }
-  
-  public final void cancelStatus(MonsterStatus stat, MonsterStatusEffect effect, boolean autocancel)
+
+  public final void cancelStatus (MonsterStatus stat, MonsterStatusEffect effect, boolean autocancel)
   {
     MonsterStatusEffect mse = null;
     for (Pair<MonsterStatus, MonsterStatusEffect> ms : this.stati)
     {
-      if (ms != null && effect != null
-          && ms.getLeft() == stat && ms.getRight().getSkill() == effect.getSkill())
+      if (ms != null && effect != null && ms.getLeft() == stat && ms.getRight().getSkill() == effect.getSkill())
       {
         mse = ms.getRight();
         break;
@@ -2694,8 +2676,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
       }
     }
   }
-  
-  public final void cancelSingleStatus(MonsterStatusEffect stat)
+
+  public final void cancelSingleStatus (MonsterStatusEffect stat)
   {
     if (stat == null || !isAlive())
     {
@@ -2703,8 +2685,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     cancelStatus(stat.getStati(), stat);
   }
-  
-  public final void dispels()
+
+  public final void dispels ()
   {
     for (Pair<MonsterStatus, MonsterStatusEffect> stat : this.stati)
     {
@@ -2732,48 +2714,48 @@ public class MapleMonster extends AbstractLoadedMapleLife
       }
     }
   }
-  
-  public int getLinkOid()
+
+  public int getLinkOid ()
   {
     return this.linkoid;
   }
-  
-  public void setLinkOid(int lo)
+
+  public void setLinkOid (int lo)
   {
     this.linkoid = lo;
   }
-  
-  public final List<Pair<MonsterStatus, MonsterStatusEffect>> getStati()
+
+  public final List<Pair<MonsterStatus, MonsterStatusEffect>> getStati ()
   {
     return this.stati;
   }
-  
-  public final int getStolen()
+
+  public final int getStolen ()
   {
     return this.stolen;
   }
-  
-  public final void setStolen(int s)
+
+  public final void setStolen (int s)
   {
     this.stolen = s;
   }
-  
-  public final int getLastNode()
+
+  public final int getLastNode ()
   {
     return this.lastNode;
   }
-  
-  public final void setLastNode(int lastNode)
+
+  public final void setLastNode (int lastNode)
   {
     this.lastNode = lastNode;
   }
-  
-  public final void cancelDropItem()
+
+  public final void cancelDropItem ()
   {
     this.lastDropTime = 0L;
   }
-  
-  public final void startDropItemSchedule()
+
+  public final void startDropItemSchedule ()
   {
     cancelDropItem();
     if (this.stats.getDropItemPeriod() <= 0 || !isAlive())
@@ -2783,13 +2765,13 @@ public class MapleMonster extends AbstractLoadedMapleLife
     this.shouldDropItem = false;
     this.lastDropTime = System.currentTimeMillis();
   }
-  
-  public boolean shouldDrop(long now)
+
+  public boolean shouldDrop (long now)
   {
     return (this.lastDropTime > 0L && this.lastDropTime + (this.stats.getDropItemPeriod() * 1000L) < now);
   }
-  
-  public void doDropItem(long now)
+
+  public void doDropItem (long now)
   {
     int itemId;
     if (getId() == 9300061)
@@ -2814,39 +2796,40 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     this.lastDropTime = now;
   }
-  
-  public byte[] getNodePacket()
+
+  public byte[] getNodePacket ()
   {
     return this.nodepack;
   }
-  
-  public void setNodePacket(byte[] np)
+
+  public void setNodePacket (byte[] np)
   {
     this.nodepack = np;
   }
-  
-  public void registerKill(long next)
+
+  public void registerKill (long next)
   {
     this.nextKill = System.currentTimeMillis() + next;
   }
-  
-  public boolean shouldKill(long now)
+
+  public boolean shouldKill (long now)
   {
     return (this.nextKill > 0L && now > this.nextKill);
   }
-  
-  public int getLinkCID()
+
+  public int getLinkCID ()
   {
     return this.linkCID;
   }
-  
-  public void setLinkCID(int lc)
+
+  public void setLinkCID (int lc)
   {
     this.linkCID = lc;
-    if (lc > 0) ;
+    if (lc > 0)
+      ;
   }
-  
-  public void applyMonsterBuff(MapleMap map, List<Pair<MonsterStatus, MonsterStatusEffect>> stats, MobSkill mobSkill)
+
+  public void applyMonsterBuff (MapleMap map, List<Pair<MonsterStatus, MonsterStatusEffect>> stats, MobSkill mobSkill)
   {
     if (isBuffed(MonsterStatus.MS_PCounter) || isBuffed(MonsterStatus.MS_MCounter) || isBuffed(MonsterStatus.MS_PImmune) || isBuffed(MonsterStatus.MS_MImmune))
     {
@@ -2861,8 +2844,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
         time = 60000;
       }
       CancelStatusAction action = new CancelStatusAction(this, e.getLeft(), e.getRight());
-      ScheduledFuture<?> schedule = Timer.BuffTimer.getInstance().schedule(() -> action.run(), (time > 0) ? time : e
-          .getRight().getDuration());
+      ScheduledFuture<?> schedule = Timer.BuffTimer.getInstance().schedule(() -> action.run(), (time > 0) ? time : e.getRight().getDuration());
       e.getRight().setMobskill(true);
       if (isBuffed(e.getLeft()))
       {
@@ -2877,303 +2859,303 @@ public class MapleMonster extends AbstractLoadedMapleLife
       cancelStatus(stats);
     }
   }
-  
-  public int getNextSkill()
+
+  public int getNextSkill ()
   {
     return this.nextSkill;
   }
-  
-  public void setNextSkill(int nextSkill)
+
+  public void setNextSkill (int nextSkill)
   {
     this.nextSkill = nextSkill;
   }
-  
-  public int getNextSkillLvl()
+
+  public int getNextSkillLvl ()
   {
     return this.nextSkillLvl;
   }
-  
-  public void setNextSkillLvl(int nextSkillLvl)
+
+  public void setNextSkillLvl (int nextSkillLvl)
   {
     this.nextSkillLvl = nextSkillLvl;
   }
-  
-  public boolean isResist()
+
+  public boolean isResist ()
   {
     return (System.currentTimeMillis() - this.lastBindTime < 90000L);
   }
-  
-  public long getResist()
+
+  public long getResist ()
   {
     return this.lastBindTime;
   }
-  
-  public void setResist(long time)
+
+  public void setResist (long time)
   {
     this.lastBindTime = time;
   }
-  
-  public int getAirFrame()
+
+  public int getAirFrame ()
   {
     return this.airFrame;
   }
-  
-  public void setAirFrame(int airFrame)
+
+  public void setAirFrame (int airFrame)
   {
     this.airFrame = airFrame;
   }
-  
-  public long getSpawnTime()
+
+  public long getSpawnTime ()
   {
     return this.spawnTime;
   }
-  
-  public void setSpawnTime(long spawnTime)
+
+  public void setSpawnTime (long spawnTime)
   {
     this.spawnTime = spawnTime;
   }
-  
-  public byte getPhase()
+
+  public byte getPhase ()
   {
     return this.phase;
   }
-  
-  public void setPhase(byte phase)
+
+  public void setPhase (byte phase)
   {
     this.phase = phase;
   }
-  
-  public int getFreezingOverlap()
+
+  public int getFreezingOverlap ()
   {
     return this.freezingOverlap;
   }
-  
-  public void setFreezingOverlap(int freezingOverlap)
+
+  public void setFreezingOverlap (int freezingOverlap)
   {
     this.freezingOverlap = freezingOverlap;
   }
-  
-  public boolean isMobGroup()
+
+  public boolean isMobGroup ()
   {
     return this.isMobGroup;
   }
-  
-  public void setMobGroup(boolean isMobGroup)
+
+  public void setMobGroup (boolean isMobGroup)
   {
     this.isMobGroup = isMobGroup;
   }
-  
-  public List<Integer> getSpawnList()
+
+  public List<Integer> getSpawnList ()
   {
     return this.spawnList;
   }
-  
-  public void setSpawnList(List<Integer> spawnList)
+
+  public void setSpawnList (List<Integer> spawnList)
   {
     this.spawnList = spawnList;
   }
-  
-  public boolean isSkillForbid()
+
+  public boolean isSkillForbid ()
   {
     return this.isSkillForbid;
   }
-  
-  public void setSkillForbid(boolean isSkillForbid)
+
+  public void setSkillForbid (boolean isSkillForbid)
   {
     this.isSkillForbid = isSkillForbid;
   }
-  
-  public List<Integer> getWillHplist()
+
+  public List<Integer> getWillHplist ()
   {
     return this.willHplist;
   }
-  
-  public void setWillHplist(List<Integer> willHplist)
+
+  public void setWillHplist (List<Integer> willHplist)
   {
     this.willHplist = willHplist;
   }
-  
-  public boolean isUseSpecialSkill()
+
+  public boolean isUseSpecialSkill ()
   {
     return this.useSpecialSkill;
   }
-  
-  public void setUseSpecialSkill(boolean useSpecialSkill)
+
+  public void setUseSpecialSkill (boolean useSpecialSkill)
   {
     this.useSpecialSkill = useSpecialSkill;
   }
-  
-  public List<MapleEnergySphere> getSpheres()
+
+  public List<MapleEnergySphere> getSpheres ()
   {
     return this.spheres;
   }
-  
-  public void setSpheres(List<MapleEnergySphere> spheres)
+
+  public void setSpheres (List<MapleEnergySphere> spheres)
   {
     this.spheres = spheres;
   }
-  
-  public int getScale()
+
+  public int getScale ()
   {
     return this.scale;
   }
-  
-  public void setScale(int scale)
+
+  public void setScale (int scale)
   {
     this.scale = scale;
   }
-  
-  public int getEliteGrade()
+
+  public int getEliteGrade ()
   {
     return this.eliteGrade;
   }
-  
-  public void setEliteGrade(int eliteGrade)
+
+  public void setEliteGrade (int eliteGrade)
   {
     this.eliteGrade = eliteGrade;
   }
-  
-  public List<Pair<Integer, Integer>> getEliteGradeInfo()
+
+  public List<Pair<Integer, Integer>> getEliteGradeInfo ()
   {
     return this.eliteGradeInfo;
   }
-  
-  public void setEliteGradeInfo(List<Pair<Integer, Integer>> eliteGradeInfo)
+
+  public void setEliteGradeInfo (List<Pair<Integer, Integer>> eliteGradeInfo)
   {
     this.eliteGradeInfo = eliteGradeInfo;
   }
-  
-  public int getEliteType()
+
+  public int getEliteType ()
   {
     return this.eliteType;
   }
-  
-  public void setEliteType(int eliteType)
+
+  public void setEliteType (int eliteType)
   {
     this.eliteType = eliteType;
   }
-  
-  public int getCurseBound()
+
+  public int getCurseBound ()
   {
     return this.curseBound;
   }
-  
-  public void setCurseBound(int curseBound)
+
+  public void setCurseBound (int curseBound)
   {
     this.curseBound = curseBound;
   }
-  
-  public byte getBigbangCount()
+
+  public byte getBigbangCount ()
   {
     return this.bigbangCount;
   }
-  
-  public void setBigbangCount(byte bigbangCount)
+
+  public void setBigbangCount (byte bigbangCount)
   {
     this.bigbangCount = bigbangCount;
   }
-  
-  public int getSpiritGate()
+
+  public int getSpiritGate ()
   {
     return this.spiritGate;
   }
-  
-  public void setSpiritGate(int spiritGate)
+
+  public void setSpiritGate (int spiritGate)
   {
     this.spiritGate = spiritGate;
   }
-  
-  public List<Ignition> getIgnitions()
+
+  public List<Ignition> getIgnitions ()
   {
     return this.ignitions;
   }
-  
-  public void setIgnitions(List<Ignition> ignitions)
+
+  public void setIgnitions (List<Ignition> ignitions)
   {
     this.ignitions = ignitions;
   }
-  
-  public ScheduledFuture<?> getSchedule()
+
+  public ScheduledFuture<?> getSchedule ()
   {
     return this.schedule;
   }
-  
-  public void setSchedule(ScheduledFuture<?> schedule)
+
+  public void setSchedule (ScheduledFuture<?> schedule)
   {
     this.schedule = schedule;
   }
-  
-  public long getBarrier()
+
+  public long getBarrier ()
   {
     return this.barrier;
   }
-  
-  public void setBarrier(long barrier)
+
+  public void setBarrier (long barrier)
   {
     this.barrier = barrier;
   }
-  
-  public int getAnotherByte()
+
+  public int getAnotherByte ()
   {
     return this.anotherByte;
   }
-  
-  public void setAnotherByte(int anotherByte)
+
+  public void setAnotherByte (int anotherByte)
   {
     this.anotherByte = anotherByte;
   }
-  
-  public boolean isDemianChangePhase()
+
+  public boolean isDemianChangePhase ()
   {
     return this.demianChangePhase;
   }
-  
-  public void setDemianChangePhase(boolean demianChangePhase)
+
+  public void setDemianChangePhase (boolean demianChangePhase)
   {
     this.demianChangePhase = demianChangePhase;
   }
-  
-  public long getLastCriticalBindTime()
+
+  public long getLastCriticalBindTime ()
   {
     return this.lastCriticalBindTime;
   }
-  
-  public void setLastCriticalBindTime(long lastCriticalBindTime)
+
+  public void setLastCriticalBindTime (long lastCriticalBindTime)
   {
     this.lastCriticalBindTime = lastCriticalBindTime;
   }
-  
-  public long getLastSpecialAttackTime()
+
+  public long getLastSpecialAttackTime ()
   {
     return this.lastSpecialAttackTime;
   }
-  
-  public void setLastSpecialAttackTime(long lastSpecialAttackTime)
+
+  public void setLastSpecialAttackTime (long lastSpecialAttackTime)
   {
     this.lastSpecialAttackTime = lastSpecialAttackTime;
   }
-  
-  public boolean isExtreme()
+
+  public boolean isExtreme ()
   {
     return this.extreme;
   }
-  
-  public void setExtreme(boolean extreme)
+
+  public void setExtreme (boolean extreme)
   {
     this.extreme = extreme;
   }
-  
-  public long getLastSeedCountedTime()
+
+  public long getLastSeedCountedTime ()
   {
     return this.lastSeedCountedTime;
   }
-  
-  public void setLastSeedCountedTime(long lastSeedCountedTime)
+
+  public void setLastSeedCountedTime (long lastSeedCountedTime)
   {
     this.lastSeedCountedTime = lastSeedCountedTime;
   }
-  
-  public Long getCustomValue(int skillid)
+
+  public Long getCustomValue (int skillid)
   {
     if (this.customInfo.containsKey(Integer.valueOf(skillid)))
     {
@@ -3181,8 +3163,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     return null;
   }
-  
-  public Integer getCustomTime(int skillid)
+
+  public Integer getCustomTime (int skillid)
   {
     if (this.customInfo.containsKey(Integer.valueOf(skillid)))
     {
@@ -3190,8 +3172,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     return null;
   }
-  
-  public long getCustomValue0(int skillid)
+
+  public long getCustomValue0 (int skillid)
   {
     if (this.customInfo.containsKey(Integer.valueOf(skillid)))
     {
@@ -3199,13 +3181,13 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     return 0L;
   }
-  
-  public void removeCustomInfo(int skillid)
+
+  public void removeCustomInfo (int skillid)
   {
     this.customInfo.remove(Integer.valueOf(skillid));
   }
-  
-  public void setCustomInfo(int skillid, int value, int time)
+
+  public void setCustomInfo (int skillid, int value, int time)
   {
     if (getCustomValue(skillid) != null)
     {
@@ -3213,18 +3195,18 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     this.customInfo.put(Integer.valueOf(skillid), new SkillCustomInfo(value, time));
   }
-  
-  public void addSkillCustomInfo(int skillid, long value)
+
+  public void addSkillCustomInfo (int skillid, long value)
   {
     this.customInfo.put(Integer.valueOf(skillid), new SkillCustomInfo(getCustomValue0(skillid) + value, 0L));
   }
-  
-  public Map<Integer, SkillCustomInfo> getCustomValues()
+
+  public Map<Integer, SkillCustomInfo> getCustomValues ()
   {
     return this.customInfo;
   }
-  
-  public final void RemoveStati(MonsterStatus stat, MonsterStatusEffect effect, boolean ig)
+
+  public final void RemoveStati (MonsterStatus stat, MonsterStatusEffect effect, boolean ig)
   {
     List<Pair<MonsterStatus, MonsterStatusEffect>> remove = new ArrayList<>();
     List<Ignition> removes = new ArrayList<>();
@@ -3279,8 +3261,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
       getIgnitions().removeAll(removes);
     }
   }
-  
-  public final void handleSteal(MapleCharacter chr)
+
+  public final void handleSteal (MapleCharacter chr)
   {
     double showdown = 100.0D;
     MonsterStatusEffect mse = getBuff(MonsterStatus.MS_Showdown);
@@ -3326,68 +3308,68 @@ public class MapleMonster extends AbstractLoadedMapleLife
       this.stolen = 0;
     }
   }
-  
-  public List<MonsterStatusEffect> getIndielist()
+
+  public List<MonsterStatusEffect> getIndielist ()
   {
     return this.indielist;
   }
-  
-  public void setIndielist(List<MonsterStatusEffect> indielist)
+
+  public void setIndielist (List<MonsterStatusEffect> indielist)
   {
     this.indielist = indielist;
   }
-  
-  public boolean isElitemonster()
+
+  public boolean isEliteMonster ()
   {
-    return this.elitemonster;
+    return this.eliteMonster;
   }
-  
-  public void setElitemonster(boolean elitemonster)
+
+  public void setEliteMonster ()
   {
-    this.elitemonster = elitemonster;
+    this.eliteMonster = true;
   }
-  
-  public boolean isEliteboss()
+
+  public boolean isEliteBoss ()
   {
-    return this.eliteboss;
+    return this.isEliteBoss;
   }
-  
-  public void setEliteboss(boolean eliteboss)
+
+  public void setEliteBoss ()
   {
-    this.eliteboss = eliteboss;
+    this.isEliteBoss = true;
   }
-  
-  public boolean isUserunespawn()
+
+  public boolean isUserunespawn ()
   {
     return this.userunespawn;
   }
-  
-  public void setUserunespawn(boolean userunespawn)
+
+  public void setUserunespawn (boolean userunespawn)
   {
     this.userunespawn = userunespawn;
   }
-  
-  public String getSpecialtxt()
+
+  public String getSpecialtxt ()
   {
     return this.specialtxt;
   }
-  
-  public void setSpecialtxt(String specialtxt)
+
+  public void setSpecialtxt (String specialtxt)
   {
     this.specialtxt = specialtxt;
   }
-  
-  public int getPatten()
+
+  public int getPatten ()
   {
     return this.patten;
   }
-  
-  public void SetPatten(int a)
+
+  public void SetPatten (int a)
   {
     this.patten = a;
   }
-  
-  public void setDeadTime(int time)
+
+  public void setDeadTime (int time)
   {
     Timer.MapTimer.getInstance().schedule(() ->
     {
@@ -3397,8 +3379,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
       }
     }, time);
   }
-  
-  public void setDeadTimeKillmob(int time)
+
+  public void setDeadTimeKillmob (int time)
   {
     Timer.MapTimer.getInstance().schedule(() ->
     {
@@ -3408,68 +3390,68 @@ public class MapleMonster extends AbstractLoadedMapleLife
       }
     }, time);
   }
-  
-  public int getEnergycount()
+
+  public int getEnergycount ()
   {
     return this.energycount;
   }
-  
-  public void setEnergycount(int energycount)
+
+  public void setEnergycount (int energycount)
   {
     this.energycount = energycount;
   }
-  
-  public boolean isEnergyleft()
+
+  public boolean isEnergyleft ()
   {
     return this.energyleft;
   }
-  
-  public void setEnergyleft(boolean energyleft)
+
+  public void setEnergyleft (boolean energyleft)
   {
     this.energyleft = energyleft;
   }
-  
-  public int getEnergyspeed()
+
+  public int getEnergyspeed ()
   {
     return this.energyspeed;
   }
-  
-  public void setEnergyspeed(int energyspeed)
+
+  public void setEnergyspeed (int energyspeed)
   {
     this.energyspeed = energyspeed;
   }
-  
-  public Map<Integer, Rectangle> getRectangles()
+
+  public Map<Integer, Rectangle> getRectangles ()
   {
     return this.rectangles;
   }
-  
-  public void setRectangles(Map<Integer, Rectangle> rectangles)
+
+  public void setRectangles (Map<Integer, Rectangle> rectangles)
   {
     this.rectangles = rectangles;
   }
-  
-  public int getStigmaType()
+
+  public int getStigmaType ()
   {
     return this.StigmaType;
   }
-  
-  public void setStigmaType(int StigmaType)
+
+  public void setStigmaType (int StigmaType)
   {
     this.StigmaType = StigmaType;
   }
-  
-  public int getTotalStigma()
+
+  public int getTotalStigma ()
   {
     return this.TotalStigma;
   }
-  
-  public void setTotalStigma(int TotalStigma)
+
+  public void setTotalStigma (int TotalStigma)
   {
     this.TotalStigma = TotalStigma;
   }
-  
-  public void DemainChangePhase(MapleCharacter from)
+
+  public void DemainChangePhase (MapleCharacter from)
   {
     if (!this.demianChangePhase)
     {
@@ -3484,98 +3466,98 @@ public class MapleMonster extends AbstractLoadedMapleLife
       Timer.MapTimer.getInstance().schedule(() -> this.map.killMonsterType(this, 0), 6000L);
     }
   }
-  
-  public int getSerenNoonTotalTime()
+
+  public int getSerenNoonTotalTime ()
   {
     return this.SerenNoonTotalTime;
   }
-  
-  public void setSerenNoonTotalTime(int SerenNoonTotalTime)
+
+  public void setSerenNoonTotalTime (int SerenNoonTotalTime)
   {
     this.SerenNoonTotalTime = SerenNoonTotalTime;
   }
-  
-  public int getSerenSunSetTotalTime()
+
+  public int getSerenSunSetTotalTime ()
   {
     return this.SerenSunSetTotalTime;
   }
-  
-  public void setSerenSunSetTotalTime(int SerenSunSetTotalTime)
+
+  public void setSerenSunSetTotalTime (int SerenSunSetTotalTime)
   {
     this.SerenSunSetTotalTime = SerenSunSetTotalTime;
   }
-  
-  public int getSerenMidNightSetTotalTime()
+
+  public int getSerenMidNightSetTotalTime ()
   {
     return this.SerenMidNightSetTotalTime;
   }
-  
-  public void setSerenMidNightSetTotalTime(int SerenMidNightSetTotalTime)
+
+  public void setSerenMidNightSetTotalTime (int SerenMidNightSetTotalTime)
   {
     this.SerenMidNightSetTotalTime = SerenMidNightSetTotalTime;
   }
-  
-  public int getSerenDawnSetTotalTime()
+
+  public int getSerenDawnSetTotalTime ()
   {
     return this.SerenDawnSetTotalTime;
   }
-  
-  public void setSerenDawnSetTotalTime(int SerenDawnSetTotalTime)
+
+  public void setSerenDawnSetTotalTime (int SerenDawnSetTotalTime)
   {
     this.SerenDawnSetTotalTime = SerenDawnSetTotalTime;
   }
-  
-  public int getSerenNoonNowTime()
+
+  public int getSerenNoonNowTime ()
   {
     return this.SerenNoonNowTime;
   }
-  
-  public void setSerenNoonNowTime(int SerenNoonNowTime)
+
+  public void setSerenNoonNowTime (int SerenNoonNowTime)
   {
     this.SerenNoonNowTime = SerenNoonNowTime;
   }
-  
-  public int getSerenSunSetNowTime()
+
+  public int getSerenSunSetNowTime ()
   {
     return this.SerenSunSetNowTime;
   }
-  
-  public void setSerenSunSetNowTime(int SerenSunSetNowTime)
+
+  public void setSerenSunSetNowTime (int SerenSunSetNowTime)
   {
     this.SerenSunSetNowTime = SerenSunSetNowTime;
   }
-  
-  public int getSerenMidNightSetNowTime()
+
+  public int getSerenMidNightSetNowTime ()
   {
     return this.SerenMidNightSetNowTime;
   }
-  
-  public void setSerenMidNightSetNowTime(int SerenMidNightSetNowTime)
+
+  public void setSerenMidNightSetNowTime (int SerenMidNightSetNowTime)
   {
     this.SerenMidNightSetNowTime = SerenMidNightSetNowTime;
   }
-  
-  public int getSerenDawnSetNowTime()
+
+  public int getSerenDawnSetNowTime ()
   {
     return this.SerenDawnSetNowTime;
   }
-  
-  public void setSerenDawnSetNowTime(int SerenDawnSetNowTime)
+
+  public void setSerenDawnSetNowTime (int SerenDawnSetNowTime)
   {
     this.SerenDawnSetNowTime = SerenDawnSetNowTime;
   }
-  
-  public int getSerenTimetype()
+
+  public int getSerenTimetype ()
   {
     return this.SerenTimetype;
   }
-  
-  public void setSerenTimetype(int SerenTimetype)
+
+  public void setSerenTimetype (int SerenTimetype)
   {
     this.SerenTimetype = SerenTimetype;
   }
-  
-  public void ResetSerenTime(boolean show)
+
+  public void ResetSerenTime (boolean show)
   {
     this.SerenTimetype = 1;
     this.SerenNoonNowTime = 110;
@@ -3591,13 +3573,13 @@ public class MapleMonster extends AbstractLoadedMapleLife
       getMap().broadcastMessage(MobPacket.BossSeren.SerenTimer(0, 360000, this.SerenNoonTotalTime, this.SerenSunSetTotalTime, this.SerenMidNightSetTotalTime, this.SerenDawnSetTotalTime));
     }
   }
-  
-  public void AddSerenTotalTimeHandler(int type, int add, int turn)
+
+  public void AddSerenTotalTimeHandler (int type, int add, int turn)
   {
     getMap().broadcastMessage(MobPacket.BossSeren.SerenTimer(1, this.SerenNoonTotalTime, this.SerenSunSetTotalTime, this.SerenMidNightSetTotalTime, this.SerenDawnSetTotalTime, turn));
   }
-  
-  public void AddSerenTimeHandler(int type, int add)
+
+  public void AddSerenTimeHandler (int type, int add)
   {
     int nowtime = 0;
     switch (type)
@@ -3609,8 +3591,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
         this.SerenSunSetNowTime += add;
         for (MapleCharacter chr : getMap().getAllChracater())
         {
-          if (chr.isAlive()
-              && chr.getBuffedValue(SecondaryStat.NotDamaged) == null && chr.getBuffedValue(SecondaryStat.IndieNotDamaged) == null)
+          if (chr.isAlive() && chr.getBuffedValue(SecondaryStat.NotDamaged) == null && chr.getBuffedValue(SecondaryStat.IndieNotDamaged) == null)
           {
             int minushp = (int) (-chr.getStat().getCurrentMaxHp() / 100L);
             chr.addHP(minushp);
@@ -3627,7 +3608,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     nowtime = (type == 4) ? this.SerenDawnSetNowTime : ((type == 3) ? this.SerenMidNightSetNowTime : ((type == 2) ? this.SerenSunSetNowTime : this.SerenNoonNowTime));
     MapleMonster seren = null;
-    int[] serens = {8880603, 8880607, 8880609, 8880612};
+    int[] serens = { 8880603, 8880607, 8880609, 8880612 };
     for (int ids : serens)
     {
       seren = getMap().getMonsterById(ids);
@@ -3720,8 +3701,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
       }
     }
   }
-  
-  public void gainShield(long energy, boolean first, int delayremove)
+
+  public void gainShield (long energy, boolean first, int delayremove)
   {
     this.shield += energy;
     if (first)
@@ -3740,117 +3721,117 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     getMap().broadcastMessage(MobPacket.mobBarrier(this));
   }
-  
-  public long getShield()
+
+  public long getShield ()
   {
     return this.shield;
   }
-  
-  public void setShield(long shield)
+
+  public void setShield (long shield)
   {
     this.shield = shield;
   }
-  
-  public long getShieldmax()
+
+  public long getShieldmax ()
   {
     return this.shieldmax;
   }
-  
-  public void setShieldmax(long shieldmax)
+
+  public void setShieldmax (long shieldmax)
   {
     this.shieldmax = shieldmax;
   }
-  
-  public int getShieldPercent()
+
+  public int getShieldPercent ()
   {
     return (int) Math.ceil(this.shield * 100.0D / this.shieldmax);
   }
-  
-  public boolean isWillSpecialPattern()
+
+  public boolean isWillSpecialPattern ()
   {
     return this.willSpecialPattern;
   }
-  
-  public void setWillSpecialPattern(boolean willSpecialPattern)
+
+  public void setWillSpecialPattern (boolean willSpecialPattern)
   {
     this.willSpecialPattern = willSpecialPattern;
   }
-  
-  public long getElitehp()
+
+  public long getEliteHp ()
   {
-    return this.elitehp;
+    return this.eliteHp;
   }
-  
-  public void setElitehp(long elitehp)
+
+  public void setEliteHp (long eliteHp)
   {
-    this.elitehp = elitehp;
+    this.eliteHp = eliteHp;
   }
-  
-  public boolean isElitechmp()
+
+  public boolean isElitechmp ()
   {
     return this.elitechmp;
   }
-  
-  public void setElitechmp(boolean elitechmp)
+
+  public void setElitechmp (boolean elitechmp)
   {
     this.elitechmp = elitechmp;
   }
-  
+
   private interface AttackerEntry
   {
-    
-    List<MapleMonster.AttackingMapleCharacter> getAttackers();
-    
-    void addDamage(MapleCharacter param1MapleCharacter, long param1Long, boolean param1Boolean);
-    
-    long getDamage();
-    
-    boolean contains(MapleCharacter param1MapleCharacter);
-    
-    void killedMob(MapleMap param1MapleMap, long param1Long, boolean param1Boolean, int param1Int);
+
+    List<MapleMonster.AttackingMapleCharacter> getAttackers ();
+
+    void addDamage (MapleCharacter param1MapleCharacter, long param1Long, boolean param1Boolean);
+
+    long getDamage ();
+
+    boolean contains (MapleCharacter param1MapleCharacter);
+
+    void killedMob (MapleMap param1MapleMap, long param1Long, boolean param1Boolean, int param1Int);
   }
-  
+
   private static class AttackingMapleCharacter
   {
-    
+
     private final MapleCharacter attacker;
-    
+
     private long lastAttackTime;
-    
-    public AttackingMapleCharacter(MapleCharacter attacker, long lastAttackTime)
+
+    public AttackingMapleCharacter (MapleCharacter attacker, long lastAttackTime)
     {
       this.attacker = attacker;
       this.lastAttackTime = lastAttackTime;
     }
-    
-    public final long getLastAttackTime()
+
+    public final long getLastAttackTime ()
     {
       return this.lastAttackTime;
     }
-    
-    public final void setLastAttackTime(long lastAttackTime)
+
+    public final void setLastAttackTime (long lastAttackTime)
     {
       this.lastAttackTime = lastAttackTime;
     }
-    
-    public final MapleCharacter getAttacker()
+
+    public final MapleCharacter getAttacker ()
     {
       return this.attacker;
     }
   }
-  
+
   private static final class ExpMap
   {
-    
+
     public final long exp;
-    
+
     public final byte ptysize;
-    
+
     public final byte Class_Bonus_EXP;
-    
+
     public final byte Premium_Bonus_EXP;
-    
-    public ExpMap(long exp, byte ptysize, byte Class_Bonus_EXP, byte Premium_Bonus_EXP)
+
+    public ExpMap (long exp, byte ptysize, byte Class_Bonus_EXP, byte Premium_Bonus_EXP)
     {
       this.exp = exp;
       this.ptysize = ptysize;
@@ -3858,41 +3839,41 @@ public class MapleMonster extends AbstractLoadedMapleLife
       this.Premium_Bonus_EXP = Premium_Bonus_EXP;
     }
   }
-  
+
   private static final class OnePartyAttacker
   {
-    
+
     public MapleParty lastKnownParty;
-    
+
     public long damage;
-    
+
     public long lastAttackTime;
-    
-    public OnePartyAttacker(MapleParty lastKnownParty, long damage)
+
+    public OnePartyAttacker (MapleParty lastKnownParty, long damage)
     {
       this.lastKnownParty = lastKnownParty;
       this.damage = damage;
       this.lastAttackTime = System.currentTimeMillis();
     }
   }
-  
+
   public static class CancelStatusAction implements Runnable
   {
-    
+
     private final WeakReference<MapleMonster> target;
-    
+
     private final MonsterStatus status;
-    
+
     private final MonsterStatusEffect effect;
-    
-    public CancelStatusAction(MapleMonster target, MonsterStatus status, MonsterStatusEffect effect)
+
+    public CancelStatusAction (MapleMonster target, MonsterStatus status, MonsterStatusEffect effect)
     {
       this.target = new WeakReference<>(target);
       this.status = status;
       this.effect = effect;
     }
-    
-    public void run()
+
+    public void run ()
     {
       MapleMonster realTarget = this.target.get();
       if (realTarget != null && realTarget.isAlive())
@@ -3901,20 +3882,20 @@ public class MapleMonster extends AbstractLoadedMapleLife
       }
     }
   }
-  
+
   private final class SingleAttackerEntry implements AttackerEntry
   {
-    
+
     private final int chrid;
     private long damage = 0L;
     private long lastAttackTime;
-    
-    public SingleAttackerEntry(MapleCharacter from)
+
+    public SingleAttackerEntry (MapleCharacter from)
     {
       this.chrid = from.getId();
     }
-    
-    public void addDamage(MapleCharacter from, long damage, boolean updateAttackTime)
+
+    public void addDamage (MapleCharacter from, long damage, boolean updateAttackTime)
     {
       if (this.chrid == from.getId())
       {
@@ -3925,8 +3906,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
         }
       }
     }
-    
-    public List<MapleMonster.AttackingMapleCharacter> getAttackers()
+
+    public List<MapleMonster.AttackingMapleCharacter> getAttackers ()
     {
       MapleCharacter chr = MapleMonster.this.map.getCharacterById(this.chrid);
       if (chr != null)
@@ -3935,18 +3916,18 @@ public class MapleMonster extends AbstractLoadedMapleLife
       }
       return Collections.emptyList();
     }
-    
-    public boolean contains(MapleCharacter chr)
+
+    public boolean contains (MapleCharacter chr)
     {
       return (this.chrid == chr.getId());
     }
-    
-    public long getDamage()
+
+    public long getDamage ()
     {
       return this.damage;
     }
-    
-    public void killedMob(MapleMap map, long baseExp, boolean mostDamage, int lastSkill)
+
+    public void killedMob (MapleMap map, long baseExp, boolean mostDamage, int lastSkill)
     {
       MapleCharacter chr = map.getCharacterById(this.chrid);
       if (chr != null && chr.isAlive())
@@ -3954,13 +3935,13 @@ public class MapleMonster extends AbstractLoadedMapleLife
         MapleMonster.this.giveExpToCharacter(chr, baseExp, mostDamage, 1, (byte) 0, (byte) 0, (byte) 0, lastSkill);
       }
     }
-    
-    public int hashCode()
+
+    public int hashCode ()
     {
       return this.chrid;
     }
-    
-    public boolean equals(Object obj)
+
+    public boolean equals (Object obj)
     {
       if (this == obj)
       {
@@ -3978,21 +3959,21 @@ public class MapleMonster extends AbstractLoadedMapleLife
       return (this.chrid == other.chrid);
     }
   }
-  
+
   private class PartyAttackerEntry implements AttackerEntry
   {
-    
+
     private final Map<Integer, MapleMonster.OnePartyAttacker> attackers = new HashMap<>(6);
     private final int partyid;
-    
+
     private long totDamage = 0L;
-    
-    public PartyAttackerEntry(int partyid)
+
+    public PartyAttackerEntry (int partyid)
     {
       this.partyid = partyid;
     }
-    
-    public List<MapleMonster.AttackingMapleCharacter> getAttackers()
+
+    public List<MapleMonster.AttackingMapleCharacter> getAttackers ()
     {
       List<MapleMonster.AttackingMapleCharacter> ret = new ArrayList<>(this.attackers.size());
       for (Map.Entry<Integer, MapleMonster.OnePartyAttacker> entry : this.attackers.entrySet())
@@ -4005,8 +3986,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
       }
       return ret;
     }
-    
-    private final Map<MapleCharacter, MapleMonster.OnePartyAttacker> resolveAttackers()
+
+    private final Map<MapleCharacter, MapleMonster.OnePartyAttacker> resolveAttackers ()
     {
       Map<MapleCharacter, MapleMonster.OnePartyAttacker> ret = new HashMap<>(this.attackers.size());
       for (Map.Entry<Integer, MapleMonster.OnePartyAttacker> aentry : this.attackers.entrySet())
@@ -4019,18 +4000,18 @@ public class MapleMonster extends AbstractLoadedMapleLife
       }
       return ret;
     }
-    
-    public final boolean contains(MapleCharacter chr)
+
+    public final boolean contains (MapleCharacter chr)
     {
       return this.attackers.containsKey(Integer.valueOf(chr.getId()));
     }
-    
-    public final long getDamage()
+
+    public final long getDamage ()
     {
       return this.totDamage;
     }
-    
-    public void addDamage(MapleCharacter from, long damage, boolean updateAttackTime)
+
+    public void addDamage (MapleCharacter from, long damage, boolean updateAttackTime)
     {
       MapleMonster.OnePartyAttacker oldPartyAttacker = this.attackers.get(Integer.valueOf(from.getId()));
       if (oldPartyAttacker != null)
@@ -4053,8 +4034,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
       }
       this.totDamage += damage;
     }
-    
-    public final void killedMob(MapleMap map, long baseExp, boolean mostDamage, int lastSkill)
+
+    public final void killedMob (MapleMap map, long baseExp, boolean mostDamage, int lastSkill)
     {
       MapleCharacter highest = null;
       long highestDamage = 0L;
@@ -4076,10 +4057,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
             if (pchr != null && pchr.isAlive())
             {
               boolean enable = true;
-              int[] linkMobs = {
-                  9010152, 9010153, 9010154, 9010155, 9010156, 9010157, 9010158, 9010159, 9010160, 9010161,
-                  9010162, 9010163, 9010164, 9010165, 9010166, 9010167, 9010168, 9010169, 9010170, 9010171,
-                  9010172, 9010173, 9010174, 9010175, 9010176, 9010177, 9010178, 9010179, 9010180, 9010181};
+              int[] linkMobs = { 9010152, 9010153, 9010154, 9010155, 9010156, 9010157, 9010158, 9010159, 9010160, 9010161, 9010162, 9010163, 9010164, 9010165, 9010166, 9010167, 9010168, 9010169, 9010170, 9010171, 9010172, 9010173, 9010174, 9010175, 9010176, 9010177, 9010178, 9010179, 9010180, 9010181 };
               for (int linkMob : linkMobs)
               {
                 if (MapleMonster.this.getId() == linkMob && pchr.getId() != attacker.getKey().getId())
@@ -4129,16 +4107,16 @@ public class MapleMonster extends AbstractLoadedMapleLife
         MapleMonster.this.giveExpToCharacter(expReceiver.getKey(), expmap.exp, mostDamage && ((expReceiver.getKey() == highest)), expMap.size(), expmap.ptysize, expmap.Class_Bonus_EXP, expmap.Premium_Bonus_EXP, lastSkill);
       }
     }
-    
-    public final int hashCode()
+
+    public final int hashCode ()
     {
       int prime = 31;
       int result = 1;
       result = 31 * result + this.partyid;
       return result;
     }
-    
-    public final boolean equals(Object obj)
+
+    public final boolean equals (Object obj)
     {
       if (this == obj)
       {

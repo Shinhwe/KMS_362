@@ -103,11 +103,18 @@ public class MapleMonsterDropDataProvider
   {
     ArrayList<MonsterDropEntry> dropList = new ArrayList<>();
 
-    dropList.addAll(globalDrops.stream().filter(item -> monster.getStats().getLevel() >= item.minLevel && monster.getStats().getLevel() <= item.maxLevel && item.privated != 1).toList());
 
     if (this.drops.containsKey(Integer.valueOf(monster.getId())))
     {
       dropList.addAll(this.drops.get(Integer.valueOf(monster.getId())).stream().filter(item -> item.privated != 1).toList());
+    }
+
+
+    if (monster.getStats().isBoss() == false && monster.isEliteBoss() == false && monster.isEliteMonster() == false)
+    {
+      // 精英怪内容对掉落有单独设置, 不参与全局掉落
+      // BOSS怪不参与全局掉落
+      dropList.addAll(globalDrops.stream().filter(item -> monster.getStats().getLevel() >= item.minLevel && monster.getStats().getLevel() <= item.maxLevel && item.privated != 1).toList());
     }
 
     return dropList;
@@ -117,11 +124,20 @@ public class MapleMonsterDropDataProvider
   {
     ArrayList<MonsterDropEntry> dropList = new ArrayList<>();
 
-    dropList.addAll(globalDrops.stream().filter(item -> monster.getStats().getLevel() >= item.minLevel && monster.getStats().getLevel() <= item.maxLevel && item.privated == 1).toList());
-
     if (this.drops.containsKey(Integer.valueOf(monster.getId())))
     {
       dropList.addAll(this.drops.get(Integer.valueOf(monster.getId())).stream().filter(item -> item.privated == 1).toList());
+    }
+
+    if (monster.getStats().isBoss())
+    {
+      // BOSS怪不参与全局掉落
+      dropList.add(new MonsterDropEntry(4001886, 1000000, 1, 1, 0));
+    }
+    else if (monster.isEliteBoss() == false && monster.isEliteMonster() == false)
+    {
+      // 精英怪内容对掉落有单独设置, 不参与全局掉落
+      dropList.addAll(globalDrops.stream().filter(item -> monster.getStats().getLevel() >= item.minLevel && monster.getStats().getLevel() <= item.maxLevel && item.privated == 1).toList());
     }
 
     return dropList;

@@ -5,23 +5,24 @@ import tools.Pair;
 import tools.Triple;
 
 import java.io.FileInputStream;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Properties;
 
 public class Setting
 {
-  public static void setting()
+  public static void setting ()
   {
     try
     {
-      FileInputStream setting = new FileInputStream("Properties/setMonsterHP.properties");
-      Properties setting_ = new Properties();
-      setting_.load(setting);
-      setting.close();
+      FileInputStream fileInputStream = new FileInputStream("Properties/setMonsterHP.properties");
+      InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
+      Properties setting = new Properties();
+      setting.load(inputStreamReader);
+      inputStreamReader.close();
+      fileInputStream.close();
       ServerConstants.boss.clear();
-      String[] mob = setting_.getProperty(toUni("몹코드")).split("\\{");
+      String[] mob = setting.getProperty("몹코드").split("\\{");
       if (mob != null)
       {
         for (String s : mob)
@@ -49,7 +50,8 @@ public class Setting
         }
       }
       List<Pair<Integer, Long>> list = ServerConstants.boss;
-      for (int i = 0; i < list.size(); i++) ;
+      for (int i = 0; i < list.size(); i++)
+        ;
       System.out.println(ServerConstants.boss.size() + "개의 몬스터 체력 로딩완료.");
     }
     catch (Exception ex)
@@ -57,17 +59,20 @@ public class Setting
       ex.printStackTrace();
     }
   }
-  
-  public static void setting2()
+
+  public static void setting2 ()
   {
     try
     {
-      FileInputStream setting = new FileInputStream("Properties/setMonsterHP2.properties");
-      Properties setting_ = new Properties();
-      setting_.load(setting);
-      setting.close();
+
+      FileInputStream fileInputStream = new FileInputStream("Properties/setMonsterHP2.properties");
+      InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
+      Properties setting = new Properties();
+      setting.load(inputStreamReader);
+      inputStreamReader.close();
+      fileInputStream.close();
       ServerConstants.boss2.clear();
-      String[] mob = setting_.getProperty(toUni("몹코드")).split("\\{");
+      String[] mob = setting.getProperty("몹코드").split("\\{");
       if (mob != null)
       {
         for (String s : mob)
@@ -95,7 +100,8 @@ public class Setting
         }
       }
       List<Pair<Integer, Long>> list = ServerConstants.boss2;
-      for (int i = 0; i < list.size(); i++) ;
+      for (int i = 0; i < list.size(); i++)
+        ;
       System.out.println(ServerConstants.boss2.size() + "개의 몬스터 체력 로딩완료.");
     }
     catch (Exception ex)
@@ -103,17 +109,19 @@ public class Setting
       ex.printStackTrace();
     }
   }
-  
-  public static void CashShopSetting()
+
+  public static void CashShopSetting ()
   {
     try
     {
-      FileInputStream setting = new FileInputStream("Properties/CashShopMain.properties");
-      Properties setting_ = new Properties();
-      setting_.load(setting);
-      setting.close();
+      FileInputStream fileInputStream = new FileInputStream("Properties/CashShopMain.properties");
+      InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
+      Properties setting = new Properties();
+      setting.load(inputStreamReader);
+      inputStreamReader.close();
+      fileInputStream.close();
       ServerConstants.CashMainInfo.clear();
-      String[] mob = setting_.getProperty(toUni("Info")).split("\\{");
+      String[] mob = setting.getProperty("Info").split("\\{");
       if (mob != null)
       {
         for (String s : mob)
@@ -147,20 +155,22 @@ public class Setting
       ex.printStackTrace();
     }
   }
-  
-  public static void settingGoldApple()
+
+  public static void settingGoldApple ()
   {
     try
     {
-      FileInputStream setting = new FileInputStream("Properties/골드애플.properties");
-      Properties setting_ = new Properties();
-      setting_.load(setting);
-      setting.close();
+      FileInputStream fileInputStream = new FileInputStream("Properties/골드애플.properties");
+      InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
+      Properties setting = new Properties();
+      setting.load(inputStreamReader);
+      inputStreamReader.close();
+      fileInputStream.close();
       ServerConstants.goldapple.clear();
       ServerConstants.Sgoldapple.clear();
-      String[] items = setting_.getProperty(toUni("골드애플_아이템")).split("\\{");
-      String[] Sitems = setting_.getProperty(toUni("골드애플_스페셜_아이템")).split("\\{");
-      ServerConstants.SgoldappleSuc = Integer.parseInt(setting_.getProperty(toUni("골드애플_스페셜_확률")));
+      String[] items = setting.getProperty("골드애플_아이템").split("\\{");
+      String[] Sitems = setting.getProperty("골드애플_스페셜_아이템").split("\\{");
+      ServerConstants.SgoldappleSuc = Integer.parseInt(setting.getProperty("골드애플_스페셜_확률"));
       if (items != null)
       {
         for (String s : items)
@@ -228,17 +238,19 @@ public class Setting
       ex.printStackTrace();
     }
   }
-  
-  public static void settingNeoPos()
+
+  public static void settingNeoPos ()
   {
     try
     {
-      FileInputStream setting = new FileInputStream("Properties/위시코인.properties");
-      Properties setting_ = new Properties();
-      setting_.load(setting);
-      setting.close();
+      FileInputStream fileInputStream = new FileInputStream("Properties/위시코인.properties");
+      InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
+      Properties setting = new Properties();
+      setting.load(inputStreamReader);
+      inputStreamReader.close();
+      fileInputStream.close();
       ServerConstants.NeoPosList.clear();
-      String[] info = setting_.getProperty(toUni("몹코드")).split("\\{");
+      String[] info = setting.getProperty("몹코드").split("\\{");
       if (info != null)
       {
         for (String s : info)
@@ -271,9 +283,5 @@ public class Setting
       ex.printStackTrace();
     }
   }
-  
-  protected static String toUni(String kor) throws UnsupportedEncodingException
-  {
-    return new String(kor.getBytes("KSC5601"), StandardCharsets.ISO_8859_1);
-  }
+
 }

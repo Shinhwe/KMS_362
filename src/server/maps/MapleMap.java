@@ -1045,16 +1045,20 @@ public final class MapleMap
 
     List<MonsterDropEntry> customDropList = new ArrayList<>();
 
-    if (mob.isEliteboss())
+    if (mob.isEliteBoss())
     {
-      customDropList.add(new MonsterDropEntry(2432398, 1000000, 1, 15, 0));
+      customDropList.add(new MonsterDropEntry(2432398, 1000000, 5, 5, 0, 1));
+      customDropList.add(new MonsterDropEntry(5062009, 1000000, 20, 20, 0, 1));
+      customDropList.add(new MonsterDropEntry(5062010, 1000000, 10, 10, 0, 1));
+      customDropList.add(new MonsterDropEntry(5062500, 1000000, 5, 5, 0, 1));
+      customDropList.add(new MonsterDropEntry(4001832, 1000000, 2000, 3000, 0, 1));
     }
-    if (mob.isElitemonster() && !mob.isUserunespawn())
+    if (mob.isEliteMonster() && !mob.isUserunespawn())
     {
-      customDropList.add(new MonsterDropEntry(5062009, 1000000, 2, 4, 0));
-      customDropList.add(new MonsterDropEntry(5062010, 500000, 1, 2, 0));
-      customDropList.add(new MonsterDropEntry(5062500, 100000, 1, 1, 0));
-      customDropList.add(new MonsterDropEntry(4001832, 1000000, 500, 1000, 0));
+      customDropList.add(new MonsterDropEntry(5062009, 1000000, 5, 5, 0, 1));
+      customDropList.add(new MonsterDropEntry(5062010, 500000, 2, 2, 0, 1));
+      customDropList.add(new MonsterDropEntry(5062500, 100000, 1, 1, 0, 1));
+      customDropList.add(new MonsterDropEntry(4001832, 1000000, 500, 1000, 0, 1));
     }
 
 
@@ -1271,7 +1275,7 @@ public final class MapleMap
 
     List<MonsterDropEntry> finalPublicDropList = new ArrayList<>();
 
-    double dropBuff = chr.getStat().dropBuff - 100;
+    double dropBuff = chr.getStat().dropBuff;
 
     if (Calendar.getInstance().get(7) == 7)
     {
@@ -1288,7 +1292,7 @@ public final class MapleMap
       {
         d1 = de.chance + (int) Math.floor(((1000000 - de.chance) * (dropBuff / 400.0D)));
 
-        System.out.println("公共掉落枫币概率计算, 概率 = " + d1);
+        // System.out.println("公共掉落枫币概率计算, 概率 = " + d1);
       }
       else
       {
@@ -1308,7 +1312,20 @@ public final class MapleMap
 
     int currentDropIndex = 0;
 
-    System.out.println("公共掉落计算结束, 掉落列表 = " + JSON.toJSONString(finalPublicDropList));
+    if (mob.getStats().isBoss())
+    {
+      System.out.println("BOSS[" + mob.getId() + "]的公共掉落计算结束, 掉落列表 = " + JSON.toJSONString(finalPublicDropList));
+    }
+
+    if (mob.isEliteMonster())
+    {
+      System.out.println("精英怪[" + mob.getId() + "]的公共掉落计算结束, 掉落列表 = " + JSON.toJSONString(finalPublicDropList));
+    }
+
+    if (mob.isEliteBoss())
+    {
+      System.out.println("精英BOSS[" + mob.getId() + "]的公共掉落计算结束, 掉落列表 = " + JSON.toJSONString(finalPublicDropList));
+    }
 
     if (finalPublicDropList.size() > 0)
     {
@@ -1336,7 +1353,7 @@ public final class MapleMap
 
       for (MapleCharacter member : memberList)
       {
-        dropBuff = member.getStat().dropBuff - 100;
+        dropBuff = member.getStat().dropBuff;
 
         if (Calendar.getInstance().get(7) == 7)
         {
@@ -1355,7 +1372,7 @@ public final class MapleMap
           {
             d1 = de.chance + (int) Math.floor(((1000000 - de.chance) * (dropBuff / 400.0D)));
 
-            System.out.println("独立掉落的枫币概率计算, 概率 = " + d1);
+            // System.out.println("独立掉落的枫币概率计算, 概率 = " + d1);
           }
           else
           {
@@ -1376,7 +1393,7 @@ public final class MapleMap
 
         currentDropIndex = 0;
 
-        System.out.println("独立掉落计算结束, 掉落列表 = " + JSON.toJSONString(finalPrivateDropList));
+        // System.out.println("独立掉落计算结束, 掉落列表 = " + JSON.toJSONString(finalPrivateDropList));
 
         if (finalPrivateDropList.size() > 0)
         {
@@ -1499,54 +1516,29 @@ public final class MapleMap
         minimumMesosDropped = (int) Math.round(mobLevel * 5.2);
         maximumMesosDropped = (int) Math.round(mobLevel * 7.8);
       }
-      else if (mobLevel > 80 && mobLevel <= 90)
+      else if (mobLevel > 80 && mobLevel <= 200)
       {
         minimumMesosDropped = (int) Math.round(mobLevel * 5.6);
         maximumMesosDropped = (int) Math.round(mobLevel * 8.4);
       }
-      else if (mobLevel > 90 && mobLevel < 200)
+      else if (mobLevel > 200 && mobLevel < 240)
       {
-        minimumMesosDropped = Math.round(mobLevel * 7);
-        maximumMesosDropped = Math.round(mobLevel * 10);
+        minimumMesosDropped = (int) Math.round(mobLevel * 6.1);
+        maximumMesosDropped = (int) Math.round(mobLevel * 8.9);
       }
-      else if (mobLevel >= 200 && mobLevel < 210)
+      else if (mobLevel >= 240 && mobLevel < 270)
       {
-        minimumMesosDropped = Math.round(mobLevel * 8);
-        maximumMesosDropped = Math.round(mobLevel * 11);
+        minimumMesosDropped = (int) Math.round(mobLevel * 6.6);
+        maximumMesosDropped = (int) Math.round(mobLevel * 9.4);
       }
-      else if (mobLevel >= 210 && mobLevel < 220)
+      else if (mobLevel >= 270 && mobLevel <= 300)
       {
-        minimumMesosDropped = Math.round(mobLevel * 9);
-        maximumMesosDropped = Math.round(mobLevel * 12);
-      }
-      else if (mobLevel >= 220 && mobLevel < 230)
-      {
-        minimumMesosDropped = Math.round(mobLevel * 10);
-        maximumMesosDropped = Math.round(mobLevel * 13);
-      }
-      else if (mobLevel >= 230 && mobLevel < 240)
-      {
-        minimumMesosDropped = Math.round(mobLevel * 11);
-        maximumMesosDropped = Math.round(mobLevel * 14);
-      }
-      else if (mobLevel >= 240 && mobLevel < 250)
-      {
-        minimumMesosDropped = Math.round(mobLevel * 12);
-        maximumMesosDropped = Math.round(mobLevel * 15);
-      }
-      else if (mobLevel >= 250 && mobLevel < 280)
-      {
-        minimumMesosDropped = Math.round(mobLevel * 14);
-        maximumMesosDropped = Math.round(mobLevel * 18);
-      }
-      else if (mobLevel >= 280)
-      {
-        minimumMesosDropped = Math.round(mobLevel * 16);
-        maximumMesosDropped = Math.round(mobLevel * 20);
+        minimumMesosDropped = (int) Math.round(mobLevel * 7.1);
+        maximumMesosDropped = (int) Math.round(mobLevel * 9.9);
       }
       int mesos = Randomizer.nextInt(1 + maximumMesosDropped - minimumMesosDropped) + minimumMesosDropped;
 
-      double mesoBuff = chr.getStat().mesoBuff - 100;
+      double mesoBuff = chr.getStat().mesoBuff;
 
       if (Calendar.getInstance().get(7) == 1)
       {
@@ -1561,7 +1553,24 @@ public final class MapleMap
 
       mesoBuff = Math.min(mesoBuff, 400.0D);
 
+
       mesos = (int) (mesos * mesoBuff / 100.0D * mesoRate);
+
+      // 超过20级但是小于40级去刷怪, 只掉60%的钱
+      if (chr.getLevel() - mobLevel >= 20 && chr.getLevel() - mobLevel < 40)
+      {
+        mesos = (int) (mesos * 0.6);
+      }
+      else if (chr.getLevel() - mobLevel > 40 && chr.getLevel() - mobLevel <= 60)
+      {
+        // 超过40级但是小于60级去刷怪, 只掉20%的钱
+        mesos = (int) (mesos * 0.2);
+      }
+      else if (chr.getLevel() - mobLevel > 60)
+      {
+        // 超过60级不掉钱
+        mesos = 0;
+      }
       //            System.out.println("meso calc result, meso = " + mesos + "    mobLevel = " + mobLevel);
       if (mesos > 0)
       {
@@ -2341,7 +2350,7 @@ public final class MapleMap
             }
           }
           monster.setCustomInfo(1, 1, 0);
-          if (!monster.isElitemonster())
+          if (!monster.isEliteMonster())
           {
             // chr.checkLiveQuest(1, false);
             if (chr.getKeyValue(51351, "startquestid") == 49012L || chr.getKeyValue(51351, "startquestid") == 49013L || chr.getKeyValue(51351, "startquestid") == 49014L)
@@ -2415,7 +2424,7 @@ public final class MapleMap
       {
         if (chr.isGM() || (monster.getStats().getLevel() - 21 <= chr.getLevel() && chr.getLevel() <= monster.getStats().getLevel() + 21 && isSpawnPoint() && !GameConstants.isContentsMap(getId()) && !GameConstants.보스맵(getId()) && !GameConstants.사냥컨텐츠맵(getId()) && !GameConstants.튜토리얼(getId()) && !GameConstants.로미오줄리엣(getId()) && !GameConstants.피라미드(getId())))
         {
-          if (!monster.getStats().isBoss() && !monster.isElitemonster() && !monster.isElitechmp() && !monster.isEliteboss())
+          if (!monster.getStats().isBoss() && !monster.isEliteMonster() && !monster.isElitechmp() && !monster.isEliteBoss())
           {
             //  chr.checkLiveQuest(0, true);
             //  chr.checkLiveQuest(0, false);
@@ -2616,11 +2625,11 @@ public final class MapleMap
         Item toDrop = new Item(2432398, (short) 0, (short) 1, 0);
         spawnItemDrop(monster, chr, toDrop, new Point((monster.getTruePosition()).x + 25, (monster.getTruePosition()).y), true, false);
       }
-      if (!isElitebossmap() && !isEliteChmpmap() && !monster.isElitemonster() && !isElitebossrewardmap() && !monster.isEliteboss() && !monster.getStats().isBoss() && monster.getStats().getLevel() > 100 && monster.getStats().getLevel() - 21 <= chr.getLevel() && chr.getLevel() <= monster.getStats().getLevel() + 21 && isSpawnPoint())
+      if (!isElitebossmap() && !isEliteChmpmap() && !monster.isEliteMonster() && !isElitebossrewardmap() && !monster.isEliteBoss() && !monster.getStats().isBoss() && monster.getStats().getLevel() > 100 && monster.getStats().getLevel() - 21 <= chr.getLevel() && chr.getLevel() <= monster.getStats().getLevel() + 21 && isSpawnPoint())
       {
         setEliteMobCommonCount(this.EliteMobCommonCount + 1);
       }
-      else if (!isElitebossmap() && !isElitebossrewardmap() && monster.isElitemonster())
+      else if (!isElitebossmap() && !isElitebossrewardmap() && monster.isEliteMonster())
       {
         if (!monster.isUserunespawn())
         {
@@ -2770,7 +2779,7 @@ public final class MapleMap
               mapleMonster1.setEliteType(4);
               mapleMonster1.getStats().setLevel(chr.getLevel());
               mapleMonster1.setHp((long) ((monster.getStats().getHp() * 25L) * mapleMonster1.bonusHp()));
-              mapleMonster1.setElitehp(mapleMonster1.getHp());
+              mapleMonster1.setEliteHp(mapleMonster1.getHp());
               setElitechmpcount(3);
               spawnMonsterOnGroundBelow(mapleMonster1, monster.getTruePosition());
               break;
@@ -2784,7 +2793,7 @@ public final class MapleMap
                 mapleMonster.setEliteType(4);
                 mapleMonster.getStats().setLevel(chr.getLevel());
                 mapleMonster.setHp((long) ((monster.getStats().getHp() * 10L) * mapleMonster.bonusHp()));
-                mapleMonster.setElitehp(mapleMonster.getHp());
+                mapleMonster.setEliteHp(mapleMonster.getHp());
                 spawnMonsterOnGroundBelow(mapleMonster, this.monsterSpawn.get(m).getPosition());
               }
               setElitechmpfinal(true);
@@ -2801,7 +2810,7 @@ public final class MapleMap
                 mapleMonster.setEliteType(4);
                 mapleMonster.getStats().setLevel(chr.getLevel());
                 mapleMonster.setHp((long) ((monster.getStats().getHp() * 30L) * mapleMonster.bonusHp()));
-                mapleMonster.setElitehp(mapleMonster.getHp());
+                mapleMonster.setEliteHp(mapleMonster.getHp());
                 spawnMonsterOnGroundBelow(mapleMonster, this.monsterSpawn.get(m).getPosition());
               }
               setElitechmpfinal(false);
@@ -2825,7 +2834,7 @@ public final class MapleMap
                 mapleMonster.setEliteType(4);
                 mapleMonster.getStats().setLevel(chr.getLevel());
                 mapleMonster.setHp((long) ((monster.getStats().getHp() * 20L) * mapleMonster.bonusHp()));
-                mapleMonster.setElitehp(mapleMonster.getHp());
+                mapleMonster.setEliteHp(mapleMonster.getHp());
                 spawnMonsterOnGroundBelow(mapleMonster, this.monsterSpawn.get(Rand).getPosition());
               }
               setElitechmpfinal(true);
@@ -2839,7 +2848,7 @@ public final class MapleMap
               EliteChmp.setEliteType(4);
               EliteChmp.getStats().setLevel(chr.getLevel());
               EliteChmp.setHp((long) ((monster.getStats().getHp() * 50L) * EliteChmp.bonusHp()));
-              EliteChmp.setElitehp(EliteChmp.getHp());
+              EliteChmp.setEliteHp(EliteChmp.getHp());
               spawnMonsterOnGroundBelow(EliteChmp, monster.getTruePosition());
               setElitechmpcount(1);
               setElitechmpfinal(false);
@@ -2896,12 +2905,12 @@ public final class MapleMap
             }
           }, 60000L);
         }
-        else if (getEliteCount() < 20 && monster.getStats().getLevel() >= 100 && isSpawnPoint() && !isElitebossmap() && !isElitebossrewardmap() && !isEliteChmpmap() && !monster.isElitemonster() && monster.getEliteGrade() < 0)
+        else if (getEliteCount() < 20 && monster.getStats().getLevel() >= 100 && isSpawnPoint() && !isElitebossmap() && !isElitebossrewardmap() && !isEliteChmpmap() && !monster.isEliteMonster() && monster.getEliteGrade() < 0)
         {
           boolean alreadyspawn = false;
           for (MapleMonster mob : chr.getMap().getAllMonster())
           {
-            if (mob.isElitemonster() || mob.isEliteboss())
+            if (mob.isEliteMonster() || mob.isEliteBoss())
             {
               alreadyspawn = true;
               break;
@@ -2934,9 +2943,9 @@ public final class MapleMap
                     eliteBoss.setEliteType(3);
                     eliteBoss.setEliteGrade(RandomI);
                     eliteBoss.getStats().setLevel(monster.getStats().getLevel());
-                    eliteBoss.setHp(monster.getStats().getHp() * 750L);
-                    eliteBoss.setEliteboss(true);
-                    eliteBoss.setElitehp(eliteBoss.getHp());
+                    eliteBoss.setHp(monster.getStats().getHp() * 1000L);
+                    eliteBoss.setEliteBoss();
+                    eliteBoss.setEliteHp(eliteBoss.getHp());
                     MapleMap.this.makeEliteMonster(monster.getId(), Randomizer.rand(0, 2), MapleMap.this.monsterSpawn.get(Randomizer.rand(0, MapleMap.this.monsterSpawn.size() - 1)).getPosition(), false, true);
                     MapleMap.this.makeEliteMonster(monster.getId(), Randomizer.rand(0, 2), MapleMap.this.monsterSpawn.get(Randomizer.rand(0, MapleMap.this.monsterSpawn.size() - 1)).getPosition(), false, true);
                     MapleMap.this.spawnMonsterOnGroundBelow(eliteBoss, monster.getTruePosition());
@@ -2959,7 +2968,7 @@ public final class MapleMap
     {
       FileoutputUtil.log("Log_Kill.txt", String.valueOf(e));
     }
-    if (monster.isEliteboss())
+    if (monster.isEliteBoss())
     {
       stopEliteBossMap();
       setElitebossrewardmap(true);
@@ -8609,7 +8618,7 @@ public final class MapleMap
     MapleMonster monster = null;
     for (MapleMonster m : getAllMonster())
     {
-      if (m != null && !m.isElitemonster() && !m.isEliteboss() && !m.getStats().isBoss())
+      if (m != null && !m.isEliteMonster() && !m.isEliteBoss() && !m.getStats().isBoss())
       {
         monster = m;
         break;
@@ -8631,17 +8640,17 @@ public final class MapleMap
       case 0:
         rand = Randomizer.rand(0, EliteMonsterGradeInfo.getFirstGradeInfo().size() - 1);
         eg = EliteMonsterGradeInfo.getFirstGradeInfo().get(Integer.valueOf(rand));
-        eliteMonster.setHp(monster.getStats().getHp() * 15L);
+        eliteMonster.setHp(monster.getStats().getHp() * 200L);
         break;
       case 1:
         rand = Randomizer.rand(0, EliteMonsterGradeInfo.getSecondGradeInfo().size() - 1);
         eg = EliteMonsterGradeInfo.getSecondGradeInfo().get(Integer.valueOf(rand));
-        eliteMonster.setHp(monster.getStats().getHp() * 20L);
+        eliteMonster.setHp(monster.getStats().getHp() * 300L);
         break;
       case 2:
         rand = Randomizer.rand(0, EliteMonsterGradeInfo.getThirdGradeInfo().size() - 1);
         eg = EliteMonsterGradeInfo.getThirdGradeInfo().get(Integer.valueOf(rand));
-        eliteMonster.setHp(monster.getStats().getHp() * 30L);
+        eliteMonster.setHp(monster.getStats().getHp() * 500L);
         break;
     }
     eliteMonster.getEliteGradeInfo().add(new Pair<>(Integer.valueOf(eg.getSkillid()), Integer.valueOf(eg.getSkilllv())));
@@ -8655,8 +8664,8 @@ public final class MapleMap
       eliteMonster.setUserunespawn(false);
       setCustomInfo(8222222, 0, 600000);
     }
-    eliteMonster.setElitemonster(true);
-    eliteMonster.setElitehp(eliteMonster.getHp());
+    eliteMonster.setEliteMonster();
+    eliteMonster.setEliteHp(eliteMonster.getHp());
     spawnMonsterOnGroundBelow(eliteMonster, pos);
     broadcastMessage(CField.startMapEffect("어두운 기운과 함께 강력한 몬스터가 출현합니다.", 5120124, true));
     broadcastMessage(CField.specialMapSound("Field.img/eliteMonster/Regen"));

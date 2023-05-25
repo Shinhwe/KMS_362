@@ -8832,21 +8832,15 @@ public class InventoryHandler
         {
           if (mapItem.getItem().getBossid() != 0)
           {
-            int party = chr.getParty() != null ? chr.getParty().getMembers().size() : 1;
+            int bossId = mapItem.getItem().getBossid();
+            // int party = chr.getParty() != null ? chr.getParty().getMembers().size() : 1;
+            int party = 1; // 结晶不分钱
             int meso = 0, mobid = 0;
-            for (Triple<Integer, Integer, Integer> list : BossRewardMeso.getLists())
+            BossRewardMesoItem bossRewardMesoItem = BossRewardMeso.getBossRewardMesoItem(bossId);
+            if (bossRewardMesoItem != null)
             {
-              int bossid = BossRewardMeso.RewardBossId(list.getMid());
-              if (bossid == 0)
-              {
-                bossid = list.getLeft();
-              }
-              if (bossid == mapItem.getItem().getBossid() || list.getMid() == mapItem.getItem().getBossid())
-              {
-                meso = list.getRight();
-                mobid = list.getMid();
-                break;
-              }
+              meso = (int) bossRewardMesoItem.meso;
+              mobid = bossRewardMesoItem.intensePowerCrystalId;
             }
             mapItem.getItem().setReward(new BossReward(chr.getInventory(MapleInventoryType.ETC).countById(4001886) + 1, mobid, party, meso));
             mapItem.getItem().setExpiration(System.currentTimeMillis() + (7 * 24 * 60 * 60 * 1000));
@@ -9369,22 +9363,15 @@ public class InventoryHandler
             {
               if (mapItem.getItem().getBossid() != 0)
               {
-                int party = chr.getParty() != null ? chr.getParty().getMembers().size() : 1;
+                int bossId = mapItem.getItem().getBossid();
+                // int party = chr.getParty() != null ? chr.getParty().getMembers().size() : 1;
+                int party = 1; // 结晶不分钱
                 int meso = 0, mobid = 0;
-                for (Triple<Integer, Integer, Integer> list : BossRewardMeso.getLists())
+                BossRewardMesoItem bossRewardMesoItem = BossRewardMeso.getBossRewardMesoItem(bossId);
+                if (bossRewardMesoItem != null)
                 {
-                  int bossid = BossRewardMeso.RewardBossId(list.getMid());
-                  if (bossid == 0)
-                  {
-                    bossid = list.getLeft();
-                  }
-
-                  if (bossid == mapItem.getItem().getBossid() || list.getMid() == mapItem.getItem().getBossid())
-                  {
-                    meso = list.getRight();
-                    mobid = list.getMid();
-                    break;
-                  }
+                  meso = (int) bossRewardMesoItem.meso;
+                  mobid = bossRewardMesoItem.intensePowerCrystalId;
                 }
                 mapItem.getItem().setExpiration(System.currentTimeMillis() + (7 * 24 * 60 * 60 * 1000));
                 mapItem.getItem().setReward(new BossReward(chr.getInventory(MapleInventoryType.ETC).countById(4001886) + 1, mobid, party, meso));

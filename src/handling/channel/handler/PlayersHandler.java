@@ -32,7 +32,6 @@ import tools.packet.PacketHelper;
 import tools.packet.SLFCGPacket;
 
 import java.awt.*;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -856,7 +855,7 @@ public class PlayersHandler
         case 5:
           for (MapleMonster mob : chr.getMap().getAllMonster())
           {
-            if (mob.isElitemonster() || mob.isEliteboss())
+            if (mob.isEliteMonster() || mob.isEliteBoss())
             {
               spawn = true;
               break;
@@ -1033,7 +1032,7 @@ public class PlayersHandler
         case 5:
           for (MapleMonster mob : chr.getMap().getAllMonster())
           {
-            if (mob.isElitemonster() || mob.isEliteboss())
+            if (mob.isEliteMonster() || mob.isEliteBoss())
             {
               spawn = true;
               break;

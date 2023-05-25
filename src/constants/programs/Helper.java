@@ -205,11 +205,7 @@ public class Helper extends JFrame
     {
     }
   }
-  
-  protected static String toUni(String kor) throws UnsupportedEncodingException
-  {
-    return new String(kor.getBytes("KSC5601"), StandardCharsets.ISO_8859_1);
-  }
+
   
   public static void main(String[] args)
   {
