@@ -90,7 +90,7 @@ function action(mode, type, sel) {
 			cm.gainMeso(3000000);
 			cm.gainItem(2431774, 1);
                                          cm.gainItem(2433444, 1);
-                        cm.gainItem(3700011, 1);
+                        cm.gainItem(3700666, 1);
 			cm.getPlayer().AutoTeachSkill();
 			cm.warp(100000000);
 			cm.getPlayer().resetStats(4, 4, 4, 4);
@@ -101,7 +101,7 @@ function action(mode, type, sel) {
 			cm.gainMeso(3000000);
 			cm.gainItem(2431774, 1);
                                          cm.gainItem(2433444, 1);
-                        cm.gainItem(3700011, 1);
+                        cm.gainItem(3700666, 1);
 			cm.getPlayer().AutoTeachSkill();
 			cm.warp(100000000);
 			cm.getPlayer().resetStats(4, 4, 4, 4);
@@ -299,7 +299,7 @@ function action(mode, type, sel) {
 			cm.gainMeso(3000000);
 			cm.gainItem(2431774, 1);
                                          cm.gainItem(2433444, 1);
-                        cm.gainItem(3700011, 1);
+                        cm.gainItem(3700666, 1);
 			cm.getPlayer().AutoTeachSkill();
 			max = seld == 2500 || seld == 430 ? 20 : 10;
 			if (seld != 10112) {
@@ -398,7 +398,7 @@ function action(mode, type, sel) {
 										 cm.gainItem(2000005, 500);
 			cm.gainItem(2431774, 1);
 			cm.gainItem(5044002, 1);
-                        cm.gainItem(3700011, 1);
+                        cm.gainItem(3700666, 1);
 			cm.gainMeso(3000000);
 			//cm.JoinNubGuild();
 			//cm.openNpc(2008, "tutorial");
