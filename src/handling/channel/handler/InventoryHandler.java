@@ -8808,7 +8808,7 @@ public class InventoryHandler
         if (GameConstants.isArcaneSymbol(mapItem.getItemId()))
         {
           Equip equip2 = (Equip) mapItem.getItem();
-          equip2.setArcPower(30);
+          equip2.setArcPower(60);
           equip2.setArcLevel(1);
           equip2.setArcExp(1);
           if (GameConstants.isXenon(c.getPlayer().getJob()))
@@ -8844,7 +8844,7 @@ public class InventoryHandler
         }
         else if (GameConstants.isAuthenticSymbol(mapItem.getItemId()) && (equip = (Equip) mapItem.getItem()).getAuthenticLevel() == 0)
         {
-          equip.setAuthenticPower(10);
+          equip.setAuthenticPower(20);
           equip.setAuthenticLevel(1);
           equip.setAuthenticExp(1);
           if (GameConstants.isXenon(c.getPlayer().getJob()))
@@ -9269,7 +9269,7 @@ public class InventoryHandler
         if (GameConstants.isArcaneSymbol(mapItem.getItemId()))
         {
           Equip equip2 = (Equip) mapItem.getItem();
-          equip2.setArcPower(30);
+          equip2.setArcPower(60);
           equip2.setArcLevel(1);
           equip2.setArcExp(1);
           if (GameConstants.isXenon(c.getPlayer().getJob()))
@@ -9305,7 +9305,7 @@ public class InventoryHandler
         }
         else if (GameConstants.isAuthenticSymbol(mapItem.getItemId()) && (equip = (Equip) mapItem.getItem()).getAuthenticLevel() == 0)
         {
-          equip.setAuthenticPower(10);
+          equip.setAuthenticPower(20);
           equip.setAuthenticLevel(1);
           equip.setAuthenticExp(1);
           if (GameConstants.isXenon(c.getPlayer().getJob()))
@@ -10505,7 +10505,7 @@ public class InventoryHandler
     final Equip equip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem((short) slot);
     if ((equip.getEquipmentType() & 0x4000) == 0x0)
     {
-      equip.setArcPower(30);
+      equip.setArcPower(60);
       int totalexp = 0;
       for (int i = 1; i < equip.getArcLevel(); ++i)
       {

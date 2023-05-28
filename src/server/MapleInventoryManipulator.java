@@ -75,7 +75,7 @@ public class MapleInventoryManipulator
       final Equip equip = (Equip) item;
       if (equip.getArcLevel() == 0)
       {
-        equip.setArcPower(30);
+        equip.setArcPower(60);
         equip.setArcLevel(1);
         equip.setArcExp(1);
         if (GameConstants.isXenon(c.getPlayer().getJob()))
@@ -115,7 +115,7 @@ public class MapleInventoryManipulator
       final Equip equip = (Equip) item;
       if (equip.getAuthenticLevel() == 0)
       {
-        equip.setAuthenticPower(10);
+        equip.setAuthenticPower(20);
         equip.setAuthenticLevel(1);
         equip.setAuthenticExp(1);
         if (GameConstants.isXenon(c.getPlayer().getJob()))

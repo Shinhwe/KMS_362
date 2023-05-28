@@ -57,10 +57,10 @@ public enum ItemLoader
     {
       equip.setArcLevel(20);
     }
-    if (equip.getArcPower() > 220)
-    {
-      equip.setArcPower(220);
-    }
+    // if (equip.getArcPower() > 220)
+    // {
+    //   equip.setArcPower(220);
+    // }
     if ((GameConstants.isArcaneSymbol(equip.getItemId()) || GameConstants.isAuthenticSymbol(equip.getItemId()) || equip.getItemId() / 1000 == 1162) && equip.getItemId() != 1162002 && equip.getState() > 0)
     {
       equip.setState((byte) 0);
