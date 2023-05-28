@@ -29,6 +29,7 @@ import server.maps.MapleMap;
 import server.marriage.MarriageManager;
 import server.quest.MapleQuest;
 import server.quest.QuestCompleteStatus;
+import server.shops.MapleShopFactory;
 import tools.CMDCommand;
 import tools.packet.BossRewardMeso;
 import tools.packet.CField;
@@ -46,27 +47,27 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Start
 {
-  
+
   public static final Start instance = new Start();
   public static ScheduledFuture<?> boss;
   public static long startTime = System.currentTimeMillis();
   public static AtomicInteger CompletedLoadingThreads = new AtomicInteger(0);
-  
-  public static void main(String[] args) throws InterruptedException
+
+  public static void main (String[] args) throws InterruptedException
   {
     instance.run();
   }
-  
-  public static void AutoGame()
-  { //Maked By 키네시스, 라피스 (네이트온: Kinesis8@nate.com , 디스코드 : 라피스#2519)
+
+  public static void AutoGame ()
+  { // Maked By 키네시스, 라피스 (네이트온: Kinesis8@nate.com , 디스코드 : 라피스#2519)
     Timer.WorldTimer tMan = Timer.WorldTimer.getInstance();
     Runnable r = new Runnable()
     {
-      public void run()
+      public void run ()
       {
         if (new Date().getMinutes() % 2 == 1)
         {
-          //날짜함수
+          // 날짜함수
           Date time = new Date();
           String Year = String.valueOf(time.getYear() + 1900);
           String Month = ((time.getMonth() + 1) < 10) ? ("0" + (time.getMonth() + 1)) : (String.valueOf(time.getMonth() + 1));
@@ -79,13 +80,13 @@ public class Start
           String leftright = (Randomizer.rand(1, 2) == 1) ? "좌" : "우";
           String threefour = (Randomizer.rand(1, 2) == 1) ? "3" : "4";
           int count = 0;
-          //SQL 쿼리문 처리
+          // SQL 쿼리문 처리
           Connection con = null;
           PreparedStatement ps = null;
           ResultSet rs = null;
           try
           {
-            //회차 확인하기
+            // 회차 확인하기
             con = DatabaseConnection.getConnection();
             ps = con.prepareStatement("SELECT * FROM `bettingresult` WHERE `date` = ?");
             ps.setInt(1, Today);
@@ -101,7 +102,7 @@ public class Start
             }
             rs.close();
             ps.close();
-            //새로운 회차 정보 등록하기
+            // 새로운 회차 정보 등록하기
             count++;
             ps = con.prepareStatement("INSERT INTO `bettingresult` (`date`, `time`, `count`, `holjjack`, `leftright`, `threefour`) VALUES (?, ?, ?, ?, ?, ?)");
             ps.setInt(1, Today);
@@ -113,7 +114,7 @@ public class Start
             ps.executeUpdate();
             ps.close();
             con.close();
-            //zWorld.Broadcast.broadcastMessage(CWvsContext.serverNotice(2, "[시스템] : " + count + "회 홀짝 추첨 결과는 [" + holjjak + "] 입니다."));
+            // zWorld.Broadcast.broadcastMessage(CWvsContext.serverNotice(2, "[시스템] : " + count + "회 홀짝 추첨 결과는 [" + holjjak + "] 입니다."));
             World.Broadcast.broadcastMessage(CWvsContext.serverNotice(2, "", "[시스템] : " + count + "회 사다리 추첨 결과는 [" + leftright + threefour + holjjak + "] 입니다."));
           }
           catch (Exception 오류)
@@ -163,15 +164,15 @@ public class Start
         }
       }
     };
-    tMan.register(r, 60000); //건드리지 말것
+    tMan.register(r, 60000); // 건드리지 말것
     System.out.println("[알림] 자동게임 시스템이 활성화 되었습니다.");
   }
-  
-  public static void timeBossHottime()
+
+  public static void timeBossHottime ()
   {
     final int[] hour = ServerConstants.hour;
     final int pice = ServerConstants.pice;
-    
+
     if (boss == null)
     {
       Calendar cal = Calendar.getInstance();
@@ -200,10 +201,10 @@ public class Start
           }
         }
       }
-      
+
       boss = Timer.WorldTimer.getInstance().register(new Runnable()
       {
-        public void run()
+        public void run ()
         {
           Date nowtime = new Date();
           for (int ho : hour)
@@ -269,7 +270,7 @@ public class Start
                   {
                     chr.sethottimeboss(false);
                     chr.getClient().getSession().writeAndFlush(CField.sendDuey((byte) 28, null, null));
-                    //DueyHandler.addNewItemToDb(failitem, pice, chr.getId(), "[실패]", "월드보스 보상이 지급 됐습니다.", true);
+                    // DueyHandler.addNewItemToDb(failitem, pice, chr.getId(), "[실패]", "월드보스 보상이 지급 됐습니다.", true);
                   }
                 }
               }
@@ -280,8 +281,8 @@ public class Start
       }, 1000 * 60, schedulewait);
     }
   }
-  
-  public void run() throws InterruptedException
+
+  public void run () throws InterruptedException
   {
     System.out.println("Server is Starting Now!");
     DatabaseConnection.init();
@@ -396,8 +397,12 @@ public class Start
       CashShopServer.run_startup_configurations();
       System.out.println("[Loading Farm]");
       FarmServer.run_startup_configurations();
+      System.out.println("[Loading BossRewardMeso]");
+      BossRewardMeso.Load();
       System.out.println("[Loading DropData]");
       MapleMonsterDropDataProvider.getInstance().loadAllData();
+      System.out.println("[Loading ShopData]");
+      MapleShopFactory.getInstance().loadShop();
       Runtime.getRuntime().addShutdownHook(new Thread(new Shutdown()));
       PlayerNPC.loadAll();
       LoginServer.setOn();
@@ -409,7 +414,6 @@ public class Start
       Setting.setting2();
       Setting.settingGoldApple();
       Setting.settingNeoPos();
-      BossRewardMeso.Setting();
       Timer.WorldTimer.getInstance().register(new MapleSaveHandler(), 10000L);
       new AdminTool().setVisible(true);
     }
@@ -417,39 +421,39 @@ public class Start
     {
     }
   }
-  
+
   private static class LoadingThread extends Thread
   {
     protected String LoadingThreadName;
-    
-    private LoadingThread(Runnable r, String t, Object o)
+
+    private LoadingThread (Runnable r, String t, Object o)
     {
       super(new Start.NotifyingRunnable(r, o, t));
       this.LoadingThreadName = t;
     }
-    
-    public synchronized void start()
+
+    public synchronized void start ()
     {
       System.out.println("[Loading...] Started " + this.LoadingThreadName + " Thread");
       super.start();
     }
   }
-  
+
   private static class NotifyingRunnable implements Runnable
   {
     private final Object ToNotify;
     private final String LoadingThreadName;
     private final Runnable WrappedRunnable;
     private long StartTime;
-    
-    private NotifyingRunnable(Runnable r, Object o, String name)
+
+    private NotifyingRunnable (Runnable r, Object o, String name)
     {
       this.WrappedRunnable = r;
       this.ToNotify = o;
       this.LoadingThreadName = name;
     }
-    
-    public void run()
+
+    public void run ()
     {
       this.StartTime = System.currentTimeMillis();
       this.WrappedRunnable.run();
@@ -461,22 +465,22 @@ public class Start
       }
     }
   }
-  
+
   public static class Shutdown implements Runnable
   {
-    public void run()
+    public void run ()
     {
       ShutdownServer.getInstance().run();
     }
   }
-  
+
   private class AllLoding extends Thread
   {
-    private AllLoding()
+    private AllLoding ()
     {
     }
-    
-    public void run()
+
+    public void run ()
     {
       Start.LoadingThread SkillLoader = new Start.LoadingThread(() -> SkillFactory.load(), "SkillLoader", this);
       Start.LoadingThread QuestLoader = new Start.LoadingThread(() ->
@@ -514,7 +518,7 @@ public class Start
       Start.LoadingThread EmoticonLoader = new Start.LoadingThread(() -> ChatEmoticon.LoadEmoticon(), "EmoticonLoader", this);
       Start.LoadingThread MatrixLoader = new Start.LoadingThread(() -> MatrixHandler.loadCore(), "MatrixLoader", this);
       Start.LoadingThread MarriageLoader = new Start.LoadingThread(() -> MarriageManager.getInstance(), "MarriageLoader", this);
-      Start.LoadingThread[] LoadingThreads = {SkillLoader, QuestLoader, QuestCustomLoader, ItemLoader, GuildRankingLoader, EtcLoader, MonsterLoader, MatrixLoader, MarriageLoader, EmoticonLoader};
+      Start.LoadingThread[] LoadingThreads = { SkillLoader, QuestLoader, QuestCustomLoader, ItemLoader, GuildRankingLoader, EtcLoader, MonsterLoader, MatrixLoader, MarriageLoader, EmoticonLoader };
       for (Thread t : LoadingThreads)
       {
         t.start();

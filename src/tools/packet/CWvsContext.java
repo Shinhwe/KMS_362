@@ -2304,28 +2304,28 @@ public class CWvsContext
     return mplew.getPacket();
   }
   
-  public static byte[] useBlackRebirthScroll(Equip item, Item rebirth, long newRebirth, boolean result)
+  public static byte[] useBlackFlameScroll (Equip item, Item flameItem, long newFlame, boolean result)
   {
     MaplePacketLittleEndianWriter mplew = new MaplePacketLittleEndianWriter();
-    mplew.writeShort(SendPacketOpcode.BLACK_REBIRTH_SCROLL.getValue());
+    mplew.writeShort(SendPacketOpcode.BLACK_FLAME_SCROLL.getValue());
     mplew.writeLong((item.getInventoryId() <= 0L) ? -1L : item.getInventoryId());
-    mplew.writeLong(result ? 0L : newRebirth);
+    mplew.writeLong(result ? 0L : newFlame);
     mplew.writeInt(result ? 0 : item.getPosition());
-    mplew.writeInt(result ? 0 : rebirth.getItemId());
+    mplew.writeInt(result ? 0 : flameItem.getItemId());
     mplew.writeInt(80);
     mplew.writeInt(0);
     mplew.writeShort(0);
     return mplew.getPacket();
   }
   
-  public static byte[] blackRebirthResult(boolean before, long newRebirth, Equip equip)
+  public static byte[] blackFlameResult (boolean before, long newFlame, Equip equip)
   {
     MaplePacketLittleEndianWriter mplew = new MaplePacketLittleEndianWriter();
-    mplew.writeShort(SendPacketOpcode.BLACK_REBIRTH_RESULT.getValue());
+    mplew.writeShort(SendPacketOpcode.BLACK_FLAME_RESULT.getValue());
     mplew.writeInt(0);
     mplew.write(1);
     mplew.write(before);
-    GameConstants.sendFireOption(mplew, newRebirth, equip);
+    GameConstants.sendFireOption(mplew, newFlame, equip);
     if (!before)
     {
       PacketHelper.addItemInfo(mplew, equip);
@@ -2458,10 +2458,10 @@ public class CWvsContext
     return mplew.getPacket();
   }
   
-  public static byte[] RebirthScrollWindow(int scrollid, int pos)
+  public static byte[] flameScrollWindow (int scrollid, int pos)
   {
     MaplePacketLittleEndianWriter mplew = new MaplePacketLittleEndianWriter();
-    mplew.writeShort(SendPacketOpcode.REBIRTH_SCROLL_WINDOW.getValue());
+    mplew.writeShort(SendPacketOpcode.FLAME_SCROLL_WINDOW.getValue());
     mplew.writeInt(scrollid);
     mplew.writeInt(pos);
     mplew.write(0);

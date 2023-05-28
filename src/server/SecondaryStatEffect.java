@@ -2575,6 +2575,11 @@ public class SecondaryStatEffect
             ret.statups.put(SecondaryStat.ExpBuffRate, new Pair<Integer, Integer>(200, ret.duration));
             break;
           }
+          case 2450163:
+          {
+            ret.statups.put(SecondaryStat.ExpBuffRate, new Pair<Integer, Integer>(200, ret.duration));
+            break;
+          }
           case 2023072:
           {
             ret.statups.put(SecondaryStat.ItemUpByItem, new Pair<Integer, Integer>(100, ret.duration));
@@ -4214,7 +4219,7 @@ public class SecondaryStatEffect
       case 400011038:
       {
         localstatups.clear();
-        localstatups.put(SecondaryStat.BloodFist, new Pair<Integer, Integer>(1, 0));
+        localstatups.put(SecondaryStat.BloodFist, new Pair<Integer, Integer>(1, 500));
         break;
       }
       case 2321005:

@@ -1,13 +1,18 @@
 package server;
 
 import client.MapleCharacter;
+import client.MapleQuestStatus;
 import client.StructPotentialItem;
 import client.inventory.*;
 import constants.GameConstants;
 import database.DatabaseConnection;
 import provider.*;
+import server.enchant.EnchantFlag;
+import server.enchant.EquipmentScroll;
+import server.quest.MapleQuest;
 import tools.Pair;
 import tools.Triple;
+import tools.packet.CWvsContext;
 
 import java.awt.*;
 import java.io.File;
@@ -55,35 +60,14 @@ public class MapleItemInformationProvider
 
   protected final Map<Integer, Integer> scrollUpgradeSlotUse = new HashMap<>();
 
-  protected final Map<Integer, Integer> cursedCache = new HashMap<>();
-
-  protected final Map<Integer, Integer> successCache = new HashMap<>();
-
   protected final Map<Integer, List<Triple<Boolean, Integer, Integer>>> potentialOpCache = new HashMap<>();
   private ItemInformation tmpInfo = null;
 
-  public static final MapleItemInformationProvider getInstance ()
+  public static MapleItemInformationProvider getInstance ()
   {
     return instance;
   }
 
-  private static int getEquipLevel (int level)
-  {
-    int stat = 0;
-    if (level >= 0 && level <= 50)
-    {
-      stat = 1;
-    }
-    else if (level >= 51 && level <= 100)
-    {
-      stat = 2;
-    }
-    else
-    {
-      stat = 3;
-    }
-    return stat;
-  }
 
   public EquipTemplate getTempateByItemId (int itemId)
   {
@@ -356,7 +340,7 @@ public class MapleItemInformationProvider
   {
     List<Integer> potentials = new ArrayList<>();
     int i = 0;
-    while (potentials.size() <= 0 || potentials.isEmpty())
+    while (potentials.isEmpty())
     {
       potentials = new ArrayList<>();
       potentialSet(potentials, level, additional, itemtype);
@@ -365,7 +349,7 @@ public class MapleItemInformationProvider
         break;
       }
     }
-    if (potentials.size() <= 0 || potentials.isEmpty())
+    if (potentials.isEmpty())
     {
       System.out.println(level + "레벨 " + itemtype + "타입 아이템의 잠재능력 리스트 0개 -_- / 에디셔널 여부 : " + additional);
     }
@@ -1011,16 +995,11 @@ public class MapleItemInformationProvider
     return this.setItems.get(Integer.valueOf(setItemId));
   }
 
-  public final int getCursed (int itemId, MapleCharacter player)
+  public final int getCursed (int itemId)
   {
-    return getCursed(itemId, player, null);
+    return MapleItemInformationProvider.getInstance().getItemInformation(itemId).cursed;
   }
 
-  public final int getCursed (int itemId, MapleCharacter player, Item equip)
-  {
-    // TODO: 从WZ中获取诅咒几率
-    return 0;
-  }
 
   public final List<Integer> getScrollReqs (int itemId)
   {
@@ -1037,16 +1016,623 @@ public class MapleItemInformationProvider
     return ret;
   }
 
-  public final Item scrollEquipWithId (Item equip, Item scrollId, boolean ws, MapleCharacter chr)
+
+  public final Item scrollEquipWithId (Equip equip, Item scrollId, boolean ws, MapleCharacter chr)
   {
     if (equip.getType() == 1)
     {
-      // TODO 各种卷轴, 之前的逻辑太多了, 有很多用不上的, 直接重写
+      MapleQuest quest;
+      List<Pair<EnchantFlag, Integer>> statz;
+      short watk, matk;
+      int flag;
+      List<Pair<Integer, Integer>> list;
+      String stringa;
+      int allstat;
+      short str;
+      int randomstat;
+      MapleQuestStatus queststatus;
+      int rand;
+      short dex;
+      int randb;
+      short int_, luk;
+      Equip zeroEquip = null;
+      int 卷軸Id = scrollId.getItemId();
+      if (GameConstants.isAlphaWeapon(equip.getItemId()))
+      {
+        zeroEquip = (Equip) chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10);
+      }
+      else if (GameConstants.isBetaWeapon(equip.getItemId()))
+      {
+        zeroEquip = (Equip) chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
+      }
+      Map<String, Integer> stats = getEquipStats(卷軸Id);
+      Map<String, Integer> eqstats = getEquipStats(equip.getItemId());
+      boolean failed = false;
+      switch (卷軸Id)
+      {
+        case 2049000:
+        case 2049001:
+        case 2049002:
+        case 2049004:
+        case 2049005:
+          if (!Randomizer.isSuccess(getSuccess(卷軸Id, chr, equip)))
+          {
+            failed = true;
+            break;
+          }
+          if (equip.getFailUpgradeSlots() > 0)
+          {
+            equip.setFailUpgradeSlots((byte) (equip.getFailUpgradeSlots() - 1));
+            if (zeroEquip != null)
+            {
+              zeroEquip.setFailUpgradeSlots((byte) (zeroEquip.getFailUpgradeSlots() - 1));
+            }
+          }
+          break;
+        case 2046996:
+        case 2047818:
+          equip.setEnchantWatk((short) (equip.getEnchantWatk() + 10));
+          if (zeroEquip != null)
+          {
+            zeroEquip.setEnchantWatk((short) (zeroEquip.getEnchantWatk() + 10));
+          }
+          equip.setEnchantStr((short) (equip.getEnchantStr() + 3));
+          if (zeroEquip != null)
+          {
+            zeroEquip.setEnchantStr((short) (zeroEquip.getEnchantStr() + 3));
+          }
+          equip.setEnchantDex((short) (equip.getEnchantDex() + 3));
+          if (zeroEquip != null)
+          {
+            zeroEquip.setEnchantDex((short) (zeroEquip.getEnchantDex() + 3));
+          }
+          equip.setEnchantInt((short) (equip.getEnchantInt() + 3));
+          if (zeroEquip != null)
+          {
+            zeroEquip.setEnchantInt((short) (equip.getEnchantInt() + 3));
+          }
+          equip.setEnchantLuk((short) (equip.getEnchantLuk() + 3));
+          if (zeroEquip != null)
+          {
+            zeroEquip.setEnchantLuk((short) (equip.getEnchantLuk() + 3));
+          }
+          break;
+        case 2046997:
+
+          equip.setEnchantMatk((short) (equip.getEnchantMatk() + 10));
+          if (zeroEquip != null)
+          {
+            zeroEquip.setEnchantMatk((short) (zeroEquip.getEnchantMatk() + 10));
+          }
+          equip.setEnchantStr((short) (equip.getEnchantStr() + 3));
+          if (zeroEquip != null)
+          {
+            zeroEquip.setEnchantStr((short) (zeroEquip.getEnchantStr() + 3));
+          }
+          equip.setEnchantDex((short) (equip.getEnchantDex() + 3));
+          if (zeroEquip != null)
+          {
+            zeroEquip.setEnchantDex((short) (zeroEquip.getEnchantDex() + 3));
+          }
+          equip.setEnchantInt((short) (equip.getEnchantInt() + 3));
+          if (zeroEquip != null)
+          {
+            zeroEquip.setEnchantInt((short) (equip.getEnchantInt() + 3));
+          }
+          equip.setEnchantLuk((short) (equip.getEnchantLuk() + 3));
+          if (zeroEquip != null)
+          {
+            zeroEquip.setEnchantLuk((short) (equip.getEnchantLuk() + 3));
+          }
+        case 2046841:
+        case 2046842:
+        case 2046967:
+        case 2046971:
+        case 2047803:
+        case 2047917:
+          if (!Randomizer.isSuccess(getSuccess(卷軸Id, chr, equip)))
+          {
+            if (Randomizer.isSuccess(getCursed(卷軸Id)) && ItemFlag.PROTECT_SHIELD.check(equip.getFlag()))
+            {
+              chr.dropMessage(5, "주문서의 효과로 아이템이 파괴되지 않았습니다.");
+            }
+            failed = true;
+            break;
+          }
+          switch (卷軸Id)
+          {
+            case 2046841:
+              equip.setEnchantWatk((short) (equip.getEnchantWatk() + 1));
+              break;
+            case 2046842:
+              equip.setEnchantMatk((short) (equip.getEnchantMatk() + 1));
+              break;
+            case 2046967:
+              equip.setEnchantWatk((short) (equip.getEnchantWatk() + 9));
+              equip.setEnchantStr((short) (equip.getEnchantStr() + 3));
+              equip.setEnchantInt((short) (equip.getEnchantInt() + 3));
+              equip.setEnchantDex((short) (equip.getEnchantDex() + 3));
+              equip.setEnchantLuk((short) (equip.getEnchantLuk() + 3));
+              break;
+            case 2046971:
+              equip.setEnchantMatk((short) (equip.getEnchantMatk() + 9));
+              equip.setEnchantStr((short) (equip.getEnchantStr() + 3));
+              equip.setEnchantInt((short) (equip.getEnchantInt() + 3));
+              equip.setEnchantDex((short) (equip.getEnchantDex() + 3));
+              equip.setEnchantLuk((short) (equip.getEnchantLuk() + 3));
+              break;
+            case 2047803:
+              equip.setEnchantWatk((short) (equip.getEnchantWatk() + 9));
+              equip.setEnchantStr((short) (equip.getEnchantStr() + 3));
+              equip.setEnchantInt((short) (equip.getEnchantInt() + 3));
+              equip.setEnchantDex((short) (equip.getEnchantDex() + 3));
+              equip.setEnchantLuk((short) (equip.getEnchantLuk() + 3));
+              break;
+            case 2047917:
+              equip.setEnchantStr((short) (equip.getEnchantStr() + 9));
+              equip.setEnchantInt((short) (equip.getEnchantInt() + 9));
+              equip.setEnchantDex((short) (equip.getEnchantDex() + 9));
+              equip.setEnchantLuk((short) (equip.getEnchantLuk() + 9));
+              break;
+          }
+          break;
+        case 2049700:
+        case 2049701:
+        case 2049702:
+        case 2049703:
+          if (!Randomizer.isSuccess(getSuccess(卷軸Id, chr, equip)))
+          {
+            if (Randomizer.isSuccess(getCursed(卷軸Id)) && ItemFlag.PROTECT_SHIELD.check(equip.getFlag()))
+            {
+              chr.dropMessage(5, "주문서의 효과로 아이템이 파괴되지 않았습니다.");
+            }
+            failed = true;
+            break;
+          }
+          if (equip.getState() <= 17)
+          {
+            equip.setState((byte) 2);
+            if (zeroEquip != null)
+            {
+              zeroEquip.setLines((byte) 2);
+            }
+            if (Randomizer.nextInt(100) < 30)
+            {
+              equip.setLines((byte) 3);
+              if (zeroEquip != null)
+              {
+                zeroEquip.setLines((byte) 3);
+              }
+              break;
+            }
+            equip.setLines((byte) 2);
+            if (zeroEquip != null)
+            {
+              zeroEquip.setLines((byte) 2);
+            }
+          }
+          break;
+        case 2049750:
+        case 2049751:
+        case 2049752:
+          if (!Randomizer.isSuccess(getSuccess(卷軸Id, chr, equip)))
+          {
+            if (Randomizer.isSuccess(getCursed(卷軸Id)) && ItemFlag.PROTECT_SHIELD.check(equip.getFlag()))
+            {
+              chr.dropMessage(5, "주문서의 효과로 아이템이 파괴되지 않았습니다.");
+            }
+            failed = true;
+            break;
+          }
+          if (equip.getState() <= 19)
+          {
+            equip.setState((byte) 3);
+            if (zeroEquip != null)
+            {
+              zeroEquip.setLines((byte) 3);
+            }
+            if (Randomizer.nextInt(100) < 30)
+            {
+              equip.setLines((byte) 3);
+              if (zeroEquip != null)
+              {
+                zeroEquip.setLines((byte) 3);
+              }
+              break;
+            }
+            equip.setLines((byte) 2);
+            if (zeroEquip != null)
+            {
+              zeroEquip.setLines((byte) 2);
+            }
+          }
+          break;
+        case 2048306:
+          if (!Randomizer.isSuccess(getSuccess(卷軸Id, chr, equip)))
+          {
+            if (Randomizer.isSuccess(getCursed(卷軸Id)) && ItemFlag.PROTECT_SHIELD.check(equip.getFlag()))
+            {
+              chr.dropMessage(5, "주문서의 효과로 아이템이 파괴되지 않았습니다.");
+            }
+            failed = true;
+            break;
+          }
+          if (equip.getState() <= 17)
+          {
+            equip.setState((byte) 4);
+            if (zeroEquip != null)
+            {
+              zeroEquip.setLines((byte) 4);
+            }
+            if (Randomizer.nextInt(100) < 30)
+            {
+              equip.setLines((byte) 3);
+              if (zeroEquip != null)
+              {
+                zeroEquip.setLines((byte) 3);
+              }
+              break;
+            }
+            equip.setLines((byte) 2);
+            if (zeroEquip != null)
+            {
+              zeroEquip.setLines((byte) 2);
+            }
+          }
+          break;
+        case 2531000:
+        case 2531001:
+        case 2531005:
+          flag = equip.getFlag();
+          flag += ItemFlag.PROTECT_SHIELD.getValue();
+          equip.setFlag(flag);
+          if (zeroEquip != null)
+          {
+            zeroEquip.setFlag(flag);
+          }
+          break;
+        case 2532000:
+        case 2532002:
+        case 2532005:
+          flag = equip.getFlag();
+          flag += ItemFlag.SAFETY_SHIELD.getValue();
+          equip.setFlag(flag);
+          if (zeroEquip != null)
+          {
+            zeroEquip.setFlag(flag);
+          }
+          break;
+        case 2533000:
+          flag = equip.getFlag();
+          flag += ItemFlag.RECOVERY_SHIELD.getValue();
+          equip.setFlag(flag);
+          if (zeroEquip != null)
+          {
+            zeroEquip.setFlag(flag);
+          }
+          break;
+        case 2643128:
+          if (equip.getItemId() == 1114300)
+          {
+            equip.setEnchantStr((short) (equip.getEnchantStr() + 1));
+            equip.setEnchantDex((short) (equip.getEnchantDex() + 1));
+            equip.setEnchantInt((short) (equip.getEnchantInt() + 1));
+            equip.setEnchantLuk((short) (equip.getEnchantLuk() + 1));
+            equip.setEnchantWatk((short) (equip.getEnchantWatk() + 1));
+            equip.setEnchantMatk((short) (equip.getEnchantMatk() + 1));
+            equip.setEnchantHp((short) (equip.getEnchantHp() + 100));
+            equip.setEnchantMp((short) (equip.getEnchantMp() + 100));
+          }
+          break;
+        case 2643130:
+          if (equip.getItemId() == 1114303)
+          {
+            equip.setEnchantStr((short) (equip.getEnchantStr() + 1));
+            equip.setEnchantDex((short) (equip.getEnchantDex() + 1));
+            equip.setEnchantInt((short) (equip.getEnchantInt() + 1));
+            equip.setEnchantLuk((short) (equip.getEnchantLuk() + 1));
+            equip.setEnchantWatk((short) (equip.getEnchantWatk() + 1));
+            equip.setEnchantMatk((short) (equip.getEnchantMatk() + 1));
+            equip.setEnchantHp((short) (equip.getEnchantHp() + 100));
+            equip.setEnchantMp((short) (equip.getEnchantMp() + 100));
+          }
+          break;
+        case 2049704:
+        case 5063000:
+          if (!Randomizer.isSuccess(getSuccess(卷軸Id, chr, equip)))
+          {
+            if (Randomizer.isSuccess(getCursed(卷軸Id)))
+            {
+              failed = true;
+            }
+            break;
+          }
+          if (equip.getState() <= 17)
+          {
+            equip.setState((byte) 4);
+            if (zeroEquip != null)
+            {
+              zeroEquip.setState((byte) 4);
+            }
+            if (Randomizer.nextInt(100) < 30)
+            {
+              equip.setLines((byte) 3);
+              if (zeroEquip != null)
+              {
+                zeroEquip.setLines((byte) 3);
+              }
+              break;
+            }
+            equip.setLines((byte) 2);
+            if (zeroEquip != null)
+            {
+              zeroEquip.setLines((byte) 2);
+            }
+          }
+          break;
+        case 2530000:
+        case 2530001:
+        case 2530002:
+          flag = equip.getFlag();
+          flag += ItemFlag.LUCKY_PROTECT_SHIELD.getValue();
+          equip.setFlag(flag);
+          if (zeroEquip != null)
+          {
+            zeroEquip.setFlag(flag);
+          }
+          break;
+        case 2047405:
+        case 2047406:
+          list = new ArrayList<>();
+          list.add(new Pair<>(Integer.valueOf(4), Integer.valueOf(50)));
+          list.add(new Pair<>(Integer.valueOf(5), Integer.valueOf(50)));
+          randomstat = GameConstants.isRandStat(list, 100);
+          if (卷軸Id == 2047406)
+          {
+            equip.setEnchantMatk((short) (equip.getEnchantMatk() + randomstat));
+            if (zeroEquip != null)
+            {
+              zeroEquip.setEnchantMatk((short) (zeroEquip.getEnchantMatk() + randomstat));
+            }
+            break;
+          }
+          equip.setEnchantWatk((short) (equip.getEnchantWatk() + randomstat));
+          if (zeroEquip != null)
+          {
+            zeroEquip.setEnchantWatk((short) (zeroEquip.getEnchantWatk() + randomstat));
+          }
+          break;
+        case 2046991:
+        case 2046992:
+        case 2047814:
+          list = new ArrayList<>();
+          list.add(new Pair<>(Integer.valueOf(9), Integer.valueOf(34)));
+          list.add(new Pair<>(Integer.valueOf(10), Integer.valueOf(33)));
+          list.add(new Pair<>(Integer.valueOf(11), Integer.valueOf(33)));
+          randomstat = GameConstants.isRandStat(list, 100);
+          equip.setEnchantStr((short) (equip.getEnchantStr() + 3));
+          equip.setEnchantDex((short) (equip.getEnchantDex() + 3));
+          equip.setEnchantInt((short) (equip.getEnchantInt() + 3));
+          equip.setEnchantLuk((short) (equip.getEnchantLuk() + 3));
+
+          if (zeroEquip != null)
+          {
+            zeroEquip.setEnchantLuk((short) (zeroEquip.getEnchantLuk() + 3));
+            zeroEquip.setEnchantLuk((short) (zeroEquip.getEnchantLuk() + 3));
+            zeroEquip.setEnchantLuk((short) (zeroEquip.getEnchantLuk() + 3));
+            zeroEquip.setEnchantLuk((short) (zeroEquip.getEnchantLuk() + 3));
+          }
+
+          if (卷軸Id == 2046992)
+          {
+            equip.setEnchantMatk((short) (equip.getEnchantMatk() + randomstat));
+            if (zeroEquip != null)
+            {
+              zeroEquip.setEnchantMatk((short) (zeroEquip.getEnchantMatk() + randomstat));
+            }
+          }
+          else
+          {
+            equip.setEnchantWatk((short) (equip.getEnchantWatk() + randomstat));
+            if (zeroEquip != null)
+            {
+              zeroEquip.setEnchantWatk((short) (zeroEquip.getEnchantWatk() + randomstat));
+            }
+          }
+          break;
+        case 2046856:
+        case 2046857:
+          list = new ArrayList<>();
+          list.add(new Pair<>(Integer.valueOf(4), Integer.valueOf(50)));
+          list.add(new Pair<>(Integer.valueOf(5), Integer.valueOf(50)));
+          randomstat = GameConstants.isRandStat(list, 100);
+          if (卷軸Id == 2046857)
+          {
+            equip.setEnchantMatk((short) (equip.getEnchantMatk() + randomstat));
+          }
+          else
+          {
+            equip.setEnchantWatk((short) (equip.getEnchantWatk() + randomstat));
+          }
+          break;
+        case 2048094:
+        case 2048804:
+        case 2048836:
+        case 2048838:
+          list = new ArrayList<>();
+          list.add(new Pair<>(Integer.valueOf(4), Integer.valueOf(50)));
+          list.add(new Pair<>(Integer.valueOf(5), Integer.valueOf(50)));
+          randomstat = GameConstants.isRandStat(list, 100);
+          equip.setEnchantWatk((short) (equip.getEnchantWatk() + randomstat));
+          break;
+        case 2048095:
+        case 2048805:
+        case 2048837:
+        case 2048839:
+          list = new ArrayList<>();
+          list.add(new Pair<>(Integer.valueOf(4), Integer.valueOf(50)));
+          list.add(new Pair<>(Integer.valueOf(5), Integer.valueOf(50)));
+          randomstat = GameConstants.isRandStat(list, 100);
+          equip.setEnchantMatk((short) (equip.getEnchantMatk() + randomstat));
+          break;
+        case 2048809:
+          equip.setEnchantWatk((short) (equip.getEnchantWatk() + 2));
+          break;
+        case 2048810:
+          equip.setEnchantMatk((short) (equip.getEnchantMatk() + 2));
+          break;
+        default:
+          if (GameConstants.isChaosScroll(卷軸Id))
+          {
+            if (Randomizer.isSuccess(getSuccess(卷軸Id, chr, equip)))
+            {
+              chr.dropMessage(5, "強化失敗, 裝備屬性沒有發生任何變化~");
+              break;
+            }
+            List<Pair<EnchantFlag, Integer>> list1 = new ArrayList<>();
+            // TODO: 黑卷強化
+            equip.setShowScrollOption(new EquipmentScroll(list1));
+            break;
+          }
+
+          if (GameConstants.是星力強化卷軸(卷軸Id))
+          {
+            boolean isSuperior = GameConstants.isSuperior(equip.getItemId());
+            if (isSuperior)
+            {
+              chr.dropMessage(5, "星力卷軸無法作用於極真裝備~");
+            }
+            else
+            {
+              ItemInformation 卷軸數據 = MapleItemInformationProvider.getInstance().getItemInformation(卷軸Id);
+
+              int 裝備等級 = equip.getTemplate().getReqLevel();
+
+              int 強化星力 = 卷軸數據.forceUpgrade;
+
+              int 卷軸最小需求等級 = 卷軸數據.reqEquipLevelMin;
+
+              int 卷軸最大要求等級 = 卷軸數據.reqEquipLevelMax;
+
+              int 當前星力等級 = equip.getStarForceLevel();
+
+              int 強化成功几率 = getSuccess(卷軸Id, chr, equip);
+
+              if (當前星力等級 >= 強化星力)
+              {
+                chr.dropMessage(5, "當前裝備的星力太強了, 無法使用星力卷軸~");
+              }
+              else if (裝備等級 < 卷軸最小需求等級 || 裝備等級 > 卷軸最大要求等級)
+              {
+                chr.dropMessage(5, "當前星力卷軸無法作用於該裝備~");
+              }
+              else if (Randomizer.isSuccess(強化成功几率))
+              {
+                equip.setStarForceLevel((byte) (強化星力));
+                equip.calcStarForceStats();
+                chr.dropMessage(5, "強化成功, 裝備感受到一股神秘力量~");
+              }
+            }
+            break;
+          }
+          if (GameConstants.是裝備強化卷軸(卷軸Id))
+          {
+            int 當前強化等級 = equip.getTemplate().getReqLevel();
+
+            int 當前星力等級 = equip.getStarForceLevel();
+
+            boolean 是特殊裝備強化卷軸 = GameConstants.是特殊裝備強化卷軸(卷軸Id);
+
+            if (equip.getTotalUpgradeSlots() != 0 && 是特殊裝備強化卷軸 == false)
+            {
+              chr.dropMessage(6, "無法作用於還有強化次數的裝備~");
+            }
+            else if (當前強化等級 > 150)
+            {
+              chr.dropMessage(6, "無法作用於150級以上的裝備~");
+            }
+            else if (當前星力等級 >= 15)
+            {
+              chr.dropMessage(6, "無法作用於15星以上的裝備~");
+            }
+            else
+            {
+              int 強化成功几率 = GameConstants.獲取裝備強化卷軸成功几率(卷軸Id, 當前星力等級, chr);
+
+              if (chr.getGMLevel() > 0)
+              {
+                強化成功几率 = 100;
+              }
+
+              if (Randomizer.isSuccess(強化成功几率))
+              {
+                equip.setStarForceLevel((byte) (當前星力等級 + 1));
+                equip.calcStarForceStats();
+                chr.dropMessage(5, "強化成功, 裝備感受到一股神秘力量~");
+              }
+              else
+              {
+                chr.dropMessage(5, "強化失敗, 裝備沒有發生任何變化~");
+              }
+            }
+            break;
+          }
+          if (GameConstants.isPotentialScroll(卷軸Id))
+          {
+            if (equip.getState() == 0)
+            {
+              if (!Randomizer.isSuccess(getSuccess(卷軸Id, chr, equip)))
+              {
+                if (Randomizer.isSuccess(getCursed(卷軸Id)) && ItemFlag.PROTECT_SHIELD.check(equip.getFlag()))
+                {
+                  chr.dropMessage(5, "주문서의 효과로 아이템이 파괴되지 않았습니다.");
+                }
+                failed = true;
+                break;
+              }
+              int state = 1;
+              switch (卷軸Id)
+              {
+                case 2049762:
+                case 2079790:
+                  state = 3;
+                  break;
+              }
+              equip.setState((byte) state);
+              if (zeroEquip != null)
+              {
+                zeroEquip.setState((byte) state);
+              }
+            }
+            break;
+          }
+          if (GameConstants.是輪迴星火(卷軸Id))
+          {
+            if (GameConstants.isZero(chr.getJob()) && equip.getPosition() == -11)
+            {
+              long 火花 = equip.calcZeroNewFlame(卷軸Id);
+              equip.setFlame(火花);
+              equip.calcFlameStats();
+              if (zeroEquip != null)
+              {
+                zeroEquip.setFlame(火花);
+                zeroEquip.calcFlameStats();
+              }
+            }
+            else
+            {
+              long 火花 = equip.calcNewFlame(卷軸Id);
+              equip.setFlame(火花);
+              equip.calcFlameStats();
+            }
+            return equip;
+          }
+      }
     }
     return equip;
   }
 
-  public final int getSuccess (int itemId, MapleCharacter player, Item equip)
+  public final int getSuccess (int itemId, MapleCharacter player, Equip equip)
   {
     // TODO: 从wz中获取卷轴成功率
     if (player.getGMLevel() > 0)
@@ -1054,7 +1640,25 @@ public class MapleItemInformationProvider
       return 100;
     }
 
-    return 100;
+    int success = 0;
+
+    if (equip == null)
+    {
+      player.gainItem(itemId, (short) 1, false, -1L, "주문서 성공확률 얻기 실패로 얻은 주문서");
+      player.getClient().getSession().writeAndFlush(CWvsContext.enableActions(player));
+      return 0;
+    }
+
+    int baseSuccess = MapleItemInformationProvider.getInstance().getItemInformation(itemId).success;
+
+    success += baseSuccess;
+
+    if (GameConstants.isPotentialScroll(itemId) == false && GameConstants.是裝備強化卷軸(itemId) == false && ItemFlag.LUCKY_PROTECT_SHIELD.check(equip.getFlag()))
+    {
+      success += 10;
+    }
+
+    return success;
   }
 
   public final Equip generateEquipById (int equipId, long ringId)
@@ -1070,12 +1674,17 @@ public class MapleItemInformationProvider
       return null;
     }
     Equip equip = new Equip(i.template, (short) 0, 0, -1L);
+
     equip.setUniqueId(ringId);
-    if (!isCash(equipId) && generateFlame)
+
+    if (isCash(equipId) == false && generateFlame && GameConstants.isArcaneSymbol(equipId) == false && GameConstants.isAuthenticSymbol(equipId) == false)
     {
       long flame = equip.calcNewFlame(2048716);
+      
       equip.setFlame(flame);
+
       equip.calcFlameStats();
+
       if (ItemFlag.UNTRADEABLE.check(equip.getFlag()) && equip.getKarmaCount() < 0 && (isKarmaEnabled(equipId) || isPKarmaEnabled(equipId)))
       {
         equip.setKarmaCount((byte) 10);
@@ -1634,7 +2243,7 @@ public class MapleItemInformationProvider
         }
         else if (key.equals("reqLevel"))
         {
-          item.template.setReqLevel((byte) stat.getValue().intValue());
+          item.template.setReqLevel((short) stat.getValue().intValue());
         }
       }
     }
@@ -1664,6 +2273,15 @@ public class MapleItemInformationProvider
     ret.afterImage = sqlItemData.getString("afterImage");
     ret.chairType = sqlItemData.getString("chairType");
     ret.nickSkill = sqlItemData.getInt("nickSkill");
+    ret.forceUpgrade = sqlItemData.getInt("forceUpgrade");
+    ret.success = sqlItemData.getInt("success");
+    ret.noSuperior = sqlItemData.getInt("noSuperior");
+    ret.noCursed = sqlItemData.getInt("noCursed");
+    ret.noSuperior = sqlItemData.getInt("noSuperior");
+    ret.reqEquipLevelMin = sqlItemData.getInt("reqEquipLevelMin");
+    ret.reqEquipLevelMax = sqlItemData.getInt("reqEquipLevelMax");
+    ret.timeLimited = sqlItemData.getInt("timeLimited");
+    ret.timeLimited = sqlItemData.getInt("cursed");
     ret.cardSet = 0;
     if (ret.monsterBook > 0 && itemId / 10000 == 238)
     {

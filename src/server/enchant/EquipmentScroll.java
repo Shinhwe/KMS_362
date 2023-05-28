@@ -11,36 +11,44 @@ public class EquipmentScroll
   private int juhun;
   private int flag;
   private String name;
-  
-  public EquipmentScroll(String name, int juhun, List<Pair<EnchantFlag, Integer>> stats)
+
+  public EquipmentScroll (List<Pair<EnchantFlag, Integer>> stats)
+  {
+    this.name = "";
+    this.juhun = 0;
+    setStats(stats);
+    setFlag();
+  }
+
+  public EquipmentScroll (String name, int juhun, List<Pair<EnchantFlag, Integer>> stats)
   {
     this.name = name;
     this.juhun = juhun;
     setStats(stats);
     setFlag();
   }
-  
-  public int getJuhun()
+
+  public int getJuhun ()
   {
     return this.juhun;
   }
-  
-  public void setJuhun(int juhun)
+
+  public void setJuhun (int juhun)
   {
     this.juhun = juhun;
   }
-  
-  public String getName()
+
+  public String getName ()
   {
     return this.name;
   }
-  
-  public void setName(String name)
+
+  public void setName (String name)
   {
     this.name = name;
   }
-  
-  public Pair<EnchantFlag, Integer> getFlag(EnchantFlag flag)
+
+  public Pair<EnchantFlag, Integer> getFlag (EnchantFlag flag)
   {
     for (Pair<EnchantFlag, Integer> stat : this.stats)
     {
@@ -51,8 +59,8 @@ public class EquipmentScroll
     }
     return null;
   }
-  
-  public void setFlag()
+
+  public void setFlag ()
   {
     int flag = 0;
     if (getFlag(EnchantFlag.Watk) != null)
@@ -105,23 +113,23 @@ public class EquipmentScroll
     }
     this.flag = flag;
   }
-  
-  public int getFlag()
+
+  public int getFlag ()
   {
     return this.flag;
   }
-  
-  public void setFlag(int flag)
+
+  public void setFlag (int flag)
   {
     this.flag = flag;
   }
-  
-  public List<Pair<EnchantFlag, Integer>> getStats()
+
+  public List<Pair<EnchantFlag, Integer>> getStats ()
   {
     return this.stats;
   }
-  
-  public void setStats(List<Pair<EnchantFlag, Integer>> stats)
+
+  public void setStats (List<Pair<EnchantFlag, Integer>> stats)
   {
     for (Pair<EnchantFlag, Integer> stat : stats)
     {

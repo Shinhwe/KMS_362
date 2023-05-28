@@ -99,7 +99,8 @@ public class HexTool
     }
     try
     {
-      String str = new String(ret, "MS949");
+      // String str = new String(ret, "MS949");
+      String str = new String(ret, "UTF-8");
       return str;
     }
     catch (Exception e)

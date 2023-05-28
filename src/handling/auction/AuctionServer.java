@@ -418,9 +418,9 @@ import java.util.concurrent.ConcurrentHashMap;
           /* 241 */
           pse.setInt(7, equip.getEnchantLuk());
           /* 242 */
-          pse.setShort(8, equip.getArc());
+          pse.setInt(8, equip.getArcPower());
           /* 243 */
-          pse.setInt(9, equip.getArcEXP());
+          pse.setInt(9, equip.getArcExp());
           /* 244 */
           pse.setInt(10, equip.getArcLevel());
           /* 245 */
@@ -490,7 +490,7 @@ import java.util.concurrent.ConcurrentHashMap;
           /* 277 */
           pse.setByte(43, equip.getTotalDamage());
           /* 278 */
-          pse.setByte(44, equip.getAllStat());
+          pse.setByte(44, equip.getTotalAllStat());
           /* 279 */
           pse.setByte(45, equip.getKarmaCount());
           /* 280 */
@@ -1098,9 +1098,9 @@ import java.util.concurrent.ConcurrentHashMap;
               /* 581 */
               equip.setFlame((rs1.getLong("fire") < 0L) ? 0L : rs1.getLong("fire"));
               /* 582 */
-              equip.setArc(rs1.getShort("arc"));
+              equip.setArcPower(rs1.getInt("arc"));
               /* 583 */
-              equip.setArcEXP(rs1.getInt("arcexp"));
+              equip.setArcExp(rs1.getInt("arcexp"));
               /* 584 */
               equip.setArcLevel(rs1.getInt("arclevel"));
               /* 585 */

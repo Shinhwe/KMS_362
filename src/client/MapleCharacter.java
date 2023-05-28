@@ -91,7 +91,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   private final transient Map<Integer, MapleCoolDownValueHolder> coolDowns;
   private final PlayerStats stats;
 
-  private final EnumMap<MapleTrait.MapleTraitType, MapleTrait> traits;
+  private final EnumMap<MapleTrait.MapleTraitType, MapleTrait> traits; // 傾向
   private final transient ScheduledFuture<?> LastTouchedRune;
   private final boolean innerskill_changed;
   public long lastSaveTime, lastReportTime, lastMacroTime;
@@ -10111,6 +10111,8 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
         {
           this.changeSingleSkillLevel(SkillFactory.getSkill(100001005), 1, (byte) 1);
         }
+        gainItem(2437760, 20);
+        gainItem(2435719, 20);
       }
       if (this.getQuestStatus(1466) != 2)
       {
@@ -10336,136 +10338,136 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     statup.put(MapleStat.MP, this.getStat().getMp());
     statup.put(MapleStat.EXP, this.exp);
     statup.put(MapleStat.LEVEL, (long) this.level);
-    switch (this.level)
-    { // 레벨업보상
-      case 200: // 200레벨 달성시 아래아이템 지급(보관함으로 지급되며 계정당 1회지급됨)
-        if (this.client.getKeyValue("level" + this.level) == null)
-        {
-          gainMeso(500000000L, true, false);
-          gainCabinetItem(2048717, 30);
-          gainCabinetItem(5062009, 100);
-          gainCabinetItem(5062500, 100);
-          gainCabinetItem(2633202, 1);
-          gainCabinetItem(2630437, 30);
-          gainCabinetItem(1712001, 1);
-          gainCabinetItem(1712002, 1);
-          gainCabinetItem(1712003, 1);
-          gainCabinetItem(1712004, 1);
-          gainCabinetItem(1712005, 1);
-          gainCabinetItem(1712006, 1);
-          gainCabinetItem(2434006, 2);
-          gainCabinetItem(5060048, 5);
-          gainCabinetItem(2435719, 20);
-          this.client.setKeyValue("level" + this.level, "true");
-        }
-        break;
-      case 210: // 210레벨
-        if (this.client.getKeyValue("level" + this.level) == null)
-        {
-          gainMeso(300000000L, true, false);
-          gainCabinetItem(5068300, 3);
-          gainCabinetItem(5069100, 2);
-          gainCabinetItem(5062006, 5);
-          gainCabinetItem(4001716, 1);
-          this.client.setKeyValue("level" + this.level, "true");
-        }
-        break;
-      case 220:
-        if (this.client.getKeyValue("level" + this.level) == null)
-        {
-          gainMeso(400000000L, true, false);
-          gainCabinetItem(5068300, 4);
-          gainCabinetItem(5069100, 2);
-          gainCabinetItem(5062006, 8);
-          gainCabinetItem(4001716, 2);
-          this.client.setKeyValue("level" + this.level, "true");
-        }
-        break;
-      case 230:
-        if (this.client.getKeyValue("level" + this.level) == null)
-        {
-          gainMeso(500000000L, true, false);
-          gainCabinetItem(5068300, 6);
-          gainCabinetItem(5069100, 2);
-          gainCabinetItem(5062006, 10);
-          gainCabinetItem(4001716, 3);
-          this.client.setKeyValue("level" + this.level, "true");
-        }
-        break;
-      case 240:
-        if (this.client.getKeyValue("level" + this.level) == null)
-        {
-          gainMeso(1000000000L, true, false);
-          gainCabinetItem(5068300, 10);
-          gainCabinetItem(5069100, 2);
-          gainCabinetItem(5062006, 12);
-          gainCabinetItem(4001716, 4);
-          this.client.setKeyValue("level" + this.level, "true");
-        }
-        break;
-      case 250:
-        if (this.client.getKeyValue("level" + this.level) == null)
-        {
-          gainMeso(1500000000L, true, false);
-          gainCabinetItem(2049361, 5);
-          gainCabinetItem(5060048, 3);
-          gainCabinetItem(5062006, 15);
-          gainCabinetItem(2049361, 5);
-          gainCabinetItem(4001716, 5);
-          gainCabinetItem(2049704, 10);
-          this.client.setKeyValue("level" + this.level, "true");
-        }
-        break;
-      case 260:
-        if (this.client.getKeyValue("level" + this.level) == null)
-        {
-          gainMeso(2000000000L, true, false);
-          gainCabinetItem(5060048, 8);
-          gainCabinetItem(5062006, 5);
-          gainCabinetItem(1713000, 10);
-          gainCabinetItem(1713001, 10);
-          gainCabinetItem(2049704, 10);
-          this.client.setKeyValue("level" + this.level, "true");
-        }
-        break;
-      case 270:
-        if (this.client.getKeyValue("level" + this.level) == null)
-        {
-          gainMeso(3000000000L, true, false);
-          gainCabinetItem(5060048, 8);
-          gainCabinetItem(5062006, 10);
-          this.client.setKeyValue("level" + this.level, "true");
-        }
-        break;
-      case 280:
-        if (this.client.getKeyValue("level" + this.level) == null)
-        {
-          gainMeso(4000000000L, true, false);
-          gainCabinetItem(5060048, 10);
-          gainCabinetItem(5062006, 30);
-          this.client.setKeyValue("level" + this.level, "true");
-        }
-        break;
-      case 290:
-        if (this.client.getKeyValue("level" + this.level) == null)
-        {
-          gainMeso(5000000000L, true, false);
-          gainCabinetItem(5060048, 25);
-          gainCabinetItem(5062006, 50);
-          this.client.setKeyValue("level" + this.level, "true");
-        }
-        break;
-      case 300:
-        if (this.client.getKeyValue("level" + this.level) == null)
-        {
-          gainMeso(10000000000L, true, false);
-          gainCabinetItem(5060048, 50);
-          gainCabinetItem(5062006, 100);
-          gainCabinetItem(2049361, 8);
-          this.client.setKeyValue("level" + this.level, "true");
-        }
-        break;
-    }
+    // switch (this.level)
+    // { // 레벨업보상
+    //   case 200: // 200레벨 달성시 아래아이템 지급(보관함으로 지급되며 계정당 1회지급됨)
+    //     if (this.client.getKeyValue("level" + this.level) == null)
+    //     {
+    //       gainMeso(500000000L, true, false);
+    //       gainCabinetItem(2048717, 30);
+    //       gainCabinetItem(5062009, 100);
+    //       gainCabinetItem(5062500, 100);
+    //       gainCabinetItem(2633202, 1);
+    //       gainCabinetItem(2630437, 30);
+    //       gainCabinetItem(1712001, 1);
+    //       gainCabinetItem(1712002, 1);
+    //       gainCabinetItem(1712003, 1);
+    //       gainCabinetItem(1712004, 1);
+    //       gainCabinetItem(1712005, 1);
+    //       gainCabinetItem(1712006, 1);
+    //       gainCabinetItem(2434006, 2);
+    //       gainCabinetItem(5060048, 5);
+    //       gainCabinetItem(2435719, 20);
+    //       this.client.setKeyValue("level" + this.level, "true");
+    //     }
+    //     break;
+    //   case 210: // 210레벨
+    //     if (this.client.getKeyValue("level" + this.level) == null)
+    //     {
+    //       gainMeso(300000000L, true, false);
+    //       gainCabinetItem(5068300, 3);
+    //       gainCabinetItem(5069100, 2);
+    //       gainCabinetItem(5062006, 5);
+    //       gainCabinetItem(4001716, 1);
+    //       this.client.setKeyValue("level" + this.level, "true");
+    //     }
+    //     break;
+    //   case 220:
+    //     if (this.client.getKeyValue("level" + this.level) == null)
+    //     {
+    //       gainMeso(400000000L, true, false);
+    //       gainCabinetItem(5068300, 4);
+    //       gainCabinetItem(5069100, 2);
+    //       gainCabinetItem(5062006, 8);
+    //       gainCabinetItem(4001716, 2);
+    //       this.client.setKeyValue("level" + this.level, "true");
+    //     }
+    //     break;
+    //   case 230:
+    //     if (this.client.getKeyValue("level" + this.level) == null)
+    //     {
+    //       gainMeso(500000000L, true, false);
+    //       gainCabinetItem(5068300, 6);
+    //       gainCabinetItem(5069100, 2);
+    //       gainCabinetItem(5062006, 10);
+    //       gainCabinetItem(4001716, 3);
+    //       this.client.setKeyValue("level" + this.level, "true");
+    //     }
+    //     break;
+    //   case 240:
+    //     if (this.client.getKeyValue("level" + this.level) == null)
+    //     {
+    //       gainMeso(1000000000L, true, false);
+    //       gainCabinetItem(5068300, 10);
+    //       gainCabinetItem(5069100, 2);
+    //       gainCabinetItem(5062006, 12);
+    //       gainCabinetItem(4001716, 4);
+    //       this.client.setKeyValue("level" + this.level, "true");
+    //     }
+    //     break;
+    //   case 250:
+    //     if (this.client.getKeyValue("level" + this.level) == null)
+    //     {
+    //       gainMeso(1500000000L, true, false);
+    //       gainCabinetItem(2049361, 5);
+    //       gainCabinetItem(5060048, 3);
+    //       gainCabinetItem(5062006, 15);
+    //       gainCabinetItem(2049361, 5);
+    //       gainCabinetItem(4001716, 5);
+    //       gainCabinetItem(2049704, 10);
+    //       this.client.setKeyValue("level" + this.level, "true");
+    //     }
+    //     break;
+    //   case 260:
+    //     if (this.client.getKeyValue("level" + this.level) == null)
+    //     {
+    //       gainMeso(2000000000L, true, false);
+    //       gainCabinetItem(5060048, 8);
+    //       gainCabinetItem(5062006, 5);
+    //       gainCabinetItem(1713000, 10);
+    //       gainCabinetItem(1713001, 10);
+    //       gainCabinetItem(2049704, 10);
+    //       this.client.setKeyValue("level" + this.level, "true");
+    //     }
+    //     break;
+    //   case 270:
+    //     if (this.client.getKeyValue("level" + this.level) == null)
+    //     {
+    //       gainMeso(3000000000L, true, false);
+    //       gainCabinetItem(5060048, 8);
+    //       gainCabinetItem(5062006, 10);
+    //       this.client.setKeyValue("level" + this.level, "true");
+    //     }
+    //     break;
+    //   case 280:
+    //     if (this.client.getKeyValue("level" + this.level) == null)
+    //     {
+    //       gainMeso(4000000000L, true, false);
+    //       gainCabinetItem(5060048, 10);
+    //       gainCabinetItem(5062006, 30);
+    //       this.client.setKeyValue("level" + this.level, "true");
+    //     }
+    //     break;
+    //   case 290:
+    //     if (this.client.getKeyValue("level" + this.level) == null)
+    //     {
+    //       gainMeso(5000000000L, true, false);
+    //       gainCabinetItem(5060048, 25);
+    //       gainCabinetItem(5062006, 50);
+    //       this.client.setKeyValue("level" + this.level, "true");
+    //     }
+    //     break;
+    //   case 300:
+    //     if (this.client.getKeyValue("level" + this.level) == null)
+    //     {
+    //       gainMeso(10000000000L, true, false);
+    //       gainCabinetItem(5060048, 50);
+    //       gainCabinetItem(5062006, 100);
+    //       gainCabinetItem(2049361, 8);
+    //       this.client.setKeyValue("level" + this.level, "true");
+    //     }
+    //     break;
+    // }
     if (this.level <= 10)
     {
       final PlayerStats stats = this.stats;

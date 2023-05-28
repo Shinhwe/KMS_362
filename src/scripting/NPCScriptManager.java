@@ -140,13 +140,16 @@ public class NPCScriptManager extends AbstractScriptManager
     }
     try
     {
+      dispose(c);
+      c.getPlayer().dropMessage(5, "觸發對話, 當前NPC = " + npc);
       if (!this.cms.containsKey(c))
       {
         Invocable iv;
         if (script == null)
         {
           iv = getInvocable("npc/" + npc + ".js", c, true);
-          FileoutputUtil.log(FileoutputUtil.엔피시대화로그, "[엔피시오픈] 계정번호 : " + c.getAccID() + " | " + c.getPlayer().getName() + "(" + c.getPlayer().getId() + ")이 " + c.getPlayer().getMapId() + " 에서 " + MapleLifeFactory.getNPC(npc).getName() + "(" + npc + ")를 오픈");
+          FileoutputUtil.log(FileoutputUtil.엔피시대화로그,
+                             "[엔피시오픈] 계정번호 : " + c.getAccID() + " | " + c.getPlayer().getName() + "(" + c.getPlayer().getId() + ")이 " + c.getPlayer().getMapId() + " 에서 " + MapleLifeFactory.getNPC(npc).getName() + "(" + npc + ")를 오픈");
           c.getPlayer().dropMessageGM(6, "OpenNPC(" + npc + ")");
         }
         else

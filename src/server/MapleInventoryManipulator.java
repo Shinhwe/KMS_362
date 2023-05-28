@@ -24,7 +24,7 @@ import java.util.Map;
 
 public class MapleInventoryManipulator
 {
-  public static void addRing(final MapleCharacter chr, final int itemId, final long ringId, final int sn, final String partner)
+  public static void addRing (final MapleCharacter chr, final int itemId, final long ringId, final int sn, final String partner)
   {
     final CashItemInfo csi = CashItemFactory.getInstance().getItem(sn);
     if (csi == null)
@@ -39,18 +39,18 @@ public class MapleInventoryManipulator
     chr.getCashInventory().addToInventory(ring);
     chr.getClient().getSession().writeAndFlush(CSPacket.sendBoughtRings(GameConstants.isCrushRing(itemId), ring, sn, chr.getClient(), partner));
   }
-  
-  public static boolean addbyItem(final MapleClient c, final Item item)
+
+  public static boolean addbyItem (final MapleClient c, final Item item)
   {
     return addbyItem(c, item, false, false) >= 0;
   }
-  
-  public static boolean addbyItem(final MapleClient c, final Item item, final boolean fromcs)
+
+  public static boolean addbyItem (final MapleClient c, final Item item, final boolean fromcs)
   {
     return addbyItem(c, item, false, false) >= 0;
   }
-  
-  public static short addbyItem(final MapleClient c, final Item item, final boolean sort, final boolean fromcs)
+
+  public static short addbyItem (final MapleClient c, final Item item, final boolean sort, final boolean fromcs)
   {
     final MapleInventoryType type = GameConstants.getInventoryType(item.getItemId());
     final short newSlot = c.getPlayer().getInventory(type).addItem(item);
@@ -75,78 +75,78 @@ public class MapleInventoryManipulator
       final Equip equip = (Equip) item;
       if (equip.getArcLevel() == 0)
       {
-        equip.setArc((short) 30);
+        equip.setArcPower(30);
         equip.setArcLevel(1);
-        equip.setArcEXP(1);
+        equip.setArcExp(1);
         if (GameConstants.isXenon(c.getPlayer().getJob()))
         {
-          equip.setArcStr((short) 117);
-          equip.setArcDex((short) 117);
-          equip.setArcLuk((short) 117);
+          equip.setArcStr(144);
+          equip.setArcDex(144);
+          equip.setArcLuk(144);
         }
         else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
         {
-          equip.setArcHp((short) 525);
+          equip.setArcHp(630);
         }
         else if (GameConstants.isWarrior(c.getPlayer().getJob()))
         {
-          equip.setArcStr((short) 300);
+          equip.setArcStr(300);
         }
         else if (GameConstants.isMagician(c.getPlayer().getJob()))
         {
-          equip.setArcInt((short) 300);
+          equip.setArcInt(300);
         }
         else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
         {
-          equip.setArcDex((short) 300);
+          equip.setArcDex(300);
         }
         else if (GameConstants.isThief(c.getPlayer().getJob()))
         {
-          equip.setArcLuk((short) 300);
+          equip.setArcLuk(300);
         }
         else if (GameConstants.isPirate(c.getPlayer().getJob()))
         {
-          equip.setArcStr((short) 300);
+          equip.setArcStr(300);
         }
       }
     }
     else if (GameConstants.isAuthenticSymbol(item.getItemId()) && !sort)
     {
       final Equip equip = (Equip) item;
-      if (equip.getArcLevel() == 0)
+      if (equip.getAuthenticLevel() == 0)
       {
-        equip.setArc((short) 10);
-        equip.setArcLevel(1);
-        equip.setArcEXP(1);
+        equip.setAuthenticPower(10);
+        equip.setAuthenticLevel(1);
+        equip.setAuthenticExp(1);
         if (GameConstants.isXenon(c.getPlayer().getJob()))
         {
-          equip.setAuthenticStr((short) 317);
-          equip.setAuthenticDex((short) 317);
-          equip.setAuthenticLuk((short) 317);
+          equip.setAuthenticStr(240);
+          equip.setAuthenticDex(240);
+          equip.setAuthenticLuk(240);
         }
         else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
         {
-          equip.setAuthenticHp((short) 725);
+          equip.setAuthenticHp(1050);
         }
         else if (GameConstants.isWarrior(c.getPlayer().getJob()))
         {
-          equip.setAuthenticStr((short) 500);
+          equip.setAuthenticStr(500);
         }
         else if (GameConstants.isMagician(c.getPlayer().getJob()))
         {
-          equip.setAuthenticInt((short) 500);
+          equip.setAuthenticInt(500);
         }
         else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
         {
-          equip.setAuthenticDex((short) 500);
+          equip.setAuthenticDex(500);
         }
         else if (GameConstants.isThief(c.getPlayer().getJob()))
         {
-          equip.setAuthenticLuk((short) 500);
+          equip.setAuthenticLuk(500);
         }
         else if (GameConstants.isPirate(c.getPlayer().getJob()))
         {
-          equip.setAuthenticStr((short) 500);
+          equip.setAuthenticStr(500);
         }
       }
     }
@@ -172,8 +172,8 @@ public class MapleInventoryManipulator
     }
     return newSlot;
   }
-  
-  public static long getUniqueId(final int itemId, final MaplePet pet)
+
+  public static long getUniqueId (final int itemId, final MaplePet pet)
   {
     long uniqueid = -1L;
     if (GameConstants.isPet(itemId))
@@ -193,43 +193,43 @@ public class MapleInventoryManipulator
     }
     return uniqueid;
   }
-  
-  public static boolean addById(final MapleClient c, final int itemId, final short quantity, final String gmLog)
+
+  public static boolean addById (final MapleClient c, final int itemId, final short quantity, final String gmLog)
   {
     return addById(c, itemId, quantity, null, null, 0L, gmLog, false);
   }
-  
-  public static boolean addById(final MapleClient c, final int itemId, final short quantity, final String owner, final String gmLog)
+
+  public static boolean addById (final MapleClient c, final int itemId, final short quantity, final String owner, final String gmLog)
   {
     return addById(c, itemId, quantity, owner, null, 0L, gmLog, false);
   }
-  
-  public static boolean addById(final MapleClient c, final int itemId, final short quantity, final String gmLog, final boolean special)
+
+  public static boolean addById (final MapleClient c, final int itemId, final short quantity, final String gmLog, final boolean special)
   {
     return addById(c, itemId, quantity, null, null, 0L, gmLog, special);
   }
-  
-  public static byte addId(final MapleClient c, final int itemId, final short quantity, final String owner, final String gmLog)
+
+  public static byte addId (final MapleClient c, final int itemId, final short quantity, final String owner, final String gmLog)
   {
     return addId(c, itemId, quantity, owner, null, 0L, gmLog, false);
   }
-  
-  public static boolean addById(final MapleClient c, final int itemId, final short quantity, final String owner, final MaplePet pet, final String gmLog)
+
+  public static boolean addById (final MapleClient c, final int itemId, final short quantity, final String owner, final MaplePet pet, final String gmLog)
   {
     return addById(c, itemId, quantity, owner, pet, 0L, gmLog, false);
   }
-  
-  public static boolean addById(final MapleClient c, final int itemId, final short quantity, final String owner, final MaplePet pet, final long period, final String gmLog)
+
+  public static boolean addById (final MapleClient c, final int itemId, final short quantity, final String owner, final MaplePet pet, final long period, final String gmLog)
   {
     return addId(c, itemId, quantity, owner, pet, period, gmLog, false) >= 0;
   }
-  
-  public static boolean addById(final MapleClient c, final int itemId, final short quantity, final String owner, final MaplePet pet, final long period, final String gmLog, final boolean special)
+
+  public static boolean addById (final MapleClient c, final int itemId, final short quantity, final String owner, final MaplePet pet, final long period, final String gmLog, final boolean special)
   {
     return addId(c, itemId, quantity, owner, pet, period, gmLog, special) >= 0;
   }
-  
-  public static byte addId(final MapleClient c, final int itemId, short quantity, final String owner, final MaplePet pet, final long period, final String gmLog, final boolean special)
+
+  public static byte addId (final MapleClient c, final int itemId, short quantity, final String owner, final MaplePet pet, final long period, final String gmLog, final boolean special)
   {
     if (quantity >= 300)
     {
@@ -439,12 +439,12 @@ public class MapleInventoryManipulator
     {
       c.getSession().writeAndFlush(CWvsContext.setBossReward(c.getPlayer()));
     }
-    
-    
+
+
     return (byte) newSlot;
   }
-  
-  public static Item addId_Item(final MapleClient c, final int itemId, short quantity, final String owner, final MaplePet pet, final long period, final String gmLog, final boolean special)
+
+  public static Item addId_Item (final MapleClient c, final int itemId, short quantity, final String owner, final MaplePet pet, final long period, final String gmLog, final boolean special)
   {
     final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     if ((ii.isPickupRestricted(itemId) && c.getPlayer().haveItem(itemId, 1, true, false)) || !ii.itemExists(itemId))
@@ -609,8 +609,8 @@ public class MapleInventoryManipulator
       return nEquip;
     }
   }
-  
-  public static Item addbyId_Gachapon(final MapleClient c, final int itemId, short quantity)
+
+  public static Item addbyId_Gachapon (final MapleClient c, final int itemId, short quantity)
   {
     if (c.getPlayer().getInventory(MapleInventoryType.EQUIP).getNextFreeSlot() == -1 || c.getPlayer().getInventory(MapleInventoryType.USE).getNextFreeSlot() == -1 || c.getPlayer().getInventory(MapleInventoryType.ETC).getNextFreeSlot() == -1 || c.getPlayer().getInventory(MapleInventoryType.SETUP).getNextFreeSlot() == -1)
     {
@@ -711,18 +711,18 @@ public class MapleInventoryManipulator
       return item;
     }
   }
-  
-  public static boolean addFromDrop(final MapleClient c, final Item item, final boolean show)
+
+  public static boolean addFromDrop (final MapleClient c, final Item item, final boolean show)
   {
     return addFromDrop(c, item, show, false, false);
   }
-  
-  public static boolean addFromDrop(final MapleClient c, final Item item, final boolean show, final boolean enhance, final boolean pet)
+
+  public static boolean addFromDrop (final MapleClient c, final Item item, final boolean show, final boolean enhance, final boolean pet)
   {
     return addFromDrop(c, item, show, enhance, pet, false);
   }
-  
-  public static boolean addFromDrop(final MapleClient c, Item item, final boolean show, final boolean enhance, final boolean pet, final boolean sort)
+
+  public static boolean addFromDrop (final MapleClient c, Item item, final boolean show, final boolean enhance, final boolean pet, final boolean sort)
   {
     final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     if (c.getPlayer() == null || (ii.isPickupRestricted(item.getItemId()) && !sort && c.getPlayer().haveItem(item.getItemId(), 1, true, false)) || !ii.itemExists(item.getItemId()))
@@ -869,8 +869,8 @@ public class MapleInventoryManipulator
     }
     return true;
   }
-  
-  private static Item checkEnhanced(final Item before, final MapleCharacter chr)
+
+  private static Item checkEnhanced (final Item before, final MapleCharacter chr)
   {
     if (before instanceof Equip)
     {
@@ -882,8 +882,8 @@ public class MapleInventoryManipulator
     }
     return before;
   }
-  
-  public static boolean checkSpace(final MapleClient c, final int itemid, int quantity, final String owner)
+
+  public static boolean checkSpace (final MapleClient c, final int itemid, int quantity, final String owner)
   {
     final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     if (c.getPlayer() == null || (ii.isPickupRestricted(itemid) && c.getPlayer().haveItem(itemid, 1, true, false)) || !ii.itemExists(itemid))
@@ -932,13 +932,13 @@ public class MapleInventoryManipulator
     }
     return !c.getPlayer().getInventory(type).isFull();
   }
-  
-  public static boolean removeFromSlot(final MapleClient c, final MapleInventoryType type, final short slot, final short quantity, final boolean fromDrop)
+
+  public static boolean removeFromSlot (final MapleClient c, final MapleInventoryType type, final short slot, final short quantity, final boolean fromDrop)
   {
     return removeFromSlot(c, type, slot, quantity, fromDrop, false);
   }
-  
-  public static boolean removeFromSlot(final MapleClient c, final MapleInventoryType type, final short slot, final short quantity, final boolean fromDrop, final boolean consume)
+
+  public static boolean removeFromSlot (final MapleClient c, final MapleInventoryType type, final short slot, final short quantity, final boolean fromDrop, final boolean consume)
   {
     if (c.getPlayer() == null || c.getPlayer().getInventory(type) == null)
     {
@@ -949,8 +949,8 @@ public class MapleInventoryManipulator
     {
       final boolean allowZero = consume && GameConstants.isRechargable(item.getItemId());
       c.getPlayer().getInventory(type).removeItem(slot, quantity, allowZero);
-      
-      
+
+
       if (GameConstants.isHarvesting(item.getItemId()))
       {
         c.getPlayer().getStat().handleProfessionTool(c.getPlayer());
@@ -971,8 +971,8 @@ public class MapleInventoryManipulator
     }
     return false;
   }
-  
-  public static boolean removeById(final MapleClient c, final MapleInventoryType type, final int itemId, final int quantity, final boolean fromDrop, final boolean consume)
+
+  public static boolean removeById (final MapleClient c, final MapleInventoryType type, final int itemId, final int quantity, final boolean fromDrop, final boolean consume)
   {
     int remremove = quantity;
     if (c.getPlayer() == null || c.getPlayer().getInventory(type) == null)
@@ -997,12 +997,12 @@ public class MapleInventoryManipulator
       }
       c.getSession().writeAndFlush(CWvsContext.setBossReward(c.getPlayer()));
     }
-    
-    
+
+
     return remremove <= 0;
   }
-  
-  public static boolean removeFromSlot_Lock(final MapleClient c, final MapleInventoryType type, final short slot, final short quantity, final boolean fromDrop, final boolean consume)
+
+  public static boolean removeFromSlot_Lock (final MapleClient c, final MapleInventoryType type, final short slot, final short quantity, final boolean fromDrop, final boolean consume)
   {
     if (c.getPlayer() == null || c.getPlayer().getInventory(type) == null)
     {
@@ -1011,8 +1011,8 @@ public class MapleInventoryManipulator
     final Item item = c.getPlayer().getInventory(type).getItem(slot);
     return item != null && !ItemFlag.LOCK.check(item.getFlag()) && !ItemFlag.UNTRADEABLE.check(item.getFlag()) && removeFromSlot(c, type, slot, quantity, fromDrop, consume);
   }
-  
-  public static boolean removeById_Lock(final MapleClient c, final MapleInventoryType type, final int itemId)
+
+  public static boolean removeById_Lock (final MapleClient c, final MapleInventoryType type, final int itemId)
   {
     for (final Item item : c.getPlayer().getInventory(type).listById(itemId))
     {
@@ -1023,8 +1023,8 @@ public class MapleInventoryManipulator
     }
     return false;
   }
-  
-  public static void move(final MapleClient c, final MapleInventoryType type, final short src, final short dst)
+
+  public static void move (final MapleClient c, final MapleInventoryType type, final short src, final short dst)
   {
     if (src < 0 || dst < 0 || src == dst || type == MapleInventoryType.EQUIPPED)
     {
@@ -1061,8 +1061,8 @@ public class MapleInventoryManipulator
       c.getSession().writeAndFlush(CWvsContext.InventoryPacket.moveInventoryItem(type, src, dst, false, false));
     }
   }
-  
-  public static void equip(final MapleClient c, final short src, short dst, final MapleInventoryType type)
+
+  public static void equip (final MapleClient c, final short src, short dst, final MapleInventoryType type)
   {
     final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     final MapleCharacter chr = c.getPlayer();
@@ -1461,8 +1461,8 @@ public class MapleInventoryManipulator
     }
     chr.equipChanged();
   }
-  
-  public static void unequip(final MapleClient c, short src, final short dst, final MapleInventoryType type)
+
+  public static void unequip (final MapleClient c, short src, final short dst, final MapleInventoryType type)
   {
     final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     final Equip source = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(src);
@@ -1666,13 +1666,13 @@ public class MapleInventoryManipulator
     }
     c.getPlayer().equipChanged();
   }
-  
-  public static boolean drop(final MapleClient c, final MapleInventoryType type, final short src, final short quantity)
+
+  public static boolean drop (final MapleClient c, final MapleInventoryType type, final short src, final short quantity)
   {
     return drop(c, type, src, quantity, false);
   }
-  
-  public static boolean drop(final MapleClient c, MapleInventoryType type, final short src, final short quantity, final boolean npcInduced)
+
+  public static boolean drop (final MapleClient c, MapleInventoryType type, final short src, final short quantity, final boolean npcInduced)
   {
     final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     if (src < 0)

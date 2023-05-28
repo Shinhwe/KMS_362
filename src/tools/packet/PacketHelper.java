@@ -23,23 +23,23 @@ import java.util.*;
 
 public class PacketHelper
 {
-  
+
   public static final long FT_UT_OFFSET = 116445060000000000L;
-  
+
   public static final long MAX_TIME = 150842304000000000L;
-  
+
   public static final long ZERO_TIME = 94354848000000000L;
-  
+
   public static final long PERMANENT = 150841440000000000L;
-  
+
   public static final long ZERO_TIME_REVERSE = -153052018564450501L;
-  
-  public static final long getKoreanTimestamp(long realTimestamp)
+
+  public static final long getKoreanTimestamp (long realTimestamp)
   {
     return getTime(realTimestamp);
   }
-  
-  public static final long getMapleShopTime(int month, int day, int recharge)
+
+  public static final long getMapleShopTime (int month, int day, int recharge)
   {
     int i;
     Calendar ocal = Calendar.getInstance();
@@ -97,8 +97,8 @@ public class PacketHelper
     }
     return mapletime;
   }
-  
-  public static final long getTime(long realTimestamp)
+
+  public static final long getTime (long realTimestamp)
   {
     if (realTimestamp == -1L)
     {
@@ -118,8 +118,8 @@ public class PacketHelper
     }
     return realTimestamp * 10000L + 116445060000000000L;
   }
-  
-  public static long getFileTimestamp(long timeStampinMillis, boolean roundToMinutes)
+
+  public static long getFileTimestamp (long timeStampinMillis, boolean roundToMinutes)
   {
     long time;
     if (SimpleTimeZone.getDefault().inDaylightTime(new Date()))
@@ -136,15 +136,15 @@ public class PacketHelper
     }
     return time + 116445060000000000L;
   }
-  
-  public static byte[] sendPacket(String args)
+
+  public static byte[] sendPacket (String args)
   {
     MaplePacketLittleEndianWriter mplew = new MaplePacketLittleEndianWriter();
     mplew.write(HexTool.getByteArrayFromHexString(args));
     return mplew.getPacket();
   }
-  
-  public static void addQuestInfo(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static void addQuestInfo (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     /*  141 */
     List<MapleQuestStatus> started = chr.getStartedQuests();
@@ -177,7 +177,7 @@ public class PacketHelper
       /*  154 */
       mplew.writeMapleAsciiString((q.getCustomData() == null) ? "" : q.getCustomData());
     }
-    
+
     /*  159 */
     mplew.write(1);
     /*  160 */
@@ -193,15 +193,14 @@ public class PacketHelper
       mplew.writeLong(getTime(q.getCompletionTime()));
     }
   }
-  
-  public static boolean jobskill(MapleCharacter chr, int skillid)
+
+  public static boolean jobskill (MapleCharacter chr, int skillid)
   {
     if (GameConstants.isPhantom(chr.getJob()))
     {
       return true;
     }
-    if (GameConstants.isAdventurer(chr.getJob())
-        && skillid < 1000000)
+    if (GameConstants.isAdventurer(chr.getJob()) && skillid < 1000000)
     {
       return true;
     }
@@ -288,8 +287,8 @@ public class PacketHelper
     }
     return fame;
   }
-  
-  public static final void addSkillInfo(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static final void addSkillInfo (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     mplew.write(1);
     Map<Skill, SkillEntry> skills = chr.getSkills();
@@ -328,8 +327,8 @@ public class PacketHelper
       }
     }
   }
-  
-  public static final void addLinkSkillInfo(MaplePacketLittleEndianWriter mplew, int skillid, int sendid, int recvid, int level)
+
+  public static final void addLinkSkillInfo (MaplePacketLittleEndianWriter mplew, int skillid, int sendid, int recvid, int level)
   {
     mplew.writeInt(sendid);
     mplew.writeInt(recvid);
@@ -338,8 +337,8 @@ public class PacketHelper
     mplew.writeLong(getTime(-2L));
     mplew.writeInt(0);
   }
-  
-  public static final void addCoolDownInfo(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static final void addCoolDownInfo (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     List<MapleCoolDownValueHolder> cd = chr.getCooldowns();
     mplew.writeShort(cd.size());
@@ -349,8 +348,8 @@ public class PacketHelper
       mplew.writeInt((int) (cooling.length + cooling.startTime - System.currentTimeMillis()) / 1000);
     }
   }
-  
-  public static final void addRocksInfo(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static final void addRocksInfo (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     int[] mapz = chr.getRegRocks();
     for (int i = 0; i < 5; i++)
@@ -368,8 +367,8 @@ public class PacketHelper
       mplew.writeInt(maps[k]);
     }
   }
-  
-  public static final void addRingInfo(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static final void addRingInfo (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     Triple<List<MapleRing>, List<MapleRing>, List<MapleRing>> aRing = chr.getRings(true);
     List<MapleRing> cRing = aRing.getLeft();
@@ -412,8 +411,8 @@ public class PacketHelper
       mplew.writeAsciiString((data.getBrideId() == chr.getId()) ? data.getGroomName() : data.getBrideName(), 13);
     }
   }
-  
-  public static void addInventoryInfo(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static void addInventoryInfo (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     mplew.write(chr.getInventory(MapleInventoryType.EQUIP).getSlotLimit());
     mplew.write(chr.getInventory(MapleInventoryType.USE).getSlotLimit());
@@ -624,8 +623,8 @@ public class PacketHelper
     mplew.writeInt(0);
     mplew.write(0);
   }
-  
-  public static final void addCharStats(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static final void addCharStats (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     for (int i = 0; i < 2; ++i)
     {
@@ -677,52 +676,52 @@ public class PacketHelper
     mplew.write(0);
     mplew.writeLong(PacketHelper.getTime(-2));
     mplew.writeShort(chr.getFatigue());
-    
+
     KoreaCalendar kc = new KoreaCalendar();
     String now = kc.getYears() + kc.getMonths() + kc.getDays() + kc.getHours();
-    
+
     mplew.writeInt(Integer.parseInt(now));
-    
+
     for (MapleTrait.MapleTraitType t : MapleTrait.MapleTraitType.values())
     {
       mplew.writeInt(chr.getTrait(t).getTotalExp());
     }
-    
+
     for (MapleTrait.MapleTraitType t : MapleTrait.MapleTraitType.values())
     {
       mplew.writeInt(chr.getTrait(t).getExp());
     }
-    
+
     mplew.write(0);
     mplew.writeLong(getTime(-2L));
-    
+
     mplew.writeInt(0);
     mplew.write(10);
     mplew.writeInt(0);
-    
+
     mplew.write(5);
     mplew.write(5);
-    
+
     mplew.writeInt(0);
-    
+
     mplew.writeLong(getTime(-4));
-    
+
     mplew.writeLong(PacketHelper.getTime(-1L));
     mplew.writeLong(PacketHelper.getTime(-2L));
     mplew.writeInt(0);
     mplew.writeInt(0);
     mplew.writeInt(0);
     mplew.write(0);
-    
+
     mplew.write(0);
   }
-  
-  public static final void addExpirationTime(MaplePacketLittleEndianWriter mplew, long time)
+
+  public static final void addExpirationTime (MaplePacketLittleEndianWriter mplew, long time)
   {
     mplew.writeLong(getTime(time));
   }
-  
-  public static void addItemPosition(MaplePacketLittleEndianWriter mplew, Item item, boolean trade, boolean bagSlot)
+
+  public static void addItemPosition (MaplePacketLittleEndianWriter mplew, Item item, boolean trade, boolean bagSlot)
   {
     if (item == null)
     {
@@ -747,13 +746,13 @@ public class PacketHelper
       mplew.writeShort(pos);
     }
   }
-  
-  public static final void addItemInfo(MaplePacketLittleEndianWriter mplew, Item item)
+
+  public static final void addItemInfo (MaplePacketLittleEndianWriter mplew, Item item)
   {
     addItemInfo(mplew, item, null);
   }
-  
-  public static final void addItemInfo(MaplePacketLittleEndianWriter mplew, Item item, MapleCharacter chr)
+
+  public static final void addItemInfo (MaplePacketLittleEndianWriter mplew, Item item, MapleCharacter chr)
   {
     mplew.write((item.getPet() != null) ? 3 : item.getType());
     mplew.writeInt(item.getItemId());
@@ -812,8 +811,8 @@ public class PacketHelper
       }
     }
   }
-  
-  public static void addEquipStats(MaplePacketLittleEndianWriter mplew, Equip equip)
+
+  public static void addEquipStats (MaplePacketLittleEndianWriter mplew, Equip equip)
   {
     int head = 0;
     if (equip.getStats().size() > 0)
@@ -904,7 +903,7 @@ public class PacketHelper
       }
       if (equip.getStats().contains(EquipStat.ITEM_LEVEL))
       {
-        mplew.write(equip.getItemLevel());
+        mplew.write(equip.getEquipLevel());
       }
       if (equip.getStats().contains(EquipStat.ITEM_EXP))
       {
@@ -938,7 +937,7 @@ public class PacketHelper
       if (equip.getStats().contains(EquipStat.REQUIRED_LEVEL))
       {
         // 需求等级会加在装备原有等级上, 所以这里要传0
-        mplew.write((byte)0);
+        mplew.write((byte) 0);
       }
       if (equip.getStats().contains(EquipStat.YGGDRASIL_WISDOM))
       {
@@ -959,8 +958,8 @@ public class PacketHelper
     }
     addEquipSpecialStats(mplew, equip);
   }
-  
-  public static void addEquipSpecialStats(MaplePacketLittleEndianWriter mplew, Equip equip)
+
+  public static void addEquipSpecialStats (MaplePacketLittleEndianWriter mplew, Equip equip)
   {
     int head = 0;
     if (equip.getSpecialStats().size() > 0)
@@ -979,13 +978,13 @@ public class PacketHelper
       }
       if (equip.getSpecialStats().contains(EquipSpecialStat.ALL_STAT))
       {
-        mplew.write(equip.getAllStat());
+        mplew.write(equip.getTotalAllStat());
       }
       if (equip.getSpecialStats().contains(EquipSpecialStat.KARMA_COUNT))
       {
         mplew.write(equip.getKarmaCount());
       }
-      if (equip.getSpecialStats().contains(EquipSpecialStat.REBIRTH_FIRE))
+      if (equip.getSpecialStats().contains(EquipSpecialStat.FLAME))
       {
         mplew.writeLong(equip.getFlame());
       }
@@ -995,8 +994,8 @@ public class PacketHelper
       }
     }
   }
-  
-  public static void addEquipBonusStats(MaplePacketLittleEndianWriter mplew, Equip equip, boolean hasUniqueId, MapleCharacter chr)
+
+  public static void addEquipBonusStats (MaplePacketLittleEndianWriter mplew, Equip equip, boolean hasUniqueId, MapleCharacter chr)
   {
     mplew.writeMapleAsciiString(equip.getOwner());
     mplew.write(equip.getState());
@@ -1041,23 +1040,23 @@ public class PacketHelper
     mplew.writeShort(equip.getSoulPotential());
     if (GameConstants.isArcaneSymbol(equip.getItemId()))
     {
-      mplew.writeShort(equip.getArc());
-      mplew.writeInt(equip.getArcEXP());
-      mplew.writeShort(equip.getArcLevel());
+      mplew.writeShort((short)equip.getArcPower());
+      mplew.writeInt(equip.getArcExp());
+      mplew.writeShort((short)equip.getArcLevel());
     }
     else if (GameConstants.isAuthenticSymbol(equip.getItemId()))
     {
-      mplew.writeShort(equip.getArc());
-      mplew.writeInt(equip.getArcEXP());
-      mplew.writeShort(equip.getArcLevel());
+      mplew.writeShort((short)equip.getAuthenticPower());
+      mplew.writeInt(equip.getAuthenticExp());
+      mplew.writeShort((short)equip.getAuthenticLevel());
     }
     mplew.writeShort(-1);
     mplew.writeLong(getTime(-1L));
     mplew.writeLong(getTime(-2L));
     mplew.writeLong(getTime(-1L));
   }
-  
-  public static void addAndroidLooks(MaplePacketLittleEndianWriter mplew, Equip equip)
+
+  public static void addAndroidLooks (MaplePacketLittleEndianWriter mplew, Equip equip)
   {
     MapleAndroid and = equip.getAndroid();
     if (and == null)
@@ -1085,8 +1084,8 @@ public class PacketHelper
       mplew.writeLong(getTime(-2L));
     }
   }
-  
-  public static final void serializeMovementList(MaplePacketLittleEndianWriter lew, List<LifeMovementFragment> moves)
+
+  public static final void serializeMovementList (MaplePacketLittleEndianWriter lew, List<LifeMovementFragment> moves)
   {
     lew.writeShort(moves.size());
     for (LifeMovementFragment move : moves)
@@ -1094,8 +1093,8 @@ public class PacketHelper
       move.serialize(lew);
     }
   }
-  
-  public static final void addAnnounceBox(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static final void addAnnounceBox (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     if (chr.getPlayerShop() != null && chr.getPlayerShop().isOwner(chr) && chr.getPlayerShop().getShopType() != 1 && chr.getPlayerShop().isAvailable())
     {
@@ -1106,8 +1105,8 @@ public class PacketHelper
       mplew.write(0);
     }
   }
-  
-  public static final void addInteraction(MaplePacketLittleEndianWriter mplew, IMaplePlayerShop shop)
+
+  public static final void addInteraction (MaplePacketLittleEndianWriter mplew, IMaplePlayerShop shop)
   {
     mplew.write(shop.getGameType());
     mplew.writeInt(((AbstractPlayerStore) shop).getObjectId());
@@ -1140,24 +1139,24 @@ public class PacketHelper
     }
     ChatPacket(mplew, shop.getOwnerName(), "[미니룸]" + shop.getDescription());
   }
-  
-  public static final void addCharacterInfo(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static final void addCharacterInfo (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     mplew.writeLong(-1L);
-    
+
     mplew.write(0);
     for (int i = 0; i < 3; i++)
     {
       mplew.writeInt(-3);
     }
-    
+
     mplew.write(0);
     mplew.writeInt(0);
     mplew.write(0);
-    
+
     addCharStats(mplew, chr);
     mplew.write(chr.getBuddylist().getCapacity());
-    
+
     if (chr.getBlessOfFairyOrigin() != null)
     {
       mplew.write(1);
@@ -1167,7 +1166,7 @@ public class PacketHelper
     {
       mplew.write(0);
     }
-    
+
     if (chr.getBlessOfEmpressOrigin() != null)
     {
       mplew.write(1);
@@ -1177,7 +1176,7 @@ public class PacketHelper
     {
       mplew.write(0);
     }
-    
+
     MapleQuestStatus ultExplorer = chr.getQuestNoAdd(MapleQuest.getInstance(111111));
     if (ultExplorer != null && ultExplorer.getCustomData() != null)
     {
@@ -1188,68 +1187,68 @@ public class PacketHelper
     {
       mplew.write(0);
     }
-    
+
     mplew.writeLong(chr.getMeso());
-    
+
     mplew.writeInt(0);
-    
+
     addInventoryInfo(mplew, chr);
-    
+
     addSkillInfo(mplew, chr);
-    
+
     addCoolDownInfo(mplew, chr);
-    
+
     mplew.write(HexTool.getByteArrayFromHexString("00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00"));
-    
+
     addQuestInfo(mplew, chr);
-    
+
     mplew.writeShort(0);
-    
+
     addRingInfo(mplew, chr);
-    
+
     addRocksInfo(mplew, chr);
-    
+
     chr.QuestInfoPacket(mplew);
-    
+
     mplew.writeShort(0);
     mplew.writeShort(0);
-    
+
     mplew.write(true);
-    
+
     chr.specialQustInfoPacket(mplew);
-    
+
     mplew.writeInt(1);
-    
+
     mplew.writeInt(chr.getAccountID());
     mplew.writeInt(-1);
-    
+
     if (GameConstants.isWildHunter(chr.getJob()))
     {
       addJaguarInfo(mplew, chr);
     }
-    
+
     if (GameConstants.isZero(chr.getJob()))
     {
       addZeroInfo(mplew, chr);
     }
-    
+
     mplew.writeShort(0);
     mplew.writeShort(0);
-    
+
     addStealSkills(mplew, chr);
-    
+
     addAbilityInfo(mplew, chr);
-    
+
     mplew.writeShort(0);
-    
+
     mplew.writeInt(0);
     mplew.write(0);
-    
+
     addHonorInfo(mplew, chr);
-    
+
     mplew.write(1);
     mplew.writeShort(0);
-    
+
     mplew.write((chr.returnScroll != null));
     if (chr.returnScroll != null)
     {
@@ -1269,16 +1268,16 @@ public class PacketHelper
     mplew.writeInt(chr.getSecondBaseColor());
     mplew.writeInt(chr.getSecondAddColor());
     mplew.writeInt(chr.getSecondBaseProb());
-    
+
     mplew.writeShort(0);
     mplew.writeShort(0);
-    
+
     mplew.write(0);
-    
+
     addFarmInfo(mplew, chr.getClient(), 0);
     mplew.writeInt(0);
     mplew.writeInt(0);
-    
+
     mplew.write((chr.choicePotential != null && chr.memorialcube != null));
     if (chr.choicePotential != null && chr.memorialcube != null)
     {
@@ -1290,26 +1289,26 @@ public class PacketHelper
     mplew.writeLong(0L);
     mplew.writeInt(0);
     mplew.writeInt(0);
-    
+
     mplew.writeInt(0);
     mplew.writeShort(0);
     mplew.writeLong(0L);
     mplew.writeInt(0);
-    
+
     mplew.writeInt(chr.getId());
     mplew.writeInt(0);
     mplew.writeInt(0);
     mplew.writeInt(0);
     mplew.writeLong(0L);
     mplew.writeInt(0);
-    
+
     mplew.writeInt(0);
     mplew.writeInt(0);
     mplew.writeLong(0L);
     mplew.writeLong(0L);
-    
+
     mplew.writeShort(chr.getClient().getCustomDatas().size());
-    
+
     for (Map.Entry<Integer, List<Pair<String, String>>> customData : chr.getClient().getCustomDatas().entrySet())
     {
       mplew.writeInt(customData.getKey().intValue());
@@ -1320,7 +1319,11 @@ public class PacketHelper
       }
       mplew.writeMapleAsciiString(sb.toString());
     }
-    String[][] values = {{"2", "0:0:2:10=1;2:0:2:10=106;4:0:4:20=9;5:0:2:13=1;3:1:2:14=12;0:1:4:22=59;2:1:4:22=3;8:1:3:15=64;11:0:3:16=19;3:1:0:2=4"}, {"4", "1:0:2:10=18;9:0:2:10=1106;2:1:2:10=1760;7:0:4:21=321;5:0:2:14=2;7:1:4:20=8;0:5:4:21=4;7:0:0:1=90;9:1:3:17=5;4:3:0:0=26"}, {"6", "7:1:2:10=1;10:1:2:11=427;8:2:2:10=99;9:1:2:12=354;2:0:4:22=52;10:2:4:20=65;10:2:2:13=29;0:1:0:0=24;8:1:0:0=61;11:1:1:5=35"}, {"8", "9:2:2:10=404;3:2:2:11=16;3:1:2:12=19;9:0:4:20=2;1:0:2:14=11;2:1:2:13=1;0:3:2:13=69;7:0:3:16=176;8:1:0:1=45;8:3:3:19=20"}, {"10", ""}};
+    String[][] values = {
+        { "2", "0:0:2:10=1;2:0:2:10=106;4:0:4:20=9;5:0:2:13=1;3:1:2:14=12;0:1:4:22=59;2:1:4:22=3;8:1:3:15=64;11:0:3:16=19;3:1:0:2=4" }, { "4", "1:0:2:10=18;9:0:2:10=1106;2:1:2:10=1760;7:0:4:21=321;5:0:2:14=2;7:1:4:20=8;0:5:4:21=4;7:0:0:1=90;9:1:3:17=5;4:3:0:0=26" },
+        { "6", "7:1:2:10=1;10:1:2:11=427;8:2:2:10=99;9:1:2:12=354;2:0:4:22=52;10:2:4:20=65;10:2:2:13=29;0:1:0:0=24;8:1:0:0=61;11:1:1:5=35" }, { "8", "9:2:2:10=404;3:2:2:11=16;3:1:2:12=19;9:0:4:20=2;1:0:2:14=11;2:1:2:13=1;0:3:2:13=69;7:0:3:16=176;8:1:0:1=45;8:3:3:19=20" },
+        { "10", "" }
+    };
     mplew.writeShort(values.length);
     for (String[] value : values)
     {
@@ -1328,13 +1331,13 @@ public class PacketHelper
       mplew.writeMapleAsciiString(value[1]);
     }
     mplew.write(chr.getClient().isFarm());
-    
+
     mplew.writeInt(0);
-    
+
     mplew.write(0);
-    
+
     addMatrixInfo(mplew, chr);
-    
+
     mplew.writeInt(0);
     mplew.writeInt(0);
     mplew.writeInt(0);
@@ -1345,13 +1348,13 @@ public class PacketHelper
     mplew.writeLong(0L);
     mplew.writeInt(0);
     mplew.writeInt(0);
-    
+
     mplew.writeInt(0);
-    
+
     addHairRoomInfo(mplew, chr);
     addFaceRoomInfo(mplew, chr);
     addSkinRoomInfo(mplew, chr);
-    
+
     mplew.writeInt(chr.getEmoticons().size());
     for (Triple<Long, Integer, Short> em : chr.getEmoticons())
     {
@@ -1367,9 +1370,9 @@ public class PacketHelper
       mplew.writeShort(++count);
       mplew.writeInt(em.getEmoticonid());
     }
-    
+
     mplew.writeShort(8);
-    
+
     count = 0;
     mplew.writeInt(chr.getSavedEmoticon().size());
     for (MapleSavedEmoticon em : chr.getSavedEmoticon())
@@ -1378,7 +1381,7 @@ public class PacketHelper
       mplew.writeInt(em.getEmoticonid());
       mplew.writeAsciiString(em.getText(), 21);
     }
-    
+
     mplew.writeInt(chr.getSavedEmoticon().size());
     for (MapleSavedEmoticon em : chr.getSavedEmoticon())
     {
@@ -1388,13 +1391,13 @@ public class PacketHelper
     }
     mplew.writeInt(0);
   }
-  
-  public static void addFaceRoomInfo(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static void addFaceRoomInfo (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     mplew.write(12);
-    
+
     mplew.write(chr.getFaceRoom().size());
-    
+
     for (int i = 1; i <= 18; i++)
     {
       if (chr.getFaceRoom().size() < i)
@@ -1414,13 +1417,13 @@ public class PacketHelper
       }
     }
   }
-  
-  public static void addHairRoomInfo(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static void addHairRoomInfo (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     mplew.write(12);
-    
+
     mplew.write(chr.getHairRoom().size());
-    
+
     for (int i = 1; i <= 18; i++)
     {
       if (chr.getHairRoom().size() < i)
@@ -1429,11 +1432,11 @@ public class PacketHelper
       }
       else
       {
-        
+
         mplew.write(i);
-        
+
         MapleMannequin hair = chr.getHairRoom().get(i - 1);
-        
+
         mplew.write(0);
         mplew.write(0);
         mplew.writeInt(hair.getValue());
@@ -1443,13 +1446,13 @@ public class PacketHelper
       }
     }
   }
-  
-  public static void addSkinRoomInfo(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static void addSkinRoomInfo (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     mplew.write(6);
-    
+
     mplew.write(chr.getSkinRoom().size());
-    
+
     for (int i = 1; i <= 18; i++)
     {
       if (chr.getSkinRoom().size() < i)
@@ -1458,11 +1461,11 @@ public class PacketHelper
       }
       else
       {
-        
+
         mplew.write(i);
-        
+
         MapleMannequin skin = chr.getSkinRoom().get(i - 1);
-        
+
         mplew.write(0);
         mplew.write(0);
         mplew.writeInt(skin.getValue());
@@ -1472,8 +1475,8 @@ public class PacketHelper
       }
     }
   }
-  
-  public static void addMatrixInfo(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static void addMatrixInfo (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     mplew.writeInt(chr.getCore().size());
     for (Core m : chr.getCore())
@@ -1499,8 +1502,8 @@ public class PacketHelper
       mplew.write(matrix.isUnLock());
     }
   }
-  
-  public static void addFarmInfo(MaplePacketLittleEndianWriter mplew, MapleClient c, int idk)
+
+  public static void addFarmInfo (MaplePacketLittleEndianWriter mplew, MapleClient c, int idk)
   {
     mplew.writeMapleAsciiString("생성중");
     mplew.writeInt(0);
@@ -1508,14 +1511,14 @@ public class PacketHelper
     mplew.writeInt(10);
     mplew.writeInt(0);
     mplew.writeInt(0);
-    
+
     mplew.writeInt(0);
     mplew.writeInt(0);
     mplew.writeInt(0);
     mplew.writeInt(1);
   }
-  
-  public static void addZeroInfo(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static void addZeroInfo (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     mplew.writeShort(-1);
     mplew.write(chr.getGender());
@@ -1536,8 +1539,8 @@ public class PacketHelper
     mplew.writeInt(chr.getSecondAddColor());
     mplew.writeInt(chr.getSecondBaseProb());
   }
-  
-  public static void addAbilityInfo(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static void addAbilityInfo (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     List<InnerSkillValueHolder> skills = chr.getInnerSkills();
     mplew.writeShort(skills.size());
@@ -1549,14 +1552,14 @@ public class PacketHelper
       mplew.write(skills.get(i).getRank());
     }
   }
-  
-  public static void addHonorInfo(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static void addHonorInfo (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     mplew.writeInt(chr.getHonorLevel());
     mplew.writeInt(chr.getHonourExp());
   }
-  
-  public static void addStolenSkills(MaplePacketLittleEndianWriter mplew, MapleCharacter chr, int jobNum)
+
+  public static void addStolenSkills (MaplePacketLittleEndianWriter mplew, MapleCharacter chr, int jobNum)
   {
     int count = 0;
     if (chr.getStolenSkills() != null)
@@ -1580,8 +1583,8 @@ public class PacketHelper
       count++;
     }
   }
-  
-  public static void addChosenSkills(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static void addChosenSkills (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     for (int i = 1; i <= 5; i++)
     {
@@ -1604,8 +1607,8 @@ public class PacketHelper
       }
     }
   }
-  
-  public static void addStealSkills(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static void addStealSkills (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     for (int i = 1; i <= 5; i++)
     {
@@ -1613,8 +1616,8 @@ public class PacketHelper
     }
     addChosenSkills(mplew, chr);
   }
-  
-  public static final void addPetItemInfo(MaplePacketLittleEndianWriter mplew, MapleCharacter player, Item item, MaplePet pet, boolean unequip, boolean petLoot)
+
+  public static final void addPetItemInfo (MaplePacketLittleEndianWriter mplew, MapleCharacter player, Item item, MaplePet pet, boolean unequip, boolean petLoot)
   {
     if (item == null)
     {
@@ -1661,8 +1664,8 @@ public class PacketHelper
     mplew.writeShort(pet.getPetSize());
     mplew.writeShort(pet.getWonderGrade());
   }
-  
-  public static void addShopInfo(MaplePacketLittleEndianWriter mplew, MapleShop shop, MapleClient c)
+
+  public static void addShopInfo (MaplePacketLittleEndianWriter mplew, MapleShop shop, MapleClient c)
   {
     MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     mplew.writeShort(shop.getItems().size());
@@ -1675,8 +1678,8 @@ public class PacketHelper
       c.send(CField.NPCPacket.BossRewardSetting());
     }
   }
-  
-  public static void addShopItemInfo(MaplePacketLittleEndianWriter mplew, MapleShopItem item, MapleShop shop, MapleItemInformationProvider ii, Item i, MapleCharacter chr)
+
+  public static void addShopItemInfo (MaplePacketLittleEndianWriter mplew, MapleShopItem item, MapleShop shop, MapleItemInformationProvider ii, Item i, MapleCharacter chr)
   {
     /* 1509 */
     if (shop.getQuestEx() != 0)
@@ -1697,7 +1700,7 @@ public class PacketHelper
       /* 1516 */
       mplew.writeInt(item.getBuyQuantity());
     }
-    
+
     /* 1519 */
     mplew.writeInt(item.getItemId());
     /* 1520 */
@@ -1725,7 +1728,7 @@ public class PacketHelper
     mplew.writeInt(item.getPeriod() * 1440);
     /* 1531 */
     mplew.writeInt(0);
-    
+
     if (shop.getCoinKey() > 0)
     {
       mplew.writeInt(0);
@@ -1749,16 +1752,16 @@ public class PacketHelper
     }
     mplew.writeInt(shop.getCoinKey());
     mplew.writeInt((shop.getCoinKey() > 0) ? item.getPrice() : 0L);
-    
+
     /* 1555 */
     mplew.writeInt(0);
-    
+
     /* 1558 */
     mplew.write((shop.getSaleString().length() > 0));
     /* 1559 */
     if (shop.getSaleString().length() > 0)
     {
-      
+
       /* 1561 */
       mplew.writeInt(30);
       /* 1562 */
@@ -1767,23 +1770,23 @@ public class PacketHelper
       mplew.write(0);
       /* 1564 */
       mplew.writeMapleAsciiString("");
-      
+
       /* 1566 */
       mplew.writeInt(0);
       /* 1567 */
       mplew.writeMapleAsciiString("");
-      
+
       /* 1569 */
       mplew.writeLong(getTime(-2L));
       /* 1570 */
       mplew.writeLong(getTime(-2L));
-      
+
       /* 1573 */
       mplew.writeInt(0);
     }
     /* 1575 */
     mplew.writeInt((item.getReChargeCount() > 0) ? item.getReChargeCount() : 0);
-    
+
     /* 1603 */
     mplew.writeInt(item.getBuyQuantity());
     /* 1604 */
@@ -1802,20 +1805,20 @@ public class PacketHelper
       /* 1610 */
       mplew.writeInt(0);
       /* 1611 */
-      mplew.writeLong(getMapleShopTime(item.getReChargeMonth(), item.getResetday(), item.getReCharge()));
+      mplew.writeLong(getMapleShopTime(item.getReChargeMonth(), item.getResetDay(), item.getReCharge()));
     }
     /* 1613 */
     mplew.writeLong(getTime(-2L));
     /* 1614 */
     mplew.writeLong(getTime(-1L));
-    
+
     /* 1616 */
     mplew.writeInt(0);
     /* 1617 */
     mplew.writeShort(1);
     /* 1618 */
     mplew.write(0);
-    
+
     /* 1621 */
     mplew.writeInt(shop.getQuestEx());
     /* 1622 */
@@ -1824,10 +1827,10 @@ public class PacketHelper
     mplew.writeInt(item.getItemRate());
     /* 1624 */
     mplew.writeInt(0);
-    
+
     /* 1626 */
     mplew.write(0);
-    
+
     /* 1628 */
     mplew.writeShort(0);
     /* 1629 */
@@ -1840,18 +1843,18 @@ public class PacketHelper
     }
     else
     {
-      
+
       /* 1634 */
       mplew.write(HexTool.getByteArrayFromHexString("9A 99 99 99 99 99"));
       /* 1635 */
       mplew.writeShort(BitTools.doubleToShortBits(ii.getPrice(item.getItemId())));
-      
+
       /* 1638 */
       mplew.writeShort(ii.getSlotMax(item.getItemId()));
     }
     /* 1640 */
     mplew.writeLong(getTime(-1L));
-    
+
     /* 1643 */
     mplew.write((i == null) ? 0 : 1);
     /* 1644 */
@@ -1861,8 +1864,8 @@ public class PacketHelper
       addItemInfo(mplew, i);
     }
   }
-  
-  public static final void addJaguarInfo(MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
+
+  public static final void addJaguarInfo (MaplePacketLittleEndianWriter mplew, MapleCharacter chr)
   {
     mplew.write(chr.getInfoQuest(123456).equals("") ? 0 : Byte.parseByte(chr.getInfoQuest(123456)));
     for (int i = 0; i < 5; i++)
@@ -1870,8 +1873,8 @@ public class PacketHelper
       mplew.writeInt(0);
     }
   }
-  
-  public static void writeMonsterMask(MaplePacketLittleEndianWriter mplew, List<Pair<MonsterStatus, MonsterStatusEffect>> statups)
+
+  public static void writeMonsterMask (MaplePacketLittleEndianWriter mplew, List<Pair<MonsterStatus, MonsterStatusEffect>> statups)
   {
     int[] mask = new int[4];
     for (Pair<MonsterStatus, MonsterStatusEffect> statup : statups)
@@ -1883,8 +1886,8 @@ public class PacketHelper
       mplew.writeInt(mask[i - 1]);
     }
   }
-  
-  public static void writeMonsterMaskT(MaplePacketLittleEndianWriter mplew, Collection<Pair<MonsterStatus, MonsterStatusEffect>> statups)
+
+  public static void writeMonsterMaskT (MaplePacketLittleEndianWriter mplew, Collection<Pair<MonsterStatus, MonsterStatusEffect>> statups)
   {
     int[] mask = new int[4];
     for (Pair<MonsterStatus, MonsterStatusEffect> statup : statups)
@@ -1896,8 +1899,8 @@ public class PacketHelper
       mplew.writeInt(mask[i - 1]);
     }
   }
-  
-  public static void writeBuffMask(MaplePacketLittleEndianWriter mplew, List<SecondaryStat> statups)
+
+  public static void writeBuffMask (MaplePacketLittleEndianWriter mplew, List<SecondaryStat> statups)
   {
     int[] mask = new int[31];
     for (SecondaryStat statup : statups)
@@ -1909,8 +1912,8 @@ public class PacketHelper
       mplew.writeInt(mask[i - 1]);
     }
   }
-  
-  public static void writeBuffMask(MaplePacketLittleEndianWriter mplew, Collection<Pair<SecondaryStat, Pair<Integer, Integer>>> statups)
+
+  public static void writeBuffMask (MaplePacketLittleEndianWriter mplew, Collection<Pair<SecondaryStat, Pair<Integer, Integer>>> statups)
   {
     int[] mask = new int[31];
     for (Pair<SecondaryStat, Pair<Integer, Integer>> statup : statups)
@@ -1922,8 +1925,8 @@ public class PacketHelper
       mplew.writeInt(mask[i - 1]);
     }
   }
-  
-  public static List<Pair<SecondaryStat, Pair<Integer, Integer>>> sortBuffStats(Map<SecondaryStat, Pair<Integer, Integer>> statups)
+
+  public static List<Pair<SecondaryStat, Pair<Integer, Integer>>> sortBuffStats (Map<SecondaryStat, Pair<Integer, Integer>> statups)
   {
     boolean changed;
     List<Pair<SecondaryStat, Pair<Integer, Integer>>> statvals = new ArrayList<>();
@@ -1956,8 +1959,8 @@ public class PacketHelper
     while (changed);
     return statvals;
   }
-  
-  public static List<Pair<SecondaryStat, List<SecondaryStatValueHolder>>> sortIndieBuffStats(Map<SecondaryStat, List<SecondaryStatValueHolder>> statups)
+
+  public static List<Pair<SecondaryStat, List<SecondaryStatValueHolder>>> sortIndieBuffStats (Map<SecondaryStat, List<SecondaryStatValueHolder>> statups)
   {
     boolean changed;
     List<Pair<SecondaryStat, List<SecondaryStatValueHolder>>> statvals = new ArrayList<>();
@@ -1990,8 +1993,8 @@ public class PacketHelper
     while (changed);
     return statvals;
   }
-  
-  public static List<Pair<MonsterStatus, MonsterStatusEffect>> sortMBuffStats(List<Pair<MonsterStatus, MonsterStatusEffect>> statups)
+
+  public static List<Pair<MonsterStatus, MonsterStatusEffect>> sortMBuffStats (List<Pair<MonsterStatus, MonsterStatusEffect>> statups)
   {
     List<Pair<MonsterStatus, MonsterStatusEffect>> statvals = new LinkedList<>();
     for (Pair<MonsterStatus, MonsterStatusEffect> ms : statups)
@@ -2028,8 +2031,8 @@ public class PacketHelper
       }
     }
   }
-  
-  public static void ArcaneSymbol(MaplePacketLittleEndianWriter mplew, Item item)
+
+  public static void ArcaneSymbol (MaplePacketLittleEndianWriter mplew, Item item)
   {
     Equip equip = (Equip) item;
     mplew.writeInt(0);
@@ -2042,8 +2045,8 @@ public class PacketHelper
       mplew.writeShort(0);
     }
   }
-  
-  public static void encodeForRemote(MaplePacketLittleEndianWriter mplew, Map<SecondaryStat, Pair<Integer, Integer>> statups, MapleCharacter chr)
+
+  public static void encodeForRemote (MaplePacketLittleEndianWriter mplew, Map<SecondaryStat, Pair<Integer, Integer>> statups, MapleCharacter chr)
   {
     if (statups.containsKey(SecondaryStat.Speed))
     {
@@ -2702,7 +2705,7 @@ public class PacketHelper
         mplew.writeInt(skillid);
         mplew.writeInt(0);
       }
-      
+
     }
     if (statups.containsKey(SecondaryStat.AntiMagicShell))
     {
@@ -3529,8 +3532,8 @@ public class PacketHelper
       mplew.writeInt(chr.getBuffSource(SecondaryStat.YetiAngerMode));
     }
   }
-  
-  public static void ChatPacket(MaplePacketLittleEndianWriter mplew, String name, String chat)
+
+  public static void ChatPacket (MaplePacketLittleEndianWriter mplew, String name, String chat)
   {
     mplew.writeMapleAsciiString(name);
     mplew.writeMapleAsciiString(chat);
@@ -3539,8 +3542,8 @@ public class PacketHelper
     mplew.write(1); // 362
     mplew.writeInt(0); // DA 06 00 00
   }
-  
-  public static void chairPacket(final MaplePacketLittleEndianWriter mplew, final MapleCharacter chr, final int itemId)
+
+  public static void chairPacket (final MaplePacketLittleEndianWriter mplew, final MapleCharacter chr, final int itemId)
   {
     final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     if (ii.getItemInformation(itemId) == null)

@@ -147,7 +147,9 @@ public class PlayerStats implements Serializable
   public transient int stance;
   public transient int ppd;
   public transient int damAbsorbShieldR;
-  public transient int arc;
+  public transient int arcPower;
+
+  public transient int authenticPower;
   public transient long fixHp;
   public transient int def;
   public transient int element_ice;
@@ -754,7 +756,8 @@ public class PlayerStats implements Serializable
     this.BossDamage = 0;
     this.NomarbdR = 0;
     this.Mastery = 0.0;
-    this.arc = 0;
+    this.arcPower = 0;
+    this.authenticPower = 0;
     this.starforce = 0;
     this.Nlocalstr = 0;
     this.Nlocaldex = 0;
@@ -794,7 +797,7 @@ public class PlayerStats implements Serializable
         if (SkillFactory.getSkill(nickSkill) != null)
         {
           final SecondaryStatEffect eff = SkillFactory.getSkill(nickSkill).getEffect(1);
-          this.arc += eff.getArcX();
+          this.arcPower += eff.getArcX();
           this.BossDamage += eff.getBossDamage();
           this.localstr += eff.getStrX();
           this.localdex += eff.getDexX();
@@ -918,15 +921,23 @@ public class PlayerStats implements Serializable
         this.DamagePercent += equip.getTotalDamage();
         this.BossDamage += equip.getTotalBossDamage();
         this.ignoreMobpdpR.add((int) equip.getTotalIgnorePDR());
-        if (GameConstants.isArcaneSymbol(equip.getItemId()) || GameConstants.isAuthenticSymbol(equip.getItemId()))
+        if (GameConstants.isArcaneSymbol(equip.getItemId()))
         {
-          this.arc += equip.getArc();
-          this.Nlocalhp += equip.getTotalHp();
-          this.Nlocalmp += equip.getTotalMp();
-          this.Nlocalstr += equip.getTotalStr();
-          this.Nlocaldex += equip.getTotalDex();
-          this.Nlocalint += equip.getTotalInt();
-          this.Nlocalluk += equip.getTotalLuk();
+          this.arcPower += equip.getArcPower();
+          this.Nlocalhp += equip.getArcHp() * 10;
+          this.Nlocalstr += equip.getArcStr();
+          this.Nlocaldex += equip.getArcDex();
+          this.Nlocalint += equip.getArcInt();
+          this.Nlocalluk += equip.getArcLuk();
+        }
+        else if (GameConstants.isAuthenticSymbol(equip.getItemId()))
+        {
+          this.authenticPower += equip.getAuthenticPower();
+          this.Nlocalhp += equip.getAuthenticHp() * 10;
+          this.Nlocalstr += equip.getAuthenticStr();
+          this.Nlocaldex += equip.getAuthenticDex();
+          this.Nlocalint += equip.getAuthenticInt();
+          this.Nlocalluk += equip.getAuthenticLuk();
         }
         else
         {
@@ -955,12 +966,12 @@ public class PlayerStats implements Serializable
         this.mdef += equip.getTotalMdef();
         this.speed += equip.getTotalMovementSpeed();
         this.jump += equip.getTotalJump();
-        if (equip.getAllStat() > 0)
+        if (equip.getTotalAllStat() > 0)
         {
-          this.percent_str += equip.getAllStat();
-          this.percent_dex += equip.getAllStat();
-          this.percent_int += equip.getAllStat();
-          this.percent_luk += equip.getAllStat();
+          this.percent_str += equip.getTotalAllStat();
+          this.percent_dex += equip.getTotalAllStat();
+          this.percent_int += equip.getTotalAllStat();
+          this.percent_luk += equip.getTotalAllStat();
         }
         this.pvpDamage += equip.getTemplate().getPVPDamage();
         final Integer set = ii.getSetItemID(equip.getItemId());
@@ -1147,9 +1158,8 @@ public class PlayerStats implements Serializable
 
       // For Xenons, since Star Force enhancement gives lesser stats if the item is restricted to thieves or pirates only, a small bonus is given to compensate for this.
       // Every 10 equipped star force, gain 7 STR, 7 DEX and 7 LUK, up to 100 equipped star force.
-      // 这里就不设置上限了, 有多少给我加多少
 
-      int inc = (int) (starforce / 10 * 7);
+      int inc = (int) (Math.floor(Math.min(starforce, 100) / 10) * 7);
 
       localstr += inc;
       localdex += inc;
@@ -2270,12 +2280,12 @@ public class PlayerStats implements Serializable
       }
       if (bof > 0)
       {
-        this.arc += up;
+        this.arcPower += up;
       }
     }
     int[] up2 = skilllist = new int[] { 400001000, 400001001, 400001002, 400001003, 400001004, 400001006, 400001007, 400001021, 400011066, 400021068, 400021095, 400031005, 400041032, 400051000, 400051072 };
     i = up2.length;
-    block71:
+
     for (n = 0; n < i; ++n)
     {
       Integer skill = up2[n];
@@ -2290,36 +2300,36 @@ public class PlayerStats implements Serializable
         case 400001004:
         {
           this.ASR += bx.getEffect(bof).getASRRate();
-          continue block71;
+          continue;
         }
         case 400001021:
         {
           this.localint_ += bx.getEffect(bof).getIntX();
-          continue block71;
+          continue;
         }
         case 400011066:
         {
           localmaxhp_ += bx.getEffect(bof).getMaxHpX();
           this.localstr += bx.getEffect(bof).getIntX();
-          continue block71;
+          continue;
         }
         case 400051072:
         {
           this.localdex += bx.getEffect(bof).getDexX();
-          continue block71;
+          continue;
         }
         case 400031005:
         case 400041032:
         case 400051000:
         {
           this.watk += bx.getEffect(bof).getAttackX();
-          continue block71;
+          continue;
         }
         case 400021068:
         case 400021095:
         {
           this.magic += bx.getEffect(bof).getMagicX();
-          continue block71;
+          continue;
         }
         default:
         {
@@ -2327,11 +2337,10 @@ public class PlayerStats implements Serializable
           this.localdex += bx.getEffect(bof).getStrX();
           this.localint_ += bx.getEffect(bof).getStrX();
           this.localluk += bx.getEffect(bof).getStrX();
-          continue block71;
         }
       }
     }
-    int[] i2 = skilllist1 = new int[] { 80000654, 80000655, 80000656, 80000657, 80000658, 80000659, 80000660, 80000661 };
+    int[] i2 = new int[] { 80000654, 80000655, 80000656, 80000657, 80000658, 80000659, 80000660, 80000661 };
     n = i2.length;
     for (int skill = 0; skill < n; ++skill)
     {
@@ -2347,7 +2356,7 @@ public class PlayerStats implements Serializable
         continue;
       }
       this.NomarbdR += bx.getEffect(bof).getNbdR();
-      this.arc += bx.getEffect(bof).getArcX();
+      this.arcPower += bx.getEffect(bof).getArcX();
       this.starforce += bx.getEffect(bof).getStarX();
       this.critical_rate = (short) (this.critical_rate + bx.getEffect(bof).getCr());
       this.watk += bx.getEffect(bof).getAttackX();
@@ -10661,15 +10670,6 @@ public class PlayerStats implements Serializable
     return this.lock;
   }
 
-  public int getArc ()
-  {
-    return this.arc;
-  }
-
-  public void setArc (int arc)
-  {
-    this.arc = arc;
-  }
 
   public double getDamagePercent ()
   {

@@ -1016,7 +1016,7 @@ public class SuperGMCommand
         info = info + "크리티컬 확률 : #d" + chr.getStat().getCritical_rate() + "%#k\r\n";
         info = info + "크리티컬 데미지 : #d" + chr.getStat().getCritical_damage() + "%#k\r\n";
         info = info + "상태이상내성 : #d" + chr.getStat().getASR() + "#k  스탠스 : #d" + chr.getStat().getStance() + "#k\r\n";
-        info = info + "스타포스 : #d" + chr.getStat().getStarforce() + "#k  아케인포스 : #d" + chr.getStat().getArc() + "#k\r\n ";
+        info = info + "스타포스 : #d" + chr.getStat().getStarforce() + "#k  아케인포스 : #d" + chr.getStat().arcPower + "#k\r\n ";
         c.getSession().writeAndFlush(CField.NPCPacket.getNPCTalkText(9062240, info));
       }
       return 1;
@@ -1671,7 +1671,6 @@ public class SuperGMCommand
   {
     public int execute(MapleClient c, String[] splitted)
     {
-      MapleShopFactory.getInstance().clear();
       return 1;
     }
   }

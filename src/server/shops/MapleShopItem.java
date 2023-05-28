@@ -2,138 +2,149 @@ package server.shops;
 
 public class MapleShopItem
 {
-  private final int id;
-  
-  private final short buyable;
-  
-  private final int itemId;
-  
-  private final long price;
-  
-  private final int pricequantity;
-  
-  private final byte tab;
-  
-  private final int quantity;
-  
-  private final int period;
-  
-  private final int position;
-  private final int buyquantity;
-  private final int rechargemonth;
-  private final int recharge;
-  private final int rechargeday;
-  private final int rechargecount;
+  private int id;
+
+  private short buyable;
+
+  private int itemId;
+
+  private long price;
+
+  private int priceQuantity;
+
+  private byte tab;
+
+  private int quantity;
+
+  private int period;
+
+  private int position;
+  private int buyQuantity;
+  private int rechargeMonth;
+  private int recharge;
+  private int rechargeDay;
+  private int rechargeCount;
   private int itemRate;
-  private int resetday;
-  
-  public MapleShopItem(int id, short buyable, int itemId, long price, int pricequantity, byte tab, int quantity, int period, int position, int itemRate, int buyquantity, int rechargemonth, int rechargeday, int resetday, int recharge, int rechargecount)
+  private int resetDay;
+
+  public MapleShopItem (int id, short buyable, int itemId, long price, int priceQuantity, byte tab, int quantity, int period, int position, int itemRate, int buyQuantity, int rechargeMonth, int rechargeDay, int resetDay, int recharge,
+                        int rechargeCount)
   {
     this.id = id;
     this.buyable = buyable;
     this.itemId = itemId;
     this.price = price;
-    this.pricequantity = pricequantity;
+    this.priceQuantity = priceQuantity;
     this.tab = tab;
     this.quantity = quantity;
     this.period = period;
     this.position = position;
     this.itemRate = itemRate;
-    this.buyquantity = buyquantity;
-    this.rechargemonth = rechargemonth;
-    this.rechargeday = rechargeday;
-    this.resetday = resetday;
+    this.buyQuantity = buyQuantity;
+    this.rechargeMonth = rechargeMonth;
+    this.rechargeDay = rechargeDay;
+    this.resetDay = resetDay;
     this.recharge = recharge;
-    this.rechargecount = rechargecount;
+    this.rechargeCount = rechargeCount;
   }
-  
-  public int getShopItemId()
+
+  public int getShopItemId ()
   {
     return this.id;
   }
-  
-  public int getPriceQuantity()
+
+  public int getPriceQuantity ()
   {
-    return this.pricequantity;
+    return this.priceQuantity;
   }
-  
-  public int getBuyQuantity()
+
+  public int getBuyQuantity ()
   {
-    return this.buyquantity;
+    return this.buyQuantity;
   }
-  
-  public byte getTab()
+
+  public byte getTab ()
   {
     return this.tab;
   }
-  
-  public int getQuantity()
+
+  public int getQuantity ()
   {
     return this.quantity;
   }
-  
-  public int getPeriod()
+
+  public int getPeriod ()
   {
     return this.period;
   }
-  
-  public short getBuyable()
+
+  public short getBuyable ()
   {
     return this.buyable;
   }
-  
-  public int getItemId()
+
+  public int getItemId ()
   {
     return this.itemId;
   }
-  
-  public long getPrice()
+
+  public long getPrice ()
   {
     return this.price;
   }
-  
-  public int getPosition()
+
+  public int getPosition ()
   {
     return this.position;
   }
-  
-  public int getItemRate()
+
+  public int getItemRate ()
   {
     return this.itemRate;
   }
-  
-  public void setItemRate(int itemRate)
+
+  public void setItemRate (int itemRate)
   {
     this.itemRate = itemRate;
   }
-  
-  public int getReChargeMonth()
+
+  public int getReChargeMonth ()
   {
-    return this.rechargemonth;
+    return this.rechargeMonth;
   }
-  
-  public int getReChargeDay()
+
+  public int getReChargeDay ()
   {
-    return this.rechargeday;
+    return this.rechargeDay;
   }
-  
-  public int getReCharge()
+
+  public int getReCharge ()
   {
     return this.recharge;
   }
-  
-  public int getReChargeCount()
+
+  public int getReChargeCount ()
   {
-    return this.rechargecount;
+    return this.rechargeCount;
   }
-  
-  public int getResetday()
+
+  public int getResetDay ()
   {
-    return this.resetday;
+    return this.resetDay;
   }
-  
-  public void setResetday(int resetday)
+
+  public void setResetDay (int resetday)
   {
-    this.resetday = resetday;
+    this.resetDay = resetday;
+  }
+
+  public void setRechargeMonth (int rechargeMonth)
+  {
+    this.rechargeMonth = rechargeMonth;
+  }
+
+  public void setRechargeDay (int rechargeDay)
+  {
+    this.rechargeDay = rechargeDay;
   }
 }

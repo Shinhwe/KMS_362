@@ -50,6 +50,7 @@ function start() {
 */
 
 function action(mode, type, selection) {
+    cm.log('mode = ' + mode + 'type = ' + type + 'selection = ' + selection);
     if (mode == -1 || mode == 0) {
         cm.dispose();
         return;
@@ -66,7 +67,7 @@ function action(mode, type, selection) {
         choose += "#L4##fc0xFFF15F5F#" + 보스 + " 보스 결정석 판매#l\r\n";
         choose += "#L6##fc0xFFEDA900#" + 악세 + " 악세 장비템 상점#l";
         choose += "#L7##fc0xFFDBC000#" + 유니온 + " 블랙 유니온 상점#l\r\n";
-        choose += "#L16##fc0xFF030066#" + 엠블렘 + " 강화 엠블렘 상점#l";
+        choose += "#L5##fc0xFF030066#" + 엠블렘 + " 강화 엠블렘 상점#l";
         choose += "#L23##fc0xFF030066#" + 잠수 + " 잠수 포인트 상점#l\r\n\r\n";
         choose += "#fs14##L20#" + 분홍콩 + " " + 분홍 + "분홍콩 상점#k#l";
         choose += "#L21#" + 네오젬 + " " + 파랑 + "돌의 정령 상점#k#l";
@@ -154,6 +155,7 @@ function action(mode, type, selection) {
             cm.dispose();
             cm.openNpc(3003536);
         } else if (selection == 16) {
+            cm.log(166);
             cm.dispose();
             cm.openShop(27);
         } else if (selection == 17) {
@@ -166,7 +168,16 @@ function action(mode, type, selection) {
         } else if (selection == 20) {
             cm.dispose();
             cm.openShop(43);
-	}
+	    } else if (selection == 23) {
+            cm.dispose();
+            cm.openShop(25);
+        } else if (selection == 24) {
+            cm.dispose();
+            cm.openShop(14);
+        } else if (selection == 25) {
+            cm.dispose();
+            cm.openShop(26);
+        }
     } else if (status == 2) {
         if (sel == 2) {
             InterServerHandler.EnterCS(cm.getPlayer().getClient(), cm.getPlayer(), false);
@@ -230,16 +241,7 @@ function action(mode, type, selection) {
         } else if (selection == 22) {
             cm.dispose();
             cm.openShop(24);
-        } else if (selection == 23) {
-            cm.dispose();
-            cm.openShop(25);
-        } else if (selection == 24) {
-            cm.dispose();
-            cm.openShop(14);
-        } else if (selection == 25) {
-            cm.dispose();
-            cm.openShop(26);
-        }
+        } 
     } else if (status == 3) {
         if (selection == 0) {
             cm.openShop(28);

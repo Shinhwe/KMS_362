@@ -91,6 +91,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
   private long lastBindTime = 0L;
   private long lastCriticalBindTime = 0L;
   private long eliteHp = 0L;
+  private int eliteExpRate = 1;
   private long lastSpecialAttackTime = System.currentTimeMillis();
   private long lastSeedCountedTime = System.currentTimeMillis();
   private int nextSkill = 0, nextSkillLvl = 0, freezingOverlap = 0, curseBound = 0;
@@ -112,11 +113,11 @@ public class MapleMonster extends AbstractLoadedMapleLife
 
   private boolean eliteMonster;
 
-  private boolean elitechmp;
+  private boolean isEliteChampion;
 
   private boolean isEliteBoss;
 
-  private boolean userunespawn;
+  private boolean useRuneSpawn;
 
   private String specialtxt;
 
@@ -375,7 +376,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
     {
       return this.ostats.exp;
     }
-    return this.stats.getExp() * (isEliteBoss() ? 20 : (isEliteMonster() ? 5 : 1));
+    return this.stats.getExp() * getEliteExpRate();
   }
 
   public final void setOverrideStats (OverrideMonsterStats ostats)
@@ -614,7 +615,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
         }
       }
     }
-    if (this.map.isElitebossrewardmap() && this.map.getElitebossrewardtype() == 1 && getId() == 8220027)
+    if (this.map.getIsEliteBossRewardMap() && this.map.getEliteBossRewardType() == 1 && getId() == 8220027)
     {
       int[] itemlist = { 2432391, 2432392, 2432393, 2432394, 2432395, 2432396, 2432397 };
       int Random = 0;
@@ -1641,7 +1642,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
         killer.dropMessage(5, "르네와 마법의 종 스킬이 비활성화되었습니다.");
       }
     }
-    if (!FieldLimitType.Event.check(this.map.getFieldLimit()) && !this.map.isEliteField() && !this.map.isElitebossmap() && !this.map.isElitebossrewardmap() && !this.map.isElitechmpfinal() && !GameConstants.isContentsMap(getMap().getId()) && !GameConstants.보스맵(getMap().getId()) && !GameConstants.사냥컨텐츠맵(getMap().getId()) && !GameConstants.튜토리얼(getMap().getId()) && !GameConstants.로미오줄리엣(getMap().getId()) && !GameConstants.피라미드(getMap().getId()) && ((getStats().getLevel() >= killer.getLevel() - 20 && getStats().getLevel() <= killer.getLevel() + 20) || killer.isGM()))
+    if (!FieldLimitType.Event.check(this.map.getFieldLimit()) && !this.map.isEliteField() && !this.map.getIsEliteBossMap() && !this.map.getIsEliteBossRewardMap() && !this.map.isEliteChampionFinal() && !GameConstants.isContentsMap(getMap().getId()) && !GameConstants.보스맵(getMap().getId()) && !GameConstants.사냥컨텐츠맵(getMap().getId()) && !GameConstants.튜토리얼(getMap().getId()) && !GameConstants.로미오줄리엣(getMap().getId()) && !GameConstants.피라미드(getMap().getId()) && ((getStats().getLevel() >= killer.getLevel() - 20 && getStats().getLevel() <= killer.getLevel() + 20) || killer.isGM()))
     {
       this.map.setCustomInfo(9930005, this.map.getCustomValue0(9930005) + 1, 0);
       if (this.map.getCustomValue0(9930005) >= 5000)
@@ -3339,14 +3340,14 @@ public class MapleMonster extends AbstractLoadedMapleLife
     this.isEliteBoss = true;
   }
 
-  public boolean isUserunespawn ()
+  public boolean isUseRuneSpawn ()
   {
-    return this.userunespawn;
+    return this.useRuneSpawn;
   }
 
-  public void setUserunespawn (boolean userunespawn)
+  public void setUseRuneSpawn (boolean useRuneSpawn)
   {
-    this.userunespawn = userunespawn;
+    this.useRuneSpawn = useRuneSpawn;
   }
 
   public String getSpecialtxt ()
@@ -3767,14 +3768,24 @@ public class MapleMonster extends AbstractLoadedMapleLife
     this.eliteHp = eliteHp;
   }
 
-  public boolean isElitechmp ()
+  public boolean getIsEliteChampion ()
   {
-    return this.elitechmp;
+    return this.isEliteChampion;
   }
 
-  public void setElitechmp (boolean elitechmp)
+  public void setEliteChampion ()
   {
-    this.elitechmp = elitechmp;
+    this.isEliteChampion = true;
+  }
+
+  public int getEliteExpRate ()
+  {
+    return eliteExpRate;
+  }
+
+  public void setEliteExpRate (int eliteExpRate)
+  {
+    this.eliteExpRate = eliteExpRate;
   }
 
   private interface AttackerEntry
@@ -4057,7 +4068,10 @@ public class MapleMonster extends AbstractLoadedMapleLife
             if (pchr != null && pchr.isAlive())
             {
               boolean enable = true;
-              int[] linkMobs = { 9010152, 9010153, 9010154, 9010155, 9010156, 9010157, 9010158, 9010159, 9010160, 9010161, 9010162, 9010163, 9010164, 9010165, 9010166, 9010167, 9010168, 9010169, 9010170, 9010171, 9010172, 9010173, 9010174, 9010175, 9010176, 9010177, 9010178, 9010179, 9010180, 9010181 };
+              int[] linkMobs = {
+                  9010152, 9010153, 9010154, 9010155, 9010156, 9010157, 9010158, 9010159, 9010160, 9010161, 9010162, 9010163, 9010164, 9010165, 9010166, 9010167, 9010168, 9010169, 9010170, 9010171, 9010172, 9010173, 9010174, 9010175, 9010176, 9010177, 9010178, 9010179, 9010180,
+                  9010181
+              };
               for (int linkMob : linkMobs)
               {
                 if (MapleMonster.this.getId() == linkMob && pchr.getId() != attacker.getKey().getId())

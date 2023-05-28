@@ -14,7 +14,6 @@ import scripting.EventInstanceManager;
 import server.*;
 import server.enchant.EnchantFlag;
 import server.enchant.EquipmentScroll;
-import server.enchant.StarForceStats;
 import server.field.skill.*;
 import server.life.MapleHaku;
 import server.life.MapleMonster;
@@ -2116,7 +2115,7 @@ public class CField
       case 2432396:
       case 2432397:
       case 2432398:
-        if (map.getElitebossrewardtype() == 2 || map.getElitebossrewardtype() == 3)
+        if (map.getEliteBossRewardType() == 2 || map.getEliteBossRewardType() == 3)
         {
           drop.setFlyingDrop(true);
           drop.setTouchDrop(true);
@@ -6194,7 +6193,6 @@ public class CField
 
     public static byte[] showHealEffect (MapleCharacter chr, int skillid, boolean own)
     {
-      System.out.println("showHealEffect!");
       return showEffect(chr, 0, skillid, 37, 0, 0, (byte) 0, own, null, null, null);
     }
 

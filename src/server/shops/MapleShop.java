@@ -17,16 +17,13 @@ import tools.packet.CWvsContext;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class MapleShop
 {
   private static final Set<Integer> rechargeableItems = new LinkedHashSet<>();
-  
+
   static
   {
     rechargeableItems.add(Integer.valueOf(2070000));
@@ -57,7 +54,7 @@ public class MapleShop
     rechargeableItems.add(Integer.valueOf(2331000));
     rechargeableItems.add(Integer.valueOf(2332000));
   }
-  
+
   private final int id;
   private final int npcId;
   private final List<MapleShopItem> items;
@@ -66,8 +63,8 @@ public class MapleShop
   private int questEx;
   private String saleString;
   private String shopString;
-  
-  public MapleShop(int id, int npcId, int coinKey, int questEx, String shopString, String saleString)
+
+  public MapleShop (int id, int npcId, int coinKey, int questEx, String shopString, String saleString)
   {
     this.id = id;
     this.npcId = npcId;
@@ -77,8 +74,8 @@ public class MapleShop
     this.saleString = saleString;
     this.items = new LinkedList<>();
   }
-  
-  public MapleShop(int id, int npcId, int coinKey, String shopString, String saleString, int rechargeshop)
+
+  public MapleShop (int id, int npcId, int coinKey, String shopString, String saleString, int rechargeshop)
   {
     this.id = id;
     this.npcId = npcId;
@@ -88,163 +85,130 @@ public class MapleShop
     this.rechargeshop = rechargeshop;
     this.items = new LinkedList<>();
   }
-  
-  public static MapleShop createFromDB(int id, boolean isShopId)
+
+  public static ArrayList<Integer> getRechargeableItemList ()
   {
-    MapleShop ret = null;
-    Connection con = null;
-    try
-    {
-      int shopId;
-      con = DatabaseConnection.getConnection();
-      PreparedStatement ps = con.prepareStatement(isShopId ? "SELECT * FROM shops WHERE shopid = ?" : "SELECT * FROM shops WHERE npcid = ?");
-      ps.setInt(1, id);
-      ResultSet rs = ps.executeQuery();
-      if (rs.next())
-      {
-        shopId = rs.getInt("shopid");
-        ret = new MapleShop(shopId, rs.getInt("npcid"), rs.getInt("coinKey"), rs.getString("shopString"), rs.getString("saleString"), rs.getInt("rechargeshop"));
-        rs.close();
-        ps.close();
-      }
-      else
-      {
-        rs.close();
-        ps.close();
-        return null;
-      }
-      ps = con.prepareStatement("SELECT * FROM shopitems WHERE shopid = ? ORDER BY position ASC");
-      ps.setInt(1, shopId);
-      rs = ps.executeQuery();
-      List<Integer> recharges = new ArrayList<>(rechargeableItems);
-      int i = 1;
-      while (rs.next())
-      {
-        if (GameConstants.isThrowingStar(rs.getInt("itemid")) || GameConstants.isBullet(rs.getInt("itemid")))
-        {
-          MapleShopItem starItem = new MapleShopItem(rs.getInt("shopitemid"), (short) 1, rs.getInt("itemid"), rs.getInt("price"), rs.getInt("pricequantity"), (byte) rs.getInt("Tab"), rs.getInt("quantity"), rs.getInt("period"), i, rs.getInt("itemrate"), rs.getInt("buyquantity"), rs.getInt("rechargemonth"), rs.getInt("rechargeday"), rs.getInt("resetday"), rs.getInt("recharge"), rs.getInt("rechargecount"));
-          ret.addItem(starItem);
-          if (rechargeableItems.contains(Integer.valueOf(starItem.getItemId())))
-          {
-            recharges.remove(Integer.valueOf(starItem.getItemId()));
-          }
-        }
-        else
-        {
-          ret.addItem(new MapleShopItem(rs.getInt("shopitemid"), (short) 1000, rs.getInt("itemid"), rs.getInt("price"), rs.getInt("pricequantity"), (byte) rs.getInt("Tab"), rs.getInt("quantity"), rs.getInt("period"), i, rs.getInt("itemrate"), rs.getInt("buyquantity"), rs.getInt("rechargemonth"), rs.getInt("rechargeday"), rs.getInt("resetday"), rs.getInt("recharge"), rs.getInt("rechargecount")));
-        }
-        i++;
-      }
-      i = 1;
-      for (Integer recharge : recharges)
-      {
-        ret.addItem(new MapleShopItem(0, (short) 1000, recharge.intValue(), 0L, 0, (byte) 0, 0, 0, i, 0, 0, 0, 0, 0, 0, 0));
-        i++;
-      }
-      rs.close();
-      ps.close();
-    }
-    catch (SQLException e)
-    {
-      System.err.println("Could not load shop" + e);
-    }
-    finally
-    {
-      if (con != null)
-      {
-        try
-        {
-          con.close();
-        }
-        catch (SQLException ex)
-        {
-          Logger.getLogger(MapleShop.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      }
-    }
-    return ret;
+    return new ArrayList<>(rechargeableItems);
   }
-  
-  public void addItem(MapleShopItem item)
+
+
+  public void addItem (MapleShopItem item)
   {
     this.items.add(item);
   }
-  
-  public void sendShop(MapleClient c)
+
+  public void sendShop (MapleClient c)
   {
     sendShop(c, 0);
   }
-  
-  public void sendShop(MapleClient c, int id2)
+
+  public void sendShop (MapleClient c, int id2)
   {
     if (this.items == null)
     {
       System.out.println("상점에 아무정보가 없습니다.");
       return;
     }
-    if (MapleShopFactory.getInstance().getShop(this.id).getRechargeShop() == 1)
+    if (this.getRechargeShop() == 1)
     {
-      boolean active = false;
       boolean save = false;
+
       Calendar ocal = Calendar.getInstance();
-      for (MapleShopItem item : MapleShopFactory.getInstance().getShop(this.id).getItems())
+
+      for (MapleShopItem item : getItems())
       {
         int maxday = ocal.getActualMaximum(5);
+
         int month = ocal.get(2) + 1;
+
         int day = ocal.get(5);
+
         if (item.getReCharge() <= 0)
         {
           continue;
         }
+
         for (MapleShopLimit shl : c.getShopLimit())
         {
           if (shl.getLastBuyMonth() <= 0 || shl.getLastBuyDay() <= 0)
           {
             continue;
           }
+
           GregorianCalendar baseCal = new GregorianCalendar(ocal.get(1), shl.getLastBuyMonth(), shl.getLastBuyDay());
+
           GregorianCalendar targetCal = new GregorianCalendar(ocal.get(1), month, day);
+
           long diffSec = (targetCal.getTimeInMillis() - baseCal.getTimeInMillis()) / 1000L;
+
           long diffDays = diffSec / 86400L;
+
           if (shl.getItemid() != item.getItemId() || shl.getShopId() != MapleShopFactory.getInstance().getShop(this.id).getId() || shl.getPosition() != item.getPosition() || diffDays < 0L)
           {
             continue;
           }
+
           shl.setLastBuyMonth(0);
+
           shl.setLastBuyDay(0);
+
           shl.setLimitCountAcc(0);
+
           shl.setLimitCountChr(0);
+
           save = true;
+
           break;
         }
         if (item.getReChargeDay() > day || item.getReChargeMonth() > month)
         {
           continue;
         }
-        active = true;
+
         int afterday = day + item.getReCharge();
+
         if (afterday > maxday)
         {
           afterday -= maxday;
+
           if (++month > 12)
           {
             month = 1;
           }
         }
+
+        item.setRechargeMonth(month);
+
+        item.setRechargeDay(afterday);
+
+        item.setResetDay(day);
+
         Connection con = null;
+
         PreparedStatement ps = null;
+
         try
         {
           con = DatabaseConnection.getConnection();
+
           ps = con.prepareStatement("UPDATE shopitems SET rechargemonth = ?, rechargeday = ?, resetday = ? WHERE position = ? AND itemid = ? AND tab = ?");
+
           ps.setInt(1, month);
+
           ps.setInt(2, afterday);
+
           ps.setInt(3, day);
+
           ps.setInt(4, item.getPosition());
+
           ps.setInt(5, item.getItemId());
+
           ps.setByte(6, item.getTab());
+
           ps.executeUpdate();
+
           ps.close();
+
           con.close();
         }
         catch (SQLException e)
@@ -270,20 +234,19 @@ public class MapleShop
             e.printStackTrace();
           }
         }
+
       }
-      if (active)
-      {
-        MapleShopFactory.getInstance().clear();
-        MapleShopFactory.getInstance().getShop(this.id);
-      }
-      else if (save)
+
+      if (save)
       {
         c.saveShopLimit(c.getShopLimit());
       }
     }
+
     c.getPlayer().setShop(this);
+
     c.getSession().writeAndFlush(CField.NPCPacket.getNPCShop(id2 == 0 ? this.getNpcId() : id2, MapleShopFactory.getInstance().getShop(this.id), c));
-    block13:
+
     for (MapleShopItem item : this.getItems())
     {
       if (item.getReCharge() <= 0)
@@ -296,18 +259,18 @@ public class MapleShop
         {
           continue;
         }
+
         c.send(CField.NPCPacket.getShopLimit(this.getNpcId(), item.getPosition() - 1, item.getItemId(), shl.getLimitCountAcc()));
-        continue block13;
       }
     }
   }
-  
-  public List<MapleShopItem> getItems()
+
+  public List<MapleShopItem> getItems ()
   {
     return this.items;
   }
-  
-  public void buy(MapleClient c, int itemId, short quantity, short position)
+
+  public void buy (MapleClient c, int itemId, short quantity, short position)
   {
     MapleItemInformationProvider ii;
     int x = 0;
@@ -647,8 +610,8 @@ public class MapleShop
       }
     }
   }
-  
-  public void sell(MapleClient c, MapleInventoryType type, short slot, short quantity)
+
+  public void sell (MapleClient c, MapleInventoryType type, short slot, short quantity)
   {
     if (quantity <= 0)
     {
@@ -659,8 +622,8 @@ public class MapleShop
     {
       return;
     }
-    
-    
+
+
     if (item.getType() == 1)
     {
       Equip eq = (Equip) item;
@@ -701,7 +664,7 @@ public class MapleShop
           c.getSession().writeAndFlush(CWvsContext.setBossReward(c.getPlayer()));
         }
       }
-      //c.getPlayer().getInventory(type).removeItem(slot, quantity, false);
+      // c.getPlayer().getInventory(type).removeItem(slot, quantity, false);
       double price;
       if (GameConstants.isThrowingStar(item.getItemId()) || GameConstants.isBullet(item.getItemId()))
       {
@@ -724,8 +687,8 @@ public class MapleShop
       c.getSession().writeAndFlush(CField.NPCPacket.confirmShopTransactionItem((byte) 11, this, c, -1, item.getItemId()));
     }
   }
-  
-  public void recharge(MapleClient c, short slot)
+
+  public void recharge (MapleClient c, short slot)
   {
     Item item = c.getPlayer().getInventory(MapleInventoryType.USE).getItem(slot);
     if (item == null || (!GameConstants.isThrowingStar(item.getItemId()) && !GameConstants.isBullet(item.getItemId())))
@@ -751,8 +714,8 @@ public class MapleShop
       }
     }
   }
-  
-  protected MapleShopItem findById(int itemId, int position)
+
+  protected MapleShopItem findById (int itemId, int position)
   {
     for (MapleShopItem item : this.items)
     {
@@ -763,58 +726,58 @@ public class MapleShop
     }
     return null;
   }
-  
-  public int getNpcId()
+
+  public int getNpcId ()
   {
     return this.npcId;
   }
-  
-  public int getId()
+
+  public int getId ()
   {
     return this.id;
   }
-  
-  public int getCoinKey()
+
+  public int getCoinKey ()
   {
     return this.coinKey;
   }
-  
-  public void setCoinKey(int coinKey)
+
+  public void setCoinKey (int coinKey)
   {
     this.coinKey = coinKey;
   }
-  
-  public String getSaleString()
+
+  public String getSaleString ()
   {
     return this.saleString;
   }
-  
-  public void setSaleString(String saleString)
+
+  public void setSaleString (String saleString)
   {
     this.saleString = saleString;
   }
-  
-  public String getShopString()
+
+  public String getShopString ()
   {
     return this.shopString;
   }
-  
-  public void setShopString(String shopString)
+
+  public void setShopString (String shopString)
   {
     this.shopString = shopString;
   }
-  
-  public int getQuestEx()
+
+  public int getQuestEx ()
   {
     return this.questEx;
   }
-  
-  public void setQuestEx(int questEx)
+
+  public void setQuestEx (int questEx)
   {
     this.questEx = questEx;
   }
-  
-  public int getRechargeShop()
+
+  public int getRechargeShop ()
   {
     return this.rechargeshop;
   }

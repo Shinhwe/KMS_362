@@ -47,11 +47,11 @@ import java.util.Map;
   /*     */
   /*     */
   /*     */   private String customData;
-  
+
   /*     */
   /*     */
   /*     */
-  public MapleQuestStatus(MapleQuest quest, int status)
+  public MapleQuestStatus (MapleQuest quest, int status)
   {
     /*  47 */
     this.quest = quest;
@@ -69,11 +69,11 @@ import java.util.Map;
     }
     /*     */
   }
-  
+
   /*     */
   /*     */
   /*     */
-  public MapleQuestStatus(MapleQuest quest, byte status, int npc)
+  public MapleQuestStatus (MapleQuest quest, byte status, int npc)
   {
     /*  58 */
     this.quest = quest;
@@ -93,74 +93,74 @@ import java.util.Map;
     }
     /*     */
   }
-  
+
   /*     */
   /*     */
-  public final MapleQuest getQuest()
+  public final MapleQuest getQuest ()
   {
     /*  74 */
     return this.quest;
     /*     */
   }
-  
+
   /*     */
   /*     */
   /*     */
-  public final void setQuest(int qid)
+  public final void setQuest (int qid)
   {
     /*  70 */
     this.quest = MapleQuest.getInstance(qid);
     /*     */
   }
-  
+
   /*     */
   /*     */
-  public final byte getStatus()
+  public final byte getStatus ()
   {
     /*  78 */
     return this.status;
     /*     */
   }
-  
+
   /*     */
   /*     */
-  public final void setStatus(byte status)
+  public final void setStatus (byte status)
   {
     /*  82 */
     this.status = status;
     /*     */
   }
-  
+
   /*     */
   /*     */
-  public final int getNpc()
+  public final int getNpc ()
   {
     /*  86 */
     return this.npc;
     /*     */
   }
-  
+
   /*     */
   /*     */
-  public final void setNpc(int npc)
+  public final void setNpc (int npc)
   {
     /*  90 */
     this.npc = npc;
     /*     */
   }
-  
+
   /*     */
   /*     */
-  public boolean isCustom()
+  public boolean isCustom ()
   {
     /*  94 */
     return GameConstants.isCustomQuest(this.quest.getId());
     /*     */
   }
-  
+
   /*     */
   /*     */
-  private final void registerMobs()
+  private final void registerMobs ()
   {
     /*  98 */
     this.killedMobs = new LinkedHashMap<>();
@@ -174,10 +174,10 @@ import java.util.Map;
     /*     */
     /*     */
   }
-  
+
   /*     */
   /*     */
-  private final int maxMob(int mobid)
+  private final int maxMob (int mobid)
   {
     /* 105 */
     for (Map.Entry<Integer, Integer> qs : this.quest.getRelevantMobs().entrySet())
@@ -195,10 +195,10 @@ import java.util.Map;
     return 0;
     /*     */
   }
-  
+
   /*     */
   /*     */
-  public final boolean mobKilled(int id, int skillID, MapleCharacter chr)
+  public final boolean mobKilled (int id, int skillID, MapleCharacter chr)
   {
     /* 114 */
     if (this.quest != null && this.quest.getSkillID() > 0 &&
@@ -304,10 +304,10 @@ import java.util.Map;
     return false;
     /*     */
   }
-  
+
   /*     */
   /*     */
-  private final boolean questCount(int mo, int id)
+  private final boolean questCount (int mo, int id)
   {
     /* 171 */
     if (MapleLifeFactory.getQuestCount(mo) != null)
@@ -331,10 +331,10 @@ import java.util.Map;
     return false;
     /*     */
   }
-  
+
   /*     */
   /*     */
-  public final void setMobKills(int id, int count)
+  public final void setMobKills (int id, int count)
   {
     /* 182 */
     if (this.killedMobs == null)
@@ -347,10 +347,10 @@ import java.util.Map;
     this.killedMobs.put(Integer.valueOf(id), Integer.valueOf(count));
     /*     */
   }
-  
+
   /*     */
   /*     */
-  public final boolean hasMobKills()
+  public final boolean hasMobKills ()
   {
     /* 189 */
     if (this.killedMobs == null)
@@ -363,10 +363,10 @@ import java.util.Map;
     return (this.killedMobs.size() > 0);
     /*     */
   }
-  
+
   /*     */
   /*     */
-  public final int getMobKills(int id)
+  public final int getMobKills (int id)
   {
     /* 196 */
     Integer mob = this.killedMobs.get(Integer.valueOf(id));
@@ -381,46 +381,46 @@ import java.util.Map;
     return mob.intValue();
     /*     */
   }
-  
+
   /*     */
   /*     */
-  public final Map<Integer, Integer> getMobKills()
+  public final Map<Integer, Integer> getMobKills ()
   {
     /* 204 */
     return this.killedMobs;
     /*     */
   }
-  
+
   /*     */
   /*     */
-  public final long getCompletionTime()
+  public final long getCompletionTime ()
   {
     /* 208 */
     return this.completionTime;
     /*     */
   }
-  
+
   /*     */
   /*     */
-  public final void setCompletionTime(long completionTime)
+  public final void setCompletionTime (long completionTime)
   {
     /* 212 */
     this.completionTime = completionTime;
     /*     */
   }
-  
+
   /*     */
   /*     */
-  public final int getForfeited()
+  public final int getForfeited ()
   {
     /* 216 */
     return this.forfeited;
     /*     */
   }
-  
+
   /*     */
   /*     */
-  public final void setForfeited(int forfeited)
+  public final void setForfeited (int forfeited)
   {
     /* 220 */
     if (forfeited >= this.forfeited)
@@ -437,19 +437,19 @@ import java.util.Map;
     }
     /*     */
   }
-  
+
   /*     */
   /*     */
-  public final String getCustomData()
+  public final String getCustomData ()
   {
     /* 232 */
     return this.customData;
     /*     */
   }
-  
+
   /*     */
   /*     */
-  public final void setCustomData(String customData)
+  public final void setCustomData (String customData)
   {
     /* 228 */
     this.customData = customData;

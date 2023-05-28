@@ -19,7 +19,7 @@ public class EquipTemplate
   private short watk = 0;
   
   private short matk = 0;
-  
+
   private int attackSpeed = 0;
   
   private short moveMentSpeed = 0;
@@ -50,7 +50,7 @@ public class EquipTemplate
   
   private short charmEXP = 0;
   
-  private byte reqLevel = 0;
+  private short reqLevel = 0;
   
   private short allStat = 0;
   
@@ -303,12 +303,12 @@ public class EquipTemplate
     this.allStat = allStat;
   }
   
-  public byte getReqLevel()
+  public short getReqLevel()
   {
     return reqLevel;
   }
   
-  public void setReqLevel(byte reqLevel)
+  public void setReqLevel(short reqLevel)
   {
     this.reqLevel = reqLevel;
   }

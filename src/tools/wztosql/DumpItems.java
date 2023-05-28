@@ -18,15 +18,15 @@ public class DumpItems
   private final MapleDataProvider item;
   private final MapleDataProvider string = MapleDataProviderFactory.getDataProvider(new File("wz/String.wz"));
   protected final MapleData cashStringData = this.string.getData("Cash.img");
-  
+
   protected final MapleData consumeStringData = this.string.getData("Consume.img");
-  
+
   protected final MapleData eqpStringData = this.string.getData("Eqp.img");
-  
+
   protected final MapleData etcStringData = this.string.getData("Etc.img");
-  
+
   protected final MapleData insStringData = this.string.getData("Ins.img");
-  
+
   protected final MapleData petStringData = this.string.getData("Pet.img");
   private final MapleDataProvider character;
   private final Connection con = DatabaseConnection.getConnection();
@@ -35,8 +35,8 @@ public class DumpItems
   protected boolean hadError = false;
   protected boolean update = false;
   protected int id = 0;
-  
-  public DumpItems(boolean update) throws Exception
+
+  public DumpItems (boolean update) throws Exception
   {
     this.update = update;
     this.item = MapleDataProviderFactory.getDataProvider(new File("wz/Item.wz"));
@@ -46,8 +46,8 @@ public class DumpItems
       this.hadError = true;
     }
   }
-  
-  public static void main(String[] args)
+
+  public static void main (String[] args)
   {
     boolean hadError = false;
     boolean update = false;
@@ -87,20 +87,20 @@ public class DumpItems
     }
     System.out.println("Finished" + withErrors + " in " + elapsedMinutes + " minutes " + elapsedSecs + " seconds");
   }
-  
-  public boolean isHadError()
+
+  public boolean isHadError ()
   {
     return this.hadError;
   }
-  
-  public void dumpItems() throws Exception
+
+  public void dumpItems () throws Exception
   {
     System.setProperty("wz", "wz");
     if (!this.hadError)
     {
       PreparedStatement psa = this.con.prepareStatement("INSERT INTO wz_itemadddata(itemid, `key`, `subKey`, `value`) VALUES (?, ?, ?, ?)");
       PreparedStatement psr = this.con.prepareStatement("INSERT INTO wz_itemrewarddata(itemid, item, prob, quantity, period, worldMsg, effect) VALUES (?, ?, ?, ?, ?, ?, ?)");
-      PreparedStatement ps = this.con.prepareStatement("INSERT INTO wz_itemdata(itemid, name, msg, `desc`, slotMax, price, wholePrice, stateChange, flags, karma, meso, itemMakeLevel, questId, scrollReqs, consumeItem, totalprob, incSkill, replaceId, replaceMsg, `create`, afterImage, `forceUpgrade`, `chairType`, `nickSkill`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+      PreparedStatement ps = this.con.prepareStatement("INSERT INTO wz_itemdata(itemid, name, msg, `desc`, slotMax, price, wholePrice, stateChange, flags, karma, meso, itemMakeLevel, questId, scrollReqs, consumeItem, totalprob, incSkill, replaceId, replaceMsg, `create`, afterImage, `forceUpgrade`, `chairType`, `nickSkill`, `success`, `noSuperior`, `noCursed`, `reqEquipLevelMin`, `reqEquipLevelMax`, `timeLimited`, `cursed`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
       PreparedStatement pse = this.con.prepareStatement("INSERT INTO wz_itemequipdata(itemid, itemLevel, `key`, `value`) VALUES (?, ?, ?, ?)");
       try
       {
@@ -125,16 +125,16 @@ public class DumpItems
       }
     }
   }
-  
-  public void delete(String sql) throws Exception
+
+  public void delete (String sql) throws Exception
   {
     try (PreparedStatement ps = this.con.prepareStatement(sql))
     {
       ps.executeUpdate();
     }
   }
-  
-  public boolean doesExist(String sql) throws Exception
+
+  public boolean doesExist (String sql) throws Exception
   {
     boolean ret;
     try (PreparedStatement ps = this.con.prepareStatement(sql); ResultSet rs = ps.executeQuery())
@@ -143,8 +143,8 @@ public class DumpItems
     }
     return ret;
   }
-  
-  public void dumpItems(MapleDataProvider d, PreparedStatement psa, PreparedStatement psr, PreparedStatement ps, PreparedStatement pse, boolean charz) throws Exception
+
+  public void dumpItems (MapleDataProvider d, PreparedStatement psa, PreparedStatement psr, PreparedStatement ps, PreparedStatement pse, boolean charz) throws Exception
   {
     for (MapleDataDirectoryEntry topDir : d.getRoot().getSubdirectories())
     {
@@ -168,8 +168,8 @@ public class DumpItems
       }
     }
   }
-  
-  public void dumpItem(PreparedStatement psa, PreparedStatement psr, PreparedStatement ps, PreparedStatement pse, MapleData iz, boolean isShield, boolean isWeapon) throws Exception
+
+  public void dumpItem (PreparedStatement psa, PreparedStatement psr, PreparedStatement ps, PreparedStatement pse, MapleData iz, boolean isShield, boolean isWeapon) throws Exception
   {
     short ret;
     double d;
@@ -453,6 +453,13 @@ public class DumpItems
     String a = MapleDataTool.getString("info/customChair/type", iz, "");
     ps.setString(23, a);
     ps.setInt(24, MapleDataTool.getIntConvert("info/nickSkill", iz, 0));
+    ps.setInt(25, MapleDataTool.getIntConvert("info/success", iz, 0));
+    ps.setInt(26, MapleDataTool.getIntConvert("info/noSuperior", iz, 0));
+    ps.setInt(27, MapleDataTool.getIntConvert("info/noCursed", iz, 0));
+    ps.setInt(28, MapleDataTool.getIntConvert("info/reqEquipLevelMin", iz, 0));
+    ps.setInt(29, MapleDataTool.getIntConvert("info/reqEquipLevelMax", iz, 999));
+    ps.setInt(30, MapleDataTool.getIntConvert("info/timeLimited", iz, 0));
+    ps.setInt(31, MapleDataTool.getIntConvert("info/cursed", iz, 0));
     pse.setInt(1, this.id);
     for (Map.Entry<Integer, Map<String, String>> stats : equipStats.entrySet())
     {
@@ -582,8 +589,8 @@ public class DumpItems
     ps.setInt(20, MapleDataTool.getInt("info/create", iz, 0));
     ps.addBatch();
   }
-  
-  public void dumpItems(PreparedStatement psa, PreparedStatement psr, PreparedStatement ps, PreparedStatement pse) throws Exception
+
+  public void dumpItems (PreparedStatement psa, PreparedStatement psr, PreparedStatement ps, PreparedStatement pse) throws Exception
   {
     if (!this.update)
     {
@@ -606,13 +613,13 @@ public class DumpItems
       System.out.println(this.subCon);
     }
   }
-  
-  public int currentId()
+
+  public int currentId ()
   {
     return this.id;
   }
-  
-  protected final MapleData getStringData(int itemId)
+
+  protected final MapleData getStringData (int itemId)
   {
     MapleData data;
     String cat = null;

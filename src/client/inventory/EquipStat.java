@@ -37,7 +37,7 @@ public enum EquipStat
   TOTAL_DAMAGE(1, 1, 2),
   ALL_STAT(2, 1, 2),
   KARMA_COUNT(4, 1, 2),
-  REBIRTH_FIRE(8, 8, 2),
+  FLAME(8, 8, 2),
   EQUIPMENT_TYPE(16, 4, 2);
   
   private final int value;

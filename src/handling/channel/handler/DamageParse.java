@@ -35,8 +35,8 @@ import java.util.*;
 
 public class DamageParse
 {
-  
-  public static void applyAttack(final AttackInfo attack, Skill theSkill, final MapleCharacter player, double maxDamagePerMonster, SecondaryStatEffect effect, AttackType attack_type, boolean BuffAttack, boolean energy)
+
+  public static void applyAttack (final AttackInfo attack, Skill theSkill, final MapleCharacter player, double maxDamagePerMonster, SecondaryStatEffect effect, AttackType attack_type, boolean BuffAttack, boolean energy)
   {
     MapleSummon summon;
     SecondaryStatEffect combatRecovery;
@@ -119,12 +119,12 @@ public class DamageParse
             player.checkSpecialCoreSkills("attackCountMob", monster.getObjectId(), effect);
           }
           totDamage += totDamageToOneMonster;
-          
+
           if (!player.gethottimebossattackcheck())
           {
             player.sethottimebossattackcheck(true);
           }
-          
+
           if (monster.getId() != 8900002 && monster.getId() != 8900102)
           {
             player.checkMonsterAggro(monster);
@@ -223,7 +223,7 @@ public class DamageParse
               }
             }
           }
-          Integer[] 격투스킬 = new Integer[]{5101012, 5111002, 5121016};
+          Integer[] 격투스킬 = new Integer[] { 5101012, 5111002, 5121016 };
           if (player.getBuffedValue(SecondaryStat.SeaSerpent) != null)
           {
             MapleCharacter chr = player;
@@ -305,7 +305,7 @@ public class DamageParse
               }
             }
           }
-          
+
           if (player.getSkillLevel(5100015) > 0)
           {
             if (player.getBuffedEffect(SecondaryStat.EnergyCharged) == null)
@@ -489,7 +489,7 @@ public class DamageParse
             SecondaryStatEffect b_eff = SkillFactory.getSkill(14000027).getEffect(player.getSkillLevel(14001027));
             int BatLimit = 3;
             int Chance = b_eff.getProp();
-            for (int skill : skillids = new int[]{14100027, 0xD74D4D, 14120008})
+            for (int skill : skillids = new int[] { 14100027, 0xD74D4D, 14120008 })
             {
               if (player.getSkillLevel(skill) <= 0)
               {
@@ -1149,7 +1149,7 @@ public class DamageParse
               case 1121015:
               {
                 statusz.add(new Triple<MonsterStatus, MonsterStatusEffect, Long>(MonsterStatus.MS_Incizing, new MonsterStatusEffect(attack.skill, effect.getSubTime() > 0 ? effect.getSubTime() : effect.getDuration()), 1L));
-                //statusz.add(new Triple<MonsterStatus, MonsterStatusEffect, Long>(MonsterStatus.MS_Burned, new MonsterStatusEffect(attack.skill, 60000), (long) effect.getDOT() * totDamageToOneMonster / (long) attack.allDamage.size() / 10000L));
+                // statusz.add(new Triple<MonsterStatus, MonsterStatusEffect, Long>(MonsterStatus.MS_Burned, new MonsterStatusEffect(attack.skill, 60000), (long) effect.getDOT() * totDamageToOneMonster / (long) attack.allDamage.size() / 10000L));
                 break;
               }
               case 1201011:
@@ -1975,7 +1975,7 @@ public class DamageParse
             int sk = 0;
             boolean enhance = false;
             final int[] array2;
-            final int[] venoms = array2 = new int[]{4110011, 4210010, 4320005};
+            final int[] venoms = array2 = new int[] { 4110011, 4210010, 4320005 };
             for (final int venom : array2)
             {
               if (player.getSkillLevel(venom) > 0)
@@ -1986,7 +1986,7 @@ public class DamageParse
             if (sk > 0 && attack.skill != 4111003)
             {
               final int[] array3;
-              final int[] fatals = array3 = new int[]{4120011, 4220011, 4340012};
+              final int[] fatals = array3 = new int[] { 4120011, 4220011, 4340012 };
               for (final int fatal : array3)
               {
                 if (player.getSkillLevel(fatal) > 0)
@@ -2051,7 +2051,7 @@ public class DamageParse
               eff = player.getBuffedEffect(SecondaryStat.ElementDarkness);
               int suc = eff.getProp();
               int dot = eff.getDOT();
-              for (int pas : passive = new int[]{14100026, 14110028, 0xD77447})
+              for (int pas : passive = new int[] { 14100026, 14110028, 0xD77447 })
               {
                 SecondaryStatEffect eff1;
                 if (player.getSkillLevel(pas) <= 0 || (eff1 = SkillFactory.getSkill(pas).getEffect(player.getSkillLevel(pas))) == null)
@@ -2512,7 +2512,7 @@ public class DamageParse
               player.addCooldown(400051040, System.currentTimeMillis(), 8000L);
             }
             int[] array2;
-            int[] reduceSkills = array2 = new int[]{5210015, 5210016, 5210017, 5210018, 5220014, 5211007, 5221022, 5220023, 5220024, 5220025};
+            int[] reduceSkills = array2 = new int[] { 5210015, 5210016, 5210017, 5210018, 5220014, 5211007, 5221022, 5220023, 5220024, 5220025 };
             for (final int reduceSkill : array2)
             {
               if (!player.skillisCooling(reduceSkill))
@@ -2765,7 +2765,7 @@ public class DamageParse
               }
             }
           }
-          if (Arrays.asList(throw_skillList = new Integer[]{4121013, 4121017, 4121052, 4001344, 4101008, 4111010, 4111015}).contains(attack.skill))
+          if (Arrays.asList(throw_skillList = new Integer[] { 4121013, 4121017, 4121052, 4001344, 4101008, 4111010, 4111015 }).contains(attack.skill))
           {
             if (player.getBuffedEffect(SecondaryStat.ThrowBlasting) != null && attack.skill != 400041061 && attack.skill != 400041079)
             {
@@ -3085,7 +3085,7 @@ public class DamageParse
           SecondaryStatEffect dkeffect = player.getBuffedEffect(15001022);
           int prop = dkeffect.getProp();
           int maxcount = dkeffect.getV();
-          for (int skill : skills = new int[]{15000023, 15100025, 15110026, 15120008})
+          for (int skill : skills = new int[] { 15000023, 15100025, 15110026, 15120008 })
           {
             if (player.getSkillLevel(skill) <= 0)
             {
@@ -3260,7 +3260,7 @@ public class DamageParse
       player.getClient().getSession().writeAndFlush(CField.skillCooldown(400011048, flear.getCooldown(player)));
     }
     if (player.getSkillLevel(400041075) > 0 && player.getCooldownLimit(400041075) == 0L && (attack.skill == 4341004 || attack.skill == 4341009))
-    { //사라졌?
+    { // 사라졌?
       SecondaryStatEffect hunted_edge = SkillFactory.getSkill(400041075).getEffect(player.getSkillLevel(400041075));
       if (attack.skill == 4341004)
       {
@@ -3278,7 +3278,7 @@ public class DamageParse
     if (player.getSkillLevel(23110004) > 0 && attack.isLink && attack.charge == 0 && !player.getBuffedValue(400031017))
     {
       int[] linkCooldownSkills;
-      for (int ck : linkCooldownSkills = new int[]{23121052, 400031007, 23111002, 23121002})
+      for (int ck : linkCooldownSkills = new int[] { 23121052, 400031007, 23111002, 23121002 })
       {
         if (!player.skillisCooling(ck))
         {
@@ -4245,7 +4245,7 @@ public class DamageParse
       player.getMap().spawnMapleAtom(atom);
     }
     if (attack.skill == 155001000)
-    {//아크
+    {// 아크
       SkillFactory.getSkill(155001001).getEffect(attack.skilllevel).applyTo(player, false);
     }
     if (attack.skill == 155101002)
@@ -4387,7 +4387,7 @@ public class DamageParse
       {
         pos1 = pos;
       }
-      Integer[] skills = new Integer[]{164001000, 164001002, 164101000, 164111000, 164111003, 164111008, 164121000, 164121003, 164121005};
+      Integer[] skills = new Integer[] { 164001000, 164001002, 164101000, 164111000, 164111003, 164111008, 164121000, 164121003, 164121005 };
       if (Arrays.asList(skills).contains(attack.skill))
       {
         SecondaryStatEffect sungi = SkillFactory.getSkill(400041063).getEffect(player.getSkillLevel(400041063));
@@ -4528,10 +4528,13 @@ public class DamageParse
       player.CombokillHandler(monster, 1, multikill);
     }
   }
-  
-  private static void parseFinalAttack(MapleCharacter player, AttackInfo attack, MapleMonster monster)
+
+  private static void parseFinalAttack (MapleCharacter player, AttackInfo attack, MapleMonster monster)
   {
-    int[][] finalAttackReq = new int[][]{{1100002, 1120013}, {1200002, 0}, {1300002, 0}, {2121007, 2120013}, {2221007, 2220014}, {3100001, 3120008}, {3200001, 0}, {4341054, 0}, {5121013, 0}, {5220020, 0}, {5311004, 1}, {11101002, 0}, {21100010, 21120012}, {22000015, 22110021}, {23100006, 23120012}, {31220007, 0}, {32121004, 32121011}, {33100009, 33120011}, {37000007, 0}, {51100002, 51120002}};
+    int[][] finalAttackReq = new int[][] {
+        { 1100002, 1120013 }, { 1200002, 0 }, { 1300002, 0 }, { 2121007, 2120013 }, { 2221007, 2220014 }, { 3100001, 3120008 }, { 3200001, 0 }, { 4341054, 0 }, { 5121013, 0 }, { 5220020, 0 }, { 5311004, 1 }, { 11101002, 0 }, { 21100010, 21120012 }, { 22000015, 22110021 },
+        { 23100006, 23120012 }, { 31220007, 0 }, { 32121004, 32121011 }, { 33100009, 33120011 }, { 37000007, 0 }, { 51100002, 51120002 }
+    };
     Item weapon = player.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
     for (int[] skill : finalAttackReq)
     {
@@ -4573,7 +4576,7 @@ public class DamageParse
       {
         chance = 100;
       }
-      
+
       if (!Randomizer.isSuccess(chance))
       {
         break;
@@ -4582,8 +4585,8 @@ public class DamageParse
       break;
     }
   }
-  
-  public static final void applyAttackMagic(AttackInfo attack, Skill theSkill, MapleCharacter player, SecondaryStatEffect effect, double maxDamagePerHit)
+
+  public static final void applyAttackMagic (AttackInfo attack, Skill theSkill, MapleCharacter player, SecondaryStatEffect effect, double maxDamagePerHit)
   {
     SecondaryStatEffect stst;
     MapleSummon summon;
@@ -4678,7 +4681,7 @@ public class DamageParse
           attackCount += player.getBuffedEffect(SecondaryStat.VengeanceOfAngel).getY();
         }
         Integer attackCountX = player.getBuffedValue(SecondaryStat.AttackCountX);
-        int[] blowSkills = new int[]{32001000, 32101000, 32111002, 32121002, 400021007};
+        int[] blowSkills = new int[] { 32001000, 32101000, 32111002, 32121002, 400021007 };
         if (attackCountX != null)
         {
           for (int blowSkill : blowSkills)
@@ -4744,12 +4747,12 @@ public class DamageParse
         player.checkSpecialCoreSkills("attackCountMob", monster.getObjectId(), effect);
       }
       totDamage += totDamageToOneMonster;
-      
+
       if (!player.gethottimebossattackcheck())
       {
         player.sethottimebossattackcheck(true);
       }
-      
+
       if (monster.getId() != 8900002 && monster.getId() != 8900102)
       {
         player.checkMonsterAggro(monster);
@@ -5039,7 +5042,7 @@ public class DamageParse
               monster.removeCustomInfo(attack.skill);
             }
             if (monster.getCustomValue0(attack.skill) < (long) effect2.getQ())
-            {//MS_IndiePdr
+            {// MS_IndiePdr
               monster.addSkillCustomInfo(attack.skill, 1L);
             }
             statusz.add(new Triple<MonsterStatus, MonsterStatusEffect, Long>(MonsterStatus.MS_IndieUNK, new MonsterStatusEffect(attack.skill, 20000), (monster.getCustomValue0(attack.skill))));
@@ -5793,8 +5796,8 @@ public class DamageParse
       player.CombokillHandler(monster, 1, multikill);
     }
   }
-  
-  public static final AttackInfo parseDmgMa(LittleEndianAccessor lea, MapleCharacter chr, boolean chilling, boolean orbital)
+
+  public static final AttackInfo parseDmgMa (LittleEndianAccessor lea, MapleCharacter chr, boolean chilling, boolean orbital)
   {
     AttackInfo ret = new AttackInfo();
     LittleEndianAccessor data = lea;
@@ -5810,7 +5813,7 @@ public class DamageParse
     ret.tbyte = lea.readByte();
     ret.targets = (byte) (ret.tbyte >>> 4 & 0xF);
     ret.hits = (byte) (ret.tbyte & 0xF);
-    //lea.skip(4);
+    // lea.skip(4);
     ret.skill = lea.readInt();
     ret.skilllevel = lea.readInt();
     try
@@ -5962,8 +5965,8 @@ public class DamageParse
     }
     return ret;
   }
-  
-  public static final AttackInfo parseDmgB(LittleEndianAccessor lea, MapleCharacter chr)
+
+  public static final AttackInfo parseDmgB (LittleEndianAccessor lea, MapleCharacter chr)
   {
     AttackInfo ret = new AttackInfo();
     LittleEndianAccessor data = lea;
@@ -5971,7 +5974,7 @@ public class DamageParse
     ret.tbyte = lea.readByte();
     ret.targets = (byte) (ret.tbyte >>> 4 & 0xF);
     ret.hits = (byte) (ret.tbyte & 0xF);
-    //lea.skip(4);
+    // lea.skip(4);
     ret.skill = lea.readInt();
     ret.skilllevel = lea.readInt();
     try
@@ -6057,8 +6060,8 @@ public class DamageParse
     }
     return ret;
   }
-  
-  public static final AttackInfo parseDmgM(LittleEndianAccessor lea, MapleCharacter chr, boolean dot)
+
+  public static final AttackInfo parseDmgM (LittleEndianAccessor lea, MapleCharacter chr, boolean dot)
   {
     AttackInfo ret = new AttackInfo();
     LittleEndianAccessor data = lea;
@@ -6223,12 +6226,12 @@ public class DamageParse
     }
     return ret;
   }
-  
+
   /*
    * Enabled force condition propagation
    * Lifted jumps to return sites
    */
-  public static final AttackInfo parseDmgR(LittleEndianAccessor lea, MapleCharacter chr)
+  public static final AttackInfo parseDmgR (LittleEndianAccessor lea, MapleCharacter chr)
   {
     AttackInfo ret = new AttackInfo();
     LittleEndianAccessor data = lea;
@@ -6237,7 +6240,7 @@ public class DamageParse
     ret.tbyte = lea.readByte();
     ret.targets = (byte) (ret.tbyte >>> 4 & 0xF);
     ret.hits = (byte) (ret.tbyte & 0xF);
-    //lea.skip(4);
+    // lea.skip(4);
     ret.skill = lea.readInt();
     ret.skilllevel = lea.readInt();
     try
@@ -6332,6 +6335,10 @@ public class DamageParse
         ret.chain = lea.readPos();
         return ret;
       }
+      if (lea.available() <= 2L)
+      {
+        return ret;
+      }
       ret.bShowFixedDamage = lea.readByte();
       ret.nMoveAction = lea.readByte();
       if (GameConstants.sub_846930(ret.skill) > 0 || GameConstants.sub_847580(ret.skill))
@@ -6357,12 +6364,13 @@ public class DamageParse
     }
     catch (Exception e)
     {
+      e.printStackTrace();
       FileoutputUtil.log("Log_Attack.txt", "error in Rangedattack.\r\n ordinary : " + HexTool.toString(data.getByteArray()) + "\r\n error : " + e);
     }
     return ret;
   }
-  
-  public static void WFinalAttackRequest(MapleCharacter chr, int skillid, MapleMonster monster)
+
+  public static void WFinalAttackRequest (MapleCharacter chr, int skillid, MapleMonster monster)
   {
     if (SkillFactory.getSkill(skillid) != null)
     {
@@ -6493,8 +6501,8 @@ public class DamageParse
       }
     }
   }
-  
-  public static void MFinalAttackRequest(MapleCharacter chr, int skillid, MapleMonster monster)
+
+  public static void MFinalAttackRequest (MapleCharacter chr, int skillid, MapleMonster monster)
   {
     if (SkillFactory.getSkill(skillid) != null)
     {

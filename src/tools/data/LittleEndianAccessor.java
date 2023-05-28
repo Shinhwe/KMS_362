@@ -9,21 +9,21 @@ import java.nio.charset.StandardCharsets;
 public class LittleEndianAccessor
 {
   private final ByteArrayByteStream bs;
-  
+
   public int bits = 0;
-  
-  public LittleEndianAccessor(ByteArrayByteStream bs)
+
+  public LittleEndianAccessor (ByteArrayByteStream bs)
   {
     this.bs = bs;
   }
-  
-  public final byte[] getByteArray()
+
+  public final byte[] getByteArray ()
   {
     return this.bs.getByteArray();
   }
-  
-  
-  public final int readBit(int bit) throws IOException
+
+
+  public final int readBit (int bit) throws IOException
   {
     byte[] arr = new byte[8];
     byte b = (byte) (this.bs.getByteArray()[(int) this.bs.getPosition()] & 0xFF);
@@ -47,18 +47,18 @@ public class LittleEndianAccessor
     }
     return v;
   }
-  
-  public final byte readByte()
+
+  public final byte readByte ()
   {
     return (byte) this.bs.readByte();
   }
-  
-  public final int readByteToInt()
+
+  public final int readByteToInt ()
   {
     return this.bs.readByte();
   }
-  
-  public final int readInt()
+
+  public final int readInt ()
   {
     int byte1 = this.bs.readByte();
     int byte2 = this.bs.readByte();
@@ -66,15 +66,15 @@ public class LittleEndianAccessor
     int byte4 = this.bs.readByte();
     return (byte4 << 24) + (byte3 << 16) + (byte2 << 8) + byte1;
   }
-  
-  public final short readShort()
+
+  public final short readShort ()
   {
     int byte1 = this.bs.readByte();
     int byte2 = this.bs.readByte();
     return (short) ((byte2 << 8) + byte1);
   }
-  
-  public final int readUShort()
+
+  public final int readUShort ()
   {
     int quest = readShort();
     if (quest < 0)
@@ -83,13 +83,13 @@ public class LittleEndianAccessor
     }
     return quest;
   }
-  
-  public final char readChar()
+
+  public final char readChar ()
   {
     return (char) readShort();
   }
-  
-  public final long readLong()
+
+  public final long readLong ()
   {
     long byte1 = this.bs.readByte();
     long byte2 = this.bs.readByte();
@@ -101,18 +101,18 @@ public class LittleEndianAccessor
     long byte8 = this.bs.readByte();
     return (byte8 << 56L) + (byte7 << 48L) + (byte6 << 40L) + (byte5 << 32L) + (byte4 << 24L) + (byte3 << 16L) + (byte2 << 8L) + byte1;
   }
-  
-  public final float readFloat()
+
+  public final float readFloat ()
   {
     return Float.intBitsToFloat(readInt());
   }
-  
-  public final double readDouble()
+
+  public final double readDouble ()
   {
     return Double.longBitsToDouble(readLong());
   }
-  
-  public String readAsciiString(int n)
+
+  public String readAsciiString (int n)
   {
     byte[] ret = new byte[n];
     for (int x = 0; x < n; x++)
@@ -121,8 +121,8 @@ public class LittleEndianAccessor
     }
     return new String(ret, Charset.forName("MS949"));
   }
-  
-  public final String readAsciiString2(int n)
+
+  public final String readAsciiString2 (int n)
   {
     byte[] ret = new byte[n];
     for (int x = 0; x < n; x++)
@@ -131,13 +131,13 @@ public class LittleEndianAccessor
     }
     return new String(ret, StandardCharsets.UTF_8);
   }
-  
-  public final String readMapleAsciiString2()
+
+  public final String readMapleAsciiString2 ()
   {
     return readAsciiString2(readShort());
   }
-  
-  public final String readNullTerminatedAsciiString()
+
+  public final String readNullTerminatedAsciiString ()
   {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     while (true)
@@ -157,32 +157,32 @@ public class LittleEndianAccessor
     }
     return String.valueOf(chrBuf);
   }
-  
-  public final long getBytesRead()
+
+  public final long getBytesRead ()
   {
     return this.bs.getBytesRead();
   }
-  
-  public final String readMapleAsciiString()
+
+  public final String readMapleAsciiString ()
   {
     return readAsciiString(readShort());
   }
-  
-  public final Point readPos()
+
+  public final Point readPos ()
   {
     int x = readShort();
     int y = readShort();
     return new Point(x, y);
   }
-  
-  public final Point readIntPos()
+
+  public final Point readIntPos ()
   {
     int x = readInt();
     int y = readInt();
     return new Point(x, y);
   }
-  
-  public final byte[] read(int num)
+
+  public final byte[] read (int num)
   {
     byte[] ret = new byte[num];
     for (int x = 0; x < num; x++)
@@ -191,23 +191,23 @@ public class LittleEndianAccessor
     }
     return ret;
   }
-  
-  public final long available()
+
+  public final long available ()
   {
     return this.bs.available();
   }
-  
-  public final String toString()
+
+  public final String toString ()
   {
     return this.bs.toString();
   }
-  
-  public final String toString(boolean b)
+
+  public final String toString (boolean b)
   {
     return this.bs.toString(b);
   }
-  
-  public final void seek(long offset)
+
+  public final void seek (long offset)
   {
     try
     {
@@ -218,13 +218,13 @@ public class LittleEndianAccessor
       System.err.println("Seek failed" + e);
     }
   }
-  
-  public final long getPosition()
+
+  public final long getPosition ()
   {
     return this.bs.getPosition();
   }
-  
-  public final void skip(int num)
+
+  public final void skip (int num)
   {
     seek(getPosition() + num);
   }

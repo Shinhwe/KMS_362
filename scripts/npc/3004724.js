@@ -293,6 +293,7 @@ function action(mode, type, sel) {
 										   addPet();
 			cm.gainItem(5044002, 1);
 			cm.gainItem(2000005, 500);
+			cm.gainItem(2450163, 3);
                                            cm.gainItem(3018469, 1);
                                           cm.gainItem(2431307, 1);
 			cm.gainMeso(3000000);
@@ -393,6 +394,7 @@ function action(mode, type, sel) {
                                            cm.gainItem(2431307, 1);
                                          cm.gainItem(2433444, 1);
                                          cm.gainItem(3018469, 1);
+										 cm.gainItem(2450163, 3);
 										 cm.gainItem(2000005, 500);
 			cm.gainItem(2431774, 1);
 			cm.gainItem(5044002, 1);

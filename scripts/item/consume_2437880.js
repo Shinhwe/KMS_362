@@ -1,4 +1,4 @@
-box = 2437760;
+box = 2437880;
 var seld = -1;
 
 function start() {
@@ -15,7 +15,7 @@ function action(mode, type, selection) {
 		St++;
 	}
 	if (St == 0) {
-        var text = "#fs14#請選擇要獲取的秘法符文, 每張兌換券可以獲得 5 個秘法符文.\r\n";
+        var text = "#fs14#請選擇要獲取的秘法符文, 每張兌換券可以獲得 2 個秘法符文.\r\n";
 		text += "#L1##b#i1712001##z1712001#\r\n";
 		text += "#L2##b#i1712002##z1712002#\r\n";
 		text += "#L3##b#i1712003##z1712003#\r\n";
@@ -27,18 +27,18 @@ function action(mode, type, selection) {
 		seld = selection;
         cm.sendGetNumber("要使用多少張兌換券?", 1, 1, 100);
 	} else if (St == 2) {
-		if (!cm.canHold(1712000 + seld, 5 * seld)) {
-            cm.sendOk("背包空間不足, 裝備欄位需要有 " + (5 * seld) + " 個空間, 請檢查!");
+		if (!cm.canHold(1712000 + seld, 2 * seld)) {
+            cm.sendOk("背包空間不足, 裝備欄位需要有 " + (2 * seld) + " 個空間, 請檢查!");
 			cm.dispose();
 			return;
 		}
-		if (!cm.haveItem(2437760, selection)) {
+		if (!cm.haveItem(2437880, selection)) {
             cm.sendOk("你沒有那麽多兌換券!");
 			cm.dispose();
 			return;
 		}
-		cm.gainItem(1712000 + seld, 5 * selection);
-		cm.gainItem(2437760, -1 * selection);
+		cm.gainItem(1712000 + seld, 2 * selection);
+		cm.gainItem(2437880, -1 * selection);
         cm.sendOk("成功獲得對應的秘法符文!");
 		cm.dispose();
 	}

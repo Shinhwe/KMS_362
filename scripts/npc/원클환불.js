@@ -89,7 +89,7 @@ var FireStat = function (option, value, calculratedValue) {
 
 var SCRIPT_TITLE = "#e#b<원클릭 환생의 불꽃>#n#k";
 var enter = "\r\n";
-var ALLOWED_REBIRTH_FIRE_ITEM_ID = [2048717];
+var ALLOWED_FLAME_ITEM_ID = [2048717];
 var SELECTION_EXIT = 1000;
 var SELECTION_APPLY = 1001;
 var status = -1;
@@ -121,8 +121,8 @@ function action(mode, type, selection) {
         chat += getRebirthFireSelections();
         cm.sendSimple(chat);
     } else if (status == 1) {
-        if (selection >= 0 && selection < ALLOWED_REBIRTH_FIRE_ITEM_ID) {
-            selectedRebirthFireItemId = ALLOWED_REBIRTH_FIRE_ITEM_ID[selection];
+        if (selection >= 0 && selection < ALLOWED_FLAME_ITEM_ID) {
+            selectedRebirthFireItemId = ALLOWED_FLAME_ITEM_ID[selection];
         }
 
         selectedEquipments = getEquipItems(function (item) {
@@ -189,8 +189,8 @@ function action(mode, type, selection) {
 
 function getRebirthFireSelections() {
     var selections = "";
-    for (var index in ALLOWED_REBIRTH_FIRE_ITEM_ID) {
-        var itemId = ALLOWED_REBIRTH_FIRE_ITEM_ID[index];
+    for (var index in ALLOWED_FLAME_ITEM_ID) {
+        var itemId = ALLOWED_FLAME_ITEM_ID[index];
         selections += "#L" + index + "#";
         selections += "#v" + itemId + "#";
         selections += "#z" + itemId + "#";

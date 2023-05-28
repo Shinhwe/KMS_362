@@ -123,10 +123,10 @@ public class VerifyDamage
         //chra.getTrait(MapleTrait.MapleTraitType.craft).addLocalExp(equip.getHands());
         //accuracy += equip.getAcc();
         
-        per_dex += equip.getAllStat();
-        per_int += equip.getAllStat();
-        per_str += equip.getAllStat();
-        per_luk += equip.getAllStat();
+        per_dex += equip.getTotalAllStat();
+        per_int += equip.getTotalAllStat();
+        per_str += equip.getTotalAllStat();
+        per_luk += equip.getTotalAllStat();
         
         //per_mhp += equip.get
         

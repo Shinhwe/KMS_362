@@ -30,6 +30,7 @@ import server.maps.MapleMap;
 import server.marriage.MarriageDataEntry;
 import server.quest.MapleQuest;
 import server.quest.party.MapleNettPyramid;
+import server.shops.MapleShop;
 import server.shops.MapleShopFactory;
 import server.shops.MapleShopItem;
 import tools.FileoutputUtil;
@@ -58,7 +59,7 @@ import java.util.regex.Pattern;
 
 public class NPCConversationManager extends AbstractPlayerInteraction
 {
-  
+
   /*  759 */    public static Map<Integer, String> hairlist = new HashMap<>();
   /*  760 */    public static Map<Integer, String> facelist = new HashMap<>();
   private final String script;
@@ -67,8 +68,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
   public boolean pendingDisposal = false;
   private String getText;
   /*   85 */    private byte lastMsg = -1;
-  
-  public NPCConversationManager(MapleClient c, int npc, int questid, byte type, Invocable iv, String script)
+
+  public NPCConversationManager (MapleClient c, int npc, int questid, byte type, Invocable iv, String script)
   {
     /*   90 */
     super(c, npc, questid);
@@ -79,8 +80,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*   93 */
     this.script = script;
   }
-  
-  public static void writeLog(String path, String data, boolean writeafterend)
+
+  public static void writeLog (String path, String data, boolean writeafterend)
   {
     try
     {
@@ -116,22 +117,22 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       e.printStackTrace();
     }
   }
-  
-  public static Object[] add(Object[] arr, Object... elements)
+
+  public static Object[] add (Object[] arr, Object... elements)
   {
     /* 1501 */
     Object[] tempArr = new Object[arr.length + elements.length];
     /* 1502 */
     System.arraycopy(arr, 0, tempArr, 0, arr.length);
-    
+
     /* 1504 */
     /* 1505 */
     System.arraycopy(elements, 0, tempArr, arr.length, elements.length);
     /* 1507 */
     return tempArr;
   }
-  
-  public static void updateDamageMeter(MapleCharacter chr, long damage)
+
+  public static void updateDamageMeter (MapleCharacter chr, long damage)
   {
     try
     {
@@ -154,8 +155,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       ex.printStackTrace();
     }
   }
-  
-  public void sendConductExchange(String text)
+
+  public void sendConductExchange (String text)
   {
     /*   97 */
     if (this.lastMsg > -1)
@@ -167,56 +168,56 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  101 */
     this.lastMsg = 0;
   }
-  
-  public void sendPacket(short a, String b)
+
+  public void sendPacket (short a, String b)
   {
     /*  105 */
     this.c.getSession().writeAndFlush(SLFCGPacket.SendPacket(a, b));
   }
-  
-  public Invocable getIv()
+
+  public Invocable getIv ()
   {
     /*  109 */
     return this.iv;
   }
-  
-  public String getScript()
+
+  public String getScript ()
   {
     /*  113 */
     return this.script;
   }
-  
-  public int getNpc()
+
+  public int getNpc ()
   {
     /*  117 */
     return this.id;
   }
-  
-  public int getQuest()
+
+  public int getQuest ()
   {
     /*  121 */
     return this.id2;
   }
-  
-  public byte getType()
+
+  public byte getType ()
   {
     /*  125 */
     return this.type;
   }
-  
-  public void safeDispose()
+
+  public void safeDispose ()
   {
     /*  129 */
     this.pendingDisposal = true;
   }
-  
-  public void dispose()
+
+  public void dispose ()
   {
     /*  133 */
     NPCScriptManager.getInstance().dispose(this.c);
   }
-  
-  public void askMapSelection(String sel)
+
+  public void askMapSelection (String sel)
   {
     /*  137 */
     if (this.lastMsg > -1)
@@ -228,14 +229,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  141 */
     this.lastMsg = 17;
   }
-  
-  public void sendNext(String text)
+
+  public void sendNext (String text)
   {
     /*  145 */
     sendNext(text, this.id);
   }
-  
-  public void sendNext(String text, int id)
+
+  public void sendNext (String text, int id)
   {
     /*  149 */
     if (this.lastMsg > -1)
@@ -254,18 +255,18 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  157 */
     this.lastMsg = 0;
   }
-  
-  public void sendPlayerToNpc(String text)
+
+  public void sendPlayerToNpc (String text)
   {
     /*  161 */
     sendNextS(text, (byte) 3, this.id);
   }
-  
-  public void StartSpiritSavior()
+
+  public void StartSpiritSavior ()
   {
   }
-  
-  public void StartBlockGame()
+
+  public void StartBlockGame ()
   {
     /*  169 */
     MapleClient c = getClient();
@@ -277,17 +278,17 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     c.getSession().writeAndFlush(CField.UIPacket.IntroLock(true));
     /*  173 */
     server.Timer.EventTimer.getInstance().schedule(() ->
-        {
-          c.getSession().writeAndFlush(SLFCGPacket.BlockGameCommandPacket(1));
-          c.getSession().writeAndFlush(SLFCGPacket.BlockGameCommandPacket(2));
-          c.getSession().writeAndFlush(SLFCGPacket.BlockGameControlPacket(100, 10));
-        },
-        
-        
-        2000L);
+                                                   {
+                                                     c.getSession().writeAndFlush(SLFCGPacket.BlockGameCommandPacket(1));
+                                                     c.getSession().writeAndFlush(SLFCGPacket.BlockGameCommandPacket(2));
+                                                     c.getSession().writeAndFlush(SLFCGPacket.BlockGameControlPacket(100, 10));
+                                                   },
+
+
+                                                   2000L);
   }
-  
-  public boolean setZodiacGrade(int grade)
+
+  public boolean setZodiacGrade (int grade)
   {
     if (c.getPlayer().getKeyValue(190823, "grade") >= grade)
     {
@@ -303,26 +304,26 @@ public class NPCConversationManager extends AbstractPlayerInteraction
 //        c.getPlayer().getStat().recalcLocalStats(c.getPlayer());
     return true;
   }
-  
-  public void sendNextNoESC(String text)
+
+  public void sendNextNoESC (String text)
   {
     /*  181 */
     sendNextS(text, (byte) 1, this.id);
   }
-  
-  public void sendNextNoESC(String text, int id)
+
+  public void sendNextNoESC (String text, int id)
   {
     /*  185 */
     sendNextS(text, (byte) 1, id);
   }
-  
-  public void sendNextS(String text, byte type)
+
+  public void sendNextS (String text, byte type)
   {
     /*  189 */
     sendNextS(text, type, 0);
   }
-  
-  public void sendNextS(String text, byte type, int id, int idd)
+
+  public void sendNextS (String text, byte type, int id, int idd)
   {
     /*  193 */
     if (this.lastMsg > -1)
@@ -341,8 +342,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  201 */
     this.lastMsg = 0;
   }
-  
-  public void sendNextS(String text, byte type, int idd)
+
+  public void sendNextS (String text, byte type, int idd)
   {
     /*  205 */
     if (this.lastMsg > -1)
@@ -361,8 +362,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  213 */
     this.lastMsg = 0;
   }
-  
-  public void sendCustom(String text, byte type, int idd)
+
+  public void sendCustom (String text, byte type, int idd)
   {
     /*  217 */
     if (this.lastMsg > -1)
@@ -374,14 +375,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  221 */
     this.lastMsg = 0;
   }
-  
-  public void sendPrev(String text)
+
+  public void sendPrev (String text)
   {
     /*  225 */
     sendPrev(text, this.id);
   }
-  
-  public void sendPrev(String text, int id)
+
+  public void sendPrev (String text, int id)
   {
     /*  229 */
     if (this.lastMsg > -1)
@@ -400,14 +401,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  237 */
     this.lastMsg = 0;
   }
-  
-  public void sendPrevS(String text, byte type)
+
+  public void sendPrevS (String text, byte type)
   {
     /*  241 */
     sendPrevS(text, type, 0);
   }
-  
-  public void sendPrevS(String text, byte type, int idd)
+
+  public void sendPrevS (String text, byte type, int idd)
   {
     /*  245 */
     if (this.lastMsg > -1)
@@ -426,14 +427,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  253 */
     this.lastMsg = 0;
   }
-  
-  public void sendNextPrev(String text)
+
+  public void sendNextPrev (String text)
   {
     /*  257 */
     sendNextPrev(text, this.id);
   }
-  
-  public void sendNextPrev(String text, int id)
+
+  public void sendNextPrev (String text, int id)
   {
     /*  261 */
     if (this.lastMsg > -1)
@@ -452,26 +453,26 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  269 */
     this.lastMsg = 0;
   }
-  
-  public void EnterCS()
+
+  public void EnterCS ()
   {
     /*  273 */
     InterServerHandler.EnterCS(this.c, this.c.getPlayer(), false);
   }
-  
-  public void PlayerToNpc(String text)
+
+  public void PlayerToNpc (String text)
   {
     /*  277 */
     sendNextPrevS(text, (byte) 3);
   }
-  
-  public void sendNextPrevS(String text)
+
+  public void sendNextPrevS (String text)
   {
     /*  281 */
     sendNextPrevS(text, (byte) 3);
   }
-  
-  public String getMobName(int mobid)
+
+  public String getMobName (int mobid)
   {
     /*  285 */
     MapleData data = null;
@@ -481,7 +482,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     String ret = "";
     /*  288 */
     List<String> retMobs = new ArrayList<>();
-    
+
     /*  290 */
     data = dataProvider.getData("Mob.img");
     /*  291 */
@@ -505,14 +506,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  300 */
     return ret;
   }
-  
-  public void sendNextPrevS(String text, byte type)
+
+  public void sendNextPrevS (String text, byte type)
   {
     /*  304 */
     sendNextPrevS(text, type, 0);
   }
-  
-  public void sendNextPrevS(String text, byte type, int id, int idd)
+
+  public void sendNextPrevS (String text, byte type, int id, int idd)
   {
     /*  308 */
     if (this.lastMsg > -1)
@@ -531,8 +532,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  316 */
     this.lastMsg = 0;
   }
-  
-  public void sendNextPrevS(String text, byte type, int idd)
+
+  public void sendNextPrevS (String text, byte type, int idd)
   {
     /*  320 */
     if (this.lastMsg > -1)
@@ -551,8 +552,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  328 */
     this.lastMsg = 0;
   }
-  
-  public void sendDimensionGate(String text)
+
+  public void sendDimensionGate (String text)
   {
     /*  332 */
     if (this.lastMsg > -1)
@@ -571,14 +572,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  340 */
     this.lastMsg = 0;
   }
-  
-  public void sendOk(String text)
+
+  public void sendOk (String text)
   {
     /*  344 */
     sendOk(text, this.id);
   }
-  
-  public void sendOk(String text, int id)
+
+  public void sendOk (String text, int id)
   {
     /*  348 */
     if (this.lastMsg > -1)
@@ -597,14 +598,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  356 */
     this.lastMsg = 0;
   }
-  
-  public void sendOkS(String text, byte type)
+
+  public void sendOkS (String text, byte type)
   {
     /*  360 */
     sendOkS(text, type, 0);
   }
-  
-  public void sendOkS(String text, byte type, int idd)
+
+  public void sendOkS (String text, byte type, int idd)
   {
     /*  364 */
     if (this.lastMsg > -1)
@@ -623,14 +624,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  372 */
     this.lastMsg = 0;
   }
-  
-  public void sendYesNo(String text)
+
+  public void sendYesNo (String text)
   {
     /*  376 */
     sendYesNo(text, this.id);
   }
-  
-  public void sendYesNo(String text, int id)
+
+  public void sendYesNo (String text, int id)
   {
     /*  380 */
     if (this.lastMsg > -1)
@@ -649,14 +650,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  388 */
     this.lastMsg = 2;
   }
-  
-  public void sendYesNoS(String text, byte type)
+
+  public void sendYesNoS (String text, byte type)
   {
     /*  392 */
     sendYesNoS(text, type, 0);
   }
-  
-  public void sendYesNoS(String text, byte type, int idd)
+
+  public void sendYesNoS (String text, byte type, int idd)
   {
     /*  396 */
     if (this.lastMsg > -1)
@@ -675,26 +676,26 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  404 */
     this.lastMsg = 2;
   }
-  
-  public void sendAcceptDecline(String text)
+
+  public void sendAcceptDecline (String text)
   {
     /*  408 */
     askAcceptDecline(text);
   }
-  
-  public void sendAcceptDeclineNoESC(String text)
+
+  public void sendAcceptDeclineNoESC (String text)
   {
     /*  412 */
     askAcceptDeclineNoESC(text);
   }
-  
-  public void askAcceptDecline(String text)
+
+  public void askAcceptDecline (String text)
   {
     /*  416 */
     askAcceptDecline(text, this.id);
   }
-  
-  public void askAcceptDecline(String text, int id)
+
+  public void askAcceptDecline (String text, int id)
   {
     /*  420 */
     if (this.lastMsg > -1)
@@ -713,14 +714,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  428 */
     this.c.getSession().writeAndFlush(CField.NPCPacket.getNPCTalk(id, this.lastMsg, text, "", (byte) 0));
   }
-  
-  public void askPraticeReplace(String text)
+
+  public void askPraticeReplace (String text)
   {
     /*  432 */
     askPraticeReplace(text, this.id);
   }
-  
-  public void askPraticeReplace(String text, int id)
+
+  public void askPraticeReplace (String text, int id)
   {
     /*  436 */
     if (this.lastMsg > -1)
@@ -739,14 +740,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  444 */
     this.c.getSession().writeAndFlush(CField.NPCPacket.getPraticeReplace(id, this.lastMsg, text, "", (byte) 0, 1));
   }
-  
-  public void askAcceptDeclineNoESC(String text)
+
+  public void askAcceptDeclineNoESC (String text)
   {
     /*  448 */
     askAcceptDeclineNoESC(text, this.id);
   }
-  
-  public void askAcceptDeclineNoESC(String text, int id)
+
+  public void askAcceptDeclineNoESC (String text, int id)
   {
     /*  452 */
     if (this.lastMsg > -1)
@@ -765,30 +766,31 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  460 */
     this.c.getSession().writeAndFlush(CField.NPCPacket.getNPCTalk(id, this.lastMsg, text, "", (byte) 1));
   }
-  
-  public void sendStyle(String text, int... args)
+
+  public void sendStyle (String text, int... args)
   {
     /*  464 */
     askAvatar(text, args);
   }
-  
-  public void askCustomMixHairAndProb(String text)
+
+  public void askCustomMixHairAndProb (String text)
   {
     /*  468 */
-    this.c.getSession().writeAndFlush(CField.NPCPacket.getNPCTalkMixStyle(this.id, text, GameConstants.isZero(this.c.getPlayer().getJob()) && ((this.c.getPlayer().getGender() == 1)), GameConstants.isAngelicBuster(this.c.getPlayer().getJob()) && (this.c.getPlayer().getDressup())));
+    this.c.getSession().writeAndFlush(CField.NPCPacket.getNPCTalkMixStyle(this.id, text, GameConstants.isZero(this.c.getPlayer().getJob()) && ((this.c.getPlayer().getGender() == 1)),
+                                                                          GameConstants.isAngelicBuster(this.c.getPlayer().getJob()) && (this.c.getPlayer().getDressup())));
     /*  469 */
     this.lastMsg = 44;
   }
-  
-  public void askAvatar(String text, int... args)
+
+  public void askAvatar (String text, int... args)
   {
     /*  473 */
     this.c.getSession().writeAndFlush(CField.NPCPacket.getNPCTalkStyle(this.c.getPlayer(), this.id, text, args));
     /*  474 */
     this.lastMsg = 9;
   }
-  
-  public void askAvatar(String text, int[] args1, int[] args2)
+
+  public void askAvatar (String text, int[] args1, int[] args2)
   {
     /*  478 */
     if (this.lastMsg > -1)
@@ -809,26 +811,26 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  486 */
     this.lastMsg = 9;
   }
-  
-  public void askCoupon(int itemid, int... args)
+
+  public void askCoupon (int itemid, int... args)
   {
     /*  490 */
     this.c.send(CWvsContext.UseMakeUpCoupon(this.c.getPlayer(), itemid, args));
   }
-  
-  public void askAvatarAndroid(String text, int... args)
+
+  public void askAvatarAndroid (String text, int... args)
   {
     /*  494 */
     this.c.getSession().writeAndFlush(CField.NPCPacket.getNPCTalkStyleAndroid(this.id, text, args));
   }
-  
-  public void sendSimple(String text)
+
+  public void sendSimple (String text)
   {
     /*  498 */
     sendSimple(text, this.id);
   }
-  
-  public void sendSimple(String text, int id)
+
+  public void sendSimple (String text, int id)
   {
     /*  502 */
     if (this.lastMsg > -1)
@@ -847,14 +849,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  510 */
     this.lastMsg = 5;
   }
-  
-  public void sendSimpleS(String text, byte type)
+
+  public void sendSimpleS (String text, byte type)
   {
     /*  514 */
     sendSimpleS(text, type, 0);
   }
-  
-  public void sendSimpleS(String text, byte type, int idd)
+
+  public void sendSimpleS (String text, byte type, int idd)
   {
     /*  518 */
     if (this.lastMsg > -1)
@@ -873,8 +875,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  526 */
     this.lastMsg = 5;
   }
-  
-  public void sendSimpleS(String text, byte type, int id, int idd)
+
+  public void sendSimpleS (String text, byte type, int id, int idd)
   {
     /*  530 */
     if (this.lastMsg > -1)
@@ -893,8 +895,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  538 */
     this.lastMsg = 5;
   }
-  
-  public void sendStyle(String text, int[] styles1, int[] styles2)
+
+  public void sendStyle (String text, int[] styles1, int[] styles2)
   {
     /*  542 */
     if (this.lastMsg > -1)
@@ -917,8 +919,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       this.lastMsg = 9;
     }
   }
-  
-  public void sendIllustYesNo(String text, int face, boolean isLeft)
+
+  public void sendIllustYesNo (String text, int face, boolean isLeft)
   {
     /*  555 */
     if (this.lastMsg > -1)
@@ -937,8 +939,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  563 */
     this.lastMsg = 28;
   }
-  
-  public void sendIllustSimple(String text, int face, boolean isLeft)
+
+  public void sendIllustSimple (String text, int face, boolean isLeft)
   {
     /*  567 */
     if (this.lastMsg > -1)
@@ -957,8 +959,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  575 */
     this.lastMsg = 30;
   }
-  
-  public void sendIllustNext(String text, int face, boolean isLeft)
+
+  public void sendIllustNext (String text, int face, boolean isLeft)
   {
     /*  579 */
     if (this.lastMsg > -1)
@@ -977,8 +979,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  587 */
     this.lastMsg = 26;
   }
-  
-  public void sendIllustPrev(String text, int face, boolean isLeft)
+
+  public void sendIllustPrev (String text, int face, boolean isLeft)
   {
     /*  591 */
     if (this.lastMsg > -1)
@@ -997,8 +999,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  599 */
     this.lastMsg = 26;
   }
-  
-  public void sendIllustNextPrev(String text, int face, boolean isLeft)
+
+  public void sendIllustNextPrev (String text, int face, boolean isLeft)
   {
     /*  603 */
     if (this.lastMsg > -1)
@@ -1017,8 +1019,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  611 */
     this.lastMsg = 26;
   }
-  
-  public void sendIllustOk(String text, int face, boolean isLeft)
+
+  public void sendIllustOk (String text, int face, boolean isLeft)
   {
     /*  615 */
     if (this.lastMsg > -1)
@@ -1037,8 +1039,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  623 */
     this.lastMsg = 26;
   }
-  
-  public void sendGetNumber(int id, String text, int def, int min, int max)
+
+  public void sendGetNumber (int id, String text, int def, int min, int max)
   {
     /*  627 */
     if (this.lastMsg > -1)
@@ -1057,8 +1059,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  635 */
     this.lastMsg = 4;
   }
-  
-  public void sendFriendsYesNo(String text, int id)
+
+  public void sendFriendsYesNo (String text, int id)
   {
     /*  639 */
     if (this.lastMsg > -1)
@@ -1077,8 +1079,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  647 */
     this.lastMsg = 3;
   }
-  
-  public void sendGetNumber(String text, int def, int min, int max)
+
+  public void sendGetNumber (String text, int def, int min, int max)
   {
     /*  651 */
     if (this.lastMsg > -1)
@@ -1097,14 +1099,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  659 */
     this.lastMsg = 4;
   }
-  
-  public void sendGetText(String text)
+
+  public void sendGetText (String text)
   {
     /*  663 */
     sendGetText(text, this.id);
   }
-  
-  public void sendGetText(String text, int id)
+
+  public void sendGetText (String text, int id)
   {
     /*  667 */
     if (this.lastMsg > -1)
@@ -1123,20 +1125,20 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  675 */
     this.lastMsg = 3;
   }
-  
-  public void setGetText(String text)
+
+  public void setGetText (String text)
   {
     /*  679 */
     this.getText = text;
   }
-  
-  public String getText()
+
+  public String getText ()
   {
     /*  683 */
     return this.getText;
   }
-  
-  public void setZeroSecondHair(int hair)
+
+  public void setZeroSecondHair (int hair)
   {
     /*  687 */
     getPlayer().setSecondHair(hair);
@@ -1145,8 +1147,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  689 */
     getPlayer().equipChanged();
   }
-  
-  public void setZeroSecondFace(int face)
+
+  public void setZeroSecondFace (int face)
   {
     /*  693 */
     getPlayer().setSecondFace(face);
@@ -1155,8 +1157,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  695 */
     getPlayer().equipChanged();
   }
-  
-  public void setZeroSecondSkin(int color)
+
+  public void setZeroSecondSkin (int color)
   {
     /*  699 */
     getPlayer().setSecondSkinColor((byte) color);
@@ -1165,8 +1167,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  701 */
     getPlayer().equipChanged();
   }
-  
-  public void setAngelicSecondHair(int hair)
+
+  public void setAngelicSecondHair (int hair)
   {
     /*  705 */
     getPlayer().setSecondHair(hair);
@@ -1175,8 +1177,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  707 */
     getPlayer().equipChanged();
   }
-  
-  public void setAngelicSecondFace(int face)
+
+  public void setAngelicSecondFace (int face)
   {
     /*  711 */
     getPlayer().setSecondFace(face);
@@ -1185,8 +1187,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  713 */
     getPlayer().equipChanged();
   }
-  
-  public void setAngelicSecondSkin(int color)
+
+  public void setAngelicSecondSkin (int color)
   {
     /*  717 */
     getPlayer().setSecondSkinColor((byte) color);
@@ -1195,8 +1197,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  719 */
     getPlayer().equipChanged();
   }
-  
-  public void setHair(int hair)
+
+  public void setHair (int hair)
   {
     /*  723 */
     getPlayer().setHair(hair);
@@ -1205,8 +1207,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  725 */
     getPlayer().equipChanged();
   }
-  
-  public void setFace(int face)
+
+  public void setFace (int face)
   {
     /*  729 */
     getPlayer().setFace(face);
@@ -1215,8 +1217,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  731 */
     getPlayer().equipChanged();
   }
-  
-  public void setSkin(int color)
+
+  public void setSkin (int color)
   {
     /*  735 */
     getPlayer().setSkinColor((byte) color);
@@ -1225,12 +1227,12 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  737 */
     getPlayer().equipChanged();
   }
-  
-  public int setRandomAvatar(int ticket, int... args_all)
+
+  public int setRandomAvatar (int ticket, int... args_all)
   {
     /*  741 */
     gainItem(ticket, (short) -1);
-    
+
     /*  743 */
     int args = args_all[Randomizer.nextInt(args_all.length)];
     /*  744 */
@@ -1258,12 +1260,12 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     }
     /*  754 */
     this.c.getPlayer().equipChanged();
-    
+
     /*  756 */
     return 1;
   }
-  
-  public int setAvatar(int ticket, int args)
+
+  public int setAvatar (int ticket, int args)
   {
     /*  763 */
     if (hairlist.isEmpty() || facelist.isEmpty())
@@ -1286,13 +1288,13 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         }
       }
     }
-    
+
     /*  773 */
     int mixranze = 0;
     /*  774 */
     if (args > 99999)
     {
-      
+
       /*  776 */
       mixranze = args % 1000;
       /*  777 */
@@ -1364,19 +1366,19 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     }
     /*  808 */
     this.c.getPlayer().equipChanged();
-    
+
     /*  810 */
     return 1;
   }
-  
-  public int setZeroAvatar(int ticket, int args1, int args2)
+
+  public int setZeroAvatar (int ticket, int args1, int args2)
   {
     /*  814 */
     int mixranze = 0, mixranze2 = 0;
     /*  815 */
     if (args1 > 99999)
     {
-      
+
       /*  817 */
       mixranze = args1 % 1000;
       /*  818 */
@@ -1385,13 +1387,13 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /*  820 */
     if (args2 > 99999)
     {
-      
+
       /*  822 */
       mixranze2 = args2 % 1000;
       /*  823 */
       args2 /= 1000;
     }
-    
+
     /*  826 */
     if (hairlist.containsKey(Integer.valueOf(args1)) || hairlist.containsKey(Integer.valueOf(args2)))
     {
@@ -1449,7 +1451,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         /*  850 */
         this.c.getPlayer().fakeRelog();
       }
-      
+
       /*  853 */
     }
     else if (ticket == 0)
@@ -1468,208 +1470,214 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       /*  859 */
       this.c.getPlayer().fakeRelog();
     }
-    
+
     /*  862 */
     this.c.getPlayer().equipChanged();
     /*  863 */
     return 1;
   }
-  
-  public void setFaceAndroid(int faceId)
+
+  public void setFaceAndroid (int faceId)
   {
     /*  867 */
     this.c.getPlayer().getAndroid().setFace(faceId);
     /*  868 */
     this.c.getPlayer().updateAndroid();
   }
-  
-  public void setHairAndroid(int hairId)
+
+  public void setHairAndroid (int hairId)
   {
     /*  872 */
     this.c.getPlayer().getAndroid().setHair(hairId);
     /*  873 */
     this.c.getPlayer().updateAndroid();
   }
-  
-  public void setSkinAndroid(int color)
+
+  public void setSkinAndroid (int color)
   {
     /*  877 */
     this.c.getPlayer().getAndroid().setSkin(color);
     /*  878 */
     this.c.getPlayer().updateAndroid();
   }
-  
-  public void sendStorage()
+
+  public void sendStorage ()
   {
     /*  882 */
     this.c.getPlayer().setStorageNPC(this.id);
     /*  883 */
     this.c.getSession().writeAndFlush(CField.NPCPacket.getStorage((byte) 0));
   }
-  
-  public void openShop(int idd)
+
+  public void openShop (int id)
   {
     /*  887 */
-    if (MapleShopFactory.getInstance().getShop(idd).getRechargeShop() == 1)
+    MapleShop shop = MapleShopFactory.getInstance().getShop(id);
+
+    if (shop == null)
     {
-      /*  888 */
-      boolean active = false, save = false;
-      /*  889 */
-      Calendar ocal = Calendar.getInstance();
-      /*  890 */
-      for (MapleShopItem item : MapleShopFactory.getInstance().getShop(idd).getItems())
-      {
-        /*  891 */
-        int maxday = ocal.getActualMaximum(5);
-        /*  892 */
-        int month = ocal.get(2) + 1;
-        /*  893 */
-        int day = ocal.get(5);
-        /*  894 */
-        if (item.getReCharge() > 0)
-        {
-          /*  895 */
-          for (MapleShopLimit shl : this.c.getShopLimit())
-          {
-            /*  896 */
-            if (shl.getLastBuyMonth() > 0 && shl.getLastBuyDay() > 0)
-            {
-              /*  897 */
-              Calendar baseCal = new GregorianCalendar(ocal.get(1), shl.getLastBuyMonth(), shl.getLastBuyDay());
-              /*  898 */
-              Calendar targetCal = new GregorianCalendar(ocal.get(1), month, day);
-              /*  899 */
-              long diffSec = (targetCal.getTimeInMillis() - baseCal.getTimeInMillis()) / 1000L;
-              /*  900 */
-              long diffDays = diffSec / 86400L;
-              /*  901 */
-              if (shl.getItemid() == item.getItemId() && shl.getShopId() == MapleShopFactory.getInstance().getShop(idd).getId() && shl.getPosition() == item.getPosition() && diffDays >= 0L)
-              {
-                /*  902 */
-                shl.setLastBuyMonth(0);
-                /*  903 */
-                shl.setLastBuyDay(0);
-                /*  904 */
-                shl.setLimitCountAcc(0);
-                /*  905 */
-                shl.setLimitCountChr(0);
-                /*  906 */
-                save = true;
-                
-                break;
-              }
-            }
-          }
-          
-          /*  913 */
-          if (item.getReChargeDay() <= day && item.getReChargeMonth() <= month)
-          {
-            /*  914 */
-            active = true;
-            /*  915 */
-            int afterday = day + item.getReCharge();
-            /*  916 */
-            if (afterday > maxday)
-            {
-              /*  917 */
-              afterday -= maxday;
-              /*  918 */
-              month++;
-              /*  919 */
-              if (month > 12)
-              {
-                /*  920 */
-                month = 1;
-              }
-            }
-            /*  923 */
-            Connection con = null;
-            /*  924 */
-            PreparedStatement ps = null;
-            try
-            {
-              /*  926 */
-              con = DatabaseConnection.getConnection();
-              /*  927 */
-              ps = con.prepareStatement("UPDATE shopitems SET rechargemonth = ?, rechargeday = ?, resetday = ? WHERE position = ? AND itemid = ? AND tab = ?");
-              /*  928 */
-              ps.setInt(1, month);
-              /*  929 */
-              ps.setInt(2, afterday);
-              /*  930 */
-              ps.setInt(3, day);
-              /*  931 */
-              ps.setInt(4, item.getPosition());
-              /*  932 */
-              ps.setInt(5, item.getItemId());
-              /*  933 */
-              ps.setByte(6, item.getTab());
-              /*  934 */
-              ps.executeUpdate();
-              /*  935 */
-              ps.close();
-              /*  936 */
-              con.close();
-              /*  937 */
-            }
-            catch (SQLException e)
-            {
-              /*  938 */
-              e.printStackTrace();
-            }
-            finally
-            {
-              try
-              {
-                /*  941 */
-                if (con != null)
-                {
-                  /*  942 */
-                  con.close();
-                }
-                /*  944 */
-                if (ps != null)
-                {
-                  /*  945 */
-                  ps.close();
-                }
-                /*  947 */
-              }
-              catch (SQLException e)
-              {
-                /*  948 */
-                e.printStackTrace();
-              }
-            }
-          }
-        }
-      }
-      /*  954 */
-      if (active)
-      {
-        /*  955 */
-        MapleShopFactory.getInstance().clear();
-        /*  956 */
-        MapleShopFactory.getInstance().getShop(this.id);
-        /*  957 */
-      }
-      else if (save)
-      {
-        /*  958 */
-        this.c.saveShopLimit(this.c.getShopLimit());
-      }
+      return;
     }
+    // if (shop.getRechargeShop() == 1)
+    // {
+    //   /*  888 */
+    //   boolean active = false, save = false;
+    //   /*  889 */
+    //   Calendar ocal = Calendar.getInstance();
+    //   /*  890 */
+    //   for (MapleShopItem item : shop.getItems())
+    //   {
+    //     /*  891 */
+    //     int maxday = ocal.getActualMaximum(5);
+    //     /*  892 */
+    //     int month = ocal.get(2) + 1;
+    //     /*  893 */
+    //     int day = ocal.get(5);
+    //     /*  894 */
+    //     if (item.getReCharge() > 0)
+    //     {
+    //       /*  895 */
+    //       for (MapleShopLimit limit : this.c.getShopLimit())
+    //       {
+    //         /*  896 */
+    //         if (limit.getLastBuyMonth() > 0 && limit.getLastBuyDay() > 0)
+    //         {
+    //           /*  897 */
+    //           Calendar baseCal = new GregorianCalendar(ocal.get(1), limit.getLastBuyMonth(), limit.getLastBuyDay());
+    //           /*  898 */
+    //           Calendar targetCal = new GregorianCalendar(ocal.get(1), month, day);
+    //           /*  899 */
+    //           long diffSec = (targetCal.getTimeInMillis() - baseCal.getTimeInMillis()) / 1000L;
+    //           /*  900 */
+    //           long diffDays = diffSec / 86400L;
+    //           /*  901 */
+    //           if (limit.getItemid() == item.getItemId() && limit.getShopId() == id && limit.getPosition() == item.getPosition() && diffDays >= 0L)
+    //           {
+    //             /*  902 */
+    //             limit.setLastBuyMonth(0);
+    //             /*  903 */
+    //             limit.setLastBuyDay(0);
+    //             /*  904 */
+    //             limit.setLimitCountAcc(0);
+    //             /*  905 */
+    //             limit.setLimitCountChr(0);
+    //             /*  906 */
+    //             save = true;
+    //
+    //             break;
+    //           }
+    //         }
+    //       }
+    //
+    //       /*  913 */
+    //       if (item.getReChargeDay() <= day && item.getReChargeMonth() <= month)
+    //       {
+    //         /*  914 */
+    //         active = true;
+    //         /*  915 */
+    //         int afterday = day + item.getReCharge();
+    //         /*  916 */
+    //         if (afterday > maxday)
+    //         {
+    //           /*  917 */
+    //           afterday -= maxday;
+    //           /*  918 */
+    //           month++;
+    //           /*  919 */
+    //           if (month > 12)
+    //           {
+    //             /*  920 */
+    //             month = 1;
+    //           }
+    //         }
+    //         /*  923 */
+    //         Connection con = null;
+    //         /*  924 */
+    //         PreparedStatement ps = null;
+    //         try
+    //         {
+    //           /*  926 */
+    //           con = DatabaseConnection.getConnection();
+    //           /*  927 */
+    //           ps = con.prepareStatement("UPDATE shopitems SET rechargemonth = ?, rechargeday = ?, resetday = ? WHERE position = ? AND itemid = ? AND tab = ?");
+    //           /*  928 */
+    //           ps.setInt(1, month);
+    //           /*  929 */
+    //           ps.setInt(2, afterday);
+    //           /*  930 */
+    //           ps.setInt(3, day);
+    //           /*  931 */
+    //           ps.setInt(4, item.getPosition());
+    //           /*  932 */
+    //           ps.setInt(5, item.getItemId());
+    //           /*  933 */
+    //           ps.setByte(6, item.getTab());
+    //           /*  934 */
+    //           ps.executeUpdate();
+    //           /*  935 */
+    //           ps.close();
+    //           /*  936 */
+    //           con.close();
+    //           /*  937 */
+    //         }
+    //         catch (SQLException e)
+    //         {
+    //           /*  938 */
+    //           e.printStackTrace();
+    //         }
+    //         finally
+    //         {
+    //           try
+    //           {
+    //             /*  941 */
+    //             if (con != null)
+    //             {
+    //               /*  942 */
+    //               con.close();
+    //             }
+    //             /*  944 */
+    //             if (ps != null)
+    //             {
+    //               /*  945 */
+    //               ps.close();
+    //             }
+    //             /*  947 */
+    //           }
+    //           catch (SQLException e)
+    //           {
+    //             /*  948 */
+    //             e.printStackTrace();
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    //   /*  954 */
+    //   if (active)
+    //   {
+    //     /*  955 */
+    //     MapleShopFactory.getInstance().clear();
+    //     /*  956 */
+    //     MapleShopFactory.getInstance().getShop(this.id);
+    //     /*  957 */
+    //   }
+    //   else if (save)
+    //   {
+    //     /*  958 */
+    //     this.c.saveShopLimit(this.c.getShopLimit());
+    //   }
+    // }
     /*  961 */
-    MapleShopFactory.getInstance().getShop(idd).sendShop(this.c);
+    shop.sendShop(this.c);
   }
-  
-  public int gainGachaponItem(int id, int quantity)
+
+  public int gainGachaponItem (int id, int quantity)
   {
     /*  965 */
     return gainGachaponItem(id, quantity, this.c.getPlayer().getMap().getStreetName());
   }
-  
-  public int gainGachaponItem(int id, int quantity, String msg)
+
+  public int gainGachaponItem (int id, int quantity, String msg)
   {
     try
     {
@@ -1681,7 +1689,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       }
       /*  973 */
       Item item = MapleInventoryManipulator.addbyId_Gachapon(this.c, id, (short) quantity);
-      
+
       /*  975 */
       if (item == null)
       {
@@ -1706,97 +1714,97 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     {
       /*  985 */
       e.printStackTrace();
-      
+
       /*  987 */
       return -1;
     }
   }
-  
-  public void changeJob(int job)
+
+  public void changeJob (int job)
   {
     /*  991 */
     this.c.getPlayer().changeJob(job);
   }
-  
-  public void startQuest(int idd)
+
+  public void startQuest (int idd)
   {
     /*  995 */
     MapleQuest.getInstance(idd).start(getPlayer(), this.id);
   }
-  
-  public void completeQuest(int idd)
+
+  public void completeQuest (int idd)
   {
     /*  999 */
     MapleQuest.getInstance(idd).complete(getPlayer(), this.id);
   }
-  
-  public void forfeitQuest(int idd)
+
+  public void forfeitQuest (int idd)
   {
     /* 1003 */
     MapleQuest.getInstance(idd).forfeit(getPlayer());
   }
-  
-  public void forceStartQuest()
+
+  public void forceStartQuest ()
   {
     /* 1007 */
     MapleQuest.getInstance(this.id2).forceStart(getPlayer(), getNpc(), null);
   }
-  
-  public void forceStartQuest(int idd)
+
+  public void forceStartQuest (int idd)
   {
     /* 1011 */
     MapleQuest.getInstance(idd).forceStart(getPlayer(), getNpc(), null);
   }
-  
-  public void forceStartQuest(String customData)
+
+  public void forceStartQuest (String customData)
   {
     /* 1015 */
     MapleQuest.getInstance(this.id2).forceStart(getPlayer(), getNpc(), customData);
   }
-  
-  public void forceCompleteQuest()
+
+  public void forceCompleteQuest ()
   {
     /* 1019 */
     MapleQuest.getInstance(this.id2).forceComplete(getPlayer(), getNpc());
   }
-  
-  public void forceCompleteQuest(int idd)
+
+  public void forceCompleteQuest (int idd)
   {
     /* 1023 */
     MapleQuest.getInstance(idd).forceComplete(getPlayer(), getNpc());
   }
-  
-  public String getQuestCustomData(int id2)
+
+  public String getQuestCustomData (int id2)
   {
     /* 1027 */
     return this.c.getPlayer().getQuestNAdd(MapleQuest.getInstance(id2)).getCustomData();
   }
-  
-  public void setQuestCustomData(int id2, String customData)
+
+  public void setQuestCustomData (int id2, String customData)
   {
     /* 1031 */
     getPlayer().getQuestNAdd(MapleQuest.getInstance(id2)).setCustomData(customData);
   }
-  
-  public long getMeso()
+
+  public long getMeso ()
   {
     /* 1035 */
     return getPlayer().getMeso();
   }
-  
-  public void gainAp(int amount)
+
+  public void gainAp (int amount)
   {
     /* 1039 */
     this.c.getPlayer().gainAp((short) amount);
   }
-  
-  public void expandInventory(byte type, int amt)
+
+  public void expandInventory (byte type, int amt)
   {
     /* 1043 */
     this.c.getPlayer().expandInventory(type, amt);
   }
-  
-  public void gainItemInStorages(int id)
+
+  public void gainItemInStorages (int id)
   {
     /* 1048 */
     Connection con = null;
@@ -1806,7 +1814,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     PreparedStatement ps2 = null;
     /* 1051 */
     ResultSet rs = null;
-    
+
     /* 1053 */
     int itemid = 0;
     /* 1054 */
@@ -1825,7 +1833,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       ps.setInt(2, this.c.getPlayer().getId());
       /* 1061 */
       rs = ps.executeQuery();
-      
+
       /* 1063 */
       if (rs.next())
       {
@@ -1854,7 +1862,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       ps.close();
       /* 1076 */
       rs.close();
-      
+
       /* 1078 */
       ps2 = con.prepareStatement("DELETE FROM cashstorages WHERE id = ?");
       /* 1079 */
@@ -1958,14 +1966,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 1126 */
     MapleInventoryManipulator.addbyItem(this.c, item);
   }
-  
-  public void StoreInStorages(int charid, int itemid, int str, int dex, int int_, int luk, int watk, int matk)
+
+  public void StoreInStorages (int charid, int itemid, int str, int dex, int int_, int luk, int watk, int matk)
   {
     /* 1132 */
     Connection con = null;
     /* 1133 */
     PreparedStatement ps = null;
-    
+
     try
     {
       /* 1136 */
@@ -2035,19 +2043,19 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       }
     }
   }
-  
-  public String getCashStorages(int charid)
+
+  public String getCashStorages (int charid)
   {
     /* 1170 */
     String ret = "";
-    
+
     /* 1172 */
     Connection con = null;
     /* 1173 */
     PreparedStatement ps = null;
     /* 1174 */
     ResultSet rs = null;
-    
+
     try
     {
       /* 1177 */
@@ -2058,7 +2066,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       ps.setInt(1, charid);
       /* 1180 */
       rs = ps.executeQuery();
-      
+
       /* 1182 */
       if (rs.next())
       {
@@ -2129,19 +2137,19 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 1213 */
     return ret;
   }
-  
-  public String getCharacterList(int accountid)
+
+  public String getCharacterList (int accountid)
   {
     /* 1217 */
     String ret = "";
-    
+
     /* 1219 */
     Connection con = null;
     /* 1220 */
     PreparedStatement ps = null;
     /* 1221 */
     ResultSet rs = null;
-    
+
     try
     {
       /* 1224 */
@@ -2222,8 +2230,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 1259 */
     return ret;
   }
-  
-  public final void clearSkills()
+
+  public final void clearSkills ()
   {
     /* 1263 */
     Map<Skill, SkillEntry> skills = new HashMap<>(getPlayer().getSkills());
@@ -2242,8 +2250,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 1270 */
     skills.clear();
   }
-  
-  public final void skillmaster()
+
+  public final void skillmaster ()
   {
     /* 1274 */
     MapleData data = MapleDataProviderFactory.getDataProvider(MapleDataProviderFactory.fileInWZPath("Skill.wz")).getData(StringUtil.getLeftPaddedStr(String.valueOf(this.c.getPlayer().getJob()), '0', 3) + ".img");
@@ -2268,8 +2276,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
               maxLevel = 1;
             }
             /* 1283 */
-            if (MapleDataTool.getIntConvert("invisible", skillId, 0) == 0
-                && /* 1284 */ this.c.getPlayer().getLevel() >= MapleDataTool.getIntConvert("reqLev", skillId, 0))
+            if (MapleDataTool.getIntConvert("invisible", skillId, 0) == 0 && /* 1284 */ this.c.getPlayer().getLevel() >= MapleDataTool.getIntConvert("reqLev", skillId, 0))
             {
               /* 1285 */
               this.c.getPlayer().changeSingleSkillLevel(SkillFactory.getSkill(Integer.parseInt(skillId.getName())), maxLevel, maxLevel);
@@ -2278,12 +2285,12 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         }
       }
     }
-    
+
     /* 1292 */
     if (GameConstants.isZero(this.c.getPlayer().getJob()))
     {
       /* 1293 */
-      int[] jobs = {10000, 10100, 10110, 10111, 10112};
+      int[] jobs = { 10000, 10100, 10110, 10111, 10112 };
       /* 1294 */
       for (int job : jobs)
       {
@@ -2310,8 +2317,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
                   maxLevel = 1;
                 }
                 /* 1304 */
-                if (MapleDataTool.getIntConvert("invisible", skillId, 0) == 0
-                    && /* 1305 */ this.c.getPlayer().getLevel() >= MapleDataTool.getIntConvert("reqLev", skillId, 0))
+                if (MapleDataTool.getIntConvert("invisible", skillId, 0) == 0 && /* 1305 */ this.c.getPlayer().getLevel() >= MapleDataTool.getIntConvert("reqLev", skillId, 0))
                 {
                   /* 1306 */
                   this.c.getPlayer().changeSingleSkillLevel(SkillFactory.getSkill(Integer.parseInt(skillId.getName())), maxLevel, maxLevel);
@@ -2320,7 +2326,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
             }
           }
         }
-        
+
         /* 1313 */
         if (this.c.getPlayer().getLevel() >= 200)
         {
@@ -2344,8 +2350,13 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       this.c.getPlayer().changeSkillLevel(15121000, (byte) 30, (byte) 30);
     }
   }
-  
-  public void addBoss(String boss)
+
+  public void log (String log)
+  {
+    System.out.println(log);
+  }
+
+  public void addBoss (String boss)
   {
     /* 1347 */
     if (this.c.getPlayer().getParty() != null)
@@ -2364,7 +2375,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         /* 1353 */
         if (ch != null)
         {
-          
+
           /* 1355 */
           ch.removeV("bossPractice");
           /* 1356 */
@@ -2502,8 +2513,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       }
     }
   }
-  
-  public void addBossPractice(String boss)
+
+  public void addBossPractice (String boss)
   {
     /* 1453 */
     if (this.c.getPlayer().getParty() != null)
@@ -2519,13 +2530,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
           /* 1457 */
           ch.addKV("bossPractice", "1");
           /* 1458 */
-          FileoutputUtil.log(FileoutputUtil.보스입장, "[연습모드 입장] 계정 번호 : " + this.c.getAccID() + " | 파티번호 : " + chr.getPlayer().getParty().getId() + " | 캐릭터 : " + this.c.getPlayer().getName() + "(" + this.c.getPlayer().getId() + ") | 입장 보스 : " + boss);
+          FileoutputUtil.log(FileoutputUtil.보스입장,
+                             "[연습모드 입장] 계정 번호 : " + this.c.getAccID() + " | 파티번호 : " + chr.getPlayer().getParty().getId() + " | 캐릭터 : " + this.c.getPlayer().getName() + "(" + this.c.getPlayer().getId() + ") | 입장 보스 : " + boss);
         }
       }
     }
   }
-  
-  public Object[] BossNotAvailableChrList(String boss, int limit)
+
+  public Object[] BossNotAvailableChrList (String boss, int limit)
   {
     /* 1465 */
     Object[] arr = new Object[0];
@@ -2560,8 +2572,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 1480 */
     return arr;
   }
-  
-  public Object[] LevelNotAvailableChrList(int level)
+
+  public Object[] LevelNotAvailableChrList (int level)
   {
     /* 1484 */
     Object[] arr = new Object[0];
@@ -2577,8 +2589,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
           /* 1488 */
           MapleCharacter ch = channel.getPlayerStorage().getCharacterById(chr.getId());
           /* 1489 */
-          if (ch != null && ch.getGMLevel() < 6
-              && /* 1490 */ ch.getLevel() < level)
+          if (ch != null && ch.getGMLevel() < 6 && /* 1490 */ ch.getLevel() < level)
           {
             /* 1491 */
             arr = add(arr, ch.getName());
@@ -2586,12 +2597,12 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         }
       }
     }
-    
+
     /* 1497 */
     return arr;
   }
-  
-  public boolean partyhaveItem(int itemid, int qty)
+
+  public boolean partyhaveItem (int itemid, int qty)
   {
     /* 1512 */
     if (this.c.getPlayer().getParty() != null)
@@ -2624,8 +2635,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 1526 */
     return false;
   }
-  
-  public boolean isBossAvailable(String boss, int limit)
+
+  public boolean isBossAvailable (String boss, int limit)
   {
     /* 1530 */
     if (this.c.getPlayer().getParty() != null)
@@ -2924,37 +2935,34 @@ public class NPCConversationManager extends AbstractPlayerInteraction
             if (checkenterquestid > 0)
             {
               /* 1718 */
-              if (chr.getPlayer().getKeyValueStr(checkenterquestid, CheckS) != null
-                  && /* 1719 */ chr.getPlayer().getKeyValueStr(checkenterquestid, CheckS).equals(today))
+              if (chr.getPlayer().getKeyValueStr(checkenterquestid, CheckS) != null && /* 1719 */ chr.getPlayer().getKeyValueStr(checkenterquestid, CheckS).equals(today))
               {
                 /* 1721 */
                 enter = true;
               }
             }
-            
+
             /* 1725 */
             if (!enter)
             {
               /* 1726 */
               MapleQuestStatus quests = chr.getPlayer().getQuest_Map().get(MapleQuest.getInstance(checkenterquestid));
               /* 1727 */
-              if (quests != null
-                  && /* 1728 */ quests.getCustomData() != null
-                  && /* 1729 */ quests.getCustomData().equals(today))
+              if (quests != null && /* 1728 */ quests.getCustomData() != null && /* 1729 */ quests.getCustomData().equals(today))
               {
                 /* 1731 */
                 enter = true;
               }
             }
-            
+
             /* 1737 */
             if (checkclearquestid > 0 && !enter)
             {
-              
+
               /* 1739 */
               if (weekly)
               {
-                
+
                 /* 1741 */
                 if (chr.getPlayer().getKeyValueStr(checkclearquestid, "lasttime") != null)
                 {
@@ -3005,28 +3013,26 @@ public class NPCConversationManager extends AbstractPlayerInteraction
                     enter = true;
                   }
                 }
-                
+
               } /* 1768 */
-              else if (chr.getPlayer().getKeyValueStr(checkclearquestid, "lasttime") != null
-                  && /* 1769 */ chr.getPlayer().getKeyValueStr(checkclearquestid, "lasttime").equals(today))
+              else if (chr.getPlayer().getKeyValueStr(checkclearquestid, "lasttime") != null && /* 1769 */ chr.getPlayer().getKeyValueStr(checkclearquestid, "lasttime").equals(today))
               {
                 /* 1770 */
                 enter = true;
               }
-              
+
               /* 1775 */
               if (!enter)
               {
                 /* 1777 */
-                if (ch.getV(boss) != null
-                    && /* 1778 */ Long.parseLong(ch.getV(boss)) - System.currentTimeMillis() >= 0L)
+                if (ch.getV(boss) != null && /* 1778 */ Long.parseLong(ch.getV(boss)) - System.currentTimeMillis() >= 0L)
                 {
                   /* 1779 */
                   enter = true;
                 }
               }
             }
-            
+
             /* 1785 */
             if (enter)
             {
@@ -3038,13 +3044,13 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         /* 1790 */
         return true;
       }
-      
+
     }
     /* 1793 */
     return false;
   }
-  
-  public String isBossString(String boss)
+
+  public String isBossString (String boss)
   {
     /* 1797 */
     String txt = "파티원 중 #r입장 조건#k을 충족하지 못하는 파티원이 있습니다.\r\n모든 파티원이 조건을 충족해야 입장이 가능합니다.\r\n\r\n";
@@ -3342,29 +3348,26 @@ public class NPCConversationManager extends AbstractPlayerInteraction
             /* 1984 */
             if (checkenterquestid > 0)
             {
-              
+
               /* 1986 */
-              if (chr.getPlayer().getKeyValueStr(checkenterquestid, CheckS) != null
-                  && /* 1987 */ chr.getPlayer().getKeyValueStr(checkenterquestid, CheckS).equals(today))
+              if (chr.getPlayer().getKeyValueStr(checkenterquestid, CheckS) != null && /* 1987 */ chr.getPlayer().getKeyValueStr(checkenterquestid, CheckS).equals(today))
               {
-                
+
                 /* 1989 */
                 enter = true;
                 /* 1990 */
                 txt = txt + "#b" + chr.getName() + "#k님 입장 가능 횟수 초과 하였습니다.\r\n";
               }
-              
+
               /* 1993 */
               if (!enter)
               {
                 /* 1994 */
                 MapleQuestStatus quests = chr.getPlayer().getQuest_Map().get(MapleQuest.getInstance(checkenterquestid));
                 /* 1995 */
-                if (quests != null
-                    && /* 1996 */ quests.getCustomData() != null
-                    && /* 1997 */ quests.getCustomData().equals(today))
+                if (quests != null && /* 1996 */ quests.getCustomData() != null && /* 1997 */ quests.getCustomData().equals(today))
                 {
-                  
+
                   /* 1999 */
                   enter = true;
                   /* 2000 */
@@ -3372,15 +3375,15 @@ public class NPCConversationManager extends AbstractPlayerInteraction
                 }
               }
             }
-            
+
             /* 2007 */
             if (checkclearquestid > 0 && !enter)
             {
-              
+
               /* 2009 */
               if (weekly)
               {
-                
+
                 /* 2011 */
                 if (chr.getPlayer().getKeyValueStr(checkclearquestid, "lasttime") != null)
                 {
@@ -3432,20 +3435,19 @@ public class NPCConversationManager extends AbstractPlayerInteraction
                     /* 2034 */
                     txt = txt + "#b" + chr.getName() + "#k님 입장 가능 횟수 초과 하였습니다.\r\n";
                   }
-                  
+
                 }
-                
+
                 /* 2039 */
               }
-              else if (chr.getPlayer().getKeyValueStr(checkclearquestid, "lasttime") != null
-                  && /* 2040 */ chr.getPlayer().getKeyValueStr(checkclearquestid, "lasttime").equals(today))
+              else if (chr.getPlayer().getKeyValueStr(checkclearquestid, "lasttime") != null && /* 2040 */ chr.getPlayer().getKeyValueStr(checkclearquestid, "lasttime").equals(today))
               {
                 /* 2041 */
                 enter = true;
                 /* 2042 */
                 txt = txt + "#b" + chr.getName() + "#k님 입장 가능 횟수 초과 하였습니다.\r\n";
               }
-              
+
               /* 2047 */
               if (!enter)
               {
@@ -3455,7 +3457,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
                   /* 2050 */
                   enter = true;
                   /* 2051 */
-                  txt = txt + "#b" + chr.getName() + "#k님 #e#r" + ((Long.parseLong(ch.getV(boss)) - System.currentTimeMillis()) / 1000L / 60L) + "분" + ((Long.parseLong(ch.getV(boss)) - System.currentTimeMillis()) / 1000L % 60L) + "초#k#n 뒤에 입장 가능합니다.\r\n";
+                  txt = txt + "#b" + chr.getName() + "#k님 #e#r" + ((Long.parseLong(ch.getV(boss)) - System.currentTimeMillis()) / 1000L / 60L) + "분" + ((Long.parseLong(
+                      ch.getV(boss)) - System.currentTimeMillis()) / 1000L % 60L) + "초#k#n 뒤에 입장 가능합니다.\r\n";
                 }
               }
             }
@@ -3466,8 +3469,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 2059 */
     return txt;
   }
-  
-  public boolean isLevelAvailable(int level)
+
+  public boolean isLevelAvailable (int level)
   {
     /* 2063 */
     if (this.c.getPlayer().getParty() != null)
@@ -3481,23 +3484,22 @@ public class NPCConversationManager extends AbstractPlayerInteraction
           /* 2066 */
           MapleCharacter ch = channel.getPlayerStorage().getCharacterById(chr.getId());
           /* 2067 */
-          if (ch != null && ch.getGMLevel() <= 6
-              && /* 2068 */ ch.getLevel() < level)
+          if (ch != null && ch.getGMLevel() <= 6 && /* 2068 */ ch.getLevel() < level)
           {
             /* 2069 */
             return false;
           }
         }
       }
-      
+
       /* 2074 */
       return true;
     }
     /* 2076 */
     return false;
   }
-  
-  public boolean hasSkill(int skillid)
+
+  public boolean hasSkill (int skillid)
   {
     /* 2080 */
     Skill theSkill = SkillFactory.getSkill(skillid);
@@ -3510,8 +3512,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 2084 */
     return false;
   }
-  
-  public void showEffect(boolean broadcast, String effect)
+
+  public void showEffect (boolean broadcast, String effect)
   {
     /* 2088 */
     if (broadcast)
@@ -3525,8 +3527,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       this.c.getSession().writeAndFlush(CField.showEffect(effect));
     }
   }
-  
-  public void playSound(boolean broadcast, String sound)
+
+  public void playSound (boolean broadcast, String sound)
   {
     /* 2096 */
     if (broadcast)
@@ -3540,8 +3542,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       this.c.getSession().writeAndFlush(CField.playSound(sound));
     }
   }
-  
-  public void environmentChange(boolean broadcast, String env)
+
+  public void environmentChange (boolean broadcast, String env)
   {
     /* 2104 */
     if (broadcast)
@@ -3555,20 +3557,20 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       this.c.getSession().writeAndFlush(CField.environmentChange(env, 2));
     }
   }
-  
-  public void updateBuddyCapacity(int capacity)
+
+  public void updateBuddyCapacity (int capacity)
   {
     /* 2112 */
     this.c.getPlayer().setBuddyCapacity((byte) capacity);
   }
-  
-  public int getBuddyCapacity()
+
+  public int getBuddyCapacity ()
   {
     /* 2116 */
     return this.c.getPlayer().getBuddyCapacity();
   }
-  
-  public int partyMembersInMap()
+
+  public int partyMembersInMap ()
   {
     /* 2120 */
     int inMap = 0;
@@ -3591,8 +3593,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 2129 */
     return inMap;
   }
-  
-  public List<MapleCharacter> getPartyMembers()
+
+  public List<MapleCharacter> getPartyMembers ()
   {
     /* 2133 */
     if (getPlayer().getParty() == null)
@@ -3621,8 +3623,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 2145 */
     return chars;
   }
-  
-  public void warpPartyWithExp(int mapId, int exp)
+
+  public void warpPartyWithExp (int mapId, int exp)
   {
     /* 2149 */
     if (getPlayer().getParty() == null)
@@ -3650,8 +3652,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       }
     }
   }
-  
-  public void warpPartyWithExpMeso(int mapId, int exp, int meso)
+
+  public void warpPartyWithExpMeso (int mapId, int exp, int meso)
   {
     /* 2165 */
     if (getPlayer().getParty() == null)
@@ -3683,8 +3685,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       }
     }
   }
-  
-  public MapleCharacter getChar(int id)
+
+  public MapleCharacter getChar (int id)
   {
     /* 2183 */
     MapleCharacter chr = null;
@@ -3703,8 +3705,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 2190 */
     return null;
   }
-  
-  public void makeRing(int itemid, MapleCharacter chr)
+
+  public void makeRing (int itemid, MapleCharacter chr)
   {
     try
     {
@@ -3742,8 +3744,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       sendOk("반지를 제작하는데 오류가 발생 하였습니다.");
     }
   }
-  
-  public void makeRingRC(int itemid, MapleCharacter chr)
+
+  public void makeRingRC (int itemid, MapleCharacter chr)
   {
     try
     {
@@ -3752,7 +3754,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       /* 2216 */
       Item item = ii.generateEquipById(itemid, -1L);
       /* 2217 */
-      Item item1 = ii.generateEquipById(itemid,-1L);
+      Item item1 = ii.generateEquipById(itemid, -1L);
       /* 2218 */
       item.setUniqueId(MapleInventoryIdentifier.getInstance());
       /* 2219 */
@@ -3809,8 +3811,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       sendOk("반지를 제작하는데 오류가 발생 하였습니다.");
     }
   }
-  
-  public void makeRingHB(int itemid, MapleCharacter chr)
+
+  public void makeRingHB (int itemid, MapleCharacter chr)
   {
     try
     {
@@ -3880,11 +3882,12 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       sendOk("반지를 제작하는데 오류가 발생 하였습니다.");
     }
   }
-  
-  public void MapiaStart(final MapleCharacter player, int time, final int morningmap, final int citizenmap1, final int citizenmap2, final int citizenmap3, final int citizenmap4, final int citizenmap5, final int citizenmap6, final int mapiamap, final int policemap, final int drmap, final int after, final int night, final int vote, int bating)
+
+  public void MapiaStart (final MapleCharacter player, int time, final int morningmap, final int citizenmap1, final int citizenmap2, final int citizenmap3, final int citizenmap4, final int citizenmap5, final int citizenmap6,
+                          final int mapiamap, final int policemap, final int drmap, final int after, final int night, final int vote, int bating)
   {
     /* 2284 */
-    String[] job = {"시민", "마피아", "경찰", "의사", "시민", "시민", "마피아", "경찰", "시민", "마피아"};
+    String[] job = { "시민", "마피아", "경찰", "의사", "시민", "시민", "마피아", "경찰", "시민", "마피아" };
     /* 2285 */
     String name = "";
     /* 2286 */
@@ -3895,7 +3898,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     int playernum = 0;
     /* 2289 */
     int citizennumber = 0;
-    
+
     /* 2292 */
     final MapleMap map = ChannelServer.getInstance(getClient().getChannel()).getMapFactory().getMap(morningmap);
     /* 2293 */
@@ -3986,7 +3989,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 2333 */
     TimerTask m_task = new TimerTask()
     {
-      public void run()
+      public void run ()
       {
         /* 2335 */
         for (MapleCharacter chr : player.getMap().getCharacters())
@@ -4044,7 +4047,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         map.broadcastMessage(CWvsContext.serverNotice(1, "", "진행자>>낮이 되었습니다. 마피아를 찾아내 모두 처형하면 시민의 승리이며, 마피아가 경찰 또는 시민을 모두 죽일시 마피아의 승리입니다.(직업 : 시민,경찰,마피아,의사)"));
         /* 2359 */
         map.playern = playernuma;
-        
+
         /* 2361 */
         map.morningmap = morningmap;
         /* 2362 */
@@ -4067,7 +4070,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         map.citizenmap6 = citizenmap6;
         /* 2371 */
         map.MapiaIng = true;
-        
+
         /* 2373 */
         map.mapiamap = mapiamap;
         /* 2374 */
@@ -4082,24 +4085,24 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         map.MapiaChannel = player.getClient().getChannel();
       }
     };
-    
+
     /* 2382 */
     m_timer.schedule(m_task, (time * 1000L));
   }
-  
-  public void resetReactors()
+
+  public void resetReactors ()
   {
     /* 2386 */
     getPlayer().getMap().resetReactors(this.c);
   }
-  
-  public void genericGuildMessage(int code)
+
+  public void genericGuildMessage (int code)
   {
     /* 2390 */
     this.c.getSession().writeAndFlush(CWvsContext.GuildPacket.genericGuildMessage((byte) code));
   }
-  
-  public void disbandGuild()
+
+  public void disbandGuild ()
   {
     /* 2394 */
     int gid = this.c.getPlayer().getGuildId();
@@ -4111,8 +4114,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 2398 */
     World.Guild.disbandGuild(gid);
   }
-  
-  public void increaseGuildCapacity(boolean trueMax)
+
+  public void increaseGuildCapacity (boolean trueMax)
   {
     if (c.getPlayer().getMeso() < 500000 && !trueMax)
     {
@@ -4141,14 +4144,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       sendNext("이미 한계치입니다. (Limit: 200)");
     }
   }
-  
-  public void displayGuildRanks()
+
+  public void displayGuildRanks ()
   {
     /* 2432 */
     this.c.getSession().writeAndFlush(CWvsContext.GuildPacket.guildRankingRequest());
   }
-  
-  public boolean removePlayerFromInstance()
+
+  public boolean removePlayerFromInstance ()
   {
     /* 2436 */
     if (this.c.getPlayer().getEventInstance() != null)
@@ -4161,16 +4164,16 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 2440 */
     return false;
   }
-  
-  public boolean isPlayerInstance()
+
+  public boolean isPlayerInstance ()
   {
     /* 2444 */
     /* 2445 */
     return this.c.getPlayer().getEventInstance() != null;
     /* 2447 */
   }
-  
-  public void changeStat(byte slot, int type, int amount)
+
+  public void changeStat (byte slot, int type, int amount)
   {
     /* 2451 */
     Equip sel = (Equip) this.c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(slot);
@@ -4278,14 +4281,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         sel.setOwner(getText());
         break;
     }
-    
+
     /* 2531 */
     this.c.getPlayer().equipChanged();
     /* 2532 */
     this.c.getPlayer().fakeRelog();
   }
-  
-  public String searchCashItem(String t)
+
+  public String searchCashItem (String t)
   {
     /* 2536 */
     Pattern name2Pattern = Pattern.compile("^[가-힣a-zA-Z0-9]*$");
@@ -4300,21 +4303,20 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 2541 */
     for (Pair<Integer, String> item : MapleItemInformationProvider.getInstance().getAllEquips())
     {
-      
+
       /* 2543 */
-      if (item.right.contains(t)
-          && /* 2544 */ MapleItemInformationProvider.getInstance().isCash(item.left.intValue()))
+      if (item.right.contains(t) && /* 2544 */ MapleItemInformationProvider.getInstance().isCash(item.left.intValue()))
       {
         /* 2545 */
         sb.append("#b#L" + item.left + "# #i" + item.left + "##t" + item.left + "##l\r\n");
       }
     }
-    
+
     /* 2549 */
     return sb.toString();
   }
-  
-  public void changeDamageSkin(int skinnum)
+
+  public void changeDamageSkin (int skinnum)
   {
     /* 2553 */
     MapleQuest quest = MapleQuest.getInstance(7291);
@@ -4331,52 +4333,52 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 2559 */
     getPlayer().getMap().broadcastMessage(getPlayer(), CField.showForeignDamageSkin(getPlayer(), skinnum), false);
   }
-  
-  public void openDuey()
+
+  public void openDuey ()
   {
     /* 2563 */
     this.c.getPlayer().setConversation(2);
     /* 2564 */
     this.c.getSession().writeAndFlush(CField.sendDuey((byte) 9, null, null));
   }
-  
-  public void sendUI(int op)
+
+  public void sendUI (int op)
   {
     /* 2568 */
     this.c.getSession().writeAndFlush(CField.UIPacket.openUI(op));
   }
-  
-  public void sendRepairWindow()
+
+  public void sendRepairWindow ()
   {
     /* 2572 */
     this.c.getSession().writeAndFlush(CField.UIPacket.openUIOption(33, this.id));
   }
-  
-  public void sendNameChangeWindow()
+
+  public void sendNameChangeWindow ()
   {
     /* 2576 */
     this.c.getSession().writeAndFlush(CField.UIPacket.openUIOption(1110, 4034803));
   }
-  
-  public void sendProfessionWindow()
+
+  public void sendProfessionWindow ()
   {
     /* 2580 */
     this.c.getSession().writeAndFlush(CField.UIPacket.openUI(42));
   }
-  
-  public final int getDojoPoints()
+
+  public final int getDojoPoints ()
   {
     /* 2584 */
     return dojo_getPts();
   }
-  
-  public final int getDojoRecord()
+
+  public final int getDojoRecord ()
   {
     /* 2588 */
     return this.c.getPlayer().getIntNoRecord(150101);
   }
-  
-  public void setDojoRecord(boolean reset)
+
+  public void setDojoRecord (boolean reset)
   {
     /* 2592 */
     if (reset)
@@ -4392,8 +4394,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       this.c.getPlayer().getQuestNAdd(MapleQuest.getInstance(150101)).setCustomData(String.valueOf(this.c.getPlayer().getIntRecord(150101) + 1));
     }
   }
-  
-  public boolean start_DojoAgent(boolean dojo, boolean party)
+
+  public boolean start_DojoAgent (boolean dojo, boolean party)
   {
     /* 2601 */
     if (dojo)
@@ -4404,38 +4406,38 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 2604 */
     return Event_DojoAgent.warpStartAgent(this.c.getPlayer(), party);
   }
-  
-  public final short getKegs()
+
+  public final short getKegs ()
   {
     /* 2608 */
     return this.c.getChannelServer().getFireWorks().getKegsPercentage();
   }
-  
-  public void giveKegs(int kegs)
+
+  public void giveKegs (int kegs)
   {
     /* 2612 */
     this.c.getChannelServer().getFireWorks().giveKegs(this.c.getPlayer(), kegs);
   }
-  
-  public final short getSunshines()
+
+  public final short getSunshines ()
   {
     /* 2616 */
     return this.c.getChannelServer().getFireWorks().getSunsPercentage();
   }
-  
-  public void addSunshines(int kegs)
+
+  public void addSunshines (int kegs)
   {
     /* 2620 */
     this.c.getChannelServer().getFireWorks().giveSuns(this.c.getPlayer(), kegs);
   }
-  
-  public final short getDecorations()
+
+  public final short getDecorations ()
   {
     /* 2624 */
     return this.c.getChannelServer().getFireWorks().getDecsPercentage();
   }
-  
-  public void addDecorations(int kegs)
+
+  public void addDecorations (int kegs)
   {
     try
     {
@@ -4449,12 +4451,12 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       e.printStackTrace();
     }
   }
-  
-  public void maxStats()
+
+  public void maxStats ()
   {
     /* 2636 */
     Map<MapleStat, Long> statup = new EnumMap<>(MapleStat.class);
-    
+
     /* 2638 */
     (this.c.getPlayer().getStat()).str = Short.MAX_VALUE;
     /* 2639 */
@@ -4463,7 +4465,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     (this.c.getPlayer().getStat()).int_ = Short.MAX_VALUE;
     /* 2641 */
     (this.c.getPlayer().getStat()).luk = Short.MAX_VALUE;
-    
+
     /* 2643 */
     int overrDemon = GameConstants.isDemonSlayer(this.c.getPlayer().getJob()) ? GameConstants.getMPByJob(this.c.getPlayer()) : 500000;
     /* 2644 */
@@ -4474,7 +4476,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     this.c.getPlayer().getStat().setHp(500000L, this.c.getPlayer());
     /* 2647 */
     this.c.getPlayer().getStat().setMp(overrDemon, this.c.getPlayer());
-    
+
     /* 2649 */
     statup.put(MapleStat.STR, Long.valueOf(32767L));
     /* 2650 */
@@ -4496,8 +4498,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 2658 */
     this.c.getSession().writeAndFlush(CWvsContext.updatePlayerStats(statup, this.c.getPlayer()));
   }
-  
-  public boolean getSR(Triple<String, Map<Integer, String>, Long> ma, int sel)
+
+  public boolean getSR (Triple<String, Map<Integer, String>, Long> ma, int sel)
   {
     /* 2662 */
     if (((Map) ma.mid).get(Integer.valueOf(sel)) == null || ((String) ((Map) ma.mid).get(Integer.valueOf(sel))).length() <= 0)
@@ -4512,8 +4514,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 2667 */
     return true;
   }
-  
-  public String getAllItem()
+
+  public String getAllItem ()
   {
     /* 2671 */
     StringBuilder string = new StringBuilder();
@@ -4526,14 +4528,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 2675 */
     return string.toString();
   }
-  
-  public Equip getEquip(int itemid)
+
+  public Equip getEquip (int itemid)
   {
     /* 2679 */
     return (Equip) MapleItemInformationProvider.getInstance().generateEquipById(itemid, -1L);
   }
-  
-  public void setExpiration(Object statsSel, long expire)
+
+  public void setExpiration (Object statsSel, long expire)
   {
     /* 2683 */
     if (statsSel instanceof Equip)
@@ -4542,8 +4544,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       ((Equip) statsSel).setExpiration(System.currentTimeMillis() + expire * 24L * 60L * 60L * 1000L);
     }
   }
-  
-  public void setLock(Object statsSel)
+
+  public void setLock (Object statsSel)
   {
     /* 2689 */
     if (statsSel instanceof Equip)
@@ -4563,8 +4565,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       }
     }
   }
-  
-  public boolean addFromDrop(Object statsSel)
+
+  public boolean addFromDrop (Object statsSel)
   {
     /* 2700 */
     if (statsSel instanceof Item)
@@ -4577,14 +4579,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 2704 */
     return false;
   }
-  
-  public boolean replaceItem(int slot, int invType, Object statsSel, int offset, String type)
+
+  public boolean replaceItem (int slot, int invType, Object statsSel, int offset, String type)
   {
     /* 2708 */
     return replaceItem(slot, invType, statsSel, offset, type, false);
   }
-  
-  public boolean replaceItem(int slot, int invType, Object statsSel, int offset, String type, boolean takeSlot)
+
+  public boolean replaceItem (int slot, int invType, Object statsSel, int offset, String type, boolean takeSlot)
   {
     /* 2712 */
     MapleInventoryType inv = MapleInventoryType.getByType((byte) invType);
@@ -4624,7 +4626,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         }
         /* 2729 */
         eq.setSuccessUpgradeSlots((byte) (eq.getSuccessUpgradeSlots() - 1));
-        
+
         /* 2731 */
         if (eq.getExpiration() == -1L)
         {
@@ -4773,38 +4775,38 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 2784 */
     return MapleInventoryManipulator.addFromDrop(getClient(), item, false);
   }
-  
-  public boolean replaceItem(int slot, int invType, Object statsSel, int upgradeSlots)
+
+  public boolean replaceItem (int slot, int invType, Object statsSel, int upgradeSlots)
   {
     /* 2788 */
     return replaceItem(slot, invType, statsSel, upgradeSlots, "Slots");
   }
-  
-  public boolean isCash(int itemId)
+
+  public boolean isCash (int itemId)
   {
     /* 2792 */
     return MapleItemInformationProvider.getInstance().isCash(itemId);
   }
-  
-  public int getReqLevel(int itemId)
+
+  public int getReqLevel (int itemId)
   {
     /* 2800 */
     return MapleItemInformationProvider.getInstance().getReqLevel(itemId);
   }
-  
-  public SecondaryStatEffect getEffect(int buff)
+
+  public SecondaryStatEffect getEffect (int buff)
   {
     /* 2804 */
     return MapleItemInformationProvider.getInstance().getItemEffect(buff);
   }
-  
-  public void giveBuff(int skillid)
+
+  public void giveBuff (int skillid)
   {
     /* 2808 */
     SkillFactory.getSkill(skillid).getEffect(1).applyTo(this.c.getPlayer());
   }
-  
-  public void buffGuild(int buff, int duration, String msg)
+
+  public void buffGuild (int buff, int duration, String msg)
   {
     /* 2812 */
     MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
@@ -4831,8 +4833,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       }
     }
   }
-  
-  public long getRemainPremium(int accid)
+
+  public long getRemainPremium (int accid)
   {
     /* 2827 */
     Connection con = null;
@@ -4858,7 +4860,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         /* 2837 */
         ret = rs.getLong("period");
       }
-      
+
       /* 2840 */
       rs.close();
       /* 2841 */
@@ -4887,7 +4889,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         {
         }
       }
-      
+
       /* 2852 */
       if (ps != null)
       {
@@ -4901,7 +4903,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         {
         }
       }
-      
+
       /* 2858 */
       if (con != null)
       {
@@ -4916,12 +4918,12 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         }
       }
     }
-    
+
     /* 2865 */
     return ret;
   }
-  
-  public boolean existPremium(int aci)
+
+  public boolean existPremium (int aci)
   {
     /* 2869 */
     Connection con = null;
@@ -4943,7 +4945,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       rs = ps.executeQuery();
       /* 2878 */
       ret = rs.next();
-      
+
       /* 2880 */
       rs.close();
       /* 2881 */
@@ -4972,7 +4974,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         {
         }
       }
-      
+
       /* 2892 */
       if (ps != null)
       {
@@ -4986,7 +4988,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         {
         }
       }
-      
+
       /* 2898 */
       if (con != null)
       {
@@ -5001,12 +5003,12 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         }
       }
     }
-    
+
     /* 2905 */
     return ret;
   }
-  
-  public void gainAllAccountPremium(int v3, int v4)
+
+  public void gainAllAccountPremium (int v3, int v4)
   {
     /* 2909 */
     Connection con = null;
@@ -5036,7 +5038,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       rs.close();
       /* 2922 */
       ps.close();
-      
+
       /* 2924 */
       for (int i = 0; i < chrs.size(); i++)
       {
@@ -5054,7 +5056,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
             ps.setInt(2, chrs.get(i).intValue());
             /* 2930 */
             ps.executeUpdate();
-            
+
             /* 2932 */
             ps.close();
           }
@@ -5072,14 +5074,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
             ps.setInt(4, chrs.get(i).intValue());
             /* 2939 */
             ps.executeUpdate();
-            
+
             /* 2941 */
             ps.close();
           }
         }
         else
         {
-          
+
           /* 2945 */
           ps = con.prepareStatement("INSERT INTO premium(accid, name, buff, period) VALUES (?, ?, ?, ?)");
           /* 2946 */
@@ -5124,7 +5126,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         {
         }
       }
-      
+
       /* 2966 */
       if (ps != null)
       {
@@ -5138,7 +5140,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         {
         }
       }
-      
+
       /* 2972 */
       if (con != null)
       {
@@ -5154,8 +5156,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       }
     }
   }
-  
-  public void gainAccountPremium(String acc, int v3, boolean v4)
+
+  public void gainAccountPremium (String acc, int v3, boolean v4)
   {
     /* 2982 */
     Connection con = null;
@@ -5167,7 +5169,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     Date adate = new Date();
     /* 2986 */
     int accid = 0;
-    
+
     try
     {
       /* 2989 */
@@ -5188,7 +5190,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       rs.close();
       /* 2997 */
       ps.close();
-      
+
       /* 2999 */
       if (existPremium(accid))
       {
@@ -5212,7 +5214,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
           ps.setInt(2, accid);
           /* 3008 */
           ps.executeUpdate();
-          
+
           /* 3010 */
           ps.close();
         } /* 3012 */
@@ -5230,11 +5232,11 @@ public class NPCConversationManager extends AbstractPlayerInteraction
           ps.setInt(4, accid);
           /* 3018 */
           ps.executeUpdate();
-          
+
           /* 3020 */
           ps.close();
         }
-        
+
       } /* 3024 */
       else if (v4)
       {
@@ -5253,7 +5255,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         /* 3031 */
         ps.close();
       }
-      
+
       /* 3034 */
       rs.close();
       /* 3035 */
@@ -5282,7 +5284,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         {
         }
       }
-      
+
       /* 3046 */
       if (ps != null)
       {
@@ -5296,7 +5298,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         {
         }
       }
-      
+
       /* 3052 */
       if (con != null)
       {
@@ -5312,8 +5314,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       }
     }
   }
-  
-  public boolean createAlliance(String alliancename)
+
+  public boolean createAlliance (String alliancename)
   {
     /* 3062 */
     MapleParty pt = this.c.getPlayer().getParty();
@@ -5339,23 +5341,24 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       return false;
     }
   }
-  
-  public boolean addCapacityToAlliance()
+
+  public boolean addCapacityToAlliance ()
   {
     try
     {
       /* 3077 */
       MapleGuild gs = World.Guild.getGuild(this.c.getPlayer().getGuildId());
       /* 3078 */
-      if (gs != null && this.c.getPlayer().getGuildRank() == 1 && this.c.getPlayer().getAllianceRank() == 1
-          && /* 3079 */ World.Alliance.getAllianceLeader(gs.getAllianceId()) == this.c.getPlayer().getId() && World.Alliance.changeAllianceCapacity(gs.getAllianceId()))
+      if (gs != null && this.c.getPlayer().getGuildRank() == 1 && this.c.getPlayer().getAllianceRank() == 1 && /* 3079 */ World.Alliance.getAllianceLeader(gs.getAllianceId()) == this.c.getPlayer()
+                                                                                                                                                                                        .getId() && World.Alliance.changeAllianceCapacity(
+          gs.getAllianceId()))
       {
         /* 3080 */
         gainMeso(-10000000L);
         /* 3081 */
         return true;
       }
-      
+
       /* 3084 */
     }
     catch (Exception re)
@@ -5366,16 +5369,16 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3087 */
     return false;
   }
-  
-  public boolean disbandAlliance()
+
+  public boolean disbandAlliance ()
   {
     try
     {
       /* 3092 */
       MapleGuild gs = World.Guild.getGuild(this.c.getPlayer().getGuildId());
       /* 3093 */
-      if (gs != null && this.c.getPlayer().getGuildRank() == 1 && this.c.getPlayer().getAllianceRank() == 1
-          && /* 3094 */ World.Alliance.getAllianceLeader(gs.getAllianceId()) == this.c.getPlayer().getId() && World.Alliance.disbandAlliance(gs.getAllianceId()))
+      if (gs != null && this.c.getPlayer().getGuildRank() == 1 && this.c.getPlayer().getAllianceRank() == 1 && /* 3094 */ World.Alliance.getAllianceLeader(gs.getAllianceId()) == this.c.getPlayer().getId() && World.Alliance.disbandAlliance(
+          gs.getAllianceId()))
       {
         /* 3095 */
         return true;
@@ -5389,20 +5392,20 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3101 */
     return false;
   }
-  
-  public byte getLastMsg()
+
+  public byte getLastMsg ()
   {
     /* 3105 */
     return this.lastMsg;
   }
-  
-  public final void setLastMsg(byte last)
+
+  public final void setLastMsg (byte last)
   {
     /* 3109 */
     this.lastMsg = last;
   }
-  
-  public final void maxAllSkills()
+
+  public final void maxAllSkills ()
   {
     /* 3113 */
     HashMap<Skill, SkillEntry> sa = new HashMap<>();
@@ -5419,14 +5422,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3119 */
     getPlayer().changeSkillsLevel(sa);
   }
-  
-  public final void resetStats(int str, int dex, int z, int luk)
+
+  public final void resetStats (int str, int dex, int z, int luk)
   {
     /* 3123 */
     this.c.getPlayer().resetStats(str, dex, z, luk);
   }
-  
-  public final boolean dropItem(int slot, int invType, int quantity)
+
+  public final boolean dropItem (int slot, int invType, int quantity)
   {
     /* 3127 */
     MapleInventoryType inv = MapleInventoryType.getByType((byte) invType);
@@ -5439,14 +5442,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3131 */
     return MapleInventoryManipulator.drop(this.c, inv, (short) slot, (short) quantity, true);
   }
-  
-  public final void setQuestRecord(Object ch, int questid, String data)
+
+  public final void setQuestRecord (Object ch, int questid, String data)
   {
     /* 3135 */
     ((MapleCharacter) ch).getQuestNAdd(MapleQuest.getInstance(questid)).setCustomData(data);
   }
-  
-  public final void doWeddingEffect(Object ch)
+
+  public final void doWeddingEffect (Object ch)
   {
     /* 3139 */
     final MapleCharacter chr = (MapleCharacter) ch;
@@ -5456,27 +5459,26 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     getMap().broadcastMessage(CWvsContext.yellowChat(player.getName() + ", do you take " + chr.getName() + " as your wife and promise to stay beside her through all downtimes, crashes, and lags?"));
     /* 3142 */
     server.Timer.CloneTimer.getInstance().schedule(new Runnable()
-                                                   {
-                                                     public void run()
-                                                     {
-                                                       /* 3145 */
-                                                       if (chr == null || player == null)
-                                                       {
-                                                         /* 3146 */
-                                                         NPCConversationManager.this.warpMap(680000500, 0);
-                                                       }
-                                                       else
-                                                       {
-                                                         /* 3148 */
-                                                         chr.getMap().broadcastMessage(CWvsContext.yellowChat(chr.getName() + ", do you take " + player.getName() + " as your husband and promise to stay beside him through all downtimes, crashes, and lags?"));
-                                                       }
-                                                     }
-                                                   },
-        10000L);
+    {
+      public void run ()
+      {
+        /* 3145 */
+        if (chr == null || player == null)
+        {
+          /* 3146 */
+          NPCConversationManager.this.warpMap(680000500, 0);
+        }
+        else
+        {
+          /* 3148 */
+          chr.getMap().broadcastMessage(CWvsContext.yellowChat(chr.getName() + ", do you take " + player.getName() + " as your husband and promise to stay beside him through all downtimes, crashes, and lags?"));
+        }
+      }
+    }, 10000L);
     /* 3152 */
     server.Timer.CloneTimer.getInstance().schedule(new Runnable()
                                                    {
-                                                     public void run()
+                                                     public void run ()
                                                      {
                                                        /* 3155 */
                                                        if (chr == null || player == null)
@@ -5525,20 +5527,20 @@ public class NPCConversationManager extends AbstractPlayerInteraction
                                                        }
                                                      }
                                                    },
-        
-        
-        20000L);
+
+
+                                                   20000L);
   }
-  
-  public void putKey(int key, int type, int action)
+
+  public void putKey (int key, int type, int action)
   {
     /* 3182 */
     getPlayer().changeKeybinding(key, (byte) type, action);
     /* 3183 */
     getClient().getSession().writeAndFlush(CField.getKeymap(getPlayer().getKeyLayout()));
   }
-  
-  public void logDonator(String log, int previous_points)
+
+  public void logDonator (String log, int previous_points)
   {
     /* 3187 */
     /* 3188 */
@@ -5551,7 +5553,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         log +
         /* 3192 */
         " [Previous: " + previous_points + "] [Now: " + getPlayer().getPoints() + "]";
-    
+
     /* 3194 */
     Connection con = null;
     /* 3195 */
@@ -5626,14 +5628,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3228 */
     FileoutputUtil.log("Log_Donator.rtf", logg);
   }
-  
-  public void doRing(String name, int itemid)
+
+  public void doRing (String name, int itemid)
   {
     /* 3232 */
     PlayersHandler.DoRing(getClient(), name, itemid);
   }
-  
-  public int getNaturalStats(int itemid, String it)
+
+  public int getNaturalStats (int itemid, String it)
   {
     /* 3236 */
     Map<String, Integer> eqStats = MapleItemInformationProvider.getInstance().getEquipStats(itemid);
@@ -5646,14 +5648,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3240 */
     return 0;
   }
-  
-  public boolean isEligibleName(String t)
+
+  public boolean isEligibleName (String t)
   {
     /* 3244 */
     return (MapleCharacterUtil.canCreateChar(t, getPlayer().isGM()) && (!LoginInformationProvider.getInstance().isForbiddenName(t) || getPlayer().isGM()));
   }
-  
-  public String checkDrop(MapleMonster mob)
+
+  public String checkDrop (MapleMonster mob)
   {
     /* 3248 */
     List<MonsterDropEntry> ranks = MapleMonsterDropDataProvider.getInstance().getAllDropListByMonster(mob);
@@ -5662,7 +5664,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     {
       /* 3250 */
       int num = 0, itemId = 0, ch = 0;
-      
+
       /* 3252 */
       StringBuilder name = new StringBuilder();
       /* 3253 */
@@ -5696,7 +5698,9 @@ public class NPCConversationManager extends AbstractPlayerInteraction
           /* 3266 */
           ch = de.chance * getClient().getChannelServer().getDropRate();
           /* 3267 */
-          name.append((num + 1) + ") #v" + itemId + "#" + namez + " - " + (Integer.valueOf((ch >= 999999) ? 1000000 : ch).doubleValue() / 10000.0D) + "% chance. " + ((de.questid > 0 && MapleQuest.getInstance(de.questid).getName().length() > 0) ? ("Requires quest " + MapleQuest.getInstance(de.questid).getName() + " to be started.") : "") + "\r\n");
+          name.append((num + 1) + ") #v" + itemId + "#" + namez + " - " + (Integer.valueOf((ch >= 999999) ? 1000000 : ch).doubleValue() / 10000.0D) + "% chance. " + ((de.questid > 0 && MapleQuest.getInstance(de.questid).getName()
+                                                                                                                                                                                                   .length() > 0) ? ("Requires quest " + MapleQuest
+              .getInstance(de.questid).getName() + " to be started.") : "") + "\r\n");
           /* 3268 */
           num++;
         }
@@ -5708,18 +5712,18 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         return name.toString();
       }
     }
-    
+
     /* 3276 */
     return "No drops was returned.";
   }
-  
-  public String getLeftPadded(String in, char padchar, int length)
+
+  public String getLeftPadded (String in, char padchar, int length)
   {
     /* 3280 */
     return StringUtil.getLeftPaddedStr(in, padchar, length);
   }
-  
-  public void handleDivorce()
+
+  public void handleDivorce ()
   {
     /* 3284 */
     if (getPlayer().getMarriageId() <= 0)
@@ -5733,7 +5737,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3289 */
     if (chz == -1)
     {
-      
+
       /* 3291 */
       Connection con = null;
       /* 3292 */
@@ -5758,7 +5762,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         ps.executeUpdate();
         /* 3302 */
         ps.close();
-        
+
         /* 3304 */
         ps = con.prepareStatement("UPDATE characters SET marriageid = ? WHERE id = ?");
         /* 3305 */
@@ -5854,26 +5858,26 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       sendNext("An error occurred...");
     }
   }
-  
-  public String getReadableMillis(long startMillis, long endMillis)
+
+  public String getReadableMillis (long startMillis, long endMillis)
   {
     /* 3353 */
     return StringUtil.getReadableMillis(startMillis, endMillis);
   }
-  
-  public void sendUltimateExplorer()
+
+  public void sendUltimateExplorer ()
   {
     /* 3357 */
     getClient().getSession().writeAndFlush(CWvsContext.ultimateExplorer());
   }
-  
-  public void sendPendant(boolean b)
+
+  public void sendPendant (boolean b)
   {
     /* 3361 */
     this.c.getSession().writeAndFlush(CWvsContext.pendantSlot(b));
   }
-  
-  public int getCompensation(String id)
+
+  public int getCompensation (String id)
   {
     /* 3365 */
     Connection con = null;
@@ -5943,8 +5947,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3396 */
     return 0;
   }
-  
-  public boolean deleteCompensation(String id)
+
+  public boolean deleteCompensation (String id)
   {
     /* 3400 */
     Connection con = null;
@@ -6008,20 +6012,20 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       }
     }
   }
-  
-  public void gainAPS(int gain)
+
+  public void gainAPS (int gain)
   {
     /* 3433 */
     getPlayer().gainAPS(gain);
   }
-  
-  public void forceCompleteQuest(MapleCharacter chr, int idd)
+
+  public void forceCompleteQuest (MapleCharacter chr, int idd)
   {
     /* 3437 */
     MapleQuest.getInstance(idd).forceComplete(chr, getNpc());
   }
-  
-  public void setInnerStats(MapleCharacter chr, int line)
+
+  public void setInnerStats (MapleCharacter chr, int line)
   {
     /* 3442 */
     InnerSkillValueHolder isvh = InnerAbillity.getInstance().renewSkill(0, false);
@@ -6032,8 +6036,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3445 */
     chr.getClient().getSession().writeAndFlush(CField.updateInnerPotential((byte) line, isvh.getSkillId(), isvh.getSkillLevel(), isvh.getRank()));
   }
-  
-  public void setInnerStats(int line)
+
+  public void setInnerStats (int line)
   {
     /* 3450 */
     InnerSkillValueHolder isvh = InnerAbillity.getInstance().renewSkill(0, false);
@@ -6044,14 +6048,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3453 */
     this.c.getSession().writeAndFlush(CField.updateInnerPotential((byte) line, isvh.getSkillId(), isvh.getSkillLevel(), isvh.getRank()));
   }
-  
-  public void openAuctionUI()
+
+  public void openAuctionUI ()
   {
     /* 3457 */
     this.c.getSession().writeAndFlush(CField.UIPacket.openUI(161));
   }
-  
-  public void gainSponserItem(int item, String name, short allstat, short damage, byte upgradeslot)
+
+  public void gainSponserItem (int item, String name, short allstat, short damage, byte upgradeslot)
   {
     /* 3461 */
     if (GameConstants.isEquip(item))
@@ -6081,16 +6085,16 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       gainItem(item, allstat, damage);
     }
   }
-  
-  public void askAvatar(String text, List<Integer> args)
+
+  public void askAvatar (String text, List<Integer> args)
   {
     /* 3478 */
     this.c.getSession().writeAndFlush(CField.NPCPacket.getNPCTalkStyle(this.id, text, args));
     /* 3479 */
     this.lastMsg = 9;
   }
-  
-  public void SearchItem(String text, int type)
+
+  public void SearchItem (String text, int type)
   {
     /* 3483 */
     NPCConversationManager cm = this;
@@ -6190,14 +6194,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       cm.dispose();
     }
   }
-  
-  public void sendPacket(String args)
+
+  public void sendPacket (String args)
   {
     /* 3532 */
     this.c.getSession().writeAndFlush(PacketHelper.sendPacket(args));
   }
-  
-  public void enableMatrix()
+
+  public void enableMatrix ()
   {
     /* 3536 */
     MapleQuest quest = MapleQuest.getInstance(1465);
@@ -6212,28 +6216,28 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       this.c.getPlayer().updateQuest(this.c.getPlayer().getQuest(quest), true);
     }
   }
-  
-  public void gainCorebit(int g)
+
+  public void gainCorebit (int g)
   {
     /* 3545 */
     getPlayer().setKeyValue(1477, "count", String.valueOf(getPlayer().getKeyValue(1477, "count") + g));
   }
-  
-  public long getCorebit()
+
+  public long getCorebit ()
   {
     /* 3549 */
     return getPlayer().getKeyValue(1477, "count");
   }
-  
-  public void setDeathcount(byte de)
+
+  public void setDeathcount (byte de)
   {
     /* 3553 */
     this.c.getPlayer().setDeathCount(de);
     /* 3554 */
     this.c.getSession().writeAndFlush(CField.getDeathCount(de));
   }
-  
-  public void UserSoulHandle(int selection)
+
+  public void UserSoulHandle (int selection)
   {
     /* 3558 */
     for (List<Pair<Integer, MapleCharacter>> souls : this.c.getChannelServer().getSoulmatch())
@@ -6269,31 +6273,31 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       this.c.getChannelServer().getSoulmatch().add(chrs);
     }
   }
-  
-  public void startExpRate(int hour)
+
+  public void startExpRate (int hour)
   {
     /* 3578 */
     this.c.getSession().writeAndFlush(CField.getClock(hour * 60 * 60));
     /* 3579 */
     ExpRating();
-    
+
     /* 3581 */
     server.Timer.MapTimer.getInstance().schedule(new Runnable()
     {
-      public void run()
+      public void run ()
       {
         /* 3584 */
         NPCConversationManager.this.warp(1000000);
       }
     }, ((long) hour * 60 * 60 * 1000));
   }
-  
-  public void ExpRating()
+
+  public void ExpRating ()
   {
     /* 3590 */
     server.Timer.BuffTimer.getInstance().schedule(new Runnable()
                                                   {
-                                                    public void run()
+                                                    public void run ()
                                                     {
                                                       /* 3593 */
                                                       if (NPCConversationManager.this.c.getPlayer().getMapId() == 925080000)
@@ -6310,24 +6314,24 @@ public class NPCConversationManager extends AbstractPlayerInteraction
                                                       }
                                                     }
                                                   },
-        
-        
-        6000L);
+
+
+                                                  6000L);
   }
-  
-  public void stopExpRate()
+
+  public void stopExpRate ()
   {
     /* 3604 */
     this.c.getSession().writeAndFlush(CField.getClock(-1));
   }
-  
-  public int getFrozenMobCount()
+
+  public int getFrozenMobCount ()
   {
     /* 3608 */
     return getPlayer().getLinkMobCount();
   }
-  
-  public void addFrozenMobCount(int a1)
+
+  public void addFrozenMobCount (int a1)
   {
     /* 3612 */
     int val = (getFrozenMobCount() + a1 > 9999) ? 9999 : (getFrozenMobCount() + a1);
@@ -6338,20 +6342,20 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3615 */
     getClient().getSession().writeAndFlush(SLFCGPacket.OnYellowDlg(1052230, 3500, "#face1# 몬스터수를 충전했어!", ""));
   }
-  
-  public long getStarDustCoin(int type)
+
+  public long getStarDustCoin (int type)
   {
     /* 3619 */
     return getPlayer().getStarDustCoin(type);
   }
-  
-  public void addStarDustCoin(int type, int a)
+
+  public void addStarDustCoin (int type, int a)
   {
     /* 3623 */
     getPlayer().AddStarDustCoin(type, a);
   }
-  
-  public void openWeddingPresent(int type, int gender)
+
+  public void openWeddingPresent (int type, int gender)
   {
     /* 3627 */
     MarriageDataEntry dataEntry = getMarriageAgent().getDataEntry();
@@ -6364,7 +6368,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         /* 3630 */
         List<String> wishes;
         this.c.getPlayer().setWeddingGive(gender);
-        
+
         /* 3632 */
         if (gender == 0)
         {
@@ -6399,20 +6403,20 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       }
     }
   }
-  
-  public void ShowDreamBreakerRanking()
+
+  public void ShowDreamBreakerRanking ()
   {
     /* 3651 */
     this.c.getSession().writeAndFlush(SLFCGPacket.DreamBreakerRanking(this.c.getPlayer().getName()));
   }
-  
-  public void gainDonationSkill(int skillid)
+
+  public void gainDonationSkill (int skillid)
   {
     if (c.getPlayer().getKeyValue(201910, "DonationSkill") < 0)
     {
       c.getPlayer().setKeyValue(201910, "DonationSkill", "0");
     }
-    
+
     MapleDonationSkill dskill = MapleDonationSkill.getBySkillId(skillid);
     if (dskill != null && (c.getPlayer().getKeyValue(201910, "DonationSkill") & dskill.getValue()) == 0)
     {
@@ -6422,14 +6426,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       SkillFactory.getSkill(skillid).getEffect(SkillFactory.getSkill(skillid).getMaxLevel()).applyTo(c.getPlayer(), 0);
     }
   }
-  
-  public boolean hasDonationSkill(int skillid)
+
+  public boolean hasDonationSkill (int skillid)
   {
     if (c.getPlayer().getKeyValue(201910, "DonationSkill") < 0)
     {
       c.getPlayer().setKeyValue(201910, "DonationSkill", "0");
     }
-    
+
     MapleDonationSkill dskill = MapleDonationSkill.getBySkillId(skillid);
     if (dskill == null)
     {
@@ -6440,8 +6444,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       return (c.getPlayer().getKeyValue(201910, "DonationSkill") & dskill.getValue()) != 0;
     }
   }
-  
-  public String getItemNameById(int itemid)
+
+  public String getItemNameById (int itemid)
   {
     /* 3655 */
     String itemname = "";
@@ -6458,8 +6462,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3661 */
     return itemname;
   }
-  
-  public long getFWolfMeso()
+
+  public long getFWolfMeso ()
   {
     /* 3668 */
     if (this.c.getPlayer().getFWolfAttackCount() > 15)
@@ -6468,7 +6472,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       long BaseMeso = 10000000L;
       /* 3670 */
       long FWolfMeso = 0L;
-      
+
       /* 3672 */
       if (this.c.getPlayer().getFWolfDamage() >= 900000000000L)
       {
@@ -6488,8 +6492,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3680 */
     return (100000L * this.c.getPlayer().getFWolfAttackCount());
   }
-  
-  public long getFWolfEXP()
+
+  public long getFWolfEXP ()
   {
     /* 3685 */
     long expneed = GameConstants.getExpNeededForLevel(this.c.getPlayer().getLevel());
@@ -6518,7 +6522,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       /* 3694 */
       exp = (long) (expneed * 0.1D);
     }
-    
+
     /* 3697 */
     if (this.c.getPlayer().isFWolfKiller())
     {
@@ -6528,20 +6532,20 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3700 */
     return exp;
   }
-  
-  public void showDimentionMirror()
+
+  public void showDimentionMirror ()
   {
     /* 3704 */
     this.c.getSession().writeAndFlush(CField.dimentionMirror(ServerConstants.mirrors));
   }
-  
-  public void warpNettPyramid(boolean hard)
+
+  public void warpNettPyramid (boolean hard)
   {
     /* 3708 */
     MapleNettPyramid.warpNettPyramid(this.c.getPlayer(), hard);
   }
-  
-  public void startDamageMeter()
+
+  public void startDamageMeter ()
   {
     c.getPlayer().setDamageMeter(0);
     MapleMap map = c.getChannelServer().getMapFactory().getMap(120000102);
@@ -6549,20 +6553,18 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     warp(120000102);
     c.getSession().writeAndFlush(CField.getClock(30));
     c.getSession().writeAndFlush(SLFCGPacket.OnYellowDlg(9063152, 3000, "20초에 허수아비가 소환되고 측정이 시작됩니다.", ""));
-    
+
     MapleMonster mob = MapleLifeFactory.getMonster(9305653);
     server.Timer.MapTimer.getInstance().schedule(new Runnable()
     {
-      @Override
-      public void run()
+      @Override public void run ()
       {
         map.spawnMonsterOnGroundBelow(mob, new Point(-140, 150));
       }
     }, 5 * 1000);
     server.Timer.MapTimer.getInstance().schedule(new Runnable()
     {
-      @Override
-      public void run()
+      @Override public void run ()
       {
         c.getPlayer().dropMessage(5, "누적 데미지 : " + c.getPlayer().getDamageMeter());
         updateDamageMeter(c.getPlayer(), c.getPlayer().getDamageMeter());
@@ -6570,8 +6572,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       }
     }, 25 * 1000);
   }
-  
-  public String getDamageMeterRank(int limit)
+
+  public String getDamageMeterRank (int limit)
   {
     String text = "#fn나눔고딕 Extrabold##fs14# ";
     try
@@ -6599,8 +6601,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     }
     return text;
   }
-  
-  public String DamageMeterRank()
+
+  public String DamageMeterRank ()
   {
     String text = "#b";
     try
@@ -6628,8 +6630,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     }
     return text;
   }
-  
-  public boolean isDamageMeterRanker(int cid)
+
+  public boolean isDamageMeterRanker (int cid)
   {
     boolean value = false;
     try
@@ -6654,9 +6656,9 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     }
     return value;
   }
-  
-  
-  public String Comma(long r)
+
+
+  public String Comma (long r)
   {
     String re = "";
     for (int i = String.valueOf(r).length(); i >= 1; i--)
@@ -6666,12 +6668,12 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         re += ",";
       }
       re += String.valueOf(r).charAt(i - 1);
-      
+
     }
     return new StringBuilder().append(re).reverse().toString();
   }
-  
-  public int getDamageMeterRankerId()
+
+  public int getDamageMeterRankerId ()
   {
     int value = -1;
     try
@@ -6693,50 +6695,50 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     }
     return value;
   }
-  
-  public final long getDiscordId()
+
+  public final long getDiscordId ()
   {
     /* 3712 */
     return this.c.getDiscordId();
   }
-  
-  public final void sendMessageToChannel(String text)
+
+  public final void sendMessageToChannel (String text)
   {
     /* 3716 */
     DiscordServer.getInstance().getClientStorage().getClients().forEach(cli -> cli.sendPacket(PacketCreator.sendMessageToChannel(text)));
   }
-  
-  public final void sendMessageToUser(long userId, String text)
+
+  public final void sendMessageToUser (long userId, String text)
   {
     /* 3722 */
     DiscordServer.getInstance().getClientStorage().getClients().forEach(cli -> cli.sendPacket(PacketCreator.sendMessageToUser(userId, text)));
   }
-  
-  public final void sendEmbeddedMessageToChannel(String title, String message, String thumbnailUrl, byte r, byte g, byte b)
+
+  public final void sendEmbeddedMessageToChannel (String title, String message, String thumbnailUrl, byte r, byte g, byte b)
   {
     /* 3729 */
     DiscordServer.getInstance().getClientStorage().getClients().forEach(cli -> cli.sendPacket(PacketCreator.sendEmbedMessageToChannel(title, message, thumbnailUrl, r, g, b)));
   }
-  
-  public final void sendEmbeddedMessageToUser(long userId, String title, String message, String thumbnailUrl, byte r, byte g, byte b)
+
+  public final void sendEmbeddedMessageToUser (long userId, String title, String message, String thumbnailUrl, byte r, byte g, byte b)
   {
     /* 3735 */
     DiscordServer.getInstance().getClientStorage().getClients().forEach(cli -> cli.sendPacket(PacketCreator.sendEmbedMessageToUser(userId, title, message, thumbnailUrl, r, g, b)));
   }
-  
-  public void Entertuto(boolean black)
+
+  public void Entertuto (boolean black)
   {
     /* 3741 */
     Entertuto(black, true, false);
   }
-  
-  public void Entertuto(boolean black, boolean effect)
+
+  public void Entertuto (boolean black, boolean effect)
   {
     /* 3745 */
     Entertuto(black, effect, false);
   }
-  
-  public void Entertuto(boolean black, boolean effect, boolean blackflame)
+
+  public void Entertuto (boolean black, boolean effect, boolean blackflame)
   {
     this.c.send(CField.UIPacket.getDirectionStatus(true));
     this.c.send(SLFCGPacket.SetIngameDirectionMode(true, blackflame, false, false));
@@ -6745,35 +6747,35 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       server.Timer.EtcTimer.getInstance().schedule(() -> this.c.getSession().writeAndFlush(CField.showSpineScreen(false, false, false, "Effect/Direction18.img/effect/adele/spine/etc/7/skeleton", "new", 0, true, "00")), 1000L);
     }
     server.Timer.EtcTimer.getInstance().schedule(() ->
-    {
-      if (black)
-      {
-        this.c.send(SLFCGPacket.MakeBlind(1, 255, 0, 0, 0, 1000, 0));
-      }
-      else
-      {
-        this.c.send(SLFCGPacket.MakeBlind(1, 200, 0, 0, 0, 1000, 0));
-      }
-    }, effect ? 4300L : 1000L);
+                                                 {
+                                                   if (black)
+                                                   {
+                                                     this.c.send(SLFCGPacket.MakeBlind(1, 255, 0, 0, 0, 1000, 0));
+                                                   }
+                                                   else
+                                                   {
+                                                     this.c.send(SLFCGPacket.MakeBlind(1, 200, 0, 0, 0, 1000, 0));
+                                                   }
+                                                 }, effect ? 4300L : 1000L);
     server.Timer.EtcTimer.getInstance().schedule(() ->
-    {
-      if (effect)
-      {
-        this.c.send(CField.showSpineScreen(false, true, false, "Effect/Direction18.img/effect/adele/spine/etc/5/skeleton", "new", 0, true, "5"));
-        this.c.send(CField.showSpineScreen(false, true, false, "Effect/Direction18.img/effect/adele/spine/etc/6/skeleton", "new", 0, true, "6"));
-      }
-      this.c.send(SLFCGPacket.InGameDirectionEvent("", 1, 1000));
-    }, effect ? 5000L : 1000L);
+                                                 {
+                                                   if (effect)
+                                                   {
+                                                     this.c.send(CField.showSpineScreen(false, true, false, "Effect/Direction18.img/effect/adele/spine/etc/5/skeleton", "new", 0, true, "5"));
+                                                     this.c.send(CField.showSpineScreen(false, true, false, "Effect/Direction18.img/effect/adele/spine/etc/6/skeleton", "new", 0, true, "6"));
+                                                   }
+                                                   this.c.send(SLFCGPacket.InGameDirectionEvent("", 1, 1000));
+                                                 }, effect ? 5000L : 1000L);
   }
-  
-  
-  public void Endtuto()
+
+
+  public void Endtuto ()
   {
     /* 3773 */
     Endtuto(true);
   }
-  
-  public void Endtuto(boolean effect)
+
+  public void Endtuto (boolean effect)
   {
     if (effect)
     {
@@ -6783,20 +6785,20 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     }
     server.Timer.EtcTimer.getInstance().schedule(() -> this.c.send(SLFCGPacket.MakeBlind(1, 0, 0, 0, 0, 1300, 0)), effect ? 3500L : 1000L);
     server.Timer.EtcTimer.getInstance().schedule(() ->
-    {
-      this.c.send(CField.UIPacket.getDirectionStatus(false));
-      this.c.send(SLFCGPacket.SetIngameDirectionMode(false, false, false, false));
-    }, effect ? 5000L : 2000L);
+                                                 {
+                                                   this.c.send(CField.UIPacket.getDirectionStatus(false));
+                                                   this.c.send(SLFCGPacket.SetIngameDirectionMode(false, false, false, false));
+                                                 }, effect ? 5000L : 2000L);
   }
-  
-  
-  public void sendScreenText(String str, boolean newwrite)
+
+
+  public void sendScreenText (String str, boolean newwrite)
   {
     /* 3792 */
     this.c.send(SLFCGPacket.InGameDirectionEvent(str, 12, (newwrite) ? 1 : 0));
   }
-  
-  public void EnterMonsterPark(int mapid)
+
+  public void EnterMonsterPark (int mapid)
   {
     /* 3796 */
     int count = 0;
@@ -6809,8 +6811,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3800 */
     this.c.getPlayer().setMparkcount(count);
   }
-  
-  public void moru(Equip item, Equip item2)
+
+  public void moru (Equip item, Equip item2)
   {
     /* 3804 */
     if (item.getMoru() != 0)
@@ -6832,8 +6834,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3812 */
     this.c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateEquipSlot(item2));
   }
-  
-  public String EqpItem()
+
+  public String EqpItem ()
   {
     /* 3816 */
     String info = "";
@@ -6855,7 +6857,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
           /* 3823 */
           info = info + "#L" + Eqp.getItemId() + "# #i" + Eqp.getItemId() + "#  [ #i" + itemid + "# ]  #t" + Eqp.getItemId() + "# #r(모루)#k#b\r\n";
         }
-        
+
         /* 3827 */
         i++;
       }
@@ -6863,8 +6865,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3830 */
     return info;
   }
-  
-  public void sendJobIlust(int type, boolean lumi)
+
+  public void sendJobIlust (int type, boolean lumi)
   {
     /* 3834 */
     if (this.lastMsg > -1)
@@ -6874,8 +6876,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3837 */
     this.c.getSession().writeAndFlush(CField.NPCPacket.getIlust(this.id, type, lumi));
   }
-  
-  public boolean checkDayItem(String s, int type)
+
+  public boolean checkDayItem (String s, int type)
   {
     /* 3841 */
     MapleCharacter chr = this.c.getPlayer();
@@ -6886,7 +6888,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3844 */
     if (type == 0)
     {
-      
+
       /* 3846 */
       chr.addKV(s, today);
       /* 3847 */
@@ -6946,8 +6948,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3877 */
     return true;
   }
-  
-  public long ExpPocket(int type)
+
+  public long ExpPocket (int type)
   {
     /* 3881 */
     long t = 0L;
@@ -6975,8 +6977,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3892 */
     return t;
   }
-  
-  public void SelectQuest(String quest, int quest1, int quest2, int count)
+
+  public void SelectQuest (String quest, int quest1, int quest2, int count)
   {
     /* 3896 */
     List<Integer> QuestList = new ArrayList<>();
@@ -7063,7 +7065,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         /* 3959 */
         no = false;
       }
-      
+
       /* 3963 */
       SelectQuest.add(Integer.valueOf(questid));
     }
@@ -7084,8 +7086,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3972 */
     this.c.getPlayer().addKV(quest, q);
   }
-  
-  public int ReplaceQuest(String quest, int quest1, int quest2, int anotherquest)
+
+  public int ReplaceQuest (String quest, int quest1, int quest2, int anotherquest)
   {
     /* 3976 */
     List<Integer> QuestList = new ArrayList<>();
@@ -7099,7 +7101,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       /* 3980 */
       QuestList.add(Integer.valueOf(i));
     }
-    
+
     /* 3983 */
     String[] KeyValue = this.c.getPlayer().getV(quest).split(",");
     int j;
@@ -7109,7 +7111,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       /* 3985 */
       MyQuest.add(Integer.valueOf(Integer.parseInt(KeyValue[j])));
     }
-    
+
     /* 3988 */
     for (j = 0; j < KeyValue.length; j++)
     {
@@ -7165,7 +7167,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       {
         /* 4026 */
         SelectQuest.add(Integer.valueOf(questid));
-        
+
         /* 4030 */
         String q = "";
         /* 4031 */
@@ -7187,8 +7189,8 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       }
     }
   }
-  
-  public void cancelSkillsbuff()
+
+  public void cancelSkillsbuff ()
   {
     /* 4042 */
     for (Pair<SecondaryStat, SecondaryStatValueHolder> data : this.c.getPlayer().getEffects())
@@ -7196,8 +7198,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       /* 4043 */
       SecondaryStatValueHolder mbsvh = data.right;
       /* 4044 */
-      if (SkillFactory.getSkill(mbsvh.effect.getSourceId()) != null
-          && /* 4045 */ mbsvh.effect.getSourceId() != 80002282 && mbsvh.effect.getSourceId() != 2321055) /* 4046 */
+      if (SkillFactory.getSkill(mbsvh.effect.getSourceId()) != null && /* 4045 */ mbsvh.effect.getSourceId() != 80002282 && mbsvh.effect.getSourceId() != 2321055) /* 4046 */
       {
         this.c.getPlayer().cancelEffect(mbsvh.effect, Collections.singletonList(data.left));
       }

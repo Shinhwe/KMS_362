@@ -591,7 +591,7 @@ public enum SendPacketOpcode implements WritableIntValueHolder
   TELEPORT_REQUEST,
   POTION_COOLDOWN,
   ACTIVE_POTION_COOL,
-  BLACK_REBIRTH_SCROLL,
+  BLACK_FLAME_SCROLL,
   JINHILLAH_BLACK_HAND,
   JIN_HILLAH,
   JINHILLAH_SPIRIT,
@@ -603,7 +603,7 @@ public enum SendPacketOpcode implements WritableIntValueHolder
   MONSTER_BARRIER_EFFECT,
   FIELD_SKILL_REMOVE,
   GOLD_APPLE,
-  BLACK_REBIRTH_RESULT,
+  BLACK_FLAME_RESULT,
   REMOVE_PROJECTILE_EFFECT,
   UPDATE_PROJECTILE_EFFECT,
   SHOW_ICBM,
@@ -723,7 +723,8 @@ public enum SendPacketOpcode implements WritableIntValueHolder
   DEMIAN_TRANSCENDENTAL_SET,
   DEMIAN_TRANSCENDENTAL_SET2,
   BOSS_MATCHING_CHANCE,
-  REBIRTH_SCROLL_WINDOW,
+
+  FLAME_SCROLL_WINDOW,
   EXP_DROP_PENALTY,
   PENALTY_MSG,
   QUEST_MSG,
@@ -791,19 +792,19 @@ public enum SendPacketOpcode implements WritableIntValueHolder
   TYOONKITCHEN_UNK,
   SHOW_ACTION_EFFECT,
   TELEPORT_PLAYER;
-  
+
   static
   {
     reloadValues();
   }
-  
+
   private short code;
-  
+
   SendPacketOpcode()
   {
     this.code = -2;
   }
-  
+
   public static Properties getDefaultProperties() throws IOException
   {
     final Properties props = new Properties();
@@ -812,7 +813,7 @@ public enum SendPacketOpcode implements WritableIntValueHolder
     fileInputStream.close();
     return props;
   }
-  
+
   public static final void reloadValues()
   {
     try
@@ -824,7 +825,7 @@ public enum SendPacketOpcode implements WritableIntValueHolder
       throw new RuntimeException("Failed to load sendops", e);
     }
   }
-  
+
   public static String getOpcodeName(final int value)
   {
     for (final SendPacketOpcode opcode : values())
@@ -836,7 +837,7 @@ public enum SendPacketOpcode implements WritableIntValueHolder
     }
     return "UNKNOWN";
   }
-  
+
   @Override
   public short getValue()
   {
@@ -850,7 +851,7 @@ public enum SendPacketOpcode implements WritableIntValueHolder
     }
     return this.code;
   }
-  
+
   @Override
   public void setValue(final short code)
   {

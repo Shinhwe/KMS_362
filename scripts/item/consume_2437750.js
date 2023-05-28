@@ -1,19 +1,8 @@
-﻿importPackage(java.sql);
-importPackage(java.lang);
-importPackage(Packages.database);
-importPackage(Packages.handling.world);
-importPackage(Packages.constants);
-importPackage(java.util);
-importPackage(java.io);
-importPackage(Packages.client.inventory);
-importPackage(Packages.client);
-importPackage(Packages.server);
-importPackage(Packages.tools.packet);
-
-box = 2437750;
+﻿box = 2437750;
+var seld = -1;
 
 function start() {
-    status = -1;
+    St = -1;
     action(1, 0, 0);
 }
 
@@ -23,20 +12,34 @@ function action(mode, type, selection) {
         return;
     }
     if (mode == 1) {
-        status++;
+        St++;
     }
-    if (status == 0) {
-        var text = "#b#e<#t" + box + "#>#k#n\r\n\r\n";
-        text += "교환하고싶은 #b아케인 심볼#k 을 선택해주세요. 동일한 아이템으로 1개가 지급됩니다.\r\n";
-        for (i = 0; i < 6; i++) {
-            text += "#L" + (1712001 + i) + "# #i" + (1712001 + i) + "# #b#z" + (1712001 + i) + "##k\r\n";
-        }
+    if (St == 0) {
+        var text = "#fs14#請選擇要獲取的秘法符文, 每張兌換券可以獲得 1 個秘法符文.\r\n";
+        text += "#L1##b#i1712001##z1712001#\r\n";
+        text += "#L2##b#i1712002##z1712002#\r\n";
+        text += "#L3##b#i1712003##z1712003#\r\n";
+        text += "#L4##b#i1712004##z1712004#\r\n";
+        text += "#L5##b#i1712005##z1712005#\r\n";
+        text += "#L6##b#i1712006##z1712006#\r\n";
         cm.sendYesNo(text);
-
-    } else if (status == 1) {
-        cm.gainItem(selection, 1);
-        cm.gainItem(box, -1);
-        cm.sendOk("교환이 완료되었습니다.");
+    } else if (St == 1) {
+        seld = selection;
+        cm.sendGetNumber("要使用多少張兌換券?", 1, 1, 100);
+    } else if (St == 2) {
+        if (!cm.canHold(1712000 + seld, 1 * seld)) {
+            cm.sendOk("背包空間不足, 裝備欄位需要有 " + (1 * seld) + " 個空間, 請檢查!");
+            cm.dispose();
+            return;
+        }
+        if (!cm.haveItem(2437750, selection)) {
+            cm.sendOk("你沒有那麽多兌換券!");
+            cm.dispose();
+            return;
+        }
+        cm.gainItem(1712000 + seld, 1 * selection);
+        cm.gainItem(2437750, -1 * selection);
+        cm.sendOk("成功獲得對應的秘法符文!");
         cm.dispose();
     }
 }

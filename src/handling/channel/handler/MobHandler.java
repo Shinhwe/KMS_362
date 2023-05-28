@@ -805,11 +805,11 @@ public class MobHandler
         /*  522 */
         chr.getMap().broadcastMessage(CField.startMapEffect("환상의 꽃 보호에 실패하였습니다. 킬러 비가 환상의 꽃의 기운을 빼앗고 사라집니다.", 5120124, true));
         /*  523 */
-        chr.getMap().setEliteChmpmap(false);
+        chr.getMap().setEliteChampionMap(false);
         /*  524 */
-        chr.getMap().setElitechmpcount(0);
+        chr.getMap().setEliteChampionCount(0);
         /*  525 */
-        chr.getMap().setElitechmptype(0);
+        chr.getMap().setEliteChampionType(0);
         /*  526 */
         chr.getMap().setCustomInfo(8222222, 0, 600000);
         /*  527 */

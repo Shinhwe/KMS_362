@@ -1,6 +1,5 @@
 package client.inventory;
 
-import client.MapleCharacter;
 import constants.GameConstants;
 import server.MapleItemInformationProvider;
 import server.Randomizer;
@@ -8,6 +7,7 @@ import server.enchant.EnchantFlag;
 import server.enchant.EquipmentEnchant;
 import server.enchant.EquipmentScroll;
 import server.enchant.StarForceStats;
+import tools.CalcTools;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -65,7 +65,6 @@ public class Equip extends Item implements Serializable
   private short enchantJump = 0;
 
   private byte enchantReductReqLevel = 0;
-  private short arc;
 
   private short enchantMovementSpeed = 0;
   private short flameStr = 0;
@@ -97,8 +96,11 @@ public class Equip extends Item implements Serializable
   private short starForceMatk = 0;
   private short starForceJump = 0;
   private short starForceMovementSpeed = 0;
-  private int arcexp = 0;
-  private int arclevel = 0;
+
+  private int arcPower;
+
+  private int arcExp = 0;
+  private int arcLevel = 0;
 
   private int arcStr = 0;
 
@@ -110,6 +112,11 @@ public class Equip extends Item implements Serializable
 
   private int arcHp = 0;
 
+  private int authenticLevel = 0;
+
+  private int authenticPower = 0;
+
+  private int authenticExp = 0;
   private int authenticStr = 0;
 
   private int authenticDex = 0;
@@ -221,7 +228,7 @@ public class Equip extends Item implements Serializable
     {
       eq.getStats().add(EquipStat.INC_SKILL);
     }
-    if (eq.getItemLevel() > 0)
+    if (eq.getEquipLevel() > 0)
     {
       eq.getStats().add(EquipStat.ITEM_LEVEL);
     }
@@ -273,7 +280,7 @@ public class Equip extends Item implements Serializable
     {
       eq.getSpecialStats().add(EquipSpecialStat.TOTAL_DAMAGE);
     }
-    if (eq.getAllStat() > 0)
+    if (eq.getTotalAllStat() > 0)
     {
       eq.getSpecialStats().add(EquipSpecialStat.ALL_STAT);
     }
@@ -283,7 +290,7 @@ public class Equip extends Item implements Serializable
     }
     if (eq.getFlame() > 0L)
     {
-      eq.getSpecialStats().add(EquipSpecialStat.REBIRTH_FIRE);
+      eq.getSpecialStats().add(EquipSpecialStat.FLAME);
     }
     if (eq.getEquipmentType() > 0)
     {
@@ -295,10 +302,19 @@ public class Equip extends Item implements Serializable
   public void set (Equip set)
   {
     this.template = set.template;
-
-    this.arc = set.arc;
-    this.arclevel = set.arclevel;
-    this.arcexp = set.arcexp;
+    this.arcPower = set.arcPower;
+    this.arcLevel = set.arcLevel;
+    this.arcExp = set.arcExp;
+    this.arcDex = set.arcDex;
+    this.arcStr = set.arcStr;
+    this.arcInt = set.arcInt;
+    this.arcLuk = set.arcLuk;
+    this.arcHp = set.arcHp;
+    this.authenticStr = set.authenticStr;
+    this.authenticDex = set.authenticDex;
+    this.authenticInt = set.authenticInt;
+    this.authenticLuk = set.authenticLuk;
+    this.authenticHp = set.authenticHp;
     this.starForceLevel = set.starForceLevel;
     this.enchantLevel = set.enchantLevel;
     this.durability = set.durability;
@@ -387,13 +403,22 @@ public class Equip extends Item implements Serializable
     this.flameDef = set.flameDef;
   }
 
-  @Override
-  public Item copy ()
+  @Override public Item copy ()
   {
     Equip ret = new Equip(this.getTemplate(), this.getPosition(), this.getFlag(), this.getUniqueId());
-    ret.arc = this.arc;
-    ret.arcexp = this.arcexp;
-    ret.arclevel = this.arclevel;
+    ret.arcPower = this.arcPower;
+    ret.arcLevel = this.arcLevel;
+    ret.arcExp = this.arcExp;
+    ret.arcDex = this.arcDex;
+    ret.arcStr = this.arcStr;
+    ret.arcInt = this.arcInt;
+    ret.arcLuk = this.arcLuk;
+    ret.arcHp = this.arcHp;
+    this.authenticStr = this.authenticStr;
+    this.authenticDex = this.authenticDex;
+    this.authenticInt = this.authenticInt;
+    this.authenticLuk = this.authenticLuk;
+    this.authenticHp = this.authenticHp;
     ret.starForceLevel = this.starForceLevel;
     ret.enchantLevel = this.enchantLevel;
     ret.durability = this.durability;
@@ -490,8 +515,7 @@ public class Equip extends Item implements Serializable
   }
 
 
-  @Override
-  public byte getType ()
+  @Override public byte getType ()
   {
     return 1;
   }
@@ -502,10 +526,10 @@ public class Equip extends Item implements Serializable
   }
 
 
-//  public void setUpgradeSlots (byte upgradeSlots)
-//  {
-//    this.upgradeSlots = upgradeSlots;
-//  }
+  //  public void setUpgradeSlots (byte upgradeSlots)
+  //  {
+  //    this.upgradeSlots = upgradeSlots;
+  //  }
 
   public byte getExtraUpgradeSlots ()
   {
@@ -524,7 +548,7 @@ public class Equip extends Item implements Serializable
 
   public void setFailUpgradeSlots (byte failUpgradeSlots)
   {
-    this.failUpgradeSlots = failUpgradeSlots;
+    this.failUpgradeSlots = failUpgradeSlots > 0 ? failUpgradeSlots : 0;
   }
 
   public byte getSuccessUpgradeSlots ()
@@ -538,18 +562,18 @@ public class Equip extends Item implements Serializable
   }
 
 
-  public short getArc ()
+  public int getArcPower ()
   {
-    return this.arc;
+    return this.arcPower;
   }
 
-  public void setArc (short arc)
+  public void setArcPower (int arcPower)
   {
-    if (arc < 0)
+    if (arcPower < 0)
     {
-      arc = 0;
+      arcPower = 0;
     }
-    this.arc = arc;
+    this.arcPower = arcPower;
   }
 
 
@@ -670,8 +694,7 @@ public class Equip extends Item implements Serializable
     return this.itemLevel;
   }
 
-  @Override
-  public void setQuantity (short quantity)
+  @Override public void setQuantity (short quantity)
   {
     // 设置数量无效, 但是父类提供了这个方法, 这里覆写掉
     super.setQuantity((short) 1);
@@ -1002,10 +1025,10 @@ public class Equip extends Item implements Serializable
     this.enchantBuff = enchantBuff;
   }
 
-//  public void setReqLevel (byte reqLevel)
-//  {
-//    this.reqLevel = reqLevel;
-//  }
+  //  public void setReqLevel (byte reqLevel)
+  //  {
+  //    this.reqLevel = reqLevel;
+  //  }
 
   public byte getYggdrasilWisdom ()
   {
@@ -1052,40 +1075,40 @@ public class Equip extends Item implements Serializable
     return (byte) (this.template.getBossDamage() + enchantBossDamage + flameBossDamage);
   }
 
-//  public void setBossDamage (short bossDamage)
-//  {
-//    this.bossDamage = bossDamage;
-//  }
+  //  public void setBossDamage (short bossDamage)
+  //  {
+  //    this.bossDamage = bossDamage;
+  //  }
 
   public short getTotalIgnorePDR ()
   {
     return (short) (this.template.getIgnorePDR() + enchantIgnorePDR);
   }
 
-//  public void setIgnorePDR (short ignorePDR)
-//  {
-//    this.ignorePDR = ignorePDR;
-//  }
+  //  public void setIgnorePDR (short ignorePDR)
+  //  {
+  //    this.ignorePDR = ignorePDR;
+  //  }
 
   public byte getTotalDamage ()
   {
     return (byte) (this.template.getDamage() + enchantDamage + flameDamage);
   }
 
-//  public void setTotalDamage (byte totalDamage)
-//  {
-//    this.totalDamage = totalDamage;
-//  }
+  //  public void setTotalDamage (byte totalDamage)
+  //  {
+  //    this.totalDamage = totalDamage;
+  //  }
 
-  public byte getAllStat ()
+  public byte getTotalAllStat ()
   {
     return (byte) (this.template.getAllStat() + enchantAllStat + flameAllStat);
   }
 
-//  public void setAllStat (byte allStat)
-//  {
-//    this.allStat = allStat;
-//  }
+  //  public void setAllStat (byte allStat)
+  //  {
+  //    this.allStat = allStat;
+  //  }
 
   public byte getKarmaCount ()
   {
@@ -1147,24 +1170,24 @@ public class Equip extends Item implements Serializable
     return this.specialStats;
   }
 
-  public int getArcEXP ()
+  public int getArcExp ()
   {
-    return this.arcexp;
+    return this.arcExp;
   }
 
-  public void setArcEXP (int exp)
+  public void setArcExp (int exp)
   {
-    this.arcexp = exp;
+    this.arcExp = exp;
   }
 
   public int getArcLevel ()
   {
-    return this.arclevel;
+    return this.arcLevel;
   }
 
   public void setArcLevel (int lv)
   {
-    this.arclevel = lv;
+    this.arcLevel = lv;
   }
 
   public void resetEnchantScroll ()
@@ -1202,37 +1225,28 @@ public class Equip extends Item implements Serializable
 
     this.resetFlame();
 
-    int[] rebirth = new int[4];
 
-    String fire = String.valueOf(this.getFlame());
+    int flameOption1 = (int) (flame % 1000L / 10L);
 
-    if (fire.length() == 12)
-    {
-      rebirth[0] = Integer.parseInt(fire.substring(0, 3));
-      rebirth[1] = Integer.parseInt(fire.substring(3, 6));
-      rebirth[2] = Integer.parseInt(fire.substring(6, 9));
-      rebirth[3] = Integer.parseInt(fire.substring(9));
-    }
-    else if (fire.length() == 11)
-    {
-      rebirth[0] = Integer.parseInt(fire.substring(0, 2));
-      rebirth[1] = Integer.parseInt(fire.substring(2, 5));
-      rebirth[2] = Integer.parseInt(fire.substring(5, 8));
-      rebirth[3] = Integer.parseInt(fire.substring(8));
-    }
-    else if (fire.length() == 10)
-    {
-      rebirth[0] = Integer.parseInt(fire.substring(0, 1));
-      rebirth[1] = Integer.parseInt(fire.substring(1, 4));
-      rebirth[2] = Integer.parseInt(fire.substring(4, 7));
-      rebirth[3] = Integer.parseInt(fire.substring(7));
-    }
-    else
-    {
-      return;
-    }
+    int flameValue1 = (int) (flame % 10L / 1L);
 
-    byte reqLevel = this.template.getReqLevel();
+    int flameOption2 = (int) (flame % 1000000L / 10000L);
+
+    int flameValue2 = (int) (flame % 10000L / 1000L);
+
+    int flameOption3 = (int) (flame % 1000000000L / 10000000L);
+
+    int flameValue3 = (int) (int) (flame % 10000000L / 1000000L);
+
+    int flameOption4 = (int) (flame % 1000000000000L / 10000000000L);
+
+    int flameValue4 = (int) (int) (flame % 10000000000L / 1000000000L);
+
+    int[] flameOptionList = new int[] { flameOption1, flameOption2, flameOption3, flameOption4 };
+
+    int[] flameValueList = new int[] { flameValue1, flameValue2, flameValue3, flameValue4 };
+
+    short reqLevel = this.template.getReqLevel();
 
     short incStr = 0;
 
@@ -1262,294 +1276,152 @@ public class Equip extends Item implements Serializable
 
     short incJump = 0;
 
+    short baseMatk = getTemplate().getMatk() > 0 ? getTemplate().getMatk() : getTemplate().getWatk();
+
+    short baseWatk = getTemplate().getWatk();
+
     byte reductReqLevel = 0;
 
     for (int i = 0; i < 4; ++i)
     {
-      int randomOption = rebirth[i] / 10;
+      int flameOption = flameOptionList[i];
 
-      int randomValue = rebirth[i] - rebirth[i] / 10 * 10;
+      int flameValue = flameValueList[i];
 
-      if (randomValue == 0)
+      if (flameValue == 0)
       {
         continue;
       }
 
-      switch (randomOption)
+      switch (flameOption)
       {
         case 0:
         {
-          incStr += (short) ((reqLevel / 20 + 1) * randomValue);
+          incStr += (short) ((reqLevel / 20 + 1) * flameValue);
           continue;
         }
         case 1:
         {
-          incDex += (short) ((reqLevel / 20 + 1) * randomValue);
+          incDex += (short) ((reqLevel / 20 + 1) * flameValue);
           continue;
         }
         case 2:
         {
-          incInt += (short) ((reqLevel / 20 + 1) * randomValue);
+          incInt += (short) ((reqLevel / 20 + 1) * flameValue);
           continue;
         }
         case 3:
         {
-          incLuk += (short) ((reqLevel / 20 + 1) * randomValue);
+          incLuk += (short) ((reqLevel / 20 + 1) * flameValue);
           continue;
         }
         case 4:
         {
-          incStr += (short) ((reqLevel / 40 + 1) * randomValue);
-          incDex += (short) ((reqLevel / 40 + 1) * randomValue);
+          incStr += (short) ((reqLevel / 40 + 1) * flameValue);
+          incDex += (short) ((reqLevel / 40 + 1) * flameValue);
           continue;
         }
         case 5:
         {
-          incStr += (short) ((reqLevel / 40 + 1) * randomValue);
-          incInt += (short) ((reqLevel / 40 + 1) * randomValue);
+          incStr += (short) ((reqLevel / 40 + 1) * flameValue);
+          incInt += (short) ((reqLevel / 40 + 1) * flameValue);
           continue;
         }
         case 6:
         {
-          incStr += (short) ((reqLevel / 40 + 1) * randomValue);
-          incLuk += (short) ((reqLevel / 40 + 1) * randomValue);
+          incStr += (short) ((reqLevel / 40 + 1) * flameValue);
+          incLuk += (short) ((reqLevel / 40 + 1) * flameValue);
           continue;
         }
         case 7:
         {
-          incDex += (short) ((reqLevel / 40 + 1) * randomValue);
-          incInt += (short) ((reqLevel / 40 + 1) * randomValue);
+          incDex += (short) ((reqLevel / 40 + 1) * flameValue);
+          incInt += (short) ((reqLevel / 40 + 1) * flameValue);
           continue;
         }
         case 8:
         {
-          incDex += (short) ((reqLevel / 40 + 1) * randomValue);
-          incLuk += (short) ((reqLevel / 40 + 1) * randomValue);
+          incDex += (short) ((reqLevel / 40 + 1) * flameValue);
+          incLuk += (short) ((reqLevel / 40 + 1) * flameValue);
           continue;
         }
         case 9:
         {
-          incInt += (short) ((reqLevel / 40 + 1) * randomValue);
-          incLuk += (short) ((reqLevel / 40 + 1) * randomValue);
+          incInt += (short) ((reqLevel / 40 + 1) * flameValue);
+          incLuk += (short) ((reqLevel / 40 + 1) * flameValue);
           continue;
         }
         case 10:
         {
-          incHp += (short) (reqLevel / 10 * 10 * 3 * randomValue);
+          incHp += (short) (reqLevel / 10 * 10 * 3 * flameValue);
           continue;
         }
         case 11:
         {
-          incMp += (short) (reqLevel / 10 * 10 * 3 * randomValue);
+          incMp += (short) (reqLevel / 10 * 10 * 3 * flameValue);
           continue;
         }
         case 13:
         {
-          incDef += (short) ((reqLevel / 20 + 1) * randomValue);
+          incDef += (short) ((reqLevel / 20 + 1) * flameValue);
           continue;
         }
         case 17:
         {
           if (GameConstants.isWeapon(this.getItemId()))
           {
-            switch (randomValue)
-            {
-              case 3:
-              {
-                if (reqLevel <= 150)
-                {
-                  incWatk += (short) (this.template.getWatk() * 1200 / 10000 + 1);
-                  continue;
-                }
-                if (reqLevel <= 160)
-                {
-                  incWatk += (short) (this.template.getWatk() * 1500 / 10000 + 1);
-                  continue;
-                }
-                incWatk += (short) (this.template.getWatk() * 1800 / 10000 + 1);
-                continue;
-              }
-              case 4:
-              {
-                if (reqLevel <= 150)
-                {
-                  incWatk += (short) (this.template.getWatk() * 1760 / 10000 + 1);
-                  continue;
-                }
-                if (reqLevel <= 160)
-                {
-                  incWatk += (short) (this.template.getWatk() * 2200 / 10000 + 1);
-                  continue;
-                }
-                incWatk += (short) (this.template.getWatk() * 2640 / 10000 + 1);
-                continue;
-              }
-              case 5:
-              {
-                if (reqLevel <= 150)
-                {
-                  incWatk += (short) (this.template.getWatk() * 2420 / 10000 + 1);
-                  continue;
-                }
-                if (reqLevel <= 160)
-                {
-                  incWatk += (short) (this.template.getWatk() * 3025 / 10000 + 1);
-                  continue;
-                }
-                incWatk += (short) (this.template.getWatk() * 3630 / 10000 + 1);
-                continue;
-              }
-              case 6:
-              {
-                if (reqLevel <= 150)
-                {
-                  incWatk += (short) (this.template.getWatk() * 3200 / 10000 + 1);
-                  continue;
-                }
-                if (reqLevel <= 160)
-                {
-                  incWatk += (short) (this.template.getWatk() * 4000 / 10000 + 1);
-                  continue;
-                }
-                incWatk += (short) (this.template.getWatk() * 4800 / 10000 + 1);
-                continue;
-              }
-              case 7:
-              {
-                if (reqLevel <= 150)
-                {
-                  incWatk += (short) (this.template.getWatk() * 4100 / 10000 + 1);
-                  continue;
-                }
-                if (reqLevel <= 160)
-                {
-                  incWatk += (short) (this.template.getWatk() * 5125 / 10000 + 1);
-                  continue;
-                }
-                incWatk += (short) (this.template.getWatk() * 6150 / 10000 + 1);
-              }
-            }
-            continue;
+            double 武器攻擊力百分比 = CalcTools.計算武器火花攻擊力(getItemId(), reqLevel, flameValue);
+
+            incWatk = (short) (Math.floor(baseWatk * 武器攻擊力百分比 / 100) + 1);
           }
-
-          incWatk += (short) randomValue;
-
+          else
+          {
+            incWatk += (short) flameValue;
+          }
           continue;
         }
         case 18:
         {
           if (GameConstants.isWeapon(this.getItemId()))
           {
-            switch (randomValue)
-            {
-              case 3:
-              {
-                if (reqLevel <= 150)
-                {
-                  incMatk += (short) (this.template.getMatk() * 1200 / 10000 + 1);
-                  continue;
-                }
-                if (reqLevel <= 160)
-                {
-                  incMatk += (short) (this.template.getMatk() * 1500 / 10000 + 1);
-                  continue;
-                }
-                incMatk += (short) (this.template.getMatk() * 1800 / 10000 + 1);
-                continue;
-              }
-              case 4:
-              {
-                if (reqLevel <= 150)
-                {
-                  incMatk += (short) (this.template.getMatk() * 1760 / 10000 + 1);
-                  continue;
-                }
-                if (reqLevel <= 160)
-                {
-                  incMatk += (short) (this.template.getMatk() * 2200 / 10000 + 1);
-                  continue;
-                }
-                incMatk += (short) (this.template.getMatk() * 2640 / 10000 + 1);
-                continue;
-              }
-              case 5:
-              {
-                if (reqLevel <= 150)
-                {
-                  incMatk += (short) (this.template.getMatk() * 2420 / 10000 + 1);
-                  continue;
-                }
-                if (reqLevel <= 160)
-                {
-                  incMatk += (short) (this.template.getMatk() * 3025 / 10000 + 1);
-                  continue;
-                }
-                incMatk += (short) (this.template.getMatk() * 3630 / 10000 + 1);
-                continue;
-              }
-              case 6:
-              {
-                if (reqLevel <= 150)
-                {
-                  incMatk += (short) (this.template.getMatk() * 3200 / 10000 + 1);
-                  continue;
-                }
-                if (reqLevel <= 160)
-                {
-                  incMatk += (short) (this.template.getMatk() * 4000 / 10000 + 1);
-                  continue;
-                }
-                incMatk += (short) (this.template.getMatk() * 4800 / 10000 + 1);
-                continue;
-              }
-              case 7:
-              {
-                if (reqLevel <= 150)
-                {
-                  incMatk += (short) (this.template.getMatk() * 4100 / 10000 + 1);
-                  continue;
-                }
-                if (reqLevel <= 160)
-                {
-                  incMatk += (short) (this.template.getMatk() * 5125 / 10000 + 1);
-                  continue;
-                }
-                incMatk += (short) (this.template.getMatk() * 6150 / 10000 + 1);
-              }
-            }
-            continue;
+            double 武器攻擊力百分比 = CalcTools.計算武器火花攻擊力(getItemId(), reqLevel, flameValue);
+
+            incMatk = (short) (Math.floor(baseMatk * 武器攻擊力百分比 / 100) + 1);
           }
-          incMatk += (short) randomValue;
+          else
+          {
+            incMatk += (short) flameValue;
+          }
           continue;
         }
         case 19:
         {
-          incSpeed += (short) randomValue;
+          incSpeed += (short) flameValue;
           continue;
         }
         case 20:
         {
-          incJump += (short) randomValue;
+          incJump += (short) flameValue;
           continue;
         }
         case 21:
         {
-          incBossDamage += (short) (randomValue * 2);
+          incBossDamage += (short) (flameValue * 2);
           continue;
         }
         case 22:
         {
-          reductReqLevel = (byte) (randomValue * 5);
+          reductReqLevel = (byte) (flameValue * 5);
           continue;
         }
         case 23:
         {
-          incDamage += (short) randomValue;
+          incDamage += (short) flameValue;
           continue;
         }
         case 24:
         {
-          incAllStat += (short) randomValue;
+          incAllStat += (short) flameValue;
         }
       }
     }
@@ -1606,14 +1478,16 @@ public class Equip extends Item implements Serializable
 
   public long calcNewFlame (int scrollId)
   {
-    if (GameConstants.isRing(this.getItemId()) || this.getItemId() / 1000 == 1092 || this.getItemId() / 1000 == 1342 || this.getItemId() / 1000 == 1713 || this.getItemId() / 1000 == 1712 || this.getItemId() / 1000 == 1152 || this.getItemId() / 1000 == 1142 || this.getItemId() / 1000 == 1143 || this.getItemId() / 1000 == 1672 || GameConstants.isSecondaryWeapon(this.getItemId()) || this.getItemId() / 1000 == 1190 || this.getItemId() / 1000 == 1191 || this.getItemId() / 1000 == 1182 || this.getItemId() / 1000 == 1662 || this.getItemId() / 1000 == 1802)
+    if (GameConstants.isRing(getItemId()) || GameConstants.isShield(getItemId()) || GameConstants.isShoulder(getItemId()) || GameConstants.isMedal(getItemId()) || GameConstants.isEmblem(getItemId()) || GameConstants.isBadge(getItemId()) || GameConstants.isAndroid(getItemId()) || GameConstants.isAndroidHeart(getItemId()) || GameConstants.isSecondaryWeapon(getItemId()))
     {
       return 0L;
     }
 
     boolean isBossItem = GameConstants.isBossItem(getItemId());
 
-    System.out.println("开始砸火花啦, 是BOSS物品吗? " + isBossItem);
+    System.out.println("物品Id" + this.getItemId() + "开始砸火花啦, 是BOSS物品吗? " + isBossItem);
+
+    System.out.println("使用的火花Id = " + scrollId);
 
     // check https://strategywiki.org/wiki/MapleStory/Bonus_Stats
 
@@ -1651,9 +1525,9 @@ public class Equip extends Item implements Serializable
     {
       numberOfLines = 4;
 
-      minValue = 4;
+      minValue = 3;
 
-      maxValue = 8;
+      maxValue = 6;
     }
 
     if (MapleItemInformationProvider.getInstance().getName(scrollId) != null)
@@ -1662,26 +1536,26 @@ public class Equip extends Item implements Serializable
       {
         if (isBossItem)
         {
-          minValue = 5;
-          maxValue = 9;
+          minValue = 3;
+          maxValue = 6;
         }
         else
         {
-          minValue = 2;
-          maxValue = 6;
+          minValue = 1;
+          maxValue = 4;
         }
       }
       if (MapleItemInformationProvider.getInstance().getName(scrollId).contains("영원한 환생의") || MapleItemInformationProvider.getInstance().getName(scrollId).contains("검은 환생의"))
       {
         if (isBossItem)
         {
-          minValue = 8;
-          maxValue = 12;
+          minValue = 6;
+          maxValue = 9;
         }
         else
         {
-          minValue = 3;
-          maxValue = 7;
+          minValue = 2;
+          maxValue = 5;
         }
       }
     }
@@ -1695,10 +1569,9 @@ public class Equip extends Item implements Serializable
     {
       this.setKarmaCount((byte) 10);
     }
-    long[] rebirth = new long[] { 1L, 1L, 1L, 1L };
+    long[] flameResultList = new long[] { 10L, 10L, 10L, 10L };
 
-    int[] rebirthOptions = new int[] { -1, -1, -1, -1 };
-
+    int[] flameOptionList = new int[] { 1, 1, 1, 1 };
 
     for (int i = 0; i < 4; ++i)
     {
@@ -1710,30 +1583,30 @@ public class Equip extends Item implements Serializable
       {
         randomOption = Randomizer.nextInt(25);
 
-        while (rebirthOptions[0] == randomOption || rebirthOptions[1] == randomOption || rebirthOptions[2] == randomOption || rebirthOptions[3] == randomOption || randomOption == 12 || randomOption == 14 || randomOption == 15 || randomOption == 16 || !GameConstants.isWeapon(this.getItemId()) && (randomOption == 21 || randomOption == 23))
+        while (flameOptionList[0] == randomOption || flameOptionList[1] == randomOption || flameOptionList[2] == randomOption || flameOptionList[3] == randomOption || randomOption == 12 || randomOption == 14 || randomOption == 15 || randomOption == 16 || !GameConstants.isWeapon(this.getItemId()) && (randomOption == 21 || randomOption == 23))
         {
           randomOption = Randomizer.nextInt(25);
         }
 
-        rebirthOptions[i] = randomOption;
+        flameOptionList[i] = randomOption;
 
         randomValue = minValue;
 
 
         // 最大最小值差4, 概率分布
-        // 普通装备 40 40 10 5 5
-        // BOSS装备 8 32 32 20 8
+        // 普通装备 40 40 10 15 5
+        // BOSS装备 10 20 30 30 10
         // 5% 很少? 官服只有 1%!
 
         chance = Randomizer.nextInt(100);
 
         if (isBossItem)
         {
-          if (chance > 92)
+          if (chance > 90)
           {
             randomValue = maxValue;
           }
-          else if (chance > 72)
+          else if (chance > 70)
           {
             randomValue = maxValue - 1;
           }
@@ -1741,7 +1614,7 @@ public class Equip extends Item implements Serializable
           {
             randomValue = maxValue - 2;
           }
-          else if (chance > 8)
+          else if (chance > 10)
           {
             randomValue = maxValue - 3;
           }
@@ -1768,35 +1641,29 @@ public class Equip extends Item implements Serializable
 
         System.out.println("当前随机第 " + i + " 条火花! randomValue = " + randomValue + "; chance = " + chance + "; randomOption = " + randomOption);
 
-        rebirth[i] = randomOption * 10L + randomValue;
+        flameResultList[i] = randomOption * 10L + randomValue;
       }
-
-
 
       for (int j = 0; j < i; ++j)
       {
         int n = i;
-        rebirth[n] = rebirth[n] * 1000L;
+        flameResultList[n] = flameResultList[n] * 1000L;
       }
-
     }
 
-    long flame = rebirth[0] + rebirth[1] + rebirth[2] + rebirth[3];
-
-    System.out.println("flame = " + flame);
+    long flame = flameResultList[0] + flameResultList[1] + flameResultList[2] + flameResultList[3];
 
     // 不会更新火花, 只是计算出结果
     return flame;
   }
 
-  public void setZeroRebirth (MapleCharacter chr, int scrollId)
+  public long calcZeroNewFlame (int scrollId)
   {
     if (GameConstants.isRing(this.getItemId()) || this.getItemId() / 1000 == 1092 || this.getItemId() / 1000 == 1342 || this.getItemId() / 1000 == 1713 || this.getItemId() / 1000 == 1712 || this.getItemId() / 1000 == 1152 || this.getItemId() / 1000 == 1142 || this.getItemId() / 1000 == 1143 || this.getItemId() / 1000 == 1672 || GameConstants.isSecondaryWeapon(this.getItemId()) || this.getItemId() / 1000 == 1190 || this.getItemId() / 1000 == 1191 || this.getItemId() / 1000 == 1182 || this.getItemId() / 1000 == 1662 || this.getItemId() / 1000 == 1802)
     {
-      return;
+      return 0L;
     }
 
-    Equip nEquip2 = (Equip) chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
 
     // 再别说了, 神之子的武器就是BOSS武器, 别问, 问就是我的怜悯
     int minValue = 4;
@@ -1826,7 +1693,7 @@ public class Equip extends Item implements Serializable
 
     for (int i = 0; i < 4; ++i)
     {
-      int randomOption = 0;
+      int randomOption = 1;
 
       int randomValue = 0;
 
@@ -1869,7 +1736,6 @@ public class Equip extends Item implements Serializable
           randomValue = maxValue - 3;
         }
 
-
         System.out.println("当前随机第 " + i + " 条火花! randomValue = " + randomValue + "; chance = " + chance + "; randomOption = " + randomOption);
       }
 
@@ -1885,15 +1751,7 @@ public class Equip extends Item implements Serializable
 
     long flame = rebirth[0] + rebirth[1] + rebirth[2] + rebirth[3];
 
-
-    setFlame(flame);
-
-    calcFlameStats();
-
-    nEquip2.setFlame(flame);
-
-    nEquip2.calcFlameStats();
-
+    return flame;
   }
 
   public int getMoru ()
@@ -1927,12 +1785,9 @@ public class Equip extends Item implements Serializable
 
   public void 设置装备后不可交易 ()
   {
-
-  }
-
-  public byte 剩余升级次数 ()
-  {
-    return (byte) (this.getTemplate().getUpgradeSlots() + this.extraUpgradeSlots - this.successUpgradeSlots - this.failUpgradeSlots);
+    int flag = this.getFlag();
+    flag -= ItemFlag.UNTRADEABLE.getValue();
+    setFlag(flag);
   }
 
   public int getEquipmentType ()
@@ -2605,6 +2460,36 @@ public class Equip extends Item implements Serializable
   public void setEnchantReductReqLevel (byte enchantReductReqLevel)
   {
     this.enchantReductReqLevel = enchantReductReqLevel;
+  }
+
+  public int getAuthenticLevel ()
+  {
+    return authenticLevel;
+  }
+
+  public void setAuthenticLevel (int authenticLevel)
+  {
+    this.authenticLevel = authenticLevel;
+  }
+
+  public int getAuthenticPower ()
+  {
+    return authenticPower;
+  }
+
+  public void setAuthenticPower (int authenticPower)
+  {
+    this.authenticPower = authenticPower;
+  }
+
+  public int getAuthenticExp ()
+  {
+    return authenticExp;
+  }
+
+  public void setAuthenticExp (int authenticExp)
+  {
+    this.authenticExp = authenticExp;
   }
 
 

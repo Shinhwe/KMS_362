@@ -5,7 +5,7 @@ public enum EquipSpecialStat
   TOTAL_DAMAGE(1),
   ALL_STAT(2),
   KARMA_COUNT(4),
-  REBIRTH_FIRE(8),
+  FLAME(8),
   EQUIPMENT_TYPE(16);
   
   private final int value;
