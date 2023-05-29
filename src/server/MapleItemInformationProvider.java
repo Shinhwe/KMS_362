@@ -1577,31 +1577,23 @@ public class MapleItemInformationProvider
             }
             break;
           }
-          if (GameConstants.isPotentialScroll(卷軸Id))
+          if (GameConstants.是潛能卷軸(卷軸Id))
           {
             if (equip.getState() == 0)
             {
-              if (!Randomizer.isSuccess(getSuccess(卷軸Id, chr, equip)))
+              int 成功率 = GameConstants.獲取潛能卷軸成功率(卷軸Id);
+              if (Randomizer.isSuccess(成功率))
               {
-                if (Randomizer.isSuccess(getCursed(卷軸Id)) && ItemFlag.PROTECT_SHIELD.check(equip.getFlag()))
+                int state = 2;
+                if (Randomizer.isSuccess(25))
                 {
-                  chr.dropMessage(5, "주문서의 효과로 아이템이 파괴되지 않았습니다.");
+                  state += 1;
                 }
-                failed = true;
-                break;
-              }
-              int state = 1;
-              switch (卷軸Id)
-              {
-                case 2049762:
-                case 2079790:
-                  state = 3;
-                  break;
-              }
-              equip.setState((byte) state);
-              if (zeroEquip != null)
-              {
-                zeroEquip.setState((byte) state);
+                equip.setState((byte) state);
+                if (zeroEquip != null)
+                {
+                  zeroEquip.setState((byte) state);
+                }
               }
             }
             break;
@@ -1653,7 +1645,7 @@ public class MapleItemInformationProvider
 
     success += baseSuccess;
 
-    if (GameConstants.isPotentialScroll(itemId) == false && GameConstants.是裝備強化卷軸(itemId) == false && ItemFlag.LUCKY_PROTECT_SHIELD.check(equip.getFlag()))
+    if (GameConstants.是潛能卷軸(itemId) == false && GameConstants.是裝備強化卷軸(itemId) == false && ItemFlag.LUCKY_PROTECT_SHIELD.check(equip.getFlag()))
     {
       success += 10;
     }
@@ -1680,7 +1672,7 @@ public class MapleItemInformationProvider
     if (isCash(equipId) == false && generateFlame && GameConstants.isArcaneSymbol(equipId) == false && GameConstants.isAuthenticSymbol(equipId) == false)
     {
       long flame = equip.calcNewFlame(2048716);
-      
+
       equip.setFlame(flame);
 
       equip.calcFlameStats();

@@ -248,6 +248,10 @@ public class GameConstants
 
   private static int[] 特殊裝備強化卷軸成功率 = new int[] { 100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 10, 10, 10, 10, 10 };
 
+  private static int[] 潛能卷軸列表 = new int[] { 2049790, 2049700, 2049406 };
+
+  private static int[] 附加潛能卷軸列表 = new int[] { 2048307, 2049731 };
+
   static
   {
     chariotItems.add(new Triple<>(Integer.valueOf(9), Integer.valueOf(5062503), Integer.valueOf(300)));
@@ -2860,9 +2864,14 @@ public class GameConstants
     return (scrollId / 100 == 20489);
   }
 
-  public static boolean isPotentialScroll (int scrollId)
+  public static boolean 是潛能卷軸 (int 卷軸id)
   {
-    return (scrollId / 100 == 20494 || scrollId / 100 == 20497 || scrollId == 5534000);
+    return Arrays.stream(潛能卷軸列表).anyMatch(item -> item == 卷軸id);
+  }
+
+  public static int 獲取潛能卷軸成功率 (int 卷軸id)
+  {
+    return 100;
   }
 
   public static boolean isProstyScroll (int scrollId)

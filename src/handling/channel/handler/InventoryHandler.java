@@ -836,7 +836,7 @@ public class InventoryHandler
     {
       scroll = chr.getInventory(MapleInventoryType.CASH).getItem(slot);
     }
-    else if (!GameConstants.isSpecialScroll(scroll.getItemId()) && !GameConstants.isCleanSlate(scroll.getItemId()) && !GameConstants.是裝備強化卷軸(scroll.getItemId()) && !GameConstants.isPotentialScroll(scroll.getItemId()) && !GameConstants.是輪迴星火(scroll.getItemId()) && scroll.getItemId() / 10000 != 204 && scroll.getItemId() / 10000 != 272 && scroll.getItemId() / 10000 != 264)
+    else if (!GameConstants.isSpecialScroll(scroll.getItemId()) && !GameConstants.isCleanSlate(scroll.getItemId()) && !GameConstants.是裝備強化卷軸(scroll.getItemId()) && !GameConstants.是潛能卷軸(scroll.getItemId()) && !GameConstants.是輪迴星火(scroll.getItemId()) && scroll.getItemId() / 10000 != 204 && scroll.getItemId() / 10000 != 272 && scroll.getItemId() / 10000 != 264)
     {
       scroll = chr.getInventory(MapleInventoryType.CASH).getItem(slot);
     }
@@ -867,7 +867,7 @@ public class InventoryHandler
       c.getPlayer().getMap().broadcastMessage(c.getPlayer(), CField.getScrollEffect(c.getPlayer().getId(), Equip.ScrollResult.SUCCESS, legendarySpirit, scroll.getItemId(), toScroll.getItemId()), true);
       return false;
     }
-    if (!GameConstants.isSpecialScroll(scroll.getItemId()) && !GameConstants.isCleanSlate(scroll.getItemId()) && !GameConstants.是裝備強化卷軸(scroll.getItemId()) && scroll.getItemId() != 2049360 && scroll.getItemId() != 2049361 && !GameConstants.isPotentialScroll(scroll.getItemId()) && !GameConstants.是輪迴星火(scroll.getItemId()) && !GameConstants.isLuckyScroll(scroll.getItemId()))
+    if (!GameConstants.isSpecialScroll(scroll.getItemId()) && !GameConstants.isCleanSlate(scroll.getItemId()) && !GameConstants.是裝備強化卷軸(scroll.getItemId()) && scroll.getItemId() != 2049360 && scroll.getItemId() != 2049361 && !GameConstants.是潛能卷軸(scroll.getItemId()) && !GameConstants.是輪迴星火(scroll.getItemId()) && !GameConstants.isLuckyScroll(scroll.getItemId()))
     {
       if (toScroll.getTotalUpgradeSlots() < 1 && scroll.getItemId() != 2644001 && scroll.getItemId() != 2644002 && scroll.getItemId() != 2644004 && scroll.getItemId() != 2049371 && scroll.getItemId() != 2049372 && GameConstants.是星力強化卷軸(scroll.getItemId()))
       {
@@ -1096,12 +1096,12 @@ public class InventoryHandler
       {
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateScrollandItem(scroll, toScroll2, false));
       }
-      if (!GameConstants.isSpecialScroll(scroll.getItemId()) && !GameConstants.isCleanSlate(scroll.getItemId()) && !GameConstants.是裝備強化卷軸(scroll.getItemId()) && scroll.getItemId() != 2049360 && scroll.getItemId() != 2049361 && !GameConstants.isPotentialScroll(scroll.getItemId()) && !GameConstants.是輪迴星火(scroll.getItemId()) && !GameConstants.isLuckyScroll(scroll.getItemId()) && c.getPlayer().returnScroll != null && scrollSuccess == Equip.ScrollResult.SUCCESS)
+      if (!GameConstants.isSpecialScroll(scroll.getItemId()) && !GameConstants.isCleanSlate(scroll.getItemId()) && !GameConstants.是裝備強化卷軸(scroll.getItemId()) && scroll.getItemId() != 2049360 && scroll.getItemId() != 2049361 && !GameConstants.是潛能卷軸(scroll.getItemId()) && !GameConstants.是輪迴星火(scroll.getItemId()) && !GameConstants.isLuckyScroll(scroll.getItemId()) && c.getPlayer().returnScroll != null && scrollSuccess == Equip.ScrollResult.SUCCESS)
       {
         c.getSession().writeAndFlush(CWvsContext.returnEffectConfirm(c.getPlayer().returnScroll, scroll.getItemId()));
         c.getSession().writeAndFlush(CWvsContext.returnEffectModify(c.getPlayer().returnScroll, scroll.getItemId()));
       }
-      else if (!GameConstants.isSpecialScroll(scroll.getItemId()) && !GameConstants.isCleanSlate(scroll.getItemId()) && !GameConstants.是裝備強化卷軸(scroll.getItemId()) && scroll.getItemId() != 2049360 && scroll.getItemId() != 2049361 && !GameConstants.isPotentialScroll(scroll.getItemId()) && !GameConstants.是輪迴星火(scroll.getItemId()) && !GameConstants.isLuckyScroll(scroll.getItemId()) && c.getPlayer().returnScroll != null && scrollSuccess == Equip.ScrollResult.FAIL)
+      else if (!GameConstants.isSpecialScroll(scroll.getItemId()) && !GameConstants.isCleanSlate(scroll.getItemId()) && !GameConstants.是裝備強化卷軸(scroll.getItemId()) && scroll.getItemId() != 2049360 && scroll.getItemId() != 2049361 && !GameConstants.是潛能卷軸(scroll.getItemId()) && !GameConstants.是輪迴星火(scroll.getItemId()) && !GameConstants.isLuckyScroll(scroll.getItemId()) && c.getPlayer().returnScroll != null && scrollSuccess == Equip.ScrollResult.FAIL)
       {
         c.getPlayer().returnScroll = null;
         toScroll.setFlag(toScroll.getFlag() - ItemFlag.RETURN_SCROLL.getValue());
