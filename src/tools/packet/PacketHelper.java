@@ -1740,13 +1740,16 @@ public class PacketHelper
     {
       mplew.writeInt(0);
       mplew.writeInt(0);
+      // 這個是需要的物品id
       mplew.writeInt(item.getPrice());
+      // 這個是需要的物品數量
       mplew.writeInt(item.getPriceQuantity());
     }
     else
     {
-      mplew.writeInt(item.getPrice());
-      mplew.writeInt(0);
+      // 這裏是一個long, 不是兩個int
+      mplew.writeLong(item.getPrice());
+      // mplew.writeInt(0);
       mplew.writeInt(0);
       mplew.writeInt(0);
     }
