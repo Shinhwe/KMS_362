@@ -39,8 +39,8 @@ function action(mode, type, sel) {
 	ItemInfo.setLuk(180);
 	ItemInfo.setWatk(100);
 	ItemInfo.setMatk(100);
-	ItemInfo.setState(20);
-	ItemInfo.setState(20);
+	ItemInfo.setPotentialLevel(20);
+	ItemInfo.setPotentialLevel(20);
 	ItemInfo.setPotential1(40603);
 	ItemInfo.setPotential2(40292);
 	ItemInfo.setPotential3(40056);

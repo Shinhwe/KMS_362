@@ -13624,8 +13624,7 @@ public class PlayerHandler
               item.setExpiration(targetCal.getTimeInMillis() + (86400000 * check));
               if (item.getItemId() == 1672083)
               {
-                item.setState((byte) 20);
-                item.setLines((byte) 3);
+                item.設置潛能等級(裝備潛能等級.傳說);
                 item.setPotential1(40601);
                 item.setPotential2(30291);
                 item.setPotential3(42061);
@@ -13635,8 +13634,7 @@ public class PlayerHandler
               }
               else if (item.getItemId() == 1672085 || item.getItemId() == 1672086)
               {
-                item.setState((byte) 20);
-                item.setLines((byte) 2);
+                item.設置潛能等級(裝備潛能等級.傳說);
                 item.setPotential1(40601);
                 item.setPotential2(30291);
                 item.setStarForceLevel((byte) 15);

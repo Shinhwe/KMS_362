@@ -7,6 +7,7 @@ import client.inventory.MapleInventoryIdentifier;
 import constants.GameConstants;
 import constants.ServerConstants;
 import constants.programs.AdminTool;
+import constants.潛能生成器;
 import database.DatabaseConnection;
 import handling.MapleSaveHandler;
 import handling.auction.AuctionServer;
@@ -403,6 +404,8 @@ public class Start
       MapleMonsterDropDataProvider.getInstance().loadAllData();
       System.out.println("[Loading ShopData]");
       MapleShopFactory.getInstance().loadShop();
+      潛能生成器.加載裝備潛能權重();
+      潛能生成器.加載裝備附加潛能權重();
       Runtime.getRuntime().addShutdownHook(new Thread(new Shutdown()));
       PlayerNPC.loadAll();
       LoginServer.setOn();

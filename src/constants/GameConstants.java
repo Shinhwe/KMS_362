@@ -5,6 +5,7 @@ import client.custom.inventory.CustomItem;
 import client.inventory.Equip;
 import client.inventory.MapleInventoryType;
 import client.inventory.MapleWeaponType;
+import client.inventory.裝備潛能等級;
 import client.status.MonsterStatus;
 import handling.channel.handler.AttackInfo;
 import server.DailyGiftItemInfo;
@@ -2869,7 +2870,37 @@ public class GameConstants
     return Arrays.stream(潛能卷軸列表).anyMatch(item -> item == 卷軸id);
   }
 
+  public static boolean 是附加潛能卷軸 (int 卷軸id)
+  {
+    return Arrays.stream(附加潛能卷軸列表).anyMatch(item -> item == 卷軸id);
+  }
+
   public static int 獲取潛能卷軸成功率 (int 卷軸id)
+  {
+    return 100;
+  }
+
+  public static int 獲取潛能卷軸等級 (int 卷軸Id)
+  {
+    return 1;
+  }
+
+  public static 裝備潛能等級 獲取附加潛能卷軸等級 (int 卷軸Id)
+  {
+    return 裝備潛能等級.特殊;
+  }
+
+  public static int 獲取附加潛能卷軸成功率 (int 卷軸Id)
+  {
+    return 100;
+  }
+
+  public static int 獲取烙印的印章成功率 (int 印章Id)
+  {
+    return 100;
+  }
+
+  public static int 獲取附加烙印的印章成功率 (int 印章Id)
   {
     return 100;
   }
@@ -10859,7 +10890,6 @@ public class GameConstants
   {
     switch (itemid)
     {
-      case 2436499:
       case 2710000:
       case 2711000:
       case 2711001:

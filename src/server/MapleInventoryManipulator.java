@@ -875,7 +875,7 @@ public class MapleInventoryManipulator
     if (before instanceof Equip)
     {
       final Equip eq = (Equip) before;
-      if (eq.getState() == 0 && (eq.getTotalUpgradeSlots() >= 1 || eq.getEnchantLevel() >= 1) && GameConstants.canScroll(eq.getItemId()) && Randomizer.nextInt(100) >= 80)
+      if (eq.獲取附加潛能等級() == 裝備潛能等級.沒有潛能 && (eq.getTotalUpgradeSlots() >= 1 || eq.getEnchantLevel() >= 1) && GameConstants.canScroll(eq.getItemId()) && Randomizer.nextInt(100) >= 80)
       {
         eq.resetPotential();
       }

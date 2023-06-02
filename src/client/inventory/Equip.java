@@ -11,6 +11,7 @@ import tools.CalcTools;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,8 +20,9 @@ public class Equip extends Item implements Serializable
   public static final int ARMOR_RATIO = 350000;
   public static final int WEAPON_RATIO = 700000;
   public StarForceStats starForceStats = new StarForceStats(new ArrayList<>());
-  private byte state = 0;
-  private byte lines = 0;
+  private 裝備潛能等級 潛能等級 = 裝備潛能等級.沒有潛能;
+  private 裝備潛能等級 附加潛能等級 = 裝備潛能等級.沒有潛能;
+  private byte 未鑑定潛能條數 = 0;
   private byte extraUpgradeSlots = 0;
   private byte successUpgradeSlots = 0;
   private byte failUpgradeSlots = 0;
@@ -343,8 +345,9 @@ public class Equip extends Item implements Serializable
     this.soulskill = set.soulskill;
     this.stats = set.stats;
     this.specialStats = set.specialStats;
-    this.state = set.state;
-    this.lines = set.lines;
+    this.潛能等級 = set.潛能等級;
+    this.附加潛能等級 = set.附加潛能等級;
+    this.未鑑定潛能條數 = set.未鑑定潛能條數;
     this.flame = set.flame;
     this.moru = set.moru;
     this.enchantStr = set.enchantStr;
@@ -451,8 +454,9 @@ public class Equip extends Item implements Serializable
     ret.setExpiration(this.getExpiration());
     ret.stats = this.stats;
     ret.specialStats = this.specialStats;
-    ret.state = this.state;
-    ret.lines = this.lines;
+    ret.潛能等級 = this.潛能等級;
+    ret.附加潛能等級 = this.附加潛能等級;
+    ret.未鑑定潛能條數 = this.未鑑定潛能條數;
     ret.flame = this.flame;
     ret.soulskill = this.soulskill;
     ret.equipmentType = this.equipmentType;
@@ -781,38 +785,113 @@ public class Equip extends Item implements Serializable
     this.potential6 = en;
   }
 
-  public byte getState ()
+  public void setPotentialLevel (byte potentialLevel)
   {
-    return this.state;
-  }
-
-  public void setState (byte state)
-  {
-    this.state = state;
-  }
-
-  public byte getLines ()
-  {
-    return this.lines;
-  }
-
-  public void setLines (byte lines)
-  {
-    this.lines = lines;
-  }
-
-  public void resetPotential_Fuse (boolean half, int potentialState)
-  {
-    potentialState = -potentialState;
-    if (Randomizer.nextInt(100) < 4)
+    switch (potentialLevel)
     {
-      potentialState -= Randomizer.nextInt(100) < 4 ? 2 : 1;
+      case 1:
+        潛能等級 = 裝備潛能等級.特殊未鑑定;
+        break;
+      case 2:
+        潛能等級 = 裝備潛能等級.稀有未鑑定;
+        break;
+      case 3:
+        潛能等級 = 裝備潛能等級.罕見未鑑定;
+        break;
+      case 4:
+        潛能等級 = 裝備潛能等級.傳說未鑑定;
+        break;
+      case 17:
+        潛能等級 = 裝備潛能等級.特殊;
+        break;
+      case 18:
+        潛能等級 = 裝備潛能等級.稀有;
+        break;
+      case 19:
+        潛能等級 = 裝備潛能等級.罕見;
+        break;
+      case 20:
+        潛能等級 = 裝備潛能等級.傳說;
+        break;
+      default:
+        潛能等級 = 裝備潛能等級.沒有潛能;
+        break;
     }
-    this.setPotential1(potentialState);
-    this.setPotential2(Randomizer.nextInt(half ? 5 : 10) == 0 ? potentialState : 0);
-    this.setPotential3(0);
-    this.setPotential4(0);
-    this.setPotential5(0);
+  }
+
+  public 裝備潛能等級 獲取潛能等級 ()
+  {
+    return this.潛能等級;
+  }
+
+  public void 設置潛能等級 (裝備潛能等級 潛能等級)
+  {
+    this.潛能等級 = 潛能等級;
+  }
+
+  public byte 獲取未鑑定潛能條數 ()
+  {
+    return this.未鑑定潛能條數;
+  }
+
+  public void 設置未鑑定潛能條數 (byte 未鑑定潛能條數)
+  {
+    this.未鑑定潛能條數 = 未鑑定潛能條數;
+  }
+
+  public boolean 是否未鑑定 ()
+  {
+    return 潛能等級.獲取潛能等級的值() > 0 && 潛能等級.獲取潛能等級的值() < 5;
+  }
+
+  public void setAdditionalPotentialLevel (byte additionalPotentialLevel)
+  {
+    switch (additionalPotentialLevel)
+    {
+      case 1:
+        附加潛能等級 = 裝備潛能等級.特殊未鑑定;
+        break;
+      case 2:
+        附加潛能等級 = 裝備潛能等級.稀有未鑑定;
+        break;
+      case 3:
+        附加潛能等級 = 裝備潛能等級.罕見未鑑定;
+        break;
+      case 4:
+        附加潛能等級 = 裝備潛能等級.傳說未鑑定;
+        break;
+      case 17:
+        附加潛能等級 = 裝備潛能等級.特殊;
+        break;
+      case 18:
+        附加潛能等級 = 裝備潛能等級.稀有;
+        break;
+      case 19:
+        附加潛能等級 = 裝備潛能等級.罕見;
+        break;
+      case 20:
+        附加潛能等級 = 裝備潛能等級.傳說;
+        break;
+      default:
+        附加潛能等級 = 裝備潛能等級.沒有潛能;
+        break;
+    }
+  }
+
+  public 裝備潛能等級 獲取鑑定之後的裝備潛能 ()
+  {
+    switch (潛能等級)
+    {
+      case 特殊未鑑定:
+        return 裝備潛能等級.特殊;
+      case 稀有未鑑定:
+        return 裝備潛能等級.稀有;
+      case 罕見未鑑定:
+        return 裝備潛能等級.罕見;
+      case 傳說未鑑定:
+        return 裝備潛能等級.傳說;
+    }
+    return 裝備潛能等級.沒有潛能;
   }
 
   public void resetPotential ()
@@ -825,27 +904,6 @@ public class Equip extends Item implements Serializable
     this.setPotential5(0);
   }
 
-  public void renewPotential ()
-  {
-    int epic = 7;
-    int unique = 5;
-    if (this.getState() == 17 && Randomizer.nextInt(100) <= epic)
-    {
-      this.setState((byte) 2);
-      return;
-    }
-    if (this.getState() == 18 && Randomizer.nextInt(100) <= unique)
-    {
-      this.setState((byte) 3);
-      return;
-    }
-    if (this.getState() == 19 && Randomizer.nextInt(100) <= 2)
-    {
-      this.setState((byte) 4);
-      return;
-    }
-    this.setState((byte) (this.getState() - 16));
-  }
 
   public long getFlame ()
   {
@@ -2490,6 +2548,50 @@ public class Equip extends Item implements Serializable
   public void setAuthenticExp (int authenticExp)
   {
     this.authenticExp = authenticExp;
+  }
+
+  public 裝備潛能等級 獲取附加潛能等級 ()
+  {
+    return 附加潛能等級;
+  }
+
+  public void 設置附加潛能等級 (裝備潛能等級 附加潛能等級)
+  {
+    this.附加潛能等級 = 附加潛能等級;
+  }
+
+  public void 設置附加潛能等級 (byte state)
+  {
+    switch (state)
+    {
+      case 1:
+        潛能等級 = 裝備潛能等級.特殊未鑑定;
+        break;
+      case 2:
+        潛能等級 = 裝備潛能等級.稀有未鑑定;
+        break;
+      case 3:
+        潛能等級 = 裝備潛能等級.罕見未鑑定;
+        break;
+      case 4:
+        潛能等級 = 裝備潛能等級.傳說未鑑定;
+        break;
+      case 17:
+        潛能等級 = 裝備潛能等級.特殊;
+        break;
+      case 18:
+        潛能等級 = 裝備潛能等級.稀有;
+        break;
+      case 19:
+        潛能等級 = 裝備潛能等級.罕見;
+        break;
+      case 20:
+        潛能等級 = 裝備潛能等級.傳說;
+        break;
+      default:
+        潛能等級 = 裝備潛能等級.沒有潛能;
+        break;
+    }
   }
 
 

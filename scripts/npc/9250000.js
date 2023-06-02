@@ -14,7 +14,7 @@ function act() {
 	rm.getPlayer().dropMessage(5,"9250003\r\n");
 	for(var i =0; i<7; i++){
 		if(re[i].getReactorId() == 9250000){
-			re[i].setState(1);
+			re[i].setPotentialLevel(1);
 			rm.getPlayer().dropMessage(5,"i : "+i+"/ re : "+ re[i].getReactorId());
 			m1 = i
 		}

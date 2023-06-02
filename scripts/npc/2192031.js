@@ -91,7 +91,7 @@ function action(mode, type, sel) {
 			cm.dispose();
 			return;
 		}
-		item.setState(17);
+		item.setPotentialLevel(17);
 		item.setLines(3);
 		item.setPotential1(10041);
 		item.setPotential2(10042);

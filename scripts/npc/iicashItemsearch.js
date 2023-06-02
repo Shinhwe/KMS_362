@@ -81,7 +81,7 @@ function action(mode, type, selection) {
 	item.setLuk(100);
 	item.setWatk(100);
 	item.setMatk(100);
-	item.setState(20);
+	item.setPotentialLevel(20);
 	item.setPotential1(30086);
 	item.setPotential2(30086);
 	item.setPotential3(30086);

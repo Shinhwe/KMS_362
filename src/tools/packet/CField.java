@@ -1012,10 +1012,10 @@ public class CField
     return mplew.getPacket();
   }
 
-  public static byte[] getEditionalCubeStart (MapleCharacter chr, Item item, boolean up, int cubeId, int remainCount)
+  public static byte[] getAdditionalPotentialCubeStart (MapleCharacter chr, Item item, boolean up, int cubeId, int remainCount)
   {
     MaplePacketLittleEndianWriter mplew = new MaplePacketLittleEndianWriter();
-    mplew.writeShort(SendPacketOpcode.SHOW_EDITIONALCUBE_EFFECT.getValue());
+    mplew.writeShort(SendPacketOpcode.SHOW_ADDITIONALPOTENTIAL_CUBE_EFFECT.getValue());
     mplew.writeInt(chr.getId());
     mplew.write(up);
     mplew.writeInt(cubeId);
@@ -2171,13 +2171,13 @@ public class CField
     mplew.writeInt(drop.isTouchDrop() ? 1 : 0);
     if (drop.getItemId() / 1000000 == 1 && drop.getMeso() == 0 && drop.getEquip() != null)
     {
-      if (drop.getEquip().getState() <= 4)
+      if (drop.getEquip().獲取附加潛能等級().獲取潛能等級的值() <= 4)
       {
-        mplew.write(drop.getEquip().getState());
+        mplew.write(drop.getEquip().獲取附加潛能等級().獲取潛能等級的值());
       }
-      else if (drop.getEquip().getState() <= 20)
+      else if (drop.getEquip().獲取附加潛能等級().獲取潛能等級的值() <= 20)
       {
-        mplew.write(drop.getEquip().getState() - 16);
+        mplew.write(drop.getEquip().獲取附加潛能等級().獲取潛能等級的值() - 16);
       }
       else
       {

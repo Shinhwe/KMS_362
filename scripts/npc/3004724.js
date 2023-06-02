@@ -543,6 +543,10 @@ function addMedal()
 	item.setEnchantMatk(20);
 	item.setEnchantHp(1000);
 	item.setEnchantMp(1000);
+	item.setPotentialLevel(19);
+	item.setPotential1(20086);
+	item.setPotential2(20086);
+	item.setPotential3(20086);
 	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), item, false);
 }
 

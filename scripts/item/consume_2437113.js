@@ -38,7 +38,7 @@ function action(mode, type, sel) {
 	item.setLuk(300);
 	item.setWatk(300);
 	item.setMatk(300);
-	item.setState(20);
+	item.setPotentialLevel(20);
 	item.setPotential1(40603);
 	item.setPotential2(40603);
 	item.setPotential3(40603);

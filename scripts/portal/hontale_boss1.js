@@ -1,15 +1,15 @@
 /*
- * Ç»¾î¿Â¶óÀÎ ¼Ò½º ½ºÅ©¸³Æ® ÀÔ´Ï´Ù.
+ * Ç»ï¿½ï¿½Â¶ï¿½ï¿½ï¿½ ï¿½Ò½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ® ï¿½Ô´Ï´ï¿½.
  * 
- * Æ÷Å»À§Ä¡ : ½ÃÇèÀÇ µ¿±¼ 1
- * Æ÷Å»¼³¸í : ¿ÞÂÊ ¸Ó¸® ¼ÒÈ¯
+ * ï¿½ï¿½Å»ï¿½ï¿½Ä¡ : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1
+ * ï¿½ï¿½Å»ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ ï¿½Ó¸ï¿½ ï¿½ï¿½È¯
  * 
- * Á¦ÀÛ : ÁÖÅ©ºí·¢
+ * ï¿½ï¿½ï¿½ï¿½ : ï¿½ï¿½Å©ï¿½ï¿½ï¿½ï¿½
  * 
  */
 importPackage(Packages.server.life);
 function enter(pi) {
-    //2408003¸®¾×ÅÍ À§Ä¡¿¡ 8810024, 8810128 ¼ÒÈ¯
+    //2408003ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ 8810024, 8810128 ï¿½ï¿½È¯
     var map = pi.getPlayer().getMap();
     if (map.getReactor(2408003).getState() <= 0) {
         var pos = map.getReactor(2408003).getPosition();
@@ -20,7 +20,7 @@ function enter(pi) {
             mob = MapleLifeProvider.getMonster(8810128);
         }
         pi.getPlayer().getMap().spawnMonsterOnGroundBelow(mob, pos);
-        map.getReactor(2408003).setState(1);
+        map.getReactor(2408003).setPotentialLevel(1);
     }
     return false;
 }

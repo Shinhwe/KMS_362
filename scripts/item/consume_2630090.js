@@ -33,7 +33,7 @@ function action(mode, type, sel) {
         cm.gainItem(2630090, -1);
         ItemInfo = Packages.server.MapleItemInformationProvider.getInstance().getEquipById(1662041);
 	ItemInfo.setReqLevel(90);
-	ItemInfo.setState(20);
+	ItemInfo.setPotentialLevel(20);
            ItemInfo.setStr(500);
            ItemInfo.setDex(500);
            ItemInfo.setInt(500);

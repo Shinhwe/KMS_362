@@ -344,7 +344,7 @@ function addOption(i, isWeapon) {
 	if (!isWeapon) {
 		if (hpJobCheck(cm.getPlayer().getJob())) {
 			item.setEnchantHp(item.getEnchantHp() + 2500);
-			item.setState(19);
+			item.setPotentialLevel(19);
 			item.setPotential1(20045);
 			item.setPotential2(20045);
 			item.setPotential3(20045);
@@ -354,7 +354,7 @@ function addOption(i, isWeapon) {
 			item.setEnchantDex(item.getEnchantDex() + 50);
 			item.setEnchantInt(item.getEnchantInt() + 50);
 			item.setEnchantLuk(item.getEnchantLuk() + 50);
-			item.setState(19);
+			item.setPotentialLevel(19);
 			item.setPotential1(20086);
 			item.setPotential2(20086);
 			item.setPotential3(20086);
@@ -365,7 +365,7 @@ function addOption(i, isWeapon) {
 		if (hpJobCheck(cm.getPlayer().getJob())) {
 			item.setEnchantHp(item.getEnchantHp() + 5000);
 			item.setEnchantWatk(item.getEnchantWatk() + 100);
-			item.setState(19);
+			item.setPotentialLevel(19);
 			item.setPotential1(20045);
 			item.setPotential2(20045);
 			item.setPotential3(20045);
@@ -375,7 +375,7 @@ function addOption(i, isWeapon) {
 			item.setEnchantDex(item.getEnchantDex() + 100);
 			item.setEnchantInt(item.getEnchantInt() + 100);
 			item.setEnchantLuk(item.getEnchantLuk() + 100);
-			item.setState(19);
+			item.setPotentialLevel(19);
 			if (isMagician(cm.getPlayer().getJob())) {
 				item.setEnchantMatk(item.getEnchantMatk() + 100);
 			}

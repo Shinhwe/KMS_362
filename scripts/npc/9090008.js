@@ -198,7 +198,7 @@ function action(M, T, S)
 					case 33: inz.setTotalDamage(S4); break;
 					case 34: inz.setAllStat(S4); break;
 					case 35: inz.setReqLevel(S4); break;
-					case 36: inz.setState(S4); break;
+					case 36: inz.setPotentialLevel(S4); break;
 					case 37: inz.setPotential1(S4); break;
 					case 38: inz.setPotential2(S4); break;
 					case 39: inz.setPotential3(S4); break;

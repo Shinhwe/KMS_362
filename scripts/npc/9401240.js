@@ -437,7 +437,7 @@ cm.openNpc(9062296);
                         return;
                     }
                     var item = MapleItemInformationProvider.getInstance().getEquipById(1162002);
-                    item.setState(4);
+                    item.setPotentialLevel(4);
                     MapleInventoryManipulator.addbyItem(cm.getClient(), item);
                     World.Broadcast.broadcastMessage(CWvsContext.serverMessage(11, cm.getPlayer().getClient().getChannel(), "", cm.getPlayer().getName() + "님이 황혼 제작 시스템에서 {} 아이템을 획득하셨습니다!", true, item));
                     말 = "#fs14#축하하네! 초월자의 힘에 다가가기 위한 첫걸음에 성공했네.\r\n\r\n"
@@ -503,7 +503,7 @@ cm.openNpc(9062296);
             if (Randomizer.isSuccess(suc)) {// 성공했을때
                 var item = MapleItemInformationProvider.getInstance().getEquipById(sucitemid);
                 if (sel2 == 2) {
-                    item.setState(4);
+                    item.setPotentialLevel(4);
                     MapleInventoryManipulator.addbyItem(cm.getClient(), item);
                 } else {
                     cm.gainItem(sucitemid, 1);

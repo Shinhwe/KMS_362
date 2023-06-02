@@ -61,6 +61,8 @@ public class MapleItemInformationProvider
   protected final Map<Integer, Integer> scrollUpgradeSlotUse = new HashMap<>();
 
   protected final Map<Integer, List<Triple<Boolean, Integer, Integer>>> potentialOpCache = new HashMap<>();
+
+  private final Map<Integer, String> potentialNameCache = new HashMap<>();
   private ItemInformation tmpInfo = null;
 
   public static MapleItemInformationProvider getInstance ()
@@ -463,49 +465,35 @@ public class MapleItemInformationProvider
   public void cachePotentialOption ()
   {
     MapleData potsData = this.itemData.getData("ItemOption.img");
+
     for (MapleData data : potsData)
     {
       int potentialID = Integer.parseInt(data.getName());
+
       int type = MapleDataTool.getInt("info/optionType", data, -1);
+
       int reqLevel = MapleDataTool.getInt("info/reqLevel", data, 0);
-      switch (potentialID)
+
+      String potentialName = MapleDataTool.getString("info/string", data, "");
+
+      if (potentialNameCache.containsKey(potentialID) == false)
       {
-        case 32052:
-        case 32054:
-        case 32058:
-        case 32059:
-        case 32060:
-        case 32061:
-        case 32062:
-        case 32071:
-        case 32087:
-        case 32116:
-        case 40081:
-        case 42052:
-        case 42054:
-        case 42058:
-        case 42063:
-        case 42064:
-        case 42065:
-        case 42066:
-        case 42071:
-        case 42087:
-        case 42116:
-        case 42291:
-        case 42601:
-        case 42650:
-        case 42656:
-        case 42661:
-          continue;
+        potentialNameCache.put(potentialID, potentialName);
       }
+
       boolean additional = (potentialID % 10000 / 1000 == 2);
+
       if (this.potentialOpCache.get(Integer.valueOf(type)) == null)
       {
         List<Triple<Boolean, Integer, Integer>> potentialIds = new ArrayList<>();
+
         potentialIds.add(new Triple<>(Boolean.valueOf(additional), Integer.valueOf(reqLevel), Integer.valueOf(potentialID)));
+
         this.potentialOpCache.put(Integer.valueOf(type), potentialIds);
+
         continue;
       }
+
       this.potentialOpCache.get(Integer.valueOf(type)).add(new Triple<>(Boolean.valueOf(additional), Integer.valueOf(reqLevel), Integer.valueOf(potentialID)));
     }
   }
@@ -1176,110 +1164,6 @@ public class MapleItemInformationProvider
               break;
           }
           break;
-        case 2049700:
-        case 2049701:
-        case 2049702:
-        case 2049703:
-          if (!Randomizer.isSuccess(getSuccess(卷軸Id, chr, equip)))
-          {
-            if (Randomizer.isSuccess(getCursed(卷軸Id)) && ItemFlag.PROTECT_SHIELD.check(equip.getFlag()))
-            {
-              chr.dropMessage(5, "주문서의 효과로 아이템이 파괴되지 않았습니다.");
-            }
-            failed = true;
-            break;
-          }
-          if (equip.getState() <= 17)
-          {
-            equip.setState((byte) 2);
-            if (zeroEquip != null)
-            {
-              zeroEquip.setLines((byte) 2);
-            }
-            if (Randomizer.nextInt(100) < 30)
-            {
-              equip.setLines((byte) 3);
-              if (zeroEquip != null)
-              {
-                zeroEquip.setLines((byte) 3);
-              }
-              break;
-            }
-            equip.setLines((byte) 2);
-            if (zeroEquip != null)
-            {
-              zeroEquip.setLines((byte) 2);
-            }
-          }
-          break;
-        case 2049750:
-        case 2049751:
-        case 2049752:
-          if (!Randomizer.isSuccess(getSuccess(卷軸Id, chr, equip)))
-          {
-            if (Randomizer.isSuccess(getCursed(卷軸Id)) && ItemFlag.PROTECT_SHIELD.check(equip.getFlag()))
-            {
-              chr.dropMessage(5, "주문서의 효과로 아이템이 파괴되지 않았습니다.");
-            }
-            failed = true;
-            break;
-          }
-          if (equip.getState() <= 19)
-          {
-            equip.setState((byte) 3);
-            if (zeroEquip != null)
-            {
-              zeroEquip.setLines((byte) 3);
-            }
-            if (Randomizer.nextInt(100) < 30)
-            {
-              equip.setLines((byte) 3);
-              if (zeroEquip != null)
-              {
-                zeroEquip.setLines((byte) 3);
-              }
-              break;
-            }
-            equip.setLines((byte) 2);
-            if (zeroEquip != null)
-            {
-              zeroEquip.setLines((byte) 2);
-            }
-          }
-          break;
-        case 2048306:
-          if (!Randomizer.isSuccess(getSuccess(卷軸Id, chr, equip)))
-          {
-            if (Randomizer.isSuccess(getCursed(卷軸Id)) && ItemFlag.PROTECT_SHIELD.check(equip.getFlag()))
-            {
-              chr.dropMessage(5, "주문서의 효과로 아이템이 파괴되지 않았습니다.");
-            }
-            failed = true;
-            break;
-          }
-          if (equip.getState() <= 17)
-          {
-            equip.setState((byte) 4);
-            if (zeroEquip != null)
-            {
-              zeroEquip.setLines((byte) 4);
-            }
-            if (Randomizer.nextInt(100) < 30)
-            {
-              equip.setLines((byte) 3);
-              if (zeroEquip != null)
-              {
-                zeroEquip.setLines((byte) 3);
-              }
-              break;
-            }
-            equip.setLines((byte) 2);
-            if (zeroEquip != null)
-            {
-              zeroEquip.setLines((byte) 2);
-            }
-          }
-          break;
         case 2531000:
         case 2531001:
         case 2531005:
@@ -1335,39 +1219,6 @@ public class MapleItemInformationProvider
             equip.setEnchantMatk((short) (equip.getEnchantMatk() + 1));
             equip.setEnchantHp((short) (equip.getEnchantHp() + 100));
             equip.setEnchantMp((short) (equip.getEnchantMp() + 100));
-          }
-          break;
-        case 2049704:
-        case 5063000:
-          if (!Randomizer.isSuccess(getSuccess(卷軸Id, chr, equip)))
-          {
-            if (Randomizer.isSuccess(getCursed(卷軸Id)))
-            {
-              failed = true;
-            }
-            break;
-          }
-          if (equip.getState() <= 17)
-          {
-            equip.setState((byte) 4);
-            if (zeroEquip != null)
-            {
-              zeroEquip.setState((byte) 4);
-            }
-            if (Randomizer.nextInt(100) < 30)
-            {
-              equip.setLines((byte) 3);
-              if (zeroEquip != null)
-              {
-                zeroEquip.setLines((byte) 3);
-              }
-              break;
-            }
-            equip.setLines((byte) 2);
-            if (zeroEquip != null)
-            {
-              zeroEquip.setLines((byte) 2);
-            }
           }
           break;
         case 2530000:
@@ -1579,20 +1430,22 @@ public class MapleItemInformationProvider
           }
           if (GameConstants.是潛能卷軸(卷軸Id))
           {
-            if (equip.getState() == 0)
+            if (equip.獲取潛能等級() == 裝備潛能等級.沒有潛能)
             {
               int 成功率 = GameConstants.獲取潛能卷軸成功率(卷軸Id);
               if (Randomizer.isSuccess(成功率))
               {
-                int state = 2;
+                int line = 2;
                 if (Randomizer.isSuccess(25))
                 {
-                  state += 1;
+                  line += 1;
                 }
-                equip.setState((byte) state);
+                equip.設置潛能等級(裝備潛能等級.特殊未鑑定);
+                equip.設置未鑑定潛能條數((byte) line);
                 if (zeroEquip != null)
                 {
-                  zeroEquip.setState((byte) state);
+                  zeroEquip.設置潛能等級(裝備潛能等級.特殊未鑑定);
+                  zeroEquip.設置未鑑定潛能條數((byte) line);
                 }
               }
             }
@@ -1617,7 +1470,7 @@ public class MapleItemInformationProvider
               equip.setFlame(火花);
               equip.calcFlameStats();
             }
-            return equip;
+            break;
           }
       }
     }
@@ -1715,6 +1568,15 @@ public class MapleItemInformationProvider
       this.itemEffectsEx.put(Integer.valueOf(itemId), ret);
     }
     return ret;
+  }
+
+  public String 獲取潛能名稱 (int 潛能Id)
+  {
+    if (potentialNameCache.containsKey(潛能Id))
+    {
+      return potentialNameCache.get(潛能Id);
+    }
+    return "未知潛能";
   }
 
   public final int getCreateId (int id)

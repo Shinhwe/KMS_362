@@ -56,7 +56,7 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
 	inz.setPotential1(40041);
@@ -79,7 +79,7 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
 	inz.setPotential1(40041);
@@ -94,7 +94,7 @@ function action(mode, type, selection) {
 	var inz = MapleItemInformationProvider.getInstance().getEquipById(캐시템[i]);
 	inz.setWatk(1000);
 	inz.setMatk(1000);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setPotential1(40041);
 	inz.setPotential2(40041);
 	inz.setPotential3(40041);
@@ -117,7 +117,7 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
 	inz.setPotential1(40042);
@@ -140,7 +140,7 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
 	inz.setPotential1(40042);
@@ -155,7 +155,7 @@ function action(mode, type, selection) {
 	var inz = MapleItemInformationProvider.getInstance().getEquipById(캐시템[i]);
 	inz.setWatk(1000);
 	inz.setMatk(1000);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setPotential1(40042);
 	inz.setPotential2(40042);
 	inz.setPotential3(40042);
@@ -178,7 +178,7 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
 	inz.setPotential1(40043);
@@ -201,7 +201,7 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
 	inz.setPotential1(40043);
@@ -216,7 +216,7 @@ function action(mode, type, selection) {
 	var inz = MapleItemInformationProvider.getInstance().getEquipById(캐시템[i]);
 	inz.setWatk(1000);
 	inz.setMatk(1000);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setPotential1(40043);
 	inz.setPotential2(40043);
 	inz.setPotential3(40043);
@@ -239,7 +239,7 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
 	inz.setPotential1(40044);
@@ -262,7 +262,7 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
 	inz.setPotential1(40044);
@@ -277,7 +277,7 @@ function action(mode, type, selection) {
 	var inz = MapleItemInformationProvider.getInstance().getEquipById(캐시템[i]);
 	inz.setWatk(1000);
 	inz.setMatk(1000);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setPotential1(40044);
 	inz.setPotential2(40044);
 	inz.setPotential3(40044);
@@ -300,7 +300,7 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
 	inz.setPotential1(40041);
@@ -323,7 +323,7 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
 	inz.setPotential1(40041);
@@ -338,7 +338,7 @@ function action(mode, type, selection) {
 	var inz = MapleItemInformationProvider.getInstance().getEquipById(캐시템[i]);
 	inz.setWatk(1000);
 	inz.setMatk(1000);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setPotential1(40041);
 	inz.setPotential2(40041);
 	inz.setPotential3(40041);
@@ -361,7 +361,7 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
 	inz.setPotential1(40042);
@@ -384,7 +384,7 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
 	inz.setPotential1(40042);
@@ -399,7 +399,7 @@ function action(mode, type, selection) {
 	var inz = MapleItemInformationProvider.getInstance().getEquipById(캐시템[i]);
 	inz.setWatk(1000);
 	inz.setMatk(1000);
-	inz.setState(20);
+	inz.setPotentialLevel(20);
 	inz.setPotential1(40042);
 	inz.setPotential2(40042);
 	inz.setPotential3(40042);

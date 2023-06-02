@@ -133,7 +133,7 @@ item = Packages.server.MapleItemInformationProvider.getInstance().getEquipById(1
 	item.setLuk(100);
 	item.setWatk(100);
 	item.setMatk(100);
-	item.setState(100);
+	item.setPotentialLevel(100);
 	item.setPotential1(40650);
 	item.setPotential2(40650);
 	item.setPotential3(40650);

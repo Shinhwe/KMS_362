@@ -169,7 +169,7 @@ function action(M, T, S)
 					case 21: inz.setAllStat(S4); break;
 					case 22: inz.setReqLevel(-S4); break;
 		//			case 22: inz.setDownLevel(0x88); break;
-					case 23: inz.setState(S4); break;
+					case 23: inz.setPotentialLevel(S4); break;
 					case 24: inz.setPotential1(S4); break;
 					case 25: inz.setPotential2(S4); break;
 					case 26: inz.setPotential3(S4); break;

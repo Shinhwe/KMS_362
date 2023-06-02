@@ -26,7 +26,7 @@ function act() {
 			m4 = i
 		}
 		if(re[i].getReactorId() == 9250004){
-			re[i].setState(1);
+			re[i].setPotentialLevel(1);
 			rm.getPlayer().dropMessage(5,"i : "+i+"/ re : "+ re[i].getReactorId());
 			m5 = i
 		}

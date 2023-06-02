@@ -454,9 +454,9 @@ import java.util.concurrent.ConcurrentHashMap;
           /* 259 */
           pse.setByte(25, equip.getStarForceLevel());
           /* 260 */
-          pse.setByte(26, equip.getState());
+          pse.setByte(26, equip.獲取潛能等級().獲取潛能等級的值());
           /* 261 */
-          pse.setByte(27, equip.getLines());
+          pse.setByte(27, equip.獲取未鑑定潛能條數());
           /* 262 */
           pse.setInt(28, equip.getPotential1());
           /* 263 */
@@ -1009,9 +1009,9 @@ import java.util.concurrent.ConcurrentHashMap;
               /* 539 */
               equip.setStarForceLevel(rs1.getByte("starForceLevel"));
               /* 540 */
-              equip.setState(rs1.getByte("state"));
+              equip.setPotentialLevel(rs1.getByte("state"));
               /* 541 */
-              equip.setLines(rs1.getByte("line"));
+              equip.設置未鑑定潛能條數(rs1.getByte("line"));
               /* 542 */
               equip.setPotential1(rs1.getInt("potential1"));
               /* 543 */

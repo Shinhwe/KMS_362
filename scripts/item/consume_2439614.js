@@ -73,7 +73,7 @@ function action(mode, type, sel) {
 		item.setLuk(200);
 		item.setWatk(1000);
 		item.setMatk(1000);
-		item.setState(20);
+		item.setPotentialLevel(20);
 		item.setLevel(item.getUpgradeSlots());
 		item.setBossDamage(50);
 		item.setIgnorePDR(30);

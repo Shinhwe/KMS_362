@@ -64,6 +64,7 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
   public static final void handlePacket(final RecvPacketOpcode header, final LittleEndianAccessor slea, final MapleClient c, final ServerType serverType) throws Exception
   {
 //    System.out.println(header.getValue());
+    System.out.println(header.toString());
     switch (header)
     {
       case PONG:
@@ -747,9 +748,9 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
         InventoryHandler.UseStamp(slea, c);
         break;
       }
-      case USE_EDITIONAL_STAMP:
+      case USE_ADDITIONALPOTENTIAL_STAMP:
       {
-        InventoryHandler.UseEditionalStamp(slea, c);
+        InventoryHandler.useAdditionalPotentialStamp(slea, c);
         break;
       }
       case USE_CHOOSE_CUBE:
@@ -822,9 +823,9 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
         InventoryHandler.UseUpgradeScroll(header, scroll, slea.readShort(), slea.readByte(), c, c.getPlayer());
         break;
       }
-      case USE_EDITIONAL_SCROLL:
+      case USE_ADDITIONALPOTENTIAL_SCROLL:
       {
-        InventoryHandler.UseEditionalScroll(slea, c);
+        InventoryHandler.useAdditionalPotentialScroll(slea, c);
         break;
       }
       case USE_SUMMON_BAG:

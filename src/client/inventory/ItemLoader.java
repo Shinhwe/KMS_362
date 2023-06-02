@@ -61,10 +61,10 @@ public enum ItemLoader
     // {
     //   equip.setArcPower(220);
     // }
-    if ((GameConstants.isArcaneSymbol(equip.getItemId()) || GameConstants.isAuthenticSymbol(equip.getItemId()) || equip.getItemId() / 1000 == 1162) && equip.getItemId() != 1162002 && equip.getState() > 0)
+    if ((GameConstants.isArcaneSymbol(equip.getItemId()) || GameConstants.isAuthenticSymbol(equip.getItemId()) || equip.getItemId() / 1000 == 1162) && equip.getItemId() != 1162002 && equip.獲取潛能等級().獲取潛能等級的值() > 0)
     {
-      equip.setState((byte) 0);
-      equip.setLines((byte) 0);
+      equip.設置潛能等級(裝備潛能等級.沒有潛能);
+      equip.設置未鑑定潛能條數((byte) 0);
       equip.setPotential1(0);
       equip.setPotential2(0);
       equip.setPotential3(0);
@@ -133,8 +133,7 @@ public enum ItemLoader
     }
     if (equip.getItemId() == 1672083)
     {
-      equip.setState((byte) 20);
-      equip.setLines((byte) 3);
+      equip.設置潛能等級(裝備潛能等級.傳說);
       equip.setPotential1(40601);
       equip.setPotential2(30291);
       equip.setPotential3(42061);
@@ -145,8 +144,8 @@ public enum ItemLoader
     }
     if (equip.getItemId() == 1672085 || equip.getItemId() == 1672086)
     {
-      equip.setState((byte) 20);
-      equip.setLines((byte) 2);
+      equip.設置潛能等級(裝備潛能等級.傳說);
+      equip.設置未鑑定潛能條數((byte) 2);
       equip.setPotential1(40601);
       equip.setPotential2(30291);
       equip.setStarForceLevel((byte) 15);
@@ -298,8 +297,9 @@ public enum ItemLoader
               equip.setGMLog(rs.getString("GM_Log"));
               equip.setDurability(rs.getInt("durability"));
               equip.setStarForceLevel(rs.getByte("starForceLevel"));
-              equip.setState(rs.getByte("state"));
-              equip.setLines(rs.getByte("line"));
+              equip.setPotentialLevel(rs.getByte("potentialLevel"));
+              equip.setAdditionalPotentialLevel(rs.getByte("additionalPotentialLevel"));
+              equip.設置未鑑定潛能條數(rs.getByte("line"));
               equip.setPotential1(rs.getInt("potential1"));
               equip.setPotential2(rs.getInt("potential2"));
               equip.setPotential3(rs.getInt("potential3"));
@@ -526,11 +526,11 @@ public enum ItemLoader
       ps = con.prepareStatement(query_2.toString(), 1);
       if (this.value <= 1 && type.getType() == 6)
       {
-        pse = con.prepareStatement("INSERT INTO inventoryequipmentcody VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        pse = con.prepareStatement("INSERT INTO inventoryequipmentcody VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
       }
       else
       {
-        pse = con.prepareStatement("INSERT INTO " + this.table_equip + " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        pse = con.prepareStatement("INSERT INTO " + this.table_equip + " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
       }
       Iterator<Item> iter = items.iterator();
       while (iter.hasNext())
@@ -646,38 +646,39 @@ public enum ItemLoader
           pse.setInt(36, equip.getItemEXP());
           pse.setInt(37, equip.getDurability());
           pse.setByte(38, equip.getStarForceLevel());
-          pse.setByte(39, equip.getState());
-          pse.setByte(40, equip.getLines());
-          pse.setInt(41, equip.getPotential1());
-          pse.setInt(42, equip.getPotential2());
-          pse.setInt(43, equip.getPotential3());
-          pse.setInt(44, equip.getPotential4());
-          pse.setInt(45, equip.getPotential5());
-          pse.setInt(46, equip.getPotential6());
-          pse.setInt(47, equip.getIncSkill());
-          pse.setShort(48, equip.getCharmEXP());
-          pse.setShort(49, (short) 0);
-          pse.setShort(50, equip.getEnchantBuff());
-          pse.setByte(51, (byte) (equip.getTemplate().getReqLevel() - equip.getTotalReductReqLevel()));
-          pse.setByte(52, equip.getYggdrasilWisdom());
-          pse.setByte(53, (byte) (equip.getFinalStrike() ? 1 : 0));
-          pse.setShort(54, equip.getEnchantBossDamage());
-          pse.setShort(55, equip.getEnchantIgnorePDR());
-          pse.setByte(56, equip.getEnchantDamage());
-          pse.setByte(57, equip.getEnchantAllStat());
-          pse.setByte(58, equip.getKarmaCount());
-          pse.setShort(59, equip.getSoulName());
-          pse.setShort(60, equip.getSoulEnchanter());
-          pse.setShort(61, equip.getSoulPotential());
-          pse.setInt(62, equip.getSoulSkill());
-          pse.setLong(63, equip.getFlame());
-          pse.setInt(64, equip.getEquipmentType());
-          pse.setInt(65, equip.getMoru());
-          pse.setInt(66, (int) 0);
-          pse.setLong(67, equip.getOptionExpiration());
-          pse.setInt(68, equip.getCoption1());
-          pse.setInt(69, equip.getCoption2());
-          pse.setInt(70, equip.getCoption3());
+          pse.setByte(39, equip.獲取潛能等級().獲取潛能等級的值());
+          pse.setByte(40, equip.獲取附加潛能等級().獲取潛能等級的值());
+          pse.setByte(41, equip.獲取未鑑定潛能條數());
+          pse.setInt(42, equip.getPotential1());
+          pse.setInt(43, equip.getPotential2());
+          pse.setInt(44, equip.getPotential3());
+          pse.setInt(45, equip.getPotential4());
+          pse.setInt(46, equip.getPotential5());
+          pse.setInt(47, equip.getPotential6());
+          pse.setInt(48, equip.getIncSkill());
+          pse.setShort(49, equip.getCharmEXP());
+          pse.setShort(50, (short) 0);
+          pse.setShort(51, equip.getEnchantBuff());
+          pse.setByte(52, (byte) (equip.getTemplate().getReqLevel() - equip.getTotalReductReqLevel()));
+          pse.setByte(53, equip.getYggdrasilWisdom());
+          pse.setByte(54, (byte) (equip.getFinalStrike() ? 1 : 0));
+          pse.setShort(55, equip.getEnchantBossDamage());
+          pse.setShort(56, equip.getEnchantIgnorePDR());
+          pse.setByte(57, equip.getEnchantDamage());
+          pse.setByte(58, equip.getEnchantAllStat());
+          pse.setByte(59, equip.getKarmaCount());
+          pse.setShort(60, equip.getSoulName());
+          pse.setShort(61, equip.getSoulEnchanter());
+          pse.setShort(62, equip.getSoulPotential());
+          pse.setInt(63, equip.getSoulSkill());
+          pse.setLong(64, equip.getFlame());
+          pse.setInt(65, equip.getEquipmentType());
+          pse.setInt(66, equip.getMoru());
+          pse.setInt(67, (int) 0);
+          pse.setLong(68, equip.getOptionExpiration());
+          pse.setInt(69, equip.getCoption1());
+          pse.setInt(70, equip.getCoption2());
+          pse.setInt(71, equip.getCoption3());
           pse.executeUpdate();
           if (equip.getItemId() / 10000 == 166 && equip.getAndroid() != null)
           {
@@ -762,7 +763,7 @@ public enum ItemLoader
       }
       String query_2 = "INSERT INTO `" + this.table + "` (" + this.arg + ", itemid, inventorytype, position, quantity, owner, GM_Log, uniqueid, expiredate, flag, `type`, sender, marriageId" + ", price, partyid, mobid, objectid" + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?" + ", ?, ?, ?, ?" + ")";
       ps = con.prepareStatement(query_2, 1);
-      PreparedStatement pse = con.prepareStatement("INSERT INTO " + this.table_equip + " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+      PreparedStatement pse = con.prepareStatement("INSERT INTO " + this.table_equip + " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
       Iterator<Pair<Item, MapleInventoryType>> iter = items.iterator();
       while (iter.hasNext())
       {
@@ -885,38 +886,39 @@ public enum ItemLoader
             pse.setInt(36, equip.getItemEXP());
             pse.setInt(37, equip.getDurability());
             pse.setByte(38, equip.getStarForceLevel());
-            pse.setByte(39, equip.getState());
-            pse.setByte(40, equip.getLines());
-            pse.setInt(41, equip.getPotential1());
-            pse.setInt(42, equip.getPotential2());
-            pse.setInt(43, equip.getPotential3());
-            pse.setInt(44, equip.getPotential4());
-            pse.setInt(45, equip.getPotential5());
-            pse.setInt(46, equip.getPotential6());
-            pse.setInt(47, equip.getIncSkill());
-            pse.setShort(48, equip.getCharmEXP());
-            pse.setShort(49, (short) 0);
-            pse.setShort(50, equip.getEnchantBuff());
-            pse.setByte(51, (byte) (equip.getTemplate().getReqLevel() - equip.getTotalReductReqLevel()));
-            pse.setByte(52, equip.getYggdrasilWisdom());
-            pse.setByte(53, (byte) (equip.getFinalStrike() ? 1 : 0));
-            pse.setShort(54, equip.getEnchantBossDamage());
-            pse.setShort(55, equip.getEnchantIgnorePDR());
-            pse.setByte(56, equip.getEnchantDamage());
-            pse.setByte(57, equip.getEnchantAllStat());
-            pse.setByte(58, equip.getKarmaCount());
-            pse.setShort(59, equip.getSoulName());
-            pse.setShort(60, equip.getSoulEnchanter());
-            pse.setShort(61, equip.getSoulPotential());
-            pse.setInt(62, equip.getSoulSkill());
-            pse.setLong(63, equip.getFlame());
-            pse.setInt(64, equip.getEquipmentType());
-            pse.setInt(65, equip.getMoru());
-            pse.setInt(66, (int) 0);
-            pse.setLong(67, equip.getOptionExpiration());
-            pse.setInt(68, equip.getCoption1());
-            pse.setInt(69, equip.getCoption2());
-            pse.setInt(70, equip.getCoption3());
+            pse.setByte(39, equip.獲取潛能等級().獲取潛能等級的值());
+            pse.setByte(40, equip.獲取附加潛能等級().獲取潛能等級的值());
+            pse.setByte(41, equip.獲取未鑑定潛能條數());
+            pse.setInt(42, equip.getPotential1());
+            pse.setInt(43, equip.getPotential2());
+            pse.setInt(44, equip.getPotential3());
+            pse.setInt(45, equip.getPotential4());
+            pse.setInt(46, equip.getPotential5());
+            pse.setInt(47, equip.getPotential6());
+            pse.setInt(48, equip.getIncSkill());
+            pse.setShort(49, equip.getCharmEXP());
+            pse.setShort(50, (short) 0);
+            pse.setShort(51, equip.getEnchantBuff());
+            pse.setByte(52, (byte) (equip.getTemplate().getReqLevel() - equip.getTotalReductReqLevel()));
+            pse.setByte(53, equip.getYggdrasilWisdom());
+            pse.setByte(54, (byte) (equip.getFinalStrike() ? 1 : 0));
+            pse.setShort(55, equip.getEnchantBossDamage());
+            pse.setShort(56, equip.getEnchantIgnorePDR());
+            pse.setByte(57, equip.getEnchantDamage());
+            pse.setByte(58, equip.getEnchantAllStat());
+            pse.setByte(59, equip.getKarmaCount());
+            pse.setShort(60, equip.getSoulName());
+            pse.setShort(61, equip.getSoulEnchanter());
+            pse.setShort(62, equip.getSoulPotential());
+            pse.setInt(63, equip.getSoulSkill());
+            pse.setLong(64, equip.getFlame());
+            pse.setInt(65, equip.getEquipmentType());
+            pse.setInt(66, equip.getMoru());
+            pse.setInt(67, (int) 0);
+            pse.setLong(68, equip.getOptionExpiration());
+            pse.setInt(69, equip.getCoption1());
+            pse.setInt(70, equip.getCoption2());
+            pse.setInt(71, equip.getCoption3());
             pse.executeUpdate();
             if (equip.getItemId() / 10000 == 166 && equip.getAndroid() != null)
             {
@@ -1050,8 +1052,9 @@ public enum ItemLoader
               equip.setGMLog(rs.getString("GM_Log"));
               equip.setDurability(rs.getInt("durability"));
               equip.setStarForceLevel(rs.getByte("starForceLevel"));
-              equip.setState(rs.getByte("state"));
-              equip.setLines(rs.getByte("line"));
+              equip.setPotentialLevel(rs.getByte("potentialLevel"));
+              equip.setAdditionalPotentialLevel(rs.getByte("additionalPotentialLevel"));
+              equip.設置未鑑定潛能條數(rs.getByte("line"));
               equip.setPotential1(rs.getInt("potential1"));
               equip.setPotential2(rs.getInt("potential2"));
               equip.setPotential3(rs.getInt("potential3"));

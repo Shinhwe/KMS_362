@@ -998,7 +998,7 @@ public class PacketHelper
   public static void addEquipBonusStats (MaplePacketLittleEndianWriter mplew, Equip equip, boolean hasUniqueId, MapleCharacter chr)
   {
     mplew.writeMapleAsciiString(equip.getOwner());
-    mplew.write(equip.getState());
+    mplew.write(equip.獲取潛能等級().獲取潛能等級的值());
     mplew.write(equip.getStarForceLevel());
     mplew.writeShort(equip.getPotential1());
     mplew.writeShort(equip.getPotential2());
@@ -1040,15 +1040,15 @@ public class PacketHelper
     mplew.writeShort(equip.getSoulPotential());
     if (GameConstants.isArcaneSymbol(equip.getItemId()))
     {
-      mplew.writeShort((short)equip.getArcPower());
+      mplew.writeShort((short) equip.getArcPower());
       mplew.writeInt(equip.getArcExp());
-      mplew.writeShort((short)equip.getArcLevel());
+      mplew.writeShort((short) equip.getArcLevel());
     }
     else if (GameConstants.isAuthenticSymbol(equip.getItemId()))
     {
-      mplew.writeShort((short)equip.getAuthenticPower());
+      mplew.writeShort((short) equip.getAuthenticPower());
       mplew.writeInt(equip.getAuthenticExp());
-      mplew.writeShort((short)equip.getAuthenticLevel());
+      mplew.writeShort((short) equip.getAuthenticLevel());
     }
     mplew.writeShort(-1);
     mplew.writeLong(getTime(-1L));

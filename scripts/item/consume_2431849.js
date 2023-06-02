@@ -36,7 +36,7 @@ item.setWdef(0);
 item.setSpeed(10);
 item.setJump(10);
 item.setViciousHammer(10);
-item.setState(20);
+item.setPotentialLevel(20);
 item.setPotential1(40603);
 item.setPotential2(40603);
 item.setPotential3(40603);
