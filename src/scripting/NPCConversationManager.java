@@ -10,6 +10,7 @@ import discord.DiscordServer;
 import discord.PacketCreator;
 import handling.channel.ChannelServer;
 import handling.channel.handler.InterServerHandler;
+import handling.channel.handler.MatrixHandler;
 import handling.channel.handler.PlayersHandler;
 import handling.login.LoginInformationProvider;
 import handling.world.MapleParty;
@@ -278,14 +279,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     c.getSession().writeAndFlush(CField.UIPacket.IntroLock(true));
     /*  173 */
     server.Timer.EventTimer.getInstance().schedule(() ->
-                                                   {
-                                                     c.getSession().writeAndFlush(SLFCGPacket.BlockGameCommandPacket(1));
-                                                     c.getSession().writeAndFlush(SLFCGPacket.BlockGameCommandPacket(2));
-                                                     c.getSession().writeAndFlush(SLFCGPacket.BlockGameControlPacket(100, 10));
-                                                   },
+        {
+          c.getSession().writeAndFlush(SLFCGPacket.BlockGameCommandPacket(1));
+          c.getSession().writeAndFlush(SLFCGPacket.BlockGameCommandPacket(2));
+          c.getSession().writeAndFlush(SLFCGPacket.BlockGameControlPacket(100, 10));
+        },
 
 
-                                                   2000L);
+        2000L);
   }
 
   public boolean setZodiacGrade (int grade)
@@ -298,10 +299,10 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     c.getPlayer().getMap().broadcastMessage(c.getPlayer(), SLFCGPacket.ZodiacRankInfo(c.getPlayer().getId(), grade), true);
     c.getSession().writeAndFlush(SLFCGPacket.playSE("Sound/MiniGame.img/Result_Yut"));
     showEffect(false, "Effect/CharacterEff.img/gloryonGradeup");
-//        MapleStatEffect eff = SkillFactory.getSkill(80002419).getEffect(1);
-//        c.getPlayer().cancelEffect(eff, true, -1);
-//        eff.applyTo(c.getPlayer());
-//        c.getPlayer().getStat().recalcLocalStats(c.getPlayer());
+    //        MapleStatEffect eff = SkillFactory.getSkill(80002419).getEffect(1);
+    //        c.getPlayer().cancelEffect(eff, true, -1);
+    //        eff.applyTo(c.getPlayer());
+    //        c.getPlayer().getStat().recalcLocalStats(c.getPlayer());
     return true;
   }
 
@@ -776,8 +777,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
   public void askCustomMixHairAndProb (String text)
   {
     /*  468 */
-    this.c.getSession().writeAndFlush(CField.NPCPacket.getNPCTalkMixStyle(this.id, text, GameConstants.isZero(this.c.getPlayer().getJob()) && ((this.c.getPlayer().getGender() == 1)),
-                                                                          GameConstants.isAngelicBuster(this.c.getPlayer().getJob()) && (this.c.getPlayer().getDressup())));
+    this.c.getSession().writeAndFlush(CField.NPCPacket.getNPCTalkMixStyle(this.id, text, GameConstants.isZero(this.c.getPlayer().getJob()) && ((this.c.getPlayer().getGender() == 1)), GameConstants.isAngelicBuster(this.c.getPlayer().getJob()) && (this.c.getPlayer().getDressup())));
     /*  469 */
     this.lastMsg = 44;
   }
@@ -2530,8 +2530,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
           /* 1457 */
           ch.addKV("bossPractice", "1");
           /* 1458 */
-          FileoutputUtil.log(FileoutputUtil.보스입장,
-                             "[연습모드 입장] 계정 번호 : " + this.c.getAccID() + " | 파티번호 : " + chr.getPlayer().getParty().getId() + " | 캐릭터 : " + this.c.getPlayer().getName() + "(" + this.c.getPlayer().getId() + ") | 입장 보스 : " + boss);
+          FileoutputUtil.log(FileoutputUtil.보스입장, "[연습모드 입장] 계정 번호 : " + this.c.getAccID() + " | 파티번호 : " + chr.getPlayer().getParty().getId() + " | 캐릭터 : " + this.c.getPlayer().getName() + "(" + this.c.getPlayer().getId() + ") | 입장 보스 : " + boss);
         }
       }
     }
@@ -3457,8 +3456,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
                   /* 2050 */
                   enter = true;
                   /* 2051 */
-                  txt = txt + "#b" + chr.getName() + "#k님 #e#r" + ((Long.parseLong(ch.getV(boss)) - System.currentTimeMillis()) / 1000L / 60L) + "분" + ((Long.parseLong(
-                      ch.getV(boss)) - System.currentTimeMillis()) / 1000L % 60L) + "초#k#n 뒤에 입장 가능합니다.\r\n";
+                  txt = txt + "#b" + chr.getName() + "#k님 #e#r" + ((Long.parseLong(ch.getV(boss)) - System.currentTimeMillis()) / 1000L / 60L) + "분" + ((Long.parseLong(ch.getV(boss)) - System.currentTimeMillis()) / 1000L % 60L) + "초#k#n 뒤에 입장 가능합니다.\r\n";
                 }
               }
             }
@@ -3883,8 +3881,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     }
   }
 
-  public void MapiaStart (final MapleCharacter player, int time, final int morningmap, final int citizenmap1, final int citizenmap2, final int citizenmap3, final int citizenmap4, final int citizenmap5, final int citizenmap6,
-                          final int mapiamap, final int policemap, final int drmap, final int after, final int night, final int vote, int bating)
+  public void MapiaStart (final MapleCharacter player, int time, final int morningmap, final int citizenmap1, final int citizenmap2, final int citizenmap3, final int citizenmap4, final int citizenmap5, final int citizenmap6, final int mapiamap, final int policemap, final int drmap, final int after, final int night, final int vote, int bating)
   {
     /* 2284 */
     String[] job = { "시민", "마피아", "경찰", "의사", "시민", "시민", "마피아", "경찰", "시민", "마피아" };
@@ -5349,9 +5346,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       /* 3077 */
       MapleGuild gs = World.Guild.getGuild(this.c.getPlayer().getGuildId());
       /* 3078 */
-      if (gs != null && this.c.getPlayer().getGuildRank() == 1 && this.c.getPlayer().getAllianceRank() == 1 && /* 3079 */ World.Alliance.getAllianceLeader(gs.getAllianceId()) == this.c.getPlayer()
-                                                                                                                                                                                        .getId() && World.Alliance.changeAllianceCapacity(
-          gs.getAllianceId()))
+      if (gs != null && this.c.getPlayer().getGuildRank() == 1 && this.c.getPlayer().getAllianceRank() == 1 && /* 3079 */ World.Alliance.getAllianceLeader(gs.getAllianceId()) == this.c.getPlayer().getId() && World.Alliance.changeAllianceCapacity(gs.getAllianceId()))
       {
         /* 3080 */
         gainMeso(-10000000L);
@@ -5377,8 +5372,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       /* 3092 */
       MapleGuild gs = World.Guild.getGuild(this.c.getPlayer().getGuildId());
       /* 3093 */
-      if (gs != null && this.c.getPlayer().getGuildRank() == 1 && this.c.getPlayer().getAllianceRank() == 1 && /* 3094 */ World.Alliance.getAllianceLeader(gs.getAllianceId()) == this.c.getPlayer().getId() && World.Alliance.disbandAlliance(
-          gs.getAllianceId()))
+      if (gs != null && this.c.getPlayer().getGuildRank() == 1 && this.c.getPlayer().getAllianceRank() == 1 && /* 3094 */ World.Alliance.getAllianceLeader(gs.getAllianceId()) == this.c.getPlayer().getId() && World.Alliance.disbandAlliance(gs.getAllianceId()))
       {
         /* 3095 */
         return true;
@@ -5529,7 +5523,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
                                                    },
 
 
-                                                   20000L);
+        20000L);
   }
 
   public void putKey (int key, int type, int action)
@@ -5698,9 +5692,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
           /* 3266 */
           ch = de.chance * getClient().getChannelServer().getDropRate();
           /* 3267 */
-          name.append((num + 1) + ") #v" + itemId + "#" + namez + " - " + (Integer.valueOf((ch >= 999999) ? 1000000 : ch).doubleValue() / 10000.0D) + "% chance. " + ((de.questid > 0 && MapleQuest.getInstance(de.questid).getName()
-                                                                                                                                                                                                   .length() > 0) ? ("Requires quest " + MapleQuest
-              .getInstance(de.questid).getName() + " to be started.") : "") + "\r\n");
+          name.append((num + 1) + ") #v" + itemId + "#" + namez + " - " + (Integer.valueOf((ch >= 999999) ? 1000000 : ch).doubleValue() / 10000.0D) + "% chance. " + ((de.questid > 0 && MapleQuest.getInstance(de.questid).getName().length() > 0) ? ("Requires quest " + MapleQuest.getInstance(de.questid).getName() + " to be started.") : "") + "\r\n");
           /* 3268 */
           num++;
         }
@@ -6086,6 +6078,11 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     }
   }
 
+  public void multiUseCoreStone (int itemId, int count)
+  {
+    MatrixHandler.multiUseCoreStone(getClient(), itemId, count);
+  }
+
   public void askAvatar (String text, List<Integer> args)
   {
     /* 3478 */
@@ -6316,7 +6313,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
                                                   },
 
 
-                                                  6000L);
+        6000L);
   }
 
   public void stopExpRate ()
@@ -6557,14 +6554,16 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     MapleMonster mob = MapleLifeFactory.getMonster(9305653);
     server.Timer.MapTimer.getInstance().schedule(new Runnable()
     {
-      @Override public void run ()
+      @Override
+      public void run ()
       {
         map.spawnMonsterOnGroundBelow(mob, new Point(-140, 150));
       }
     }, 5 * 1000);
     server.Timer.MapTimer.getInstance().schedule(new Runnable()
     {
-      @Override public void run ()
+      @Override
+      public void run ()
       {
         c.getPlayer().dropMessage(5, "누적 데미지 : " + c.getPlayer().getDamageMeter());
         updateDamageMeter(c.getPlayer(), c.getPlayer().getDamageMeter());
@@ -6747,25 +6746,25 @@ public class NPCConversationManager extends AbstractPlayerInteraction
       server.Timer.EtcTimer.getInstance().schedule(() -> this.c.getSession().writeAndFlush(CField.showSpineScreen(false, false, false, "Effect/Direction18.img/effect/adele/spine/etc/7/skeleton", "new", 0, true, "00")), 1000L);
     }
     server.Timer.EtcTimer.getInstance().schedule(() ->
-                                                 {
-                                                   if (black)
-                                                   {
-                                                     this.c.send(SLFCGPacket.MakeBlind(1, 255, 0, 0, 0, 1000, 0));
-                                                   }
-                                                   else
-                                                   {
-                                                     this.c.send(SLFCGPacket.MakeBlind(1, 200, 0, 0, 0, 1000, 0));
-                                                   }
-                                                 }, effect ? 4300L : 1000L);
+    {
+      if (black)
+      {
+        this.c.send(SLFCGPacket.MakeBlind(1, 255, 0, 0, 0, 1000, 0));
+      }
+      else
+      {
+        this.c.send(SLFCGPacket.MakeBlind(1, 200, 0, 0, 0, 1000, 0));
+      }
+    }, effect ? 4300L : 1000L);
     server.Timer.EtcTimer.getInstance().schedule(() ->
-                                                 {
-                                                   if (effect)
-                                                   {
-                                                     this.c.send(CField.showSpineScreen(false, true, false, "Effect/Direction18.img/effect/adele/spine/etc/5/skeleton", "new", 0, true, "5"));
-                                                     this.c.send(CField.showSpineScreen(false, true, false, "Effect/Direction18.img/effect/adele/spine/etc/6/skeleton", "new", 0, true, "6"));
-                                                   }
-                                                   this.c.send(SLFCGPacket.InGameDirectionEvent("", 1, 1000));
-                                                 }, effect ? 5000L : 1000L);
+    {
+      if (effect)
+      {
+        this.c.send(CField.showSpineScreen(false, true, false, "Effect/Direction18.img/effect/adele/spine/etc/5/skeleton", "new", 0, true, "5"));
+        this.c.send(CField.showSpineScreen(false, true, false, "Effect/Direction18.img/effect/adele/spine/etc/6/skeleton", "new", 0, true, "6"));
+      }
+      this.c.send(SLFCGPacket.InGameDirectionEvent("", 1, 1000));
+    }, effect ? 5000L : 1000L);
   }
 
 
@@ -6785,10 +6784,10 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     }
     server.Timer.EtcTimer.getInstance().schedule(() -> this.c.send(SLFCGPacket.MakeBlind(1, 0, 0, 0, 0, 1300, 0)), effect ? 3500L : 1000L);
     server.Timer.EtcTimer.getInstance().schedule(() ->
-                                                 {
-                                                   this.c.send(CField.UIPacket.getDirectionStatus(false));
-                                                   this.c.send(SLFCGPacket.SetIngameDirectionMode(false, false, false, false));
-                                                 }, effect ? 5000L : 2000L);
+    {
+      this.c.send(CField.UIPacket.getDirectionStatus(false));
+      this.c.send(SLFCGPacket.SetIngameDirectionMode(false, false, false, false));
+    }, effect ? 5000L : 2000L);
   }
 
 

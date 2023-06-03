@@ -5,6 +5,7 @@
 package handling.channel.handler;
 
 import client.*;
+import client.inventory.MapleInventoryType;
 import constants.GameConstants;
 import provider.MapleData;
 import provider.MapleDataProvider;
@@ -29,7 +30,7 @@ public class MatrixHandler
   private static List<Pair<Core, List<String>>> passiveCores;
   private static List<Pair<Core, List<String>>> activeCores;
   private static List<Pair<Core, List<String>>> specialCores;
-  
+
   static
   {
     MatrixHandler.cores = new ConcurrentHashMap<Integer, Pair<Core, List<String>>>();
@@ -37,8 +38,8 @@ public class MatrixHandler
     MatrixHandler.activeCores = new ArrayList<Pair<Core, List<String>>>();
     MatrixHandler.specialCores = new ArrayList<Pair<Core, List<String>>>();
   }
-  
-  public static void loadCore()
+
+  public static void loadCore ()
   {
     final String WZpath = System.getProperty("wz");
     final MapleDataProvider prov = MapleDataProviderFactory.getDataProvider(new File(WZpath + "/Etc.wz"));
@@ -119,8 +120,8 @@ public class MatrixHandler
       e.printStackTrace();
     }
   }
-  
-  private static boolean CheckUseableJobs(final List<String> jobz, final List<String> list)
+
+  private static boolean CheckUseableJobs (final List<String> jobz, final List<String> list)
   {
     for (final String job : jobz)
     {
@@ -186,8 +187,8 @@ public class MatrixHandler
     }
     return false;
   }
-  
-  public static boolean isNumeric(final String s)
+
+  public static boolean isNumeric (final String s)
   {
     try
     {
@@ -199,8 +200,8 @@ public class MatrixHandler
       return false;
     }
   }
-  
-  public static boolean checkOwnUseableJobs(final Pair<Core, List<String>> data, final MapleClient c)
+
+  public static boolean checkOwnUseableJobs (final Pair<Core, List<String>> data, final MapleClient c)
   {
     final int jobcode = c.getPlayer().getJob();
     final List<String> list = data.getRight();
@@ -217,8 +218,8 @@ public class MatrixHandler
     }
     return false;
   }
-  
-  public static boolean checkUseableJobs(final Pair<Core, List<String>> data, final MapleClient c)
+
+  public static boolean checkUseableJobs (final Pair<Core, List<String>> data, final MapleClient c)
   {
     final int jobcode = c.getPlayer().getJob();
     final List<String> list = data.getRight();
@@ -263,18 +264,18 @@ public class MatrixHandler
     }
     return false;
   }
-  
-  public static boolean ResetCore(final MapleClient c, final Pair<Core, List<String>> origin, final Pair<Core, List<String>> fresh, final boolean checkjob)
+
+  public static boolean ResetCore (final MapleClient c, final Pair<Core, List<String>> origin, final Pair<Core, List<String>> fresh, final boolean checkjob)
   {
     return origin.getLeft().getCoreId() == fresh.getLeft().getCoreId() || fresh.getLeft().getCoreId() / 10000000 != 2 || (origin.getLeft().getSkill1() == fresh.getLeft().getSkill1() && origin.getLeft().getSkill1() != 0 && fresh.getLeft().getSkill1() != 0) || (origin.getLeft().getSkill2() == fresh.getLeft().getSkill2() && origin.getLeft().getSkill2() != 0 && fresh.getLeft().getSkill2() != 0) || (origin.getLeft().getSkill3() == fresh.getLeft().getSkill3() && origin.getLeft().getSkill3() != 0 && fresh.getLeft().getSkill3() != 0) || (checkjob && !CheckUseableJobs(origin.getRight(), fresh.getRight())) || !checkUseableJobs(fresh, c);
   }
-  
-  public static boolean ResetCore(final MapleClient c, final Pair<Core, List<String>> origin, final Pair<Core, List<String>> fresh, final Pair<Core, List<String>> fresh2, final boolean checkjob)
+
+  public static boolean ResetCore (final MapleClient c, final Pair<Core, List<String>> origin, final Pair<Core, List<String>> fresh, final Pair<Core, List<String>> fresh2, final boolean checkjob)
   {
     return origin.getLeft().getCoreId() == fresh.getLeft().getCoreId() || fresh.getLeft().getCoreId() / 10000000 != 2 || (origin.getLeft().getSkill1() == fresh.getLeft().getSkill1() && origin.getLeft().getSkill1() != 0 && fresh.getLeft().getSkill1() != 0) || (origin.getLeft().getSkill2() == fresh.getLeft().getSkill2() && origin.getLeft().getSkill2() != 0 && fresh.getLeft().getSkill2() != 0) || (origin.getLeft().getSkill3() == fresh.getLeft().getSkill3() && origin.getLeft().getSkill3() != 0 && fresh.getLeft().getSkill3() != 0) || (origin.getLeft().getSkill1() == fresh2.getLeft().getSkill1() && origin.getLeft().getSkill1() != 0 && fresh2.getLeft().getSkill1() != 0) || (origin.getLeft().getSkill2() == fresh2.getLeft().getSkill2() && origin.getLeft().getSkill2() != 0 && fresh2.getLeft().getSkill2() != 0) || (origin.getLeft().getSkill3() == fresh2.getLeft().getSkill3() && origin.getLeft().getSkill3() != 0 && fresh2.getLeft().getSkill3() != 0) || (checkjob && !CheckUseableJobs(origin.getRight(), fresh.getRight())) || !checkUseableJobs(fresh, c);
   }
-  
-  public static void UseMirrorCoreJamStone(final MapleClient c, final int itemid, long crcid)
+
+  public static void UseMirrorCoreJamStone (final MapleClient c, final int itemid, long crcid)
   {
     crcid = Randomizer.nextLong();
     if (c.getPlayer().getCore().size() >= 200)
@@ -292,8 +293,8 @@ public class MatrixHandler
     }
     c.getSession().writeAndFlush(CWvsContext.UpdateCore(c.getPlayer()));
   }
-  
-  public static void UseCraftCoreJamStone(final MapleClient c, final int itemid, long crcid)
+
+  public static void UseCraftCoreJamStone (final MapleClient c, final int itemid, long crcid)
   {
     crcid = Randomizer.nextLong();
     if (c.getPlayer().getCore().size() >= 200)
@@ -311,8 +312,8 @@ public class MatrixHandler
     }
     c.getSession().writeAndFlush(CWvsContext.UpdateCore(c.getPlayer()));
   }
-  
-  public static void UseEnforcedCoreJamStone(final MapleClient c, final int itemid, final long crcid)
+
+  public static void UseEnforcedCoreJamStone (final MapleClient c, final int itemid, final long crcid)
   {
     if (c.getPlayer().getCore().size() >= 200)
     {
@@ -328,15 +329,110 @@ public class MatrixHandler
     }
     c.getSession().writeAndFlush(CWvsContext.UpdateCore(c.getPlayer()));
   }
-  
-  public static void UseCoreJamStone(final MapleClient c, final int itemid, long crcid)
+
+  public static void multiUseCoreStone (final MapleClient c, final int itemid, final int count)
   {
-    crcid = Randomizer.nextLong();
-    if (c.getPlayer().getCore().size() >= 200)
+    if (c.getPlayer().getLevel() < 200)
     {
       c.getPlayer().dropMessage(1, "코어는 최대 200개까지 보유하실 수 있습니다.");
+      c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
       return;
     }
+
+    if (GameConstants.isYeti(c.getPlayer().getJob()) || GameConstants.isPinkBean(c.getPlayer().getJob()))
+    {
+      c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+      return;
+    }
+    Core core = null;
+    if (c.getPlayer().haveItem(itemid, count))
+    {
+      long crcid = Randomizer.nextLong();
+
+      c.getPlayer().removeItem(2434287, -1 * count);
+
+      for (int i = 0; i < count; i++)
+      {
+        final int rand = Randomizer.nextInt(100);
+        boolean sp = false;
+        Pair<Core, List<String>> skill1;
+        Pair<Core, List<String>> skill2;
+        Pair<Core, List<String>> skill3;
+        if (rand < 5)
+        {
+          final int rand2 = Randomizer.nextInt(MatrixHandler.specialCores.size());
+          skill1 = MatrixHandler.specialCores.get(rand2);
+          skill2 = null;
+          skill3 = null;
+          while (!checkUseableJobs(skill1, c))
+          {
+            skill1 = MatrixHandler.specialCores.get(Randomizer.nextInt(MatrixHandler.specialCores.size()));
+          }
+          sp = true;
+        }
+        else if (rand < 85)
+        {
+          final int rand2 = Randomizer.nextInt(MatrixHandler.passiveCores.size());
+          final int rand3 = Randomizer.nextInt(MatrixHandler.passiveCores.size());
+          final int rand4 = Randomizer.nextInt(MatrixHandler.passiveCores.size());
+          skill1 = MatrixHandler.passiveCores.get(rand2);
+          skill2 = MatrixHandler.passiveCores.get(rand3);
+          skill3 = MatrixHandler.passiveCores.get(rand4);
+          while (!checkUseableJobs(skill1, c))
+          {
+            skill1 = MatrixHandler.passiveCores.get(Randomizer.nextInt(MatrixHandler.passiveCores.size()));
+          }
+          while (ResetCore(c, skill1, skill2, true))
+          {
+            skill2 = MatrixHandler.passiveCores.get(Randomizer.nextInt(MatrixHandler.passiveCores.size()));
+          }
+          while (ResetCore(c, skill3, skill1, skill2, true))
+          {
+            skill3 = MatrixHandler.passiveCores.get(Randomizer.nextInt(MatrixHandler.passiveCores.size()));
+          }
+        }
+        else
+        {
+          final int rand2 = Randomizer.nextInt(MatrixHandler.activeCores.size());
+          skill1 = MatrixHandler.activeCores.get(rand2);
+          skill2 = null;
+          skill3 = null;
+          while (!checkUseableJobs(skill1, c))
+          {
+            skill1 = MatrixHandler.activeCores.get(Randomizer.nextInt(MatrixHandler.activeCores.size()));
+          }
+        }
+        final Pair<Core, List<String>> tempCore = MatrixHandler.cores.get(skill1.getLeft().getCoreId());
+        SpecialCoreOption spCore = null;
+        if (tempCore != null)
+        {
+          spCore = tempCore.left.getSpCoreOption();
+        }
+        core = new Core(crcid, skill1.getLeft().getCoreId(), c.getPlayer().getId(), 1, 0, 1, skill1.getLeft().getMaxlevel(), skill1.getLeft().getSkill1(), (skill2 == null) ? 0 : skill2.getLeft().getSkill1(), (skill3 == null) ? 0 : skill3.getLeft().getSkill1(), -1, spCore);
+        if (sp)
+        {
+          core.setPeriod(System.currentTimeMillis() + 604800000L);
+        }
+        c.getPlayer().getCore().add(core);
+        core.setId(c.getPlayer().getCore().indexOf(core));
+      }
+
+      c.getSession().writeAndFlush(CWvsContext.AddCore(core));
+
+      c.getSession().writeAndFlush(CWvsContext.UpdateCore(c.getPlayer()));
+    }
+
+    c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+  }
+
+  public static void useCoreStone (final MapleClient c, final int itemid, long crcid)
+  {
+    crcid = Randomizer.nextLong();
+    // if (c.getPlayer().getCore().size() >= 200)
+    // {
+    //   c.getPlayer().dropMessage(1, "코어는 최대 200개까지 보유하실 수 있습니다.");
+    //   return;
+    // }
     if (c.getPlayer().getLevel() < 200 || GameConstants.isYeti(c.getPlayer().getJob()) || GameConstants.isPinkBean(c.getPlayer().getJob()))
     {
       return;
@@ -410,8 +506,8 @@ public class MatrixHandler
     }
     c.getSession().writeAndFlush(CWvsContext.UpdateCore(c.getPlayer()));
   }
-  
-  public static void gainVCoreLevel(final MapleCharacter player)
+
+  public static void gainVCoreLevel (final MapleCharacter player)
   {
     for (final Pair<Core, List<String>> coreskill : MatrixHandler.activeCores)
     {
@@ -425,8 +521,8 @@ public class MatrixHandler
     player.getClient().getSession().writeAndFlush(CWvsContext.UpdateCore(player));
     player.getClient().getSession().writeAndFlush(CWvsContext.enableActions(player));
   }
-  
-  public static void updateCore(final LittleEndianAccessor slea, final MapleClient c)
+
+  public static void updateCore (final LittleEndianAccessor slea, final MapleClient c)
   {
     final int state = slea.readInt();
     switch (state)
@@ -833,7 +929,7 @@ public class MatrixHandler
         break;
       }
       case 14:
-      {//코어잠금
+      {// 코어잠금
         final int pos = slea.readInt();
         final String secondPassword = slea.readMapleAsciiString();
         if (c.CheckSecondPassword(secondPassword))
@@ -860,8 +956,8 @@ public class MatrixHandler
     }
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
   }
-  
-  private static int neededLevelUpExp(final Core core)
+
+  private static int neededLevelUpExp (final Core core)
   {
     final int type = core.getCoreId() / 10000000;
     if (type == 1)
@@ -870,8 +966,8 @@ public class MatrixHandler
     }
     return 15 * core.getLevel() + 40;
   }
-  
-  private static int expByLevel(final Core core)
+
+  private static int expByLevel (final Core core)
   {
     if (core.getCoreId() / 10000000 == 4)
     {
@@ -884,8 +980,8 @@ public class MatrixHandler
     }
     return a;
   }
-  
-  public static void gainMatrix(MapleCharacter chr)
+
+  public static void gainMatrix (MapleCharacter chr)
   {
     List<VMatrix> matrixs = chr.getMatrixs();
     while (matrixs.size() < 26)
@@ -895,8 +991,8 @@ public class MatrixHandler
     chr.setMatrixs(matrixs);
     chr.getClient().getSession().writeAndFlush(CWvsContext.UpdateCore(chr));
   }
-  
-  public static VMatrix VMatrixFromPos(final MapleCharacter player, final int pos)
+
+  public static VMatrix VMatrixFromPos (final MapleCharacter player, final int pos)
   {
     for (final VMatrix ma : player.getMatrixs())
     {
@@ -907,8 +1003,8 @@ public class MatrixHandler
     }
     return null;
   }
-  
-  public static Core corefromId(final MapleCharacter player, final int id)
+
+  public static Core corefromId (final MapleCharacter player, final int id)
   {
     for (final Core core : player.getCore())
     {
@@ -919,8 +1015,8 @@ public class MatrixHandler
     }
     return null;
   }
-  
-  public static void calcSkillLevel(final MapleCharacter player, final int position)
+
+  public static void calcSkillLevel (final MapleCharacter player, final int position)
   {
     final Map<Skill, SkillEntry> updateSkills = new HashMap<Skill, SkillEntry>();
     for (final Map.Entry<Skill, SkillEntry> skill : player.getSkills().entrySet())
@@ -943,7 +1039,7 @@ public class MatrixHandler
       if (core.getState() == 2 && core.getPosition() >= 0)
       {
         if (core.getPosition() >= 28)
-        {//코어 장착
+        {// 코어 장착
           core.setState(1);
           core.setPosition(-1);
         }
@@ -1016,13 +1112,13 @@ public class MatrixHandler
       player.getClient().getSession().writeAndFlush(CWvsContext.UpdateCore(player));
     }
   }
-  
-  public static Map<Integer, Pair<Core, List<String>>> getCores()
+
+  public static Map<Integer, Pair<Core, List<String>>> getCores ()
   {
     return MatrixHandler.cores;
   }
-  
-  public static void setCores(final Map<Integer, Pair<Core, List<String>>> cores)
+
+  public static void setCores (final Map<Integer, Pair<Core, List<String>>> cores)
   {
     MatrixHandler.cores = cores;
   }

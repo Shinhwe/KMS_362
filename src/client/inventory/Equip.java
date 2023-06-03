@@ -1843,9 +1843,7 @@ public class Equip extends Item implements Serializable
 
   public void 设置装备后不可交易 ()
   {
-    int flag = this.getFlag();
-    flag -= ItemFlag.UNTRADEABLE.getValue();
-    setFlag(flag);
+    setFlag(0);
   }
 
   public int getEquipmentType ()

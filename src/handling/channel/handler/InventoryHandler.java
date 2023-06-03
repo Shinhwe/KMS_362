@@ -1672,17 +1672,12 @@ public class InventoryHandler
           c.getPlayer().dropMessage(1, "캐릭터 슬롯 개수를 늘렸습니다.");
           break;
         }
-        case 2435719:
-        case 2435902:
-        {
-          if (GameConstants.isPinkBean(c.getPlayer().getJob()) || GameConstants.isYeti(c.getPlayer().getJob()))
-          {
-            c.getPlayer().dropMessage(1, "핑크빈과 예티는 불가능한 행동입니다.");
-            break;
-          }
-          MatrixHandler.UseCoreJamStone(c, toUse.getItemId(), Randomizer.nextLong());
-          break;
-        }
+        // case 2435719:
+        // case 2435902:
+        // {
+        //   MatrixHandler.useCoreStone(c, toUse.getItemId(), Randomizer.nextLong());
+        //   break;
+        // }
         case 2631527:
         {
           if (GameConstants.isPinkBean(c.getPlayer().getJob()) || GameConstants.isYeti(c.getPlayer().getJob()))

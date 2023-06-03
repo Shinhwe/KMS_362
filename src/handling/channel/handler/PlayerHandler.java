@@ -7218,7 +7218,7 @@ public class PlayerHandler
         }
         else if (isvh.getRank() == 1)
         {
-          if (rand < 3)
+          if (rand < 5)
           {
             nowrank = 2;
           }
@@ -7227,7 +7227,7 @@ public class PlayerHandler
             nowrank = 1;
           }
         }
-        else if (rand < 5)
+        else if (rand < 15)
         {
           nowrank = 1;
         }
