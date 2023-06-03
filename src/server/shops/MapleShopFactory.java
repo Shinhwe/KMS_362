@@ -41,8 +41,8 @@ public class MapleShopFactory
       {
         int itemId = rs.getInt("itemid");
         int shopItemId = rs.getInt("shopitemid");
-        int price = rs.getInt("price");
-        int priceQuantity = rs.getInt("pricequantity");
+        long price = rs.getLong("price");
+        int coinId = rs.getInt("coinId");
         int tab = rs.getInt("Tab");
         int quantity = rs.getInt("quantity");
         int period = rs.getInt("period");
@@ -56,7 +56,7 @@ public class MapleShopFactory
 
         if (GameConstants.isThrowingStar(itemId) || GameConstants.isBullet(itemId))
         {
-          MapleShopItem starItem = new MapleShopItem(shopItemId, (short) 1, itemId, price, priceQuantity, (byte) tab, quantity, period, i, itemRate, buyQuantity, rechargeMonth, rechargeDay, resetDay, recharge, rechargeCount);
+          MapleShopItem starItem = new MapleShopItem(shopItemId, (short) 1, itemId, price, coinId, (byte) tab, quantity, period, i, itemRate, buyQuantity, rechargeMonth, rechargeDay, resetDay, recharge, rechargeCount);
           shop.addItem(starItem);
 
           if (rechargeableItemList.contains(Integer.valueOf(starItem.getItemId())))
@@ -66,11 +66,11 @@ public class MapleShopFactory
         }
         else if (GameConstants.isBowArrow(itemId) || GameConstants.isCrossbowArrow(itemId))
         {
-          shop.addItem(new MapleShopItem(shopItemId, (short) 30000, itemId, price, priceQuantity, (byte) tab, quantity, period, i, itemRate, buyQuantity, rechargeMonth, rechargeDay, resetDay, recharge, rechargeCount));
+          shop.addItem(new MapleShopItem(shopItemId, (short) 30000, itemId, price, coinId, (byte) tab, quantity, period, i, itemRate, buyQuantity, rechargeMonth, rechargeDay, resetDay, recharge, rechargeCount));
         }
         else
         {
-          shop.addItem(new MapleShopItem(shopItemId, (short) 1000, itemId, price, priceQuantity, (byte) tab, quantity, period, i, itemRate, buyQuantity, rechargeMonth, rechargeDay, resetDay, recharge, rechargeCount));
+          shop.addItem(new MapleShopItem(shopItemId, (short) 1000, itemId, price, coinId, (byte) tab, quantity, period, i, itemRate, buyQuantity, rechargeMonth, rechargeDay, resetDay, recharge, rechargeCount));
         }
         i++;
       }

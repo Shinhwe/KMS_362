@@ -10,7 +10,7 @@ public class MapleShopItem
 
   private long price;
 
-  private int priceQuantity;
+  private int coinId;
 
   private byte tab;
 
@@ -27,14 +27,14 @@ public class MapleShopItem
   private int itemRate;
   private int resetDay;
 
-  public MapleShopItem (int id, short buyable, int itemId, long price, int priceQuantity, byte tab, int quantity, int period, int position, int itemRate, int buyQuantity, int rechargeMonth, int rechargeDay, int resetDay, int recharge,
+  public MapleShopItem (int id, short buyable, int itemId, long price, int coinId, byte tab, int quantity, int period, int position, int itemRate, int buyQuantity, int rechargeMonth, int rechargeDay, int resetDay, int recharge,
                         int rechargeCount)
   {
     this.id = id;
     this.buyable = buyable;
     this.itemId = itemId;
     this.price = price;
-    this.priceQuantity = priceQuantity;
+    this.coinId = coinId;
     this.tab = tab;
     this.quantity = quantity;
     this.period = period;
@@ -53,9 +53,9 @@ public class MapleShopItem
     return this.id;
   }
 
-  public int getPriceQuantity ()
+  public int getCoinId ()
   {
-    return this.priceQuantity;
+    return this.coinId;
   }
 
   public int getBuyQuantity ()

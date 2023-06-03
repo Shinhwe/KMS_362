@@ -342,7 +342,7 @@ public class MapleShop
       }
       c.saveShopLimit(c.getShopLimit());
     }
-    if (item != null && item.getPrice() > 0L && item.getPriceQuantity() == 0 && this.coinKey == 0)
+    if (item != null && item.getPrice() > 0L && item.getCoinId() == 0 && this.coinKey == 0)
     {
       if (c.getPlayer().getMeso() >= item.getPrice() * (long) quantity)
       {
@@ -379,15 +379,15 @@ public class MapleShop
         c.getSession().writeAndFlush(CField.NPCPacket.confirmShopTransactionItem((byte) 2, this, c, -1, itemId));
       }
     }
-    else if (item != null && item.getPrice() > 0L && item.getPriceQuantity() > 0)
+    else if (item != null && item.getPrice() > 0L && item.getCoinId() > 0)
     {
-      if (c.getPlayer().haveItem((int) item.getPrice(), item.getPriceQuantity() * quantity, false, true))
+      if (c.getPlayer().haveItem(item.getCoinId(), (int) (item.getPrice() * quantity), false, true))
       {
         if (MapleInventoryManipulator.checkSpace(c, itemId, (short) (quantity * item.getQuantity()), ""))
         {
           if (GameConstants.isPet(itemId))
           {
-            MapleInventoryManipulator.removeById(c, GameConstants.getInventoryType((int) item.getPrice()), (int) item.getPrice(), item.getPriceQuantity(), false, false);
+            MapleInventoryManipulator.removeById(c, GameConstants.getInventoryType(item.getCoinId()), item.getCoinId(), (int) item.getPrice(), false, false);
             MapleInventoryManipulator.addById(c, itemId, (short) (quantity * item.getQuantity()), null, MaplePet.createPet(itemId, item.getPeriod()), 30L, StringUtil.getAllCurrentTime() + "에 " + (this.id + " 상점에서 구매한 아이템."));
           }
           else
@@ -396,12 +396,12 @@ public class MapleShop
             if (GameConstants.isRechargable(itemId))
             {
               quantity = ii.getSlotMax(item.getItemId());
-              MapleInventoryManipulator.removeById(c, GameConstants.getInventoryType((int) item.getPrice()), (int) item.getPrice(), item.getPriceQuantity(), false, false);
+              MapleInventoryManipulator.removeById(c, GameConstants.getInventoryType(item.getCoinId()), item.getCoinId(), (int) item.getPrice(), false, false);
               MapleInventoryManipulator.addById(c, itemId, (short) (quantity * item.getQuantity()), null, null, item.getPeriod(), StringUtil.getAllCurrentTime() + "에 " + (this.id + " 상점에서 구매한 아이템."));
             }
             else
             {
-              MapleInventoryManipulator.removeById(c, GameConstants.getInventoryType((int) item.getPrice()), (int) item.getPrice(), item.getPriceQuantity() * quantity, false, false);
+              MapleInventoryManipulator.removeById(c, GameConstants.getInventoryType(item.getCoinId()), item.getCoinId(), (int) (item.getPrice() * quantity), false, false);
               if (GameConstants.getInventoryType(item.getItemId()) == MapleInventoryType.EQUIP || GameConstants.getInventoryType(item.getItemId()) == MapleInventoryType.CODY)
               {
                 for (int i = 0; i < quantity; ++i)

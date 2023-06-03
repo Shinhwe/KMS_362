@@ -794,7 +794,7 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
       }
       case VICIOUS_HAMMER_RES:
       {
-        InventoryHandler.UseGoldenHammer(slea, c);
+        InventoryHandler.useGoldenHammer(slea, c);
         break;
       }
       case VICIOUS_HAMMER_RESULT:
