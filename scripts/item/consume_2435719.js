@@ -14,9 +14,9 @@ function action(mode, type, count) {
 		St++;
 	}
 	if (St == 0) {
-      cm.sendGetNumber("要開啟多少個核心寶石(每次最多同時開啟 500 個)?", 1, 1, 500);
+      cm.sendGetNumber("要使用多少個核心寶石(每次最多 500 個)?", 1, 1, 500);
 	} else if (St == 1) {
-		if (!cm.haveItem(2437760, count)) {
+		if (!cm.haveItem(box, count)) {
       cm.sendOk("你沒有那麽多核心寶石!");
 			cm.dispose();
 			return;

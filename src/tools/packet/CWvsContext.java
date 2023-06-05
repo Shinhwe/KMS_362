@@ -538,6 +538,7 @@ public class CWvsContext
     mplew.write(34);
     mplew.writeInt(15);
     mplew.writeMapleAsciiString(key);
+    System.out.println(mplew);
     return mplew.getPacket();
   }
   

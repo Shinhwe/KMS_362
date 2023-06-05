@@ -5,7 +5,6 @@
 package handling.channel.handler;
 
 import client.*;
-import client.inventory.MapleInventoryType;
 import constants.GameConstants;
 import provider.MapleData;
 import provider.MapleDataProvider;
@@ -89,24 +88,24 @@ public class MatrixHandler
                 spOption.setHeal_percent(MapleDataTool.getInt("spCoreOption/effect/heal_percent", d, 0));
                 spOption.setReducePercent(MapleDataTool.getInt("spCoreOption/effect/reducePercent", d, 0));
               }
-              final Core core = new Core(-1L, coreid, 0, 1, 0, 1, maxlevel, skillid, skillid2, skillid3, -1, spOption);
+              final Core core = new Core(-1L, coreid, 0, 1, 0, 1, maxlevel, skillid, skillid2, skillid3, -1, spOption, false);
               final Pair<Core, List<String>> pair = new Pair<Core, List<String>>(core, jobs);
               MatrixHandler.cores.put(coreid, pair);
               switch (coreid / 10000000)
               {
                 case 1:
                 {
-                  MatrixHandler.activeCores.add(new Pair<Core, List<String>>(new Core(-1L, coreid, 0, 1, 0, 1, maxlevel, skillid, 0, 0, -1, spOption), jobs));
+                  MatrixHandler.activeCores.add(new Pair<Core, List<String>>(new Core(-1L, coreid, 0, 1, 0, 1, maxlevel, skillid, 0, 0, -1, spOption, false), jobs));
                   continue;
                 }
                 case 2:
                 {
-                  MatrixHandler.passiveCores.add(new Pair<Core, List<String>>(new Core(-1L, coreid, 0, 1, 0, 1, maxlevel, skillid, 0, 0, -1, spOption), jobs));
+                  MatrixHandler.passiveCores.add(new Pair<Core, List<String>>(new Core(-1L, coreid, 0, 1, 0, 1, maxlevel, skillid, 0, 0, -1, spOption, false), jobs));
                   continue;
                 }
                 case 3:
                 {
-                  MatrixHandler.specialCores.add(new Pair<Core, List<String>>(new Core(-1L, coreid, 0, 1, 0, 1, maxlevel, skillid, 0, 0, -1, spOption), jobs));
+                  MatrixHandler.specialCores.add(new Pair<Core, List<String>>(new Core(-1L, coreid, 0, 1, 0, 1, maxlevel, skillid, 0, 0, -1, spOption, false), jobs));
                   continue;
                 }
               }
@@ -286,7 +285,7 @@ public class MatrixHandler
     if (c.getPlayer().haveItem(itemid))
     {
       MapleInventoryManipulator.removeById_Lock(c, GameConstants.getInventoryType(itemid), itemid);
-      final Core core = new Core(crcid, 10000024, c.getPlayer().getId(), 1, 0, 1, 25, 400001039, 0, 0, -1, null);
+      final Core core = new Core(crcid, 10000024, c.getPlayer().getId(), 1, 0, 1, 25, 400001039, 0, 0, -1, null, false);
       c.getPlayer().getCore().add(core);
       core.setId(c.getPlayer().getCore().indexOf(core));
       c.getSession().writeAndFlush(CWvsContext.AddCore(core));
@@ -305,7 +304,7 @@ public class MatrixHandler
     if (c.getPlayer().haveItem(itemid))
     {
       MapleInventoryManipulator.removeById_Lock(c, GameConstants.getInventoryType(itemid), itemid);
-      final Core core = new Core(crcid, 10000031, c.getPlayer().getId(), 1, 0, 1, 25, 400001059, 0, 0, -1, null);
+      final Core core = new Core(crcid, 10000031, c.getPlayer().getId(), 1, 0, 1, 25, 400001059, 0, 0, -1, null, false);
       c.getPlayer().getCore().add(core);
       core.setId(c.getPlayer().getCore().indexOf(core));
       c.getSession().writeAndFlush(CWvsContext.AddCore(core));
@@ -322,7 +321,7 @@ public class MatrixHandler
     }
     if (c.getPlayer().haveItem(itemid) && MapleInventoryManipulator.removeById(c, GameConstants.getInventoryType(itemid), itemid, 1, false, false))
     {
-      final Core core = new Core(crcid, 40000000, c.getPlayer().getId(), 1, 0, 1, 0, 1, 0, 0, -1, null);
+      final Core core = new Core(crcid, 40000000, c.getPlayer().getId(), 1, 0, 1, 0, 1, 0, 0, -1, null, false);
       c.getPlayer().getCore().add(core);
       core.setId(c.getPlayer().getCore().indexOf(core));
       c.getSession().writeAndFlush(CWvsContext.AddCore(core));
@@ -349,7 +348,7 @@ public class MatrixHandler
     {
       long crcid = Randomizer.nextLong();
 
-      c.getPlayer().removeItem(2434287, -1 * count);
+      c.getPlayer().removeItem(2435719, -1 * count);
 
       for (int i = 0; i < count; i++)
       {
@@ -408,7 +407,7 @@ public class MatrixHandler
         {
           spCore = tempCore.left.getSpCoreOption();
         }
-        core = new Core(crcid, skill1.getLeft().getCoreId(), c.getPlayer().getId(), 1, 0, 1, skill1.getLeft().getMaxlevel(), skill1.getLeft().getSkill1(), (skill2 == null) ? 0 : skill2.getLeft().getSkill1(), (skill3 == null) ? 0 : skill3.getLeft().getSkill1(), -1, spCore);
+        core = new Core(crcid, skill1.getLeft().getCoreId(), c.getPlayer().getId(), 1, 0, 1, skill1.getLeft().getMaxlevel(), skill1.getLeft().getSkill1(), (skill2 == null) ? 0 : skill2.getLeft().getSkill1(), (skill3 == null) ? 0 : skill3.getLeft().getSkill1(), -1, spCore, false);
         if (sp)
         {
           core.setPeriod(System.currentTimeMillis() + 604800000L);
@@ -495,7 +494,7 @@ public class MatrixHandler
       {
         spCore = tempCore.left.getSpCoreOption();
       }
-      final Core core = new Core(crcid, skill1.getLeft().getCoreId(), c.getPlayer().getId(), 1, 0, 1, skill1.getLeft().getMaxlevel(), skill1.getLeft().getSkill1(), (skill2 == null) ? 0 : skill2.getLeft().getSkill1(), (skill3 == null) ? 0 : skill3.getLeft().getSkill1(), -1, spCore);
+      final Core core = new Core(crcid, skill1.getLeft().getCoreId(), c.getPlayer().getId(), 1, 0, 1, skill1.getLeft().getMaxlevel(), skill1.getLeft().getSkill1(), (skill2 == null) ? 0 : skill2.getLeft().getSkill1(), (skill3 == null) ? 0 : skill3.getLeft().getSkill1(), -1, spCore, false);
       if (sp)
       {
         core.setPeriod(System.currentTimeMillis() + 604800000L);
@@ -513,7 +512,7 @@ public class MatrixHandler
     {
       if (checkOwnUseableJobs(coreskill, player.getClient()))
       {
-        final Core core = new Core(Randomizer.nextLong(), coreskill.getLeft().getCoreId(), player.getId(), 1, 0, 1, coreskill.getLeft().getMaxlevel(), coreskill.getLeft().getSkill1(), 0, 0, -1, coreskill.getLeft().getSpCoreOption());
+        final Core core = new Core(Randomizer.nextLong(), coreskill.getLeft().getCoreId(), player.getId(), 1, 0, 1, coreskill.getLeft().getMaxlevel(), coreskill.getLeft().getSkill1(), 0, 0, -1, coreskill.getLeft().getSpCoreOption(), false);
         player.getCore().add(core);
         core.setId(player.getCore().indexOf(core));
       }
@@ -829,7 +828,7 @@ public class MatrixHandler
                 skill2 = null;
                 skill3 = null;
               }
-              final Core core5 = new Core(Randomizer.nextLong(), skill1.getLeft().getCoreId(), c.getPlayer().getId(), 1, 0, 1, skill1.getLeft().getMaxlevel(), skill1.getLeft().getSkill1(), (skill2 == null) ? 0 : skill2.getLeft().getSkill1(), (skill3 == null) ? 0 : skill3.getLeft().getSkill1(), -1, skill1.getLeft().getSpCoreOption());
+              final Core core5 = new Core(Randomizer.nextLong(), skill1.getLeft().getCoreId(), c.getPlayer().getId(), 1, 0, 1, skill1.getLeft().getMaxlevel(), skill1.getLeft().getSkill1(), (skill2 == null) ? 0 : skill2.getLeft().getSkill1(), (skill3 == null) ? 0 : skill3.getLeft().getSkill1(), -1, skill1.getLeft().getSpCoreOption(), false);
               c.getPlayer().getCore().add(core5);
               core5.setId(c.getPlayer().getCore().indexOf(core5));
               c.getSession().writeAndFlush(CWvsContext.ViewNewCore(core5, nCount));
@@ -862,7 +861,7 @@ public class MatrixHandler
                   skill4 = null;
                   skill5 = null;
                 }
-                final Core core6 = new Core(Randomizer.nextLong(), skill1.getLeft().getCoreId(), c.getPlayer().getId(), 1, 0, 1, skill1.getLeft().getMaxlevel(), skill1.getLeft().getSkill1(), (skill4 == null) ? 0 : skill4.getLeft().getSkill1(), (skill5 == null) ? 0 : skill5.getLeft().getSkill1(), -1, skill1.getLeft().getSpCoreOption());
+                final Core core6 = new Core(Randomizer.nextLong(), skill1.getLeft().getCoreId(), c.getPlayer().getId(), 1, 0, 1, skill1.getLeft().getMaxlevel(), skill1.getLeft().getSkill1(), (skill4 == null) ? 0 : skill4.getLeft().getSkill1(), (skill5 == null) ? 0 : skill5.getLeft().getSkill1(), -1, skill1.getLeft().getSpCoreOption(), false);
                 c.getPlayer().getCore().add(core6);
                 core6.setId(c.getPlayer().getCore().indexOf(core6));
                 c.getSession().writeAndFlush(CWvsContext.UpdateCore(c.getPlayer(), core6.getId()));

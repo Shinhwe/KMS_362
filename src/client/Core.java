@@ -10,7 +10,7 @@ public class Core implements Comparable<Core>
   
   private SpecialCoreOption spCoreOption = null;
   
-  public Core(long crcid, int coreid, int charid, int level, int exp, int state, int maxlevel, int skill1, int skill2, int skill3, int position, SpecialCoreOption spCoreOption)
+  public Core(long crcid, int coreid, int charid, int level, int exp, int state, int maxlevel, int skill1, int skill2, int skill3, int position, SpecialCoreOption spCoreOption, boolean isLock)
   {
     setCrcId(crcid);
     setCoreId(coreid);
@@ -24,6 +24,7 @@ public class Core implements Comparable<Core>
     setSkill3(skill3);
     setPosition(position);
     this.spCoreOption = spCoreOption;
+    this.lock = isLock;
     this.period = 0L;
   }
   

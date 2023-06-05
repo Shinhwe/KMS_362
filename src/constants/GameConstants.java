@@ -275,64 +275,64 @@ public class GameConstants
     GameConstants.dList.add(new Pair("mirrorD_322_3_", ""));
     GameConstants.dList.add(new Pair("mirrorD_323_0_", ""));
     /*   169 */
-    dailyItems.add(new DailyGiftItemInfo(1, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(1, 5062009, 10, 0));
     /*   170 */
-    dailyItems.add(new DailyGiftItemInfo(2, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(2, 5062009, 10, 0));
     /*   171 */
-    dailyItems.add(new DailyGiftItemInfo(3, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(3, 5062009, 10, 0));
     /*   172 */
-    dailyItems.add(new DailyGiftItemInfo(4, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(4, 5062009, 10, 0));
     /*   173 */
-    dailyItems.add(new DailyGiftItemInfo(5, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(5, 5062009, 10, 0));
     /*   174 */
-    dailyItems.add(new DailyGiftItemInfo(6, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(6, 5062009, 10, 0));
     /*   175 */
-    dailyItems.add(new DailyGiftItemInfo(7, 4310017, 20, 0));
+    dailyItems.add(new DailyGiftItemInfo(7, 5062009, 20, 0));
 
     /*   177 */
-    dailyItems.add(new DailyGiftItemInfo(8, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(8, 5062009, 10, 0));
     /*   178 */
-    dailyItems.add(new DailyGiftItemInfo(9, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(9, 5062009, 10, 0));
     /*   179 */
-    dailyItems.add(new DailyGiftItemInfo(10, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(10, 5062009, 10, 0));
     /*   180 */
-    dailyItems.add(new DailyGiftItemInfo(11, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(11, 5062009, 10, 0));
     /*   181 */
-    dailyItems.add(new DailyGiftItemInfo(12, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(12, 5062009, 10, 0));
     /*   182 */
-    dailyItems.add(new DailyGiftItemInfo(13, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(13, 5062009, 10, 0));
     /*   183 */
-    dailyItems.add(new DailyGiftItemInfo(14, 4310017, 20, 0));
+    dailyItems.add(new DailyGiftItemInfo(14, 5062009, 20, 0));
 
     /*   185 */
-    dailyItems.add(new DailyGiftItemInfo(15, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(15, 5062009, 10, 0));
     /*   186 */
-    dailyItems.add(new DailyGiftItemInfo(16, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(16, 5062009, 10, 0));
     /*   187 */
-    dailyItems.add(new DailyGiftItemInfo(17, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(17, 5062009, 10, 0));
     /*   188 */
-    dailyItems.add(new DailyGiftItemInfo(18, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(18, 5062009, 10, 0));
     /*   189 */
-    dailyItems.add(new DailyGiftItemInfo(19, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(19, 5062009, 10, 0));
     /*   190 */
-    dailyItems.add(new DailyGiftItemInfo(20, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(20, 5062009, 10, 0));
     /*   191 */
-    dailyItems.add(new DailyGiftItemInfo(21, 4310017, 20, 0));
+    dailyItems.add(new DailyGiftItemInfo(21, 5062009, 20, 0));
 
     /*   193 */
-    dailyItems.add(new DailyGiftItemInfo(22, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(22, 5062009, 10, 0));
     /*   194 */
-    dailyItems.add(new DailyGiftItemInfo(23, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(23, 5062009, 10, 0));
     /*   195 */
-    dailyItems.add(new DailyGiftItemInfo(24, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(24, 5062009, 10, 0));
     /*   196 */
-    dailyItems.add(new DailyGiftItemInfo(25, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(25, 5062009, 10, 0));
     /*   197 */
-    dailyItems.add(new DailyGiftItemInfo(26, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(26, 5062009, 10, 0));
     /*   198 */
-    dailyItems.add(new DailyGiftItemInfo(27, 4310017, 10, 0));
+    dailyItems.add(new DailyGiftItemInfo(27, 5062009, 10, 0));
     /*   199 */
-    dailyItems.add(new DailyGiftItemInfo(28, 4310017, 20, 0));
+    dailyItems.add(new DailyGiftItemInfo(28, 5062009, 20, 0));
     price.put(Integer.valueOf(8800002), Integer.valueOf(175));
     price.put(Integer.valueOf(8880010), Integer.valueOf(190));
     price.put(Integer.valueOf(8500012), Integer.valueOf(185));

@@ -402,7 +402,11 @@ public class MapleLifeFactory
             stats.setHp(1134000000000000L);
             break;
           case 9101078:
+            stats.setHp(900000000000L);
+            break;
           case 9500654:
+            stats.setHp(999999999999999999L);
+            break;
           case 9833885:
             stats.setHp(2982480000L);
             break;

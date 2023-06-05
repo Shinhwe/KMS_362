@@ -925,10 +925,10 @@ public class MapScriptMethods
       return;
     }
     String data = "";
-    if (c.getPlayer().isGM())
-    {
+    // if (c.getPlayer().isGM())
+    // {
       c.getPlayer().dropMessage(6, "startScript_User : " + scriptName);
-    }
+    // }
     switch (onUserEnter.fromString(scriptName))
     {
       case dojang_QcheckSet:
@@ -941,7 +941,7 @@ public class MapScriptMethods
       }
       case dojang_1st:
       {
-        c.getPlayer().getMap().startMapEffect("\uc81c\ud55c\uc2dc\uac04\uc740 15\ubd84, \ucd5c\ub300\ud55c \uc2e0\uc18d\ud558\uac8c \ubaac\uc2a4\ud130\ub97c \uc4f0\ub7ec\ud2b8\ub9ac\uace0 \ub2e4\uc74c \uce35\uc73c\ub85c \uc62c\ub77c\uac00\uba74 \ub3fc!", 5120024, 8000);
+        c.getPlayer().getMap().startMapEffect("제한시간은 15분, 최대한 신속하게 몬스터를 쓰러트리고 다음 층으로 올라가면 돼!", 5120024, 8000);
         break;
       }
       case cannon_tuto_direction:
@@ -952,7 +952,7 @@ public class MapScriptMethods
       }
       case dunkel_timeRecord:
       {
-        c.getPlayer().getMap().broadcastMessage(CField.enforceMSG("\uce5c\uc704\ub300\uc7a5 \ub4c4\ucf08 : \ub098\uc640 \ub098\uc758 \uad70\ub2e8\uc774 \uc788\ub294 \uc774\uc0c1 \uc704\ub300\ud558\uc2e0 \ubd84\uaed8\ub294 \uc190\ub05d \ud558\ub098 \ub300\uc9c0 \ubabb\ud55c\ub2e4!", 272, 5000));
+        c.getPlayer().getMap().broadcastMessage(CField.enforceMSG("친위대장 듄켈 : 나와 나의 군단이 있는 이상 위대하신 분께는 손끝 하나 대지 못한다!", 272, 5000));
         break;
       }
       case cannon_tuto_direction1:
@@ -2061,7 +2061,7 @@ public class MapScriptMethods
         }
         c.getPlayer().setFWolfDamage(0L);
         c.getPlayer().setFWolfKiller(false);
-        c.getSession().writeAndFlush(CField.startMapEffect("\ubd88\uaf43\ub291\ub300\ub97c \ucc98\uce58\ud560 \uc6a9\uc0ac\uac00 \ub298\uc5c8\uad70. \uc5b4\uc11c \ub140\uc11d\uc744 \uacf5\uaca9\ud574! \uba38\ubb34\ub97c \uc218 \uc788\ub294 \uc2dc\uac04\uc740 30\ucd08 \ubfd0\uc774\uc57c!", 5120159, true));
+        c.getSession().writeAndFlush(CField.startMapEffect("불꽃늑대를 처치할 용사가 늘었군. 어서 녀석을 공격해! 머무를 수 있는 시간은 30초 뿐이야!", 5120159, true));
         c.getSession().writeAndFlush(CField.getClock(30));
         Timer.MapTimer.getInstance().schedule(() ->
         {

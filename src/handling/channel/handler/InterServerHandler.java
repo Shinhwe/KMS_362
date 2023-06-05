@@ -1872,10 +1872,10 @@ public class InterServerHandler
       /* 1135 */
       c.getSession().writeAndFlush(CWvsContext.onSessionValue("kill_count", "0"));
       /* 1136 */
+      // count : 作用不明, day = 已完成的天數; date: 作用不明
       c.getSession().writeAndFlush(CWvsContext.updateDailyGift("count=" + c.getKeyValue("dailyGiftComplete") + ";day=" + c.getKeyValue("dailyGiftDay") + ";date=" + player.getKeyValue(501385, "date")));
       /* 1137 */
       c.getSession().writeAndFlush(CField.dailyGift(player, 1, 0));
-      
       
       try
       {

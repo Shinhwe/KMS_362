@@ -1534,7 +1534,8 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
                 ret.getInventory(type.getType()).addFromDB(mit.getValue());
               }
               /*  2710 */
-              if (mit.getValue().getPet() != null) ;
+              if (mit.getValue().getPet() != null)
+                ;
             }
           }
         }
@@ -1752,7 +1753,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
             SpecialCoreOption spCore = null;
             /*  2831 */
             /*  2834 */
-            Core core = new Core(rs.getLong("crcid"), coreid, ret.id, rs.getInt("level"), rs.getInt("exp"), rs.getInt("state"), rs.getInt("maxlevel"), rs.getInt("skill1"), rs.getInt("skill2"), rs.getInt("skill3"), rs.getInt("position"), spCore);
+            Core core = new Core(rs.getLong("crcid"), coreid, ret.id, rs.getInt("level"), rs.getInt("exp"), rs.getInt("state"), rs.getInt("maxlevel"), rs.getInt("skill1"), rs.getInt("skill2"), rs.getInt("skill3"), rs.getInt("position"), spCore, rs.getBoolean("islock"));
             /*  2835 */
             ret.cores.add(core);
             /*  2836 */
@@ -2308,7 +2309,8 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
               /*  3136 */
               ret.getInventory(type.getType()).addFromDB(mit.getValue());
               /*  3137 */
-              if (mit.getValue().getPet() != null) ;
+              if (mit.getValue().getPet() != null)
+                ;
             }
           }
         }
@@ -5437,11 +5439,13 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     mplew.writeShort(this.questinfo.size() + this.getClient().getCustomKeyValue().size());
     for (final Map.Entry<Integer, String> q : this.questinfo.entrySet())
     {
+      System.out.println("questinfo key = " + q.getKey() + "; value = " + q.getValue());
       mplew.writeInt(q.getKey());
       mplew.writeMapleAsciiString((q.getValue() == null) ? "" : q.getValue());
     }
     for (final Map.Entry<Integer, String> q : this.getClient().getCustomKeyValue().entrySet())
     {
+      System.out.println("customKeyValue key = " + q.getKey() + "; value = " + q.getValue());
       mplew.writeInt(q.getKey());
       mplew.writeMapleAsciiString((q.getValue() == null) ? "" : q.getValue());
     }
@@ -11916,14 +11920,12 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     return true;
   }
 
-  @Override
-  public int getObjectId ()
+  @Override public int getObjectId ()
   {
     return this.getId();
   }
 
-  @Override
-  public void setObjectId (final int id)
+  @Override public void setObjectId (final int id)
   {
     throw new UnsupportedOperationException();
   }
@@ -12535,14 +12537,12 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     return this.stats.getHp() > 0L;
   }
 
-  @Override
-  public void sendDestroyData (final MapleClient client)
+  @Override public void sendDestroyData (final MapleClient client)
   {
     client.getSession().writeAndFlush(CField.removePlayerFromMap(this.getObjectId()));
   }
 
-  @Override
-  public void sendSpawnData (final MapleClient client)
+  @Override public void sendSpawnData (final MapleClient client)
   {
     if (client.getPlayer().allowedToTarget(this))
     {
@@ -13109,8 +13109,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     this.itemEffect = itemEffect;
   }
 
-  @Override
-  public MapleMapObjectType getType ()
+  @Override public MapleMapObjectType getType ()
   {
     return MapleMapObjectType.PLAYER;
   }
@@ -16390,8 +16389,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     }
     this.itcafetimer = server.Timer.CloneTimer.getInstance().register(new Runnable()
     {
-      @Override
-      public void run ()
+      @Override public void run ()
       {
         if (MapleCharacter.this.getInternetCafeTime() < 1)
         {
@@ -16458,8 +16456,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       }
       this.rapidtimer1 = server.Timer.BuffTimer.getInstance().schedule(new Runnable()
       {
-        @Override
-        public void run ()
+        @Override public void run ()
         {
           MapleCharacter.this.changeSkillLevel(SkillFactory.getSkill(100000276), (byte) 0, (byte) 0);
         }
@@ -16473,8 +16470,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       }
       this.rapidtimer2 = server.Timer.BuffTimer.getInstance().schedule(new Runnable()
       {
-        @Override
-        public void run ()
+        @Override public void run ()
         {
           MapleCharacter.this.changeSkillLevel(SkillFactory.getSkill(100000277), (byte) 0, (byte) 0);
         }
@@ -17026,8 +17022,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     }
     final Runnable r = new Runnable()
     {
-      @Override
-      public void run ()
+      @Override public void run ()
       {
         if (MapleCharacter.this.isAlive())
         {
@@ -17042,8 +17037,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     this.diabolicRecoveryTask = tMan.register(r, eff.getW() * 1000L);
     tMan.schedule(new Runnable()
     {
-      @Override
-      public void run ()
+      @Override public void run ()
       {
         if (MapleCharacter.this.diabolicRecoveryTask != null)
         {
@@ -17111,8 +17105,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     final server.Timer.BuffTimer tMan = server.Timer.BuffTimer.getInstance();
     final Runnable r = new Runnable()
     {
-      @Override
-      public void run ()
+      @Override public void run ()
       {
         int maxSupply = (MapleCharacter.this.level >= 100) ? 20 : ((MapleCharacter.this.level >= 60) ? 15 : ((MapleCharacter.this.level >= 30) ? 10 : 5));
         if (MapleCharacter.this.getBuffedValue(SecondaryStat.Overload) != null)
@@ -20745,8 +20738,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   {
     server.Timer.EtcTimer.getInstance().schedule(new Runnable()
     {
-      @Override
-      public void run ()
+      @Override public void run ()
       {
         if (!MapleCharacter.this.getMap().getAllMonster().isEmpty())
         {
@@ -21198,24 +21190,21 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     this.client.getSession().writeAndFlush(SLFCGPacket.playSE("MiniGame.img/multiBingo/3"));
     server.Timer.EtcTimer.getInstance().schedule(new Runnable()
     {
-      @Override
-      public void run ()
+      @Override public void run ()
       {
         MapleCharacter.this.client.getSession().writeAndFlush(SLFCGPacket.playSE("MiniGame.img/multiBingo/2"));
       }
     }, 1000L);
     server.Timer.EtcTimer.getInstance().schedule(new Runnable()
     {
-      @Override
-      public void run ()
+      @Override public void run ()
       {
         MapleCharacter.this.client.getSession().writeAndFlush(SLFCGPacket.playSE("MiniGame.img/multiBingo/1"));
       }
     }, 2000L);
     server.Timer.EtcTimer.getInstance().schedule(new Runnable()
     {
-      @Override
-      public void run ()
+      @Override public void run ()
       {
         MapleCharacter.this.client.getSession().writeAndFlush(SLFCGPacket.playSE("MiniGame.img/multiBingo/start"));
       }
@@ -21599,8 +21588,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   {
     server.Timer.EtcTimer.getInstance().schedule(new Runnable()
     {
-      @Override
-      public void run ()
+      @Override public void run ()
       {
         MapleCharacter.this.client.send(CField.showEffect("defense/count"));
         MapleCharacter.this.startSound();
@@ -21615,8 +21603,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     this.startSound();
     server.Timer.EtcTimer.getInstance().schedule(new Runnable()
     {
-      @Override
-      public void run ()
+      @Override public void run ()
       {
         MapleCharacter.this.client.send(CField.showEffect("Map/Effect2.img/starplanet/1_1"));
         MapleCharacter.this.client.send(CField.ImageTalkNpc(9000198, 2500, "#b#h ##k! 자네 운이 상당히 좋구만! 축하한다네! 바로 다음것을 긁어보게나!"));
@@ -21630,8 +21617,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   {
     server.Timer.EtcTimer.getInstance().schedule(new Runnable()
     {
-      @Override
-      public void run ()
+      @Override public void run ()
       {
         MapleCharacter.this.client.send(CField.showEffect("Map/Effect2.img/starplanet/1_2"));
         MapleCharacter.this.client.send(CField.ImageTalkNpc(9000198, 2500, "#b#h ##k! 자네 운이 상당히 좋구만! 축하한다네! 바로 다음것을 긁어보게나!"));
@@ -21645,8 +21631,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   {
     server.Timer.EtcTimer.getInstance().schedule(new Runnable()
     {
-      @Override
-      public void run ()
+      @Override public void run ()
       {
         MapleCharacter.this.client.send(CField.showEffect("Map/Effect2.img/starplanet/1_3"));
         MapleCharacter.this.client.send(CField.ImageTalkNpc(9000198, 2500, "#b#h ##k! 자네 운이 상당히 좋구만! 축하한다네! 바로 다음것을 긁어보게나!"));
@@ -22104,8 +22089,13 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     List<Pair<Integer, String>> DateWeekKeyValues = new ArrayList<>(Arrays.asList((Pair<Integer, String>[]) new Pair[] { new Pair<>(Integer.valueOf(1068), "count") }));
     List<Pair<Integer, String>> clientCustomDatasWeek = new ArrayList<>(Arrays.asList((Pair<Integer, String>[]) new Pair[] { new Pair<>(Integer.valueOf(100795), "weekspoint") }));
     List<Pair<Integer, String>> clientCustomKeyValuesWeek = new ArrayList<>(Arrays.asList((Pair<Integer, String>[]) new Pair[] { new Pair<>(Integer.valueOf(501468), "week"), new Pair<>(Integer.valueOf(501470), "weeklyF"), new Pair<>(Integer.valueOf(501468), "reward") }));
-    String[] clientDateKeyValues = { "Tester0", "Tester1", "Tester2", "Tester3", "Tester4", "Tester5", "Tester6", "Tester7", "Tester8", "Tester9", "Tester10", "Tester11", "Tester12", "Tester13", "Tester14", "Tester15", "Tester9", "jump_1", "jump_2", "jump_3", "jump_4", "jump_5", "jump_6", "dailyGiftComplete", "mPark", "mpark_t", "BloomingReward", "TyKitchenReward", "minigame" };
-    List<Pair<Integer, String>> DateKeyValues = new ArrayList<>(Arrays.asList((Pair<Integer, String>[]) new Pair[] { new Pair(Integer.valueOf(100794), "today"), new Pair(Integer.valueOf(100794), "lock"), new Pair(Integer.valueOf(501367), "reward"), new Pair(Integer.valueOf(210302), "GP") }));
+    String[] clientDateKeyValues = {
+        "Tester0", "Tester1", "Tester2", "Tester3", "Tester4", "Tester5", "Tester6", "Tester7", "Tester8", "Tester9", "Tester10", "Tester11", "Tester12", "Tester13", "Tester14", "Tester15", "Tester9", "jump_1", "jump_2", "jump_3", "jump_4", "jump_5", "jump_6",
+        "dailyGiftComplete", "mPark", "mpark_t", "BloomingReward", "TyKitchenReward", "minigame"
+    };
+    List<Pair<Integer, String>> DateKeyValues = new ArrayList<>(Arrays.asList((Pair<Integer, String>[]) new Pair[] {
+        new Pair(Integer.valueOf(100794), "today"), new Pair(Integer.valueOf(100794), "lock"), new Pair(Integer.valueOf(501367), "reward"), new Pair(Integer.valueOf(210302), "GP")
+    }));
     List<Pair<Integer, String>> clientCustomDatas = new ArrayList<>(Arrays.asList((Pair<Integer, String>[]) new Pair[] { new Pair<>(Integer.valueOf(238), "count"), new Pair<>(Integer.valueOf(238), "T") }));
     List<Pair<Integer, String>> clientCustomKeyValues = new ArrayList<>(Arrays.asList((Pair<Integer, String>[]) new Pair[] { new Pair<>(Integer.valueOf(501470), "dailyF") }));
     String[] ResetKeyValue = { "ArcQuest0", "ArcQuest1", "ArcQuest2", "ArcQuest3", "ArcQuest4", "ArcQuest5", "ArcQuest8", "AthQuest1", "DojoCount", "TyKitchenReward", "follower" };
@@ -23467,8 +23457,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     time *= 1000;
     mapTimeLimitTask = server.Timer.MapTimer.getInstance().register(new Runnable()
     {
-      @Override
-      public void run ()
+      @Override public void run ()
       {
         if (ourMap.getId() == GameConstants.JAIL)
         {
@@ -23495,8 +23484,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     final int itemid = s == 1 ? pendent[t] : ring[t];
     tm.schedule(new Runnable()
     {
-      @Override
-      public void run ()
+      @Override public void run ()
       {
         아이템지급(f, t, itemid);
         client.getSession().writeAndFlush(CField.NPCPacket.getNPCTalk(9000134, (byte) 0, "#fn나눔고딕 Extrabold#아래에서 당신의 내면의 결과를 확인해보세요.\r\n\r\n#b혁신의 룰렛#k 에서 [#i" + itemid + "# #d#t" + itemid + "##k](이)가 소환 되었습니다.", "00 00", (byte) 0));
@@ -23755,8 +23743,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
             MapleCharacter.this.MulungTimer = new Timer();
             MapleCharacter.this.MulungTimerTask = new TimerTask()
             {
-              @Override
-              public void run ()
+              @Override public void run ()
               {
                 MapleCharacter.this.warp(925020002);
                 MapleCharacter.this.dropMessage(5, "시간이 초과하여 무릉도장에서 퇴장합니다.");
@@ -24453,8 +24440,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       }
     }
 
-    @Override
-    public void run ()
+    @Override public void run ()
     {
       final long time = System.currentTimeMillis();
       //            dropMessageGM(6,"MapleCharacter.java : time = System.currentTimeMillis() : "+time);   // 1,639,401,553,304

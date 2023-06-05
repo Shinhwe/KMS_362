@@ -47,24 +47,23 @@ import static constants.ServerType.LOGIN;
 
 public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianAccessor>
 {
-  
+
   private final ServerType serverType;
   private final int channel;
   private final List<String> BlockedIP;
   private final Map<String, Pair<Long, Byte>> tracker;
-  
-  public MapleNettyHandler(final ServerType serverType, final int channel)
+
+  public MapleNettyHandler (final ServerType serverType, final int channel)
   {
     this.BlockedIP = new ArrayList<String>();
     this.tracker = new ConcurrentHashMap<String, Pair<Long, Byte>>();
     this.serverType = serverType;
     this.channel = channel;
   }
-  
-  public static final void handlePacket(final RecvPacketOpcode header, final LittleEndianAccessor slea, final MapleClient c, final ServerType serverType) throws Exception
+
+  public static final void handlePacket (final RecvPacketOpcode header, final LittleEndianAccessor slea, final MapleClient c, final ServerType serverType) throws Exception
   {
-//    System.out.println(header.getValue());
-    System.out.println(header.toString());
+    //    System.out.println(header.getValue());
     switch (header)
     {
       case PONG:
@@ -2517,7 +2516,12 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
       }
       case SUDDEN_MISSION_CLEAR:
       {
-        final int[][] itemlist = {{2049153, 1}, {5062010, 10}, {5062500, 20}, {5062503, 10}, {4310012, 35}, {2049751, 1}, {2049752, 1}, {2048759, 5}, {2048757, 5}, {2048766, 3}, {5069000, 1}, {5069001, 1}, {5064000, 1}, {5064100, 1}, {2431480, 1}, {5064400, 1}, {5064400, 1}, {2433019, 1}, {2049153, 1}, {5062010, 20}, {5062500, 20}, {5062503, 10}, {4310012, 35}, {2049751, 1}, {2049752, 1}, {2048759, 5}, {2048757, 5}, {2048766, 3}, {5069000, 1}, {5069001, 1}, {5064000, 1}, {5064100, 1}, {2431480, 1}, {5064400, 1}, {5064400, 1}, {2433019, 1}, {2049153, 1}, {5062010, 20}, {5062500, 20}, {5062503, 10}, {4310012, 35}, {2049751, 1}, {2049752, 1}, {2048759, 5}, {2048757, 5}, {2048766, 3}, {5069000, 1}, {5069001, 1}, {5064000, 1}, {5064100, 1}, {2430452, 1}, {5064400, 1}, {5064400, 1}, {2433019, 1}, {2431421, 1}, {5062009, 15}, {5068300, 1}};
+        final int[][] itemlist = {
+            { 2049153, 1 }, { 5062010, 10 }, { 5062500, 20 }, { 5062503, 10 }, { 4310012, 35 }, { 2049751, 1 }, { 2049752, 1 }, { 2048759, 5 }, { 2048757, 5 }, { 2048766, 3 }, { 5069000, 1 }, { 5069001, 1 }, { 5064000, 1 }, { 5064100, 1 }, { 2431480, 1 }, { 5064400, 1 },
+            { 5064400, 1 }, { 2433019, 1 }, { 2049153, 1 }, { 5062010, 20 }, { 5062500, 20 }, { 5062503, 10 }, { 4310012, 35 }, { 2049751, 1 }, { 2049752, 1 }, { 2048759, 5 }, { 2048757, 5 }, { 2048766, 3 }, { 5069000, 1 }, { 5069001, 1 }, { 5064000, 1 }, { 5064100, 1 },
+            { 2431480, 1 }, { 5064400, 1 }, { 5064400, 1 }, { 2433019, 1 }, { 2049153, 1 }, { 5062010, 20 }, { 5062500, 20 }, { 5062503, 10 }, { 4310012, 35 }, { 2049751, 1 }, { 2049752, 1 }, { 2048759, 5 }, { 2048757, 5 }, { 2048766, 3 }, { 5069000, 1 }, { 5069001, 1 },
+            { 5064000, 1 }, { 5064100, 1 }, { 2430452, 1 }, { 5064400, 1 }, { 5064400, 1 }, { 2433019, 1 }, { 2431421, 1 }, { 5062009, 15 }, { 5068300, 1 }
+        };
         if (c.getPlayer().getKeyValue(51351, "queststat") == 3L)
         {
           if (c.getQuestStatus(100825) == 2)
@@ -2586,8 +2590,8 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
       }
     }
   }
-  
-  public void channelActive(final ChannelHandlerContext ctx)
+
+  public void channelActive (final ChannelHandlerContext ctx)
   {
     final String address = ctx.channel().remoteAddress().toString().split(":")[0];
     if (this.BlockedIP.contains(address))
@@ -2656,22 +2660,18 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
         break;
       }
     }
-    final byte[] serverRecv
-        = {
+    final byte[] serverRecv = {
         (byte) 0xBA, (byte) 0x68, (byte) 0x54, (byte) 0x63
     };
-    final byte[] serverSend
-        = {
+    final byte[] serverSend = {
         (byte) 0xC8, (byte) 0x46, (byte) 0xD6, (byte) 0x76
     };
     final byte[] ivRecv = serverRecv;
     final byte[] ivSend = serverSend;
-    final MapleClient client = new MapleClient(
-        ctx.channel(),
-        new MapleAESOFB(ivSend, (short) (0xFFFF - ServerConstants.MAPLE_VERSION), serverType == ServerType.CHANNEL || serverType == ServerType.CASHSHOP || serverType == ServerType.AUCTION, true), // Sent Cypher
+    final MapleClient client = new MapleClient(ctx.channel(), new MapleAESOFB(ivSend, (short) (0xFFFF - ServerConstants.MAPLE_VERSION), serverType == ServerType.CHANNEL || serverType == ServerType.CASHSHOP || serverType == ServerType.AUCTION, true), // Sent Cypher
         new MapleAESOFB(ivRecv, ServerConstants.MAPLE_VERSION, serverType == ServerType.CHANNEL || serverType == ServerType.CASHSHOP || serverType == ServerType.AUCTION));
     client.setChannel(this.channel);
-    
+
     ctx.writeAndFlush(LoginPacket.initializeConnection(ServerConstants.MAPLE_VERSION, ivSend, ivRecv, !this.serverType.equals(ServerType.LOGIN)));
     if (serverType == LOGIN)
     {
@@ -2679,8 +2679,8 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
     }
     ctx.channel().attr(MapleClient.CLIENTKEY).set(client);
   }
-  
-  public void channelInactive(final ChannelHandlerContext ctx) throws Exception
+
+  public void channelInactive (final ChannelHandlerContext ctx) throws Exception
   {
     final MapleClient client = (MapleClient) ctx.channel().attr((AttributeKey) MapleClient.CLIENTKEY).get();
     if (serverType == LOGIN)
@@ -2694,20 +2694,20 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
     }
     ctx.channel().attr((AttributeKey) MapleClient.CLIENTKEY).set(null);
   }
-  
-  public void exceptionCaught(final ChannelHandlerContext ctx, final Throwable cause)
+
+  public void exceptionCaught (final ChannelHandlerContext ctx, final Throwable cause)
   {
   }
-  
-  public void userEventTriggered(final ChannelHandlerContext ctx, final Object evt) throws Exception
+
+  public void userEventTriggered (final ChannelHandlerContext ctx, final Object evt) throws Exception
   {
     if (evt instanceof IdleStateEvent)
     {
       final IdleStateEvent idleStateEvent = (IdleStateEvent) evt;
     }
   }
-  
-  protected void channelRead0(final ChannelHandlerContext ctx, final LittleEndianAccessor slea) throws Exception
+
+  protected void channelRead0 (final ChannelHandlerContext ctx, final LittleEndianAccessor slea) throws Exception
   {
     final MapleClient c = (MapleClient) ctx.channel().attr((AttributeKey) MapleClient.CLIENTKEY).get();
     final short header_num = slea.readShort();
@@ -2722,9 +2722,10 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
         break;
       }
     }
-    if (show && ServerConstants.DEBUG_RECEIVE && header_num != RecvPacketOpcode.MOVE_LIFE.getValue() && header_num != RecvPacketOpcode.MOVE_PLAYER.getValue() && header_num != RecvPacketOpcode.QUEST_ACTION.getValue() && header_num != RecvPacketOpcode.NPC_ACTION.getValue() && header_num != RecvPacketOpcode.AUTO_AGGRO.getValue() && header_num != RecvPacketOpcode.HACKSHIELD.getValue() && header_num != RecvPacketOpcode.HEAL_OVER_TIME.getValue() && header_num != RecvPacketOpcode.MOVE_PET.getValue() && header_num != RecvPacketOpcode.MOVE_SUMMON.getValue() && header_num != RecvPacketOpcode.TAKE_DAMAGE.getValue() && header_num != RecvPacketOpcode.REMOVE_OBSTACLE.getValue() && header_num != RecvPacketOpcode.BATTLEGROUND_TIME.getValue())
+    // if (show && ServerConstants.DEBUG_RECEIVE && header_num != RecvPacketOpcode.MOVE_LIFE.getValue() && header_num != RecvPacketOpcode.MOVE_PLAYER.getValue() && header_num != RecvPacketOpcode.QUEST_ACTION.getValue() && header_num != RecvPacketOpcode.NPC_ACTION.getValue() && header_num != RecvPacketOpcode.AUTO_AGGRO.getValue() && header_num != RecvPacketOpcode.HACKSHIELD.getValue() && header_num != RecvPacketOpcode.HEAL_OVER_TIME.getValue() && header_num != RecvPacketOpcode.MOVE_PET.getValue() && header_num != RecvPacketOpcode.MOVE_SUMMON.getValue() && header_num != RecvPacketOpcode.TAKE_DAMAGE.getValue() && header_num != RecvPacketOpcode.REMOVE_OBSTACLE.getValue() && header_num != RecvPacketOpcode.BATTLEGROUND_TIME.getValue())
+    if (header_num != RecvPacketOpcode.MOVE_LIFE.getValue() && header_num != RecvPacketOpcode.MOVE_PLAYER.getValue() && header_num != RecvPacketOpcode.QUEST_ACTION.getValue() && header_num != RecvPacketOpcode.NPC_ACTION.getValue() && header_num != RecvPacketOpcode.AUTO_AGGRO.getValue() && header_num != RecvPacketOpcode.HACKSHIELD.getValue() && header_num != RecvPacketOpcode.HEAL_OVER_TIME.getValue() && header_num != RecvPacketOpcode.MOVE_PET.getValue() && header_num != RecvPacketOpcode.MOVE_SUMMON.getValue() && header_num != RecvPacketOpcode.TAKE_DAMAGE.getValue() && header_num != RecvPacketOpcode.REMOVE_OBSTACLE.getValue() && header_num != RecvPacketOpcode.BATTLEGROUND_TIME.getValue())
     {
-      System.out.println("[" + RecvPacketOpcode.getOpcodeName(header_num) + "] " + header_num + " : " + slea);
+      System.out.println("[" + RecvPacketOpcode.getOpcodeName(header_num) + "(" + header_num + ")]  : " + slea);
             /*System.out.println("mapleNettyHandler MapleClient c : "+ c.toString());
             System.out.println("mapleNettyHandler ChannelHandlerContext ctx : "+ ctx.toString());*/
     }
@@ -2734,7 +2735,6 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
       {
         try
         {
-          
           handlePacket(recv, slea, c, this.serverType);   // 에러 발생
         }
         catch (Exception ex)

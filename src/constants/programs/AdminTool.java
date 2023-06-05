@@ -135,8 +135,8 @@ public class AdminTool extends JFrame
   private JCheckBox 후원포인트체크여부;
   private JCheckBox 후원포인트체크여부1;
   private JCheckBox 후원포인트체크여부2;
-  
-  public AdminTool()
+
+  public AdminTool ()
   {
     UIManager.put("Label.font", new Font("YGO 550", Font.PLAIN, 14));
     UIManager.put("Button.font", new Font("YGO 550", Font.PLAIN, 14));
@@ -150,8 +150,8 @@ public class AdminTool extends JFrame
     this.itemid = new ArrayList<>();
     initComponents();
   }
-  
-  private static DefaultListModel getChattingList(int index)
+
+  private static DefaultListModel getChattingList (int index)
   {
     switch (index)
     {
@@ -176,8 +176,8 @@ public class AdminTool extends JFrame
     }
     return null;
   }
-  
-  private static JList<String> getChatting(int index)
+
+  private static JList<String> getChatting (int index)
   {
     switch (index)
     {
@@ -202,8 +202,8 @@ public class AdminTool extends JFrame
     }
     return null;
   }
-  
-  public static void addMessage(int index, String msg)
+
+  public static void addMessage (int index, String msg)
   {
     try
     {
@@ -222,8 +222,8 @@ public class AdminTool extends JFrame
     {
     }
   }
-  
-  public static void main(String[] args)
+
+  public static void main (String[] args)
   {
     try
     {
@@ -254,14 +254,14 @@ public class AdminTool extends JFrame
     }
     EventQueue.invokeLater(new Runnable()
     {
-      public void run()
+      public void run ()
       {
         (new AdminTool()).setVisible(true);
       }
     });
   }
-  
-  private void initComponents()
+
+  private void initComponents ()
   {
     this.jButton18 = new JButton();
     this.jScrollPane1 = new JScrollPane();
@@ -355,7 +355,7 @@ public class AdminTool extends JFrame
     this.jButton18.setText("골드애플 초기화");
     this.jButton18.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton18ActionPerformed(evt);
       }
@@ -367,7 +367,7 @@ public class AdminTool extends JFrame
     this.jLabel3.setText("아이템 (코드, 갯수)");
     this.jTextField1.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jTextField1ActionPerformed(evt);
       }
@@ -377,7 +377,7 @@ public class AdminTool extends JFrame
     this.jButton4.setText("아이템 추가");
     this.jButton4.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton4ActionPerformed(evt);
       }
@@ -385,7 +385,7 @@ public class AdminTool extends JFrame
     this.jButton5.setText("아이템 제거");
     this.jButton5.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton5ActionPerformed(evt);
       }
@@ -393,7 +393,7 @@ public class AdminTool extends JFrame
     this.jButton6.setText("아이템 지급");
     this.jButton6.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton6ActionPerformed(evt);
       }
@@ -401,7 +401,7 @@ public class AdminTool extends JFrame
     this.jButton7.setText("핫타임");
     this.jButton7.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton7ActionPerformed(evt);
       }
@@ -409,7 +409,7 @@ public class AdminTool extends JFrame
     this.jButton8.setText("럭셔리타임");
     this.jButton8.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton8ActionPerformed(evt);
       }
@@ -419,7 +419,7 @@ public class AdminTool extends JFrame
     this.리붓시간.setText("리붓 시간(분)");
     this.리붓시간.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.리붓시간ActionPerformed(evt);
       }
@@ -427,7 +427,7 @@ public class AdminTool extends JFrame
     this.리붓.setText("리붓");
     this.리붓.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.리붓ActionPerformed(evt);
       }
@@ -435,7 +435,7 @@ public class AdminTool extends JFrame
     this.쪽지닉네임입력.setText("닉네임 입력");
     this.쪽지닉네임입력.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.쪽지닉네임입력ActionPerformed(evt);
       }
@@ -443,7 +443,7 @@ public class AdminTool extends JFrame
     this.쪽지내용.setText("쪽지 내용 입력");
     this.쪽지내용.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.쪽지내용ActionPerformed(evt);
       }
@@ -451,7 +451,7 @@ public class AdminTool extends JFrame
     this.쪽지보내기.setText("쪽지 보내기");
     this.쪽지보내기.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.쪽지보내기ActionPerformed(evt);
       }
@@ -459,7 +459,7 @@ public class AdminTool extends JFrame
     this.닉네임입력.setText("닉네임 입력");
     this.닉네임입력.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.닉네임입력ActionPerformed(evt);
       }
@@ -467,7 +467,7 @@ public class AdminTool extends JFrame
     this.포인트입력.setText("지급 할 포인트 입력");
     this.포인트입력.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.포인트입력ActionPerformed(evt);
       }
@@ -475,7 +475,7 @@ public class AdminTool extends JFrame
     this.포인트지급.setText("포인트 지급");
     this.포인트지급.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.포인트지급ActionPerformed(evt);
       }
@@ -484,7 +484,7 @@ public class AdminTool extends JFrame
     this.후원포인트체크여부.setText("후원 포인트");
     this.후원포인트체크여부.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.후원포인트체크여부ActionPerformed(evt);
       }
@@ -492,7 +492,7 @@ public class AdminTool extends JFrame
     this.GM설정.setText("GM설정");
     this.GM설정.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.GM설정ActionPerformed(evt);
       }
@@ -500,7 +500,7 @@ public class AdminTool extends JFrame
     this.현접해제1.setText("현접 해제 할 닉네임을 입력 해주세요.");
     this.현접해제1.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.현접해제1ActionPerformed(evt);
       }
@@ -508,7 +508,7 @@ public class AdminTool extends JFrame
     this.현접해제.setText("현접 해제");
     this.현접해제.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.현접해제ActionPerformed(evt);
       }
@@ -522,7 +522,7 @@ public class AdminTool extends JFrame
     this.jButton10.setText("채팅 청소");
     this.jButton10.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton10ActionPerformed(evt);
       }
@@ -530,7 +530,7 @@ public class AdminTool extends JFrame
     this.jButton11.setText("얼리기");
     this.jButton11.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton11ActionPerformed(evt);
       }
@@ -538,7 +538,7 @@ public class AdminTool extends JFrame
     jCheckBox1.setText("Scroll Lock");
     jCheckBox1.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jCheckBox1ActionPerformed(evt);
       }
@@ -607,7 +607,7 @@ public class AdminTool extends JFrame
     this.jButton9.setText("패킷 보내기");
     this.jButton9.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton9ActionPerformed(evt);
       }
@@ -615,7 +615,7 @@ public class AdminTool extends JFrame
     this.jButton12.setText("스킬캐싱");
     this.jButton12.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton12ActionPerformed(evt);
       }
@@ -625,7 +625,7 @@ public class AdminTool extends JFrame
     this.jButton13.setText("리시브 패킷");
     this.jButton13.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton13ActionPerformed(evt);
       }
@@ -633,7 +633,7 @@ public class AdminTool extends JFrame
     this.jButton14.setText("샌드 패킷");
     this.jButton14.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton14ActionPerformed(evt);
       }
@@ -641,7 +641,7 @@ public class AdminTool extends JFrame
     this.jButton16.setText("해쉬");
     this.jButton16.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton16ActionPerformed(evt);
       }
@@ -650,7 +650,7 @@ public class AdminTool extends JFrame
     this.jButton17.setActionCommand("스택 제거");
     this.jButton17.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton17ActionPerformed(evt);
       }
@@ -659,13 +659,13 @@ public class AdminTool extends JFrame
     this.jPanel1.setLayout(jPanel1Layout);
     jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel1Layout.createSequentialGroup().addContainerGap().addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(this.jScrollPane4).addGroup(jPanel1Layout.createSequentialGroup().addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false).addComponent(this.jLabel6).addComponent(this.jButton9, -1, -1, 32767).addComponent(this.jButton12, -1, -1, 32767).addComponent(this.jLabel7).addComponent(this.jLabel8).addComponent(this.jButton13, -1, -1, 32767).addComponent(this.jButton14, -1, -1, 32767).addComponent(this.jButton16, -1, -1, 32767).addComponent(this.jButton17, -1, -1, 32767)).addGap(0, 369, 32767))).addContainerGap()));
     jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel1Layout.createSequentialGroup().addContainerGap().addComponent(this.jLabel6).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jScrollPane4, -2, 118, -2).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(this.jButton9).addGap(16, 16, 16).addComponent(this.jLabel7).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jButton12).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(this.jLabel8).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(this.jButton13).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jButton14).addGap(26, 26, 26).addComponent(this.jButton16).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jButton17).addContainerGap(-1, 32767)));
-    
+
     this.jTabbedPane2.addTab("Develop", this.jPanel1);
-    
+
     this.jButton15.setText("공지");
     this.jButton15.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton15ActionPerformed(evt);
       }
@@ -682,7 +682,7 @@ public class AdminTool extends JFrame
     this.jButton1.setText("새로고침");
     this.jButton1.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton1ActionPerformed(evt);
       }
@@ -690,7 +690,7 @@ public class AdminTool extends JFrame
     this.jButton2.setText("접속종료");
     this.jButton2.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton2ActionPerformed(evt);
       }
@@ -698,7 +698,7 @@ public class AdminTool extends JFrame
     this.jButton3.setText("쿨타임초기화");
     this.jButton3.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton3ActionPerformed(evt);
       }
@@ -706,7 +706,7 @@ public class AdminTool extends JFrame
     this.jButton19.setText("네오코어 초기화");
     this.jButton19.addActionListener(new ActionListener()
     {
-      public void actionPerformed(ActionEvent evt)
+      public void actionPerformed (ActionEvent evt)
       {
         AdminTool.this.jButton19ActionPerformed(evt);
       }
@@ -717,13 +717,13 @@ public class AdminTool extends JFrame
     layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addContainerGap().addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(this.jTabbedPane2, -2, 0, 32767).addGroup(layout.createSequentialGroup().addComponent(this.jLabel1).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jScrollPane1, -2, 264, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jLabel2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jButton2, -2, 27, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jButton1, -2, 27, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jButton3, -2, 27, -2).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jButton18).addPreferredGap(LayoutStyle.ComponentPlacement.RELATED).addComponent(this.jButton19).addGap(0, 23, 32767))).addContainerGap()));
     pack();
   }
-  
-  public List<String> getSelectedName()
+
+  public List<String> getSelectedName ()
   {
     return this.jList1.getSelectedValuesList();
   }
-  
-  public String StringFilter(BufferedReader check, BufferedReader reader) throws IOException
+
+  public String StringFilter (BufferedReader check, BufferedReader reader) throws IOException
   {
     StringBuilder builder = new StringBuilder();
     while (check.readLine() != null)
@@ -737,20 +737,20 @@ public class AdminTool extends JFrame
     }
     return builder.toString();
   }
-  
-  private void jButton18ActionPerformed(ActionEvent evt)
+
+  private void jButton18ActionPerformed (ActionEvent evt)
   {
     Setting.settingGoldApple();
   }
-  
-  private void jButton4ActionPerformed(ActionEvent evt)
+
+  private void jButton4ActionPerformed (ActionEvent evt)
   {
     String itemid = this.jTextField1.getText() + ", " + this.jTextField2.getText();
     this.itemid.add(itemid);
     this.jList3.setListData(this.itemid.toArray(new String[0]));
   }
-  
-  private void jButton5ActionPerformed(ActionEvent evt)
+
+  private void jButton5ActionPerformed (ActionEvent evt)
   {
     for (String item : this.jList3.getSelectedValuesList())
     {
@@ -758,8 +758,8 @@ public class AdminTool extends JFrame
     }
     this.jList3.setListData(this.itemid.toArray(new String[0]));
   }
-  
-  private void jButton6ActionPerformed(ActionEvent evt)
+
+  private void jButton6ActionPerformed (ActionEvent evt)
   {
     for (String name : this.jList1.getSelectedValuesList())
     {
@@ -816,8 +816,8 @@ public class AdminTool extends JFrame
       }
     }
   }
-  
-  private void jButton7ActionPerformed(ActionEvent evt)
+
+  private void jButton7ActionPerformed (ActionEvent evt)
   {
     for (ChannelServer cserv : ChannelServer.getAllInstances())
     {
@@ -841,8 +841,8 @@ public class AdminTool extends JFrame
       csplayer.gainCabinetItem(2431156, 1);
     }
   }
-  
-  private void jButton8ActionPerformed(ActionEvent evt)
+
+  private void jButton8ActionPerformed (ActionEvent evt)
   {
     for (ChannelServer cserv : ChannelServer.getAllInstances())
     {
@@ -866,8 +866,8 @@ public class AdminTool extends JFrame
       csplayer.gainCabinetItem(2435885, 1);
     }
   }
-  
-  private void jButton11ActionPerformed(ActionEvent evt)
+
+  private void jButton11ActionPerformed (ActionEvent evt)
   {
     String msg = "";
     for (ChannelServer ch : ChannelServer.getAllInstances())
@@ -889,12 +889,12 @@ public class AdminTool extends JFrame
     }
     this.jButton11.setLabel(msg);
   }
-  
-  private void jCheckBox1ActionPerformed(ActionEvent evt)
+
+  private void jCheckBox1ActionPerformed (ActionEvent evt)
   {
   }
-  
-  private void jButton9ActionPerformed(ActionEvent evt)
+
+  private void jButton9ActionPerformed (ActionEvent evt)
   {
     StringReader sr = new StringReader(this.jTextPane1.getText());
     StringReader sr2 = new StringReader(this.jTextPane1.getText());
@@ -912,69 +912,45 @@ public class AdminTool extends JFrame
     MaplePacketLittleEndianWriter mplew = new MaplePacketLittleEndianWriter();
     mplew.write(HexTool.getByteArrayFromHexString(text));
     byte[] packet = mplew.getPacket();
-    for (String charname : getSelectedName())
+
+    for (ChannelServer cserv : ChannelServer.getAllInstances())
     {
-      for (ChannelServer cserv : ChannelServer.getAllInstances())
+      for (MapleCharacter player : cserv.getPlayerStorage().getAllCharacters().values())
       {
-        for (MapleCharacter player : cserv.getPlayerStorage().getAllCharacters().values())
-        {
-          if (charname.equals(player.getName()))
-          {
-            player.getClient().send(packet);
-          }
-        }
+        player.getClient().send(packet);
       }
     }
-    for (String charname : getSelectedName())
-    {
-      for (MapleCharacter player : AuctionServer.getPlayerStorage().getAllCharacters().values())
-      {
-        if (charname.equals(player.getName()))
-        {
-          player.getClient().send(packet);
-        }
-      }
-    }
-    for (String charname : getSelectedName())
-    {
-      for (MapleCharacter player : FarmServer.getPlayerStorage().getAllCharacters().values())
-      {
-        if (charname.equals(player.getName()) &&
-            player != null)
-        {
-          player.getClient().send(packet);
-        }
-      }
-    }
+
+
   }
-  
-  private void jButton12ActionPerformed(ActionEvent evt)
+
+  private void jButton12ActionPerformed (ActionEvent evt)
   {
     SkillFactory.reload();
   }
-  
-  private void jButton13ActionPerformed(ActionEvent evt)
+
+  private void jButton13ActionPerformed (ActionEvent evt)
   {
     ServerConstants.DEBUG_RECEIVE = !ServerConstants.DEBUG_RECEIVE;
   }
-  
-  private void jButton14ActionPerformed(ActionEvent evt)
+
+  private void jButton14ActionPerformed (ActionEvent evt)
   {
     ServerConstants.DEBUG_SEND = !ServerConstants.DEBUG_SEND;
   }
-  
-  private void jButton16ActionPerformed(ActionEvent evt)
+
+  private void jButton16ActionPerformed (ActionEvent evt)
   {
   }
-  
-  private void jButton17ActionPerformed(ActionEvent evt)
+
+  private void jButton17ActionPerformed (ActionEvent evt)
   {
     SendPacketOpcode.reloadValues();
     RecvPacketOpcode.reloadValues();
     System.out.println("옵코드 리셋 완료");
   }
-  
-  private void jButton15ActionPerformed(ActionEvent evt)
+
+  private void jButton15ActionPerformed (ActionEvent evt)
   {
     if (this.jTextArea1.getText() != null)
     {
@@ -987,8 +963,8 @@ public class AdminTool extends JFrame
       }
     }
   }
-  
-  private void jButton1ActionPerformed(ActionEvent evt)
+
+  private void jButton1ActionPerformed (ActionEvent evt)
   {
     this.names.clear();
     for (ChannelServer cserv : ChannelServer.getAllInstances())
@@ -1013,8 +989,8 @@ public class AdminTool extends JFrame
     this.jList1.setListData(this.names.toArray(new String[0]));
     this.jLabel2.setText("동접 : " + this.names.size());
   }
-  
-  private void jButton2ActionPerformed(ActionEvent evt)
+
+  private void jButton2ActionPerformed (ActionEvent evt)
   {
     for (String name : getSelectedName())
     {
@@ -1034,8 +1010,7 @@ public class AdminTool extends JFrame
       }
       for (MapleCharacter csplayer : CashShopServer.getPlayerStorage().getAllCharacters().values())
       {
-        if (csplayer != null && csplayer.getName() != null &&
-            csplayer.getName().equals(name))
+        if (csplayer != null && csplayer.getName() != null && csplayer.getName().equals(name))
         {
           csplayer.getWorldGMMsg(csplayer, "캐시샵에서 접속이 끊김");
           csplayer.getClient().getChannelServer().getPlayerStorage().deregisterPlayer(csplayer);
@@ -1045,8 +1020,7 @@ public class AdminTool extends JFrame
       }
       for (MapleCharacter csplayer : AuctionServer.getPlayerStorage().getAllCharacters().values())
       {
-        if (csplayer != null && csplayer.getName() != null &&
-            csplayer.getName().equals(name))
+        if (csplayer != null && csplayer.getName() != null && csplayer.getName().equals(name))
         {
           csplayer.getWorldGMMsg(csplayer, "경매장에서 접속이 끊김");
           csplayer.getClient().getChannelServer().getPlayerStorage().deregisterPlayer(csplayer);
@@ -1056,8 +1030,7 @@ public class AdminTool extends JFrame
       }
       for (MapleCharacter csplayer : FarmServer.getPlayerStorage().getAllCharacters().values())
       {
-        if (csplayer != null && csplayer.getName() != null &&
-            csplayer.getName().equals(name))
+        if (csplayer != null && csplayer.getName() != null && csplayer.getName().equals(name))
         {
           csplayer.getWorldGMMsg(csplayer, "농장에서 접속이 끊김");
           csplayer.getClient().getChannelServer().getPlayerStorage().deregisterPlayer(csplayer);
@@ -1067,8 +1040,8 @@ public class AdminTool extends JFrame
       }
     }
   }
-  
-  private void jButton3ActionPerformed(ActionEvent evt)
+
+  private void jButton3ActionPerformed (ActionEvent evt)
   {
     for (String charname : getSelectedName())
     {
@@ -1089,28 +1062,28 @@ public class AdminTool extends JFrame
       }
     }
   }
-  
-  private void jButton10ActionPerformed(ActionEvent evt)
+
+  private void jButton10ActionPerformed (ActionEvent evt)
   {
     int index = jTabbedPane1.getSelectedIndex();
     getChattingList(index).removeAllElements();
     getChatting(index).setModel(getChattingList(index));
   }
-  
-  private void jTextField1ActionPerformed(ActionEvent evt)
+
+  private void jTextField1ActionPerformed (ActionEvent evt)
   {
   }
-  
-  private void jButton19ActionPerformed(ActionEvent evt)
+
+  private void jButton19ActionPerformed (ActionEvent evt)
   {
     Setting.settingNeoPos();
   }
-  
-  private void 리붓시간ActionPerformed(ActionEvent evt)
+
+  private void 리붓시간ActionPerformed (ActionEvent evt)
   {
   }
-  
-  private void 리붓ActionPerformed(ActionEvent evt)
+
+  private void 리붓ActionPerformed (ActionEvent evt)
   {
     if (this.리붓시간 == null)
     {
@@ -1154,7 +1127,7 @@ public class AdminTool extends JFrame
         ServerConstants.t = new Thread(ShutdownServer.getInstance());
         ServerConstants.ts = Timer.EventTimer.getInstance().register(new Runnable()
         {
-          public void run()
+          public void run ()
           {
             if (ServerConstants.reboottime == 0)
             {
@@ -1177,16 +1150,16 @@ public class AdminTool extends JFrame
       JOptionPane.showMessageDialog(null, "리붓 시간을 숫자로 입력해주세요.");
     }
   }
-  
-  private void 쪽지닉네임입력ActionPerformed(ActionEvent evt)
+
+  private void 쪽지닉네임입력ActionPerformed (ActionEvent evt)
   {
   }
-  
-  private void 쪽지내용ActionPerformed(ActionEvent evt)
+
+  private void 쪽지내용ActionPerformed (ActionEvent evt)
   {
   }
-  
-  private void 쪽지보내기ActionPerformed(ActionEvent evt)
+
+  private void 쪽지보내기ActionPerformed (ActionEvent evt)
   {
     if (this.쪽지닉네임입력 == null)
     {
@@ -1201,16 +1174,16 @@ public class AdminTool extends JFrame
     MapleCharacterUtil.sendNote(this.쪽지닉네임입력.getText(), "메이플GM", "안녕하세요. Happy !  입니다. " + this.쪽지내용.getText(), 0, 6, 0);
     JOptionPane.showMessageDialog(null, this.쪽지닉네임입력.getText() + "님에게 쪽지를 보냈습니다.\r\n      [쪽지내용]\r\n\r\n안녕하세요. Happy !  입니다, " + this.쪽지내용.getText());
   }
-  
-  private void 닉네임입력ActionPerformed(ActionEvent evt)
+
+  private void 닉네임입력ActionPerformed (ActionEvent evt)
   {
   }
-  
-  private void 포인트입력ActionPerformed(ActionEvent evt)
+
+  private void 포인트입력ActionPerformed (ActionEvent evt)
   {
   }
-  
-  private void 포인트지급ActionPerformed(ActionEvent evt)
+
+  private void 포인트지급ActionPerformed (ActionEvent evt)
   {
     StringBuilder sb = new StringBuilder();
     boolean gived = false;
@@ -1240,8 +1213,7 @@ public class AdminTool extends JFrame
     }
     for (MapleCharacter csplayer : CashShopServer.getPlayerStorage().getAllCharacters().values())
     {
-      if (csplayer != null && csplayer.getName() != null &&
-          csplayer.getName().equals(this.닉네임입력.getText()))
+      if (csplayer != null && csplayer.getName() != null && csplayer.getName().equals(this.닉네임입력.getText()))
       {
         ingame = true;
         csplayer.dropMessage(1, "포인트 지급을 위해 접속을 종료하여 주세요.\r\n캐릭터 선택창에서 3분 대기 후 접속하시면 됩니다.");
@@ -1250,8 +1222,7 @@ public class AdminTool extends JFrame
     }
     for (MapleCharacter csplayer : AuctionServer.getPlayerStorage().getAllCharacters().values())
     {
-      if (csplayer != null && csplayer.getName() != null &&
-          csplayer.getName().equals(this.닉네임입력.getText()))
+      if (csplayer != null && csplayer.getName() != null && csplayer.getName().equals(this.닉네임입력.getText()))
       {
         ingame = true;
         csplayer.dropMessage(1, "포인트 지급을 위해 접속을 종료하여 주세요.\r\n캐릭터 선택창에서 3분 대기 후 접속하시면 됩니다.");
@@ -1260,8 +1231,7 @@ public class AdminTool extends JFrame
     }
     for (MapleCharacter csplayer : FarmServer.getPlayerStorage().getAllCharacters().values())
     {
-      if (csplayer != null && csplayer.getName() != null &&
-          csplayer.getName().equals(this.닉네임입력.getText()))
+      if (csplayer != null && csplayer.getName() != null && csplayer.getName().equals(this.닉네임입력.getText()))
       {
         ingame = true;
         csplayer.dropMessage(1, "포인트 지급을 위해 접속을 종료하여 주세요.\r\n캐릭터 선택창에서 3분 대기 후 접속하시면 됩니다.");
@@ -1362,12 +1332,12 @@ public class AdminTool extends JFrame
       JOptionPane.showMessageDialog(null, this.닉네임입력.getText() + "님에게 " + pointa + " 포인트 " + Integer.parseInt(this.포인트입력.getText()) + "만큼 지급을 완료 하였습니다. (오프라인 지급)");
     }
   }
-  
-  private void 후원포인트체크여부ActionPerformed(ActionEvent evt)
+
+  private void 후원포인트체크여부ActionPerformed (ActionEvent evt)
   {
   }
-  
-  private void GM설정ActionPerformed(ActionEvent evt)
+
+  private void GM설정ActionPerformed (ActionEvent evt)
   {
     for (String name : this.jList1.getSelectedValuesList())
     {
@@ -1405,12 +1375,12 @@ public class AdminTool extends JFrame
       }
     }
   }
-  
-  private void 현접해제1ActionPerformed(ActionEvent evt)
+
+  private void 현접해제1ActionPerformed (ActionEvent evt)
   {
   }
-  
-  private void 현접해제ActionPerformed(ActionEvent evt)
+
+  private void 현접해제ActionPerformed (ActionEvent evt)
   {
     String name = this.현접해제1.getText();
     boolean disconnect = false;
@@ -1430,8 +1400,7 @@ public class AdminTool extends JFrame
     }
     for (MapleCharacter csplayer : CashShopServer.getPlayerStorage().getAllCharacters().values())
     {
-      if (csplayer != null && csplayer.getName() != null &&
-          csplayer.getName().equals(name))
+      if (csplayer != null && csplayer.getName() != null && csplayer.getName().equals(name))
       {
         disconnect = true;
         CashShopServer.getPlayerStorage().deregisterPlayer(csplayer);
@@ -1442,8 +1411,7 @@ public class AdminTool extends JFrame
     }
     for (MapleCharacter csplayer : AuctionServer.getPlayerStorage().getAllCharacters().values())
     {
-      if (csplayer != null && csplayer.getName() != null &&
-          csplayer.getName().equals(name))
+      if (csplayer != null && csplayer.getName() != null && csplayer.getName().equals(name))
       {
         disconnect = true;
         AuctionServer.getPlayerStorage().deregisterPlayer(csplayer);
@@ -1454,8 +1422,7 @@ public class AdminTool extends JFrame
     }
     for (MapleCharacter csplayer : FarmServer.getPlayerStorage().getAllCharacters().values())
     {
-      if (csplayer != null && csplayer.getName() != null &&
-          csplayer.getName().equals(name))
+      if (csplayer != null && csplayer.getName() != null && csplayer.getName().equals(name))
       {
         disconnect = true;
         FarmServer.getPlayerStorage().deregisterPlayer(csplayer);
