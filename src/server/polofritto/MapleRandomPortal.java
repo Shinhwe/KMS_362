@@ -21,14 +21,17 @@ public class MapleRandomPortal extends MapleMapObject
   private int charId;
   
   private Point pos;
+
+  private long baseExp;
   
-  public MapleRandomPortal(int type, Point pos, int mapId, int charId, boolean isPolo)
+  public MapleRandomPortal(int type, Point pos, int mapId, int charId, boolean isPolo, long baseExp)
   {
     this.type = type;
     this.pos = pos;
     this.mapId = mapId;
     this.charId = charId;
     this.polo = isPolo;
+    this.baseExp = baseExp;
   }
   
   public MapleMapObjectType getType()
@@ -92,5 +95,15 @@ public class MapleRandomPortal extends MapleMapObject
   public void setpolo(boolean polo)
   {
     this.polo = polo;
+  }
+
+  public long getBaseExp ()
+  {
+    return baseExp;
+  }
+
+  public void setBaseExp (long baseExp)
+  {
+    this.baseExp = baseExp;
   }
 }

@@ -1657,18 +1657,18 @@ public class MapleMonster extends AbstractLoadedMapleLife
           MapleMap target2 = killer.getClient().getChannelServer().getMapFactory().getMap(993000100);
           if (target.characterSize() == 0 || target2.characterSize() == 0)
           {
-            MapleRandomPortal portal = new MapleRandomPortal(2, getTruePosition(), this.map.getId(), killer.getId(), Randomizer.nextBoolean());
+            MapleRandomPortal portal = new MapleRandomPortal(2, getTruePosition(), this.map.getId(), killer.getId(), Randomizer.nextBoolean(), totalBaseExp);
             this.map.spawnRandomPortal(portal);
           }
           else
           {
-            MapleRandomPortal portal = new MapleRandomPortal(2, getTruePosition(), this.map.getId(), killer.getId(), false);
+            MapleRandomPortal portal = new MapleRandomPortal(2, getTruePosition(), this.map.getId(), killer.getId(), false, totalBaseExp);
             this.map.spawnRandomPortal(portal);
           }
         }
         if (Randomizer.nextInt(10000) < 2 && this.map.getFireWolfPortal() == null)
         {
-          MapleRandomPortal portal = new MapleRandomPortal(3, getTruePosition(), this.map.getId(), killer.getId(), false);
+          MapleRandomPortal portal = new MapleRandomPortal(3, getTruePosition(), this.map.getId(), killer.getId(), false, totalBaseExp);
           portal.setPortalType(3);
           this.map.spawnRandomPortal(portal);
         }

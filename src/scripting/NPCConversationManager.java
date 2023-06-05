@@ -6490,6 +6490,13 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     return (100000L * this.c.getPlayer().getFWolfAttackCount());
   }
 
+  public void addPoloAndFrittoExp (int expRate)
+  {
+    long baseExp = Long.parseLong(this.c.getPlayer().getV("poloFrittoBaseExp"));
+    System.out.println("addPoloAndFrittoExp method ! expRate = " + expRate + " ; baseExp = " + baseExp + " ;  server exp Rate = " + this.c.getChannelServer().getExpRate());
+    this.c.getPlayer().gainExp(expRate * baseExp * this.c.getChannelServer().getExpRate(), true, true, true);
+  }
+
   public long getFWolfEXP ()
   {
     /* 3685 */
@@ -6554,16 +6561,14 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     MapleMonster mob = MapleLifeFactory.getMonster(9305653);
     server.Timer.MapTimer.getInstance().schedule(new Runnable()
     {
-      @Override
-      public void run ()
+      @Override public void run ()
       {
         map.spawnMonsterOnGroundBelow(mob, new Point(-140, 150));
       }
     }, 5 * 1000);
     server.Timer.MapTimer.getInstance().schedule(new Runnable()
     {
-      @Override
-      public void run ()
+      @Override public void run ()
       {
         c.getPlayer().dropMessage(5, "누적 데미지 : " + c.getPlayer().getDamageMeter());
         updateDamageMeter(c.getPlayer(), c.getPlayer().getDamageMeter());
