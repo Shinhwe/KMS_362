@@ -1642,35 +1642,78 @@ public class MapleMonster extends AbstractLoadedMapleLife
         killer.dropMessage(5, "르네와 마법의 종 스킬이 비활성화되었습니다.");
       }
     }
-    if (!FieldLimitType.Event.check(this.map.getFieldLimit()) && !this.map.isEliteField() && !this.map.getIsEliteBossMap() && !this.map.getIsEliteBossRewardMap() && !this.map.isEliteChampionFinal() && !GameConstants.isContentsMap(getMap().getId()) && !GameConstants.보스맵(getMap().getId()) && !GameConstants.사냥컨텐츠맵(getMap().getId()) && !GameConstants.튜토리얼(getMap().getId()) && !GameConstants.로미오줄리엣(getMap().getId()) && !GameConstants.피라미드(getMap().getId()) && ((getStats().getLevel() >= killer.getLevel() - 20 && getStats().getLevel() <= killer.getLevel() + 20) || killer.isGM()))
+    if (!FieldLimitType.Event.check(this.map.getFieldLimit()) && !this.map.isEliteField() && !this.map.getIsEliteBossMap() && !this.map.getIsEliteBossRewardMap() && !this.map.isEliteChampionFinal() && !GameConstants.isContentsMap(getMap().getId()) && !GameConstants.보스맵(getMap().getId()) && !GameConstants.사냥컨텐츠맵(getMap().getId()) && !GameConstants.튜토리얼(getMap().getId()) && !GameConstants.로미오줄리엣(getMap().getId()) && !GameConstants.피라미드(getMap().getId()) && getStats().getLevel() >= killer.getLevel() - 20 && getStats().getLevel() <= killer.getLevel() + 20)
     {
-      this.map.setCustomInfo(9930005, this.map.getCustomValue0(9930005) + 1, 0);
-      if (this.map.getCustomValue0(9930005) >= 5000)
+      // TODO: 同一个角色不能同时刷出红门和黄门
+      long lastPoloFrittoPortalSpawnTime = killer.getV("nextPoloFrittoPortalSpawnTime", 0L);
+
+      long lastFlamePortalSpawnTime = killer.getV("nextFlameWolfPortalSpawnTime", 0L);
+
+      long nowTime = System.currentTimeMillis();
+
+
+      if (lastPoloFrittoPortalSpawnTime < nowTime)
       {
-        this.map.setCustomInfo(9930005, 0, 0);
-      }
-      if (this.map.getCustomValue0(9930005) >= 3000)
-      {
-        if ((Randomizer.nextInt(10000) < 3 && this.map.getPoloFrittoPortal() == null) || killer.isGM())
+        String poloFrittoPhase0Data = killer.getV("poloFrittoPhase0Data"); // mapid_count
+
+        int mapId = killer.getMapId();
+
+        int killMobCount = 0;
+
+        if (poloFrittoPhase0Data != null && poloFrittoPhase0Data.length() > 0)
         {
-          MapleMap target = killer.getClient().getChannelServer().getMapFactory().getMap(993000000);
-          MapleMap target2 = killer.getClient().getChannelServer().getMapFactory().getMap(993000100);
-          if (target.characterSize() == 0 || target2.characterSize() == 0)
+          String[] killMobDataArray = poloFrittoPhase0Data.split("_");
+
+          int lastMapId = Integer.valueOf(killMobDataArray[0]);
+
+          if (lastMapId == mapId)
           {
-            MapleRandomPortal portal = new MapleRandomPortal(2, getTruePosition(), this.map.getId(), killer.getId(), Randomizer.nextBoolean(), totalBaseExp);
-            this.map.spawnRandomPortal(portal);
-          }
-          else
-          {
-            MapleRandomPortal portal = new MapleRandomPortal(2, getTruePosition(), this.map.getId(), killer.getId(), false, totalBaseExp);
-            this.map.spawnRandomPortal(portal);
+            killMobCount = Integer.valueOf(killMobDataArray[1]);
           }
         }
-        if (Randomizer.nextInt(10000) < 2 && this.map.getFireWolfPortal() == null)
+
+        killMobCount += 1;
+
+        killer.addKV("poloFrittoPhase0Data", mapId + "_" + killMobCount); // mapid_count
+
+        if (killMobCount >= 1000 && Randomizer.isSuccess(1, 100))
+        {
+          MapleRandomPortal portal = new MapleRandomPortal(2, getTruePosition(), this.map.getId(), killer.getId(), Randomizer.nextBoolean(), totalBaseExp);
+          this.map.spawnRandomPortal(portal);
+          killer.addKV("nextPoloFrittoPortalSpawnTime", String.valueOf(nowTime + (15 * 60 * 1000)));
+        }
+      }
+
+
+      if (lastFlamePortalSpawnTime < nowTime)
+      {
+        String flameWolfPhase0Data = killer.getV("flameWolfPhase0Data"); // mapid_count
+
+        int mapId = killer.getMapId();
+
+        int killMobCount = 0;
+
+        if (flameWolfPhase0Data != null && flameWolfPhase0Data.length() > 0)
+        {
+          String[] killMobDataArray = flameWolfPhase0Data.split("_");
+
+          int lastMapId = Integer.valueOf(killMobDataArray[0]);
+
+          if (lastMapId == mapId)
+          {
+            killMobCount = Integer.valueOf(killMobDataArray[1]);
+          }
+        }
+
+        killMobCount += 1;
+
+        killer.addKV("flameWolfPhase0Data", mapId + "_" + killMobCount); // mapid_count
+
+        if (killMobCount >= 1000 && Randomizer.isSuccess(1, 100))
         {
           MapleRandomPortal portal = new MapleRandomPortal(3, getTruePosition(), this.map.getId(), killer.getId(), false, totalBaseExp);
-          portal.setPortalType(3);
           this.map.spawnRandomPortal(portal);
+          killer.addKV("nextFlameWolfPortalSpawnTime", String.valueOf(nowTime + (15 * 60 * 1000)));
         }
       }
     }
@@ -2826,8 +2869,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
   public void setLinkCID (int lc)
   {
     this.linkCID = lc;
-    if (lc > 0)
-      ;
+    if (lc > 0) ;
   }
 
   public void applyMonsterBuff (MapleMap map, List<Pair<MonsterStatus, MonsterStatusEffect>> stats, MobSkill mobSkill)
@@ -4068,10 +4110,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
             if (pchr != null && pchr.isAlive())
             {
               boolean enable = true;
-              int[] linkMobs = {
-                  9010152, 9010153, 9010154, 9010155, 9010156, 9010157, 9010158, 9010159, 9010160, 9010161, 9010162, 9010163, 9010164, 9010165, 9010166, 9010167, 9010168, 9010169, 9010170, 9010171, 9010172, 9010173, 9010174, 9010175, 9010176, 9010177, 9010178, 9010179, 9010180,
-                  9010181
-              };
+              int[] linkMobs = { 9010152, 9010153, 9010154, 9010155, 9010156, 9010157, 9010158, 9010159, 9010160, 9010161, 9010162, 9010163, 9010164, 9010165, 9010166, 9010167, 9010168, 9010169, 9010170, 9010171, 9010172, 9010173, 9010174, 9010175, 9010176, 9010177, 9010178, 9010179, 9010180, 9010181 };
               for (int linkMob : linkMobs)
               {
                 if (MapleMonster.this.getId() == linkMob && pchr.getId() != attacker.getKey().getId())
