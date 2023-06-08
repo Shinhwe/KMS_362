@@ -3477,9 +3477,9 @@ public class CField
       mplew.write(1);
       mplew.writeLong(PacketHelper.getTime(System.currentTimeMillis()));
       mplew.writeLong(PacketHelper.getTime(-1L));
-      mplew.writeInt(28);
-      mplew.writeInt(2);
-      mplew.writeInt(16700);
+      mplew.writeInt(28); // 28
+      mplew.writeInt(2); // 2
+      mplew.writeInt(16700); // 28 存疑
       mplew.writeInt(300);
       mplew.writeInt(GameConstants.dailyItems.size());
       for (DailyGiftItemInfo item : GameConstants.dailyItems)
@@ -3493,11 +3493,48 @@ public class CField
         mplew.writeInt(item.getSN());
         mplew.writeShort(0);
       }
-      mplew.writeInt(ServerConstants.ReqDailyLevel);
-      mplew.writeInt(0);
-      mplew.writeInt(0);
-      mplew.writeInt(0);
+      mplew.writeInt(ServerConstants.ReqDailyLevel); // 10? 存疑, 确认是reqLevel
+      mplew.writeInt(0); // 1 存疑
+      mplew.writeInt(0); // 1000 存疑
+      mplew.writeInt(0); // 1 存疑
     }
+
+
+    // p.writeLong(PacketProvider.getTime(System.currentTimeMillis()));
+    // p.writeLong(PacketProvider.getTime(-2));
+    // int v4 = 28;
+    // p.writeInt(v4);
+    // p.writeInt(2);
+    // p.writeInt(v4);
+    // for (int i = 1; i <= v4; i++) {
+    //   p.writeInt(i);
+    //   p.writeInt(GameConstants.dailyGifts[i]);
+    //   p.writeInt(GameConstants.dailyCounts[i]);
+    //   p.writeInt(1);
+    //   p.writeInt(0);
+    //   p.write(0); // Added a cache icon below
+    //   p.writeInt(0);
+    //   p.writeInt(0);
+    // }
+    //
+    // p.writeInt(10);
+    // int v6 = 1;
+    // p.writeInt(v6);
+    // for (int i = 0; i < v6; i++) {
+    //   p.writeInt(1000);
+    //   p.writeInt(1);
+    // }
+    // int v8 = 0;
+    // p.writeInt(v8);
+    // for (int i = 0; i < v8; i++) {
+    //   p.writeInt(0);
+    //   p.writeInt(0);
+    //   p.writeInt(0);
+    //   p.writeInt(0);
+    // }
+
+
+
     return mplew.getPacket();
   }
 
