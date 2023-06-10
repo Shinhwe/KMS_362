@@ -131,7 +131,7 @@ function action(mode, type, sel) {
           count = 0;
 
           expRate = 0;
-          
+
           stage = parseInt(stage, 10);
 
           if (stage >= 50 && stage <= 300) {
@@ -219,7 +219,8 @@ function action(mode, type, sel) {
         cm.getPlayer().setFrittoEgg(null);
         cm.getPlayer().setFrittoEagle(null);
         cm.getPlayer().setFrittoDancing(null);
-        cm.warp(parseInt(cm.getPlayer().getV("poloFritto")));
+        var map = parseInt(cm.getPlayer().getV("poloFritto"), 10);
+        cm.warp(map);
         cm.dispose();
         break;
     }
@@ -231,7 +232,8 @@ function action(mode, type, sel) {
     if (expRate > 0) {
       cm.addPoloAndFrittoExp(expRate)
     }
-    cm.warp(parseInt(cm.getPlayer().getV("poloFritto")));
+    var map = parseInt(cm.getPlayer().getV("poloFritto"), 10);
+    cm.warp(map);
   } else if (status == 4) {
     switch (seld) {
       case 1:
@@ -239,7 +241,8 @@ function action(mode, type, sel) {
       case 2:
         cm.dispose();
         cm.gainItem(item, 1);
-        cm.warp(parseInt(cm.getPlayer().getV("poloFritto")));
+        var map = parseInt(cm.getPlayer().getV("poloFritto"), 10);
+        cm.warp(map);
         break;
     }
   }

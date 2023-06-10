@@ -2351,7 +2351,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     }
   }
 
-  public void log (String log)
+  public void log (Object log)
   {
     System.out.println(log);
   }

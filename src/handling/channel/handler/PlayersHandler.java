@@ -289,6 +289,10 @@ public class PlayersHandler
       c.getPlayer().getNettPyramid().minusLife(slea.readInt());
       return;
     }
+    if (c.getPlayer().getDefenseTowerWave() != null)
+    {
+      c.getPlayer().getDefenseTowerWave().attacked(c, slea.readInt());
+    }
     boolean touched = (slea.available() == 0L || slea.readByte() > 0);
     MapleReactor reactor = c.getPlayer().getMap().getReactorByOid(oid);
     if (!touched || reactor == null || !reactor.isAlive() || reactor.getTouch() == 0)

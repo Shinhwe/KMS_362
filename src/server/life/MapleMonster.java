@@ -111,6 +111,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
   private ScheduledFuture<?> schedule = null;
   private List<MonsterStatusEffect> indielist = new ArrayList<>();
 
+  private long exp = 0;
+
   private boolean eliteMonster;
 
   private boolean isEliteChampion;
@@ -372,11 +374,20 @@ public class MapleMonster extends AbstractLoadedMapleLife
 
   public final long getMobExp ()
   {
+    if (this.exp > 0)
+    {
+      return this.exp;
+    }
     if (this.ostats != null)
     {
       return this.ostats.exp;
     }
     return this.stats.getExp() * getEliteExpRate();
+  }
+
+  public final void setExp (long exp)
+  {
+    this.exp = exp;
   }
 
   public final void setOverrideStats (OverrideMonsterStats ostats)
@@ -1300,7 +1311,11 @@ public class MapleMonster extends AbstractLoadedMapleLife
       {
         exp /= 2L;
       }
-      exp *= ((GameConstants.isPinkBean(attacker.getJob()) || GameConstants.isYeti(attacker.getJob())) ? 4L : 2L);
+
+      if (GameConstants.isPinkBean(attacker.getJob()) || GameConstants.isYeti(attacker.getJob()))
+      {
+        exp *= 4L;
+      }
 
       if (!attacker.getBuffedValue(80002282) && attacker.getMap().getRuneCurse() > 0 && !GameConstants.보스맵(getMap().getId()) && !GameConstants.isContentsMap(getMap().getId()))
       {
@@ -1327,29 +1342,6 @@ public class MapleMonster extends AbstractLoadedMapleLife
       if (attacker.getKeyValue(210416, "TotalDeadTime") > 0L)
       {
         exp = (long) (exp * 0.2D);
-      }
-      if ((getId() >= 9830000 && getId() <= 9830018) || (getId() >= 9831000 && getId() <= 9831014))
-      {
-        if (attacker.getLevel() <= 150)
-        {
-          exp = (int) (GameConstants.getExpNeededForLevel(attacker.getLevel()) * 0.05D);
-        }
-        else if (attacker.getLevel() <= 200)
-        {
-          exp = (int) (GameConstants.getExpNeededForLevel(attacker.getLevel()) * 0.02D);
-        }
-        else if (attacker.getLevel() <= 210)
-        {
-          exp = (int) (GameConstants.getExpNeededForLevel(attacker.getLevel()) * 0.005D);
-        }
-        else if (attacker.getLevel() <= 230)
-        {
-          exp = (int) (GameConstants.getExpNeededForLevel(attacker.getLevel()) * 1.0E-5D);
-        }
-        else
-        {
-          exp = (int) (GameConstants.getExpNeededForLevel(attacker.getLevel()) * 1.0E-6D);
-        }
       }
       exp *= attacker.getClient().getChannelServer().getExpRate();
       attacker.gainExpMonster(exp, true, highestDamage);
@@ -1988,6 +1980,11 @@ public class MapleMonster extends AbstractLoadedMapleLife
   public final void addListener (MonsterListener listener)
   {
     this.listener = listener;
+  }
+
+  public final void removeListener ()
+  {
+    this.listener = null;
   }
 
   public final boolean isControllerHasAggro ()
@@ -2869,7 +2866,8 @@ public class MapleMonster extends AbstractLoadedMapleLife
   public void setLinkCID (int lc)
   {
     this.linkCID = lc;
-    if (lc > 0) ;
+    if (lc > 0)
+      ;
   }
 
   public void applyMonsterBuff (MapleMap map, List<Pair<MonsterStatus, MonsterStatusEffect>> stats, MobSkill mobSkill)
@@ -4110,7 +4108,10 @@ public class MapleMonster extends AbstractLoadedMapleLife
             if (pchr != null && pchr.isAlive())
             {
               boolean enable = true;
-              int[] linkMobs = { 9010152, 9010153, 9010154, 9010155, 9010156, 9010157, 9010158, 9010159, 9010160, 9010161, 9010162, 9010163, 9010164, 9010165, 9010166, 9010167, 9010168, 9010169, 9010170, 9010171, 9010172, 9010173, 9010174, 9010175, 9010176, 9010177, 9010178, 9010179, 9010180, 9010181 };
+              int[] linkMobs = {
+                  9010152, 9010153, 9010154, 9010155, 9010156, 9010157, 9010158, 9010159, 9010160, 9010161, 9010162, 9010163, 9010164, 9010165, 9010166, 9010167, 9010168, 9010169, 9010170, 9010171, 9010172, 9010173, 9010174, 9010175, 9010176, 9010177, 9010178, 9010179, 9010180,
+                  9010181
+              };
               for (int linkMob : linkMobs)
               {
                 if (MapleMonster.this.getId() == linkMob && pchr.getId() != attacker.getKey().getId())

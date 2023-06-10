@@ -27,11 +27,13 @@ function action(mode, type, sel) {
         cm.dispose();
         switch (sel) {
             case 1:
-                cm.getPlayer().addKV("poloFritto", "" + cm.getPlayer().getMapId());
-                if (cm.getClient().getChannelServer().getMapFactory().getMap(993000000).characterSize() == 0) {
-                    maps.push(993000000);
-                }
+                cm.getPlayer().addKV("poloFritto", cm.getPlayer().getMapId());
+                // if (cm.getClient().getChannelServer().getMapFactory().getMap(993000000).characterSize() == 0) {
+                //     // 守護賞金獵人
+                //     maps.push(993000000);
+                // }
                 if (cm.getClient().getChannelServer().getMapFactory().getMap(993000100).characterSize() == 0) {
+                    // 塔防
                     maps.push(993000100);
                 }
                 if (maps.length == 0) {

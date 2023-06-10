@@ -750,7 +750,7 @@ public class GMCommand
     public int execute (MapleClient c, String[] splitted)
     {
       // MapleRandomPortal portal = new MapleRandomPortal(Integer.parseInt(splitted[1]), c.getPlayer().getTruePosition(), c.getPlayer().getMapId(), c.getPlayer().getId(), Randomizer.nextBoolean(), 1L);
-      MapleRandomPortal portal = new MapleRandomPortal(Integer.parseInt(splitted[1]), c.getPlayer().getTruePosition(), c.getPlayer().getMapId(), c.getPlayer().getId(), false, 1L);
+      MapleRandomPortal portal = new MapleRandomPortal(Integer.parseInt(splitted[1]), c.getPlayer().getTruePosition(), c.getPlayer().getMapId(), c.getPlayer().getId(), true, 1L);
       c.getPlayer().getMap().spawnRandomPortal(portal);
       return 0;
     }

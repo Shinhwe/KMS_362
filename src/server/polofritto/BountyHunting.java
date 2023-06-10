@@ -4,6 +4,8 @@ import client.MapleClient;
 import server.Randomizer;
 import server.Timer;
 import server.life.MapleLifeFactory;
+import server.life.MapleMonster;
+import server.life.MonsterListener;
 import tools.packet.CField;
 import tools.packet.SLFCGPacket;
 
@@ -16,109 +18,131 @@ import java.util.concurrent.ScheduledFuture;
 public class BountyHunting
 {
   private int stage;
-  
+
+  private int status = 0;
+
   private ScheduledFuture<?> sc;
-  
-  private ScheduledFuture<?> sch;
-  
+
   private List<List<Integer>> waveData = new ArrayList<>();
-  
-  public BountyHunting(int stage)
+
+  public BountyHunting (int stage)
   {
     this.stage = stage;
   }
-  
-  public int getStage()
+
+  public int getStage ()
   {
     return this.stage;
   }
-  
-  public void setStage(int wave)
+
+  public void setStage (int wave)
   {
     this.stage = wave;
   }
-  
-  public void updateDefenseWave(MapleClient c)
+
+  public void updateDefenseWave (MapleClient c)
   {
     c.getSession().writeAndFlush(SLFCGPacket.setBountyHuntingStage(this.stage));
   }
-  
-  public void updateNewWave(final MapleClient c)
+
+  public void updateNewWave (final MapleClient c)
   {
     c.getSession().writeAndFlush(CField.environmentChange("defense/count", 16));
     Timer.EventTimer.getInstance().schedule(new Runnable()
     {
-      public void run()
+      public void run ()
       {
         if (c.getPlayer().getMapId() == 993000000)
         {
           c.getSession().writeAndFlush(CField.environmentChange("defense/wave/" + BountyHunting.this.stage, 16));
+
           c.getSession().writeAndFlush(CField.environmentChange("killing/first/start", 16));
+
           for (Iterator<Integer> iterator = ((List) BountyHunting.this.waveData.get(BountyHunting.this.stage - 1)).iterator(); iterator.hasNext(); )
           {
             int wave = iterator.next().intValue();
-            c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(wave), new Point(Randomizer.rand(500, 700) * -1, 126));
-            c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(wave), new Point(Randomizer.rand(500, 700), 126));
+
+            MapleMonster monster1 = MapleLifeFactory.getMonster(wave);
+
+            MapleMonster monster2 = MapleLifeFactory.getMonster(wave);
+
+            long baseExp = Long.parseLong(c.getPlayer().getV("poloFrittoBaseExp"));
+
+            monster1.setExp(baseExp * 800);
+
+            monster2.setExp(baseExp * 800);
+            monster1.addListener(new MonsterListener()
+            {
+              @Override public void monsterKilled ()
+              {
+                BountyHunting.this.checkFinish(c);
+
+                monster1.removeListener();
+              }
+            });
+
+            monster2.addListener(new MonsterListener()
+            {
+              @Override public void monsterKilled ()
+              {
+                BountyHunting.this.checkFinish(c);
+
+                monster2.removeListener();
+              }
+            });
+
+            c.getPlayer().getMap().spawnMonsterOnGroundBelow(monster1, new Point(Randomizer.rand(500, 700) * -1, 126));
+
+            c.getPlayer().getMap().spawnMonsterOnGroundBelow(monster2, new Point(Randomizer.rand(500, 700), 126));
           }
+
+          status = 1;
         }
       }
     }, 3000L);
-    Timer.EventTimer.getInstance().schedule(new Runnable()
-    {
-      public void run()
-      {
-        BountyHunting.this.checkFinish(c);
-      }
-    }, 8000L);
   }
-  
-  public void checkFinish(final MapleClient c)
+
+  public void checkFinish (final MapleClient c)
   {
-    this.sch = Timer.EventTimer.getInstance().register(new Runnable()
+    if (status != 1)
     {
-      public void run()
+      return;
+    }
+    if (c != null && c.getPlayer() != null && c.getPlayer().getMap() != null && c.getPlayer().getMap().getNumMonsters() == 0)
+    {
+      int mapId = c.getPlayer().getMap().getId();
+
+      if (this.stage < 5 && mapId == 993000000)
       {
-        if (c != null && c.getPlayer() != null && c.getPlayer().getMap() != null &&
-            c.getPlayer().getMap().getNumMonsters() == 0)
-        {
-          if (BountyHunting.this.stage < 5 && c.getPlayer().getMapId() == 993000000)
-          {
-            BountyHunting.this.stage++;
-            if (BountyHunting.this.sch != null)
-            {
-              BountyHunting.this.sch.cancel(true);
-            }
-            BountyHunting.this.updateDefenseWave(c);
-            BountyHunting.this.updateNewWave(c);
-          }
-          else
-          {
-            if (BountyHunting.this.sc != null)
-            {
-              BountyHunting.this.sc.cancel(true);
-            }
-            if (BountyHunting.this.sch != null)
-            {
-              BountyHunting.this.sch.cancel(true);
-            }
-            c.getSession().writeAndFlush(CField.environmentChange("killing/clear", 16));
-            Timer.EventTimer.getInstance().schedule(new Runnable()
-            {
-              public void run()
-              {
-                if (c != null && c.getPlayer() != null && c.getPlayer().getMapId() == 993000000)
-                {
-                  c.getPlayer().warp(993000600);
-                }
-              }
-            }, 2000L);
-          }
-        }
+        this.stage++;
+        this.updateDefenseWave(c);
+        this.updateNewWave(c);
       }
-    }, 1000L);
+      else
+      {
+        if (BountyHunting.this.sc != null)
+        {
+          BountyHunting.this.sc.cancel(true);
+        }
+
+        c.getSession().writeAndFlush(CField.environmentChange("killing/clear", 16));
+
+        status = 0;
+        Timer.EventTimer.getInstance().schedule(new Runnable()
+        {
+          public void run ()
+          {
+            if (c != null && c.getPlayer() != null && c.getPlayer().getMapId() == 993000000)
+            {
+              c.getPlayer().warp(993000600);
+            }
+          }
+        }, 3000L);
+      }
+    }
   }
-  
-  public void insertWaveData()
+
+  public void insertWaveData ()
   {
     List<Integer> waves = new ArrayList<>();
     waves.add(Integer.valueOf(9830000));
@@ -210,60 +234,49 @@ public class BountyHunting
     waves5.add(Integer.valueOf(9830018));
     this.waveData.add(waves5);
   }
-  
-  public void start(final MapleClient c)
+
+  public void start (final MapleClient c)
   {
-    updateDefenseWave(c);
     insertWaveData();
+    updateDefenseWave(c);
     c.getSession().writeAndFlush(CField.startMapEffect("놈들이 사방에서 몰려오는군! 녀석들을 처치하면 막대한 경험치를 얻을 수 있다!", 5120159, true));
     c.getSession().writeAndFlush(CField.getClock(180));
     updateNewWave(c);
     this.sc = Timer.EventTimer.getInstance().schedule(new Runnable()
     {
-      public void run()
+      public void run ()
       {
-        if (BountyHunting.this.sc != null)
-        {
-          BountyHunting.this.sc.cancel(true);
-        }
-        if (BountyHunting.this.sch != null)
-        {
-          BountyHunting.this.sch.cancel(true);
-        }
+        status = 0;
+
         if (c.getPlayer().getMapId() == 993000000)
         {
           c.getPlayer().warp(993000600);
         }
+
+        if (BountyHunting.this.sc != null)
+        {
+          BountyHunting.this.sc.cancel(true);
+        }
       }
     }, 180000L);
   }
-  
-  public ScheduledFuture<?> getSch()
-  {
-    return this.sch;
-  }
-  
-  public void setSch(ScheduledFuture<?> sch)
-  {
-    this.sch = sch;
-  }
-  
-  public List<List<Integer>> getWaveData()
+
+  public List<List<Integer>> getWaveData ()
   {
     return this.waveData;
   }
-  
-  public void setWaveData(List<List<Integer>> waveData)
+
+  public void setWaveData (List<List<Integer>> waveData)
   {
     this.waveData = waveData;
   }
-  
-  public ScheduledFuture<?> getSc()
+
+  public ScheduledFuture<?> getSc ()
   {
     return this.sc;
   }
-  
-  public void setSc(ScheduledFuture<?> sc)
+
+  public void setSc (ScheduledFuture<?> sc)
   {
     this.sc = sc;
   }

@@ -34,7 +34,8 @@ function action(mode, type, sel) {
                     cm.getPlayer().updateQuest(quest, true);
                 }
             }
-            cm.warp(parseInt(cm.getPlayer().getV("poloFritto")));
+            var map = parseInt(cm.getPlayer().getV("poloFritto"), 10);
+            cm.warp(map);
             cm.getPlayer().setBountyHunting(null);
             cm.getPlayer().setDefenseTowerWave(null);
             cm.dispose();

@@ -183,7 +183,7 @@ public class MapScriptMethods
           {
             c.getPlayer().getMap().startMapEffect("\uc774 \uacf3\uc5d0 \uc788\ub294 \ub86c\ubc14\ub4dc\ub97c \ubaa8\ub450 \ubb3c\ub9ac\uce58\uc790!", 5120018);
             c.getPlayer().getMap().setRPTicket(0);
-            c.getPlayer().getMap().resetFully();
+            c.getPlayer().getMap().resetFully(false);
             break;
           }
           case 922010800:
@@ -560,7 +560,7 @@ public class MapScriptMethods
       }
       case astaroth_summon:
       {
-        c.getPlayer().getMap().resetFully();
+        c.getPlayer().getMap().resetFully(false);
         c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9400633), new Point(600, -26));
         break;
       }
@@ -571,7 +571,7 @@ public class MapScriptMethods
       }
       case killing_BonusSetting:
       {
-        c.getPlayer().getMap().resetFully();
+        c.getPlayer().getMap().resetFully(false);
         c.getSession().writeAndFlush(CField.showEffect("killing/bonus/bonus"));
         c.getSession().writeAndFlush(CField.showEffect("killing/bonus/stage"));
         Point pos1 = null;
@@ -753,14 +753,14 @@ public class MapScriptMethods
       }
       case Polo_Defence:
       {
-        c.getPlayer().getMap().resetFully();
+        c.getPlayer().getMap().resetFully(false);
         c.getPlayer().setBountyHunting(new BountyHunting(1));
         c.getPlayer().getBountyHunting().start(c);
         break;
       }
       case summon_pepeking:
       {
-        c.getPlayer().getMap().resetFully();
+        c.getPlayer().getMap().resetFully(false);
         int rand = Randomizer.nextInt(10);
         int mob_ToSpawn = 100100;
         mob_ToSpawn = rand >= 4 ? 3300007 : (rand >= 1 ? 3300006 : 3300005);
@@ -769,7 +769,7 @@ public class MapScriptMethods
       }
       case Xerxes_summon:
       {
-        c.getPlayer().getMap().resetFully();
+        c.getPlayer().getMap().resetFully(false);
         c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(6160003), c.getPlayer().getPosition());
         break;
       }
@@ -882,7 +882,7 @@ public class MapScriptMethods
       case Sky_TrapFEnter:
       case balog_bonusSetting:
       {
-        c.getPlayer().getMap().resetFully();
+        c.getPlayer().getMap().resetFully(false);
         break;
       }
       case pyramidWeather:
@@ -980,14 +980,14 @@ public class MapScriptMethods
       }
       case Polo_Wave:
       {
-        c.getPlayer().getMap().resetFully();
+        c.getPlayer().getMap().resetFully(false);
         c.getPlayer().setDefenseTowerWave(new DefenseTowerWave(1, 20));
         c.getPlayer().getDefenseTowerWave().start(c);
         break;
       }
       case Fritto_Eagle_Enter:
       {
-        c.getPlayer().getMap().resetFully();
+        c.getPlayer().getMap().resetFully(false);
         c.getPlayer().setFrittoEagle(new FrittoEagle(0, 20));
         c.getPlayer().getFrittoEagle().start(c);
         break;
@@ -996,7 +996,7 @@ public class MapScriptMethods
       {
         if (c.getPlayer().getFrittoEgg() == null)
         {
-          c.getPlayer().getMap().resetFully();
+          c.getPlayer().getMap().resetFully(false);
           c.getPlayer().setFrittoEgg(new FrittoEgg(0));
           c.getPlayer().getFrittoEgg().start(c);
         }
@@ -1076,7 +1076,7 @@ public class MapScriptMethods
       case TD_neo_BossEnter:
       case findvioleta:
       {
-        c.getPlayer().getMap().resetFully();
+        c.getPlayer().getMap().resetFully(false);
         break;
       }
       case StageMsg_crack:

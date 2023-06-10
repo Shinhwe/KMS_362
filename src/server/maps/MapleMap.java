@@ -1709,10 +1709,12 @@ public final class MapleMap
       return;
     }
     this.RealSpawns.remove(monster);
-    broadcastMessage(MobPacket.killMonster(monster.getObjectId(), 0));
-    removeMapObject(monster);
-    this.spawnedMonstersOnMap.decrementAndGet();
+    monster.setHp(0L);
+    this.broadcastMessage(MobPacket.killMonster(monster.getObjectId(), 0));
+    this.broadcastMessage(MobPacket.stopControllingMonster(monster.getObjectId()));
+    this.removeMapObject(monster);
     monster.killed();
+    this.spawnedMonstersOnMap.decrementAndGet();
   }
 
   public void killMonster (MapleMonster monster, int effect)
@@ -7752,14 +7754,14 @@ public final class MapleMap
 
   public void resetFully (boolean respawn)
   {
-    killAllMonsters(true);
+    killAllMonsters(false);
     reloadReactors();
     removeDrops();
     removeMists();
     resetNPCs();
     resetSpawns();
     resetDisconnected();
-    cancelSquadSchedule(true);
+    cancelSquadSchedule(false);
     resetPortals();
     setFirstUserEnter(true);
     resetEnvironment();
@@ -7795,7 +7797,7 @@ public final class MapleMap
     }
     if (respawn)
     {
-      respawn(true);
+      respawn(false);
     }
   }
 
