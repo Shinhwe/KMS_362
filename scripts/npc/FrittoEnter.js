@@ -28,15 +28,19 @@ function action(mode, type, sel) {
         switch (sel) {
             case 1:
                 cm.getPlayer().addKV("poloFritto", cm.getPlayer().getMapId());
-                if (cm.getClient().getChannelServer().getMapFactory().getMap(993000300).characterSize() == 0) {
-                    maps.push(993000300);
-                }
+                // if (cm.getClient().getChannelServer().getMapFactory().getMap(993000300).characterSize() == 0) {
+                //     // 偷蛋
+                //     maps.push(993000300);
+                // }
                 if (cm.getClient().getChannelServer().getMapFactory().getMap(993000200).characterSize() == 0) {
+                    // 打老鷹    
                     maps.push(993000200);
                 }
-                if (cm.getClient().getChannelServer().getMapFactory().getMap(993000400).characterSize() == 0) {
-                    maps.push(993000400);
-                }
+
+                // if (cm.getClient().getChannelServer().getMapFactory().getMap(993000400).characterSize() == 0) {
+                //     // 跳舞
+                //     maps.push(993000400);
+                // }
                 if (maps.length == 0) {
                     cm.sendOk("지금 진행중인 사람이 많네.. 잠시 후에 시도해줄래?");
                     return;

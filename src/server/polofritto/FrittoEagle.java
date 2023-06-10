@@ -1,6 +1,7 @@
 package server.polofritto;
 
 import client.MapleClient;
+import server.Randomizer;
 import server.Timer;
 import server.life.MapleLifeFactory;
 import server.life.MapleMonster;
@@ -13,73 +14,58 @@ import java.util.concurrent.ScheduledFuture;
 public class FrittoEagle
 {
   private ScheduledFuture<?> sc;
-  
-  private ScheduledFuture<?> sch;
-  
+
+
   private int score;
-  
+
   private int bullet;
-  
-  public FrittoEagle(int score, int bullet)
+
+  public FrittoEagle (int score, int bullet)
   {
     this.score = score;
     this.bullet = bullet;
   }
-  
-  public void createGun(MapleClient c)
+
+  public void createGun (MapleClient c)
   {
     c.getSession().writeAndFlush(SLFCGPacket.createGun());
     c.getSession().writeAndFlush(SLFCGPacket.setGun());
     c.getSession().writeAndFlush(SLFCGPacket.setAmmo(this.bullet));
   }
-  
-  public void checkFinish(final MapleClient c)
+
+  public void checkFinish (MapleClient c)
   {
-    this.sch = Timer.EventTimer.getInstance().register(new Runnable()
+    if (FrittoEagle.this.sc != null)
     {
-      public void run()
-      {
-        if (c != null && c.getPlayer() != null && c.getPlayer().getMap() != null)
-        {
-          int size = 0;
-          for (MapleMonster m : c.getPlayer().getMap().getAllMonster())
-          {
-            if (m != null && m.getId() >= 9833000 && m.getId() <= 9833002)
-            {
-              size++;
-            }
-          }
-          if (FrittoEagle.this.score >= 1000 || c.getPlayer().getMap().getNumMonsters() == 0 || size == 0)
-          {
-            if (FrittoEagle.this.sc != null)
-            {
-              FrittoEagle.this.sc.cancel(false);
-            }
-            if (FrittoEagle.this.sch != null)
-            {
-              FrittoEagle.this.sch.cancel(false);
-            }
-            c.getSession().writeAndFlush(CField.environmentChange("killing/clear", 16));
-            c.getSession().writeAndFlush(SLFCGPacket.milliTimer(3000));
-            Timer.EventTimer.getInstance().schedule(new Runnable()
-            {
-              public void run()
-              {
-                if (c != null && c.getPlayer() != null)
-                {
-                  c.getSession().writeAndFlush(SLFCGPacket.SetIngameDirectionMode(false, true, false, false));
-                  c.getSession().writeAndFlush(SLFCGPacket.InGameDirectionEvent("", 10, 0));
-                  c.getPlayer().warp(993000601);
-                }
-              }
-            }, 3000L);
-          }
-        }
-      }
-    }, 1000L);
+      FrittoEagle.this.sc.cancel(false);
+    }
+
+    boolean isFinish = false;
+
+    if (FrittoEagle.this.score == 1000)
+    {
+      isFinish = true;
+
+    }
+    else if (c.getPlayer().getMap().getAllMonster().stream().anyMatch(item -> item != null && item.isAlive() && item.getId() != 9833003) == false)
+    {
+      isFinish = true;
+    }
+    else if (this.bullet == 0)
+    {
+      isFinish = true;
+    }
+
+    if (isFinish)
+    {
+      c.getSession().writeAndFlush(SLFCGPacket.SetIngameDirectionMode(false, true, false, false));
+      c.getSession().writeAndFlush(SLFCGPacket.InGameDirectionEvent("", 10, 0));
+      c.getPlayer().getMap().killAllMonsters(false);
+      c.getPlayer().warp(993000601);
+    }
   }
-  
-  public void addScore(MapleMonster monster, MapleClient c)
+
+  public void addScore (MapleMonster monster, MapleClient c)
   {
     int be = this.score;
     switch (monster.getId())
@@ -99,58 +85,42 @@ public class FrittoEagle
     }
     c.getPlayer().setKeyValue(15141, "point", String.valueOf(this.score));
     c.getSession().writeAndFlush(SLFCGPacket.deadOnFPSMode(monster.getObjectId(), this.score - be));
+    this.checkFinish(c);
   }
-  
-  public void updateNewWave(final MapleClient c)
+
+  public void updateNewWave (final MapleClient c)
   {
     c.getSession().writeAndFlush(CField.environmentChange("killing/first/start", 16));
-    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833000), new Point(0, 0));
-    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833000), new Point(0, 0));
-    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833000), new Point(0, 0));
-    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833000), new Point(0, 0));
-    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833000), new Point(0, 0));
-    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833000), new Point(0, 0));
-    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833001), new Point(0, 0));
-    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833001), new Point(0, 0));
-    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833001), new Point(0, 0));
-    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833002), new Point(0, 0));
-    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833002), new Point(0, 0));
-    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833003), new Point(0, 0));
-    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833003), new Point(0, 0));
-    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833003), new Point(0, 0));
-    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833003), new Point(0, 0));
-    Timer.EventTimer.getInstance().schedule(new Runnable()
-    {
-      public void run()
-      {
-        FrittoEagle.this.checkFinish(c);
-      }
-    }, 2000L);
+    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833000), new Point(Randomizer.nextInt(500), Randomizer.nextInt(500)));
+    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833000), new Point(Randomizer.nextInt(500), Randomizer.nextInt(500)));
+    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833000), new Point(Randomizer.nextInt(500), Randomizer.nextInt(500)));
+    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833000), new Point(Randomizer.nextInt(500), Randomizer.nextInt(500)));
+    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833000), new Point(Randomizer.nextInt(500), Randomizer.nextInt(500)));
+    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833000), new Point(Randomizer.nextInt(500), Randomizer.nextInt(500)));
+    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833001), new Point(Randomizer.nextInt(500), Randomizer.nextInt(500)));
+    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833001), new Point(Randomizer.nextInt(500), Randomizer.nextInt(500)));
+    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833001), new Point(Randomizer.nextInt(500), Randomizer.nextInt(500)));
+    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833002), new Point(Randomizer.nextInt(500), Randomizer.nextInt(500)));
+    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833002), new Point(Randomizer.nextInt(500), Randomizer.nextInt(500)));
+    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833003), new Point(Randomizer.nextInt(500), Randomizer.nextInt(500)));
+    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833003), new Point(Randomizer.nextInt(500), Randomizer.nextInt(500)));
+    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833003), new Point(Randomizer.nextInt(500), Randomizer.nextInt(500)));
+    c.getPlayer().getMap().spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9833003), new Point(Randomizer.nextInt(500), Randomizer.nextInt(500)));
   }
-  
-  public void shootResult(MapleClient c)
+
+  public void shootResult (MapleClient c)
   {
-    if (this.bullet > 1)
+    this.bullet -= 1;
+
+    if (this.bullet > 0)
     {
       c.getSession().writeAndFlush(SLFCGPacket.attackRes());
     }
-    else
-    {
-      if (this.sc != null)
-      {
-        this.sc.cancel(false);
-      }
-      if (this.sch != null)
-      {
-        this.sch.cancel(false);
-      }
-      c.getSession().writeAndFlush(SLFCGPacket.SetIngameDirectionMode(false, true, false, false));
-      c.getSession().writeAndFlush(SLFCGPacket.InGameDirectionEvent("", 10, 0));
-      c.getPlayer().warp(993000601);
-    }
+
+    this.checkFinish(c);
   }
-  
-  public void start(final MapleClient c)
+
+  public void start (final MapleClient c)
   {
     createGun(c);
     c.getPlayer().setKeyValue(15141, "point", "0");
@@ -162,7 +132,7 @@ public class FrittoEagle
     updateNewWave(c);
     this.sc = Timer.EventTimer.getInstance().schedule(new Runnable()
     {
-      public void run()
+      public void run ()
       {
         if (c.getPlayer().getMapId() == 993000200)
         {
@@ -173,43 +143,33 @@ public class FrittoEagle
       }
     }, 30000L);
   }
-  
-  public ScheduledFuture<?> getSch()
-  {
-    return this.sch;
-  }
-  
-  public void setSch(ScheduledFuture<?> sch)
-  {
-    this.sch = sch;
-  }
-  
-  public ScheduledFuture<?> getSc()
+
+  public ScheduledFuture<?> getSc ()
   {
     return this.sc;
   }
-  
-  public void setSc(ScheduledFuture<?> sc)
+
+  public void setSc (ScheduledFuture<?> sc)
   {
     this.sc = sc;
   }
-  
-  public int getScore()
+
+  public int getScore ()
   {
     return this.score;
   }
-  
-  public void setScore(int score)
+
+  public void setScore (int score)
   {
     this.score = score;
   }
-  
-  public int getBullet()
+
+  public int getBullet ()
   {
     return this.bullet;
   }
-  
-  public void setBullet(int bullet)
+
+  public void setBullet (int bullet)
   {
     this.bullet = bullet;
   }

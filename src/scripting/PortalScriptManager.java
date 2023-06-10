@@ -68,6 +68,7 @@ public class PortalScriptManager
   public final void executePortalScript(MaplePortal portal, MapleClient c)
   {
     PortalScript script = getPortalScript(portal.getScriptName());
+    c.getPlayer().dropMessageGM(5, "script : " + portal.getScriptName() + " / mapid : " + c.getPlayer().getMapId());
     if (script != null)
     {
       try
@@ -78,10 +79,6 @@ public class PortalScriptManager
       {
         System.err.println("Error entering Portalscript: " + portal.getScriptName() + " : " + e);
       }
-    }
-    else
-    {
-      c.getPlayer().dropMessageGM(5, "script : " + portal.getScriptName() + " / mapid : " + c.getPlayer().getMapId());
     }
   }
   

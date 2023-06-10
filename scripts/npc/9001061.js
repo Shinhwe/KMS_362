@@ -20,10 +20,10 @@ function action(mode, type, selection) {
     }
 
     if (status == 0) {
-	cm.sendNextS("드래곤의 알을 발견했다!", 0x3);
+        cm.sendNextS("드래곤의 알을 발견했다!", 0x3);
     } else if (status == 1) {
-	cm.dispose();
-	cm.getPlayer().setKeyValue(15042, "Stage", "6");
-	cm.warp(993000601);
+        cm.dispose();
+        cm.getPlayer().setKeyValue(15042, "Stage", "6");
+        cm.warp(993000601);
     }
 }

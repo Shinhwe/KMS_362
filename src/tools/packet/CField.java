@@ -3479,7 +3479,7 @@ public class CField
       mplew.writeLong(PacketHelper.getTime(-1L));
       mplew.writeInt(28); // 28
       mplew.writeInt(2); // 2
-      mplew.writeInt(16700); // 28 存疑
+      mplew.writeInt(28); // 28 存疑
       mplew.writeInt(300);
       mplew.writeInt(GameConstants.dailyItems.size());
       for (DailyGiftItemInfo item : GameConstants.dailyItems)

@@ -31,10 +31,10 @@ import java.util.Map;
 public class MapScriptMethods
 {
   private static final Point witchTowerPos = new Point(-60, 184);
-  
-  private static final String[] mulungEffects = new String[]{"무릉도장에 도전한 것을 후회하게 해주겠다! 어서 들어와봐!", "기다리고 있었다! 용기가 남았다면 들어와 보시지!", "배짱 하나는 두둑하군! 현명함과 무모함을 혼동하지말라고!", "무릉도장에 도전하다니 용기가 가상하군!", "패배의 길을 걷고싶다면 들어오라고!"};
-  
-  public static void startScript_FirstUser(MapleClient c, String scriptName)
+
+  private static final String[] mulungEffects = new String[] { "무릉도장에 도전한 것을 후회하게 해주겠다! 어서 들어와봐!", "기다리고 있었다! 용기가 남았다면 들어와 보시지!", "배짱 하나는 두둑하군! 현명함과 무모함을 혼동하지말라고!", "무릉도장에 도전하다니 용기가 가상하군!", "패배의 길을 걷고싶다면 들어오라고!" };
+
+  public static void startScript_FirstUser (MapleClient c, String scriptName)
   {
     if (c.getPlayer() == null)
     {
@@ -917,8 +917,8 @@ public class MapScriptMethods
       }
     }
   }
-  
-  public static void startScript_User(final MapleClient c, final String scriptName)
+
+  public static void startScript_User (final MapleClient c, final String scriptName)
   {
     if (c.getPlayer() == null)
     {
@@ -927,7 +927,7 @@ public class MapScriptMethods
     String data = "";
     // if (c.getPlayer().isGM())
     // {
-      c.getPlayer().dropMessage(6, "startScript_User : " + scriptName);
+    c.getPlayer().dropMessage(6, "startScript_User : " + scriptName);
     // }
     switch (onUserEnter.fromString(scriptName))
     {
@@ -994,9 +994,12 @@ public class MapScriptMethods
       }
       case Fritto_Egg_Enter:
       {
-        c.getPlayer().getMap().resetFully();
-        c.getPlayer().setFrittoEgg(new FrittoEgg(0));
-        c.getPlayer().getFrittoEgg().start(c);
+        if (c.getPlayer().getFrittoEgg() == null)
+        {
+          c.getPlayer().getMap().resetFully();
+          c.getPlayer().setFrittoEgg(new FrittoEgg(0));
+          c.getPlayer().getFrittoEgg().start(c);
+        }
         break;
       }
       case magnus_enter_HP:
@@ -1578,8 +1581,7 @@ public class MapScriptMethods
         showIntro(c, "Effect/Direction6.img/DemonTutorial/SceneLogo");
         Timer.EventTimer.getInstance().schedule(new Runnable()
         {
-          @Override
-          public void run()
+          @Override public void run ()
           {
             c.getSession().writeAndFlush(CField.UIPacket.IntroDisableUI(false));
             c.getSession().writeAndFlush(CField.UIPacket.IntroLock(false));
@@ -1601,8 +1603,7 @@ public class MapScriptMethods
         c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(1, 4000));
         Timer.EventTimer.getInstance().schedule(new Runnable()
         {
-          @Override
-          public void run()
+          @Override public void run ()
           {
             showIntro(c, "Effect/Direction6.img/DemonTutorial/Scene2");
           }
@@ -1616,8 +1617,7 @@ public class MapScriptMethods
         c.getSession().writeAndFlush(CField.UIPacket.getDirectionStatus(true));
         Timer.EventTimer.getInstance().schedule(new Runnable()
         {
-          @Override
-          public void run()
+          @Override public void run ()
           {
             c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(3, 0));
             c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(4, 2159310));
@@ -1667,8 +1667,7 @@ public class MapScriptMethods
         c.getSession().writeAndFlush(CField.showEffect("demonSlayer/text12"));
         Timer.EventTimer.getInstance().schedule(new Runnable()
         {
-          @Override
-          public void run()
+          @Override public void run ()
           {
             c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(3, 0));
             c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(4, 2159311));
@@ -1693,8 +1692,7 @@ public class MapScriptMethods
         c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo("Effect/Direction5.img/effect/tuto/balloonMsg1/3", 2000, 0, -100, 1, 0));
         Timer.EventTimer.getInstance().schedule(new Runnable()
         {
-          @Override
-          public void run()
+          @Override public void run ()
           {
             c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(3, 0));
             c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(4, 2159340));
@@ -1712,8 +1710,7 @@ public class MapScriptMethods
         c.getSession().writeAndFlush(CField.UIPacket.getDirectionStatus(true));
         Timer.EventTimer.getInstance().schedule(new Runnable()
         {
-          @Override
-          public void run()
+          @Override public void run ()
           {
             c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(3, 0));
             c.getSession().writeAndFlush(CField.showEffect("demonSlayer/text13"));
@@ -1722,8 +1719,7 @@ public class MapScriptMethods
         }, 1000L);
         Timer.EventTimer.getInstance().schedule(new Runnable()
         {
-          @Override
-          public void run()
+          @Override public void run ()
           {
             c.getSession().writeAndFlush(CField.showEffect("demonSlayer/text14"));
             c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(1, 4000));
@@ -1731,8 +1727,7 @@ public class MapScriptMethods
         }, 1500L);
         Timer.EventTimer.getInstance().schedule(new Runnable()
         {
-          @Override
-          public void run()
+          @Override public void run ()
           {
             final MapleMap mapto = c.getChannelServer().getMapFactory().getMap(927000020);
             c.getPlayer().changeMap(mapto, mapto.getPortal(0));
@@ -1757,8 +1752,7 @@ public class MapScriptMethods
         c.getSession().writeAndFlush(CField.UIPacket.getDirectionStatus(true));
         Timer.EventTimer.getInstance().schedule(new Runnable()
         {
-          @Override
-          public void run()
+          @Override public void run ()
           {
             c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(3, 0));
             c.getSession().writeAndFlush(CField.showEffect("demonSlayer/text8"));
@@ -1767,8 +1761,7 @@ public class MapScriptMethods
         }, 1000L);
         Timer.EventTimer.getInstance().schedule(new Runnable()
         {
-          @Override
-          public void run()
+          @Override public void run ()
           {
             c.getSession().writeAndFlush(CField.showEffect("demonSlayer/text9"));
             c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(1, 3000));
@@ -1776,8 +1769,7 @@ public class MapScriptMethods
         }, 1500L);
         Timer.EventTimer.getInstance().schedule(new Runnable()
         {
-          @Override
-          public void run()
+          @Override public void run ()
           {
             final MapleMap mapto = c.getChannelServer().getMapFactory().getMap(927000010);
             c.getPlayer().changeMap(mapto, mapto.getPortal(0));
@@ -2005,9 +1997,12 @@ public class MapScriptMethods
         }
         if (c.getPlayer().getV("linkMob") != null && count > 0)
         {
-          final int[] smobid = {9010152, 9010153, 9010154, 9010155, 9010156, 9010157, 9010158, 9010159, 9010160, 9010161, 9010162, 9010163, 9010164, 9010165, 9010166, 9010167, 9010168, 9010169, 9010170, 9010171, 9010172, 9010173, 9010174, 9010175, 9010176, 9010177, 9010178, 9010179, 9010180, 9010181};
-          final int[] smobx = {1736, 1872, 1944, 2074, 2154, 2237, 2368, 2435, 2567, 2647, 2750};
-          final int[] smoby = {399, 132, -81};
+          final int[] smobid = {
+              9010152, 9010153, 9010154, 9010155, 9010156, 9010157, 9010158, 9010159, 9010160, 9010161, 9010162, 9010163, 9010164, 9010165, 9010166, 9010167, 9010168, 9010169, 9010170, 9010171, 9010172, 9010173, 9010174, 9010175, 9010176, 9010177, 9010178, 9010179, 9010180,
+              9010181
+          };
+          final int[] smobx = { 1736, 1872, 1944, 2074, 2154, 2237, 2368, 2435, 2567, 2647, 2750 };
+          final int[] smoby = { 399, 132, -81 };
           for (int i2 = 0; i2 < smobx.length; ++i2)
           {
             for (int g = 0; g < smoby.length; ++g)
@@ -2162,18 +2157,18 @@ public class MapScriptMethods
       }
     }
   }
-  
-  private static void showIntro(MapleClient c, String data)
+
+  private static void showIntro (MapleClient c, String data)
   {
     c.getSession().writeAndFlush(CField.EffectPacket.showWZEffect(data));
   }
-  
-  private static void sendDojoClock(MapleClient c)
+
+  private static void sendDojoClock (MapleClient c)
   {
     c.getSession().writeAndFlush(CField.getDojoClock(900, (int) ((System.currentTimeMillis() - c.getPlayer().getDojoStartTime() - c.getPlayer().getDojoCoolTime()) / 1000L)));
   }
-  
-  private static void sendDojoStart(MapleClient c, int stage)
+
+  private static void sendDojoStart (MapleClient c, int stage)
   {
     c.getSession().writeAndFlush(CField.environmentChange("Dojang/start", 5));
     c.getSession().writeAndFlush(CField.environmentChange("dojang/start/stage", 19));
@@ -2181,8 +2176,8 @@ public class MapScriptMethods
     c.getSession().writeAndFlush(CField.getDojoClockStop(false, 900));
     c.getSession().writeAndFlush(CField.trembleEffect(0, 1));
   }
-  
-  private static void handlePinkBeanStart(MapleClient c)
+
+  private static void handlePinkBeanStart (MapleClient c)
   {
     MapleMap map = c.getPlayer().getMap();
     if (!map.containsNPC(2141000))
@@ -2190,8 +2185,8 @@ public class MapScriptMethods
       map.spawnNpc(2141000, new Point(-190, -42));
     }
   }
-  
-  private static void reloadWitchTower(MapleClient c)
+
+  private static void reloadWitchTower (MapleClient c)
   {
     int mob;
     MapleMap map = c.getPlayer().getMap();
@@ -2249,8 +2244,8 @@ public class MapScriptMethods
     theMob.setOverrideStats(oms);
     map.spawnMonsterOnGroundBelow(theMob, witchTowerPos);
   }
-  
-  public static void startDirectionInfo(MapleCharacter chr, boolean start)
+
+  public static void startDirectionInfo (MapleCharacter chr, boolean start)
   {
     final MapleClient c = chr.getClient();
     MapleNodes.DirectionInfo di = chr.getMap().getDirectionInfo(start ? 0 : chr.getDirection());
@@ -2286,7 +2281,7 @@ public class MapScriptMethods
               c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo("Effect/Direction5.img/effect/mercedesInIce/merBalloon/4", 2000, 0, -100, 1, 0));
               Timer.EventTimer.getInstance().schedule(new Runnable()
               {
-                public void run()
+                public void run ()
                 {
                   c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(3, 2));
                   c.getSession().writeAndFlush(CField.UIPacket.getDirectionStatus(true));
@@ -2295,7 +2290,7 @@ public class MapScriptMethods
               }, 2000L);
               Timer.EventTimer.getInstance().schedule(new Runnable()
               {
-                public void run()
+                public void run ()
                 {
                   c.getSession().writeAndFlush(CField.UIPacket.IntroEnableUI(0));
                   c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
@@ -2319,7 +2314,7 @@ public class MapScriptMethods
               c.getSession().writeAndFlush(CField.showEffect("demonSlayer/text2"));
               Timer.EventTimer.getInstance().schedule(new Runnable()
               {
-                public void run()
+                public void run ()
                 {
                   c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(1, 4000));
                   c.getSession().writeAndFlush(CField.showEffect("demonSlayer/text3"));
@@ -2327,7 +2322,7 @@ public class MapScriptMethods
               }, 2000L);
               Timer.EventTimer.getInstance().schedule(new Runnable()
               {
-                public void run()
+                public void run ()
                 {
                   c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(1, 500));
                   c.getSession().writeAndFlush(CField.showEffect("demonSlayer/text4"));
@@ -2335,7 +2330,7 @@ public class MapScriptMethods
               }, 6000L);
               Timer.EventTimer.getInstance().schedule(new Runnable()
               {
-                public void run()
+                public void run ()
                 {
                   c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(1, 4000));
                   c.getSession().writeAndFlush(CField.showEffect("demonSlayer/text5"));
@@ -2343,7 +2338,7 @@ public class MapScriptMethods
               }, 6500L);
               Timer.EventTimer.getInstance().schedule(new Runnable()
               {
-                public void run()
+                public void run ()
                 {
                   c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(1, 500));
                   c.getSession().writeAndFlush(CField.showEffect("demonSlayer/text6"));
@@ -2351,7 +2346,7 @@ public class MapScriptMethods
               }, 10500L);
               Timer.EventTimer.getInstance().schedule(new Runnable()
               {
-                public void run()
+                public void run ()
                 {
                   c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(1, 4000));
                   c.getSession().writeAndFlush(CField.showEffect("demonSlayer/text7"));
@@ -2359,7 +2354,7 @@ public class MapScriptMethods
               }, 11000L);
               Timer.EventTimer.getInstance().schedule(new Runnable()
               {
-                public void run()
+                public void run ()
                 {
                   c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(4, 2159307));
                   NPCScriptManager.getInstance().dispose(c);
@@ -2390,78 +2385,13 @@ public class MapScriptMethods
       }
     }
   }
-  
+
   private enum onFirstUserEnter
   {
-    
-    dojang_Eff,
-    dojang_Msg,
-    PinkBeen_before,
-    onRewordMap,
-    StageMsg_together,
-    StageMsg_crack,
-    StageMsg_davy,
-    StageMsg_goddess,
-    party6weatherMsg,
-    StageMsg_juliet,
-    StageMsg_romio,
-    will_phase1,
-    will_phase2,
-    will_phase3,
-    WUK_StageEnter,
-    JinHillah_onFirstUserEnter,
-    moonrabbit_mapEnter,
-    Fenter_450004250,
-    Fenter_450004150,
-    astaroth_summon,
-    boss_Ravana,
-    boss_Ravana_mirror,
-    killing_BonusSetting,
-    killing_MapSetting,
-    metro_firstSetting,
-    balog_bonusSetting,
-    balog_summon,
-    easy_balog_summon,
-    Sky_TrapFEnter,
-    pyramidWeather,
-    shammos_Fenter,
-    PRaid_D_Fenter,
-    PRaid_B_Fenter,
-    summon_pepeking,
-    Xerxes_summon,
-    VanLeon_Before,
-    cygnus_Summon,
-    storymap_scenario,
-    shammos_FStart,
-    kenta_mapEnter,
-    iceman_FEnter,
-    iceman_Boss,
-    Polo_Defence,
-    prisonBreak_mapEnter,
-    Visitor_Cube_poison,
-    Visitor_Cube_Hunting_Enter_First,
-    VisitorCubePhase00_Start,
-    visitorCube_addmobEnter,
-    Visitor_Cube_PickAnswer_Enter_First_1,
-    visitorCube_medicroom_Enter,
-    visitorCube_iceyunna_Enter,
-    Visitor_Cube_AreaCheck_Enter_First,
-    visitorCube_boomboom_Enter,
-    visitorCube_boomboom2_Enter,
-    CubeBossbang_Enter,
-    MalayBoss_Int,
-    mPark_summonBoss,
-    hontale_boss1,
-    hontale_boss2,
-    queen_summon0,
-    pierre_Summon1,
-    pierre_Summon,
-    banban_Summon,
-    firstenter_bossBlackMage,
-    dusk_onFirstUserEnter,
-    NULL;
-    
-    private static onFirstUserEnter fromString(String Str)
+
+    dojang_Eff, dojang_Msg, PinkBeen_before, onRewordMap, StageMsg_together, StageMsg_crack, StageMsg_davy, StageMsg_goddess, party6weatherMsg, StageMsg_juliet, StageMsg_romio, will_phase1, will_phase2, will_phase3, WUK_StageEnter, JinHillah_onFirstUserEnter, moonrabbit_mapEnter, Fenter_450004250, Fenter_450004150, astaroth_summon, boss_Ravana, boss_Ravana_mirror, killing_BonusSetting, killing_MapSetting, metro_firstSetting, balog_bonusSetting, balog_summon, easy_balog_summon, Sky_TrapFEnter, pyramidWeather, shammos_Fenter, PRaid_D_Fenter, PRaid_B_Fenter, summon_pepeking, Xerxes_summon, VanLeon_Before, cygnus_Summon, storymap_scenario, shammos_FStart, kenta_mapEnter, iceman_FEnter, iceman_Boss, Polo_Defence, prisonBreak_mapEnter, Visitor_Cube_poison, Visitor_Cube_Hunting_Enter_First, VisitorCubePhase00_Start, visitorCube_addmobEnter, Visitor_Cube_PickAnswer_Enter_First_1, visitorCube_medicroom_Enter, visitorCube_iceyunna_Enter, Visitor_Cube_AreaCheck_Enter_First, visitorCube_boomboom_Enter, visitorCube_boomboom2_Enter, CubeBossbang_Enter, MalayBoss_Int, mPark_summonBoss, hontale_boss1, hontale_boss2, queen_summon0, pierre_Summon1, pierre_Summon, banban_Summon, firstenter_bossBlackMage, dusk_onFirstUserEnter, NULL;
+
+    private static onFirstUserEnter fromString (String Str)
     {
       try
       {
@@ -2473,191 +2403,15 @@ public class MapScriptMethods
       }
     }
   }
-  
+
   private enum onUserEnter
   {
-    
-    babyPigMap,
-    crash_Dragon,
-    evanleaveD,
-    getDragonEgg,
-    meetWithDragon,
-    go1010100,
-    go1010200,
-    go1010300,
-    go1010400,
-    will_phase1_everyone,
-    will_phase2_everyone,
-    will_phase3_everyone,
-    dunkel_timeRecord,
-    dunkel_boss,
-    JinHillah_onUserEnter,
-    evanPromotion,
-    PromiseDragon,
-    evanTogether,
-    incubation_dragon,
-    TD_MC_Openning,
-    TD_MC_gasi,
-    TD_MC_title,
-    magnus_enter_HP,
-    Akayrum_ExpeditionEnter,
-    bhb2_scEnterHp,
-    bhb3_scEnterHp,
-    cygnusJobTutorial,
-    cygnusTest,
-    Polo_Wave,
-    Fritto_Eagle_Enter,
-    Fritto_Egg_Enter,
-    Fritto_Dancing_Enter,
-    startEreb,
-    enter_450004150,
-    PinkBeenJob_Event,
-    dojang_Msg,
-    dojang_1st,
-    reundodraco,
-    undomorphdarco,
-    explorationPoint,
-    goAdventure,
-    go10000,
-    go20000,
-    go30000,
-    go40000,
-    go50000,
-    go1000000,
-    go1010000,
-    go1020000,
-    go2000000,
-    goArcher,
-    goPirate,
-    goRogue,
-    goMagician,
-    goSwordman,
-    goLith,
-    iceCave,
-    mirrorCave,
-    aranDirection,
-    rienArrow,
-    rien,
-    check_count,
-    Massacre_first,
-    Massacre_result,
-    aranTutorAlone,
-    evanAlone,
-    dojang_QcheckSet,
-    Sky_StageEnter,
-    outCase,
-    balog_buff,
-    balog_dateSet,
-    Sky_BossEnter,
-    Sky_GateMapEnter,
-    shammos_Enter,
-    shammos_Result,
-    shammos_Base,
-    dollCave00,
-    dollCave01,
-    dollCave02,
-    Sky_Quest,
-    enterBlackfrog,
-    onSDI,
-    blackSDI,
-    summonIceWall,
-    metro_firstSetting,
-    start_itemTake,
-    findvioleta,
-    pepeking_effect,
-    TD_MC_keycheck,
-    TD_MC_gasi2,
-    in_secretroom,
-    sealGarden,
-    TD_NC_title,
-    TD_neo_BossEnter,
-    PRaid_D_Enter,
-    PRaid_B_Enter,
-    PRaid_Revive,
-    PRaid_W_Enter,
-    PRaid_WinEnter,
-    PRaid_FailEnter,
-    Resi_tutor10,
-    Resi_tutor20,
-    Resi_tutor30,
-    Resi_tutor40,
-    Resi_tutor50,
-    Resi_tutor60,
-    Resi_tutor70,
-    Resi_tutor80,
-    Resi_tutor50_1,
-    summonSchiller,
-    q31102e,
-    q31103s,
-    jail,
-    VanLeon_ExpeditionEnter,
-    cygnus_ExpeditionEnter,
-    knights_Summon,
-    TCMobrevive,
-    mPark_stageEff,
-    mPark_Enter,
-    moonrabbit_takeawayitem,
-    StageMsg_crack,
-    shammos_Start,
-    iceman_Enter,
-    prisonBreak_1stageEnter,
-    VisitorleaveDirectionMode,
-    visitorPT_Enter,
-    VisitorCubePhase00_Enter,
-    visitor_ReviveMap,
-    cannon_tuto_01,
-    cannon_tuto_direction,
-    cannon_tuto_direction1,
-    cannon_tuto_direction2,
-    userInBattleSquare,
-    merTutorDrecotion00,
-    merTutorDrecotion10,
-    merTutorDrecotion20,
-    merStandAlone,
-    merOutStandAlone,
-    merTutorSleep00,
-    merTutorSleep01,
-    merTutorSleep02,
-    EntereurelTW,
-    ds_tuto_ill0,
-    ds_tuto_0_0,
-    ds_tuto_1_0,
-    ds_tuto_3_0,
-    ds_tuto_3_1,
-    ds_tuto_4_0,
-    ds_tuto_5_0,
-    ds_tuto_2_prep,
-    ds_tuto_1_before,
-    ds_tuto_2_before,
-    ds_tuto_home_before,
-    ds_tuto_ani,
-    PTtutor000,
-    enter_993014200,
-    enter_993018200,
-    enter_993021200,
-    enter_993029200,
-    enter_hungryMuto,
-    enter_hungryMutoEasy,
-    enter_hungryMutoHard,
-    enter_450002024,
-    enter_993001000, //갓오컨 로비
-    enter_pfTutorialStage,//갓오컨 시작
-    enter_910143000,
-    enter_450004200,
-    enter_993192002,
-    enter_993192003,
-    enter_993192004,
-    enter_993192005,
-    enter_993192006,
-    enter_993192007,
-    BloomingRace_reset,
-    enter_993194001,
-    enter_993194002,
-    miniGameVS_Start,
-    fireWolf_Enter,
-    NULL;
-    
-    private static onUserEnter fromString(String Str)
+
+    babyPigMap, crash_Dragon, evanleaveD, getDragonEgg, meetWithDragon, go1010100, go1010200, go1010300, go1010400, will_phase1_everyone, will_phase2_everyone, will_phase3_everyone, dunkel_timeRecord, dunkel_boss, JinHillah_onUserEnter, evanPromotion, PromiseDragon, evanTogether, incubation_dragon, TD_MC_Openning, TD_MC_gasi, TD_MC_title, magnus_enter_HP, Akayrum_ExpeditionEnter, bhb2_scEnterHp, bhb3_scEnterHp, cygnusJobTutorial, cygnusTest, Polo_Wave, Fritto_Eagle_Enter, Fritto_Egg_Enter, Fritto_Dancing_Enter, startEreb, enter_450004150, PinkBeenJob_Event, dojang_Msg, dojang_1st, reundodraco, undomorphdarco, explorationPoint, goAdventure, go10000, go20000, go30000, go40000, go50000, go1000000, go1010000, go1020000, go2000000, goArcher, goPirate, goRogue, goMagician, goSwordman, goLith, iceCave, mirrorCave, aranDirection, rienArrow, rien, check_count, Massacre_first, Massacre_result, aranTutorAlone, evanAlone, dojang_QcheckSet, Sky_StageEnter, outCase, balog_buff, balog_dateSet, Sky_BossEnter, Sky_GateMapEnter, shammos_Enter, shammos_Result, shammos_Base, dollCave00, dollCave01, dollCave02, Sky_Quest, enterBlackfrog, onSDI, blackSDI, summonIceWall, metro_firstSetting, start_itemTake, findvioleta, pepeking_effect, TD_MC_keycheck, TD_MC_gasi2, in_secretroom, sealGarden, TD_NC_title, TD_neo_BossEnter, PRaid_D_Enter, PRaid_B_Enter, PRaid_Revive, PRaid_W_Enter, PRaid_WinEnter, PRaid_FailEnter, Resi_tutor10, Resi_tutor20, Resi_tutor30, Resi_tutor40, Resi_tutor50, Resi_tutor60, Resi_tutor70, Resi_tutor80, Resi_tutor50_1, summonSchiller, q31102e, q31103s, jail, VanLeon_ExpeditionEnter, cygnus_ExpeditionEnter, knights_Summon, TCMobrevive, mPark_stageEff, mPark_Enter, moonrabbit_takeawayitem, StageMsg_crack, shammos_Start, iceman_Enter, prisonBreak_1stageEnter, VisitorleaveDirectionMode, visitorPT_Enter, VisitorCubePhase00_Enter, visitor_ReviveMap, cannon_tuto_01, cannon_tuto_direction, cannon_tuto_direction1, cannon_tuto_direction2, userInBattleSquare, merTutorDrecotion00, merTutorDrecotion10, merTutorDrecotion20, merStandAlone, merOutStandAlone, merTutorSleep00, merTutorSleep01, merTutorSleep02, EntereurelTW, ds_tuto_ill0, ds_tuto_0_0, ds_tuto_1_0, ds_tuto_3_0, ds_tuto_3_1, ds_tuto_4_0, ds_tuto_5_0, ds_tuto_2_prep, ds_tuto_1_before, ds_tuto_2_before, ds_tuto_home_before, ds_tuto_ani, PTtutor000, enter_993014200, enter_993018200, enter_993021200, enter_993029200, enter_hungryMuto, enter_hungryMutoEasy, enter_hungryMutoHard, enter_450002024, enter_993001000, // 갓오컨 로비
+    enter_pfTutorialStage,// 갓오컨 시작
+    enter_910143000, enter_450004200, enter_993192002, enter_993192003, enter_993192004, enter_993192005, enter_993192006, enter_993192007, BloomingRace_reset, enter_993194001, enter_993194002, miniGameVS_Start, fireWolf_Enter, NULL;
+
+    private static onUserEnter fromString (String Str)
     {
       try
       {
@@ -2669,23 +2423,13 @@ public class MapScriptMethods
       }
     }
   }
-  
+
   private enum directionInfo
   {
-    
-    merTutorDrecotion01,
-    merTutorDrecotion02,
-    merTutorDrecotion03,
-    merTutorDrecotion04,
-    merTutorDrecotion05,
-    merTutorDrecotion12,
-    merTutorDrecotion21,
-    ds_tuto_0_1,
-    ds_tuto_0_2,
-    ds_tuto_0_3,
-    NULL;
-    
-    private static directionInfo fromString(String Str)
+
+    merTutorDrecotion01, merTutorDrecotion02, merTutorDrecotion03, merTutorDrecotion04, merTutorDrecotion05, merTutorDrecotion12, merTutorDrecotion21, ds_tuto_0_1, ds_tuto_0_2, ds_tuto_0_3, NULL;
+
+    private static directionInfo fromString (String Str)
     {
       try
       {

@@ -45,54 +45,54 @@ import java.util.*;
 public abstract class AbstractPlayerInteraction
 {
   protected MapleClient c;
-  
+
   protected int id;
-  
+
   protected int id2;
-  
-  public AbstractPlayerInteraction(MapleClient c, int id, int id2)
+
+  public AbstractPlayerInteraction (MapleClient c, int id, int id2)
   {
     this.c = c;
     this.id = id;
     this.id2 = id2;
   }
-  
-  public final MapleClient getClient()
+
+  public final MapleClient getClient ()
   {
     return this.c;
   }
-  
-  public final MapleClient getC()
+
+  public final MapleClient getC ()
   {
     return this.c;
   }
-  
-  public MapleCharacter getChar()
+
+  public MapleCharacter getChar ()
   {
     return this.c.getPlayer();
   }
-  
-  public final ChannelServer getChannelServer()
+
+  public final ChannelServer getChannelServer ()
   {
     return this.c.getChannelServer();
   }
-  
-  public final MapleCharacter getPlayer()
+
+  public final MapleCharacter getPlayer ()
   {
     return this.c.getPlayer();
   }
-  
-  public final EventManager getEventManager(String event)
+
+  public final EventManager getEventManager (String event)
   {
     return this.c.getChannelServer().getEventSM().getEventManager(event);
   }
-  
-  public final EventInstanceManager getEventInstance()
+
+  public final EventInstanceManager getEventInstance ()
   {
     return this.c.getPlayer().getEventInstance();
   }
-  
-  public final void warp(int map)
+
+  public final void warp (int map)
   {
     MapleMap mapz = getWarpMap(map);
     try
@@ -104,14 +104,14 @@ public abstract class AbstractPlayerInteraction
       this.c.getPlayer().changeMap(mapz, mapz.getPortal(0));
     }
   }
-  
-  public final void dojowarp(int mapid)
+
+  public final void dojowarp (int mapid)
   {
     this.c.getPlayer().cancelTimer();
     (this.c.getPlayer()).MulungTimer = new Timer();
     (this.c.getPlayer()).MulungTimerTask = new TimerTask()
     {
-      public void run()
+      public void run ()
       {
         AbstractPlayerInteraction.this.c.getPlayer().getClient().getSession().writeAndFlush(CField.getDojoClockStop(false, 900));
         AbstractPlayerInteraction.this.c.getPlayer().setDojoStop(false);
@@ -126,8 +126,8 @@ public abstract class AbstractPlayerInteraction
     this.c.getPlayer().getClient().getSession().writeAndFlush(CField.getDojoClockStop(true, 900));
     this.c.getPlayer().getClient().getSession().writeAndFlush(CField.environmentChange("Map/Effect2.img/MuruengTime", 19));
   }
-  
-  public final void doJoWarpMap(final int mapid)
+
+  public final void doJoWarpMap (final int mapid)
   {
     this.c.getPlayer().cancelTimer();
     this.c.getPlayer().setDojoStop(false);
@@ -136,8 +136,7 @@ public abstract class AbstractPlayerInteraction
     this.c.getPlayer().getClient().getSession().writeAndFlush(CField.environmentChange("Dojang/start", 5));
     this.c.getPlayer().getClient().getSession().writeAndFlush(CField.environmentChange("dojang/start/stage", 19));
     this.c.getPlayer().getClient().getSession().writeAndFlush(CField.environmentChange("dojang/start/number/" + stage, 19));
-    if (stage - 1 > 1 &&
-        this.c.getPlayer().getKeyValue(100466, "Floor") < (stage - 1))
+    if (stage - 1 > 1 && this.c.getPlayer().getKeyValue(100466, "Floor") < (stage - 1))
     {
       this.c.getPlayer().setKeyValue(100466, "Floor", String.valueOf(stage - 1));
     }
@@ -478,7 +477,7 @@ public abstract class AbstractPlayerInteraction
     (this.c.getPlayer()).MulungTimer = new Timer();
     (this.c.getPlayer()).MulungTimerTask = new TimerTask()
     {
-      public void run()
+      public void run ()
       {
         if (AbstractPlayerInteraction.this.c.getPlayer().getMap().getAllMonstersThreadsafe().size() <= 0 && AbstractPlayerInteraction.this.c.getPlayer().getMap().getId() / 10000 == 92507)
         {
@@ -510,8 +509,8 @@ public abstract class AbstractPlayerInteraction
     };
     (this.c.getPlayer()).MulungTimer.schedule((this.c.getPlayer()).MulungTimerTask, 4000L);
   }
-  
-  public void spawnGolrux(long hp, int mobid, int mapid, int x, int y)
+
+  public void spawnGolrux (long hp, int mobid, int mapid, int x, int y)
   {
     try
     {
@@ -527,8 +526,8 @@ public abstract class AbstractPlayerInteraction
       e.printStackTrace();
     }
   }
-  
-  public final void warp_Instanced(int map)
+
+  public final void warp_Instanced (int map)
   {
     MapleMap mapz = getMap_Instanced(map);
     try
@@ -540,37 +539,43 @@ public abstract class AbstractPlayerInteraction
       this.c.getPlayer().changeMap(mapz, mapz.getPortal(0));
     }
   }
-  
-  public final void warp(int map, int portal)
+
+  public final void warp (int mapId, int portalId)
   {
-    MapleMap mapz = getWarpMap(map);
-    if (portal != 0 && map == this.c.getPlayer().getMapId())
+    MapleMap mapz = getWarpMap(mapId);
+    if (portalId != 0 && mapId == this.c.getPlayer().getMapId())
     {
-      Point portalPos = new Point(this.c.getPlayer().getMap().getPortal(portal).getPosition());
-      if (portalPos.distanceSq(getPlayer().getTruePosition()) < 90000.0D)
+      Point portalPos = new Point(this.c.getPlayer().getMap().getPortal(portalId).getPosition());
+      if (mapId == 993000300)
       {
-        this.c.getSession().writeAndFlush(CField.instantMapWarp(this.c.getPlayer(), (byte) portal));
+        this.c.getSession().writeAndFlush(CField.instantMapWarp(this.c.getPlayer(), (byte) portalId));
+        this.c.getPlayer().checkFollow();
+        this.c.getPlayer().getMap().movePlayer(this.c.getPlayer(), portalPos);
+      }
+      else if (portalPos.distanceSq(getPlayer().getTruePosition()) < 90000.0D)
+      {
+        this.c.getSession().writeAndFlush(CField.instantMapWarp(this.c.getPlayer(), (byte) portalId));
         this.c.getPlayer().checkFollow();
         this.c.getPlayer().getMap().movePlayer(this.c.getPlayer(), portalPos);
       }
       else
       {
-        this.c.getPlayer().changeMap(mapz, mapz.getPortal(portal));
+        this.c.getPlayer().changeMap(mapz, mapz.getPortal(portalId));
       }
     }
     else
     {
-      this.c.getPlayer().changeMap(mapz, mapz.getPortal(portal));
+      this.c.getPlayer().changeMap(mapz, mapz.getPortal(portalId));
     }
   }
-  
-  public final void warpS(int map, int portal)
+
+  public final void warpS (int map, int portal)
   {
     MapleMap mapz = getWarpMap(map);
     this.c.getPlayer().changeMap(mapz, mapz.getPortal(portal));
   }
-  
-  public final void setDamageSkin(int itemid)
+
+  public final void setDamageSkin (int itemid)
   {
     MapleQuest quest = MapleQuest.getInstance(7291);
     MapleQuestStatus queststatus = new MapleQuestStatus(quest, 1);
@@ -583,35 +588,35 @@ public abstract class AbstractPlayerInteraction
     this.c.getPlayer().getMap().broadcastMessage(this.c.getPlayer(), CField.showForeignDamageSkin(this.c.getPlayer(), skinnum), false);
     this.c.getPlayer().updateDamageSkin();
   }
-  
-  public final void warp(int map, String portal)
+
+  public final void warp (int mapId, String portalName)
   {
-    MapleMap mapz = getWarpMap(map);
-    if (map == 109060000 || map == 109060002 || map == 109060004)
+    MapleMap mapz = getWarpMap(mapId);
+    if (mapId == 109060000 || mapId == 109060002 || mapId == 109060004)
     {
-      portal = mapz.getSnowballPortal();
+      portalName = mapz.getSnowballPortal();
     }
-    if (map == this.c.getPlayer().getMapId())
+    if (mapId == this.c.getPlayer().getMapId())
     {
-      Point portalPos = new Point(this.c.getPlayer().getMap().getPortal(portal).getPosition());
+      Point portalPos = new Point(this.c.getPlayer().getMap().getPortal(portalName).getPosition());
       if (portalPos.distanceSq(getPlayer().getTruePosition()) < 90000.0D)
       {
         this.c.getPlayer().checkFollow();
-        this.c.getSession().writeAndFlush(CField.instantMapWarp(this.c.getPlayer(), (byte) this.c.getPlayer().getMap().getPortal(portal).getId()));
-        this.c.getPlayer().getMap().movePlayer(this.c.getPlayer(), new Point(this.c.getPlayer().getMap().getPortal(portal).getPosition()));
+        this.c.getSession().writeAndFlush(CField.instantMapWarp(this.c.getPlayer(), (byte) this.c.getPlayer().getMap().getPortal(portalName).getId()));
+        this.c.getPlayer().getMap().movePlayer(this.c.getPlayer(), new Point(this.c.getPlayer().getMap().getPortal(portalName).getPosition()));
       }
       else
       {
-        this.c.getPlayer().changeMap(mapz, mapz.getPortal(portal));
+        this.c.getPlayer().changeMap(mapz, mapz.getPortal(portalName));
       }
     }
     else
     {
-      this.c.getPlayer().changeMap(mapz, mapz.getPortal(portal));
+      this.c.getPlayer().changeMap(mapz, mapz.getPortal(portalName));
     }
   }
-  
-  public final void warpS(int map, String portal)
+
+  public final void warpS (int map, String portal)
   {
     MapleMap mapz = getWarpMap(map);
     if (map == 109060000 || map == 109060002 || map == 109060004)
@@ -620,8 +625,8 @@ public abstract class AbstractPlayerInteraction
     }
     this.c.getPlayer().changeMap(mapz, mapz.getPortal(portal));
   }
-  
-  public final void warpMap(int mapid, int portal)
+
+  public final void warpMap (int mapid, int portal)
   {
     MapleMap map = getMap(mapid);
     for (MapleCharacter chr : this.c.getPlayer().getMap().getCharactersThreadsafe())
@@ -629,69 +634,69 @@ public abstract class AbstractPlayerInteraction
       chr.changeMap(map, map.getPortal(portal));
     }
   }
-  
-  public final void playPortalSE()
+
+  public final void playPortalSE ()
   {
     this.c.getSession().writeAndFlush(CField.EffectPacket.showPortalEffect(0));
   }
-  
-  private final MapleMap getWarpMap(int map)
+
+  private final MapleMap getWarpMap (int map)
   {
     return ChannelServer.getInstance(this.c.getChannel()).getMapFactory().getMap(map);
   }
-  
-  public final MapleMap getMap()
+
+  public final MapleMap getMap ()
   {
     return this.c.getPlayer().getMap();
   }
-  
-  public final MapleMap getMap(int map)
+
+  public final MapleMap getMap (int map)
   {
     return getWarpMap(map);
   }
-  
-  public final MapleMap getMap_Instanced(int map)
+
+  public final MapleMap getMap_Instanced (int map)
   {
     return (this.c.getPlayer().getEventInstance() == null) ? getMap(map) : this.c.getPlayer().getEventInstance().getMapInstance(map);
   }
-  
-  public void spawnMonster(int id, int qty)
+
+  public void spawnMonster (int id, int qty)
   {
     spawnMob(id, qty, this.c.getPlayer().getTruePosition(), 1);
   }
-  
-  public final void spawnMobOnMap(int id, int qty, int x, int y, int map)
+
+  public final void spawnMobOnMap (int id, int qty, int x, int y, int map)
   {
     for (int i = 0; i < qty; i++)
     {
       getMap(map).spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(id), new Point(x, y));
     }
   }
-  
-  public final void spawnMob(int id, int x, int y, int effect, boolean show)
+
+  public final void spawnMob (int id, int x, int y, int effect, boolean show)
   {
     MapleMonster m = MapleLifeFactory.getMonster(id);
     m.setHp(m.getStats().getHp());
     m.getStats().setHp(m.getStats().getHp());
     this.c.getPlayer().getMap().spawnMonsterWithEffect(m, effect, new Point(x, y));
   }
-  
-  public final void spawnMob(int id, int qty, int x, int y)
+
+  public final void spawnMob (int id, int qty, int x, int y)
   {
     spawnMob(id, qty, new Point(x, y), 1);
   }
-  
-  public final void spawnMob(int id, int x, int y)
+
+  public final void spawnMob (int id, int x, int y)
   {
     spawnMob(id, 1, new Point(x, y), 1);
   }
-  
-  public final void spawnMobIncrease(int id, int x, int y, int hp)
+
+  public final void spawnMobIncrease (int id, int x, int y, int hp)
   {
     spawnMob(id, 1, new Point(x, y), hp);
   }
-  
-  public final void spawnLinkMob(int id, int x, int y)
+
+  public final void spawnLinkMob (int id, int x, int y)
   {
     MapleMonster m = MapleLifeFactory.getMonster(id);
     m.setHp(m.getStats().getHp());
@@ -699,8 +704,8 @@ public abstract class AbstractPlayerInteraction
     m.setOwner(this.c.getPlayer().getId());
     this.c.getPlayer().getMap().spawnMonsterOnGroundBelow(m, new Point(x, y));
   }
-  
-  private final void spawnMob(int id, int qty, Point pos, int hp)
+
+  private final void spawnMob (int id, int qty, Point pos, int hp)
   {
     for (int i = 0; i < qty; i++)
     {
@@ -710,23 +715,23 @@ public abstract class AbstractPlayerInteraction
       this.c.getPlayer().getMap().spawnMonsterOnGroundBelow(m, pos);
     }
   }
-  
-  public final void killMob(int ids)
+
+  public final void killMob (int ids)
   {
     this.c.getPlayer().getMap().killMonster(ids);
   }
-  
-  public final void killAllMob()
+
+  public final void killAllMob ()
   {
     this.c.getPlayer().getMap().killAllMonsters(true);
   }
-  
-  public final void addHP(int delta)
+
+  public final void addHP (int delta)
   {
     this.c.getPlayer().addHP(delta);
   }
-  
-  public final int getPlayerStat(String type)
+
+  public final int getPlayerStat (String type)
   {
     if (type.equals("LVL"))
     {
@@ -810,38 +815,38 @@ public abstract class AbstractPlayerInteraction
     }
     return -1;
   }
-  
-  public final boolean isAngelicBuster()
+
+  public final boolean isAngelicBuster ()
   {
     return GameConstants.isAngelicBuster(this.c.getPlayer().getJob());
   }
-  
-  public final boolean isZero()
+
+  public final boolean isZero ()
   {
     return GameConstants.isZero(this.c.getPlayer().getJob());
   }
-  
-  public final String getName()
+
+  public final String getName ()
   {
     return this.c.getPlayer().getName();
   }
-  
-  public final boolean haveItem(int itemid)
+
+  public final boolean haveItem (int itemid)
   {
     return haveItem(itemid, 1);
   }
-  
-  public final boolean haveItem(int itemid, int quantity)
+
+  public final boolean haveItem (int itemid, int quantity)
   {
     return haveItem(itemid, quantity, false, true);
   }
-  
-  public final boolean haveItem(int itemid, int quantity, boolean checkEquipped, boolean greaterOrEquals)
+
+  public final boolean haveItem (int itemid, int quantity, boolean checkEquipped, boolean greaterOrEquals)
   {
     return this.c.getPlayer().haveItem(itemid, quantity, checkEquipped, greaterOrEquals);
   }
-  
-  public final boolean canHold()
+
+  public final boolean canHold ()
   {
     for (int i = 1; i <= 5; i++)
     {
@@ -852,8 +857,8 @@ public abstract class AbstractPlayerInteraction
     }
     return true;
   }
-  
-  public final boolean canHoldSlots(int slot)
+
+  public final boolean canHoldSlots (int slot)
   {
     for (int i = 1; i <= 5; i++)
     {
@@ -864,78 +869,78 @@ public abstract class AbstractPlayerInteraction
     }
     return true;
   }
-  
-  public final boolean canHold(int itemid)
+
+  public final boolean canHold (int itemid)
   {
     return (this.c.getPlayer().getInventory(GameConstants.getInventoryType(itemid)).getNextFreeSlot() > -1);
   }
-  
-  public final boolean canHold(int itemid, int quantity)
+
+  public final boolean canHold (int itemid, int quantity)
   {
     return MapleInventoryManipulator.checkSpace(this.c, itemid, quantity, "");
   }
-  
-  public final MapleQuestStatus getQuestRecord(int id)
+
+  public final MapleQuestStatus getQuestRecord (int id)
   {
     return this.c.getPlayer().getQuestNAdd(MapleQuest.getInstance(id));
   }
-  
-  public final MapleQuestStatus getQuestNoRecord(int id)
+
+  public final MapleQuestStatus getQuestNoRecord (int id)
   {
     return this.c.getPlayer().getQuestNoAdd(MapleQuest.getInstance(id));
   }
-  
-  public final byte getQuestStatus(int id)
+
+  public final byte getQuestStatus (int id)
   {
     return this.c.getPlayer().getQuestStatus(id);
   }
-  
-  public final boolean isQuestActive(int id)
+
+  public final boolean isQuestActive (int id)
   {
     return (getQuestStatus(id) == 1);
   }
-  
-  public final boolean isQuestFinished(int id)
+
+  public final boolean isQuestFinished (int id)
   {
     return (getQuestStatus(id) == 2);
   }
-  
-  public final void showQuestMsg(String msg)
+
+  public final void showQuestMsg (String msg)
   {
     this.c.getSession().writeAndFlush(CWvsContext.showQuestMsg("", msg));
   }
-  
-  public final void forceStartQuest(int id, String data)
+
+  public final void forceStartQuest (int id, String data)
   {
     MapleQuest.getInstance(id).forceStart(this.c.getPlayer(), 0, data);
   }
-  
-  public final void forceStartQuest(int id, int data, boolean filler)
+
+  public final void forceStartQuest (int id, int data, boolean filler)
   {
     MapleQuest.getInstance(id).forceStart(this.c.getPlayer(), 0, filler ? String.valueOf(data) : null);
   }
-  
-  public void forceStartQuest(int id)
+
+  public void forceStartQuest (int id)
   {
     MapleQuest.getInstance(id).forceStart(this.c.getPlayer(), 0, null);
   }
-  
-  public void forceCompleteQuest(int id)
+
+  public void forceCompleteQuest (int id)
   {
     MapleQuest.getInstance(id).forceComplete(getPlayer(), 0);
   }
-  
-  public void forceStartQuest(int id, boolean acc)
+
+  public void forceStartQuest (int id, boolean acc)
   {
     MapleQuest.getInstance(id).forceStart(this.c.getPlayer(), 0, null, acc);
   }
-  
-  public void forceCompleteQuest(int id, boolean acc)
+
+  public void forceCompleteQuest (int id, boolean acc)
   {
     MapleQuest.getInstance(id).forceComplete(getPlayer(), 0, acc);
   }
-  
-  public final byte getQuestStatus(int id, boolean acc)
+
+  public final byte getQuestStatus (int id, boolean acc)
   {
     if (acc)
     {
@@ -943,23 +948,23 @@ public abstract class AbstractPlayerInteraction
     }
     return this.c.getPlayer().getQuestStatus(id);
   }
-  
-  public void spawnNpc(int npcId)
+
+  public void spawnNpc (int npcId)
   {
     this.c.getPlayer().getMap().spawnNpc(npcId, this.c.getPlayer().getPosition());
   }
-  
-  public final void spawnNpc(int npcId, int x, int y)
+
+  public final void spawnNpc (int npcId, int x, int y)
   {
     this.c.getPlayer().getMap().spawnNpc(npcId, new Point(x, y));
   }
-  
-  public final void spawnNpc(int npcId, Point pos)
+
+  public final void spawnNpc (int npcId, Point pos)
   {
     this.c.getPlayer().getMap().spawnNpc(npcId, pos);
   }
-  
-  public final int spawnNpc2(int npcId, Point pos)
+
+  public final int spawnNpc2 (int npcId, Point pos)
   {
     MapleNPC npc = MapleLifeFactory.getNPC(npcId);
     npc.setPosition(pos);
@@ -977,8 +982,8 @@ public abstract class AbstractPlayerInteraction
     this.c.getSession().writeAndFlush(CField.NPCPacket.spawnNPCRequestController(npc, true));
     return npc.getObjectId();
   }
-  
-  public final int spawnNpc2(int npcId, Point pos, boolean left)
+
+  public final int spawnNpc2 (int npcId, Point pos, boolean left)
   {
     MapleNPC npc = MapleLifeFactory.getNPC(npcId);
     npc.setPosition(pos);
@@ -993,8 +998,8 @@ public abstract class AbstractPlayerInteraction
     this.c.getSession().writeAndFlush(CField.NPCPacket.spawnNPCRequestController(npc, true));
     return npc.getObjectId();
   }
-  
-  public final void AllInvisibleName(boolean show)
+
+  public final void AllInvisibleName (boolean show)
   {
     for (MapleNPC npc : getMap().getAllNPCs())
     {
@@ -1004,8 +1009,8 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public void NpcAction(int oid, String txt)
+
+  public void NpcAction (int oid, String txt)
   {
     MaplePacketLittleEndianWriter mplew = new MaplePacketLittleEndianWriter();
     mplew.writeShort(SendPacketOpcode.NPC_ACTION.getValue());
@@ -1013,19 +1018,18 @@ public abstract class AbstractPlayerInteraction
     mplew.write(HexTool.getByteArrayFromHexString(txt));
     this.c.getSession().writeAndFlush(mplew.getPacket());
   }
-  
-  public final void removeNpc(int mapid, int npcId)
+
+  public final void removeNpc (int mapid, int npcId)
   {
     this.c.getChannelServer().getMapFactory().getMap(mapid).removeNpc(npcId);
   }
-  
-  public final void removeNpc(int npcId)
+
+  public final void removeNpc (int npcId)
   {
     int objctid = 0;
     for (MapleNPC npc : this.c.getPlayer().getMap().getAllNPCsThreadsafe())
     {
-      if (npc.getOwner() != null &&
-          npc.getOwner().getId() == this.c.getPlayer().getId() && npcId == npc.getId())
+      if (npc.getOwner() != null && npc.getOwner().getId() == this.c.getPlayer().getId() && npcId == npc.getId())
       {
         objctid = npc.getObjectId();
         break;
@@ -1048,8 +1052,8 @@ public abstract class AbstractPlayerInteraction
       this.c.getPlayer().getMap().removeNpc(npcId);
     }
   }
-  
-  public final void forceStartReactor(int mapid, int id)
+
+  public final void forceStartReactor (int mapid, int id)
   {
     MapleMap map = this.c.getChannelServer().getMapFactory().getMap(mapid);
     for (MapleMapObject remo : map.getAllReactorsThreadsafe())
@@ -1062,8 +1066,8 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public final void destroyReactor(int mapid, int id)
+
+  public final void destroyReactor (int mapid, int id)
   {
     MapleMap map = this.c.getChannelServer().getMapFactory().getMap(mapid);
     for (MapleMapObject remo : map.getAllReactorsThreadsafe())
@@ -1076,8 +1080,8 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public final void hitReactor(int mapid, int id)
+
+  public final void hitReactor (int mapid, int id)
   {
     MapleMap map = this.c.getChannelServer().getMapFactory().getMap(mapid);
     for (MapleMapObject remo : map.getAllReactorsThreadsafe())
@@ -1090,28 +1094,28 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public final int getJob()
+
+  public final int getJob ()
   {
     return this.c.getPlayer().getJob();
   }
-  
-  public final void gainNX(int amount)
+
+  public final void gainNX (int amount)
   {
     this.c.getPlayer().modifyCSPoints(1, amount, true);
   }
-  
-  public final void gainItemPeriod(int id, short quantity, int period)
+
+  public final void gainItemPeriod (int id, short quantity, int period)
   {
     gainItem(id, quantity, false, period, -1, "");
   }
-  
-  public final void gainItemPeriod(int id, short quantity, long period, String owner)
+
+  public final void gainItemPeriod (int id, short quantity, long period, String owner)
   {
     gainItem(id, quantity, false, period, -1, owner);
   }
-  
-  public final void gainItem(int id, short quantity)
+
+  public final void gainItem (int id, short quantity)
   {
     if (Math.floor((id / 1000000)) == 1.0D)
     {
@@ -1125,43 +1129,43 @@ public abstract class AbstractPlayerInteraction
       gainItem(id, quantity, false, 0L, -1, "");
     }
   }
-  
-  public final void gainItemSilent(int id, short quantity)
+
+  public final void gainItemSilent (int id, short quantity)
   {
     gainItem(id, quantity, false, 0L, -1, "", this.c, false);
   }
-  
-  public final void gainItem(int id, short quantity, boolean randomStats)
+
+  public final void gainItem (int id, short quantity, boolean randomStats)
   {
     gainItem(id, quantity, randomStats, 0L, -1, "");
   }
-  
-  public final void gainItem(int id, short quantity, boolean randomStats, int slots)
+
+  public final void gainItem (int id, short quantity, boolean randomStats, int slots)
   {
     gainItem(id, quantity, randomStats, 0L, slots, "");
   }
-  
-  public final void gainItem(int id, short quantity, long period)
+
+  public final void gainItem (int id, short quantity, long period)
   {
     gainItem(id, quantity, false, period, -1, "");
   }
-  
-  public final void gainItem(int id, short quantity, boolean randomStats, long period, int slots)
+
+  public final void gainItem (int id, short quantity, boolean randomStats, long period, int slots)
   {
     gainItem(id, quantity, randomStats, period, slots, "");
   }
-  
-  public final void gainItem(int id, short quantity, boolean randomStats, long period, int slots, String owner)
+
+  public final void gainItem (int id, short quantity, boolean randomStats, long period, int slots, String owner)
   {
     gainItem(id, quantity, randomStats, period, slots, owner, this.c);
   }
-  
-  public final void gainItem(int id, short quantity, boolean randomStats, long period, int slots, String owner, MapleClient cg)
+
+  public final void gainItem (int id, short quantity, boolean randomStats, long period, int slots, String owner, MapleClient cg)
   {
     gainItem(id, quantity, randomStats, period, slots, owner, cg, true);
   }
-  
-  public final void gainItem(int id, short quantity, boolean randomStats, long period, int slots, String owner, MapleClient cg, boolean show)
+
+  public final void gainItem (int id, short quantity, boolean randomStats, long period, int slots, String owner, MapleClient cg, boolean show)
   {
     if (quantity >= 0)
     {
@@ -1199,15 +1203,13 @@ public abstract class AbstractPlayerInteraction
           item.setStarForceLevel((byte) 30);
         }
         int[] pcAb = {
-            1212121, 1213028, 1222114, 1232114, 1242123, 1242124, 1262040, 1302344, 1312204, 1322256,
-            1332280, 1342105, 1362141, 1372229, 1382266, 1402260, 1412182, 1422190, 1432219, 1442276,
-            1452258, 1462244, 1472266, 1482222, 1492236, 1522144, 1532148, 1582027, 1272021, 1282022,
-            1592028, 1292028};
+            1212121, 1213028, 1222114, 1232114, 1242123, 1242124, 1262040, 1302344, 1312204, 1322256, 1332280, 1342105, 1362141, 1372229, 1382266, 1402260, 1412182, 1422190, 1432219, 1442276, 1452258, 1462244, 1472266, 1482222, 1492236, 1522144, 1532148, 1582027, 1272021,
+            1282022, 1592028, 1292028
+        };
         int[] pcArc = {
-            1212131, 1213030, 1222124, 1232124, 1242123, 1242144, 1262053, 1302359, 1312215, 1322266,
-            1332291, 1342110, 1362151, 1372239, 1382276, 1402271, 1412191, 1422199, 1432229, 1442287,
-            1452269, 1462254, 1472277, 1482234, 1492247, 1522154, 1532159, 1582046, 1272043, 1282043,
-            1592037, 1292030};
+            1212131, 1213030, 1222124, 1232124, 1242123, 1242144, 1262053, 1302359, 1312215, 1322266, 1332291, 1342110, 1362151, 1372239, 1382276, 1402271, 1412191, 1422199, 1432229, 1442287, 1452269, 1462254, 1472277, 1482234, 1492247, 1522154, 1532159, 1582046, 1272043,
+            1282043, 1592037, 1292030
+        };
         for (int pcA : pcAb)
         {
           if (pcA == id)
@@ -1215,7 +1217,7 @@ public abstract class AbstractPlayerInteraction
             item.setPotential1(60056);
             item.setPotential2(60057);
             item.setPotential3(60058);
-            item.setStarForceLevel((byte)17);
+            item.setStarForceLevel((byte) 17);
             item.calcStarForceStats();
           }
         }
@@ -1226,13 +1228,14 @@ public abstract class AbstractPlayerInteraction
             item.setPotential1(60057);
             item.setPotential2(60085);
             item.setPotential3(60086);
-            item.setStarForceLevel((byte)15);
+            item.setStarForceLevel((byte) 15);
             item.calcStarForceStats();
           }
         }
         item.setGMLog(StringUtil.getAllCurrentTime() + "에 " + "(" + this.id + " / " + this.id2 + ")로부터 gainItem으로 얻은 아이템");
         String name = ii.getName(id);
-        if (id / 10000 != 114 || name == null || name.length() > 0) ;
+        if (id / 10000 != 114 || name == null || name.length() > 0)
+          ;
         MapleInventoryManipulator.addbyItem(cg, item.copy());
       }
       else
@@ -1249,8 +1252,8 @@ public abstract class AbstractPlayerInteraction
       cg.getSession().writeAndFlush(CWvsContext.InfoPacket.getShowItemGain(id, quantity, true));
     }
   }
-  
-  public final boolean removeItem(int id)
+
+  public final boolean removeItem (int id)
   {
     if (MapleInventoryManipulator.removeById_Lock(this.c, GameConstants.getInventoryType(id), id))
     {
@@ -1259,13 +1262,13 @@ public abstract class AbstractPlayerInteraction
     }
     return false;
   }
-  
-  public final void changeMusic(String songName)
+
+  public final void changeMusic (String songName)
   {
     getPlayer().getMap().broadcastMessage(CField.musicChange(songName));
   }
-  
-  public final void changeMusic(boolean cast, String songName)
+
+  public final void changeMusic (boolean cast, String songName)
   {
     if (cast)
     {
@@ -1276,76 +1279,76 @@ public abstract class AbstractPlayerInteraction
       getPlayer().getClient().getSession().writeAndFlush(CField.musicChange(songName));
     }
   }
-  
-  public final void worldMessage(int type, String message)
+
+  public final void worldMessage (int type, String message)
   {
     World.Broadcast.broadcastMessage(CWvsContext.serverNotice(type, "", message));
   }
-  
-  public final void playerMessage(String message)
+
+  public final void playerMessage (String message)
   {
     playerMessage(5, message);
   }
-  
-  public final void mapMessage(String message)
+
+  public final void mapMessage (String message)
   {
     mapMessage(5, message);
   }
-  
-  public final void guildMessage(String message)
+
+  public final void guildMessage (String message)
   {
     guildMessage(5, message);
   }
-  
-  public final void playerMessage(int type, String message)
+
+  public final void playerMessage (int type, String message)
   {
     this.c.getPlayer().dropMessage(type, message);
   }
-  
-  public final void mapMessage(int type, String message)
+
+  public final void mapMessage (int type, String message)
   {
     this.c.getPlayer().getMap().broadcastMessage(CWvsContext.serverNotice(type, "", message));
   }
-  
-  public final void guildMessage(int type, String message)
+
+  public final void guildMessage (int type, String message)
   {
     if (getPlayer().getGuildId() > 0)
     {
       World.Guild.guildPacket(getPlayer().getGuildId(), CWvsContext.serverNotice(type, "", message));
     }
   }
-  
-  public final MapleGuild getGuild()
+
+  public final MapleGuild getGuild ()
   {
     return getGuild(getPlayer().getGuildId());
   }
-  
-  public final MapleGuild getGuild(int guildid)
+
+  public final MapleGuild getGuild (int guildid)
   {
     return World.Guild.getGuild(guildid);
   }
-  
-  public final MapleGuildAlliance getAlliance(int allianceId)
+
+  public final MapleGuildAlliance getAlliance (int allianceId)
   {
     return World.Alliance.getAlliance(allianceId);
   }
-  
-  public void setNewAlliance(int gid, int x)
+
+  public void setNewAlliance (int gid, int x)
   {
     World.Alliance.setNewAlliance(gid, x);
   }
-  
-  public final MapleParty getParty()
+
+  public final MapleParty getParty ()
   {
     return this.c.getPlayer().getParty();
   }
-  
-  public final int getCurrentPartyId(int mapid)
+
+  public final int getCurrentPartyId (int mapid)
   {
     return getMap(mapid).getCurrentPartyId();
   }
-  
-  public final boolean isLeader()
+
+  public final boolean isLeader ()
   {
     if (this.getPlayer().getParty() == null)
     {
@@ -1353,8 +1356,8 @@ public abstract class AbstractPlayerInteraction
     }
     return this.getParty().getLeader().getId() == this.c.getPlayer().getId();
   }
-  
-  public final boolean isAllPartyMembersAllowedJob(int job)
+
+  public final boolean isAllPartyMembersAllowedJob (int job)
   {
     if (this.c.getPlayer().getParty() == null)
     {
@@ -1369,8 +1372,8 @@ public abstract class AbstractPlayerInteraction
     }
     return true;
   }
-  
-  public final boolean allMembersHere()
+
+  public final boolean allMembersHere ()
   {
     if (this.c.getPlayer().getParty() == null)
     {
@@ -1386,8 +1389,8 @@ public abstract class AbstractPlayerInteraction
     }
     return true;
   }
-  
-  public final void setBossRaid(byte count)
+
+  public final void setBossRaid (byte count)
   {
     for (MaplePartyCharacter mem : this.c.getPlayer().getParty().getMembers())
     {
@@ -1397,23 +1400,23 @@ public abstract class AbstractPlayerInteraction
       chr.getClient().getSession().writeAndFlush(CField.getDeathCount(count));
     }
   }
-  
-  public final long getKeyValue(int id, String key)
+
+  public final long getKeyValue (int id, String key)
   {
     return this.c.getPlayer().getKeyValue(id, key);
   }
-  
-  public final void setKeyValue(int id, String key, String value)
+
+  public final void setKeyValue (int id, String key, String value)
   {
     this.c.getPlayer().setKeyValue(id, key, value);
   }
-  
-  public final void removeKeyValue(int id, String key)
+
+  public final void removeKeyValue (int id, String key)
   {
     this.c.getPlayer().removeKeyValue(id, key);
   }
-  
-  public final void warpParty(int mapId)
+
+  public final void warpParty (int mapId)
   {
     if (getPlayer().getParty() == null || getPlayer().getParty().getMembers().size() == 1)
     {
@@ -1444,8 +1447,8 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public final void warpParty(int mapId, int portal)
+
+  public final void warpParty (int mapId, int portal)
   {
     if (getPlayer().getParty() == null || getPlayer().getParty().getMembers().size() == 1)
     {
@@ -1483,8 +1486,8 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public final void warpParty_Instanced(int mapId)
+
+  public final void warpParty_Instanced (int mapId)
   {
     if (getPlayer().getParty() == null || getPlayer().getParty().getMembers().size() == 1)
     {
@@ -1502,23 +1505,23 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public void gainMeso(long gain)
+
+  public void gainMeso (long gain)
   {
     this.c.getPlayer().gainMeso(gain, true, true);
   }
-  
-  public void gainExp(long gain)
+
+  public void gainExp (long gain)
   {
     this.c.getPlayer().gainExp(gain, true, true, true);
   }
-  
-  public void gainExpR(long gain)
+
+  public void gainExpR (long gain)
   {
     this.c.getPlayer().gainExp(gain * this.c.getChannelServer().getExpRate(), true, true, true);
   }
-  
-  public final void givePartyItems(int id, short quantity, List<MapleCharacter> party)
+
+  public final void givePartyItems (int id, short quantity, List<MapleCharacter> party)
   {
     for (MapleCharacter chr : party)
     {
@@ -1533,16 +1536,16 @@ public abstract class AbstractPlayerInteraction
       chr.getClient().getSession().writeAndFlush(CField.EffectPacket.showCharmEffect(this.c.getPlayer(), id, 1, true, ""));
     }
   }
-  
-  public void addPartyTrait(String t, int e, List<MapleCharacter> party)
+
+  public void addPartyTrait (String t, int e, List<MapleCharacter> party)
   {
     for (MapleCharacter chr : party)
     {
       chr.getTrait(MapleTrait.MapleTraitType.valueOf(t)).addExp(e, chr);
     }
   }
-  
-  public void addPartyTrait(String t, int e)
+
+  public void addPartyTrait (String t, int e)
   {
     if (getPlayer().getParty() == null || getPlayer().getParty().getMembers().size() == 1)
     {
@@ -1559,18 +1562,18 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public void addTrait(String t, int e)
+
+  public void addTrait (String t, int e)
   {
     getPlayer().getTrait(MapleTrait.MapleTraitType.valueOf(t)).addExp(e, getPlayer());
   }
-  
-  public final void givePartyItems(int id, short quantity)
+
+  public final void givePartyItems (int id, short quantity)
   {
     givePartyItems(id, quantity, false);
   }
-  
-  public final void givePartyItems(int id, short quantity, boolean removeAll)
+
+  public final void givePartyItems (int id, short quantity, boolean removeAll)
   {
     if (getPlayer().getParty() == null || getPlayer().getParty().getMembers().size() == 1)
     {
@@ -1587,8 +1590,8 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public final void givePartyExp_PQ(int maxLevel, double mod, List<MapleCharacter> party)
+
+  public final void givePartyExp_PQ (int maxLevel, double mod, List<MapleCharacter> party)
   {
     for (MapleCharacter chr : party)
     {
@@ -1596,14 +1599,14 @@ public abstract class AbstractPlayerInteraction
       chr.gainExp(((long) amount * this.c.getChannelServer().getExpRate()), true, true, true);
     }
   }
-  
-  public final void gainExp_PQ(int maxLevel, double mod)
+
+  public final void gainExp_PQ (int maxLevel, double mod)
   {
     int amount = (int) Math.round(GameConstants.getExpNeededForLevel((getPlayer().getLevel() > maxLevel) ? (maxLevel + getPlayer().getLevel() / 10) : getPlayer().getLevel()) / Math.min(getPlayer().getLevel(), maxLevel) / 10.0D / mod);
     gainExp(((long) amount * this.c.getChannelServer().getExpRate()));
   }
-  
-  public final void givePartyExp_PQ(int maxLevel, double mod)
+
+  public final void givePartyExp_PQ (int maxLevel, double mod)
   {
     if (getPlayer().getParty() == null || getPlayer().getParty().getMembers().size() == 1)
     {
@@ -1622,16 +1625,16 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public final void givePartyExp(int amount, List<MapleCharacter> party)
+
+  public final void givePartyExp (int amount, List<MapleCharacter> party)
   {
     for (MapleCharacter chr : party)
     {
       chr.gainExp(((long) amount * this.c.getChannelServer().getExpRate()), true, true, true);
     }
   }
-  
-  public final void givePartyExp(int amount)
+
+  public final void givePartyExp (int amount)
   {
     if (getPlayer().getParty() == null || getPlayer().getParty().getMembers().size() == 1)
     {
@@ -1648,19 +1651,18 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public final void givePartyNX(int amount, List<MapleCharacter> party)
+
+  public final void givePartyNX (int amount, List<MapleCharacter> party)
   {
     for (MapleCharacter chr : party)
     {
       chr.modifyCSPoints(1, amount, true);
     }
   }
-  
-  public final void givePartyNX(int amount)
+
+  public final void givePartyNX (int amount)
   {
-    if (getPlayer().getParty() == null || getPlayer().getParty().getMembers()
-        .size() == 1)
+    if (getPlayer().getParty() == null || getPlayer().getParty().getMembers().size() == 1)
     {
       gainNX(amount);
       return;
@@ -1675,16 +1677,16 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public final void endPartyQuest(int amount, List<MapleCharacter> party)
+
+  public final void endPartyQuest (int amount, List<MapleCharacter> party)
   {
     for (MapleCharacter chr : party)
     {
       chr.endPartyQuest(amount);
     }
   }
-  
-  public final void endPartyQuest(int amount)
+
+  public final void endPartyQuest (int amount)
   {
     if (getPlayer().getParty() == null || getPlayer().getParty().getMembers().size() == 1)
     {
@@ -1701,8 +1703,8 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public final void removeFromParty(int id, List<MapleCharacter> party)
+
+  public final void removeFromParty (int id, List<MapleCharacter> party)
   {
     for (MapleCharacter chr : party)
     {
@@ -1714,13 +1716,13 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public final void removeFromParty(int id)
+
+  public final void removeFromParty (int id)
   {
     givePartyItems(id, (short) 0, true);
   }
-  
-  public final void useSkill(int skill, int level)
+
+  public final void useSkill (int skill, int level)
   {
     if (level <= 0)
     {
@@ -1728,29 +1730,29 @@ public abstract class AbstractPlayerInteraction
     }
     SkillFactory.getSkill(skill).getEffect(level).applyTo(this.c.getPlayer(), false);
   }
-  
-  public final void useItem(int id)
+
+  public final void useItem (int id)
   {
     MapleItemInformationProvider.getInstance().getItemEffect(id).applyTo(this.c.getPlayer(), true);
     this.c.getSession().writeAndFlush(CWvsContext.InfoPacket.getStatusMsg(id));
   }
-  
-  public final void cancelItem(int id)
+
+  public final void cancelItem (int id)
   {
     this.c.getPlayer().cancelEffect(MapleItemInformationProvider.getInstance().getItemEffect(id));
   }
-  
-  public final int getMorphState()
+
+  public final int getMorphState ()
   {
     return this.c.getPlayer().getMorphState();
   }
-  
-  public final void removeAll(int id)
+
+  public final void removeAll (int id)
   {
     this.c.getPlayer().removeAll(id);
   }
-  
-  public final void gainCloseness(int closeness, int index)
+
+  public final void gainCloseness (int closeness, int index)
   {
     MaplePet pet = getPlayer().getPet(index);
     if (pet != null)
@@ -1759,8 +1761,8 @@ public abstract class AbstractPlayerInteraction
       getClient().getSession().writeAndFlush(PetPacket.updatePet(this.c.getPlayer(), pet, getPlayer().getInventory(MapleInventoryType.CASH).getItem(pet.getInventoryPosition()), false, this.c.getPlayer().getPetLoot()));
     }
   }
-  
-  public final void gainClosenessAll(int closeness)
+
+  public final void gainClosenessAll (int closeness)
   {
     for (MaplePet pet : getPlayer().getPets())
     {
@@ -1771,20 +1773,20 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public final void resetMap(int mapid)
+
+  public final void resetMap (int mapid)
   {
     getMap(mapid).resetFully();
   }
-  
-  public final void openNpc(int id)
+
+  public final void openNpc (int id)
   {
     this.c.removeClickedNPC();
     NPCScriptManager.getInstance().dispose(this.c);
     NPCScriptManager.getInstance().start(getClient(), id);
   }
-  
-  public final void openNpc(String script)
+
+  public final void openNpc (String script)
   {
     getClient().removeClickedNPC();
     NPCScriptManager.getInstance().dispose(this.c);
@@ -1796,27 +1798,27 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public void openNpc(int npc, String script)
+
+  public void openNpc (int npc, String script)
   {
     getClient().removeClickedNPC();
     NPCScriptManager.getInstance().dispose(this.c);
     NPCScriptManager.getInstance().start(this.c, npc, script);
   }
-  
-  public final void openNpc(MapleClient cg, int id)
+
+  public final void openNpc (MapleClient cg, int id)
   {
     cg.removeClickedNPC();
     NPCScriptManager.getInstance().dispose(cg);
     NPCScriptManager.getInstance().start(cg, id);
   }
-  
-  public final int getMapId()
+
+  public final int getMapId ()
   {
     return this.c.getPlayer().getMap().getId();
   }
-  
-  public final boolean haveMonster(int mobid)
+
+  public final boolean haveMonster (int mobid)
   {
     for (MapleMapObject obj : this.c.getPlayer().getMap().getAllMonstersThreadsafe())
     {
@@ -1828,28 +1830,28 @@ public abstract class AbstractPlayerInteraction
     }
     return false;
   }
-  
-  public final boolean haveMonster()
+
+  public final boolean haveMonster ()
   {
     return (this.c.getPlayer().getMap().getNumMonsters() > 0);
   }
-  
-  public final int getChannelNumber()
+
+  public final int getChannelNumber ()
   {
     return this.c.getChannel();
   }
-  
-  public final int getMonsterCount(int mapid)
+
+  public final int getMonsterCount (int mapid)
   {
     return this.c.getChannelServer().getMapFactory().getMap(mapid).getNumMonsters();
   }
-  
-  public final void teachSkill(int id, int level, byte masterlevel)
+
+  public final void teachSkill (int id, int level, byte masterlevel)
   {
     getPlayer().changeSingleSkillLevel(SkillFactory.getSkill(id), level, masterlevel);
   }
-  
-  public final void teachSkill(int id, int level)
+
+  public final void teachSkill (int id, int level)
   {
     Skill skil = SkillFactory.getSkill(id);
     if (getPlayer().getSkillLevel(skil) > level)
@@ -1858,13 +1860,13 @@ public abstract class AbstractPlayerInteraction
     }
     getPlayer().changeSingleSkillLevel(skil, level, (byte) skil.getMaxLevel());
   }
-  
-  public final int getPlayerCount(int mapid)
+
+  public final int getPlayerCount (int mapid)
   {
     return this.c.getChannelServer().getMapFactory().getMap(mapid).getCharactersSize();
   }
-  
-  public final boolean dojoAgent_NextMap(boolean dojo, boolean fromresting)
+
+  public final boolean dojoAgent_NextMap (boolean dojo, boolean fromresting)
   {
     if (dojo)
     {
@@ -1872,8 +1874,8 @@ public abstract class AbstractPlayerInteraction
     }
     return Event_DojoAgent.warpNextMap_Agent(this.c.getPlayer(), fromresting);
   }
-  
-  public final boolean dojoAgent_NextMap(boolean dojo, boolean fromresting, int mapid)
+
+  public final boolean dojoAgent_NextMap (boolean dojo, boolean fromresting, int mapid)
   {
     if (dojo)
     {
@@ -1881,18 +1883,18 @@ public abstract class AbstractPlayerInteraction
     }
     return Event_DojoAgent.warpNextMap_Agent(this.c.getPlayer(), fromresting);
   }
-  
-  public final int dojo_getPts()
+
+  public final int dojo_getPts ()
   {
     return this.c.getPlayer().getIntNoRecord(150100);
   }
-  
-  public final MapleEvent getEvent(String loc)
+
+  public final MapleEvent getEvent (String loc)
   {
     return this.c.getChannelServer().getEvent(MapleEventType.valueOf(loc));
   }
-  
-  public final int getSavedLocation(String loc)
+
+  public final int getSavedLocation (String loc)
   {
     Integer ret = Integer.valueOf(this.c.getPlayer().getSavedLocation(SavedLocationType.fromString(loc)));
     if (ret == null || ret.intValue() == -1)
@@ -1901,94 +1903,94 @@ public abstract class AbstractPlayerInteraction
     }
     return ret.intValue();
   }
-  
-  public final void saveLocation(String loc)
+
+  public final void saveLocation (String loc)
   {
     this.c.getPlayer().saveLocation(SavedLocationType.fromString(loc));
   }
-  
-  public final void saveReturnLocation(String loc)
+
+  public final void saveReturnLocation (String loc)
   {
     this.c.getPlayer().saveLocation(SavedLocationType.fromString(loc), this.c.getPlayer().getMap().getReturnMap().getId());
   }
-  
-  public final void clearSavedLocation(String loc)
+
+  public final void clearSavedLocation (String loc)
   {
     this.c.getPlayer().clearSavedLocation(SavedLocationType.fromString(loc));
   }
-  
-  public final void showInstruction(String msg, int width, int height)
+
+  public final void showInstruction (String msg, int width, int height)
   {
     this.c.getSession().writeAndFlush(CField.sendHint(msg, width, height));
   }
-  
-  public final String getInfoQuest(int id)
+
+  public final String getInfoQuest (int id)
   {
     return this.c.getPlayer().getInfoQuest(id);
   }
-  
-  public final void updateInfoQuest(int id, String data)
+
+  public final void updateInfoQuest (int id, String data)
   {
     this.c.getPlayer().updateInfoQuest(id, data);
   }
-  
-  public final boolean getEvanIntroState(String data)
+
+  public final boolean getEvanIntroState (String data)
   {
     return getInfoQuest(22013).equals(data);
   }
-  
-  public final void updateEvanIntroState(String data)
+
+  public final void updateEvanIntroState (String data)
   {
     updateInfoQuest(22013, data);
   }
-  
-  public final void Aran_Start()
+
+  public final void Aran_Start ()
   {
     this.c.getSession().writeAndFlush(CField.Aran_Start());
   }
-  
-  public final void evanTutorial(String data, int v1)
+
+  public final void evanTutorial (String data, int v1)
   {
     this.c.getSession().writeAndFlush(CField.NPCPacket.getEvanTutorial(data));
   }
-  
-  public final void showWZEffect(String data)
+
+  public final void showWZEffect (String data)
   {
     this.c.getSession().writeAndFlush(CField.EffectPacket.showWZEffect(data));
   }
-  
-  public final void EarnTitleMsg(String data)
+
+  public final void EarnTitleMsg (String data)
   {
     this.c.getSession().writeAndFlush(CWvsContext.getTopMsg(data));
   }
-  
-  public final void EnableUI(short i)
+
+  public final void EnableUI (short i)
   {
     this.c.getSession().writeAndFlush(CField.UIPacket.IntroEnableUI(i));
   }
-  
-  public final void DisableUI(boolean enabled)
+
+  public final void DisableUI (boolean enabled)
   {
     this.c.getSession().writeAndFlush(CField.UIPacket.IntroDisableUI(enabled));
   }
-  
-  public final void MovieClipIntroUI(boolean enabled)
+
+  public final void MovieClipIntroUI (boolean enabled)
   {
     this.c.getSession().writeAndFlush(CField.UIPacket.IntroDisableUI(enabled));
     this.c.getSession().writeAndFlush(CField.UIPacket.IntroLock(enabled));
   }
-  
-  public MapleInventoryType getInvType(int i)
+
+  public MapleInventoryType getInvType (int i)
   {
     return MapleInventoryType.getByType((byte) i);
   }
-  
-  public String getItemName(int id)
+
+  public String getItemName (int id)
   {
     return MapleItemInformationProvider.getInstance().getName(id);
   }
-  
-  public void gainPet(int id, String name, int level, int closeness, int fullness, long period, short flags)
+
+  public void gainPet (int id, String name, int level, int closeness, int fullness, long period, short flags)
   {
     if (level > 30)
     {
@@ -2011,13 +2013,13 @@ public abstract class AbstractPlayerInteraction
       ex.printStackTrace();
     }
   }
-  
-  public void removeSlot(int invType, byte slot, short quantity)
+
+  public void removeSlot (int invType, byte slot, short quantity)
   {
     MapleInventoryManipulator.removeFromSlot(this.c, getInvType(invType), slot, quantity, true);
   }
-  
-  public void gainGP(int gp)
+
+  public void gainGP (int gp)
   {
     if (getPlayer().getGuildId() <= 0)
     {
@@ -2025,8 +2027,8 @@ public abstract class AbstractPlayerInteraction
     }
     World.Guild.gainContribution(getPlayer().getGuildId(), gp);
   }
-  
-  public int getGP()
+
+  public int getGP ()
   {
     if (getPlayer().getGuildId() <= 0)
     {
@@ -2034,18 +2036,18 @@ public abstract class AbstractPlayerInteraction
     }
     return World.Guild.getGP(getPlayer().getGuildId());
   }
-  
-  public void showMapEffect(String path)
+
+  public void showMapEffect (String path)
   {
     getClient().getSession().writeAndFlush(CField.MapEff(path));
   }
-  
-  public int itemQuantity(int itemid)
+
+  public int itemQuantity (int itemid)
   {
     return getPlayer().itemQuantity(itemid);
   }
-  
-  public EventInstanceManager getDisconnected(String event)
+
+  public EventInstanceManager getDisconnected (String event)
   {
     EventManager em = getEventManager(event);
     if (em == null)
@@ -2061,8 +2063,8 @@ public abstract class AbstractPlayerInteraction
     }
     return null;
   }
-  
-  public boolean isAllReactorState(int reactorId, int state)
+
+  public boolean isAllReactorState (int reactorId, int state)
   {
     boolean ret = false;
     for (MapleReactor r : getMap().getAllReactorsThreadsafe())
@@ -2074,28 +2076,28 @@ public abstract class AbstractPlayerInteraction
     }
     return ret;
   }
-  
-  public long getCurrentTime()
+
+  public long getCurrentTime ()
   {
     return System.currentTimeMillis();
   }
-  
-  public void spawnMonster(int id)
+
+  public void spawnMonster (int id)
   {
     spawnMonster(id, 1, getPlayer().getTruePosition());
   }
-  
-  public void spawnMonster(int id, int x, int y)
+
+  public void spawnMonster (int id, int x, int y)
   {
     spawnMonster(id, 1, new Point(x, y));
   }
-  
-  public void spawnMonster(int id, int qty, int x, int y)
+
+  public void spawnMonster (int id, int qty, int x, int y)
   {
     spawnMonster(id, qty, new Point(x, y));
   }
-  
-  public void spawnMonster(int id, int qty, Point pos)
+
+  public void spawnMonster (int id, int qty, Point pos)
   {
     for (int i = 0; i < qty; i++)
     {
@@ -2120,64 +2122,64 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public void sendNPCText(String text, int npc)
+
+  public void sendNPCText (String text, int npc)
   {
     getMap().broadcastMessage(CField.NPCPacket.getNPCTalk(npc, (byte) 0, text, "00 00", (byte) 0));
   }
-  
-  public boolean getTempFlag(int flag)
+
+  public boolean getTempFlag (int flag)
   {
     return ((this.c.getChannelServer().getTempFlag() & flag) == flag);
   }
-  
-  public void logPQ(String text)
+
+  public void logPQ (String text)
   {
   }
-  
-  public void outputFileError(Throwable t)
+
+  public void outputFileError (Throwable t)
   {
     FileoutputUtil.outputFileError("Log_Script_Except.rtf", t);
   }
-  
-  public void trembleEffect(int type, int delay)
+
+  public void trembleEffect (int type, int delay)
   {
     this.c.getSession().writeAndFlush(CField.trembleEffect(type, delay));
   }
-  
-  public int nextInt(int arg0)
+
+  public int nextInt (int arg0)
   {
     return Randomizer.nextInt(arg0);
   }
-  
-  public MapleQuest getQuest(int arg0)
+
+  public MapleQuest getQuest (int arg0)
   {
     return MapleQuest.getInstance(arg0);
   }
-  
-  public final MapleInventory getInventory(int type)
+
+  public final MapleInventory getInventory (int type)
   {
     return this.c.getPlayer().getInventory(MapleInventoryType.getByType((byte) type));
   }
-  
-  public int randInt(int arg0)
+
+  public int randInt (int arg0)
   {
     return Randomizer.nextInt(arg0);
   }
-  
-  public void sendDirectionStatus(int key, int value)
+
+  public void sendDirectionStatus (int key, int value)
   {
     this.c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(key, value));
     this.c.getSession().writeAndFlush(CField.UIPacket.getDirectionStatus(true));
   }
-  
-  public void sendDirectionInfo(String data)
+
+  public void sendDirectionInfo (String data)
   {
     this.c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(data, 2000, 0, -100, 0, 0));
     this.c.getSession().writeAndFlush(CField.UIPacket.getDirectionInfo(1, 2000));
   }
-  
-  public void addEquip(short pos, int itemid, short watk, short wdef, short mdef, byte upslot, short hp, short mp)
+
+  public void addEquip (short pos, int itemid, short watk, short wdef, short mdef, byte upslot, short hp, short mp)
   {
     MapleInventory equip = this.c.getPlayer().getInventory(MapleInventoryType.EQUIPPED);
     Item item = MapleItemInformationProvider.getInstance().generateEquipById(itemid, -1L);
@@ -2208,20 +2210,20 @@ public abstract class AbstractPlayerInteraction
     equip.addFromDB(eq);
     this.c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, item));
   }
-  
-  public final void timeMoveMap(final int n, final int n2, final int n3)
+
+  public final void timeMoveMap (final int n, final int n2, final int n3)
   {
     this.warp(n, 0);
     this.getClient().send(CField.getClock(n3));
     server.Timer.CloneTimer.getInstance().schedule(new a(this, n, n2), n3 * 1000L);
   }
-  
-  public final void TimeMoveMap(final int n, final int n2, final int n3)
+
+  public final void TimeMoveMap (final int n, final int n2, final int n3)
   {
     this.timeMoveMap(n, n2, n3);
   }
-  
-  public final void scheduleTimeMoveMap(int destid, int fromid, int time, final boolean reset)
+
+  public final void scheduleTimeMoveMap (int destid, int fromid, int time, final boolean reset)
   {
     final MapleMap dest = this.c.getChannelServer().getMapFactory().getMap(destid);
     final MapleMap from = this.c.getChannelServer().getMapFactory().getMap(fromid);
@@ -2254,8 +2256,8 @@ public abstract class AbstractPlayerInteraction
     };
     tMan.schedule(r, time * 1000L);
   }
-  
-  public final void scheduleTimeMoveDojang(int destid, int fromid, int time, final boolean reset)
+
+  public final void scheduleTimeMoveDojang (int destid, int fromid, int time, final boolean reset)
   {
     final MapleMap dest = this.c.getChannelServer().getMapFactory().getMap(destid);
     final MapleMap from = this.c.getChannelServer().getMapFactory().getMap(fromid);
@@ -2265,7 +2267,7 @@ public abstract class AbstractPlayerInteraction
     Runnable r;
     r = new Runnable()
     {
-      public void run()
+      public void run ()
       {
         List<MapleCharacter> chr = new ArrayList<>();
         for (MapleMapObject chrz : from.getAllChracater())
@@ -2295,8 +2297,8 @@ public abstract class AbstractPlayerInteraction
     };
     tMan.schedule(r, time * 1000L);
   }
-  
-  public void teleport(int portal)
+
+  public void teleport (int portal)
   {
     this.c.getSession().writeAndFlush(CField.instantMapWarp(this.c.getPlayer(), (byte) portal));
     this.c.getPlayer().getMap().movePlayer(this.c.getPlayer(), new Point(this.c.getPlayer().getMap().getPortal(portal).getPosition()));
@@ -2307,22 +2309,22 @@ public abstract class AbstractPlayerInteraction
     }
     this.c.getSession().writeAndFlush(CWvsContext.enableActions(this.c.getPlayer()));
   }
-  
-  public void fakeRelog()
+
+  public void fakeRelog ()
   {
     this.c.getSession().writeAndFlush(CField.getCharInfo(this.c.getPlayer()));
     this.c.getPlayer().updateSkillPacket();
     this.c.getPlayer().updateLinkSkillPacket();
   }
-  
-  public void updateChar()
+
+  public void updateChar ()
   {
     MapleMap currentMap = this.c.getPlayer().getMap();
     currentMap.removePlayer(this.c.getPlayer());
     currentMap.addPlayer(this.c.getPlayer());
   }
-  
-  public void updateKeyValue(int charid, int qid, String keyvalue)
+
+  public void updateKeyValue (int charid, int qid, String keyvalue)
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -2364,8 +2366,8 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public String DojangText()
+
+  public String DojangText ()
   {
     StringBuilder str = (new StringBuilder()).append("무릉도장 랭킹입니다. 상위 50등 까지만 랭킹에 보여집니다.\r\n");
     List<Triple<Integer, Integer, String>> data = DojoRank();
@@ -2379,8 +2381,8 @@ public abstract class AbstractPlayerInteraction
     }
     return str.toString();
   }
-  
-  public String charName(int id)
+
+  public String charName (int id)
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -2426,8 +2428,8 @@ public abstract class AbstractPlayerInteraction
     }
     return null;
   }
-  
-  public List<Triple<Integer, Integer, String>> DojoRank()
+
+  public List<Triple<Integer, Integer, String>> DojoRank ()
   {
     List<Triple<Integer, Integer, String>> file = new ArrayList<>();
     Connection con = null;
@@ -2511,8 +2513,8 @@ public abstract class AbstractPlayerInteraction
     }
     return file;
   }
-  
-  public void spawnMonster2(int id, int qty)
+
+  public void spawnMonster2 (int id, int qty)
   {
     for (int i = 0; i < qty; i++)
     {
@@ -2522,15 +2524,15 @@ public abstract class AbstractPlayerInteraction
       this.c.getPlayer().getMap().spawnMonsterOnGroundBelow(m, this.c.getPlayer().getTruePosition());
     }
   }
-  
-  public void openNpcCustom(MapleClient c, int id, String custom)
+
+  public void openNpcCustom (MapleClient c, int id, String custom)
   {
     c.removeClickedNPC();
     NPCScriptManager.getInstance().dispose(c);
     NPCScriptManager.getInstance().start(getClient(), id, custom);
   }
-  
-  public final int checkWeddingReservation()
+
+  public final int checkWeddingReservation ()
   {
     int ret = checkWeddingInternal();
     if (ret > 0)
@@ -2544,13 +2546,13 @@ public abstract class AbstractPlayerInteraction
     }
     return 0;
   }
-  
-  public final int checkWeddingStart()
+
+  public final int checkWeddingStart ()
   {
     return checkWeddingInternal();
   }
-  
-  private int checkWeddingInternal()
+
+  private int checkWeddingInternal ()
   {
     if (this.c.getPlayer().getParty() == null)
     {
@@ -2598,46 +2600,46 @@ public abstract class AbstractPlayerInteraction
     }
     return 0;
   }
-  
-  public MarriageDataEntry getMarriageData()
+
+  public MarriageDataEntry getMarriageData ()
   {
     return getMarriageData(this.c.getPlayer().getMarriageId());
   }
-  
-  public MarriageDataEntry getMarriageData(int marriageId)
+
+  public MarriageDataEntry getMarriageData (int marriageId)
   {
     return MarriageManager.getInstance().getMarriage(marriageId);
   }
-  
-  public MarriageEventAgent getMarriageAgent()
+
+  public MarriageEventAgent getMarriageAgent ()
   {
     return getMarriageAgent(this.c.getChannel());
   }
-  
-  public MarriageEventAgent getMarriageAgent(int channel)
+
+  public MarriageEventAgent getMarriageAgent (int channel)
   {
     return MarriageManager.getInstance().getEventAgent(channel);
   }
-  
-  public void sendWeddingWishListInputDlg()
+
+  public void sendWeddingWishListInputDlg ()
   {
     this.c.getSession().writeAndFlush(CWvsContext.showWeddingWishInputDialog());
   }
-  
-  public final int getInvSlots(int i)
+
+  public final int getInvSlots (int i)
   {
     return this.c.getPlayer().getInventory(MapleInventoryType.getByType((byte) i)).getNumFreeSlot();
   }
-  
-  public final void partyMessage(int type, String message)
+
+  public final void partyMessage (int type, String message)
   {
     if (this.c.getPlayer().getParty() != null)
     {
       World.Party.partyPacket(this.c.getPlayer().getParty().getId(), CWvsContext.serverNotice(type, "", message), null);
     }
   }
-  
-  public final int makeWeddingReservation(int itemId)
+
+  public final int makeWeddingReservation (int itemId)
   {
     int ret = checkWeddingReservation();
     if (ret > 0)
@@ -2666,8 +2668,8 @@ public abstract class AbstractPlayerInteraction
     sendWeddingWishListInputDlg();
     return 0;
   }
-  
-  public final void EnterColorfulInvitationCard()
+
+  public final void EnterColorfulInvitationCard ()
   {
     MapleCharacter chr = this.c.getPlayer();
     if (chr != null)
@@ -2713,8 +2715,8 @@ public abstract class AbstractPlayerInteraction
       }, 100000L);
     }
   }
-  
-  public Equip JoinNubGuild(Equip nEquip, int starforce)
+
+  public Equip JoinNubGuild (Equip nEquip, int starforce)
   {
     while (nEquip.getStarForceLevel() < starforce)
     {
@@ -2775,8 +2777,8 @@ public abstract class AbstractPlayerInteraction
     }
     return nEquip;
   }
-  
-  public final void CheckTime()
+
+  public final void CheckTime ()
   {
     if ((this.c.getPlayer().getMap()).PapulratusPatan == 2)
     {
@@ -2808,8 +2810,7 @@ public abstract class AbstractPlayerInteraction
           구역 = 246;
           break;
       }
-      if ((this.c.getPlayer().getMap()).Papullatushour % 2 == 0 &&
-          (this.c.getPlayer().getMap()).Papullatusminute > 0)
+      if ((this.c.getPlayer().getMap()).Papullatushour % 2 == 0 && (this.c.getPlayer().getMap()).Papullatusminute > 0)
       {
         if (구역 == 246)
         {
@@ -2822,8 +2823,7 @@ public abstract class AbstractPlayerInteraction
       }
       for (MapleMonster monster : this.c.getPlayer().getMap().getAllMonster())
       {
-        if (monster.getCustomValue0(구역) != 4L && (
-            monster.getId() == 8500001 || monster.getId() == 8500011 || monster.getId() == 8500021))
+        if (monster.getCustomValue0(구역) != 4L && (monster.getId() == 8500001 || monster.getId() == 8500011 || monster.getId() == 8500021))
         {
           monster.setCustomInfo(구역, 4, 0);
           monster.getMap().broadcastMessage(CField.startMapEffect("차원의 균열을 봉인했습니다.", 5120177, true));
@@ -2833,8 +2833,8 @@ public abstract class AbstractPlayerInteraction
       }
     }
   }
-  
-  public final void spawnLinkMobsetHP(int id, int x, int y, long nowhp, long maxhp)
+
+  public final void spawnLinkMobsetHP (int id, int x, int y, long nowhp, long maxhp)
   {
     MapleMonster m = MapleLifeFactory.getMonster(id);
     m.setHp(nowhp);
@@ -2842,8 +2842,8 @@ public abstract class AbstractPlayerInteraction
     m.setOwner(this.c.getPlayer().getId());
     this.c.getPlayer().getMap().spawnMonsterOnGroundBelow(m, new Point(x, y));
   }
-  
-  public final void EnterPunchKing()
+
+  public final void EnterPunchKing ()
   {
     this.c.getPlayer().removeSkillCustomInfo(993192800);
     this.c.getPlayer().removeSkillCustomInfo(993192801);
@@ -2896,8 +2896,8 @@ public abstract class AbstractPlayerInteraction
       }, 3000L);
     }, 2000L);
   }
-  
-  public void JoinNubGuild()
+
+  public void JoinNubGuild ()
   {
     MapleGuild guild = World.Guild.getGuild(1);
     if (guild != null)
@@ -2914,8 +2914,8 @@ public abstract class AbstractPlayerInteraction
       this.c.getSession().writeAndFlush(CWvsContext.GuildPacket.guildLoadAattendance());
     }
   }
-  
-  public final void EnterErda()
+
+  public final void EnterErda ()
   {
     MapleMap map = this.c.getChannelServer().getMapFactory().getMap(450001400);
     map.resetFully();
@@ -2933,8 +2933,8 @@ public abstract class AbstractPlayerInteraction
       this.c.send(CField.removeMapEffect());
     }, 3000L);
   }
-  
-  public void SaveDojoRank(MapleCharacter chr)
+
+  public void SaveDojoRank (MapleCharacter chr)
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -2991,8 +2991,8 @@ public abstract class AbstractPlayerInteraction
     }
     chr.removeKeyValue(3);
   }
-  
-  public void ShowDojoRank()
+
+  public void ShowDojoRank ()
   {
     Connection con = null;
     PreparedStatement ps = null, ps1 = null;
