@@ -2540,11 +2540,9 @@ public class DamageParse
         if (totDamage > 0L)
         {
           Integer[] throw_skillList;
-          if (player.getMapId() == 993000500)
+          if (monster != null && monster.getId() == 9101078 && player.getMap().getId() == 993000500)
           {
-            player.setFWolfDamage(player.getFWolfDamage() + totDamage);
-            player.setFWolfAttackCount(player.getFWolfAttackCount() + 1);
-            player.dropMessageGM(5, "total damage : " + player.getFWolfDamage());
+            player.getFlameWolf().doDamage(player, totDamage);
           }
           if (!GameConstants.isKaiser(player.getJob()) && monster != null)
           {
@@ -5248,10 +5246,9 @@ public class DamageParse
     }
     if (totDamage > 0L)
     {
-      if (player.getMapId() == 993000500)
+      if (monster != null && monster.getId() == 9101078 && player.getMap().getId() == 993000500)
       {
-        player.setFWolfDamage(player.getFWolfDamage() + totDamage);
-        player.setFWolfAttackCount(player.getFWolfAttackCount() + 1);
+        player.getFlameWolf().doDamage(player, totDamage);
       }
       DamageParse.MFinalAttackRequest(player, attack.skill, monster);
       if (attack.skill == 2321007)

@@ -3867,7 +3867,7 @@ public final class MapleMap
     return null;
   }
 
-  public MapleRandomPortal getFireWolfPortal ()
+  public MapleRandomPortal getFlameWolfPortal ()
   {
     for (MapleMapObject mmo : this.mapobjects.get(MapleMapObjectType.RANDOM_PORTAL).values())
     {

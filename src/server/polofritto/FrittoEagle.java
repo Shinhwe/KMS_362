@@ -127,7 +127,7 @@ public class FrittoEagle
     c.getSession().writeAndFlush(SLFCGPacket.SetIngameDirectionMode(true, false, false, false));
     c.getSession().writeAndFlush(SLFCGPacket.InGameDirectionEvent("", 10, 1));
     c.getSession().writeAndFlush(CField.environmentChange("PoloFritto/msg1", 20));
-    c.getSession().writeAndFlush(CField.startMapEffect("독수리를 침착하게 한 마리씩 잡도록 해! 아참, 대머리 독수리는 아무 쓸모 없으니 잡지마!", 5120160, true));
+    c.getSession().writeAndFlush(CField.startMapEffect("請擊殺飛翔中的老鷹吧! 對了, 禿頭的老鷹頭髮都沒了, 就不要擊殺它了!", 5120160, true));
     c.getSession().writeAndFlush(SLFCGPacket.milliTimer(30000));
     updateNewWave(c);
     this.sc = Timer.EventTimer.getInstance().schedule(new Runnable()

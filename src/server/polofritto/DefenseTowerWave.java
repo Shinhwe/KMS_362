@@ -289,7 +289,6 @@ public class DefenseTowerWave
     this.life -= 1;
 
     this.updateDefenseLife(c);
-    
   }
 
   public void start (final MapleClient c)

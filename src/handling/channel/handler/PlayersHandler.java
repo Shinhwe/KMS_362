@@ -140,15 +140,15 @@ public class PlayersHandler
     MapleRandomPortal portal = (MapleRandomPortal) chr.getMap().getMapObject(slea.readInt(), MapleMapObjectType.RANDOM_PORTAL);
     if (portal != null && portal.getCharId() == chr.getId() && chr.getMapId() == portal.getMapId())
     {
-
-      chr.addKV("poloFrittoBaseExp", String.valueOf(portal.getBaseExp()));
       if (portal.getPortalType() == 2)
       {
+        chr.addKV("poloFrittoBaseExp", String.valueOf(portal.getBaseExp()));
         NPCScriptManager.getInstance().start(chr.getClient(), portal.ispolo() ? 9001059 : 9001060, portal.ispolo() ? "poloEnter" : "FrittoEnter");
       }
       else if (portal.getPortalType() == 3)
       {
-        NPCScriptManager.getInstance().start(chr.getClient(), 9001059, "FireWolfEnter");
+        chr.addKV("flameWolfBaseExp", String.valueOf(portal.getBaseExp()));
+        NPCScriptManager.getInstance().start(chr.getClient(), 9001059, "FlameWolfEnter");
       }
     }
   }

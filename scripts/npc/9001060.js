@@ -219,8 +219,10 @@ function action(mode, type, sel) {
         cm.getPlayer().setFrittoEgg(null);
         cm.getPlayer().setFrittoEagle(null);
         cm.getPlayer().setFrittoDancing(null);
-        var map = parseInt(cm.getPlayer().getV("poloFritto"), 10);
-        cm.warp(map);
+        var returnMap = parseInt(cm.getPlayer().getV("poloFrittoReturnMap"), 10);
+        cm.getPlayer().addKV("flameWolfReturnMap", "");
+        cm.getPlayer().addKV("poloFrittoReturnMap", "");
+        cm.warp(returnMap);
         cm.dispose();
         break;
     }
@@ -232,18 +234,9 @@ function action(mode, type, sel) {
     if (expRate > 0) {
       cm.addPoloAndFrittoExp(expRate)
     }
-    var map = parseInt(cm.getPlayer().getV("poloFritto"), 10);
-    cm.warp(map);
-  } else if (status == 4) {
-    switch (seld) {
-      case 1:
-        break;
-      case 2:
-        cm.dispose();
-        cm.gainItem(item, 1);
-        var map = parseInt(cm.getPlayer().getV("poloFritto"), 10);
-        cm.warp(map);
-        break;
-    }
+    var returnMap = parseInt(cm.getPlayer().getV("poloFrittoReturnMap"), 10);
+    cm.getPlayer().addKV("flameWolfReturnMap", "");
+    cm.getPlayer().addKV("poloFrittoReturnMap", "");
+    cm.warp(returnMap);
   }
 }

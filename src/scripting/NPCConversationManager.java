@@ -2,6 +2,7 @@ package scripting;
 
 import client.*;
 import client.inventory.*;
+import com.alibaba.fastjson2.JSON;
 import constants.GameConstants;
 import constants.KoreaCalendar;
 import constants.ServerConstants;
@@ -33,7 +34,6 @@ import server.quest.MapleQuest;
 import server.quest.party.MapleNettPyramid;
 import server.shops.MapleShop;
 import server.shops.MapleShopFactory;
-import server.shops.MapleShopItem;
 import tools.FileoutputUtil;
 import tools.Pair;
 import tools.StringUtil;
@@ -6192,6 +6192,97 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     }
   }
 
+  public void addFlameWolfExp (int expRate)
+  {
+    long baseExp = Long.parseLong(this.c.getPlayer().getV("flameWolfBaseExp"));
+    System.out.println("addFlameWolfExp method ! expRate = " + expRate + " ; baseExp = " + baseExp + " ;  server exp Rate = " + this.c.getChannelServer().getExpRate());
+    this.c.getPlayer().gainExp(expRate * baseExp * this.c.getChannelServer().getExpRate(), true, true, true);
+  }
+
+  public String calcFlameWolfExpReward ()
+  {
+    HashMap<String, Object> flameWolfExpReward = new HashMap<>();
+
+    int level = getPlayer().getLevel();
+
+    long flameWolfDamage = getPlayer().getFlameWolfDamage();
+    
+    if (level < 200)
+    {
+      if (flameWolfDamage < 1500L * 10000L)
+      {
+        flameWolfExpReward.put("itemId", 2434634);
+        flameWolfExpReward.put("itemCount", 1);
+        flameWolfExpReward.put("damageText", "足夠的");
+        flameWolfExpReward.put("expRate", 400);
+      }
+      else if (flameWolfDamage < 10L * 1500L * 10000L)
+      {
+        flameWolfExpReward.put("itemId", 2434635);
+        flameWolfExpReward.put("itemCount", 1);
+        flameWolfExpReward.put("damageText", "巨量的");
+        flameWolfExpReward.put("expRate", 700);
+      }
+      else
+      {
+        flameWolfExpReward.put("itemId", 2434636);
+        flameWolfExpReward.put("itemCount", 1);
+        flameWolfExpReward.put("damageText", "致命的");
+        flameWolfExpReward.put("expRate", 750);
+      }
+    }
+    else if (level < 260)
+    {
+      if (flameWolfDamage < 16L * 10L * 10000L * 10000L) // 160億
+      {
+        flameWolfExpReward.put("itemId", 2434634);
+        flameWolfExpReward.put("itemCount", 1);
+        flameWolfExpReward.put("damageText", "足夠的");
+        flameWolfExpReward.put("expRate", 600);
+      }
+      else if (flameWolfDamage < 65L * 10L * 10000L * 10000L) // 650億
+      {
+        flameWolfExpReward.put("itemId", 2434635);
+        flameWolfExpReward.put("itemCount", 1);
+        flameWolfExpReward.put("damageText", "巨量的");
+        flameWolfExpReward.put("expRate", 1100);
+      }
+      else
+      {
+        flameWolfExpReward.put("itemId", 2434636);
+        flameWolfExpReward.put("itemCount", 1);
+        flameWolfExpReward.put("damageText", "致命的");
+        flameWolfExpReward.put("expRate", 1200);
+      }
+    }
+    else
+    {
+      if (flameWolfDamage < 75L * 10L * 10000L * 10000L) // 750億
+      {
+        flameWolfExpReward.put("itemId", 2434634);
+        flameWolfExpReward.put("itemCount", 1);
+        flameWolfExpReward.put("damageText", "足夠的");
+        flameWolfExpReward.put("expRate", 800);
+      }
+      else if (flameWolfDamage < 160L * 10L * 10000L * 10000L) // 1600億
+      {
+        flameWolfExpReward.put("itemId", 2434635);
+        flameWolfExpReward.put("itemCount", 1);
+        flameWolfExpReward.put("damageText", "巨量的");
+        flameWolfExpReward.put("expRate", 1500);
+      }
+      else
+      {
+        flameWolfExpReward.put("itemId", 2434636);
+        flameWolfExpReward.put("itemCount", 1);
+        flameWolfExpReward.put("damageText", "致命的");
+        flameWolfExpReward.put("expRate", 1600);
+      }
+    }
+
+    return JSON.toJSONString(flameWolfExpReward);
+  }
+
   public void sendPacket (String args)
   {
     /* 3532 */
@@ -6460,81 +6551,12 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     return itemname;
   }
 
-  public long getFWolfMeso ()
-  {
-    /* 3668 */
-    if (this.c.getPlayer().getFWolfAttackCount() > 15)
-    {
-      /* 3669 */
-      long BaseMeso = 10000000L;
-      /* 3670 */
-      long FWolfMeso = 0L;
-
-      /* 3672 */
-      if (this.c.getPlayer().getFWolfDamage() >= 900000000000L)
-      {
-        /* 3673 */
-        FWolfMeso = BaseMeso * 100L;
-      }
-      else
-      {
-        /* 3675 */
-        float ratio = (float) (900000000000L / this.c.getPlayer().getFWolfDamage() * 100L);
-        /* 3676 */
-        FWolfMeso = (long) ((float) BaseMeso * ratio);
-      }
-      /* 3678 */
-      return FWolfMeso;
-    }
-    /* 3680 */
-    return (100000L * this.c.getPlayer().getFWolfAttackCount());
-  }
 
   public void addPoloAndFrittoExp (int expRate)
   {
     long baseExp = Long.parseLong(this.c.getPlayer().getV("poloFrittoBaseExp"));
     System.out.println("addPoloAndFrittoExp method ! expRate = " + expRate + " ; baseExp = " + baseExp + " ;  server exp Rate = " + this.c.getChannelServer().getExpRate());
     this.c.getPlayer().gainExp(expRate * baseExp * this.c.getChannelServer().getExpRate(), true, true, true);
-  }
-
-  public long getFWolfEXP ()
-  {
-    /* 3685 */
-    long expneed = GameConstants.getExpNeededForLevel(this.c.getPlayer().getLevel());
-    /* 3686 */
-    long exp = 0L;
-    /* 3687 */
-    if (this.c.getPlayer().getFWolfDamage() >= 37500000000000L)
-    {
-      /* 3688 */
-      exp = (long) (expneed * 0.25D);
-      /* 3689 */
-    }
-    else if (this.c.getPlayer().getFWolfDamage() >= 6250000000000L)
-    {
-      /* 3690 */
-      exp = (long) (expneed * 0.2D);
-      /* 3691 */
-    }
-    else if (this.c.getPlayer().getFWolfDamage() >= 625000000000L)
-    {
-      /* 3692 */
-      exp = (long) (expneed * 0.15D);
-    }
-    else
-    {
-      /* 3694 */
-      exp = (long) (expneed * 0.1D);
-    }
-
-    /* 3697 */
-    if (this.c.getPlayer().isFWolfKiller())
-    {
-      /* 3698 */
-      exp = (long) (expneed * 0.5D);
-    }
-    /* 3700 */
-    return exp;
   }
 
   public void showDimentionMirror ()

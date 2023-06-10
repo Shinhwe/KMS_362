@@ -10,10 +10,7 @@ import server.Timer;
 import server.life.MapleLifeFactory;
 import server.life.MapleMonster;
 import server.life.OverrideMonsterStats;
-import server.polofritto.BountyHunting;
-import server.polofritto.DefenseTowerWave;
-import server.polofritto.FrittoEagle;
-import server.polofritto.FrittoEgg;
+import server.polofritto.*;
 import server.quest.MapleQuest;
 import server.quest.party.MapleNettPyramid;
 import tools.FileoutputUtil;
@@ -2046,25 +2043,14 @@ public class MapScriptMethods
       {
         break;
       }
-      case fireWolf_Enter:
+      case FlameWolf_Enter:
       {
-        if (c.getPlayer().getMap().getAllMonster().size() == 0)
+        if (c.getPlayer().getFlameWolf() == null)
         {
-          final MapleMapFactory mapFactory = ChannelServer.getInstance(c.getChannel()).getMapFactory();
-          final MapleMap map = mapFactory.getMap(993000500);
-          map.spawnMonsterOnGroundBelow(MapleLifeFactory.getMonster(9101078), new Point(25, 353));
+          FlameWolf flameWolf = new FlameWolf();
+          c.getPlayer().setFlameWolf(flameWolf);
+          flameWolf.start(c);
         }
-        c.getPlayer().setFWolfDamage(0L);
-        c.getPlayer().setFWolfKiller(false);
-        c.getSession().writeAndFlush(CField.startMapEffect("불꽃늑대를 처치할 용사가 늘었군. 어서 녀석을 공격해! 머무를 수 있는 시간은 30초 뿐이야!", 5120159, true));
-        c.getSession().writeAndFlush(CField.getClock(30));
-        Timer.MapTimer.getInstance().schedule(() ->
-        {
-          if (c.getPlayer().getMapId() == 993000500)
-          {
-            c.getPlayer().warp(993000600);
-          }
-        }, 30000L);
         break;
       }
       case enter_993192002:
@@ -2409,10 +2395,14 @@ public class MapScriptMethods
 
     babyPigMap, crash_Dragon, evanleaveD, getDragonEgg, meetWithDragon, go1010100, go1010200, go1010300, go1010400, will_phase1_everyone, will_phase2_everyone, will_phase3_everyone, dunkel_timeRecord, dunkel_boss, JinHillah_onUserEnter, evanPromotion, PromiseDragon, evanTogether, incubation_dragon, TD_MC_Openning, TD_MC_gasi, TD_MC_title, magnus_enter_HP, Akayrum_ExpeditionEnter, bhb2_scEnterHp, bhb3_scEnterHp, cygnusJobTutorial, cygnusTest, Polo_Wave, Fritto_Eagle_Enter, Fritto_Egg_Enter, Fritto_Dancing_Enter, startEreb, enter_450004150, PinkBeenJob_Event, dojang_Msg, dojang_1st, reundodraco, undomorphdarco, explorationPoint, goAdventure, go10000, go20000, go30000, go40000, go50000, go1000000, go1010000, go1020000, go2000000, goArcher, goPirate, goRogue, goMagician, goSwordman, goLith, iceCave, mirrorCave, aranDirection, rienArrow, rien, check_count, Massacre_first, Massacre_result, aranTutorAlone, evanAlone, dojang_QcheckSet, Sky_StageEnter, outCase, balog_buff, balog_dateSet, Sky_BossEnter, Sky_GateMapEnter, shammos_Enter, shammos_Result, shammos_Base, dollCave00, dollCave01, dollCave02, Sky_Quest, enterBlackfrog, onSDI, blackSDI, summonIceWall, metro_firstSetting, start_itemTake, findvioleta, pepeking_effect, TD_MC_keycheck, TD_MC_gasi2, in_secretroom, sealGarden, TD_NC_title, TD_neo_BossEnter, PRaid_D_Enter, PRaid_B_Enter, PRaid_Revive, PRaid_W_Enter, PRaid_WinEnter, PRaid_FailEnter, Resi_tutor10, Resi_tutor20, Resi_tutor30, Resi_tutor40, Resi_tutor50, Resi_tutor60, Resi_tutor70, Resi_tutor80, Resi_tutor50_1, summonSchiller, q31102e, q31103s, jail, VanLeon_ExpeditionEnter, cygnus_ExpeditionEnter, knights_Summon, TCMobrevive, mPark_stageEff, mPark_Enter, moonrabbit_takeawayitem, StageMsg_crack, shammos_Start, iceman_Enter, prisonBreak_1stageEnter, VisitorleaveDirectionMode, visitorPT_Enter, VisitorCubePhase00_Enter, visitor_ReviveMap, cannon_tuto_01, cannon_tuto_direction, cannon_tuto_direction1, cannon_tuto_direction2, userInBattleSquare, merTutorDrecotion00, merTutorDrecotion10, merTutorDrecotion20, merStandAlone, merOutStandAlone, merTutorSleep00, merTutorSleep01, merTutorSleep02, EntereurelTW, ds_tuto_ill0, ds_tuto_0_0, ds_tuto_1_0, ds_tuto_3_0, ds_tuto_3_1, ds_tuto_4_0, ds_tuto_5_0, ds_tuto_2_prep, ds_tuto_1_before, ds_tuto_2_before, ds_tuto_home_before, ds_tuto_ani, PTtutor000, enter_993014200, enter_993018200, enter_993021200, enter_993029200, enter_hungryMuto, enter_hungryMutoEasy, enter_hungryMutoHard, enter_450002024, enter_993001000, // 갓오컨 로비
     enter_pfTutorialStage,// 갓오컨 시작
-    enter_910143000, enter_450004200, enter_993192002, enter_993192003, enter_993192004, enter_993192005, enter_993192006, enter_993192007, BloomingRace_reset, enter_993194001, enter_993194002, miniGameVS_Start, fireWolf_Enter, NULL;
+    enter_910143000, enter_450004200, enter_993192002, enter_993192003, enter_993192004, enter_993192005, enter_993192006, enter_993192007, BloomingRace_reset, enter_993194001, enter_993194002, miniGameVS_Start, FlameWolf_Enter, NULL;
 
     private static onUserEnter fromString (String Str)
     {
+      if (Str.equals("fireWolf_Enter"))
+      {
+        return FlameWolf_Enter;
+      }
       try
       {
         return valueOf(Str);

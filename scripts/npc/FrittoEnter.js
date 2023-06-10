@@ -27,7 +27,8 @@ function action(mode, type, sel) {
         cm.dispose();
         switch (sel) {
             case 1:
-                cm.getPlayer().addKV("poloFritto", cm.getPlayer().getMapId());
+                cm.getPlayer().addKV("flameWolfReturnMap", "");
+                cm.getPlayer().addKV("poloFrittoReturnMap", cm.getPlayer().getMapId());
                 if (cm.getClient().getChannelServer().getMapFactory().getMap(993000300).characterSize() == 0) {
                     // 偷蛋
                     maps.push(993000300);

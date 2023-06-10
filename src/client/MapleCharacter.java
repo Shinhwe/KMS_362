@@ -164,9 +164,9 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   public boolean Lotus;
   List<Integer> allpetbufflist;
   boolean dominant;
-  private int HowlingGaleCount, YoyoCount, WildGrenadierCount, VerseOfRelicsCount, BHGCCount, createDate, RandomPortal, fwolfattackcount, BlockCount, BlockCoin, MesoChairCount, tempmeso, eventcount, duskGauge;
-  private long fwolfdamage, LastMovement, PlatformerStageEnter, AggressiveDamage;
-  private boolean hasfwolfportal, isfwolfkiller, isWatchingWeb, oneMoreChance, isDuskBlind, eventkillmode;
+  private int HowlingGaleCount, YoyoCount, WildGrenadierCount, VerseOfRelicsCount, BHGCCount, createDate, RandomPortal, flameWolfAttackCount, BlockCount, BlockCoin, MesoChairCount, tempmeso, eventcount, duskGauge;
+  private long flameWolfDamage, LastMovement, PlatformerStageEnter, AggressiveDamage;
+  private boolean hasFlameWolfPortal, isFlameWolfKiller, isWatchingWeb, oneMoreChance, isDuskBlind, eventkillmode;
   private boolean hottimeboss = false, hottimebosslastattack = false, hottimebossattackcheck = false;// 월드보스
   private String chairtext;
   private BingoGame BingoInstance;
@@ -381,6 +381,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   private FrittoEagle frittoEagle;
   private FrittoEgg frittoEgg;
   private FrittoDancing frittoDancing;
+  private FlameWolf flameWolf;
   private MapleTyoonKitchen Mtk;
   private MarriageMiniBox mg;
   private int graveTarget;
@@ -405,7 +406,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     this.BHGCCount = 0;
     this.createDate = 0;
     this.RandomPortal = 0;
-    this.fwolfattackcount = 0;
+    this.flameWolfAttackCount = 0;
     this.BlockCount = 0;
     this.BlockCoin = 0;
     this.MesoChairCount = 0;
@@ -413,13 +414,13 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     this.eventcount = 0;
     this.eventkillmode = false;
     this.duskGauge = 0;
-    this.fwolfdamage = 0L;
+    this.flameWolfDamage = 0L;
     this.LastMovement = 0L;
     this.PlatformerStageEnter = 0L;
     this.AggressiveDamage = 0L;
     this.Lotus = false;
-    this.hasfwolfportal = false;
-    this.isfwolfkiller = false;
+    this.hasFlameWolfPortal = false;
+    this.isFlameWolfKiller = false;
     this.isWatchingWeb = false;
     this.oneMoreChance = false;
     this.isDuskBlind = false;
@@ -5438,7 +5439,8 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   {
     mplew.writeShort(this.questinfo.size() + this.getClient().getCustomKeyValue().size());
     for (final Map.Entry<Integer, String> q : this.questinfo.entrySet())
-    {      System.out.println("questinfo key = " + q.getKey() + "; value = " + q.getValue());
+    {
+      System.out.println("questinfo key = " + q.getKey() + "; value = " + q.getValue());
       mplew.writeInt(q.getKey());
       mplew.writeMapleAsciiString((q.getValue() == null) ? "" : q.getValue());
     }
@@ -12481,14 +12483,14 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     this.RandomPortal = a1;
   }
 
-  public boolean hasFWolfPortal ()
+  public boolean getHasFlameWolfPortal ()
   {
-    return this.hasfwolfportal;
+    return this.hasFlameWolfPortal;
   }
 
-  public void setFWolfPortal (final boolean a1)
+  public void setHasFlameWolfPortal (final boolean a1)
   {
-    this.hasfwolfportal = a1;
+    this.hasFlameWolfPortal = a1;
   }
 
   public boolean isWatchingWeb ()
@@ -12501,34 +12503,34 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     this.isWatchingWeb = a1;
   }
 
-  public boolean isFWolfKiller ()
+  public boolean getIsFlameWolfKiller ()
   {
-    return this.isfwolfkiller;
+    return this.isFlameWolfKiller;
   }
 
-  public void setFWolfKiller (final boolean a1)
+  public void setIsFlameWolfKiller (final boolean a1)
   {
-    this.isfwolfkiller = a1;
+    this.isFlameWolfKiller = a1;
   }
 
-  public long getFWolfDamage ()
+  public long getFlameWolfDamage ()
   {
-    return this.fwolfdamage;
+    return this.flameWolfDamage;
   }
 
-  public void setFWolfDamage (final long a1)
+  public void setFlameWolfDamage (final long a1)
   {
-    this.fwolfdamage = a1;
+    this.flameWolfDamage = a1;
   }
 
-  public int getFWolfAttackCount ()
+  public int getFlameWolfAttackCount ()
   {
-    return this.fwolfattackcount;
+    return this.flameWolfAttackCount;
   }
 
-  public void setFWolfAttackCount (final int a1)
+  public void setFlameWolfAttackCount (final int a1)
   {
-    this.fwolfattackcount = a1;
+    this.flameWolfAttackCount = a1;
   }
 
   public boolean isAlive ()
@@ -23749,6 +23751,16 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     {
       ex.printStackTrace();
     }
+  }
+
+  public FlameWolf getFlameWolf ()
+  {
+    return flameWolf;
+  }
+
+  public void setFlameWolf (FlameWolf flameWolf)
+  {
+    this.flameWolf = flameWolf;
   }
 
   public enum FameStatus

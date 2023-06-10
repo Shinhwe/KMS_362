@@ -27,18 +27,21 @@ function action(mode, type, sel) {
         cm.dispose();
         switch (sel) {
             case 1:
-		map = maps[Math.random() * maps.length];
-                cm.getPlayer().addKV("poloFritto", "" + cm.getPlayer().getMapId());
-		if (cm.getClient().getChannelServer().getMapFactory().getMap(993000000).characterSize() == 0) {
-		    cm.gainItem(2434917, -1);
-		    cm.warp(993000000);
-		} else if (cm.getClient().getChannelServer().getMapFactory().getMap(993000100).characterSize() == 0) {
-		    cm.gainItem(2434917, -1);
-		    cm.warp(993000100);
-		} else {
-		    cm.sendOk("현재 누군가가 진행중이군.", 9001059);
-		}
-                break;
+                {
+                    cm.getPlayer().addKV("flameWolfReturnMap", "");
+                    cm.getPlayer().addKV("poloFrittoReturnMap", cm.getPlayer().getMapId());
+                    map = maps[Math.random() * maps.length];
+                    if (cm.getClient().getChannelServer().getMapFactory().getMap(993000000).characterSize() == 0) {
+                        cm.gainItem(2434917, -1);
+                        cm.warp(993000000);
+                    } else if (cm.getClient().getChannelServer().getMapFactory().getMap(993000100).characterSize() == 0) {
+                        cm.gainItem(2434917, -1);
+                        cm.warp(993000100);
+                    } else {
+                        cm.sendOk("현재 누군가가 진행중이군.", 9001059);
+                    }
+                    break;
+                }
             case 2:
                 cm.sendNextS("그렇다면 어쩔수 없군.", 1, 9001059, 0);
                 break;

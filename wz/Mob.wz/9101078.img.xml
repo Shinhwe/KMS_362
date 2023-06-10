@@ -5,7 +5,7 @@
 <int name="damageRecordQuest" value="15147"/>
 <int name="onMobDeadQR" value="15172"/>
 <int name="level" value="1"/>
-<int name="maxHP" value="2000000000"/>
+<int name="maxHP" value="100000000000000"/>
 <string name="finalmaxHP" value="900000000000"/>
 <int name="maxMP" value="100000"/>
 <int name="mpRecovery" value="10000"/>

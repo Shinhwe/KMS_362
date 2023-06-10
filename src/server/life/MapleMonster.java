@@ -1709,18 +1709,9 @@ public class MapleMonster extends AbstractLoadedMapleLife
         }
       }
     }
-    if (killer.getMapId() == 993000500)
+    if (this.getId() == 9101078 && killer.getMapId() == 993000500)
     {
-      MapleMap target = ChannelServer.getInstance(killer.getClient().getChannel()).getMapFactory().getMap(993000600);
-      for (MapleCharacter chr : killer.getMap().getAllChracater())
-      {
-        chr.changeMap(target, target.getPortal(0));
-        chr.setFWolfKiller(true);
-        if (chr.getQuestStatus(16407) == 1)
-        {
-          chr.forceCompleteQuest(16407);
-        }
-      }
+      killer.getFlameWolf().killed(killer);
     }
     if (getSeperateSoul() <= 0)
     {
