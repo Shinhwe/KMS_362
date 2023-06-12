@@ -8624,66 +8624,75 @@ public class PlayerHandler
     try
     {
       Equip source = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(slea.readShort());
+
       if (source == null)
       {
         return;
       }
+
       boolean isArcaneSymbol = GameConstants.isArcaneSymbol(source.getItemId());
+
       boolean isAuthenticSymbol = GameConstants.isAuthenticSymbol(source.getItemId());
-      int baseid = isArcaneSymbol ? -1600 : (isAuthenticSymbol ? -1700 : 0);
+
+      if (isArcaneSymbol == false && isAuthenticSymbol == false)
+      {
+        return;
+      }
+      int baseid = isArcaneSymbol ? -1600 : -1700;
+
       Equip target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) baseid);
-      if (target != null && source.getItemId() != target.getItemId())
+
+      if (source.getItemId() != target.getItemId())
       {
         target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) (baseid - 1));
       }
-      if (target == null)
-      {
-        target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) (baseid - 1));
-      }
-      if (target != null && source.getItemId() != target.getItemId())
+
+      if (source.getItemId() != target.getItemId())
       {
         target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) (baseid - 2));
       }
-      if (target == null)
-      {
-        target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) (baseid - 2));
-      }
-      if (target != null && source.getItemId() != target.getItemId())
+
+      if (source.getItemId() != target.getItemId())
       {
         target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) (baseid - 3));
       }
-      if (target == null)
-      {
-        target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) (baseid - 3));
-      }
-      if (target != null && source.getItemId() != target.getItemId())
+
+      if (source.getItemId() != target.getItemId())
       {
         target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) (baseid - 4));
       }
-      if (target == null)
-      {
-        target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) (baseid - 4));
-      }
-      if (target != null && source.getItemId() != target.getItemId())
+
+      if (source.getItemId() != target.getItemId())
       {
         target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) (baseid - 5));
       }
-      if (target == null)
+
+      if (target == null || source.getItemId() != target.getItemId())
       {
         return;
       }
-      if (source.getItemId() != target.getItemId())
+
+      if (isArcaneSymbol && GameConstants.檢查秘法符文是否可以成長(target, 1) == false)
       {
+        c.getPlayer().dropMessage(1, "該秘法符文無法再繼續成長了!");
         return;
       }
+
+      if (isAuthenticSymbol && GameConstants.檢查真實符文是否可以成長(target, 1) == false)
+      {
+        c.getPlayer().dropMessage(1, "該真實符文無法再繼續成長了!");
+        return;
+      }
+
       if (isArcaneSymbol)
       {
-        target.setArcExp(target.getArcExp() + source.getArcExp() / 2 + 1);
+        target.setArcExp(target.getArcExp() + 1);
       }
       else if (isAuthenticSymbol)
       {
-        target.setAuthenticExp(target.getAuthenticExp() + source.getAuthenticExp() / 2 + 1);
+        target.setAuthenticExp(target.getAuthenticExp() + 1);
       }
+
       c.getPlayer().getInventory(MapleInventoryType.EQUIP).removeSlot(source.getPosition());
       c.getSession().writeAndFlush(CWvsContext.InventoryPacket.clearInventoryItem(MapleInventoryType.EQUIP, source.getPosition(), false));
       c.getPlayer().getSymbol().remove(source);
@@ -8699,93 +8708,66 @@ public class PlayerHandler
   {
     try
     {
-      int itemid = slea.readInt();
+      int itemId = slea.readInt();
       int count = slea.readInt();
-      int havecount = slea.readInt();
-      Equip target = null;
-      boolean isArcaneSymbol = GameConstants.isArcaneSymbol(itemid);
-      if (isArcaneSymbol)
-      {
-        target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1600);
-        if (target != null && itemid != target.getItemId())
-        {
-          target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1601);
-        }
-        if (target == null)
-        {
-          target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1601);
-        }
-        if (target != null && itemid != target.getItemId())
-        {
-          target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1602);
-        }
-        if (target == null)
-        {
-          target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1602);
-        }
-        if (target != null && itemid != target.getItemId())
-        {
-          target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1603);
-        }
-        if (target == null)
-        {
-          target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1603);
-        }
-        if (target != null && itemid != target.getItemId())
-        {
-          target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1604);
-        }
-        if (target == null)
-        {
-          target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1604);
-        }
-        if (target != null && itemid != target.getItemId())
-        {
-          target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1605);
-        }
-      }
-      else
-      {
-        target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1700);
-        if (target != null && itemid != target.getItemId())
-        {
-          target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1701);
-        }
-        if (target == null)
-        {
-          target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1701);
-        }
-        if (target != null && itemid != target.getItemId())
-        {
-          target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1702);
-        }
-        if (target == null)
-        {
-          target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1702);
-        }
-      }
-      if (target == null)
+      int haveCount = slea.readInt();
+      boolean isArcaneSymbol = GameConstants.isArcaneSymbol(itemId);
+
+      boolean isAuthenticSymbol = GameConstants.isAuthenticSymbol(itemId);
+
+      if (isArcaneSymbol == false && isAuthenticSymbol == false)
       {
         return;
       }
-      if (itemid != target.getItemId())
+
+      int baseid = isArcaneSymbol ? -1600 : -1700;
+
+      Equip target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) baseid);
+
+      if (itemId != target.getItemId())
+      {
+        target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) (baseid - 1));
+      }
+
+      if (itemId != target.getItemId())
+      {
+        target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) (baseid - 2));
+      }
+
+      if (itemId != target.getItemId())
+      {
+        target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) (baseid - 3));
+      }
+
+      if (itemId != target.getItemId())
+      {
+        target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) (baseid - 4));
+      }
+
+      if (itemId != target.getItemId())
+      {
+        target = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) (baseid - 5));
+      }
+
+      if (target == null || itemId != target.getItemId())
       {
         return;
       }
+
       List<Equip> removeitems = new ArrayList<>();
+
+      int 經驗值 = 0;
+
       if (isArcaneSymbol)
       {
         for (Map.Entry<Short, Item> item : c.getPlayer().getInventory(MapleInventoryType.EQUIP).lists().entrySet())
         {
-          if (item.getValue().getItemId() == itemid && ((Equip) item.getValue()).getArcExp() == 1 && ((Equip) item.getValue()).getArcLevel() == 1 && removeitems.size() < count)
+          經驗值 += 1;
+          if (item.getValue().getItemId() == itemId && ((Equip) item.getValue()).getArcExp() == 1 && ((Equip) item.getValue()).getArcLevel() == 1 && removeitems.size() < count && GameConstants.檢查秘法符文是否可以成長(target, 經驗值))
           {
             Equip source = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(item.getKey().shortValue());
             removeitems.add(source);
           }
-        }
-        if (removeitems.size() != count)
-        {
-          FileoutputUtil.log("Log_Packet_Except.rtf", c.getPlayer().getName() + " 캐릭터 심볼 비정상 사용발견");
         }
         target.setArcExp(target.getArcExp() + removeitems.size());
       }
@@ -8793,15 +8775,12 @@ public class PlayerHandler
       {
         for (Map.Entry<Short, Item> item : c.getPlayer().getInventory(MapleInventoryType.EQUIP).lists().entrySet())
         {
-          if (item.getValue().getItemId() == itemid && ((Equip) item.getValue()).getAuthenticExp() == 1 && ((Equip) item.getValue()).getArcLevel() == 1 && removeitems.size() < count)
+          經驗值 += 1;
+          if (item.getValue().getItemId() == itemId && ((Equip) item.getValue()).getAuthenticExp() == 1 && ((Equip) item.getValue()).getArcLevel() == 1 && removeitems.size() < count && GameConstants.檢查真實符文是否可以成長(target, 經驗值))
           {
             Equip source = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(item.getKey().shortValue());
             removeitems.add(source);
           }
-        }
-        if (removeitems.size() != count)
-        {
-          FileoutputUtil.log("Log_Packet_Except.rtf", c.getPlayer().getName() + " 캐릭터 심볼 비정상 사용발견");
         }
         target.setAuthenticExp(target.getAuthenticExp() + removeitems.size());
       }
@@ -8811,6 +8790,7 @@ public class PlayerHandler
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.clearInventoryItem(MapleInventoryType.EQUIP, item.getPosition(), false));
         c.getPlayer().getSymbol().remove(item);
       }
+
       c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, target));
     }
     catch (Exception e)

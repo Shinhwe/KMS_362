@@ -701,7 +701,7 @@ public class Equip extends Item implements Serializable
   @Override public void setQuantity (short quantity)
   {
     // 设置数量无效, 但是父类提供了这个方法, 这里覆写掉
-    super.setQuantity((short) 1);
+    super.setQuantity((short) (quantity == 0 ? 0 : 1));
   }
 
   public void setDurability (int durability)

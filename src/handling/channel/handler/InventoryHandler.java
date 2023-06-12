@@ -4459,6 +4459,16 @@ public class InventoryHandler
             c.getPlayer().dropMessage(1, "無法作用於沒有附加潛能的道具!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
+            return;
+          }
+
+          if (eq.獲取附加潛能等級().獲取潛能等級的值() < 16)
+          {
+            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定附加潛能的裝備!");
+
+            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
@@ -4467,6 +4477,7 @@ public class InventoryHandler
             c.getPlayer().dropMessage(6, "沒有足夠的楓幣!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
@@ -4596,6 +4607,16 @@ public class InventoryHandler
             c.getPlayer().dropMessage(1, "無法作用於沒有附加潛能的道具!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
+            return;
+          }
+
+          if (eq.獲取附加潛能等級().獲取潛能等級的值() < 16)
+          {
+            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定附加潛能的裝備!");
+
+            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
@@ -4604,6 +4625,7 @@ public class InventoryHandler
             c.getPlayer().dropMessage(6, "沒有足夠的楓幣!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
@@ -4702,14 +4724,25 @@ public class InventoryHandler
             c.getPlayer().dropMessage(1, "無法作用於沒有潛能的道具!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
+            return;
+          }
+
+          if (eq.獲取潛能等級().獲取潛能等級的值() < 16)
+          {
+            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定潛能的裝備!");
+
+            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
           if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(eq.getItemId()))
           {
-            c.getPlayer().dropMessage(6, "沒有足夠的楓幣!");
+            c.getPlayer().dropMessage(1, "沒有足夠的楓幣!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
@@ -4845,14 +4878,25 @@ public class InventoryHandler
             c.getPlayer().dropMessage(1, "無法作用於沒有潛能的道具!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
           if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(eq.getItemId()))
           {
-            c.getPlayer().dropMessage(6, "沒有足夠的楓幣!");
+            c.getPlayer().dropMessage(1, "沒有足夠的楓幣!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
+            return;
+          }
+
+          if (eq.獲取潛能等級().獲取潛能等級的值() < 16)
+          {
+            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定潛能的裝備!");
+
+            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
@@ -4967,14 +5011,25 @@ public class InventoryHandler
             c.getPlayer().dropMessage(1, "無法作用於沒有潛能的道具!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
           if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(eq.getItemId()))
           {
-            c.getPlayer().dropMessage(6, "沒有足夠的楓幣!");
+            c.getPlayer().dropMessage(1, "沒有足夠的楓幣!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
+            return;
+          }
+
+          if (eq.獲取潛能等級().獲取潛能等級的值() < 16)
+          {
+            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定潛能的裝備!");
+
+            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
@@ -5093,6 +5148,7 @@ public class InventoryHandler
             c.getPlayer().dropMessage(1, "無法作用於沒有潛能的道具!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
@@ -5101,6 +5157,7 @@ public class InventoryHandler
             c.getPlayer().dropMessage(6, "沒有足夠的楓幣!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
@@ -9023,75 +9080,99 @@ public class InventoryHandler
         }
         if (GameConstants.isArcaneSymbol(mapItem.getItemId()))
         {
-          Equip equip2 = (Equip) mapItem.getItem();
-          equip2.setArcPower(60);
-          equip2.setArcLevel(1);
-          equip2.setArcExp(1);
-          if (GameConstants.isXenon(c.getPlayer().getJob()))
+          Equip 秘法符文 = GameConstants.獲取裝備著可以成長的秘法符文(chr, mapItem.getItemId());
+          if (秘法符文 != null)
           {
-            equip2.setArcStr(144);
-            equip2.setArcDex(144);
-            equip2.setArcLuk(144);
+            秘法符文.setArcExp(秘法符文.getArcExp() + 1);
+            c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, 秘法符文));
+            c.getSession().writeAndFlush(CWvsContext.InventoryPacket.getInventoryStatus(true));
+            InventoryHandler.removeItem(chr, mapItem, ob);
+            return;
           }
-          else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
+          else
           {
-            equip2.setArcHp(630);
-          }
-          else if (GameConstants.isWarrior(c.getPlayer().getJob()))
-          {
-            equip2.setArcStr(300);
-          }
-          else if (GameConstants.isMagician(c.getPlayer().getJob()))
-          {
-            equip2.setArcInt(300);
-          }
-          else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
-          {
-            equip2.setArcDex(300);
-          }
-          else if (GameConstants.isThief(c.getPlayer().getJob()))
-          {
-            equip2.setArcLuk(300);
-          }
-          else if (GameConstants.isPirate(c.getPlayer().getJob()))
-          {
-            equip2.setArcStr(300);
+            Equip equip2 = (Equip) mapItem.getItem();
+            equip2.setArcPower(60);
+            equip2.setArcLevel(1);
+            equip2.setArcExp(1);
+            if (GameConstants.isXenon(c.getPlayer().getJob()))
+            {
+              equip2.setArcStr(144);
+              equip2.setArcDex(144);
+              equip2.setArcLuk(144);
+            }
+            else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
+            {
+              equip2.setArcHp(630);
+            }
+            else if (GameConstants.isWarrior(c.getPlayer().getJob()))
+            {
+              equip2.setArcStr(300);
+            }
+            else if (GameConstants.isMagician(c.getPlayer().getJob()))
+            {
+              equip2.setArcInt(300);
+            }
+            else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
+            {
+              equip2.setArcDex(300);
+            }
+            else if (GameConstants.isThief(c.getPlayer().getJob()))
+            {
+              equip2.setArcLuk(300);
+            }
+            else if (GameConstants.isPirate(c.getPlayer().getJob()))
+            {
+              equip2.setArcStr(300);
+            }
           }
         }
         else if (GameConstants.isAuthenticSymbol(mapItem.getItemId()) && (equip = (Equip) mapItem.getItem()).getAuthenticLevel() == 0)
         {
-          equip.setAuthenticPower(20);
-          equip.setAuthenticLevel(1);
-          equip.setAuthenticExp(1);
-          if (GameConstants.isXenon(c.getPlayer().getJob()))
+          Equip 真實符文 = GameConstants.獲取裝備著可以成長的真實符文(chr, mapItem.getItemId());
+          if (真實符文 != null)
           {
-            equip.setAuthenticStr(240);
-            equip.setAuthenticDex(240);
-            equip.setAuthenticLuk(240);
+            真實符文.setAuthenticExp(真實符文.getAuthenticExp() + 1);
+            c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, 真實符文));
+            c.getSession().writeAndFlush(CWvsContext.InventoryPacket.getInventoryStatus(true));
+            InventoryHandler.removeItem(chr, mapItem, ob);
+            return;
           }
-          else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
+          else
           {
-            equip.setAuthenticHp(1050);
-          }
-          else if (GameConstants.isWarrior(c.getPlayer().getJob()))
-          {
-            equip.setAuthenticStr(500);
-          }
-          else if (GameConstants.isMagician(c.getPlayer().getJob()))
-          {
-            equip.setAuthenticInt(500);
-          }
-          else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
-          {
-            equip.setAuthenticDex(500);
-          }
-          else if (GameConstants.isThief(c.getPlayer().getJob()))
-          {
-            equip.setAuthenticLuk(500);
-          }
-          else if (GameConstants.isPirate(c.getPlayer().getJob()))
-          {
-            equip.setAuthenticStr(500);
+            equip.setAuthenticPower(20);
+            equip.setAuthenticLevel(1);
+            equip.setAuthenticExp(1);
+            if (GameConstants.isXenon(c.getPlayer().getJob()))
+            {
+              equip.setAuthenticStr(240);
+              equip.setAuthenticDex(240);
+              equip.setAuthenticLuk(240);
+            }
+            else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
+            {
+              equip.setAuthenticHp(1050);
+            }
+            else if (GameConstants.isWarrior(c.getPlayer().getJob()))
+            {
+              equip.setAuthenticStr(500);
+            }
+            else if (GameConstants.isMagician(c.getPlayer().getJob()))
+            {
+              equip.setAuthenticInt(500);
+            }
+            else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
+            {
+              equip.setAuthenticDex(500);
+            }
+            else if (GameConstants.isThief(c.getPlayer().getJob()))
+            {
+              equip.setAuthenticLuk(500);
+            }
+            else if (GameConstants.isPirate(c.getPlayer().getJob()))
+            {
+              equip.setAuthenticStr(500);
+            }
           }
         }
         if (mapItem.getItem().getItemId() == 4001886)
@@ -9484,75 +9565,97 @@ public class InventoryHandler
         Equip equip;
         if (GameConstants.isArcaneSymbol(mapItem.getItemId()))
         {
-          Equip equip2 = (Equip) mapItem.getItem();
-          equip2.setArcPower(60);
-          equip2.setArcLevel(1);
-          equip2.setArcExp(1);
-          if (GameConstants.isXenon(c.getPlayer().getJob()))
+          Equip 秘法符文 = GameConstants.獲取裝備著可以成長的秘法符文(chr, mapItem.getItemId());
+          if (秘法符文 != null)
           {
-            equip2.setArcStr(144);
-            equip2.setArcDex(144);
-            equip2.setArcLuk(144);
+            秘法符文.setArcExp(秘法符文.getArcExp() + 1);
+            c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, 秘法符文));
+            removeItem_Pet(chr, mapItem, petz, pet.getPetItemId());
+            return;
           }
-          else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
+          else
           {
-            equip2.setArcHp(630);
-          }
-          else if (GameConstants.isWarrior(c.getPlayer().getJob()))
-          {
-            equip2.setArcStr(300);
-          }
-          else if (GameConstants.isMagician(c.getPlayer().getJob()))
-          {
-            equip2.setArcInt(300);
-          }
-          else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
-          {
-            equip2.setArcDex(300);
-          }
-          else if (GameConstants.isThief(c.getPlayer().getJob()))
-          {
-            equip2.setArcLuk(300);
-          }
-          else if (GameConstants.isPirate(c.getPlayer().getJob()))
-          {
-            equip2.setArcStr(300);
+            Equip equip2 = (Equip) mapItem.getItem();
+            equip2.setArcPower(60);
+            equip2.setArcLevel(1);
+            equip2.setArcExp(1);
+            if (GameConstants.isXenon(c.getPlayer().getJob()))
+            {
+              equip2.setArcStr(144);
+              equip2.setArcDex(144);
+              equip2.setArcLuk(144);
+            }
+            else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
+            {
+              equip2.setArcHp(630);
+            }
+            else if (GameConstants.isWarrior(c.getPlayer().getJob()))
+            {
+              equip2.setArcStr(300);
+            }
+            else if (GameConstants.isMagician(c.getPlayer().getJob()))
+            {
+              equip2.setArcInt(300);
+            }
+            else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
+            {
+              equip2.setArcDex(300);
+            }
+            else if (GameConstants.isThief(c.getPlayer().getJob()))
+            {
+              equip2.setArcLuk(300);
+            }
+            else if (GameConstants.isPirate(c.getPlayer().getJob()))
+            {
+              equip2.setArcStr(300);
+            }
           }
         }
         else if (GameConstants.isAuthenticSymbol(mapItem.getItemId()) && (equip = (Equip) mapItem.getItem()).getAuthenticLevel() == 0)
         {
-          equip.setAuthenticPower(20);
-          equip.setAuthenticLevel(1);
-          equip.setAuthenticExp(1);
-          if (GameConstants.isXenon(c.getPlayer().getJob()))
+          Equip 真實符文 = GameConstants.獲取裝備著可以成長的真實符文(chr, mapItem.getItemId());
+          if (真實符文 != null)
           {
-            equip.setAuthenticStr(240);
-            equip.setAuthenticDex(240);
-            equip.setAuthenticLuk(240);
+            真實符文.setAuthenticExp(真實符文.getAuthenticExp() + 1);
+            c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateInventoryItem(false, MapleInventoryType.EQUIP, 真實符文));
+            removeItem_Pet(chr, mapItem, petz, pet.getPetItemId());
+            return;
           }
-          else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
+          else
           {
-            equip.setAuthenticHp(1050);
-          }
-          else if (GameConstants.isWarrior(c.getPlayer().getJob()))
-          {
-            equip.setAuthenticStr(500);
-          }
-          else if (GameConstants.isMagician(c.getPlayer().getJob()))
-          {
-            equip.setAuthenticInt(500);
-          }
-          else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
-          {
-            equip.setAuthenticDex(500);
-          }
-          else if (GameConstants.isThief(c.getPlayer().getJob()))
-          {
-            equip.setAuthenticLuk(500);
-          }
-          else if (GameConstants.isPirate(c.getPlayer().getJob()))
-          {
-            equip.setAuthenticStr(500);
+            equip.setAuthenticPower(20);
+            equip.setAuthenticLevel(1);
+            equip.setAuthenticExp(1);
+            if (GameConstants.isXenon(c.getPlayer().getJob()))
+            {
+              equip.setAuthenticStr(240);
+              equip.setAuthenticDex(240);
+              equip.setAuthenticLuk(240);
+            }
+            else if (GameConstants.isDemonAvenger(c.getPlayer().getJob()))
+            {
+              equip.setAuthenticHp(1050);
+            }
+            else if (GameConstants.isWarrior(c.getPlayer().getJob()))
+            {
+              equip.setAuthenticStr(500);
+            }
+            else if (GameConstants.isMagician(c.getPlayer().getJob()))
+            {
+              equip.setAuthenticInt(500);
+            }
+            else if (GameConstants.isArcher(c.getPlayer().getJob()) || GameConstants.isCaptain(c.getPlayer().getJob()) || GameConstants.isMechanic(c.getPlayer().getJob()) || GameConstants.isAngelicBuster(c.getPlayer().getJob()))
+            {
+              equip.setAuthenticDex(500);
+            }
+            else if (GameConstants.isThief(c.getPlayer().getJob()))
+            {
+              equip.setAuthenticLuk(500);
+            }
+            else if (GameConstants.isPirate(c.getPlayer().getJob()))
+            {
+              equip.setAuthenticStr(500);
+            }
           }
         }
         if (mapItem.isPickpoket())
@@ -10093,6 +10196,7 @@ public class InventoryHandler
     int pos = 0;
     boolean up;
     Equip zeroEquip = null;
+    Equip eq = null;
     final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     final Item cube = c.getPlayer().getInventory(MapleInventoryType.USE).getItem(slea.readShort());
     if (cube.getItemId() >= 2730000 && cube.getItemId() <= 2730005)
@@ -10105,7 +10209,21 @@ public class InventoryHandler
       }
     }
     pos = slea.readShort();
-    Equip eq = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem((short) pos);
+    if (pos > 0)
+    {
+      eq = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem((short) pos);
+    }
+    else
+    {
+      eq = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) pos);
+    }
+    if (eq == null)
+    {
+      c.getPlayer().dropMessage(1, "找不到對應的裝備, 請聯繫管理員!");
+
+      c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+      return;
+    }
     int cubeId = cube.getItemId();
     switch (cubeId)
     {
@@ -10123,22 +10241,34 @@ public class InventoryHandler
             c.getPlayer().dropMessage(1, "無法作用於沒有潛能的道具!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
           if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(eq.getItemId()))
           {
-            c.getPlayer().dropMessage(6, "沒有足夠的楓幣!");
+            c.getPlayer().dropMessage(1, "沒有足夠的楓幣!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
-          if (eq.獲取潛能等級().獲取潛能等級的值() > 2)
+          if (eq.獲取潛能等級().獲取潛能等級的值() < 16)
           {
-            c.getPlayer().dropMessage(6, "該裝備的潛能太強, 無法使用可疑的方塊!");
+            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定的裝備!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
+            return;
+          }
+
+          if (eq.獲取潛能等級().獲取潛能等級的值() > 18)
+          {
+            c.getPlayer().dropMessage(1, "該裝備的潛能太強, 無法使用可疑的方塊!");
+
+            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
@@ -10238,17 +10368,27 @@ public class InventoryHandler
 
           if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(eq.getItemId()))
           {
-            c.getPlayer().dropMessage(6, "沒有足夠的楓幣!");
+            c.getPlayer().dropMessage(1, "沒有足夠的楓幣!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
             return;
           }
 
-          if (eq.獲取附加潛能等級().獲取潛能等級的值() > 1)
+          if (eq.獲取附加潛能等級().獲取潛能等級的值() < 16)
           {
-            c.getPlayer().dropMessage(6, "該裝備的附加潛能太強, 無法使用可疑的附加方塊!");
+            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定附加潛能的裝備!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
+            return;
+          }
+
+          if (eq.獲取附加潛能等級().獲取潛能等級的值() > 16)
+          {
+            c.getPlayer().dropMessage(1, "該裝備的附加潛能太強, 無法使用可疑的附加方塊!");
+
+            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
@@ -10319,22 +10459,34 @@ public class InventoryHandler
             c.getPlayer().dropMessage(1, "無法作用於沒有潛能的道具!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
           if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(eq.getItemId()))
           {
-            c.getPlayer().dropMessage(6, "沒有足夠的楓幣!");
+            c.getPlayer().dropMessage(1, "沒有足夠的楓幣!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
-          if (eq.獲取潛能等級().獲取潛能等級的值() > 3)
+          if (eq.獲取潛能等級().獲取潛能等級的值() < 16)
           {
-            c.getPlayer().dropMessage(6, "該裝備的潛能太強, 無法使用工匠方塊!");
+            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定潛能的裝備!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
+            return;
+          }
+
+          if (eq.獲取潛能等級().獲取潛能等級的值() > 19)
+          {
+            c.getPlayer().dropMessage(1, "該裝備的潛能太強, 無法使用工匠方塊!");
+
+            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
@@ -10436,14 +10588,25 @@ public class InventoryHandler
             c.getPlayer().dropMessage(1, "無法作用於沒有潛能的道具!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
           if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(eq.getItemId()))
           {
-            c.getPlayer().dropMessage(6, "沒有足夠的楓幣!");
+            c.getPlayer().dropMessage(1, "沒有足夠的楓幣!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
+            return;
+          }
+
+          if (eq.獲取潛能等級().獲取潛能等級的值() < 16)
+          {
+            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定潛能的裝備!");
+
+            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 

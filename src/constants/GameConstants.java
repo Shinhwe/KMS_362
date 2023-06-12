@@ -2798,6 +2798,143 @@ public class GameConstants
     return potentialid;
   }
 
+  public static Equip 獲取裝備著可以成長的秘法符文 (MapleCharacter character, int 物品Id)
+  {
+    Equip 身上裝備的秘法符文1 = (Equip) character.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1600);
+
+    Equip 身上裝備的秘法符文2 = (Equip) character.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1601);
+
+    Equip 身上裝備的秘法符文3 = (Equip) character.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1602);
+
+    Equip 身上裝備的秘法符文4 = (Equip) character.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1603);
+
+    Equip 身上裝備的秘法符文5 = (Equip) character.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1604);
+
+    Equip 身上裝備的秘法符文6 = (Equip) character.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1605);
+
+    if (身上裝備的秘法符文1.getItemId() == 物品Id && 檢查秘法符文是否可以成長(身上裝備的秘法符文1, 1))
+    {
+      return 身上裝備的秘法符文1;
+    }
+
+    if (身上裝備的秘法符文2.getItemId() == 物品Id && 檢查秘法符文是否可以成長(身上裝備的秘法符文2, 1))
+    {
+      return 身上裝備的秘法符文2;
+    }
+
+    if (身上裝備的秘法符文3.getItemId() == 物品Id && 檢查秘法符文是否可以成長(身上裝備的秘法符文3, 1))
+    {
+      return 身上裝備的秘法符文3;
+    }
+
+    if (身上裝備的秘法符文4.getItemId() == 物品Id && 檢查秘法符文是否可以成長(身上裝備的秘法符文4, 1))
+    {
+      return 身上裝備的秘法符文4;
+    }
+
+    if (身上裝備的秘法符文5.getItemId() == 物品Id && 檢查秘法符文是否可以成長(身上裝備的秘法符文5, 1))
+    {
+      return 身上裝備的秘法符文5;
+    }
+
+    if (身上裝備的秘法符文6.getItemId() == 物品Id && 檢查秘法符文是否可以成長(身上裝備的秘法符文6, 1))
+    {
+      return 身上裝備的秘法符文6;
+    }
+    return null;
+  }
+
+  public static Equip 獲取裝備著可以成長的真實符文 (MapleCharacter character, int 物品Id)
+  {
+    Equip 身上裝備的真實符文1 = (Equip) character.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1700);
+
+    Equip 身上裝備的真實符文2 = (Equip) character.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1701);
+
+    Equip 身上裝備的真實符文3 = (Equip) character.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -1702);
+
+
+    if (身上裝備的真實符文1.getItemId() == 物品Id && 檢查真實符文是否可以成長(身上裝備的真實符文1, 1))
+    {
+      return 身上裝備的真實符文1;
+    }
+
+    if (身上裝備的真實符文2.getItemId() == 物品Id && 檢查真實符文是否可以成長(身上裝備的真實符文2, 1))
+    {
+      return 身上裝備的真實符文2;
+    }
+
+    if (身上裝備的真實符文3.getItemId() == 物品Id && 檢查真實符文是否可以成長(身上裝備的真實符文3, 1))
+    {
+      return 身上裝備的真實符文3;
+    }
+
+
+    return null;
+  }
+
+  public static boolean 檢查秘法符文是否可以成長 (Equip 秘法符文, int 經驗值)
+  {
+    if (秘法符文.getArcLevel() == 20)
+    {
+      return false;
+    }
+
+    int 當前秘法符文經驗值 = 秘法符文.getArcExp() + 經驗值;
+    // 比如我現在有24點經驗值, 再加1點是25點,
+    // 秘法符文是1級, 需要12點經驗值升級
+    // 25 - 12 = 13
+    // i + 1 = 2
+    // 13 <= 2 * 2+11 = 15
+    // return true
+    for (int i = 秘法符文.getArcLevel(); i <= 20; i++)
+    {
+      int 升級所需經驗 = getArcaneSymbolUpgradeExp(i);
+
+      if (當前秘法符文經驗值 <= 升級所需經驗)
+      {
+        return true;
+      }
+      else
+      {
+        當前秘法符文經驗值 -= 升級所需經驗;
+      }
+    }
+
+    return false;
+  }
+
+  public static boolean 檢查真實符文是否可以成長 (Equip 真實符文, int 經驗值)
+  {
+    if (真實符文.getAuthenticLevel() == 11)
+    {
+      return false;
+    }
+
+    int 當前真實符文經驗值 = 真實符文.getAuthenticExp() + 經驗值;
+    // 比如我現在有24點經驗值, 再加1點是25點,
+    // 秘法符文是1級, 需要12點經驗值升級
+    // 25 - 12 = 13
+    // i + 1 = 2
+    // 13 <= 2 * 2+11 = 15
+    // return true
+    for (int i = 真實符文.getAuthenticLevel(); i <= 11; i++)
+    {
+      int 升級所需經驗 = getAuthenticSymbolUpgradeExp(i);
+
+      if (當前真實符文經驗值 <= 升級所需經驗)
+      {
+        return true;
+      }
+      else
+      {
+        當前真實符文經驗值 -= 升級所需經驗;
+      }
+    }
+
+    return false;
+  }
+
+
   public static boolean 是星力強化卷軸 (int scrollId)
   {
     return MapleItemInformationProvider.getInstance().getItemInformation(scrollId).forceUpgrade > 0;

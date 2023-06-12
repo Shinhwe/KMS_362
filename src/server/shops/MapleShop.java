@@ -664,7 +664,7 @@ public class MapleShop
           c.getSession().writeAndFlush(CWvsContext.setBossReward(c.getPlayer()));
         }
       }
-      // c.getPlayer().getInventory(type).removeItem(slot, quantity, false);
+      c.getPlayer().getInventory(type).removeItem(slot, quantity, false);
       double price;
       if (GameConstants.isThrowingStar(item.getItemId()) || GameConstants.isBullet(item.getItemId()))
       {

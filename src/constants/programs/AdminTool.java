@@ -374,7 +374,7 @@ public class AdminTool extends JFrame
     });
     this.jLabel4.setText("아이템 코드");
     this.jLabel5.setText("갯수");
-    this.jButton4.setText("아이템 추가");
+    this.jButton4.setText("加入列表");
     this.jButton4.addActionListener(new ActionListener()
     {
       public void actionPerformed (ActionEvent evt)
@@ -382,7 +382,7 @@ public class AdminTool extends JFrame
         AdminTool.this.jButton4ActionPerformed(evt);
       }
     });
-    this.jButton5.setText("아이템 제거");
+    this.jButton5.setText("從列表刪除");
     this.jButton5.addActionListener(new ActionListener()
     {
       public void actionPerformed (ActionEvent evt)
@@ -390,7 +390,7 @@ public class AdminTool extends JFrame
         AdminTool.this.jButton5ActionPerformed(evt);
       }
     });
-    this.jButton6.setText("아이템 지급");
+    this.jButton6.setText("發放道具");
     this.jButton6.addActionListener(new ActionListener()
     {
       public void actionPerformed (ActionEvent evt)
@@ -761,57 +761,15 @@ public class AdminTool extends JFrame
 
   private void jButton6ActionPerformed (ActionEvent evt)
   {
-    for (String name : this.jList1.getSelectedValuesList())
+    for (ChannelServer cserv : ChannelServer.getAllInstances())
     {
-      for (ChannelServer cserv : ChannelServer.getAllInstances())
+      for (MapleCharacter player : cserv.getPlayerStorage().getAllCharacters().values())
       {
-        for (MapleCharacter player : cserv.getPlayerStorage().getAllCharacters().values())
+        for (String item : this.itemid)
         {
-          if (name != null && player.getName() != null && name.equals(player.getName()))
-          {
-            for (String item : this.itemid)
-            {
-              int realitemid = Integer.parseInt(item.split(",")[0]);
-              int count = Integer.parseInt(item.split(",")[1].replace(" ", ""));
-              player.gainCabinetItem(realitemid, count);
-            }
-          }
-        }
-      }
-      for (MapleCharacter csplayer : CashShopServer.getPlayerStorage().getAllCharacters().values())
-      {
-        if (name != null && csplayer.getName() != null && name.equals(csplayer.getName()))
-        {
-          for (String item : this.itemid)
-          {
-            int realitemid = Integer.parseInt(item.split(",")[0]);
-            int count = Integer.parseInt(item.split(",")[1].replace(" ", ""));
-            csplayer.gainCabinetItem(realitemid, count);
-          }
-        }
-      }
-      for (MapleCharacter csplayer : AuctionServer.getPlayerStorage().getAllCharacters().values())
-      {
-        if (name != null && csplayer.getName() != null && name.equals(csplayer.getName()))
-        {
-          for (String item : this.itemid)
-          {
-            int realitemid = Integer.parseInt(item.split(",")[0]);
-            int count = Integer.parseInt(item.split(",")[1].replace(" ", ""));
-            csplayer.gainCabinetItem(realitemid, count);
-          }
-        }
-      }
-      for (MapleCharacter csplayer : FarmServer.getPlayerStorage().getAllCharacters().values())
-      {
-        if (name != null && csplayer.getName() != null && name.equals(csplayer.getName()))
-        {
-          for (String item : this.itemid)
-          {
-            int realitemid = Integer.parseInt(item.split(",")[0]);
-            int count = Integer.parseInt(item.split(",")[1].replace(" ", ""));
-            csplayer.gainCabinetItem(realitemid, count);
-          }
+          int realitemid = Integer.parseInt(item.split(",")[0]);
+          int count = Integer.parseInt(item.split(",")[1].replace(" ", ""));
+          player.gainItem(realitemid, count);
         }
       }
     }
