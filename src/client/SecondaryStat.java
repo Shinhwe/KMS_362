@@ -56,13 +56,13 @@ public enum SecondaryStat implements Serializable
   IndieMadR(40),
   IndieEvaR(41),
   IndieDrainHP(42),
-  IndiePmdR(43),
+  IndiePmdR(43), // 最終傷害
   IndieForceJump(44),
   IndieForceSpeed(45),
-  IndieDamageReduce(46),
+  IndieDamageReduce(46), // 真減傷, 參數傳正數
   IndieSummon(47),
   IndieReduceCooltime(48),
-  IndieNotDamaged(49),
+  IndieNotDamaged(49), // 絕對無敵
   IndieJointAttack(50),
   IndieKeyDownMoving(51),
   IndieUnkIllium(52),
@@ -70,7 +70,7 @@ public enum SecondaryStat implements Serializable
   IndieShotDamage(54),
   IndieSuperStance(55),
   IndieGrandCross(56),
-  IndieDamReduceR(57),
+  IndieDamReduceR(57), // 真減傷 負數傳參數
   IndieWickening1(58),
   IndieWickening2(59),
   IndieWickening3(30),

@@ -68,9 +68,11 @@ public class BountyHunting
 
             long baseExp = Long.parseLong(c.getPlayer().getV("poloFrittoBaseExp"));
 
-            monster1.setExp(baseExp * 800);
+            System.out.println("狩獵小遊戲, 基礎怪物經驗值  = " + baseExp);
 
-            monster2.setExp(baseExp * 800);
+            monster1.setExp(baseExp * 8);
+
+            monster2.setExp(baseExp * 8);
             monster1.addListener(new MonsterListener()
             {
               @Override public void monsterKilled ()

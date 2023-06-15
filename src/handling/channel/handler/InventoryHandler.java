@@ -5116,7 +5116,7 @@ public class InventoryHandler
 
           c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, itemId, eq.getItemId()));
 
-          c.getSession().writeAndFlush(CField.getCubeStart(c.getPlayer(), item, up, itemId, c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
+          c.getSession().writeAndFlush(CField.getRedCubeStart(c.getPlayer(), item, up, itemId, c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
 
           c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
 
@@ -5220,7 +5220,7 @@ public class InventoryHandler
 
           c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, itemId, eq.getItemId()));
 
-          c.getSession().writeAndFlush(CField.getCubeStart(c.getPlayer(), item, up, itemId, c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
+          c.getSession().writeAndFlush(CField.getRedCubeStart(c.getPlayer(), item, up, itemId, c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
 
           c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
 
@@ -10195,10 +10195,11 @@ public class InventoryHandler
   {
     int pos = 0;
     boolean up;
+    short slot = slea.readShort();
     Equip zeroEquip = null;
     Equip eq = null;
     final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
-    final Item cube = c.getPlayer().getInventory(MapleInventoryType.USE).getItem(slea.readShort());
+    final Item cube = c.getPlayer().getInventory(MapleInventoryType.USE).getItem(slot);
     if (cube.getItemId() >= 2730000 && cube.getItemId() <= 2730005)
     {
       final int itemid = slea.readInt();
@@ -10342,7 +10343,9 @@ public class InventoryHandler
 
           c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, cubeId, eq.getItemId()));
 
-          c.getSession().writeAndFlush(CField.getCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
+          c.getSession().writeAndFlush(CField.getRedCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
+
+          MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (short) 1, false, true);
 
           c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         }
@@ -10440,7 +10443,9 @@ public class InventoryHandler
 
           c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, cubeId, eq.getItemId()));
 
-          c.getSession().writeAndFlush(CField.getCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
+          c.getSession().writeAndFlush(CField.getRedCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
+
+          MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (short) 1, false, true);
 
           c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         }
@@ -10568,7 +10573,9 @@ public class InventoryHandler
 
           c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, cubeId, eq.getItemId()));
 
-          c.getSession().writeAndFlush(CField.getCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
+          c.getSession().writeAndFlush(CField.getRedCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
+
+          MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (short) 1, false, true);
 
           c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         }
@@ -10696,7 +10703,9 @@ public class InventoryHandler
 
           c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, cubeId, eq.getItemId()));
 
-          c.getSession().writeAndFlush(CField.getCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
+          c.getSession().writeAndFlush(CField.getRedCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
+
+          MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (short) 1, false, true);
 
           c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         }

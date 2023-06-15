@@ -33,10 +33,9 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.*;
 
-public class SecondaryStatEffect
-    implements Serializable
+public class SecondaryStatEffect implements Serializable
 {
-  
+
   private static final long serialVersionUID = 9179541993413738569L;
   private final Map<SecondaryStat, Pair<Integer, Integer>> statups = new HashMap<SecondaryStat, Pair<Integer, Integer>>();
   private final boolean energyChargeCooling = false;
@@ -278,18 +277,18 @@ public class SecondaryStatEffect
   private List<Integer> petsCanConsume;
   private List<Integer> randomPickup;
   private List<Triple<Integer, Integer, Integer>> rewardItem;
-  
-  public static final SecondaryStatEffect loadSkillEffectFromData(MapleData source, int skillid, boolean overtime, int level, String variables)
+
+  public static final SecondaryStatEffect loadSkillEffectFromData (MapleData source, int skillid, boolean overtime, int level, String variables)
   {
     return SecondaryStatEffect.loadFromData(source, skillid, true, overtime, level, variables);
   }
-  
-  public static final SecondaryStatEffect loadItemEffectFromData(MapleData source, int itemid)
+
+  public static final SecondaryStatEffect loadItemEffectFromData (MapleData source, int itemid)
   {
     return SecondaryStatEffect.loadFromData(source, itemid, false, false, 1, null);
   }
-  
-  private static final Point parsePoint(String path, MapleData source, Point def, String variables, int level)
+
+  private static final Point parsePoint (String path, MapleData source, Point def, String variables, int level)
   {
     if (variables == null)
     {
@@ -307,8 +306,8 @@ public class SecondaryStatEffect
     System.out.println("DATA : " + MapleDataTool.getString(dd));
     return null;
   }
-  
-  public static int parseEval(String data, int level)
+
+  public static int parseEval (String data, int level)
   {
     String variables = "x";
     String dddd = data.replace(variables, String.valueOf(level));
@@ -322,8 +321,8 @@ public class SecondaryStatEffect
     }
     return (int) new CaltechEval(dddd.replace("\\r\\n", "")).evaluate();
   }
-  
-  private static final int parseEval(String path, MapleData source, int def, String variables, int level)
+
+  private static final int parseEval (String path, MapleData source, int def, String variables, int level)
   {
     if (variables == null)
     {
@@ -360,14 +359,14 @@ public class SecondaryStatEffect
     }
     return (int) new CaltechEval(dddd.replace("\\r\\n", "")).evaluate();
   }
-  
-  private static double baseLog(double x, double base)
+
+  private static double baseLog (double x, double base)
   {
     return Math.log10(x) / Math.log10(base);
   }
-  
+
   // 와드 loadfromdata
-  private static SecondaryStatEffect loadFromData(MapleData source, int sourceid, boolean skill, boolean overTime, int level, String variables)
+  private static SecondaryStatEffect loadFromData (MapleData source, int sourceid, boolean skill, boolean overTime, int level, String variables)
   {
     SecondaryStatEffect ret = new SecondaryStatEffect();
     try
@@ -2748,8 +2747,8 @@ public class SecondaryStatEffect
     }
     return ret;
   }
-  
-  public static Rectangle calculateBoundingBox(Point posFrom, boolean facingLeft, Point lt, Point rb2, int range)
+
+  public static Rectangle calculateBoundingBox (Point posFrom, boolean facingLeft, Point lt, Point rb2, int range)
   {
     Point myrb;
     Point mylt;
@@ -2769,8 +2768,8 @@ public class SecondaryStatEffect
     }
     return new Rectangle(mylt.x, mylt.y, myrb.x - mylt.x, myrb.y - mylt.y);
   }
-  
-  public static final int parseMountInfo(MapleCharacter player, int skillid)
+
+  public static final int parseMountInfo (MapleCharacter player, int skillid)
   {
     switch (skillid)
     {
@@ -2811,113 +2810,113 @@ public class SecondaryStatEffect
     }
     return GameConstants.getMountItem(skillid, player);
   }
-  
-  private static final int makeHealHP(double rate, double stat, double lowerfactor, double upperfactor)
+
+  private static final int makeHealHP (double rate, double stat, double lowerfactor, double upperfactor)
   {
     return (int) (Math.random() * (double) ((int) (stat * upperfactor * rate) - (int) (stat * lowerfactor * rate) + 1) + (double) ((int) (stat * lowerfactor * rate)));
   }
-  
-  public final boolean applyTo(MapleCharacter chr)
+
+  public final boolean applyTo (MapleCharacter chr)
   {
     return this.applyTo(chr, chr, true, chr.getTruePosition(), this.duration, (byte) (chr.isFacingLeft() ? 1 : 0), false);
   }
-  
-  public final boolean applyToBuff(MapleCharacter chr)
+
+  public final boolean applyToBuff (MapleCharacter chr)
   {
     return this.applyTo(chr, chr, true, chr.getTruePosition(), this.duration, (byte) (chr.isFacingLeft() ? 1 : 0), true);
   }
-  
-  public final boolean applyToBuff(MapleCharacter chr, int duration)
+
+  public final boolean applyToBuff (MapleCharacter chr, int duration)
   {
     return this.applyTo(chr, chr, true, chr.getTruePosition(), duration, (byte) (chr.isFacingLeft() ? 1 : 0), false);
   }
-  
-  public final boolean applyTo(MapleCharacter applyfrom, MapleCharacter applyto)
+
+  public final boolean applyTo (MapleCharacter applyfrom, MapleCharacter applyto)
   {
     return this.applyTo(applyfrom, applyto, true, applyto.getTruePosition(), this.duration, (byte) (applyfrom.isFacingLeft() ? 1 : 0), false);
   }
-  
-  public final boolean applyTo(MapleCharacter applyfrom, MapleCharacter applyto, boolean primary)
+
+  public final boolean applyTo (MapleCharacter applyfrom, MapleCharacter applyto, boolean primary)
   {
     return this.applyTo(applyfrom, applyto, primary, applyto.getTruePosition(), this.duration, (byte) (applyfrom.isFacingLeft() ? 1 : 0), false);
   }
-  
-  public final boolean applyTo(MapleCharacter applyfrom, MapleCharacter applyto, boolean primary, int duration)
+
+  public final boolean applyTo (MapleCharacter applyfrom, MapleCharacter applyto, boolean primary, int duration)
   {
     return this.applyTo(applyfrom, applyto, primary, applyto.getTruePosition(), duration, (byte) (applyfrom.isFacingLeft() ? 1 : 0), false);
   }
-  
-  public final boolean applyTo(MapleCharacter chr, boolean primary)
+
+  public final boolean applyTo (MapleCharacter chr, boolean primary)
   {
     return this.applyTo(chr, chr, primary, chr.getTruePosition(), this.duration, (byte) (chr.isFacingLeft() ? 1 : 0), false);
   }
-  
-  public final boolean applyTo(MapleCharacter chr, boolean primary, boolean showEffect)
+
+  public final boolean applyTo (MapleCharacter chr, boolean primary, boolean showEffect)
   {
     return this.applyTo(chr, chr, primary, chr.getTruePosition(), this.duration, (byte) (chr.isFacingLeft() ? 1 : 0), showEffect);
   }
-  
-  public final boolean applyTo(MapleCharacter chr, int duration)
+
+  public final boolean applyTo (MapleCharacter chr, int duration)
   {
     return this.applyTo(chr, chr, true, chr.getTruePosition(), duration, (byte) (chr.isFacingLeft() ? 1 : 0), false);
   }
-  
-  public final boolean applyTo(MapleCharacter chr, boolean primary, int duration)
+
+  public final boolean applyTo (MapleCharacter chr, boolean primary, int duration)
   {
     return this.applyTo(chr, chr, primary, chr.getTruePosition(), duration, (byte) (chr.isFacingLeft() ? 1 : 0), false);
   }
-  
-  public final boolean applyTo(MapleCharacter chr, boolean primary, int duration, boolean showEffect)
+
+  public final boolean applyTo (MapleCharacter chr, boolean primary, int duration, boolean showEffect)
   {
     return this.applyTo(chr, chr, primary, chr.getTruePosition(), duration, (byte) (chr.isFacingLeft() ? 1 : 0), showEffect);
   }
-  
-  public final boolean applyTo(MapleCharacter chr, Point pos, boolean primary, int duration)
+
+  public final boolean applyTo (MapleCharacter chr, Point pos, boolean primary, int duration)
   {
     return this.applyTo(chr, chr, primary, pos, duration, (byte) (chr.isFacingLeft() ? 1 : 0), false);
   }
-  
-  public final boolean applyTo(MapleCharacter chr, Point pos, boolean primary)
+
+  public final boolean applyTo (MapleCharacter chr, Point pos, boolean primary)
   {
     return this.applyTo(chr, chr, primary, pos, this.duration, (byte) (chr.isFacingLeft() ? 1 : 0), false);
   }
-  
-  public final boolean applyTo(MapleCharacter chr, Point pos, boolean primary, boolean showEffect)
+
+  public final boolean applyTo (MapleCharacter chr, Point pos, boolean primary, boolean showEffect)
   {
     return this.applyTo(chr, chr, primary, pos, this.duration, (byte) (chr.isFacingLeft() ? 1 : 0), showEffect);
   }
-  
-  public final boolean applyTo(MapleCharacter chr, Point pos)
+
+  public final boolean applyTo (MapleCharacter chr, Point pos)
   {
     return this.applyTo(chr, chr, true, pos, this.duration, (byte) (chr.isFacingLeft() ? 1 : 0), false);
   }
-  
-  public final boolean applyTo(MapleCharacter chr, boolean primary, Point pos)
+
+  public final boolean applyTo (MapleCharacter chr, boolean primary, Point pos)
   {
     return this.applyTo(chr, chr, primary, pos, this.duration, (byte) (chr.isFacingLeft() ? 1 : 0), false);
   }
-  
-  public final boolean applyTo(MapleCharacter chr, Point pos, int duration)
+
+  public final boolean applyTo (MapleCharacter chr, Point pos, int duration)
   {
     return this.applyTo(chr, chr, true, pos, duration, (byte) (chr.isFacingLeft() ? 1 : 0), false);
   }
-  
-  public final boolean applyTo(MapleCharacter chr, Point pos, byte rltype)
+
+  public final boolean applyTo (MapleCharacter chr, Point pos, byte rltype)
   {
     return this.applyTo(chr, chr, true, pos, this.duration, rltype, false);
   }
-  
-  public final boolean applyTo(MapleCharacter chr, Point pos, byte rltype, boolean showEffect)
+
+  public final boolean applyTo (MapleCharacter chr, Point pos, byte rltype, boolean showEffect)
   {
     return this.applyTo(chr, chr, true, pos, this.duration, rltype, showEffect);
   }
-  
-  public final boolean applyTo(MapleCharacter chr, Point pos, boolean primary, byte rltype)
+
+  public final boolean applyTo (MapleCharacter chr, Point pos, boolean primary, byte rltype)
   {
     return this.applyTo(chr, chr, primary, pos, this.duration, rltype, false);
   }
-  
-  public final boolean applyTo(MapleCharacter applyfrom, MapleCharacter applyto, boolean primary, Point pos, int localDuration, byte rltype, boolean showEffect)
+
+  public final boolean applyTo (MapleCharacter applyfrom, MapleCharacter applyto, boolean primary, Point pos, int localDuration, byte rltype, boolean showEffect)
   {
     block196:
     {
@@ -3694,7 +3693,7 @@ public class SecondaryStatEffect
           applyfrom.getMap().broadcastMessage(CField.ICBM(true, sourceid, calculateBoundingBox(pos, applyfrom.isFacingLeft())));
         }
       }
-      
+
     }
     if (isTimeLeap() && (System.currentTimeMillis() - applyto.lastTimeleapTime) >= duration)
     {
@@ -3732,8 +3731,8 @@ public class SecondaryStatEffect
     }
     return true;
   }
-  
-  public final boolean applyReturnScroll(MapleCharacter applyto)
+
+  public final boolean applyReturnScroll (MapleCharacter applyto)
   {
     if (this.moveTo != -1 && (applyto.getMap().getReturnMapId() != applyto.getMapId() || this.sourceid == 2031010 || this.sourceid == 2030021))
     {
@@ -3755,30 +3754,30 @@ public class SecondaryStatEffect
     }
     return false;
   }
-  
-  public final Rectangle calculateBoundingBox(int skillid, int level, Point posFrom, boolean facingLeft)
+
+  public final Rectangle calculateBoundingBox (int skillid, int level, Point posFrom, boolean facingLeft)
   {
     return SecondaryStatEffect.calculateBoundingBox(posFrom, facingLeft, SkillFactory.getSkill(skillid).getEffect(level).lt, SkillFactory.getSkill(skillid).getEffect(level).rb, this.range);
   }
-  
-  public final Rectangle calculateBoundingBox(Point posFrom, boolean facingLeft)
+
+  public final Rectangle calculateBoundingBox (Point posFrom, boolean facingLeft)
   {
     return SecondaryStatEffect.calculateBoundingBox(posFrom, facingLeft, this.lt, this.rb, this.range);
   }
-  
-  public final Rectangle calculateBoundingBox(Point posFrom, boolean facingLeft, int addedRange)
+
+  public final Rectangle calculateBoundingBox (Point posFrom, boolean facingLeft, int addedRange)
   {
     return SecondaryStatEffect.calculateBoundingBox(posFrom, facingLeft, this.lt, this.rb, this.range + addedRange);
   }
-  
-  public final double getMaxDistanceSq()
+
+  public final double getMaxDistanceSq ()
   {
     int maxX = Math.max(Math.abs(this.getLt() == null ? 0 : this.getLt().x), Math.abs(this.rb == null ? 0 : this.rb.x));
     int maxY = Math.max(Math.abs(this.getLt() == null ? 0 : this.getLt().y), Math.abs(this.rb == null ? 0 : this.rb.y));
     return maxX * maxX + maxY * maxY;
   }
-  
-  public final void silentApplyBuff(MapleCharacter chr, long starttime, Map<SecondaryStat, Pair<Integer, Integer>> statup, int cid)
+
+  public final void silentApplyBuff (MapleCharacter chr, long starttime, Map<SecondaryStat, Pair<Integer, Integer>> statup, int cid)
   {
     HashMap<SecondaryStat, Pair<Integer, Integer>> cancelStats = new HashMap<SecondaryStat, Pair<Integer, Integer>>();
     for (Map.Entry<SecondaryStat, Pair<Integer, Integer>> statupz : statup.entrySet())
@@ -3819,26 +3818,26 @@ public class SecondaryStatEffect
       chr.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.cancelBuff(cancelStats, chr));
     }
   }
-  
-  public final void applyKaiserCombo(MapleCharacter applyto, short combo)
+
+  public final void applyKaiserCombo (MapleCharacter applyto, short combo)
   {
     EnumMap<SecondaryStat, Pair<Integer, Integer>> stat = new EnumMap<SecondaryStat, Pair<Integer, Integer>>(SecondaryStat.class);
     stat.put(SecondaryStat.SmashStack, new Pair<Integer, Integer>(Integer.valueOf(combo), 0));
     applyto.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.giveBuff(stat, null, applyto));
   }
-  
+
   /*
    * Opcode count of 19699 triggered aggressive code reduction.  Override with --aggressivesizethreshold.
    * WARNING - void declaration
    */
   // 버프 걸리면 호출
-  private final void applyBuffEffect(MapleCharacter applyfrom, MapleCharacter applyto, boolean primary, int newDuration, Point pos, boolean showEffect)
+  private final void applyBuffEffect (MapleCharacter applyFrom, MapleCharacter applyTo, boolean primary, int newDuration, Point pos, boolean showEffect)
   {
     int[] FreudsProtections;
     int localDuration = newDuration;
     if (pos == null)
     {
-      pos = applyto.getTruePosition() == null ? applyto.getPosition() : applyto.getTruePosition();
+      pos = applyTo.getTruePosition() == null ? applyTo.getPosition() : applyTo.getTruePosition();
     }
     HashMap<SecondaryStat, Pair<Integer, Integer>> localstatups = new HashMap<SecondaryStat, Pair<Integer, Integer>>();
     ArrayList<Pair<Integer, Integer>> indieList1 = new ArrayList<Pair<Integer, Integer>>();
@@ -3847,7 +3846,7 @@ public class SecondaryStatEffect
     boolean bufftimeR = true;
     boolean isPetBuff = false;
     boolean cancel = true;
-    for (MaplePet pet : applyto.getPets())
+    for (MaplePet pet : applyTo.getPets())
     {
       if (pet == null || pet.getBuffSkillId() != this.sourceid || pet.getBuffSkillId2() != this.sourceid)
       {
@@ -3855,9 +3854,9 @@ public class SecondaryStatEffect
       }
       isPetBuff = true;
     }
-    if (GameConstants.isPhantom(applyto.getJob()))
+    if (GameConstants.isPhantom(applyTo.getJob()))
     {
-      for (Pair pair : applyto.getStolenSkills())
+      for (Pair pair : applyTo.getStolenSkills())
       {
         if ((Integer) pair.left != this.sourceid || !((Boolean) pair.right).booleanValue())
         {
@@ -3887,33 +3886,33 @@ public class SecondaryStatEffect
       case 1200014:
       case 1220010:
       {
-        if (applyfrom.getElementalCharge() <= 0 || applyfrom.getElementalCharge() > this.getZ())
+        if (applyFrom.getElementalCharge() <= 0 || applyFrom.getElementalCharge() > this.getZ())
         {
           break;
         }
         localstatups.clear();
         int u = this.u;
-        if (applyfrom.getSkillLevel(1220010) > 0)
+        if (applyFrom.getSkillLevel(1220010) > 0)
         {
-          u = SkillFactory.getSkill(1220010).getEffect(applyfrom.getSkillLevel(1220010)).getX();
+          u = SkillFactory.getSkill(1220010).getEffect(applyFrom.getSkillLevel(1220010)).getX();
         }
-        localstatups.put(SecondaryStat.ElementalCharge, new Pair<Integer, Integer>(u * applyfrom.getElementalCharge(), localDuration));
+        localstatups.put(SecondaryStat.ElementalCharge, new Pair<Integer, Integer>(u * applyFrom.getElementalCharge(), localDuration));
         break;
       }
       case 1211010:
       {
         bufftimeR = false;
-        if (applyfrom.getListonation() < 5)
+        if (applyFrom.getListonation() < 5)
         {
-          applyfrom.setListonation(applyfrom.getListonation() + 1);
+          applyFrom.setListonation(applyFrom.getListonation() + 1);
         }
         localstatups.clear();
-        localstatups.put(SecondaryStat.Listonation, new Pair<Integer, Integer>(applyfrom.getListonation() * this.y, localDuration));
+        localstatups.put(SecondaryStat.Listonation, new Pair<Integer, Integer>(applyFrom.getListonation() * this.y, localDuration));
         break;
       }
       case 1211014:
       {
-        applyto.setSkillCustomInfo(this.sourceid, applyfrom.getId(), 0L);
+        applyTo.setSkillCustomInfo(this.sourceid, applyFrom.getId(), 0L);
         if (!primary)
         {
           localstatups.put(SecondaryStat.KnightsAura, new Pair<Integer, Integer>(this.y, 0));
@@ -3929,12 +3928,12 @@ public class SecondaryStatEffect
       {
         bufftimeR = false;
         localstatups.put(SecondaryStat.Beholder, new Pair<Integer, Integer>(1, 0));
-        if (applyfrom.getSkillLevel(1310013) <= 0)
+        if (applyFrom.getSkillLevel(1310013) <= 0)
         {
-          applyfrom.setBeholderSkill1(1301013);
+          applyFrom.setBeholderSkill1(1301013);
           break;
         }
-        applyfrom.setBeholderSkill1(1310013);
+        applyFrom.setBeholderSkill1(1310013);
       }
       case 1310016:
       {
@@ -3942,14 +3941,14 @@ public class SecondaryStatEffect
         int epad = this.epad;
         short s = this.epdd;
         int indieCr = this.indieCr;
-        if (applyfrom.getSkillLevel(1320044) > 0)
+        if (applyFrom.getSkillLevel(1320044) > 0)
         {
           epad += SkillFactory.getSkill(1320044).getEffect(1).getX();
         }
-        if (applyfrom != applyto)
+        if (applyFrom != applyTo)
         {
           epad /= 2;
-          n = s / 2; //수정
+          n = s / 2; // 수정
           indieCr /= 2;
         }
         localstatups.put(SecondaryStat.EnhancedPad, new Pair<Integer, Integer>(epad, 0));
@@ -3960,12 +3959,12 @@ public class SecondaryStatEffect
       case 1320019:
       {
         int data = this.z;
-        if (applyfrom.getSkillLevel(1320047) > 0)
+        if (applyFrom.getSkillLevel(1320047) > 0)
         {
           data -= this.z * SkillFactory.getSkill(1320047).getEffect(1).getX() / 100;
         }
-        applyfrom.setReinCarnation(data);
-        applyfrom.removeCooldown(1321013);
+        applyFrom.setReinCarnation(data);
+        applyFrom.removeCooldown(1321013);
         break;
       }
       case 2121004:
@@ -3974,7 +3973,7 @@ public class SecondaryStatEffect
       {
         localstatups.clear();
         localstatups.put(SecondaryStat.Infinity, new Pair<Integer, Integer>(1, localDuration));
-        applyfrom.setInfinity((byte) 0);
+        applyFrom.setInfinity((byte) 0);
         break;
       }
       case 2111011:
@@ -3982,7 +3981,7 @@ public class SecondaryStatEffect
       {
         aftercancel = true;
         localstatups.put(SecondaryStat.AntiMagicShell, new Pair<Integer, Integer>(1, 0));
-        applyfrom.setAntiMagicShell((byte) 1);
+        applyFrom.setAntiMagicShell((byte) 1);
         break;
       }
       case 2120010:
@@ -3991,12 +3990,12 @@ public class SecondaryStatEffect
       {
         bufftimeR = false;
         localstatups.clear();
-        localstatups.put(SecondaryStat.ArcaneAim, new Pair<Integer, Integer>(applyto.getArcaneAim(), 5000));
+        localstatups.put(SecondaryStat.ArcaneAim, new Pair<Integer, Integer>(applyTo.getArcaneAim(), 5000));
         break;
       }
       case 2201009:
       {
-        if (!applyfrom.getBuffedValue(2201009))
+        if (!applyFrom.getBuffedValue(2201009))
         {
           localstatups.put(SecondaryStat.ChillingStep, new Pair<Integer, Integer>(1, 0));
           bufftimeR = false;
@@ -4008,7 +4007,7 @@ public class SecondaryStatEffect
       case 2221054:
       {
         localDuration = 0;
-        applyto.setSkillCustomInfo(this.sourceid, applyfrom.getId(), localDuration > 0 ? (long) localDuration : 0L);
+        applyTo.setSkillCustomInfo(this.sourceid, applyFrom.getId(), localDuration > 0 ? (long) localDuration : 0L);
         localstatups.put(SecondaryStat.IceAura, new Pair<Integer, Integer>(1, localDuration > 0 ? localDuration : 0));
         localstatups.put(SecondaryStat.IndieAsrR, new Pair<Integer, Integer>(this.z, localDuration > 0 ? localDuration : 0));
         localstatups.put(SecondaryStat.IndieTerR, new Pair<Integer, Integer>(this.w, localDuration > 0 ? localDuration : 0));
@@ -4016,13 +4015,13 @@ public class SecondaryStatEffect
       }
       case 2301004:
       {
-        if (applyto.getBuffedValue(2321005))
+        if (applyTo.getBuffedValue(2321005))
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.AdvancedBless, 2321005);
-          applyto.cancelEffectFromBuffStat(SecondaryStat.IndiePad, 2321005);
-          applyto.cancelEffectFromBuffStat(SecondaryStat.IndieMad, 2321005);
-          applyto.cancelEffectFromBuffStat(SecondaryStat.IndieHp, 2321005);
-          applyto.cancelEffectFromBuffStat(SecondaryStat.IndieMp, 2321005);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.AdvancedBless, 2321005);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.IndiePad, 2321005);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.IndieMad, 2321005);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.IndieHp, 2321005);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.IndieMp, 2321005);
         }
         localstatups.put(SecondaryStat.Bless, new Pair<Integer, Integer>(Integer.valueOf(this.level), localDuration));
         localstatups.put(SecondaryStat.IndiePad, new Pair<Integer, Integer>(this.x, localDuration));
@@ -4040,8 +4039,8 @@ public class SecondaryStatEffect
       {
         if (primary)
         {
-          applyto.setSkillCustomInfo(this.sourceid, applyfrom.getId(), 0L);
-          applyto.setSkillCustomInfo(2311004, 0L, 0L);
+          applyTo.setSkillCustomInfo(this.sourceid, applyFrom.getId(), 0L);
+          applyTo.setSkillCustomInfo(2311004, 0L, 0L);
         }
         if (!showEffect)
         {
@@ -4049,7 +4048,7 @@ public class SecondaryStatEffect
           bufftimeR = false;
         }
         int asr = SkillFactory.getSkill(2320047).getEffect(1).asrR;
-        if (applyfrom.getId() == applyto.getId() && applyfrom.getSkillLevel(2320046) > 0)
+        if (applyFrom.getId() == applyTo.getId() && applyFrom.getSkillLevel(2320046) > 0)
         {
           localstatups.put(SecondaryStat.HolySymbol, new Pair<Integer, Integer>(this.x + SkillFactory.getSkill(2320046).getEffect(1).getY(), localDuration));
         }
@@ -4057,38 +4056,38 @@ public class SecondaryStatEffect
         {
           localstatups.put(SecondaryStat.HolySymbol, new Pair<Integer, Integer>(primary ? this.x : this.x / 2, localDuration));
         }
-        if (applyfrom.getSkillLevel(2320047) > 0)
+        if (applyFrom.getSkillLevel(2320047) > 0)
         {
           localstatups.put(SecondaryStat.IndieAsrR, new Pair<Integer, Integer>(primary ? asr : asr / 2, localDuration));
           localstatups.put(SecondaryStat.IndieTerR, new Pair<Integer, Integer>(primary ? asr : asr / 2, localDuration));
         }
-        if (applyfrom.getSkillLevel(2320048) <= 0)
+        if (applyFrom.getSkillLevel(2320048) <= 0)
         {
           break;
         }
-        applyto.setSkillCustomInfo(2320048, SkillFactory.getSkill(2320048).getEffect(1).v, 0L);
+        applyTo.setSkillCustomInfo(2320048, SkillFactory.getSkill(2320048).getEffect(1).v, 0L);
         localstatups.put(SecondaryStat.DropRate, new Pair<Integer, Integer>(SkillFactory.getSkill(2320048).getEffect(1).v, localDuration));
         break;
       }
       case 2311009:
       {
-        if (applyto.getBuffedEffect(SecondaryStat.CooltimeHolyMagicShell) != null)
+        if (applyTo.getBuffedEffect(SecondaryStat.CooltimeHolyMagicShell) != null)
         {
           break;
         }
         byte data = (byte) this.x;
-        if (applyfrom.getSkillLevel(2320043) > 0)
+        if (applyFrom.getSkillLevel(2320043) > 0)
         {
           data = (byte) (data + SkillFactory.getSkill(2320043).getEffect(1).getX());
         }
-        applyto.setHolyMagicShell(data);
+        applyTo.setHolyMagicShell(data);
         this.hpR = (double) this.z / 100.0;
-        SkillFactory.getSkill(2310013).getEffect(this.level).applyTo(applyfrom, applyto);
-        if (applyfrom.getSkillLevel(2320044) > 0)
+        SkillFactory.getSkill(2310013).getEffect(this.level).applyTo(applyFrom, applyTo);
+        if (applyFrom.getSkillLevel(2320044) > 0)
         {
-          localDuration += SkillFactory.getSkill(2320044).getEffect(applyfrom.getSkillLevel(2320044)).getDuration();
+          localDuration += SkillFactory.getSkill(2320044).getEffect(applyFrom.getSkillLevel(2320044)).getDuration();
         }
-        localstatups.put(SecondaryStat.HolyMagicShell, new Pair<Integer, Integer>(Integer.valueOf(applyto.getHolyMagicShell()), localDuration));
+        localstatups.put(SecondaryStat.HolyMagicShell, new Pair<Integer, Integer>(Integer.valueOf(applyTo.getHolyMagicShell()), localDuration));
         break;
       }
       case 2321001:
@@ -4107,41 +4106,41 @@ public class SecondaryStatEffect
       }
       case 2321054:
       {
-        for (MapleSummon mapleSummon : applyto.getMap().getAllSummonsThreadsafe())
+        for (MapleSummon mapleSummon : applyTo.getMap().getAllSummonsThreadsafe())
         {
-          if (mapleSummon.getOwner().getId() != applyto.getId() || mapleSummon.getSkill() != 400021032 && mapleSummon.getSkill() != 400021033)
+          if (mapleSummon.getOwner().getId() != applyTo.getId() || mapleSummon.getSkill() != 400021032 && mapleSummon.getSkill() != 400021033)
           {
             continue;
           }
-          mapleSummon.removeSummon(applyto.getMap(), false);
-          applyto.removeSummon(mapleSummon);
+          mapleSummon.removeSummon(applyTo.getMap(), false);
+          applyTo.removeSummon(mapleSummon);
         }
-        if (applyto.getBuffedEffect(400021032) != null)
+        if (applyTo.getBuffedEffect(400021032) != null)
         {
-          long bufftime = applyto.getBuffLimit(400021032);
-          while (applyto.getBuffedValue(400021032))
+          long bufftime = applyTo.getBuffLimit(400021032);
+          while (applyTo.getBuffedValue(400021032))
           {
-            applyto.cancelEffect(applyto.getBuffedEffect(400021032));
+            applyTo.cancelEffect(applyTo.getBuffedEffect(400021032));
           }
-          SkillFactory.getSkill(400021033).getEffect(applyto.getSkillLevel(400021032)).applyTo(applyto, false, (int) bufftime);
+          SkillFactory.getSkill(400021033).getEffect(applyTo.getSkillLevel(400021032)).applyTo(applyTo, false, (int) bufftime);
           break;
         }
-        if (applyto.getBuffedEffect(400021033) == null)
+        if (applyTo.getBuffedEffect(400021033) == null)
         {
           break;
         }
-        long bufftime = applyto.getBuffLimit(400021033);
-        while (applyto.getBuffedValue(400021033))
+        long bufftime = applyTo.getBuffLimit(400021033);
+        while (applyTo.getBuffedValue(400021033))
         {
-          applyto.cancelEffect(applyto.getBuffedEffect(400021033));
+          applyTo.cancelEffect(applyTo.getBuffedEffect(400021033));
         }
-        SkillFactory.getSkill(400021032).getEffect(applyto.getSkillLevel(400021032)).applyTo(applyto, false, (int) bufftime);
+        SkillFactory.getSkill(400021032).getEffect(applyTo.getSkillLevel(400021032)).applyTo(applyTo, false, (int) bufftime);
         break;
       }
       case 2321016:
       {
         localDuration = this.w;
-        int int_ = applyto.getStat().getTotalInt() / this.s;
+        int int_ = applyTo.getStat().getTotalInt() / this.s;
         localstatups.put(SecondaryStat.HolyBlood, new Pair<Integer, Integer>(1, localDuration));
         localstatups.put(SecondaryStat.IndieShotDamage, new Pair<Integer, Integer>(this.v, localDuration));
         localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>(Math.min(this.s2, this.u + (this.u * int_)), localDuration));
@@ -4152,68 +4151,68 @@ public class SecondaryStatEffect
       case 3321022:
       {
         localstatups.clear();
-        if (applyfrom.getSkillLevel(3120043) > 0)
+        if (applyFrom.getSkillLevel(3120043) > 0)
         {
           localDuration += SkillFactory.getSkill(3120043).getEffect(1).getDuration();
         }
-        if (applyfrom.getSkillLevel(3220043) > 0)
+        if (applyFrom.getSkillLevel(3220043) > 0)
         {
           localDuration += SkillFactory.getSkill(3220043).getEffect(1).getDuration();
         }
-        if (applyfrom.getSkillLevel(3320025) > 0)
+        if (applyFrom.getSkillLevel(3320025) > 0)
         {
           localDuration += SkillFactory.getSkill(3320025).getEffect(1).getDuration();
         }
-        if (applyfrom.getSkillLevel(3120044) > 0)
+        if (applyFrom.getSkillLevel(3120044) > 0)
         {
           localstatups.put(SecondaryStat.IndieIgnoreMobPdpR, new Pair<Integer, Integer>(Integer.valueOf(SkillFactory.getSkill(3120044).getEffect(1).ignoreMobpdpR), localDuration));
         }
-        if (applyfrom.getSkillLevel(3220044) > 0)
+        if (applyFrom.getSkillLevel(3220044) > 0)
         {
           localstatups.put(SecondaryStat.IndieIgnoreMobPdpR, new Pair<Integer, Integer>(Integer.valueOf(SkillFactory.getSkill(3220044).getEffect(1).ignoreMobpdpR), localDuration));
         }
-        if (applyfrom.getSkillLevel(3320026) > 0)
+        if (applyFrom.getSkillLevel(3320026) > 0)
         {
           localstatups.put(SecondaryStat.IndieIgnoreMobPdpR, new Pair<Integer, Integer>(Integer.valueOf(SkillFactory.getSkill(3320026).getEffect(1).ignoreMobpdpR), localDuration));
         }
-        localstatups.put(SecondaryStat.SharpEyes, new Pair<Integer, Integer>(((applyfrom.getSkillLevel(3120045) > 0 ? 5 : (applyfrom.getSkillLevel(3220045) > 0 ? 5 : (applyfrom.getSkillLevel(3320027) > 0 ? 5 : 0))) + this.x << 8) + this.y, localDuration));
+        localstatups.put(SecondaryStat.SharpEyes, new Pair<Integer, Integer>(((applyFrom.getSkillLevel(3120045) > 0 ? 5 : (applyFrom.getSkillLevel(3220045) > 0 ? 5 : (applyFrom.getSkillLevel(3320027) > 0 ? 5 : 0))) + this.x << 8) + this.y, localDuration));
         break;
       }
       case 3320008:
       {
         showEffect = false;
-        localstatups.put(SecondaryStat.BonusAttack, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(3320008), localDuration));
+        localstatups.put(SecondaryStat.BonusAttack, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(3320008), localDuration));
         break;
       }
       case 3321034:
       {
         localstatups.put(SecondaryStat.IndieSummon, new Pair<Integer, Integer>(1, localDuration));
-        if (!GameConstants.isPathFinder(applyto.getJob()))
+        if (!GameConstants.isPathFinder(applyTo.getJob()))
         {
           break;
         }
         HashMap<SecondaryStat, Pair<Integer, Integer>> statups = new HashMap<SecondaryStat, Pair<Integer, Integer>>();
         statups.put(SecondaryStat.AncientGuidance, new Pair<Integer, Integer>(-1, 0));
-        applyto.렐릭게이지 = 1000;
-        applyto.에인션트가이던스 = 0;
-        statups.put(SecondaryStat.RelikGauge, new Pair<Integer, Integer>(applyto.렐릭게이지, 0));
-        SkillFactory.getSkill(3310006).getEffect(applyto.getSkillLevel(3310006)).applyTo(applyto);
-        MapleCharacter.렐릭게이지(applyfrom.getClient(), 0);
+        applyTo.렐릭게이지 = 1000;
+        applyTo.에인션트가이던스 = 0;
+        statups.put(SecondaryStat.RelikGauge, new Pair<Integer, Integer>(applyTo.렐릭게이지, 0));
+        SkillFactory.getSkill(3310006).getEffect(applyTo.getSkillLevel(3310006)).applyTo(applyTo);
+        MapleCharacter.렐릭게이지(applyFrom.getClient(), 0);
         break;
       }
       case 3310006:
       {
-        if (applyto.getBuffedValue(this.sourceid))
+        if (applyTo.getBuffedValue(this.sourceid))
         {
-          localDuration = (int) ((long) localDuration + applyto.getBuffLimit(this.sourceid));
+          localDuration = (int) ((long) localDuration + applyTo.getBuffLimit(this.sourceid));
         }
         localstatups.clear();
         localstatups.put(SecondaryStat.AncientGuidance, new Pair<Integer, Integer>(1, localDuration));
         localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>(Integer.valueOf(this.indiePmdR), localDuration));
-        applyto.addHP(applyto.getStat().getCurrentMaxHp() / 100L * (long) this.y);
-        applyto.addMP(applyto.getStat().getCurrentMaxMp(applyto) / 100L * (long) this.y);
-        applyto.getClient().getSession().writeAndFlush(CField.EffectPacket.showEffect(applyto, 0, 3310006, 1, 0, 0, (byte) (applyto.isFacingLeft() ? 1 : 0), true, applyto.getTruePosition(), null, null));
-        applyto.getMap().broadcastMessage(applyto, CField.EffectPacket.showEffect(applyto, 0, 3310006, 1, 0, 0, (byte) (applyto.isFacingLeft() ? 1 : 0), false, applyto.getTruePosition(), null, null), false);
+        applyTo.addHP(applyTo.getStat().getCurrentMaxHp() / 100L * (long) this.y);
+        applyTo.addMP(applyTo.getStat().getCurrentMaxMp(applyTo) / 100L * (long) this.y);
+        applyTo.getClient().getSession().writeAndFlush(CField.EffectPacket.showEffect(applyTo, 0, 3310006, 1, 0, 0, (byte) (applyTo.isFacingLeft() ? 1 : 0), true, applyTo.getTruePosition(), null, null));
+        applyTo.getMap().broadcastMessage(applyTo, CField.EffectPacket.showEffect(applyTo, 0, 3310006, 1, 0, 0, (byte) (applyTo.isFacingLeft() ? 1 : 0), false, applyTo.getTruePosition(), null, null), false);
         break;
       }
       case 400011038:
@@ -4224,22 +4223,22 @@ public class SecondaryStatEffect
       }
       case 2321005:
       {
-        if (applyto.getBuffedValue(2301004))
+        if (applyTo.getBuffedValue(2301004))
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.Bless, 2301004);
-          applyto.cancelEffectFromBuffStat(SecondaryStat.IndiePad, 2301004);
-          applyto.cancelEffectFromBuffStat(SecondaryStat.IndieMad, 2301004);
-          applyto.cancelEffectFromBuffStat(SecondaryStat.IndiePdd, 2301004);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.Bless, 2301004);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.IndiePad, 2301004);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.IndieMad, 2301004);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.IndiePdd, 2301004);
         }
-        if (applyto.getBuffedValue(400001005))
+        if (applyTo.getBuffedValue(400001005))
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.IndieMp, 400001005);
-          applyto.cancelEffectFromBuffStat(SecondaryStat.IndiePad, 400001005);
-          applyto.cancelEffectFromBuffStat(SecondaryStat.IndieMad, 400001005);
-          applyto.cancelEffectFromBuffStat(SecondaryStat.IndieHp, 400001005);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.IndieMp, 400001005);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.IndiePad, 400001005);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.IndieMad, 400001005);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.IndieHp, 400001005);
         }
         localstatups.put(SecondaryStat.AdvancedBless, new Pair<Integer, Integer>(Integer.valueOf(this.level), localDuration));
-        if (applyfrom.getSkillLevel(2320051) > 0)
+        if (applyFrom.getSkillLevel(2320051) > 0)
         {
           localstatups.put(SecondaryStat.IndieMp, new Pair<Integer, Integer>(this.indieMmp + SkillFactory.getSkill(2320051).getEffect(1).indieMmp, localDuration));
           localstatups.put(SecondaryStat.IndieHp, new Pair<Integer, Integer>(this.indieMhp + SkillFactory.getSkill(2320051).getEffect(1).indieMhp, localDuration));
@@ -4249,7 +4248,7 @@ public class SecondaryStatEffect
           localstatups.put(SecondaryStat.IndieMp, new Pair<Integer, Integer>(Integer.valueOf(this.indieMmp), localDuration));
           localstatups.put(SecondaryStat.IndieHp, new Pair<Integer, Integer>(Integer.valueOf(this.indieMhp), localDuration));
         }
-        if (applyfrom.getSkillLevel(2320049) > 0)
+        if (applyFrom.getSkillLevel(2320049) > 0)
         {
           localstatups.put(SecondaryStat.IndieMad, new Pair<Integer, Integer>(this.y + SkillFactory.getSkill(2320049).getEffect(1).getX(), localDuration));
           localstatups.put(SecondaryStat.IndiePad, new Pair<Integer, Integer>(this.x + SkillFactory.getSkill(2320049).getEffect(1).getX(), localDuration));
@@ -4262,7 +4261,7 @@ public class SecondaryStatEffect
       case 2321052:
       {
         bufftimeR = false;
-        if (applyto.getBuffedEffect(SecondaryStat.CooldownHeavensDoor) != null || applyto.getBuffedValue(2321052))
+        if (applyTo.getBuffedEffect(SecondaryStat.CooldownHeavensDoor) != null || applyTo.getBuffedValue(2321052))
         {
           break;
         }
@@ -4272,7 +4271,7 @@ public class SecondaryStatEffect
       case 2321055:
       {
         bufftimeR = false;
-        if (applyto.getBuffedEffect(SecondaryStat.CooldownHeavensDoor) == null)
+        if (applyTo.getBuffedEffect(SecondaryStat.CooldownHeavensDoor) == null)
         {
           localstatups.put(SecondaryStat.CooldownHeavensDoor, new Pair<Integer, Integer>(1, 600000));
           break;
@@ -4284,21 +4283,21 @@ public class SecondaryStatEffect
         aftercancel = true;
         if (primary)
         {
-          applyto.setQuiverType((byte) 1);
-          applyto.getRestArrow()[0] = 1;
-          applyto.getRestArrow()[1] = 2;
-          
+          applyTo.setQuiverType((byte) 1);
+          applyTo.getRestArrow()[0] = 1;
+          applyTo.getRestArrow()[1] = 2;
+
         }
-        switch (applyto.getQuiverType())
+        switch (applyTo.getQuiverType())
         {
           case 1:
           {
-            localstatups.put(SecondaryStat.QuiverCatridge, new Pair<Integer, Integer>(applyto.getRestArrow()[0], 0));
+            localstatups.put(SecondaryStat.QuiverCatridge, new Pair<Integer, Integer>(applyTo.getRestArrow()[0], 0));
             break block3;
           }
           case 2:
           {
-            localstatups.put(SecondaryStat.QuiverCatridge, new Pair<Integer, Integer>(applyto.getRestArrow()[1], 0));
+            localstatups.put(SecondaryStat.QuiverCatridge, new Pair<Integer, Integer>(applyTo.getRestArrow()[1], 0));
             break block3;
           }
         }
@@ -4308,27 +4307,27 @@ public class SecondaryStatEffect
       {
         bufftimeR = false;
         aftercancel = true;
-        if (applyto.getBuffedEffect(SecondaryStat.IndieDamR, this.sourceid) != null)
+        if (applyTo.getBuffedEffect(SecondaryStat.IndieDamR, this.sourceid) != null)
         {
           break;
         }
-        if (applyto.getMortalBlow() == this.x)
+        if (applyTo.getMortalBlow() == this.x)
         {
-          applyto.setMortalBlow((byte) 0);
-          applyto.cancelEffect(this);
+          applyTo.setMortalBlow((byte) 0);
+          applyTo.cancelEffect(this);
           localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(this.y, localDuration));
           break;
         }
-        applyto.setMortalBlow((byte) (applyto.getMortalBlow() + 1));
-        localstatups.put(SecondaryStat.MortalBlow, new Pair<Integer, Integer>(Integer.valueOf(applyto.getMortalBlow()), 0));
+        applyTo.setMortalBlow((byte) (applyTo.getMortalBlow() + 1));
+        localstatups.put(SecondaryStat.MortalBlow, new Pair<Integer, Integer>(Integer.valueOf(applyTo.getMortalBlow()), 0));
         break;
       }
       case 3210001:
       {
         localstatups.clear();
-        if (applyto.getBuffedValue(this.sourceid))
+        if (applyTo.getBuffedValue(this.sourceid))
         {
-          applyto.cancelEffect(this);
+          applyTo.cancelEffect(this);
           break;
         }
         if (!Randomizer.isSuccess(this.x))
@@ -4336,20 +4335,20 @@ public class SecondaryStatEffect
           break;
         }
         localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(this.y, 0));
-        applyto.addHP(applyto.getStat().getCurrentMaxHp() / 100L * (long) this.z);
-        applyto.addMP(applyto.getStat().getCurrentMaxHp() / 100L * (long) this.z);
+        applyTo.addHP(applyTo.getStat().getCurrentMaxHp() / 100L * (long) this.z);
+        applyTo.addMP(applyTo.getStat().getCurrentMaxHp() / 100L * (long) this.z);
         break;
       }
       case 3110012:
       {
         bufftimeR = false;
-        localstatups.put(SecondaryStat.BowMasterConcentration, new Pair<Integer, Integer>(applyto.getConcentration() * 5, localDuration));
+        localstatups.put(SecondaryStat.BowMasterConcentration, new Pair<Integer, Integer>(applyTo.getConcentration() * 5, localDuration));
         break;
       }
       case 3210013:
       {
         bufftimeR = false;
-        localstatups.put(SecondaryStat.PowerTransferGauge, new Pair<Integer, Integer>(applyto.getBarrier(), localDuration));
+        localstatups.put(SecondaryStat.PowerTransferGauge, new Pair<Integer, Integer>(applyTo.getBarrier(), localDuration));
         break;
       }
       case 4001003:
@@ -4379,21 +4378,21 @@ public class SecondaryStatEffect
             case 4200013:
             case 4220015: {
                 aftercancel = true;
-                localstatups.put(SecondaryStat.CriticalGrowing, new Pair<Integer, Integer>(applyto.criticalGrowing, 0));
+                localstatups.put(SecondaryStat.CriticalGrowing, new Pair<Integer, Integer>(applyTo.criticalGrowing, 0));
                 break;
             }
              */
       case 4211016:
       {
-        applyto.addCooldown(4001003, System.currentTimeMillis(), 3000L);
-        applyto.getClient().getSession().writeAndFlush(CField.skillCooldown(4001003, 3000));
-        applyto.addCooldown(4211016, System.currentTimeMillis(), 3000L);
-        applyto.getClient().getSession().writeAndFlush(CField.skillCooldown(4211016, 3000));
-        if (applyto.getSkillLevel(4001003) <= 0)
+        applyTo.addCooldown(4001003, System.currentTimeMillis(), 3000L);
+        applyTo.getClient().getSession().writeAndFlush(CField.skillCooldown(4001003, 3000));
+        applyTo.addCooldown(4211016, System.currentTimeMillis(), 3000L);
+        applyTo.getClient().getSession().writeAndFlush(CField.skillCooldown(4211016, 3000));
+        if (applyTo.getSkillLevel(4001003) <= 0)
         {
           break;
         }
-        SkillFactory.getSkill(4001003).getEffect(applyto.getSkillLevel(4001003)).applyTo(applyto, false);
+        SkillFactory.getSkill(4001003).getEffect(applyTo.getSkillLevel(4001003)).applyTo(applyTo, false);
         break;
       }
       case 4221006:
@@ -4412,30 +4411,30 @@ public class SecondaryStatEffect
         if (localDuration == 0)
         {
           aftercancel = true;
-          localstatups.put(SecondaryStat.KillingPoint, new Pair<Integer, Integer>(applyto.killingpoint, 0));
+          localstatups.put(SecondaryStat.KillingPoint, new Pair<Integer, Integer>(applyTo.killingpoint, 0));
           break;
         }
-        localstatups.put(SecondaryStat.IndiePad, new Pair<Integer, Integer>(40 + applyto.killingpoint * this.kp, localDuration));
-        if (applyto.getCooldownLimit(400041039) > 0L)
+        localstatups.put(SecondaryStat.IndiePad, new Pair<Integer, Integer>(40 + applyTo.killingpoint * this.kp, localDuration));
+        if (applyTo.getCooldownLimit(400041039) > 0L)
         {
-          applyto.changeCooldown(400041039, -500 * applyto.killingpoint);
+          applyTo.changeCooldown(400041039, -500 * applyTo.killingpoint);
         }
-        if (applyto.killingpoint <= 0)
+        if (applyTo.killingpoint <= 0)
         {
           break;
         }
-        applyto.killingpoint = 0;
-        this.applyTo(applyto, false, 0);
+        applyTo.killingpoint = 0;
+        this.applyTo(applyTo, false, 0);
         break;
       }
       case 4221016:
       {
-        if (applyto.getSkillLevel(400041025) <= 0 || applyto.shadowerDebuffOid == 0)
+        if (applyTo.getSkillLevel(400041025) <= 0 || applyTo.shadowerDebuffOid == 0)
         {
           break;
         }
         aftercancel = true;
-        localstatups.put(SecondaryStat.ShadowerDebuff, new Pair<Integer, Integer>(applyto.shadowerDebuff, 10000));
+        localstatups.put(SecondaryStat.ShadowerDebuff, new Pair<Integer, Integer>(applyTo.shadowerDebuff, 10000));
         break;
       }
       case 4221054:
@@ -4443,9 +4442,9 @@ public class SecondaryStatEffect
         bufftimeR = false;
         aftercancel = true;
         localDuration = 0;
-        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(this.indieDamR * applyto.getFlip(), localDuration));
-        localstatups.put(SecondaryStat.IndieCr, new Pair<Integer, Integer>(this.x * applyto.getFlip(), localDuration));
-        localstatups.put(SecondaryStat.FlipTheCoin, new Pair<Integer, Integer>(Integer.valueOf(applyto.getFlip()) + 1, localDuration));
+        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(this.indieDamR * applyTo.getFlip(), localDuration));
+        localstatups.put(SecondaryStat.IndieCr, new Pair<Integer, Integer>(this.x * applyTo.getFlip(), localDuration));
+        localstatups.put(SecondaryStat.FlipTheCoin, new Pair<Integer, Integer>(Integer.valueOf(applyTo.getFlip()) + 1, localDuration));
         break;
       }
       case 4331006:
@@ -4478,16 +4477,16 @@ public class SecondaryStatEffect
       case 400051001:
       {
         localstatups.clear();
-        if (applyto.getBuffedValue(SecondaryStat.SelectDice) != null)
+        if (applyTo.getBuffedValue(SecondaryStat.SelectDice) != null)
         {
-          applyto.getMap().broadcastMessage(applyto, CField.EffectPacket.showDiceEffect(applyto, 0, 5111007, applyto.getBuffedValue(SecondaryStat.SelectDice), -1, false), false);
-          applyto.getClient().getSession().writeAndFlush(CField.EffectPacket.showDiceEffect(applyto, 0, 5111007, applyto.getBuffedValue(SecondaryStat.SelectDice), -1, true));
-          localstatups.put(SecondaryStat.DiceRoll, new Pair<Integer, Integer>(applyto.getBuffedValue(SecondaryStat.SelectDice), localDuration));
+          applyTo.getMap().broadcastMessage(applyTo, CField.EffectPacket.showDiceEffect(applyTo, 0, 5111007, applyTo.getBuffedValue(SecondaryStat.SelectDice), -1, false), false);
+          applyTo.getClient().getSession().writeAndFlush(CField.EffectPacket.showDiceEffect(applyTo, 0, 5111007, applyTo.getBuffedValue(SecondaryStat.SelectDice), -1, true));
+          localstatups.put(SecondaryStat.DiceRoll, new Pair<Integer, Integer>(applyTo.getBuffedValue(SecondaryStat.SelectDice), localDuration));
           break;
         }
-        applyto.getMap().broadcastMessage(applyto, CField.EffectPacket.showDiceEffect(applyto, 0, 5111007, 2, -1, false), false);
-        applyto.getClient().getSession().writeAndFlush(CField.EffectPacket.showDiceEffect(applyto, 0, 5111007, 2, -1, true));
-        applyto.dropMessage(5, "로디드 다이스가 적용되어 있지 않아 2번 효과가 적용 됩니다.");
+        applyTo.getMap().broadcastMessage(applyTo, CField.EffectPacket.showDiceEffect(applyTo, 0, 5111007, 2, -1, false), false);
+        applyTo.getClient().getSession().writeAndFlush(CField.EffectPacket.showDiceEffect(applyTo, 0, 5111007, 2, -1, true));
+        applyTo.dropMessage(5, "로디드 다이스가 적용되어 있지 않아 2번 효과가 적용 됩니다.");
         localstatups.put(SecondaryStat.DiceRoll, new Pair<Integer, Integer>(2, localDuration));
         break;
       }
@@ -4501,12 +4500,12 @@ public class SecondaryStatEffect
       case 35120014:
       {
         int sk;
-        boolean extra = applyfrom.getSkillLevel(5120044) > 0 || applyfrom.getSkillLevel(5220044) > 0;
-        boolean bl = applyto.getBuffedEffect(SecondaryStat.SelectDice) != null;
+        boolean extra = applyFrom.getSkillLevel(5120044) > 0 || applyFrom.getSkillLevel(5220044) > 0;
+        boolean bl = applyTo.getBuffedEffect(SecondaryStat.SelectDice) != null;
         int thirddice = 0;
         if (bl)
         {
-          thirddice = applyto.getBuffedValue(SecondaryStat.SelectDice);
+          thirddice = applyTo.getBuffedValue(SecondaryStat.SelectDice);
         }
         byte dice = (byte) Randomizer.rand(1, extra ? 7 : 6);
         byte doubledice = 1;
@@ -4514,50 +4513,50 @@ public class SecondaryStatEffect
         {
           doubledice = (byte) Randomizer.rand(2, extra ? 7 : 6);
         }
-        if (applyto.isOneMoreChance())
+        if (applyTo.isOneMoreChance())
         {
-          applyto.setOneMoreChance(false);
+          applyTo.setOneMoreChance(false);
           dice = (byte) Randomizer.rand(4, extra ? 7 : 6);
           if (doubledice > 1)
           {
             doubledice = (byte) Randomizer.rand(4, extra ? 7 : 6);
           }
         }
-        applyto.setDice(thirddice * 100 + doubledice * 10 + dice);
-        if (applyfrom.getSkillLevel(5120043) > 0 && applyto.getDice() == 11)
+        applyTo.setDice(thirddice * 100 + doubledice * 10 + dice);
+        if (applyFrom.getSkillLevel(5120043) > 0 && applyTo.getDice() == 11)
         {
-          applyfrom.setOneMoreChance(true);
+          applyFrom.setOneMoreChance(true);
           if (SkillFactory.getSkill(5120043).getEffect(1).makeChanceResult())
           {
-            applyfrom.removeCooldown(this.sourceid);
-            applyfrom.getClient().getSession().writeAndFlush(CField.skillCooldown(this.sourceid, 0));
+            applyFrom.removeCooldown(this.sourceid);
+            applyFrom.getClient().getSession().writeAndFlush(CField.skillCooldown(this.sourceid, 0));
           }
         }
-        if (applyfrom.getSkillLevel(5220043) > 0 && applyto.getDice() == 11)
+        if (applyFrom.getSkillLevel(5220043) > 0 && applyTo.getDice() == 11)
         {
-          applyfrom.setOneMoreChance(true);
+          applyFrom.setOneMoreChance(true);
           if (SkillFactory.getSkill(5220043).getEffect(1).makeChanceResult())
           {
-            applyfrom.removeCooldown(this.sourceid);
-            applyfrom.getClient().getSession().writeAndFlush(CField.skillCooldown(this.sourceid, 0));
+            applyFrom.removeCooldown(this.sourceid);
+            applyFrom.getClient().getSession().writeAndFlush(CField.skillCooldown(this.sourceid, 0));
           }
         }
         localstatups.put(SecondaryStat.DiceRoll, new Pair<Integer, Integer>(thirddice * 100 + doubledice * 10 + dice, localDuration));
-        int n = bl ? applyto.getBuffSource(SecondaryStat.SelectDice) : (sk = this.sourceid);
+        int n = bl ? applyTo.getBuffSource(SecondaryStat.SelectDice) : (sk = this.sourceid);
         if (bl)
         {
-          applyto.getMap().broadcastMessage(applyto, CField.EffectPacket.showDiceEffect(applyto, 0, n, -1, 1, false), false);
-          applyto.getClient().getSession().writeAndFlush(CField.EffectPacket.showDiceEffect(applyto, 0, n, -1, 1, true));
+          applyTo.getMap().broadcastMessage(applyTo, CField.EffectPacket.showDiceEffect(applyTo, 0, n, -1, 1, false), false);
+          applyTo.getClient().getSession().writeAndFlush(CField.EffectPacket.showDiceEffect(applyTo, 0, n, -1, 1, true));
         }
         if (this.isDoubleDice() && doubledice > 0)
         {
-          applyto.getMap().broadcastMessage(applyto, CField.EffectPacket.showDiceEffect(applyto, 0, n, dice, -1, false), false);
-          applyto.getClient().getSession().writeAndFlush(CField.EffectPacket.showDiceEffect(applyto, 0, n, dice, -1, true));
-          applyto.getMap().broadcastMessage(applyto, CField.EffectPacket.showDiceEffect(applyto, 1, n, doubledice, -1, false), false);
-          applyto.getClient().getSession().writeAndFlush(CField.EffectPacket.showDiceEffect(applyto, 1, n, doubledice, -1, true));
+          applyTo.getMap().broadcastMessage(applyTo, CField.EffectPacket.showDiceEffect(applyTo, 0, n, dice, -1, false), false);
+          applyTo.getClient().getSession().writeAndFlush(CField.EffectPacket.showDiceEffect(applyTo, 0, n, dice, -1, true));
+          applyTo.getMap().broadcastMessage(applyTo, CField.EffectPacket.showDiceEffect(applyTo, 1, n, doubledice, -1, false), false);
+          applyTo.getClient().getSession().writeAndFlush(CField.EffectPacket.showDiceEffect(applyTo, 1, n, doubledice, -1, true));
           if (dice == 1 && doubledice == 1)
           {
-            applyto.dropMessage(5, "더블 럭키 다이스 스킬이 [" + dice + "], [" + doubledice + "]번이 나와 아무런 효과를 받지 못했습니다.");
+            applyTo.dropMessage(5, "더블 럭키 다이스 스킬이 [" + dice + "], [" + doubledice + "]번이 나와 아무런 효과를 받지 못했습니다.");
             if (thirddice == 1)
             {
               return;
@@ -4565,24 +4564,24 @@ public class SecondaryStatEffect
           }
           else if (dice == 1)
           {
-            applyto.dropMessage(5, "더블 럭키 다이스 스킬이 [" + doubledice + "]번 효과를 발동 시켰습니다.");
+            applyTo.dropMessage(5, "더블 럭키 다이스 스킬이 [" + doubledice + "]번 효과를 발동 시켰습니다.");
           }
           else if (doubledice == 1)
           {
-            applyto.dropMessage(5, "더블 럭키 다이스 스킬이 [" + dice + "]번 효과를 발동 시켰습니다.");
+            applyTo.dropMessage(5, "더블 럭키 다이스 스킬이 [" + dice + "]번 효과를 발동 시켰습니다.");
           }
           else
           {
-            applyto.dropMessage(5, "더블 럭키 다이스 스킬이 [" + dice + "], [" + doubledice + "]번 효과를 발동 시켰습니다.");
+            applyTo.dropMessage(5, "더블 럭키 다이스 스킬이 [" + dice + "], [" + doubledice + "]번 효과를 발동 시켰습니다.");
           }
         }
         else
         {
-          applyto.getMap().broadcastMessage(applyto, CField.EffectPacket.showDiceEffect(applyto, 0, n, dice, -1, false), false);
-          applyto.getClient().getSession().writeAndFlush(CField.EffectPacket.showDiceEffect(applyto, 0, n, dice, -1, true));
+          applyTo.getMap().broadcastMessage(applyTo, CField.EffectPacket.showDiceEffect(applyTo, 0, n, dice, -1, false), false);
+          applyTo.getClient().getSession().writeAndFlush(CField.EffectPacket.showDiceEffect(applyTo, 0, n, dice, -1, true));
           if (dice == 1)
           {
-            applyto.dropMessage(5, "럭키 다이스 스킬이 [" + dice + "]번이 나와 아무런 효과를 받지 못했습니다.");
+            applyTo.dropMessage(5, "럭키 다이스 스킬이 [" + dice + "]번이 나와 아무런 효과를 받지 못했습니다.");
             if (thirddice == 1)
             {
               return;
@@ -4590,22 +4589,22 @@ public class SecondaryStatEffect
           }
           else
           {
-            applyto.dropMessage(5, "럭키 다이스 스킬이 [" + dice + "]번 효과를 발동 시켰습니다.");
+            applyTo.dropMessage(5, "럭키 다이스 스킬이 [" + dice + "]번 효과를 발동 시켰습니다.");
           }
         }
-        int[] arrn = new int[]{dice, doubledice};
+        int[] arrn = new int[] { dice, doubledice };
         int i = 0;
         for (int repeat2 : arrn)
         {
           if (repeat2 == 1)
           {
-            applyto.dropMessage(5, "더블 럭키 다이스 스킬이 [" + repeat2 + "]번이 나와 아무런 효과를 받지 못했습니다.");
+            applyTo.dropMessage(5, "더블 럭키 다이스 스킬이 [" + repeat2 + "]번이 나와 아무런 효과를 받지 못했습니다.");
             if (++i >= 2)
             {
-              applyto.removeCooldown(this.sourceid);
+              applyTo.removeCooldown(this.sourceid);
               continue;
             }
-            applyto.changeCooldown(this.sourceid, -this.getDuration() / 2);
+            applyTo.changeCooldown(this.sourceid, -this.getDuration() / 2);
             continue;
           }
           if (repeat2 > 1)
@@ -4613,23 +4612,23 @@ public class SecondaryStatEffect
             continue;
           }
         }
-        if (applyto.getBuffedEffect(SecondaryStat.SelectDice) != null)
+        if (applyTo.getBuffedEffect(SecondaryStat.SelectDice) != null)
         {
-          applyto.getMap().broadcastMessage(applyto, CField.EffectPacket.showDiceEffect(applyto, 1, n, thirddice, 0, false), false);
-          applyto.getClient().getSession().writeAndFlush(CField.EffectPacket.showDiceEffect(applyto, 1, n, thirddice, 0, true));
+          applyTo.getMap().broadcastMessage(applyTo, CField.EffectPacket.showDiceEffect(applyTo, 1, n, thirddice, 0, false), false);
+          applyTo.getClient().getSession().writeAndFlush(CField.EffectPacket.showDiceEffect(applyTo, 1, n, thirddice, 0, true));
         }
-        applyto.getMap().broadcastMessage(applyto, CField.EffectPacket.showDiceEffect(applyto, 1, n, -1, 2, false), false);
-        applyto.getClient().getSession().writeAndFlush(CField.EffectPacket.showDiceEffect(applyto, 1, n, -1, 2, true));
+        applyTo.getMap().broadcastMessage(applyTo, CField.EffectPacket.showDiceEffect(applyTo, 1, n, -1, 2, false), false);
+        applyTo.getClient().getSession().writeAndFlush(CField.EffectPacket.showDiceEffect(applyTo, 1, n, -1, 2, true));
         break;
       }
       case 5121055:
       {
         bufftimeR = false;
-        if (applyto.getUnityofPower() < 4)
+        if (applyTo.getUnityofPower() < 4)
         {
-          applyto.setUnityofPower((byte) (applyto.getUnityofPower() + 1));
+          applyTo.setUnityofPower((byte) (applyTo.getUnityofPower() + 1));
         }
-        localstatups.put(SecondaryStat.UnityOfPower, new Pair<Integer, Integer>(Integer.valueOf(applyto.getUnityofPower()), localDuration));
+        localstatups.put(SecondaryStat.UnityOfPower, new Pair<Integer, Integer>(Integer.valueOf(applyTo.getUnityofPower()), localDuration));
         break;
       }
       case 5121054:
@@ -4648,14 +4647,14 @@ public class SecondaryStatEffect
       case 5311004:
       {
         int zz = Randomizer.nextInt(4) + 1;
-        applyto.getClient().getSession().writeAndFlush(CField.EffectPacket.showEffect(applyto, 0, this.sourceid, 6, zz, -1, (byte) (applyto.isFacingLeft() ? 1 : 0), true, pos, null, null));
-        applyto.getMap().broadcastMessage(applyto, CField.EffectPacket.showEffect(applyto, 0, this.sourceid, 6, zz, -1, (byte) (applyto.isFacingLeft() ? 1 : 0), false, pos, null, null), false);
+        applyTo.getClient().getSession().writeAndFlush(CField.EffectPacket.showEffect(applyTo, 0, this.sourceid, 6, zz, -1, (byte) (applyTo.isFacingLeft() ? 1 : 0), true, pos, null, null));
+        applyTo.getMap().broadcastMessage(applyTo, CField.EffectPacket.showEffect(applyTo, 0, this.sourceid, 6, zz, -1, (byte) (applyTo.isFacingLeft() ? 1 : 0), false, pos, null, null), false);
         localstatups.put(SecondaryStat.Roulette, new Pair<Integer, Integer>(zz, localDuration));
         if (zz == 2)
         {
           localstatups.put(SecondaryStat.IndieCD, new Pair<Integer, Integer>(this.s, localDuration));
         }
-        applyto.setSkillCustomInfo(this.sourceid, zz, 0L);
+        applyTo.setSkillCustomInfo(this.sourceid, zz, 0L);
         break;
       }
       case 5310008:
@@ -4672,19 +4671,19 @@ public class SecondaryStatEffect
       case 11101022:
       {
         short cr = this.indieCr;
-        if (applyto.getSkillLevel(11120009) > 0)
+        if (applyTo.getSkillLevel(11120009) > 0)
         {
-          SecondaryStatEffect secondaryStatEffect = SkillFactory.getSkill(11120009).getEffect(applyto.getSkillLevel(11120009));
+          SecondaryStatEffect secondaryStatEffect = SkillFactory.getSkill(11120009).getEffect(applyTo.getSkillLevel(11120009));
           cr = secondaryStatEffect.indieCr;
         }
         localstatups.put(SecondaryStat.PoseType, new Pair<Integer, Integer>(1, 0));
         localstatups.put(SecondaryStat.IndieCr, new Pair<Integer, Integer>(Integer.valueOf(cr), 0));
         localstatups.put(SecondaryStat.Buckshot, new Pair<Integer, Integer>(this.x, 0));
-        if (!applyto.getBuffedValue(11111022))
+        if (!applyTo.getBuffedValue(11111022))
         {
           break;
         }
-        applyto.cancelEffect(applyto.getBuffedEffect(11111022));
+        applyTo.cancelEffect(applyTo.getBuffedEffect(11111022));
         break;
       }
       case 11111022:
@@ -4693,9 +4692,9 @@ public class SecondaryStatEffect
         int booster = this.indieBooster;
         short s = this.indiePmdR;
         int watk = 0;
-        if (applyto.getSkillLevel(11120009) > 0)
+        if (applyTo.getSkillLevel(11120009) > 0)
         {
-          SecondaryStatEffect ef = SkillFactory.getSkill(11120009).getEffect(applyto.getSkillLevel(11120009));
+          SecondaryStatEffect ef = SkillFactory.getSkill(11120009).getEffect(applyTo.getSkillLevel(11120009));
           booster = -2;
           n = ef.getV();
           watk = ef.getS();
@@ -4707,11 +4706,11 @@ public class SecondaryStatEffect
         {
           localstatups.put(SecondaryStat.IndiePad, new Pair<Integer, Integer>(watk, 0));
         }
-        if (!applyto.getBuffedValue(11101022))
+        if (!applyTo.getBuffedValue(11101022))
         {
           break;
         }
-        applyto.cancelEffect(applyto.getBuffedEffect(11101022));
+        applyTo.cancelEffect(applyTo.getBuffedEffect(11101022));
         break;
       }
       case 11121005:
@@ -4729,7 +4728,7 @@ public class SecondaryStatEffect
         aftercancel = true;
         localstatups.clear();
         localstatups.put(SecondaryStat.PoseType, new Pair<Integer, Integer>(1, 0));
-        localstatups.put(SecondaryStat.Buckshot, new Pair<Integer, Integer>(SkillFactory.getSkill(11101022).getEffect(applyto.getSkillLevel(11101022)).x, 0));
+        localstatups.put(SecondaryStat.Buckshot, new Pair<Integer, Integer>(SkillFactory.getSkill(11101022).getEffect(applyTo.getSkillLevel(11101022)).x, 0));
         break;
       }
       case 11121011:
@@ -4737,7 +4736,7 @@ public class SecondaryStatEffect
         aftercancel = true;
         localstatups.clear();
         localstatups.put(SecondaryStat.PoseType, new Pair<Integer, Integer>(2, 0));
-        localstatups.put(SecondaryStat.Buckshot, new Pair<Integer, Integer>(SkillFactory.getSkill(11101022).getEffect(applyto.getSkillLevel(11101022)).x, 0));
+        localstatups.put(SecondaryStat.Buckshot, new Pair<Integer, Integer>(SkillFactory.getSkill(11101022).getEffect(applyTo.getSkillLevel(11101022)).x, 0));
         break;
       }
       case 11121014:
@@ -4798,33 +4797,33 @@ public class SecondaryStatEffect
       }
       case 14120009:
       {
-        if (applyto.siphonVitality == this.x)
+        if (applyTo.siphonVitality == this.x)
         {
-          localstatups.put(SecondaryStat.SiphonVitality, new Pair<Integer, Integer>(applyto.siphonVitality, this.subTime));
-          applyto.siphonVitality = 0;
-          SkillFactory.getSkill(14120011).getEffect(this.level).applyTo(applyto);
+          localstatups.put(SecondaryStat.SiphonVitality, new Pair<Integer, Integer>(applyTo.siphonVitality, this.subTime));
+          applyTo.siphonVitality = 0;
+          SkillFactory.getSkill(14120011).getEffect(this.level).applyTo(applyTo);
           break;
         }
-        ++applyto.siphonVitality;
-        localstatups.put(SecondaryStat.SiphonVitality, new Pair<Integer, Integer>(applyto.siphonVitality, this.subTime));
+        ++applyTo.siphonVitality;
+        localstatups.put(SecondaryStat.SiphonVitality, new Pair<Integer, Integer>(applyTo.siphonVitality, this.subTime));
         break;
       }
       case 14120011:
       {
-        if (applyto.getBuffedValue(SecondaryStat.Protective) == null)
+        if (applyTo.getBuffedValue(SecondaryStat.Protective) == null)
         {
-          applyto.setSkillCustomInfo(14120011, SkillFactory.getSkill(14120009).getEffect(applyfrom.getSkillLevel(14120009)).y, 0L);
-          if (applyto.getSkillLevel(14120049) > 0)
+          applyTo.setSkillCustomInfo(14120011, SkillFactory.getSkill(14120009).getEffect(applyFrom.getSkillLevel(14120009)).y, 0L);
+          if (applyTo.getSkillLevel(14120049) > 0)
           {
-            applyto.setSkillCustomInfo(14120011, applyto.getSkillCustomValue0(14120011) + (long) SkillFactory.getSkill(14120049).getEffect(1).getX(), 0L);
+            applyTo.setSkillCustomInfo(14120011, applyTo.getSkillCustomValue0(14120011) + (long) SkillFactory.getSkill(14120049).getEffect(1).getX(), 0L);
           }
         }
-        localstatups.put(SecondaryStat.Protective, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(14120011), localDuration));
-        if (applyto.getSkillLevel(14120050) > 0)
+        localstatups.put(SecondaryStat.Protective, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(14120011), localDuration));
+        if (applyTo.getSkillLevel(14120050) > 0)
         {
           localstatups.put(SecondaryStat.IndiePad, new Pair<Integer, Integer>(SkillFactory.getSkill(14120050).getEffect(1).getX(), localDuration));
         }
-        if (applyto.getSkillLevel(14120051) <= 0)
+        if (applyTo.getSkillLevel(14120051) <= 0)
         {
           break;
         }
@@ -4845,7 +4844,7 @@ public class SecondaryStatEffect
           aftercancel = true;
           localstatups.put(SecondaryStat.NotDamaged, new Pair<Integer, Integer>(1, 3500));
           localstatups.put(SecondaryStat.IgnorePCounter, new Pair<Integer, Integer>(1, 3500));
-          this.applyTo(applyto, false);
+          this.applyTo(applyTo, false);
           break;
         }
         aftercancel = true;
@@ -4857,20 +4856,20 @@ public class SecondaryStatEffect
       }
       case 15111022:
       {
-        if (applyto.lightning < 0)
+        if (applyTo.lightning < 0)
         {
-          applyto.lightning = 0;
+          applyTo.lightning = 0;
         }
-        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(applyto.lightning * this.y, localDuration));
+        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(applyTo.lightning * this.y, localDuration));
         break;
       }
       case 15120003:
       {
-        if (applyto.lightning < 0)
+        if (applyTo.lightning < 0)
         {
-          applyto.lightning = 0;
+          applyTo.lightning = 0;
         }
-        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(applyto.lightning * this.y, localDuration));
+        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(applyTo.lightning * this.y, localDuration));
         break;
       }
       case 15121052:
@@ -4888,8 +4887,8 @@ public class SecondaryStatEffect
           localstatups.put(SecondaryStat.CygnusElementSkill, new Pair<Integer, Integer>(1, 0));
           break;
         }
-        localstatups.put(SecondaryStat.IgnoreTargetDEF, new Pair<Integer, Integer>((applyto.getSkillLevel(15121054) > 0 ? 9 : this.x) * applyto.lightning, this.y * 1000));
-        localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>((applyto.getSkillLevel(15121054) > 0 ? 5 : 0) * applyto.lightning, this.y * 1000));
+        localstatups.put(SecondaryStat.IgnoreTargetDEF, new Pair<Integer, Integer>((applyTo.getSkillLevel(15121054) > 0 ? 9 : this.x) * applyTo.lightning, this.y * 1000));
+        localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>((applyTo.getSkillLevel(15121054) > 0 ? 5 : 0) * applyTo.lightning, this.y * 1000));
         break;
       }
       case 21100015:
@@ -4901,15 +4900,15 @@ public class SecondaryStatEffect
       }
       case 21121017:
       {
-        applyto.cancelEffectFromBuffStat(SecondaryStat.BeyondNextAttackProb);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.BeyondNextAttackProb);
         break;
       }
       case 21110016:
       {
-        applyto.setCombo((short) 500);
-        SkillFactory.getSkill(21000000).getEffect(applyfrom.getSkillLevel(21000000)).applyTo(applyfrom, false);
+        applyTo.setCombo((short) 500);
+        SkillFactory.getSkill(21000000).getEffect(applyFrom.getSkillLevel(21000000)).applyTo(applyFrom, false);
         localDuration = 15000;
-        if (applyfrom.getSkillLevel(21120064) > 0)
+        if (applyFrom.getSkillLevel(21120064) > 0)
         {
           localDuration += SkillFactory.getSkill(21120064).getEffect(1).getDuration();
         }
@@ -4918,38 +4917,38 @@ public class SecondaryStatEffect
         localstatups.put(SecondaryStat.AranBoostEndHunt, new Pair<Integer, Integer>(1, localDuration));
         if (primary)
         {
-          applyto.setSkillCustomInfo(21110016, 1L, 0L);
+          applyTo.setSkillCustomInfo(21110016, 1L, 0L);
           break;
         }
-        applyto.setSkillCustomInfo(21110016, 0L, 0L);
+        applyTo.setSkillCustomInfo(21110016, 0L, 0L);
         break;
       }
       case 21111030:
       {
         localstatups.clear();
-        if (applyto.getBuffedEffect(SecondaryStat.AdrenalinBoostActive) == null)
+        if (applyTo.getBuffedEffect(SecondaryStat.AdrenalinBoostActive) == null)
         {
           localstatups.put(SecondaryStat.AdrenalinBoostActive, new Pair<Integer, Integer>(1, this.y * 1000));
           break;
         }
-        applyto.cancelEffect(this, null, true);
-        SkillFactory.getSkill(21110016).getEffect(applyto.getSkillLevel(21110016)).applyTo(applyto);
+        applyTo.cancelEffect(this, null, true);
+        SkillFactory.getSkill(21110016).getEffect(applyTo.getSkillLevel(21110016)).applyTo(applyTo);
         break;
       }
       case 21121058:
       {
         bufftimeR = false;
-        applyto.setCombo((short) 500);
+        applyTo.setCombo((short) 500);
         localDuration = 15000;
         localstatups.clear();
         localstatups.put(SecondaryStat.AdrenalinBoost, new Pair<Integer, Integer>(150, localDuration));
         localstatups.put(SecondaryStat.AranBoostEndHunt, new Pair<Integer, Integer>(1, localDuration));
         if (primary)
         {
-          applyto.setSkillCustomInfo(21110016, 1L, 0L);
+          applyTo.setSkillCustomInfo(21110016, 1L, 0L);
           break;
         }
-        applyto.setSkillCustomInfo(21110016, 0L, 0L);
+        applyTo.setSkillCustomInfo(21110016, 0L, 0L);
         break;
       }
       case 30021237:
@@ -4973,13 +4972,13 @@ public class SecondaryStatEffect
         {
           localDuration = 15000;
         }
-        else if (!primary && applyto.getBuffedValue(400031017))
+        else if (!primary && applyTo.getBuffedValue(400031017))
         {
           localDuration = 0;
         }
-        else if (!primary && !applyto.getBuffedValue(400031017))
+        else if (!primary && !applyTo.getBuffedValue(400031017))
         {
-          long time = applyto.getBuffLimit(23110004);
+          long time = applyTo.getBuffLimit(23110004);
           localDuration = (int) time + 100;
         }
         if (localDuration > 15000)
@@ -4987,12 +4986,12 @@ public class SecondaryStatEffect
           localDuration = 15000;
         }
         localstatups.clear();
-        localstatups.put(SecondaryStat.IgnisRore, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(23110005), localDuration));
+        localstatups.put(SecondaryStat.IgnisRore, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(23110005), localDuration));
         break;
       }
       case 23111005:
       {
-        if (applyfrom.getSkillLevel(23120046) > 0)
+        if (applyFrom.getSkillLevel(23120046) > 0)
         {
           localstatups.put(SecondaryStat.DamAbsorbShield, new Pair<Integer, Integer>(this.x + SkillFactory.getSkill(23120046).getEffect(1).getX(), localDuration));
         }
@@ -5000,7 +4999,7 @@ public class SecondaryStatEffect
         {
           localstatups.put(SecondaryStat.DamAbsorbShield, new Pair<Integer, Integer>(this.x, localDuration));
         }
-        if (applyfrom.getSkillLevel(23120047) > 0)
+        if (applyFrom.getSkillLevel(23120047) > 0)
         {
           localstatups.put(SecondaryStat.Asr, new Pair<Integer, Integer>(this.asrR + SkillFactory.getSkill(23120047).getEffect(1).getX(), localDuration));
         }
@@ -5008,7 +5007,7 @@ public class SecondaryStatEffect
         {
           localstatups.put(SecondaryStat.Asr, new Pair<Integer, Integer>(Integer.valueOf(this.asrR), localDuration));
         }
-        if (applyfrom.getSkillLevel(23120048) > 0)
+        if (applyFrom.getSkillLevel(23120048) > 0)
         {
           localstatups.put(SecondaryStat.Ter, new Pair<Integer, Integer>(this.terR + SkillFactory.getSkill(23120048).getEffect(1).getX(), localDuration));
           break;
@@ -5019,7 +5018,7 @@ public class SecondaryStatEffect
       case 20031205:
       {
         bufftimeR = false;
-        applyto.getClient().getSession().writeAndFlush(CWvsContext.enableActions(applyto, true, false));
+        applyTo.getClient().getSession().writeAndFlush(CWvsContext.enableActions(applyTo, true, false));
         localstatups.put(SecondaryStat.Invisible, new Pair<Integer, Integer>(this.z * 100, localDuration));
         break;
       }
@@ -5029,7 +5028,7 @@ public class SecondaryStatEffect
         showEffect = false;
         bufftimeR = false;
         int judgement = Randomizer.rand(1, this.sourceid == 20031210 ? 4 : 2);
-        applyto.cancelEffect(this);
+        applyTo.cancelEffect(this);
         if (judgement == 4)
         {
           ++judgement;
@@ -5062,10 +5061,10 @@ public class SecondaryStatEffect
             break;
           }
         }
-        applyto.setCardStack((byte) 0);
-        applyto.getClient().getSession().writeAndFlush(CField.updateCardStack(false, applyto.getCardStack()));
-        applyto.getClient().getSession().writeAndFlush(CField.EffectPacket.showEffect(applyto, 0, this.sourceid, 6, judgement - 1, -1, (byte) 0, true, null, null, null));
-        MapleAtom atom = new MapleAtom(false, applyto.getId(), 1, true, applyto.getTotalSkillLevel(SkillFactory.getSkill(24120002)) > 0 ? 24120002 : 24100003, applyto.getTruePosition().x, applyto.getTruePosition().y);
+        applyTo.setCardStack((byte) 0);
+        applyTo.getClient().getSession().writeAndFlush(CField.updateCardStack(false, applyTo.getCardStack()));
+        applyTo.getClient().getSession().writeAndFlush(CField.EffectPacket.showEffect(applyTo, 0, this.sourceid, 6, judgement - 1, -1, (byte) 0, true, null, null, null));
+        MapleAtom atom = new MapleAtom(false, applyTo.getId(), 1, true, applyTo.getTotalSkillLevel(SkillFactory.getSkill(24120002)) > 0 ? 24120002 : 24100003, applyTo.getTruePosition().x, applyTo.getTruePosition().y);
         int i = 0;
         while (true)
         {
@@ -5076,13 +5075,13 @@ public class SecondaryStatEffect
           atom.addForceAtom(new ForceAtom(2, Randomizer.rand(15, 29), Randomizer.rand(7, 11), Randomizer.rand(0, 9), 0));
           ++i;
         }
-        applyto.getMap().spawnMapleAtom(atom);
+        applyTo.getMap().spawnMapleAtom(atom);
         break;
       }
       case 20040216:
       case 20040217:
       {
-        localstatups.put(SecondaryStat.Larkness, new Pair<Integer, Integer>(applyto.getLuminusMorphUse(), localDuration));
+        localstatups.put(SecondaryStat.Larkness, new Pair<Integer, Integer>(applyTo.getLuminusMorphUse(), localDuration));
         break;
       }
       case 20040219:
@@ -5092,36 +5091,36 @@ public class SecondaryStatEffect
         {
           bufftimeR = false;
         }
-        if (applyto.getLuminusMorph())
+        if (applyTo.getLuminusMorph())
         {
-          applyto.setLuminusMorphUse(1);
+          applyTo.setLuminusMorphUse(1);
         }
         else
         {
-          applyto.setLuminusMorphUse(9999);
+          applyTo.setLuminusMorphUse(9999);
         }
-        for (MapleCoolDownValueHolder i : applyto.getCooldowns())
+        for (MapleCoolDownValueHolder i : applyTo.getCooldowns())
         {
           if (i.skillId != 27111303 && i.skillId != 27121303)
           {
             continue;
           }
-          applyto.removeCooldown(i.skillId);
-          applyto.getClient().getSession().writeAndFlush(CField.skillCooldown(i.skillId, 0));
+          applyTo.removeCooldown(i.skillId);
+          applyTo.getClient().getSession().writeAndFlush(CField.skillCooldown(i.skillId, 0));
         }
         localstatups.clear();
         if (!showEffect)
         {
-          localDuration = 10000 + SkillFactory.getSkill(27120008).getEffect(applyto.getSkillLevel(27120008)).duration;
+          localDuration = 10000 + SkillFactory.getSkill(27120008).getEffect(applyTo.getSkillLevel(27120008)).duration;
         }
-        localstatups.put(SecondaryStat.Larkness, new Pair<Integer, Integer>(applyto.getLuminusMorphUse(), localDuration));
-        applyto.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.LuminusMorph(applyto.getLuminusMorphUse(), applyto.getLuminusMorph()));
+        localstatups.put(SecondaryStat.Larkness, new Pair<Integer, Integer>(applyTo.getLuminusMorphUse(), localDuration));
+        applyTo.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.LuminusMorph(applyTo.getLuminusMorphUse(), applyTo.getLuminusMorph()));
         break;
       }
       case 21000000:
       {
         aftercancel = true;
-        localstatups.put(SecondaryStat.AranCombo, new Pair<Integer, Integer>(Integer.valueOf(applyto.getCombo()), 0));
+        localstatups.put(SecondaryStat.AranCombo, new Pair<Integer, Integer>(Integer.valueOf(applyTo.getCombo()), 0));
         break;
       }
       case 24111002:
@@ -5134,14 +5133,14 @@ public class SecondaryStatEffect
           break;
         }
         bufftimeR = false;
-        applyto.getStat().heal(applyto);
+        applyTo.getStat().heal(applyTo);
         localstatups.put(SecondaryStat.IgnorePCounter, new Pair<Integer, Integer>(1, 4000));
         localstatups.put(SecondaryStat.NotDamaged, new Pair<Integer, Integer>(1, 4000));
         break;
       }
       case 24111003:
       {
-        if (applyfrom.getSkillLevel(24120049) > 0)
+        if (applyFrom.getSkillLevel(24120049) > 0)
         {
           localstatups.put(SecondaryStat.IndieAsrR, new Pair<Integer, Integer>(this.x + 5, localDuration));
           localstatups.put(SecondaryStat.IndieTerR, new Pair<Integer, Integer>(this.y + SkillFactory.getSkill(24120049).getEffect(1).getX(), localDuration));
@@ -5151,7 +5150,7 @@ public class SecondaryStatEffect
           localstatups.put(SecondaryStat.IndieAsrR, new Pair<Integer, Integer>(this.x, localDuration));
           localstatups.put(SecondaryStat.IndieTerR, new Pair<Integer, Integer>(this.y, localDuration));
         }
-        if (applyfrom.getSkillLevel(24120050) > 0)
+        if (applyFrom.getSkillLevel(24120050) > 0)
         {
           localstatups.put(SecondaryStat.IndieHpR, new Pair<Integer, Integer>(this.indieMhpR + SkillFactory.getSkill(24120050).getEffect(1).getX(), localDuration));
         }
@@ -5159,7 +5158,7 @@ public class SecondaryStatEffect
         {
           localstatups.put(SecondaryStat.IndieHpR, new Pair<Integer, Integer>(Integer.valueOf(this.indieMhpR), localDuration));
         }
-        if (applyfrom.getSkillLevel(24120051) > 0)
+        if (applyFrom.getSkillLevel(24120051) > 0)
         {
           localstatups.put(SecondaryStat.IndieMpR, new Pair<Integer, Integer>(this.indieMmpR + SkillFactory.getSkill(24120051).getEffect(1).getX(), localDuration));
           break;
@@ -5178,20 +5177,20 @@ public class SecondaryStatEffect
           localstatups.put(SecondaryStat.ReviveOnce, new Pair<Integer, Integer>(100, 0));
           break;
         }
-        applyto.cancelEffect(this);
+        applyTo.cancelEffect(this);
         localstatups.put(SecondaryStat.IgnorePCounter, new Pair<Integer, Integer>(1, 1000));
         localstatups.put(SecondaryStat.NotDamaged, new Pair<Integer, Integer>(1, 1000));
         break;
       }
       case 25121209:
       {
-        applyto.setSpiritGuard(3);
+        applyTo.setSpiritGuard(3);
         localstatups.put(SecondaryStat.SpiritGuard, new Pair<Integer, Integer>(3, localDuration));
         break;
       }
       case 27100003:
       {
-        localstatups.put(SecondaryStat.BlessOfDarkness, new Pair<Integer, Integer>(Integer.valueOf(applyto.getBlessofDarkness()), 0));
+        localstatups.put(SecondaryStat.BlessOfDarkness, new Pair<Integer, Integer>(Integer.valueOf(applyTo.getBlessofDarkness()), 0));
         aftercancel = true;
         break;
       }
@@ -5199,69 +5198,69 @@ public class SecondaryStatEffect
       {
         localstatups.put(SecondaryStat.AntiMagicShell, new Pair<Integer, Integer>(3, 0));
         aftercancel = true;
-        applyto.setAntiMagicShell((byte) 3);
+        applyTo.setAntiMagicShell((byte) 3);
         break;
       }
       case 27120005:
       {
-        if (applyto.stackbuff == 0)
+        if (applyTo.stackbuff == 0)
         {
-          ++applyto.stackbuff;
+          ++applyTo.stackbuff;
         }
-        localstatups.put(SecondaryStat.StackBuff, new Pair<Integer, Integer>(applyto.stackbuff * this.damR, localDuration));
+        localstatups.put(SecondaryStat.StackBuff, new Pair<Integer, Integer>(applyTo.stackbuff * this.damR, localDuration));
         break;
       }
       case 27121054:
       {
         bufftimeR = false;
-        if (applyto.getBuffedValue(20040219) || applyto.getBuffedValue(20040220))
+        if (applyTo.getBuffedValue(20040219) || applyTo.getBuffedValue(20040220))
         {
-          applyto.dropMessage(5, "\uc774\ud004\ub9ac\ube0c\ub9ac\uc5c4 \uc0c1\ud0dc\uc5d0\uc11c\ub294 \uc0ac\uc6a9\ud558\uc2e4 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4.");
-          applyto.getClient().getSession().writeAndFlush(CWvsContext.enableActions(applyto));
-          applyto.removeCooldown(27121054);
+          applyTo.dropMessage(5, "\uc774\ud004\ub9ac\ube0c\ub9ac\uc5c4 \uc0c1\ud0dc\uc5d0\uc11c\ub294 \uc0ac\uc6a9\ud558\uc2e4 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4.");
+          applyTo.getClient().getSession().writeAndFlush(CWvsContext.enableActions(applyTo));
+          applyTo.removeCooldown(27121054);
         }
-        else if (applyto.getBuffedValue(20040216))
+        else if (applyTo.getBuffedValue(20040216))
         {
-          SkillFactory.getSkill(20040220).getEffect(1).applyTo(applyto, false);
-          applyto.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.LuminusMorph(applyto.getLuminusMorphUse(), applyto.getLuminusMorph()));
+          SkillFactory.getSkill(20040220).getEffect(1).applyTo(applyTo, false);
+          applyTo.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.LuminusMorph(applyTo.getLuminusMorphUse(), applyTo.getLuminusMorph()));
         }
         else
         {
-          SkillFactory.getSkill(20040219).getEffect(1).applyTo(applyto, false);
-          applyto.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.LuminusMorph(applyto.getLuminusMorphUse(), applyto.getLuminusMorph()));
+          SkillFactory.getSkill(20040219).getEffect(1).applyTo(applyTo, false);
+          applyTo.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.LuminusMorph(applyTo.getLuminusMorphUse(), applyTo.getLuminusMorph()));
         }
         return;
       }
       case 30010230:
       {
         aftercancel = true;
-        localstatups.put(SecondaryStat.OverloadCount, new Pair<Integer, Integer>(applyto.getExceed(), 0));
+        localstatups.put(SecondaryStat.OverloadCount, new Pair<Integer, Integer>(applyTo.getExceed(), 0));
         break;
       }
       case 31011001:
       {
         int IndiePmdR = 0;
-        int maxcount = applyto.getSkillLevel(31220044) > 0 ? 18 : 20;
-        int heal = (int) Math.floor((double) applyto.getExceed() / (double) maxcount * 100.0);
-        double d = applyto.getSkillLevel(31210006) > 0 ? 1.25 : 0.625;
-        IndiePmdR = (int) Math.floor((double) applyto.getExceed() * d);
-        if (maxcount == applyto.getExceed())
+        int maxcount = applyTo.getSkillLevel(31220044) > 0 ? 18 : 20;
+        int heal = (int) Math.floor((double) applyTo.getExceed() / (double) maxcount * 100.0);
+        double d = applyTo.getSkillLevel(31210006) > 0 ? 1.25 : 0.625;
+        IndiePmdR = (int) Math.floor((double) applyTo.getExceed() * d);
+        if (maxcount == applyTo.getExceed())
         {
           heal = 100;
-          IndiePmdR = applyto.getSkillLevel(31210006) > 0 ? 25 : 15;
+          IndiePmdR = applyTo.getSkillLevel(31210006) > 0 ? 25 : 15;
         }
-        applyto.setExceed((short) 0);
-        applyto.cancelEffectFromBuffStat(SecondaryStat.OverloadCount);
+        applyTo.setExceed((short) 0);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.OverloadCount);
         HashMap<SecondaryStat, Pair<Integer, Integer>> cancelList = new HashMap<SecondaryStat, Pair<Integer, Integer>>();
         cancelList.put(SecondaryStat.ExceedOverload, new Pair<Integer, Integer>(1, 0));
-        applyto.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.cancelBuff(cancelList, applyto));
-        long healhp = applyto.getStat().getCurrentMaxHp() / 100L * (long) heal;
-        if (applyto.getBuffedEffect(SecondaryStat.DemonFrenzy) != null)
+        applyTo.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.cancelBuff(cancelList, applyTo));
+        long healhp = applyTo.getStat().getCurrentMaxHp() / 100L * (long) heal;
+        if (applyTo.getBuffedEffect(SecondaryStat.DemonFrenzy) != null)
         {
           healhp = healhp / 100L * (long) this.y;
         }
-        applyto.setSkillCustomInfo(30010232, 0L, 0L);
-        applyto.addHP(healhp, applyto.getBuffedEffect(SecondaryStat.DemonFrenzy) != null, false);
+        applyTo.setSkillCustomInfo(30010232, 0L, 0L);
+        applyTo.addHP(healhp, applyTo.getBuffedEffect(SecondaryStat.DemonFrenzy) != null, false);
         localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>(IndiePmdR, localDuration));
         break;
       }
@@ -5285,16 +5284,16 @@ public class SecondaryStatEffect
         localstatups.put(SecondaryStat.DevilishPower, new Pair<Integer, Integer>(this.damage / 10, localDuration));
         localstatups.put(SecondaryStat.NotDamaged, new Pair<Integer, Integer>(1, 3000));
         localstatups.put(SecondaryStat.IgnoreAllImmune, new Pair<Integer, Integer>(1, 3000));
-        if (applyfrom.getSkillLevel(31120046) <= 0)
+        if (applyFrom.getSkillLevel(31120046) <= 0)
         {
           break;
         }
-        SkillFactory.getSkill(31120046).getEffect(1).applyTo(applyfrom, localDuration);
+        SkillFactory.getSkill(31120046).getEffect(1).applyTo(applyFrom, localDuration);
         break;
       }
       case 31211003:
       {
-        if (applyfrom.getSkillLevel(31220046) > 0)
+        if (applyFrom.getSkillLevel(31220046) > 0)
         {
           localstatups.put(SecondaryStat.DamAbsorbShield, new Pair<Integer, Integer>(this.x + SkillFactory.getSkill(31220046).getEffect(1).getX(), localDuration));
         }
@@ -5302,7 +5301,7 @@ public class SecondaryStatEffect
         {
           localstatups.put(SecondaryStat.DamAbsorbShield, new Pair<Integer, Integer>(this.x, localDuration));
         }
-        if (applyfrom.getSkillLevel(31220047) > 0)
+        if (applyFrom.getSkillLevel(31220047) > 0)
         {
           localstatups.put(SecondaryStat.Asr, new Pair<Integer, Integer>(this.y + SkillFactory.getSkill(31220047).getEffect(1).getX(), localDuration));
         }
@@ -5310,7 +5309,7 @@ public class SecondaryStatEffect
         {
           localstatups.put(SecondaryStat.Asr, new Pair<Integer, Integer>(this.y, localDuration));
         }
-        if (applyfrom.getSkillLevel(31220048) > 0)
+        if (applyFrom.getSkillLevel(31220048) > 0)
         {
           localstatups.put(SecondaryStat.Ter, new Pair<Integer, Integer>(this.z + SkillFactory.getSkill(31220048).getEffect(1).getX(), localDuration));
           break;
@@ -5324,13 +5323,13 @@ public class SecondaryStatEffect
       case 32120019:
       {
         aftercancel = true;
-        localstatups.put(SecondaryStat.BMageDeath, new Pair<Integer, Integer>(Integer.valueOf(applyto.getDeath()), localDuration));
+        localstatups.put(SecondaryStat.BMageDeath, new Pair<Integer, Integer>(Integer.valueOf(applyTo.getDeath()), localDuration));
         break;
       }
       case 32001016:
       {
         localDuration = 0;
-        applyto.setSkillCustomInfo(this.sourceid, applyfrom.getId(), 0L);
+        applyTo.setSkillCustomInfo(this.sourceid, applyFrom.getId(), 0L);
         localstatups.put(SecondaryStat.YellowAura, new Pair<Integer, Integer>(Integer.valueOf(this.level), 0));
         localstatups.put(SecondaryStat.IndieBooster, new Pair<Integer, Integer>(-1, localDuration));
         localstatups.put(SecondaryStat.IndieSpeed, new Pair<Integer, Integer>(Integer.valueOf(this.indieSpeed), localDuration));
@@ -5338,63 +5337,63 @@ public class SecondaryStatEffect
         {
           break;
         }
-        if (applyto.getBuffedValue(32101009) && applyto.getBuffedOwner(32101009) == applyto.getId())
+        if (applyTo.getBuffedValue(32101009) && applyTo.getBuffedOwner(32101009) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.DrainAura, 32101009);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.DrainAura, 32101009);
         }
-        if (applyto.getBuffedValue(32111012) && applyto.getBuffedOwner(32111012) == applyto.getId())
+        if (applyTo.getBuffedValue(32111012) && applyTo.getBuffedOwner(32111012) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.BlueAura, 32111012);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.BlueAura, 32111012);
         }
-        if (applyto.getBuffedValue(32121017) && applyto.getBuffedOwner(32121017) == applyto.getId())
+        if (applyTo.getBuffedValue(32121017) && applyTo.getBuffedOwner(32121017) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.DarkAura, 32121017);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.DarkAura, 32121017);
         }
-        if (applyto.getBuffedValue(32121018) && applyto.getBuffedOwner(32121018) == applyto.getId())
+        if (applyTo.getBuffedValue(32121018) && applyTo.getBuffedOwner(32121018) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.DebuffAura, 32121018);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.DebuffAura, 32121018);
         }
-        if (!applyto.getBuffedValue(400021006) || applyto.getBuffedOwner(400021006) != applyto.getId())
+        if (!applyTo.getBuffedValue(400021006) || applyTo.getBuffedOwner(400021006) != applyTo.getId())
         {
           break;
         }
-        applyto.cancelEffectFromBuffStat(SecondaryStat.UnionAura, 400021006);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.UnionAura, 400021006);
         break;
       }
       case 32101009:
       {
-        applyto.setSkillCustomInfo(this.sourceid, applyfrom.getId(), 0L);
+        applyTo.setSkillCustomInfo(this.sourceid, applyFrom.getId(), 0L);
         localstatups.put(SecondaryStat.DrainAura, new Pair<Integer, Integer>(Integer.valueOf(this.level), 0));
         if (!primary)
         {
           break;
         }
-        if (applyto.getBuffedValue(32001016) && applyto.getBuffedOwner(32001016) == applyto.getId())
+        if (applyTo.getBuffedValue(32001016) && applyTo.getBuffedOwner(32001016) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.YellowAura, 32001016);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.YellowAura, 32001016);
         }
-        if (applyto.getBuffedValue(32111012) && applyto.getBuffedOwner(32111012) == applyto.getId())
+        if (applyTo.getBuffedValue(32111012) && applyTo.getBuffedOwner(32111012) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.BlueAura, 32111012);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.BlueAura, 32111012);
         }
-        if (applyto.getBuffedValue(32121017) && applyto.getBuffedOwner(32121017) == applyto.getId())
+        if (applyTo.getBuffedValue(32121017) && applyTo.getBuffedOwner(32121017) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.DarkAura, 32121017);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.DarkAura, 32121017);
         }
-        if (applyto.getBuffedValue(32121018) && applyto.getBuffedOwner(32121018) == applyto.getId())
+        if (applyTo.getBuffedValue(32121018) && applyTo.getBuffedOwner(32121018) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.DebuffAura, 32121018);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.DebuffAura, 32121018);
         }
-        if (!applyto.getBuffedValue(400021006) || applyto.getBuffedOwner(400021006) != applyto.getId())
+        if (!applyTo.getBuffedValue(400021006) || applyTo.getBuffedOwner(400021006) != applyTo.getId())
         {
           break;
         }
-        applyto.cancelEffectFromBuffStat(SecondaryStat.UnionAura, 400021006);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.UnionAura, 400021006);
         break;
       }
       case 32111012:
       {
-        applyto.setSkillCustomInfo(this.sourceid, applyfrom.getId(), 0L);
+        applyTo.setSkillCustomInfo(this.sourceid, applyFrom.getId(), 0L);
         localDuration = 0;
         localstatups.put(SecondaryStat.BlueAura, new Pair<Integer, Integer>(Integer.valueOf(this.level), 0));
         localstatups.put(SecondaryStat.IndieAsrR, new Pair<Integer, Integer>(Integer.valueOf(this.indieAsrR), localDuration));
@@ -5402,27 +5401,27 @@ public class SecondaryStatEffect
         {
           break;
         }
-        if (applyto.getBuffedValue(32001016) && applyto.getBuffedOwner(32001016) == applyto.getId())
+        if (applyTo.getBuffedValue(32001016) && applyTo.getBuffedOwner(32001016) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.YellowAura, 32001016);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.YellowAura, 32001016);
         }
-        if (applyto.getBuffedValue(32101009) && applyto.getBuffedOwner(32101009) == applyto.getId())
+        if (applyTo.getBuffedValue(32101009) && applyTo.getBuffedOwner(32101009) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.DrainAura, 32101009);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.DrainAura, 32101009);
         }
-        if (applyto.getBuffedValue(32121017) && applyto.getBuffedOwner(32121017) == applyto.getId())
+        if (applyTo.getBuffedValue(32121017) && applyTo.getBuffedOwner(32121017) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.DarkAura, 32121017);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.DarkAura, 32121017);
         }
-        if (applyto.getBuffedValue(32121018) && applyto.getBuffedOwner(32121018) == applyto.getId())
+        if (applyTo.getBuffedValue(32121018) && applyTo.getBuffedOwner(32121018) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.DebuffAura, 32121018);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.DebuffAura, 32121018);
         }
-        if (!applyto.getBuffedValue(400021006) || applyto.getBuffedOwner(400021006) != applyto.getId())
+        if (!applyTo.getBuffedValue(400021006) || applyTo.getBuffedOwner(400021006) != applyTo.getId())
         {
           break;
         }
-        applyto.cancelEffectFromBuffStat(SecondaryStat.UnionAura, 400021006);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.UnionAura, 400021006);
         break;
       }
       case 32111016:
@@ -5433,11 +5432,11 @@ public class SecondaryStatEffect
       }
       case 32121017:
       {
-        applyto.setSkillCustomInfo(this.sourceid, applyfrom.getId(), 0L);
+        applyTo.setSkillCustomInfo(this.sourceid, applyFrom.getId(), 0L);
         localDuration = 0;
         localstatups.put(SecondaryStat.DarkAura, new Pair<Integer, Integer>(Integer.valueOf(this.level), 0));
         localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(Integer.valueOf(this.indieDamR), localDuration));
-        if (applyfrom.getId() == applyto.getId() && applyto.getSkillLevel(32120060) > 0)
+        if (applyFrom.getId() == applyTo.getId() && applyTo.getSkillLevel(32120060) > 0)
         {
           localstatups.put(SecondaryStat.IndieBDR, new Pair<Integer, Integer>(Integer.valueOf(SkillFactory.getSkill(32120060).getEffect(1).indieBDR), localDuration));
         }
@@ -5445,27 +5444,27 @@ public class SecondaryStatEffect
         {
           break;
         }
-        if (applyto.getBuffedValue(32001016) && applyto.getBuffedOwner(32001016) == applyto.getId())
+        if (applyTo.getBuffedValue(32001016) && applyTo.getBuffedOwner(32001016) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.YellowAura, 32001016);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.YellowAura, 32001016);
         }
-        if (applyto.getBuffedValue(32101009) && applyto.getBuffedOwner(32101009) == applyto.getId())
+        if (applyTo.getBuffedValue(32101009) && applyTo.getBuffedOwner(32101009) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.DrainAura, 32101009);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.DrainAura, 32101009);
         }
-        if (applyto.getBuffedValue(32111012) && applyto.getBuffedOwner(32111012) == applyto.getId())
+        if (applyTo.getBuffedValue(32111012) && applyTo.getBuffedOwner(32111012) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.BlueAura, 32111012);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.BlueAura, 32111012);
         }
-        if (applyto.getBuffedValue(32121018) && applyto.getBuffedOwner(32121018) == applyto.getId())
+        if (applyTo.getBuffedValue(32121018) && applyTo.getBuffedOwner(32121018) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.DebuffAura, 32121018);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.DebuffAura, 32121018);
         }
-        if (!applyto.getBuffedValue(400021006) || applyto.getBuffedOwner(400021006) != applyto.getId())
+        if (!applyTo.getBuffedValue(400021006) || applyTo.getBuffedOwner(400021006) != applyTo.getId())
         {
           break;
         }
-        applyto.cancelEffectFromBuffStat(SecondaryStat.UnionAura, 400021006);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.UnionAura, 400021006);
         break;
       }
       case 32121018:
@@ -5475,34 +5474,34 @@ public class SecondaryStatEffect
         {
           break;
         }
-        if (applyto.getBuffedValue(32001016) && applyto.getBuffedOwner(32001016) == applyto.getId())
+        if (applyTo.getBuffedValue(32001016) && applyTo.getBuffedOwner(32001016) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.YellowAura, 32001016);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.YellowAura, 32001016);
         }
-        if (applyto.getBuffedValue(32101009) && applyto.getBuffedOwner(32101009) == applyto.getId())
+        if (applyTo.getBuffedValue(32101009) && applyTo.getBuffedOwner(32101009) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.DrainAura, 32101009);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.DrainAura, 32101009);
         }
-        if (applyto.getBuffedValue(32121017) && applyto.getBuffedOwner(32121017) == applyto.getId())
+        if (applyTo.getBuffedValue(32121017) && applyTo.getBuffedOwner(32121017) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.DarkAura, 32121017);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.DarkAura, 32121017);
         }
-        if (applyto.getBuffedValue(32111012) && applyto.getBuffedOwner(32111012) == applyto.getId())
+        if (applyTo.getBuffedValue(32111012) && applyTo.getBuffedOwner(32111012) == applyTo.getId())
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.BlueAura, 32111012);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.BlueAura, 32111012);
         }
-        if (!applyto.getBuffedValue(400021006) || applyto.getBuffedOwner(400021006) != applyto.getId())
+        if (!applyTo.getBuffedValue(400021006) || applyTo.getBuffedOwner(400021006) != applyTo.getId())
         {
           break;
         }
-        applyto.cancelEffectFromBuffStat(SecondaryStat.UnionAura, 400021006);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.UnionAura, 400021006);
         break;
       }
       case 32120045:
       {
-        if (applyfrom.getBuffedValue(SecondaryStat.TeleportMastery) != null)
+        if (applyFrom.getBuffedValue(SecondaryStat.TeleportMastery) != null)
         {
-          applyfrom.cancelEffectFromBuffStat(SecondaryStat.TeleportMastery);
+          applyFrom.cancelEffectFromBuffStat(SecondaryStat.TeleportMastery);
         }
         localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, this.w * 1000));
         break;
@@ -5513,13 +5512,13 @@ public class SecondaryStatEffect
         {
           localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(this.x, 10000));
         }
-        applyto.cancelEffectFromBuffStat(SecondaryStat.JaguarSummoned);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.JaguarSummoned);
         break;
       }
       case 33111007:
       {
         localstatups.put(SecondaryStat.Speed, new Pair<Integer, Integer>(this.x, localDuration));
-        if (applyfrom.getSkillLevel(33120043) > 0)
+        if (applyFrom.getSkillLevel(33120043) > 0)
         {
           localstatups.put(SecondaryStat.BeastFormDamage, new Pair<Integer, Integer>(this.z + SkillFactory.getSkill(33120043).getEffect(1).getZ(), localDuration));
         }
@@ -5527,11 +5526,11 @@ public class SecondaryStatEffect
         {
           localstatups.put(SecondaryStat.BeastFormDamage, new Pair<Integer, Integer>(this.z, localDuration));
         }
-        if (applyfrom.getSkillLevel(33120044) > 0)
+        if (applyFrom.getSkillLevel(33120044) > 0)
         {
           localstatups.put(SecondaryStat.IndieHpR, new Pair<Integer, Integer>(Integer.valueOf(SkillFactory.getSkill(33120044).getEffect(1).mhpR), localDuration));
         }
-        if (applyfrom.getSkillLevel(33120045) > 0)
+        if (applyFrom.getSkillLevel(33120045) > 0)
         {
           localstatups.put(SecondaryStat.IndieBooster, new Pair<Integer, Integer>(-this.w - SkillFactory.getSkill(33120045).getEffect(1).getW(), localDuration));
           break;
@@ -5543,7 +5542,7 @@ public class SecondaryStatEffect
       {
         aftercancel = true;
         int size = 0;
-        for (final String str : applyto.getInfoQuest(23008).split(";"))
+        for (final String str : applyTo.getInfoQuest(23008).split(";"))
         {
           if (str.contains("=1"))
           {
@@ -5558,27 +5557,27 @@ public class SecondaryStatEffect
         localstatups.clear();
         short pad = this.epad;
         short pdd = this.epdd;
-        if (applyfrom.getSkillLevel(35120000) > 0)
+        if (applyFrom.getSkillLevel(35120000) > 0)
         {
-          pad = SkillFactory.getSkill(35120000).getEffect(applyto.getSkillLevel(35120000)).epad;
-          pdd = SkillFactory.getSkill(35120000).getEffect(applyto.getSkillLevel(35120000)).epdd;
+          pad = SkillFactory.getSkill(35120000).getEffect(applyTo.getSkillLevel(35120000)).epad;
+          pdd = SkillFactory.getSkill(35120000).getEffect(applyTo.getSkillLevel(35120000)).epdd;
         }
         localstatups.put(SecondaryStat.EnhancedPad, new Pair<Integer, Integer>(Integer.valueOf(pad), localDuration));
         localstatups.put(SecondaryStat.EnhancedPdd, new Pair<Integer, Integer>(Integer.valueOf(pdd), localDuration));
         localstatups.put(SecondaryStat.IndieSpeed, new Pair<Integer, Integer>(30, localDuration));
         localstatups.put(SecondaryStat.IndieBooster, new Pair<Integer, Integer>(-1, localDuration));
         localstatups.put(SecondaryStat.Mechanic, new Pair<Integer, Integer>(30, localDuration));
-        if (!applyto.getBuffedValue(35111003))
+        if (!applyTo.getBuffedValue(35111003))
         {
           break;
         }
-        applyto.cancelEffect(SkillFactory.getSkill(35111003).getEffect(1), null, true);
+        applyTo.cancelEffect(SkillFactory.getSkill(35111003).getEffect(1), null, true);
         break;
       }
       case 35111002:
       {
         bufftimeR = false;
-        if (applyto.getCooldownLimit(35111002) <= 0L)
+        if (applyTo.getCooldownLimit(35111002) <= 0L)
         {
           break;
         }
@@ -5590,10 +5589,10 @@ public class SecondaryStatEffect
         localstatups.clear();
         short pad = this.epad;
         short pdd = this.epdd;
-        if (applyfrom.getSkillLevel(35120000) > 0)
+        if (applyFrom.getSkillLevel(35120000) > 0)
         {
-          pad = SkillFactory.getSkill(35120000).getEffect(applyto.getSkillLevel(35120000)).epad;
-          pdd = SkillFactory.getSkill(35120000).getEffect(applyto.getSkillLevel(35120000)).epdd;
+          pad = SkillFactory.getSkill(35120000).getEffect(applyTo.getSkillLevel(35120000)).epad;
+          pdd = SkillFactory.getSkill(35120000).getEffect(applyTo.getSkillLevel(35120000)).epdd;
         }
         localstatups.put(SecondaryStat.EnhancedPad, new Pair<Integer, Integer>(Integer.valueOf(pad), localDuration));
         localstatups.put(SecondaryStat.EnhancedPdd, new Pair<Integer, Integer>(Integer.valueOf(pdd), localDuration));
@@ -5601,11 +5600,11 @@ public class SecondaryStatEffect
         localstatups.put(SecondaryStat.CriticalIncrease, new Pair<Integer, Integer>(this.cr, localDuration));
         localstatups.put(SecondaryStat.IndieBooster, new Pair<Integer, Integer>(-1, localDuration));
         localstatups.put(SecondaryStat.Mechanic, new Pair<Integer, Integer>(30, localDuration));
-        if (!applyto.getBuffedValue(35001002))
+        if (!applyTo.getBuffedValue(35001002))
         {
           break;
         }
-        applyto.cancelEffect(SkillFactory.getSkill(35001002).getEffect(1), null, true);
+        applyTo.cancelEffect(SkillFactory.getSkill(35001002).getEffect(1), null, true);
         break;
       }
       case 35120002:
@@ -5621,9 +5620,9 @@ public class SecondaryStatEffect
       }
       case 36111003:
       {
-        applyto.stackbuff = !primary ? --applyto.stackbuff : this.x;
-        localstatups.put(SecondaryStat.DamAbsorbShield, new Pair<Integer, Integer>(this.z, primary ? this.duration : (int) applyto.getBuffLimit(this.sourceid)));
-        localstatups.put(SecondaryStat.StackBuff, new Pair<Integer, Integer>(this.x, primary ? this.duration : (int) applyto.getBuffLimit(this.sourceid)));
+        applyTo.stackbuff = !primary ? --applyTo.stackbuff : this.x;
+        localstatups.put(SecondaryStat.DamAbsorbShield, new Pair<Integer, Integer>(this.z, primary ? this.duration : (int) applyTo.getBuffLimit(this.sourceid)));
+        localstatups.put(SecondaryStat.StackBuff, new Pair<Integer, Integer>(this.x, primary ? this.duration : (int) applyTo.getBuffLimit(this.sourceid)));
         break;
       }
       case 36121052:
@@ -5638,10 +5637,10 @@ public class SecondaryStatEffect
       case 36121054:
       {
         bufftimeR = false;
-        if (applyto.getXenonSurplus() < 20)
+        if (applyTo.getXenonSurplus() < 20)
         {
-          applyto.setXenonSurplus((short) 20, SkillFactory.getSkill(this.sourceid));
-          applyto.updateXenonSurplus((short) 20, SkillFactory.getSkill(this.sourceid));
+          applyTo.setXenonSurplus((short) 20, SkillFactory.getSkill(this.sourceid));
+          applyTo.updateXenonSurplus((short) 20, SkillFactory.getSkill(this.sourceid));
         }
         localstatups.put(SecondaryStat.AmaranthGenerator, new Pair<Integer, Integer>(1, localDuration));
         break;
@@ -5650,7 +5649,7 @@ public class SecondaryStatEffect
       {
         aftercancel = true;
         localstatups.clear();
-        localstatups.put(SecondaryStat.RwBarrier, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(37000006), 0));
+        localstatups.put(SecondaryStat.RwBarrier, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(37000006), 0));
         localDuration = 0;
         break;
       }
@@ -5663,16 +5662,16 @@ public class SecondaryStatEffect
       }
       case 37110009:
       {
-        if (applyto.getBuffedValue(SecondaryStat.RWCombination) == null)
+        if (applyTo.getBuffedValue(SecondaryStat.RWCombination) == null)
         {
-          applyto.combinationBuff = 0;
+          applyTo.combinationBuff = 0;
         }
-        if (applyto.combinationBuff < this.x)
+        if (applyTo.combinationBuff < this.x)
         {
-          ++applyto.combinationBuff;
+          ++applyTo.combinationBuff;
         }
-        localstatups.put(SecondaryStat.RWCombination, new Pair<Integer, Integer>(applyto.combinationBuff, localDuration));
-        if (applyto.combinationBuff < this.z)
+        localstatups.put(SecondaryStat.RWCombination, new Pair<Integer, Integer>(applyTo.combinationBuff, localDuration));
+        if (applyTo.combinationBuff < this.z)
         {
           break;
         }
@@ -5681,22 +5680,22 @@ public class SecondaryStatEffect
       }
       case 37120012:
       {
-        if (applyto.getBuffedValue(SecondaryStat.RWCombination) == null && primary)
+        if (applyTo.getBuffedValue(SecondaryStat.RWCombination) == null && primary)
         {
-          applyto.combinationBuff = 0;
+          applyTo.combinationBuff = 0;
         }
-        if (applyto.combinationBuff < this.x)
+        if (applyTo.combinationBuff < this.x)
         {
-          ++applyto.combinationBuff;
+          ++applyTo.combinationBuff;
         }
-        if (applyto.combinationBuff == 15)
+        if (applyTo.combinationBuff == 15)
         {
-          applyto.combinationBuff = 10;
+          applyTo.combinationBuff = 10;
           localDuration = 0;
         }
-        localstatups.put(SecondaryStat.IndieCr, new Pair<Integer, Integer>(this.q * applyto.combinationBuff, localDuration));
-        localstatups.put(SecondaryStat.RWCombination, new Pair<Integer, Integer>(applyto.combinationBuff, localDuration));
-        if (applyto.combinationBuff < this.z)
+        localstatups.put(SecondaryStat.IndieCr, new Pair<Integer, Integer>(this.q * applyTo.combinationBuff, localDuration));
+        localstatups.put(SecondaryStat.RWCombination, new Pair<Integer, Integer>(applyTo.combinationBuff, localDuration));
+        if (applyTo.combinationBuff < this.z)
         {
           break;
         }
@@ -5737,11 +5736,11 @@ public class SecondaryStatEffect
       case 51001005:
       {
         int pad = 0;
-        if (applyto.getRoyalStack() <= 0 || applyto.getRoyalStack() > 5)
+        if (applyTo.getRoyalStack() <= 0 || applyTo.getRoyalStack() > 5)
         {
-          applyto.setRoyalStack((byte) 1);
+          applyTo.setRoyalStack((byte) 1);
         }
-        switch (applyto.getRoyalStack())
+        switch (applyTo.getRoyalStack())
         {
           case 1:
           {
@@ -5776,12 +5775,12 @@ public class SecondaryStatEffect
         }
         localstatups.clear();
         localstatups.put(SecondaryStat.IndiePad, new Pair<Integer, Integer>(pad, localDuration));
-        localstatups.put(SecondaryStat.RoyalGuardState, new Pair<Integer, Integer>(Integer.valueOf(applyto.getRoyalStack()), localDuration));
+        localstatups.put(SecondaryStat.RoyalGuardState, new Pair<Integer, Integer>(Integer.valueOf(applyTo.getRoyalStack()), localDuration));
         if (!primary)
         {
           break;
         }
-        SkillFactory.getSkill(51001006).getEffect(1).applyTo(applyto, false);
+        SkillFactory.getSkill(51001006).getEffect(1).applyTo(applyTo, false);
         break;
       }
       case 51001009:
@@ -5791,12 +5790,12 @@ public class SecondaryStatEffect
       {
         bufftimeR = false;
         aftercancel = true;
-        int duration1 = (applyto.getRoyalStack() != 5) ? ((applyto.getRoyalStack() != 4) ? ((applyto.getRoyalStack() != 3) ? ((applyto.getRoyalStack() != 2) ? 1420 : 1330) : 1280) : 1230) : 150;
-        if (applyto.getBuffedValue(400011083))
+        int duration1 = (applyTo.getRoyalStack() != 5) ? ((applyTo.getRoyalStack() != 4) ? ((applyTo.getRoyalStack() != 3) ? ((applyTo.getRoyalStack() != 2) ? 1420 : 1330) : 1280) : 1230) : 150;
+        if (applyTo.getBuffedValue(400011083))
         {
           duration1 += 500;
         }
-        if (applyto.getBuffedValue(51121054))
+        if (applyTo.getBuffedValue(51121054))
         {
           duration1 += 500;
         }
@@ -5834,7 +5833,7 @@ public class SecondaryStatEffect
           ter = (int) ((double) ter * 0.2);
         }
         int dfr = this.x;
-        if (applyfrom.getSkillLevel(51120044) > 0 && primary)
+        if (applyFrom.getSkillLevel(51120044) > 0 && primary)
         {
           dfr += SkillFactory.getSkill(51120044).getEffect(1).getX();
         }
@@ -5842,11 +5841,11 @@ public class SecondaryStatEffect
         {
           dfr = (int) ((double) dfr * 0.3);
         }
-        if (applyfrom.getSkillLevel(51120043) > 0)
+        if (applyFrom.getSkillLevel(51120043) > 0)
         {
           localDuration += SkillFactory.getSkill(51120043).getEffect(1).getDuration();
         }
-        if (applyfrom.getSkillLevel(51120045) > 0)
+        if (applyFrom.getSkillLevel(51120045) > 0)
         {
           int n = SkillFactory.getSkill(51120045).getEffect(1).getY();
           ter += n;
@@ -5859,7 +5858,7 @@ public class SecondaryStatEffect
       case 51110009:
       {
         int pad = 0;
-        switch (applyto.getRoyalStack())
+        switch (applyTo.getRoyalStack())
         {
           case 4:
           {
@@ -5874,7 +5873,7 @@ public class SecondaryStatEffect
         }
         bufftimeR = false;
         localstatups.put(SecondaryStat.IndiePad, new Pair<Integer, Integer>(pad, localDuration));
-        localstatups.put(SecondaryStat.RoyalGuardState, new Pair<Integer, Integer>(Integer.valueOf(applyto.getRoyalStack()), localDuration));
+        localstatups.put(SecondaryStat.RoyalGuardState, new Pair<Integer, Integer>(Integer.valueOf(applyTo.getRoyalStack()), localDuration));
         break;
       }
       case 51111008:
@@ -5882,31 +5881,31 @@ public class SecondaryStatEffect
         localDuration = 0;
         int pad2 = 0;
         localstatups.clear();
-        if (applyfrom.getId() == applyto.getId())
+        if (applyFrom.getId() == applyTo.getId())
         {
           int size = 1;
-          if (applyto.getParty() != null)
+          if (applyTo.getParty() != null)
           {
-            for (MaplePartyCharacter maplePartyCharacter : applyto.getParty().getMembers())
+            for (MaplePartyCharacter maplePartyCharacter : applyTo.getParty().getMembers())
             {
               MapleCharacter chr2;
-              if (!maplePartyCharacter.isOnline() || !(chr2 = applyfrom.getClient().getChannelServer().getPlayerStorage().getCharacterByName(maplePartyCharacter.getName())).getBuffedValue(51111008) && (applyfrom.getTruePosition().x + this.getLt().x >= chr2.getTruePosition().x || applyfrom.getTruePosition().x - this.getLt().x <= chr2.getTruePosition().x || applyfrom.getTruePosition().y + this.getLt().y >= chr2.getTruePosition().y || applyfrom.getTruePosition().y - this.getLt().y <= chr2.getTruePosition().y))
+              if (!maplePartyCharacter.isOnline() || !(chr2 = applyFrom.getClient().getChannelServer().getPlayerStorage().getCharacterByName(maplePartyCharacter.getName())).getBuffedValue(51111008) && (applyFrom.getTruePosition().x + this.getLt().x >= chr2.getTruePosition().x || applyFrom.getTruePosition().x - this.getLt().x <= chr2.getTruePosition().x || applyFrom.getTruePosition().y + this.getLt().y >= chr2.getTruePosition().y || applyFrom.getTruePosition().y - this.getLt().y <= chr2.getTruePosition().y))
               {
                 continue;
               }
               ++size;
             }
-            applyfrom.setSkillCustomInfo(51111009, size, 0L);
+            applyFrom.setSkillCustomInfo(51111009, size, 0L);
           }
-          localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(this.indieDamR * (applyto.getParty() == null ? 1 : size), 0));
+          localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(this.indieDamR * (applyTo.getParty() == null ? 1 : size), 0));
         }
         else
         {
           aftercancel = true;
           MapleCharacter leader = null;
-          for (MapleCharacter mapleCharacter : applyto.getMap().getAllChracater())
+          for (MapleCharacter mapleCharacter : applyTo.getMap().getAllChracater())
           {
-            if (mapleCharacter.getId() != applyfrom.getId())
+            if (mapleCharacter.getId() != applyFrom.getId())
             {
               continue;
             }
@@ -5964,31 +5963,31 @@ public class SecondaryStatEffect
       {
         if (this.sourceid == 61121053)
         {
-          SkillFactory.getSkill(61111008).getEffect(1).applyKaiserCombo(applyto, (short) 1000);
+          SkillFactory.getSkill(61111008).getEffect(1).applyKaiserCombo(applyTo, (short) 1000);
           bufftimeR = false;
         }
-        if (applyto.getBuffedValue(SecondaryStat.StopForceAtominfo) == null)
+        if (applyTo.getBuffedValue(SecondaryStat.StopForceAtominfo) == null)
         {
           break;
         }
         final int[] array2;
-        final int[] skilllist = array2 = new int[]{61101002, 61110211, 61120007, 61121217};
+        final int[] skilllist = array2 = new int[] { 61101002, 61110211, 61120007, 61121217 };
         for (final Integer skill : array2)
         {
-          if (applyto.getBuffedValue(skill))
+          if (applyTo.getBuffedValue(skill))
           {
-            applyto.cancelEffect(applyto.getBuffedEffect(skill));
+            applyTo.cancelEffect(applyTo.getBuffedEffect(skill));
           }
         }
         if (this.sourceid != 61120008)
         {
           if (this.sourceid != 61121053)
           {
-            SkillFactory.getSkill(61110211).getEffect(applyto.getSkillLevel(61101002)).applyTo(applyto);
+            SkillFactory.getSkill(61110211).getEffect(applyTo.getSkillLevel(61101002)).applyTo(applyTo);
             break;
           }
         }
-        SkillFactory.getSkill(61121217).getEffect(applyto.getSkillLevel(61120007)).applyTo(applyto);
+        SkillFactory.getSkill(61121217).getEffect(applyTo.getSkillLevel(61120007)).applyTo(applyTo);
         break;
       }
       case 61121052:
@@ -6005,14 +6004,14 @@ public class SecondaryStatEffect
       case 61121054:
       {
         bufftimeR = false;
-        for (MapleCoolDownValueHolder i : applyto.getCooldowns())
+        for (MapleCoolDownValueHolder i : applyTo.getCooldowns())
         {
           if (SkillFactory.getSkill(i.skillId) == null || i.skillId == 61121054 || SkillFactory.getSkill(i.skillId).isHyper() || !GameConstants.isKaiser(i.skillId / 10000))
           {
             continue;
           }
-          applyto.removeCooldown(i.skillId);
-          applyto.getClient().getSession().writeAndFlush(CField.skillCooldown(i.skillId, 0));
+          applyTo.removeCooldown(i.skillId);
+          applyTo.getClient().getSession().writeAndFlush(CField.skillCooldown(i.skillId, 0));
         }
         localstatups.put(SecondaryStat.IndiePad, new Pair<Integer, Integer>(Integer.valueOf(this.indiePad), localDuration));
         localstatups.put(SecondaryStat.IndieBooster, new Pair<Integer, Integer>(-1, localDuration));
@@ -6025,7 +6024,7 @@ public class SecondaryStatEffect
       case 64120006:
       {
         bufftimeR = false;
-        localstatups.put(SecondaryStat.WeaponVariety, new Pair<Integer, Integer>(applyto.weaponChanges1.size(), localDuration));
+        localstatups.put(SecondaryStat.WeaponVariety, new Pair<Integer, Integer>(applyTo.weaponChanges1.size(), localDuration));
         break;
       }
       case 64121001:
@@ -6041,13 +6040,13 @@ public class SecondaryStatEffect
       {
         if (primary)
         {
-          applyto.setBarrier(1000);
+          applyTo.setBarrier(1000);
         }
         else
         {
           bufftimeR = false;
         }
-        localstatups.put(SecondaryStat.PowerTransferGauge, new Pair<Integer, Integer>(applyto.getBarrier(), localDuration));
+        localstatups.put(SecondaryStat.PowerTransferGauge, new Pair<Integer, Integer>(applyTo.getBarrier(), localDuration));
         break;
       }
       case 65111004:
@@ -6064,16 +6063,16 @@ public class SecondaryStatEffect
       case 65121101:
       {
         localstatups.clear();
-        int value = (int) (applyto.getSkillCustomValue(65121101) == null ? 0L : applyto.getSkillCustomValue0(65121101));
+        int value = (int) (applyTo.getSkillCustomValue(65121101) == null ? 0L : applyTo.getSkillCustomValue0(65121101));
         if (value >= 3)
         {
           break;
         }
-        applyto.setSkillCustomInfo(65121101, value + 1, 0L);
-        if (applyto.getSkillCustomValue0(65121101) > 3L)
+        applyTo.setSkillCustomInfo(65121101, value + 1, 0L);
+        if (applyTo.getSkillCustomValue0(65121101) > 3L)
         {
-          applyto.setSkillCustomInfo(65121101, 3L, 0L);
-          value = (int) applyto.getSkillCustomValue0(65121101);
+          applyTo.setSkillCustomInfo(65121101, 3L, 0L);
+          value = (int) applyTo.getSkillCustomValue0(65121101);
         }
         localstatups.put(SecondaryStat.Trinity, new Pair<Integer, Integer>(this.x * (value + 1), 7000));
         localstatups.put(SecondaryStat.DamR, new Pair<Integer, Integer>(this.x * (value + 1), 7000));
@@ -6085,49 +6084,49 @@ public class SecondaryStatEffect
       case 150000017:
       {
         bufftimeR = false;
-        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(this.y * applyto.FlowofFight, localDuration));
-        localstatups.put(SecondaryStat.FlowOfFight, new Pair<Integer, Integer>(applyto.FlowofFight, localDuration));
+        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(this.y * applyTo.FlowofFight, localDuration));
+        localstatups.put(SecondaryStat.FlowOfFight, new Pair<Integer, Integer>(applyTo.FlowofFight, localDuration));
         break;
       }
       case 80000514:
       case 150010241:
       {
         bufftimeR = false;
-        if (!applyto.getBuffedValue(this.sourceid))
+        if (!applyTo.getBuffedValue(this.sourceid))
         {
-          applyto.LinkofArk = 0;
+          applyTo.LinkofArk = 0;
         }
-        if (applyto.LinkofArk < 5)
+        if (applyTo.LinkofArk < 5)
         {
-          ++applyto.LinkofArk;
+          ++applyTo.LinkofArk;
         }
-        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(this.y * applyto.LinkofArk, localDuration));
-        localstatups.put(SecondaryStat.LinkOfArk, new Pair<Integer, Integer>(applyto.LinkofArk, localDuration));
+        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(this.y * applyTo.LinkofArk, localDuration));
+        localstatups.put(SecondaryStat.LinkOfArk, new Pair<Integer, Integer>(applyTo.LinkofArk, localDuration));
         break;
       }
       case 80000329:
       {
         bufftimeR = false;
         int skilllevel = 0;
-        if (applyto.getSkillLevel(30000074) > 0)
+        if (applyTo.getSkillLevel(30000074) > 0)
         {
-          skilllevel += applyto.getSkillLevel(30000074);
+          skilllevel += applyTo.getSkillLevel(30000074);
         }
-        else if (applyto.getSkillLevel(30000075) > 0)
+        else if (applyTo.getSkillLevel(30000075) > 0)
         {
-          skilllevel += applyto.getSkillLevel(30000075);
+          skilllevel += applyTo.getSkillLevel(30000075);
         }
-        else if (applyto.getSkillLevel(30000076) > 0)
+        else if (applyTo.getSkillLevel(30000076) > 0)
         {
-          skilllevel += applyto.getSkillLevel(30000076);
+          skilllevel += applyTo.getSkillLevel(30000076);
         }
-        else if (applyto.getSkillLevel(30000077) > 0)
+        else if (applyTo.getSkillLevel(30000077) > 0)
         {
-          skilllevel += applyto.getSkillLevel(30000077);
+          skilllevel += applyTo.getSkillLevel(30000077);
         }
-        if (applyto.getSkillLevel(80000329) > 0)
+        if (applyTo.getSkillLevel(80000329) > 0)
         {
-          skilllevel += applyto.getSkillLevel(80000329);
+          skilllevel += applyTo.getSkillLevel(80000329);
         }
         if (skilllevel > 8)
         {
@@ -6152,40 +6151,40 @@ public class SecondaryStatEffect
       }
       case 80001462:
       {
-        localstatups.put(SecondaryStat.IndieIgnoreMobPdpR, new Pair<Integer, Integer>(applyto.getStat().critical_rate * this.x / 100, localDuration));
+        localstatups.put(SecondaryStat.IndieIgnoreMobPdpR, new Pair<Integer, Integer>(applyTo.getStat().critical_rate * this.x / 100, localDuration));
         break;
       }
       case 80001463:
       {
         bufftimeR = false;
         int value = 0;
-        if (GameConstants.isXenon(applyto.getJob()))
+        if (GameConstants.isXenon(applyTo.getJob()))
         {
-          value = applyto.getStat().getStr() + applyto.getStat().getDex() + applyto.getStat().getLuk();
+          value = applyTo.getStat().getStr() + applyTo.getStat().getDex() + applyTo.getStat().getLuk();
         }
-        else if (GameConstants.isDemonAvenger(applyto.getJob()))
+        else if (GameConstants.isDemonAvenger(applyTo.getJob()))
         {
-          value = (int) applyto.getStat().getCurrentMaxHp();
+          value = (int) applyTo.getStat().getCurrentMaxHp();
         }
-        else if (GameConstants.isWarrior(applyto.getJob()))
+        else if (GameConstants.isWarrior(applyTo.getJob()))
         {
-          value = applyto.getStat().getStr();
+          value = applyTo.getStat().getStr();
         }
-        else if (GameConstants.isMagician(applyto.getJob()))
+        else if (GameConstants.isMagician(applyTo.getJob()))
         {
-          value = applyto.getStat().getInt();
+          value = applyTo.getStat().getInt();
         }
-        else if (GameConstants.isArcher(applyto.getJob()) || GameConstants.isCaptain(applyto.getJob()) || GameConstants.isMechanic(applyto.getJob()) || GameConstants.isAngelicBuster(applyto.getJob()))
+        else if (GameConstants.isArcher(applyTo.getJob()) || GameConstants.isCaptain(applyTo.getJob()) || GameConstants.isMechanic(applyTo.getJob()) || GameConstants.isAngelicBuster(applyTo.getJob()))
         {
-          value = applyto.getStat().getDex();
+          value = applyTo.getStat().getDex();
         }
-        else if (GameConstants.isThief(applyto.getJob()))
+        else if (GameConstants.isThief(applyTo.getJob()))
         {
-          value = applyto.getStat().getLuk();
+          value = applyTo.getStat().getLuk();
         }
-        else if (GameConstants.isPirate(applyto.getJob()))
+        else if (GameConstants.isPirate(applyTo.getJob()))
         {
-          value = applyto.getStat().getStr();
+          value = applyTo.getStat().getStr();
         }
         localstatups.put(SecondaryStat.IndieCD, new Pair<Integer, Integer>(value * this.x / 100, localDuration));
         break;
@@ -6194,33 +6193,33 @@ public class SecondaryStatEffect
       {
         bufftimeR = false;
         int value = 0;
-        if (GameConstants.isXenon(applyto.getJob()))
+        if (GameConstants.isXenon(applyTo.getJob()))
         {
-          value = applyto.getStat().getStr() + applyto.getStat().getDex() + applyto.getStat().getLuk();
+          value = applyTo.getStat().getStr() + applyTo.getStat().getDex() + applyTo.getStat().getLuk();
         }
-        else if (GameConstants.isDemonAvenger(applyto.getJob()))
+        else if (GameConstants.isDemonAvenger(applyTo.getJob()))
         {
-          value = (int) applyto.getStat().getCurrentMaxHp();
+          value = (int) applyTo.getStat().getCurrentMaxHp();
         }
-        else if (GameConstants.isWarrior(applyto.getJob()))
+        else if (GameConstants.isWarrior(applyTo.getJob()))
         {
-          value = applyto.getStat().getStr();
+          value = applyTo.getStat().getStr();
         }
-        else if (GameConstants.isMagician(applyto.getJob()))
+        else if (GameConstants.isMagician(applyTo.getJob()))
         {
-          value = applyto.getStat().getInt();
+          value = applyTo.getStat().getInt();
         }
-        else if (GameConstants.isArcher(applyto.getJob()) || GameConstants.isCaptain(applyto.getJob()) || GameConstants.isMechanic(applyto.getJob()) || GameConstants.isAngelicBuster(applyto.getJob()))
+        else if (GameConstants.isArcher(applyTo.getJob()) || GameConstants.isCaptain(applyTo.getJob()) || GameConstants.isMechanic(applyTo.getJob()) || GameConstants.isAngelicBuster(applyTo.getJob()))
         {
-          value = applyto.getStat().getDex();
+          value = applyTo.getStat().getDex();
         }
-        else if (GameConstants.isThief(applyto.getJob()))
+        else if (GameConstants.isThief(applyTo.getJob()))
         {
-          value = applyto.getStat().getLuk();
+          value = applyTo.getStat().getLuk();
         }
-        else if (GameConstants.isPirate(applyto.getJob()))
+        else if (GameConstants.isPirate(applyTo.getJob()))
         {
-          value = applyto.getStat().getStr();
+          value = applyTo.getStat().getStr();
         }
         localstatups.put(SecondaryStat.Stance, new Pair<Integer, Integer>(value * this.x / 100, localDuration));
         break;
@@ -6228,40 +6227,40 @@ public class SecondaryStatEffect
       case 80001465:
       {
         bufftimeR = false;
-        int value = this.x * (applyto.getStat().getStr() + applyto.getStat().getDex() + applyto.getStat().getInt() + applyto.getStat().getLuk()) / 100;
-        if (GameConstants.isXenon(applyto.getJob()))
+        int value = this.x * (applyTo.getStat().getStr() + applyTo.getStat().getDex() + applyTo.getStat().getInt() + applyTo.getStat().getLuk()) / 100;
+        if (GameConstants.isXenon(applyTo.getJob()))
         {
           localstatups.put(SecondaryStat.IndieStr, new Pair<Integer, Integer>(value / 3, localDuration));
           localstatups.put(SecondaryStat.IndieDex, new Pair<Integer, Integer>(value / 3, localDuration));
           localstatups.put(SecondaryStat.IndieLuk, new Pair<Integer, Integer>(value / 3, localDuration));
           break;
         }
-        if (GameConstants.isDemonAvenger(applyto.getJob()))
+        if (GameConstants.isDemonAvenger(applyTo.getJob()))
         {
           localstatups.put(SecondaryStat.IndieHp, new Pair<Integer, Integer>(value, localDuration));
           break;
         }
-        if (GameConstants.isWarrior(applyto.getJob()))
+        if (GameConstants.isWarrior(applyTo.getJob()))
         {
           localstatups.put(SecondaryStat.IndieStr, new Pair<Integer, Integer>(value, localDuration));
           break;
         }
-        if (GameConstants.isMagician(applyto.getJob()))
+        if (GameConstants.isMagician(applyTo.getJob()))
         {
           localstatups.put(SecondaryStat.IndieInt, new Pair<Integer, Integer>(value, localDuration));
           break;
         }
-        if (GameConstants.isArcher(applyto.getJob()) || GameConstants.isCaptain(applyto.getJob()) || GameConstants.isMechanic(applyto.getJob()) || GameConstants.isAngelicBuster(applyto.getJob()))
+        if (GameConstants.isArcher(applyTo.getJob()) || GameConstants.isCaptain(applyTo.getJob()) || GameConstants.isMechanic(applyTo.getJob()) || GameConstants.isAngelicBuster(applyTo.getJob()))
         {
           localstatups.put(SecondaryStat.IndieDex, new Pair<Integer, Integer>(value, localDuration));
           break;
         }
-        if (GameConstants.isThief(applyto.getJob()))
+        if (GameConstants.isThief(applyTo.getJob()))
         {
           localstatups.put(SecondaryStat.IndieLuk, new Pair<Integer, Integer>(value, localDuration));
           break;
         }
-        if (!GameConstants.isPirate(applyto.getJob()))
+        if (!GameConstants.isPirate(applyTo.getJob()))
         {
           break;
         }
@@ -6270,30 +6269,30 @@ public class SecondaryStatEffect
       }
       case 80001466:
       {
-        localstatups.put(SecondaryStat.IndieStr, new Pair<Integer, Integer>((applyto.getLevel() + 1) * this.x / 100, localDuration));
+        localstatups.put(SecondaryStat.IndieStr, new Pair<Integer, Integer>((applyTo.getLevel() + 1) * this.x / 100, localDuration));
         break;
       }
       case 80001467:
       {
-        localstatups.put(SecondaryStat.IndieDex, new Pair<Integer, Integer>((applyto.getLevel() + 1) * this.x / 100, localDuration));
+        localstatups.put(SecondaryStat.IndieDex, new Pair<Integer, Integer>((applyTo.getLevel() + 1) * this.x / 100, localDuration));
         break;
       }
       case 80001468:
       {
-        localstatups.put(SecondaryStat.IndieInt, new Pair<Integer, Integer>((applyto.getLevel() + 1) * this.x / 100, localDuration));
+        localstatups.put(SecondaryStat.IndieInt, new Pair<Integer, Integer>((applyTo.getLevel() + 1) * this.x / 100, localDuration));
         break;
       }
       case 80001469:
       {
-        localstatups.put(SecondaryStat.IndieLuk, new Pair<Integer, Integer>((applyto.getLevel() + 1) * this.x / 100, localDuration));
+        localstatups.put(SecondaryStat.IndieLuk, new Pair<Integer, Integer>((applyTo.getLevel() + 1) * this.x / 100, localDuration));
         break;
       }
       case 80001470:
       {
-        Equip eq = (Equip) applyto.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
+        Equip eq = (Equip) applyTo.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
         if (eq == null)
         {
-          System.out.println("무기 없이 버프를 어떻게 써 ㅡㅡ " + applyto.getName());
+          System.out.println("무기 없이 버프를 어떻게 써 ㅡㅡ " + applyTo.getName());
           break;
         }
         localstatups.put(SecondaryStat.IndieStr, new Pair<Integer, Integer>(eq.getTemplate().getWatk() * this.x / 100, localDuration));
@@ -6301,10 +6300,10 @@ public class SecondaryStatEffect
       }
       case 80001471:
       {
-        Equip eq = (Equip) applyto.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
+        Equip eq = (Equip) applyTo.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
         if (eq == null)
         {
-          System.out.println("무기 없이 버프를 어떻게 써 ㅡㅡ " + applyto.getName());
+          System.out.println("무기 없이 버프를 어떻게 써 ㅡㅡ " + applyTo.getName());
           break;
         }
         localstatups.put(SecondaryStat.IndieDex, new Pair<Integer, Integer>(eq.getTemplate().getWatk() * this.x / 100, localDuration));
@@ -6312,10 +6311,10 @@ public class SecondaryStatEffect
       }
       case 80001472:
       {
-        Equip eq = (Equip) applyto.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
+        Equip eq = (Equip) applyTo.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
         if (eq == null)
         {
-          System.out.println("무기 없이 버프를 어떻게 써 ㅡㅡ " + applyto.getName());
+          System.out.println("무기 없이 버프를 어떻게 써 ㅡㅡ " + applyTo.getName());
           break;
         }
         localstatups.put(SecondaryStat.IndieInt, new Pair<Integer, Integer>(eq.getTemplate().getMatk() * this.x / 100, localDuration));
@@ -6323,10 +6322,10 @@ public class SecondaryStatEffect
       }
       case 80001473:
       {
-        Equip eq = (Equip) applyto.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
+        Equip eq = (Equip) applyTo.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
         if (eq == null)
         {
-          System.out.println("무기 없이 버프를 어떻게 써 ㅡㅡ " + applyto.getName());
+          System.out.println("무기 없이 버프를 어떻게 써 ㅡㅡ " + applyTo.getName());
           break;
         }
         localstatups.put(SecondaryStat.IndieLuk, new Pair<Integer, Integer>(eq.getTemplate().getWatk() * this.x / 100, localDuration));
@@ -6383,28 +6382,28 @@ public class SecondaryStatEffect
       {
         for (int i = 1; i <= 3; ++i)
         {
-          Timer.BuffTimer.getInstance().schedule(() -> applyto.addHP(this.y), 1000 * i);
+          Timer.BuffTimer.getInstance().schedule(() -> applyTo.addHP(this.y), 1000 * i);
         }
         break;
       }
       case 80002762:
       {
-        if (applyto.empiricalStack < this.x)
+        if (applyTo.empiricalStack < this.x)
         {
-          ++applyto.empiricalStack;
+          ++applyTo.empiricalStack;
         }
-        localstatups.put(SecondaryStat.EmpiricalKnowledge, new Pair<Integer, Integer>(applyto.empiricalStack, localDuration));
+        localstatups.put(SecondaryStat.EmpiricalKnowledge, new Pair<Integer, Integer>(applyTo.empiricalStack, localDuration));
         break;
       }
       case 80002770:
       {
-        if (applyto.skillisCooling(80002770))
+        if (applyTo.skillisCooling(80002770))
         {
           break;
         }
-        applyto.addCooldown(80002770, System.currentTimeMillis(), 20000L);
-        applyto.getClient().getSession().writeAndFlush(CField.skillCooldown(80002770, 20000));
-        SkillFactory.getSkill(261).getEffect(this.level).applyTo(applyto);
+        applyTo.addCooldown(80002770, System.currentTimeMillis(), 20000L);
+        applyTo.getClient().getSession().writeAndFlush(CField.skillCooldown(80002770, 20000));
+        SkillFactory.getSkill(261).getEffect(this.level).applyTo(applyTo);
         break;
       }
       case 261:
@@ -6430,11 +6429,11 @@ public class SecondaryStatEffect
         localstatups.put(SecondaryStat.IndiePdd, new Pair<Integer, Integer>(Integer.valueOf(this.indiePdd), localDuration));
         localstatups.put(SecondaryStat.IndieTerR, new Pair<Integer, Integer>(Integer.valueOf(this.indieTerR), localDuration));
         localstatups.put(SecondaryStat.IndieAsrR, new Pair<Integer, Integer>(Integer.valueOf(this.indieAsrR), localDuration));
-        if (applyto.getBuffedValue(SecondaryStat.ZeroAuraSpd) == null)
+        if (applyTo.getBuffedValue(SecondaryStat.ZeroAuraSpd) == null)
         {
           break;
         }
-        applyto.cancelEffectFromBuffStat(SecondaryStat.ZeroAuraSpd, 100001264);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.ZeroAuraSpd, 100001264);
         break;
       }
       case 100001264:
@@ -6447,11 +6446,11 @@ public class SecondaryStatEffect
         localstatups.put(SecondaryStat.IndieSpeed, new Pair<Integer, Integer>(Integer.valueOf(this.indieSpeed), localDuration));
         localstatups.put(SecondaryStat.IndieJump, new Pair<Integer, Integer>(Integer.valueOf(this.indieJump), localDuration));
         localstatups.put(SecondaryStat.IndieBooster, new Pair<Integer, Integer>(-1, localDuration));
-        if (applyto.getBuffedValue(SecondaryStat.ZeroAuraStr) == null)
+        if (applyTo.getBuffedValue(SecondaryStat.ZeroAuraStr) == null)
         {
           break;
         }
-        applyto.cancelEffectFromBuffStat(SecondaryStat.ZeroAuraStr, 0x5F5E5EF);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.ZeroAuraStr, 0x5F5E5EF);
         break;
       }
       case 100000276:
@@ -6459,8 +6458,8 @@ public class SecondaryStatEffect
         bufftimeR = false;
         aftercancel = true;
         localstatups.clear();
-        localDuration = applyto.getBuffedValue(400001045) ? 0 : 20000;
-        localstatups.put(SecondaryStat.TimeFastABuff, new Pair<Integer, Integer>(Integer.valueOf(applyto.RapidTimeDetect), localDuration));
+        localDuration = applyTo.getBuffedValue(400001045) ? 0 : 20000;
+        localstatups.put(SecondaryStat.TimeFastABuff, new Pair<Integer, Integer>(Integer.valueOf(applyTo.RapidTimeDetect), localDuration));
         break;
       }
       case 100000277:
@@ -6468,9 +6467,9 @@ public class SecondaryStatEffect
         bufftimeR = false;
         aftercancel = true;
         localstatups.clear();
-        localDuration = applyto.getBuffedValue(400001045) ? 0 : 20000;
-        localstatups.put(SecondaryStat.TimeFastBBuff, new Pair<Integer, Integer>(Integer.valueOf(applyto.RapidTimeStrength), localDuration));
-        if (applyto.RapidTimeStrength != 10)
+        localDuration = applyTo.getBuffedValue(400001045) ? 0 : 20000;
+        localstatups.put(SecondaryStat.TimeFastBBuff, new Pair<Integer, Integer>(Integer.valueOf(applyTo.RapidTimeStrength), localDuration));
+        if (applyTo.RapidTimeStrength != 10)
         {
           break;
         }
@@ -6494,21 +6493,21 @@ public class SecondaryStatEffect
       {
         localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, localDuration));
         localstatups.put(SecondaryStat.IndieBlockSkill, new Pair<Integer, Integer>(1, localDuration));
-        for (MapleCoolDownValueHolder m : applyto.getCooldowns())
+        for (MapleCoolDownValueHolder m : applyTo.getCooldowns())
         {
           int skil = m.skillId;
           if ((skil / 10000 == 40001 || skil / 10000 == 10000) && skil != 100001005 && skil != 100001261 && skil != 100001283 || skil == 100001274)
           {
             continue;
           }
-          applyto.removeCooldown(skil);
-          applyto.getClient().getSession().writeAndFlush(CField.skillCooldown(skil, 0));
+          applyTo.removeCooldown(skil);
+          applyTo.getClient().getSession().writeAndFlush(CField.skillCooldown(skil, 0));
         }
-        if (applyto.getLevel() < 200)
+        if (applyTo.getLevel() < 200)
         {
           break;
         }
-        SkillFactory.getSkill(100001281).getEffect(1).applyTo(applyto, false);
+        SkillFactory.getSkill(100001281).getEffect(1).applyTo(applyTo, false);
         break;
       }
       case 100001281:
@@ -6527,12 +6526,12 @@ public class SecondaryStatEffect
           localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, 500));
           break;
         }
-        if (applyto.getBuffedValue(400001045))
+        if (applyTo.getBuffedValue(400001045))
         {
           localDuration = 0;
         }
         localstatups.put(SecondaryStat.Stance, new Pair<Integer, Integer>(100, localDuration));
-        localstatups.put(SecondaryStat.ImmuneBarrier, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(101120109), localDuration));
+        localstatups.put(SecondaryStat.ImmuneBarrier, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(101120109), localDuration));
         break;
       }
       case 131001004:
@@ -6547,16 +6546,16 @@ public class SecondaryStatEffect
       }
       case 131001306:
       {
-        applyto.getStat().heal(applyto);
+        applyTo.getStat().heal(applyTo);
         break;
       }
       case 131001020:
       {
         if (primary)
         {
-          applyto.setSkillCustomInfo(this.sourceid, 0L, 0L);
+          applyTo.setSkillCustomInfo(this.sourceid, 0L, 0L);
         }
-        applyto.addSkillCustomInfo(this.sourceid, 1L);
+        applyTo.addSkillCustomInfo(this.sourceid, 1L);
         localstatups.put(SecondaryStat.KeyDownMoving, new Pair<Integer, Integer>(200, localDuration));
         break;
       }
@@ -6577,27 +6576,27 @@ public class SecondaryStatEffect
       case 131001010:
       case 131001011:
       {
-        if (!applyto.getBuffedValue(131001010))
+        if (!applyTo.getBuffedValue(131001010))
         {
-          applyto.removeSkillCustomInfo(this.sourceid + 100);
+          applyTo.removeSkillCustomInfo(this.sourceid + 100);
         }
-        if (applyto.getSkillCustomValue0(this.sourceid + 100) < (long) this.u2)
+        if (applyTo.getSkillCustomValue0(this.sourceid + 100) < (long) this.u2)
         {
-          applyto.addSkillCustomInfo(this.sourceid + 100, 1L);
+          applyTo.addSkillCustomInfo(this.sourceid + 100, 1L);
         }
-        localstatups.put(SecondaryStat.PinkbeanYoYoAttackStack, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(this.sourceid + 100), localDuration));
+        localstatups.put(SecondaryStat.PinkbeanYoYoAttackStack, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(this.sourceid + 100), localDuration));
         break;
       }
       case 131001018:
       {
-        localstatups.put(SecondaryStat.IndieStatR, new Pair<Integer, Integer>(applyto.getLevel() / this.y, localDuration));
+        localstatups.put(SecondaryStat.IndieStatR, new Pair<Integer, Integer>(applyTo.getLevel() / this.y, localDuration));
         break;
       }
       case 142101004:
       {
-        if (applyto.getSkillLevel(142110009) > 0)
+        if (applyTo.getSkillLevel(142110009) > 0)
         {
-          SkillFactory.getSkill(142110009).getEffect(applyto.getSkillLevel(142110009)).applyTo(applyto, false);
+          SkillFactory.getSkill(142110009).getEffect(applyTo.getSkillLevel(142110009)).applyTo(applyTo, false);
           break;
         }
         localstatups.put(SecondaryStat.IndiePdd, new Pair<Integer, Integer>(Integer.valueOf(this.indiePdd), localDuration));
@@ -6616,22 +6615,22 @@ public class SecondaryStatEffect
       }
       case 151101010:
       {
-        if (!applyto.getBuffedValue(this.sourceid))
+        if (!applyTo.getBuffedValue(this.sourceid))
         {
-          applyto.adelResonance = 0;
+          applyTo.adelResonance = 0;
         }
-        if (applyto.adelResonance < this.x)
+        if (applyTo.adelResonance < this.x)
         {
-          ++applyto.adelResonance;
+          ++applyTo.adelResonance;
         }
-        localstatups.put(SecondaryStat.IndieIgnoreMobPdpR, new Pair<Integer, Integer>(this.y * applyto.adelResonance, localDuration));
-        localstatups.put(SecondaryStat.AdelResonance, new Pair<Integer, Integer>(applyto.adelResonance, localDuration));
+        localstatups.put(SecondaryStat.IndieIgnoreMobPdpR, new Pair<Integer, Integer>(this.y * applyTo.adelResonance, localDuration));
+        localstatups.put(SecondaryStat.AdelResonance, new Pair<Integer, Integer>(applyTo.adelResonance, localDuration));
         break;
       }
       case 151121004:
       {
         localDuration = 8000;
-        if (applyfrom.getSkillLevel(151120039) > 0)
+        if (applyFrom.getSkillLevel(151120039) > 0)
         {
           localDuration += 2000;
         }
@@ -6645,7 +6644,7 @@ public class SecondaryStatEffect
       }
       case 151121011:
       {
-        localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, 3000 + (applyto.getSkillLevel(151120039) > 0 ? 1000 : 0)));
+        localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, 3000 + (applyTo.getSkillLevel(151120039) > 0 ? 1000 : 0)));
         break;
       }
       case 142110009:
@@ -6674,7 +6673,7 @@ public class SecondaryStatEffect
       {
         bufftimeR = false;
         int max = 0;
-        switch (applyto.blessMarkSkill)
+        switch (applyTo.blessMarkSkill)
         {
           case 152000007:
           {
@@ -6692,27 +6691,27 @@ public class SecondaryStatEffect
             break;
           }
         }
-        if (primary && applyto.blessMark < max)
+        if (primary && applyTo.blessMark < max)
         {
-          ++applyto.blessMark;
+          ++applyTo.blessMark;
         }
-        if (applyto.blessMark <= 0)
+        if (applyTo.blessMark <= 0)
         {
           break;
         }
         int up = 0;
-        for (int i = 0; i < applyto.blessMark; ++i)
+        for (int i = 0; i < applyTo.blessMark; ++i)
         {
           int n = 0;
-          if (applyto.blessMarkSkill == 152000007)
+          if (applyTo.blessMarkSkill == 152000007)
           {
             n = 2;
           }
-          else if (applyto.blessMarkSkill == 152110009)
+          else if (applyTo.blessMarkSkill == 152110009)
           {
             n = i < 3 ? 2 : 4;
           }
-          else if (applyto.blessMarkSkill == 152120012)
+          else if (applyTo.blessMarkSkill == 152120012)
           {
             n = i < 3 ? 2 : (i < 6 ? 4 : (i < 9 ? 6 : 10));
           }
@@ -6720,7 +6719,7 @@ public class SecondaryStatEffect
         }
         localstatups.put(SecondaryStat.IndiePad, new Pair<Integer, Integer>(up, localDuration));
         localstatups.put(SecondaryStat.IndieMad, new Pair<Integer, Integer>(up, localDuration));
-        localstatups.put(SecondaryStat.BlessMark, new Pair<Integer, Integer>(applyto.blessMark, localDuration));
+        localstatups.put(SecondaryStat.BlessMark, new Pair<Integer, Integer>(applyTo.blessMark, localDuration));
         break;
       }
       case 152111003:
@@ -6732,23 +6731,23 @@ public class SecondaryStatEffect
         localstatups.put(SecondaryStat.NewFlying, new Pair<Integer, Integer>(1, localDuration));
         localstatups.put(SecondaryStat.IndieFloating, new Pair<Integer, Integer>(1, localDuration));
         localstatups.put(SecondaryStat.GloryWing, new Pair<Integer, Integer>(1, localDuration));
-        int size = applyfrom.getSummons(400021068).size();
+        int size = applyFrom.getSummons(400021068).size();
         if (size > 0)
         {
-          localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(SkillFactory.getSkill(400021068).getEffect(applyfrom.getSkillLevel(400021068)).getU() * size, localDuration));
+          localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(SkillFactory.getSkill(400021068).getEffect(applyFrom.getSkillLevel(400021068)).getU() * size, localDuration));
         }
         ArrayList<MapleSummon> remove = new ArrayList<MapleSummon>();
-        for (MapleSummon mapleSummon : applyfrom.getSummons(400021068))
+        for (MapleSummon mapleSummon : applyFrom.getSummons(400021068))
         {
           remove.add(mapleSummon);
         }
         for (MapleSummon mapleSummon : remove)
         {
-          mapleSummon.removeSummon(applyfrom.getMap(), false);
+          mapleSummon.removeSummon(applyFrom.getMap(), false);
         }
-        applyto.blessMark = 10;
-        SkillFactory.getSkill(152000009).getEffect(applyto.getSkillLevel(152000009)).applyTo(applyto, Integer.MAX_VALUE);
-        applyto.canUseMortalWingBeat = true;
+        applyTo.blessMark = 10;
+        SkillFactory.getSkill(152000009).getEffect(applyTo.getSkillLevel(152000009)).applyTo(applyTo, Integer.MAX_VALUE);
+        applyTo.canUseMortalWingBeat = true;
         break;
       }
       case 152111007:
@@ -6764,29 +6763,29 @@ public class SecondaryStatEffect
         showEffect = false;
         localstatups.put(SecondaryStat.IncreaseJabelinDam, new Pair<Integer, Integer>(this.y, 2000));
         localstatups.put(SecondaryStat.IndieUnk1, new Pair<Integer, Integer>(1, 2000));
-        if (applyto.getSkillLevel(152120012) > 0)
+        if (applyTo.getSkillLevel(152120012) > 0)
         {
-          applyto.blessMarkSkill = 152120012;
+          applyTo.blessMarkSkill = 152120012;
         }
-        else if (applyto.getSkillLevel(152110009) > 0)
+        else if (applyTo.getSkillLevel(152110009) > 0)
         {
-          applyto.blessMarkSkill = 152110009;
+          applyTo.blessMarkSkill = 152110009;
         }
-        else if (applyto.getSkillLevel(152000007) > 0)
+        else if (applyTo.getSkillLevel(152000007) > 0)
         {
-          applyto.blessMarkSkill = 152000007;
+          applyTo.blessMarkSkill = 152000007;
         }
-        if (applyto.blessMarkSkill == 0)
+        if (applyTo.blessMarkSkill == 0)
         {
           break;
         }
-        SkillFactory.getSkill(152000009).getEffect(applyto.getSkillLevel(152000009)).applyTo(applyto);
+        SkillFactory.getSkill(152000009).getEffect(applyTo.getSkillLevel(152000009)).applyTo(applyTo);
         break;
       }
       case 152121043:
       {
         bufftimeR = false;
-        localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, Math.max(1, 4000 + applyfrom.blessMark * 600)));
+        localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, Math.max(1, 4000 + applyFrom.blessMark * 600)));
         break;
       }
       case 152121011:
@@ -6820,20 +6819,20 @@ public class SecondaryStatEffect
       }
       case 155001001:
       {
-        localstatups.put(SecondaryStat.Speed, new Pair<Integer, Integer>(this.speed * (applyto.getBuffedValue(155121043) ? 2 : 1), localDuration));
-        localstatups.put(SecondaryStat.IndieStance, new Pair<Integer, Integer>(this.indieStance * (applyto.getBuffedValue(155121043) ? 2 : 1), localDuration));
+        localstatups.put(SecondaryStat.Speed, new Pair<Integer, Integer>(this.speed * (applyTo.getBuffedValue(155121043) ? 2 : 1), localDuration));
+        localstatups.put(SecondaryStat.IndieStance, new Pair<Integer, Integer>(this.indieStance * (applyTo.getBuffedValue(155121043) ? 2 : 1), localDuration));
         break;
       }
       case 155101003:
       {
-        localstatups.put(SecondaryStat.IndiePad, new Pair<Integer, Integer>(this.indiePad * (applyto.getBuffedValue(155121043) ? 2 : 1), localDuration));
-        localstatups.put(SecondaryStat.IndieCr, new Pair<Integer, Integer>(this.indieCr * (applyto.getBuffedValue(155121043) ? 2 : 1), localDuration));
+        localstatups.put(SecondaryStat.IndiePad, new Pair<Integer, Integer>(this.indiePad * (applyTo.getBuffedValue(155121043) ? 2 : 1), localDuration));
+        localstatups.put(SecondaryStat.IndieCr, new Pair<Integer, Integer>(this.indieCr * (applyTo.getBuffedValue(155121043) ? 2 : 1), localDuration));
         break;
       }
       case 155111005:
       {
-        localstatups.put(SecondaryStat.IndieBooster, new Pair<Integer, Integer>(applyto.getBuffedValue(155121043) ? -2 : -1, localDuration));
-        localstatups.put(SecondaryStat.IndieEvaR, new Pair<Integer, Integer>(this.indieEvaR * (applyto.getBuffedValue(155121043) ? 2 : 1), localDuration));
+        localstatups.put(SecondaryStat.IndieBooster, new Pair<Integer, Integer>(applyTo.getBuffedValue(155121043) ? -2 : -1, localDuration));
+        localstatups.put(SecondaryStat.IndieEvaR, new Pair<Integer, Integer>(this.indieEvaR * (applyTo.getBuffedValue(155121043) ? 2 : 1), localDuration));
         break;
       }
       case 155111306:
@@ -6843,14 +6842,14 @@ public class SecondaryStatEffect
       }
       case 155120014:
       {
-        localstatups.put(SecondaryStat.FightJazz, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(155120015), localDuration));
+        localstatups.put(SecondaryStat.FightJazz, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(155120015), localDuration));
         break;
       }
       case 155121005:
       {
-        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(this.indieDamR * (applyto.getBuffedValue(155121043) ? 2 : 1), localDuration));
-        localstatups.put(SecondaryStat.IndieBDR, new Pair<Integer, Integer>(this.indieBDR * (applyto.getBuffedValue(155121043) ? 2 : 1), localDuration));
-        localstatups.put(SecondaryStat.IndieIgnoreMobPdpR, new Pair<Integer, Integer>(SkillFactory.getSkill(155121102).getEffect(applyto.getSkillLevel(155121102)).s2 * (applyto.getBuffedValue(155121043) ? 2 : 1), localDuration));
+        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(this.indieDamR * (applyTo.getBuffedValue(155121043) ? 2 : 1), localDuration));
+        localstatups.put(SecondaryStat.IndieBDR, new Pair<Integer, Integer>(this.indieBDR * (applyTo.getBuffedValue(155121043) ? 2 : 1), localDuration));
+        localstatups.put(SecondaryStat.IndieIgnoreMobPdpR, new Pair<Integer, Integer>(SkillFactory.getSkill(155121102).getEffect(applyTo.getSkillLevel(155121102)).s2 * (applyTo.getBuffedValue(155121043) ? 2 : 1), localDuration));
         break;
       }
       case 155121043:
@@ -6867,19 +6866,19 @@ public class SecondaryStatEffect
       }
       case 164101003:
       {
-        applyto.giveHoyoungGauge(this.sourceid);
+        applyTo.giveHoyoungGauge(this.sourceid);
         localstatups.put(SecondaryStat.Alterego, new Pair<Integer, Integer>(1, localDuration));
         break;
       }
       case 164111007:
       case 164121006:
       {
-        applyto.giveHoyoungGauge(this.sourceid);
+        applyTo.giveHoyoungGauge(this.sourceid);
         break;
       }
       case 164121007:
       {
-        applyto.giveHoyoungGauge(this.sourceid);
+        applyTo.giveHoyoungGauge(this.sourceid);
         localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>(Integer.valueOf(this.indiePmdR), localDuration));
         localstatups.put(SecondaryStat.ButterflyDream, new Pair<Integer, Integer>(1, localDuration));
         break;
@@ -6887,7 +6886,7 @@ public class SecondaryStatEffect
       case 164121008:
       case 400041050:
       {
-        applyto.giveHoyoungGauge(this.sourceid);
+        applyTo.giveHoyoungGauge(this.sourceid);
         break;
       }
       case 164121041:
@@ -6903,8 +6902,8 @@ public class SecondaryStatEffect
       }
       case 400001010:
       {
-        applyto.setBlitzShield((int) (applyto.getStat().getCurrentMaxHp() * (long) this.x / 100L));
-        localstatups.put(SecondaryStat.BlitzShield, new Pair<Integer, Integer>(applyto.getBlitzShield(), localDuration));
+        applyTo.setBlitzShield((int) (applyTo.getStat().getCurrentMaxHp() * (long) this.x / 100L));
+        localstatups.put(SecondaryStat.BlitzShield, new Pair<Integer, Integer>(applyTo.getBlitzShield(), localDuration));
         break;
       }
       case 400001014:
@@ -6926,13 +6925,13 @@ public class SecondaryStatEffect
       }
       case 400001045:
       {
-        for (MapleCoolDownValueHolder cooldown : applyto.getCooldowns())
+        for (MapleCoolDownValueHolder cooldown : applyTo.getCooldowns())
         {
-          if (cooldown.skillId == this.sourceid || !GameConstants.isZero(cooldown.skillId / 10000) || SkillFactory.getSkill(cooldown.skillId).isHyper() || !applyto.skillisCooling(cooldown.skillId))
+          if (cooldown.skillId == this.sourceid || !GameConstants.isZero(cooldown.skillId / 10000) || SkillFactory.getSkill(cooldown.skillId).isHyper() || !applyTo.skillisCooling(cooldown.skillId))
           {
             continue;
           }
-          applyto.removeCooldown(cooldown.skillId);
+          applyTo.removeCooldown(cooldown.skillId);
         }
         localstatups.put(SecondaryStat.Bless5th, new Pair<Integer, Integer>(this.x, localDuration));
         localstatups.put(SecondaryStat.IndiePad, new Pair<Integer, Integer>(Integer.valueOf(this.indiePad), localDuration));
@@ -6950,7 +6949,7 @@ public class SecondaryStatEffect
         {
           aftercancel = true;
         }
-        int indiePmdR = Math.round((100 - applyto.getStat().getHPPercent()) / this.u) * this.x;
+        int indiePmdR = Math.round((100 - applyTo.getStat().getHPPercent()) / this.u) * this.x;
         localDuration = 0;
         if (indiePmdR <= 0)
         {
@@ -6962,22 +6961,22 @@ public class SecondaryStatEffect
       case 400011011:
       {
         localstatups.clear();
-        if (applyto.getId() == applyfrom.getId())
+        if (applyTo.getId() == applyFrom.getId())
         {
-          if (applyfrom.getBuffedEffect(SecondaryStat.RhoAias) != null || !primary)
+          if (applyFrom.getBuffedEffect(SecondaryStat.RhoAias) != null || !primary)
           {
-            applyfrom.cancelEffect(applyfrom.getBuffedEffect(400011011), null, true);
+            applyFrom.cancelEffect(applyFrom.getBuffedEffect(400011011), null, true);
             localstatups.put(SecondaryStat.RhoAias, new Pair<Integer, Integer>(0, this.q2 * 1000));
-            localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>(this.getW2() + applyfrom.getRhoAias() / this.q, this.q2 * 1000));
-            applyfrom.setRhoAias(0);
-            if (applyto.getParty() == null)
+            localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>(this.getW2() + applyFrom.getRhoAias() / this.q, this.q2 * 1000));
+            applyFrom.setRhoAias(0);
+            if (applyTo.getParty() == null)
             {
               break;
             }
-            for (MaplePartyCharacter pc : applyto.getParty().getMembers())
+            for (MaplePartyCharacter pc : applyTo.getParty().getMembers())
             {
               MapleCharacter victim;
-              if (!pc.isOnline() || pc.getMapid() != applyto.getMapId() || pc.getChannel() != applyto.getClient().getChannel() || (victim = applyto.getClient().getChannelServer().getPlayerStorage().getCharacterByName(pc.getName())) == null || !victim.getBuffedValue(400011011))
+              if (!pc.isOnline() || pc.getMapid() != applyTo.getMapId() || pc.getChannel() != applyTo.getClient().getChannel() || (victim = applyTo.getClient().getChannelServer().getPlayerStorage().getCharacterByName(pc.getName())) == null || !victim.getBuffedValue(400011011))
               {
                 continue;
               }
@@ -6985,24 +6984,24 @@ public class SecondaryStatEffect
             }
             break;
           }
-          applyfrom.setRhoAias(this.y + this.w + this.z);
+          applyFrom.setRhoAias(this.y + this.w + this.z);
           localstatups.put(SecondaryStat.RhoAias, new Pair<Integer, Integer>(this.x, localDuration));
           break;
         }
-        localstatups.put(SecondaryStat.RhoAias, new Pair<Integer, Integer>(SkillFactory.getSkill(400011011).getEffect(applyfrom.getSkillLevel(400011011)).getX(), localDuration));
+        localstatups.put(SecondaryStat.RhoAias, new Pair<Integer, Integer>(SkillFactory.getSkill(400011011).getEffect(applyFrom.getSkillLevel(400011011)).getX(), localDuration));
         break;
       }
       case 400011016:
       {
         long curr = System.currentTimeMillis();
-        applyfrom.setCombo((short) Math.min(999, applyfrom.getCombo() + this.z));
-        applyfrom.setLastCombo(curr);
-        short combo = applyfrom.getCombo();
+        applyFrom.setCombo((short) Math.min(999, applyFrom.getCombo() + this.z));
+        applyFrom.setLastCombo(curr);
+        short combo = applyFrom.getCombo();
         int n = combo / 50;
-        applyfrom.getClient().getSession().writeAndFlush(CField.aranCombo(combo));
-        if (applyfrom.getSkillLevel(21000000) > 0 && n != combo / 50)
+        applyFrom.getClient().getSession().writeAndFlush(CField.aranCombo(combo));
+        if (applyFrom.getSkillLevel(21000000) > 0 && n != combo / 50)
         {
-          SkillFactory.getSkill(21000000).getEffect(applyfrom.getSkillLevel(21000000)).applyTo(applyfrom, false);
+          SkillFactory.getSkill(21000000).getEffect(applyFrom.getSkillLevel(21000000)).applyTo(applyFrom, false);
         }
         localstatups.put(SecondaryStat.InstallMaha, new Pair<Integer, Integer>(Integer.valueOf(this.level), localDuration));
         localstatups.put(SecondaryStat.IndiePadR, new Pair<Integer, Integer>(Integer.valueOf(this.indiePadR), localDuration));
@@ -7011,12 +7010,12 @@ public class SecondaryStatEffect
       case 400011052:
       {
         aftercancel = true;
-        localstatups.put(SecondaryStat.BlessedHammer, new Pair<Integer, Integer>(applyto.getElementalCharge(), 0));
+        localstatups.put(SecondaryStat.BlessedHammer, new Pair<Integer, Integer>(applyTo.getElementalCharge(), 0));
         break;
       }
       case 400011083:
       {
-        if (!applyto.getBuffedValue(400011083))
+        if (!applyTo.getBuffedValue(400011083))
         {
           localstatups.put(SecondaryStat.IndiePadR, new Pair<Integer, Integer>(Integer.valueOf(this.indiePadR), localDuration));
           localstatups.put(SecondaryStat.IndieCr, new Pair<Integer, Integer>(Integer.valueOf(this.indieCr), localDuration));
@@ -7031,7 +7030,7 @@ public class SecondaryStatEffect
       }
       case 400011116:
       {
-        localstatups.put(SecondaryStat.AfterImageShock, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(400011116), localDuration));
+        localstatups.put(SecondaryStat.AfterImageShock, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(400011116), localDuration));
         break;
       }
       case 400011127:
@@ -7039,36 +7038,36 @@ public class SecondaryStatEffect
         Rectangle bounds;
         if (primary)
         {
-          applyto.setSkillCustomInfo(400011127, (int) (applyto.getStat().getCurrentMaxHp() / 100L * (long) this.x), 0L);
+          applyTo.setSkillCustomInfo(400011127, (int) (applyTo.getStat().getCurrentMaxHp() / 100L * (long) this.x), 0L);
           localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(this.z, this.y * 1000));
-          localstatups.put(SecondaryStat.IndieBarrier, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(400011127), localDuration));
-          SkillFactory.getSkill(400011127).getEffect(applyto.getSkillLevel(400011127)).applyTo(applyto, false);
-          bounds = this.calculateBoundingBox(applyfrom.getTruePosition(), applyfrom.isFacingLeft());
-          List<MapleMapObject> affecteds = applyfrom.getMap().getMapObjectsInRect(bounds, Collections.singletonList(MapleMapObjectType.PLAYER));
-          if (applyfrom.getParty() == null)
+          localstatups.put(SecondaryStat.IndieBarrier, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(400011127), localDuration));
+          SkillFactory.getSkill(400011127).getEffect(applyTo.getSkillLevel(400011127)).applyTo(applyTo, false);
+          bounds = this.calculateBoundingBox(applyFrom.getTruePosition(), applyFrom.isFacingLeft());
+          List<MapleMapObject> affecteds = applyFrom.getMap().getMapObjectsInRect(bounds, Collections.singletonList(MapleMapObjectType.PLAYER));
+          if (applyFrom.getParty() == null)
           {
             break;
           }
           for (MapleMapObject mapleMapObject : affecteds)
           {
             MapleCharacter affected = (MapleCharacter) mapleMapObject;
-            if (affected.getParty() == null || applyfrom.getId() == affected.getId() || applyfrom.getParty().getId() != affected.getParty().getId())
+            if (affected.getParty() == null || applyFrom.getId() == affected.getId() || applyFrom.getParty().getId() != affected.getParty().getId())
             {
               continue;
             }
             affected.setSkillCustomInfo(400011127, (int) (affected.getStat().getCurrentMaxHp() / 100L * (long) this.x), 0L);
-            SkillFactory.getSkill(400011127).getEffect(applyto.getSkillLevel(400011127)).applyTo(applyto, affected, false, pos, newDuration, (byte) 0, false);
+            SkillFactory.getSkill(400011127).getEffect(applyTo.getSkillLevel(400011127)).applyTo(applyTo, affected, false, pos, newDuration, (byte) 0, false);
           }
           break;
         }
         aftercancel = true;
-        if (applyto.getBuffedEffect(SecondaryStat.IndieBarrier) == null)
+        if (applyTo.getBuffedEffect(SecondaryStat.IndieBarrier) == null)
         {
           localDuration = 10000;
         }
         showEffect = false;
         localstatups.clear();
-        localstatups.put(SecondaryStat.IndieBarrier, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(400011127), localDuration));
+        localstatups.put(SecondaryStat.IndieBarrier, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(400011127), localDuration));
         break;
       }
       case 400031030:
@@ -7091,30 +7090,30 @@ public class SecondaryStatEffect
       case 80002633:
       {
         localstatups.clear();
-        if (!applyto.getBuffedValue(80002633))
+        if (!applyTo.getBuffedValue(80002633))
         {
           localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, localDuration));
           localstatups.put(SecondaryStat.NotDamaged, new Pair<>(1, localDuration));
           localstatups.put(SecondaryStat.IonBuff, new Pair<Integer, Integer>(1, localDuration));
           break;
         }
-        applyto.cancelEffectFromBuffStat(SecondaryStat.IndieNotDamaged, 80002633);
-        applyto.cancelEffectFromBuffStat(SecondaryStat.NotDamaged, 80002633);
-        applyto.cancelEffectFromBuffStat(SecondaryStat.IonBuff, 80002633);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.IndieNotDamaged, 80002633);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.NotDamaged, 80002633);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.IonBuff, 80002633);
         break;
       }
-      
+
       case 80002393:
       {
         localstatups.clear();
-        if (!applyto.getBuffedValue(80002393))
+        if (!applyTo.getBuffedValue(80002393))
         {
           localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, localDuration));
           localstatups.put(SecondaryStat.NotDamaged, new Pair<>(1, localDuration));
           break;
         }
       }
-      
+
       case 80002093:
       {
         localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, localDuration));
@@ -7128,23 +7127,23 @@ public class SecondaryStatEffect
       }
       case 400011003:
       {
-        Rectangle bounds = this.calculateBoundingBox(applyfrom.getTruePosition(), applyfrom.isFacingLeft());
-        List<MapleMapObject> affecteds = applyfrom.getMap().getMapObjectsInRect(bounds, Collections.singletonList(MapleMapObjectType.PLAYER));
+        Rectangle bounds = this.calculateBoundingBox(applyFrom.getTruePosition(), applyFrom.isFacingLeft());
+        List<MapleMapObject> affecteds = applyFrom.getMap().getMapObjectsInRect(bounds, Collections.singletonList(MapleMapObjectType.PLAYER));
         boolean active = false;
-        if (applyfrom.getParty() != null)
+        if (applyFrom.getParty() != null)
         {
           for (MapleMapObject affectedmo : affecteds)
           {
             MapleCharacter affected = (MapleCharacter) affectedmo;
-            if (affected.getParty() == null || applyfrom.getId() == affected.getId() || applyfrom.getParty().getId() != affected.getParty().getId())
+            if (affected.getParty() == null || applyFrom.getId() == affected.getId() || applyFrom.getParty().getId() != affected.getParty().getId())
             {
               continue;
             }
             localstatups.clear();
             localstatups.put(SecondaryStat.HolyUnity, new Pair<Integer, Integer>(affected.getId(), localDuration));
             affected.getMap().broadcastMessage(affected, CField.EffectPacket.showEffect(affected, 0, this.sourceid, 1, 0, 0, (byte) (affected.getTruePosition().x > pos.x ? 1 : 0), false, pos, null, null), false);
-            applyto.setSkillCustomInfo(400011003, affected.getId(), 0L);
-            SkillFactory.getSkill(400011021).getEffect(applyto.getSkillLevel(400011003)).applyTo(applyfrom, affected, primary, pos, newDuration, (byte) 0, false);
+            applyTo.setSkillCustomInfo(400011003, affected.getId(), 0L);
+            SkillFactory.getSkill(400011021).getEffect(applyTo.getSkillLevel(400011003)).applyTo(applyFrom, affected, primary, pos, newDuration, (byte) 0, false);
             active = true;
             break;
           }
@@ -7153,63 +7152,99 @@ public class SecondaryStatEffect
         {
           break;
         }
-        applyto.setSkillCustomInfo(400011003, 0L, 0L);
+        applyTo.setSkillCustomInfo(400011003, 0L, 0L);
         localstatups.clear();
-        localstatups.put(SecondaryStat.HolyUnity, new Pair<Integer, Integer>(applyfrom.getId(), localDuration));
+        localstatups.put(SecondaryStat.HolyUnity, new Pair<Integer, Integer>(applyFrom.getId(), localDuration));
         break;
       }
       case 400011021:
       {
         localstatups.clear();
-        localstatups.put(SecondaryStat.HolyUnity, new Pair<Integer, Integer>(applyfrom.getId(), localDuration));
+        localstatups.put(SecondaryStat.HolyUnity, new Pair<Integer, Integer>(applyFrom.getId(), localDuration));
         break;
       }
       case 400011027:
       {
-        localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, 3000));
+        int 每個鬥氣最終傷害增加 = 0;
+
+        int 鬥氣集中技能Id = 1101013;
+
+        int 鬥氣協和技能Id = 1110013;
+
+        int 進階鬥氣技能Id = 1120003;
+
+        final Skill 鬥氣協和 = SkillFactory.getSkill(鬥氣協和技能Id);
+
+        final Skill 進階鬥氣 = SkillFactory.getSkill(進階鬥氣技能Id);
+
+        int 鬥氣集中技能等級 = applyTo.getSkillLevel(鬥氣集中技能Id);
+
+        int 鬥氣協和技能等級 = applyTo.getSkillLevel(鬥氣協和技能Id);
+
+        int 進階鬥氣技能等級 = applyTo.getSkillLevel(進階鬥氣技能Id);
+
+        if (鬥氣集中技能等級 == 1)
+        {
+          if (鬥氣協和技能等級 > 0)
+          {
+            SecondaryStatEffect 鬥氣協和Effect = 鬥氣協和.getEffect(鬥氣協和技能等級);
+
+            每個鬥氣最終傷害增加 += 鬥氣協和Effect.getDAMRate();
+          }
+          if (進階鬥氣技能等級 > 0)
+          {
+            SecondaryStatEffect 進階鬥氣Effect = 進階鬥氣.getEffect(進階鬥氣技能等級);
+
+            每個鬥氣最終傷害增加 += 進階鬥氣Effect.getDAMRate();
+          }
+        }
+
+        System.out.println("空間斬最終傷害加成結算結果 = " + (每個鬥氣最終傷害增加 * this.getY()));
+        localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>(每個鬥氣最終傷害增加 * this.getY(), this.getDuration()));
+        localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, this.getDuration()));
         break;
       }
       case 400011047:
       {
-        indieList1.add(new Pair<Integer, Integer>(applyto.getBuffedValue(1301006) ? 1 : 0, applyto.getBuffedValue(1301007) ? 1 : 0));
+        indieList1.add(new Pair<Integer, Integer>(applyTo.getBuffedValue(1301006) ? 1 : 0, applyTo.getBuffedValue(1301007) ? 1 : 0));
         if (primary)
         {
-          applyto.removeSkillCustomInfo(400011047);
-          applyto.removeSkillCustomInfo(400011048);
+          applyTo.removeSkillCustomInfo(400011047);
+          applyTo.removeSkillCustomInfo(400011048);
           localstatups.put(SecondaryStat.IndieBarrier, new Pair<Integer, Integer>(0, localDuration));
           localstatups.put(SecondaryStat.DarknessAura, new Pair<Integer, Integer>(this.w, localDuration));
           break;
         }
-        localstatups.put(SecondaryStat.IndieBarrier, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(400011048), (int) applyto.getBuffLimit(400011047)));
-        localstatups.put(SecondaryStat.DarknessAura, new Pair<Integer, Integer>(this.w, (int) applyto.getBuffLimit(400011047)));
+        localstatups.put(SecondaryStat.IndieBarrier, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(400011048), (int) applyTo.getBuffLimit(400011047)));
+        localstatups.put(SecondaryStat.DarknessAura, new Pair<Integer, Integer>(this.w, (int) applyTo.getBuffLimit(400011047)));
         break;
       }
       case 400011053:
       {
-        localstatups.put(SecondaryStat.BlessedHammer2, new Pair<Integer, Integer>(applyto.getElementalCharge(), SkillFactory.getSkill(400011052).getEffect(this.level).getV() * 1000));
+        localstatups.put(SecondaryStat.BlessedHammer2, new Pair<Integer, Integer>(applyTo.getElementalCharge(), SkillFactory.getSkill(400011052).getEffect(this.level).getV() * 1000));
         break;
       }
       case 400011058:
       {
-        applyto.ignoreDraco = this.q2;
+        applyTo.ignoreDraco = this.q2;
         localDuration = 30000;
-        applyto.removeCooldown(400011079);
-        localstatups.put(SecondaryStat.WillofSwordStrike, new Pair<Integer, Integer>(applyto.ignoreDraco, localDuration));
+        applyTo.removeCooldown(400011079);
+        localstatups.put(SecondaryStat.WillofSwordStrike, new Pair<Integer, Integer>(applyTo.ignoreDraco, localDuration));
         break;
       }
       case 400011088:
       {
-        SkillFactory.getSkill(400011089).getEffect(1).applyTo(applyto);
+        SkillFactory.getSkill(400011089).getEffect(1).applyTo(applyTo);
         break;
       }
       case 400011089:
       {
         localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, 1500));
-        if (!applyto.getBuffedValue(400011088))
+        if (!applyTo.getBuffedValue(400011088))
         {
           break;
         }
-        applyto.cancelEffect(applyto.getBuffedEffect(400011088));
+        applyTo.cancelEffect(applyTo.getBuffedEffect(400011088));
         break;
       }
       case 400011102:
@@ -7270,14 +7305,14 @@ public class SecondaryStatEffect
       }
       case 400011136:
       {
-        localstatups.put(SecondaryStat.DevilishPower, new Pair<Integer, Integer>(applyto.활성화된소드, localDuration));
-        for (MapleMagicSword mSword : applyto.getMap().getAllMagicSword())
+        localstatups.put(SecondaryStat.DevilishPower, new Pair<Integer, Integer>(applyTo.활성화된소드, localDuration));
+        for (MapleMagicSword mSword : applyTo.getMap().getAllMagicSword())
         {
-          if (mSword.getChr().getId() != applyto.getId())
+          if (mSword.getChr().getId() != applyTo.getId())
           {
             continue;
           }
-          applyto.getMap().removeMapObject(mSword);
+          applyTo.getMap().removeMapObject(mSword);
           if (mSword.getSchedule() == null)
           {
             continue;
@@ -7285,75 +7320,75 @@ public class SecondaryStatEffect
           mSword.getSchedule().cancel(true);
           mSword.setSchedule(null);
         }
-        applyto.활성화된소드 = 0;
+        applyTo.활성화된소드 = 0;
         break;
       }
       case 400020009:
       {
-        applyto.cancelEffectFromBuffStat(SecondaryStat.PsychicTornado);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.PsychicTornado);
         showEffect = false;
         break;
       }
       case 400021006:
       {
         localstatups.clear();
-        applyto.setSkillCustomInfo(this.sourceid, applyfrom.getId(), 0L);
-        localstatups.put(SecondaryStat.UnionAura, new Pair<Integer, Integer>(applyfrom.getSkillLevel(400021006), localDuration));
-        localstatups.put(SecondaryStat.YellowAura, new Pair<Integer, Integer>(applyfrom.getSkillLevel(32001016), localDuration));
-        localstatups.put(SecondaryStat.DrainAura, new Pair<Integer, Integer>(applyfrom.getSkillLevel(32101009), localDuration));
-        localstatups.put(SecondaryStat.BlueAura, new Pair<Integer, Integer>(applyfrom.getSkillLevel(32111012), localDuration));
-        localstatups.put(SecondaryStat.DarkAura, new Pair<Integer, Integer>(applyfrom.getSkillLevel(32121017), localDuration));
+        applyTo.setSkillCustomInfo(this.sourceid, applyFrom.getId(), 0L);
+        localstatups.put(SecondaryStat.UnionAura, new Pair<Integer, Integer>(applyFrom.getSkillLevel(400021006), localDuration));
+        localstatups.put(SecondaryStat.YellowAura, new Pair<Integer, Integer>(applyFrom.getSkillLevel(32001016), localDuration));
+        localstatups.put(SecondaryStat.DrainAura, new Pair<Integer, Integer>(applyFrom.getSkillLevel(32101009), localDuration));
+        localstatups.put(SecondaryStat.BlueAura, new Pair<Integer, Integer>(applyFrom.getSkillLevel(32111012), localDuration));
+        localstatups.put(SecondaryStat.DarkAura, new Pair<Integer, Integer>(applyFrom.getSkillLevel(32121017), localDuration));
         if (primary)
         {
-          localstatups.put(SecondaryStat.DebuffAura, new Pair<Integer, Integer>(applyfrom.getSkillLevel(32121018), localDuration));
+          localstatups.put(SecondaryStat.DebuffAura, new Pair<Integer, Integer>(applyFrom.getSkillLevel(32121018), localDuration));
           localstatups.put(SecondaryStat.IndieMad, new Pair<Integer, Integer>(Integer.valueOf(this.indieMad), localDuration));
         }
-        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(Integer.valueOf(SkillFactory.getSkill(32121017).getEffect(applyfrom.getSkillLevel(32121017)).indieDamR), localDuration));
-        localstatups.put(SecondaryStat.IndieSpeed, new Pair<Integer, Integer>(Integer.valueOf(SkillFactory.getSkill(32001016).getEffect(applyfrom.getSkillLevel(32001016)).indieSpeed), localDuration));
+        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(Integer.valueOf(SkillFactory.getSkill(32121017).getEffect(applyFrom.getSkillLevel(32121017)).indieDamR), localDuration));
+        localstatups.put(SecondaryStat.IndieSpeed, new Pair<Integer, Integer>(Integer.valueOf(SkillFactory.getSkill(32001016).getEffect(applyFrom.getSkillLevel(32001016)).indieSpeed), localDuration));
         localstatups.put(SecondaryStat.IndieBooster, new Pair<Integer, Integer>(-1, localDuration));
-        localstatups.put(SecondaryStat.IndieBDR, new Pair<Integer, Integer>(Integer.valueOf(SkillFactory.getSkill(32120060).getEffect(applyfrom.getSkillLevel(32120060)).indieBDR), localDuration));
-        localstatups.put(SecondaryStat.IndieAsrR, new Pair<Integer, Integer>(Integer.valueOf(SkillFactory.getSkill(32111012).getEffect(applyfrom.getSkillLevel(32111012)).asrR), localDuration));
-        if (applyto.getBuffedValue(32001016))
+        localstatups.put(SecondaryStat.IndieBDR, new Pair<Integer, Integer>(Integer.valueOf(SkillFactory.getSkill(32120060).getEffect(applyFrom.getSkillLevel(32120060)).indieBDR), localDuration));
+        localstatups.put(SecondaryStat.IndieAsrR, new Pair<Integer, Integer>(Integer.valueOf(SkillFactory.getSkill(32111012).getEffect(applyFrom.getSkillLevel(32111012)).asrR), localDuration));
+        if (applyTo.getBuffedValue(32001016))
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.YellowAura, 32001016);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.YellowAura, 32001016);
         }
-        if (applyto.getBuffedValue(32101009))
+        if (applyTo.getBuffedValue(32101009))
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.DrainAura, 32101009);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.DrainAura, 32101009);
         }
-        if (applyto.getBuffedValue(32111012))
+        if (applyTo.getBuffedValue(32111012))
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.BlueAura, 32111012);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.BlueAura, 32111012);
         }
-        if (applyto.getBuffedValue(32121017))
+        if (applyTo.getBuffedValue(32121017))
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.DarkAura, 32121017);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.DarkAura, 32121017);
         }
-        if (!applyto.getBuffedValue(32121018) || applyto.getBuffedOwner(32121018) == applyto.getId())
+        if (!applyTo.getBuffedValue(32121018) || applyTo.getBuffedOwner(32121018) == applyTo.getId())
         {
           break;
         }
-        applyto.cancelEffectFromBuffStat(SecondaryStat.DebuffAura, 32121018);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.DebuffAura, 32121018);
         break;
       }
       case 400021008:
       {
-        if (!applyto.getBuffedValue(400021008))
+        if (!applyTo.getBuffedValue(400021008))
         {
-          applyto.setSkillCustomInfo(400021009, 1L, 0L);
-          applyto.setSkillCustomInfo(400021008, 0L, 0L);
+          applyTo.setSkillCustomInfo(400021009, 1L, 0L);
+          applyTo.setSkillCustomInfo(400021008, 0L, 0L);
         }
-        if (applyto.getSkillCustomValue0(400021009) >= 3L)
+        if (applyTo.getSkillCustomValue0(400021009) >= 3L)
         {
-          applyto.setSkillCustomInfo(400021009, 3L, 0L);
+          applyTo.setSkillCustomInfo(400021009, 3L, 0L);
         }
-        localstatups.put(SecondaryStat.PsychicTornado, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(400021009), localDuration));
+        localstatups.put(SecondaryStat.PsychicTornado, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(400021009), localDuration));
         break;
       }
       case 400021012:
       {
         localDuration = 10000;
-        SecondaryStatValueHolder mbsvh = applyto.checkBuffStatValueHolder(SecondaryStat.IndiePmdR, 400021012);
+        SecondaryStatValueHolder mbsvh = applyTo.checkBuffStatValueHolder(SecondaryStat.IndiePmdR, 400021012);
         if (mbsvh != null)
         {
           localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>(mbsvh.value + 5, localDuration));
@@ -7365,11 +7400,11 @@ public class SecondaryStatEffect
       case 400021032:
       case 400021033:
       {
-        if (!applyto.getBuffedValue(2321003))
+        if (!applyTo.getBuffedValue(2321003))
         {
           break;
         }
-        applyto.cancelEffectFromBuffStat(SecondaryStat.IndieSummon, 2321003);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.IndieSummon, 2321003);
         break;
       }
       case 400021047:
@@ -7379,43 +7414,43 @@ public class SecondaryStatEffect
       }
       case 400021052:
       {
-        localstatups.put(SecondaryStat.DamR, new Pair<Integer, Integer>(Math.min(this.w + applyto.getStat().getTotalInt() / this.x, this.z), localDuration));
+        localstatups.put(SecondaryStat.DamR, new Pair<Integer, Integer>(Math.min(this.w + applyTo.getStat().getTotalInt() / this.x, this.z), localDuration));
         break;
       }
       case 400021071:
       {
         if (!primary)
         {
-          if (applyto.getPerfusion() < this.x - 1)
+          if (applyTo.getPerfusion() < this.x - 1)
           {
-            applyto.setPerfusion(applyto.getPerfusion() + 1);
+            applyTo.setPerfusion(applyTo.getPerfusion() + 1);
             aftercancel = true;
-            localstatups.put(SecondaryStat.LuminousPerfusion, new Pair<Integer, Integer>(applyto.getPerfusion(), 0));
+            localstatups.put(SecondaryStat.LuminousPerfusion, new Pair<Integer, Integer>(applyTo.getPerfusion(), 0));
             break;
           }
-          if (applyto.getPerfusion() != this.x - 1)
+          if (applyTo.getPerfusion() != this.x - 1)
           {
             break;
           }
           localstatups.clear();
-          applyto.setPerfusion(0);
-          applyto.cancelEffect(this);
-          if (applyto.getCooldownLimit(400021071) <= 0L)
+          applyTo.setPerfusion(0);
+          applyTo.cancelEffect(this);
+          if (applyTo.getCooldownLimit(400021071) <= 0L)
           {
             break;
           }
-          applyto.removeCooldown(400021071);
+          applyTo.removeCooldown(400021071);
           break;
         }
         aftercancel = true;
-        localstatups.put(SecondaryStat.LuminousPerfusion, new Pair<Integer, Integer>(applyto.getPerfusion(), 0));
+        localstatups.put(SecondaryStat.LuminousPerfusion, new Pair<Integer, Integer>(applyTo.getPerfusion(), 0));
         break;
       }
       case 400021070:
       {
-        applyfrom.peaceMaker = primary ? this.w : --applyfrom.peaceMaker;
-        applyto.addHP(applyfrom.getStat().getCurrentMaxHp() * 100L / (long) this.hp);
-        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(this.q2 + applyfrom.peaceMaker * this.w2, localDuration));
+        applyFrom.peaceMaker = primary ? this.w : --applyFrom.peaceMaker;
+        applyTo.addHP(applyFrom.getStat().getCurrentMaxHp() * 100L / (long) this.hp);
+        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(this.q2 + applyFrom.peaceMaker * this.w2, localDuration));
         break;
       }
       case 400021077:
@@ -7426,7 +7461,7 @@ public class SecondaryStatEffect
       {
         localstatups.clear();
         localstatups.put(SecondaryStat.AbyssalLightning, new Pair<Integer, Integer>(1, localDuration));
-        SkillFactory.getSkill(400021088).getEffect(this.level).applyTo(applyto, false);
+        SkillFactory.getSkill(400021088).getEffect(this.level).applyTo(applyTo, false);
         break;
       }
       case 400021088:
@@ -7443,7 +7478,7 @@ public class SecondaryStatEffect
       }
       case 400021093:
       {
-        localstatups.put(SecondaryStat.IndieMad, new Pair<Integer, Integer>((int) ((long) SkillFactory.getSkill(400021092).getEffect(applyfrom.getSkillLevel(400021092)).dot + applyto.getSkillCustomValue0(400021093) * (long) SkillFactory.getSkill(400021092).getEffect(applyfrom.getSkillLevel(400021092)).w2), localDuration));
+        localstatups.put(SecondaryStat.IndieMad, new Pair<Integer, Integer>((int) ((long) SkillFactory.getSkill(400021092).getEffect(applyFrom.getSkillLevel(400021092)).dot + applyTo.getSkillCustomValue0(400021093) * (long) SkillFactory.getSkill(400021092).getEffect(applyFrom.getSkillLevel(400021092)).w2), localDuration));
         break;
       }
       case 400021096:
@@ -7453,12 +7488,12 @@ public class SecondaryStatEffect
       }
       case 400021099:
       {
-        if (!applyto.getBuffedValue(400021099))
+        if (!applyTo.getBuffedValue(400021099))
         {
           localstatups.put(SecondaryStat.CrystalGate, new Pair<Integer, Integer>(1, localDuration));
           break;
         }
-        localstatups.put(SecondaryStat.CrystalGate, new Pair<Integer, Integer>(1, (int) applyto.getBuffLimit(400021099)));
+        localstatups.put(SecondaryStat.CrystalGate, new Pair<Integer, Integer>(1, (int) applyTo.getBuffLimit(400021099)));
         break;
       }
       case 400021100:
@@ -7475,14 +7510,14 @@ public class SecondaryStatEffect
       {
         if (primary)
         {
-          applyto.trueSniping = this.x;
+          applyTo.trueSniping = this.x;
         }
-        localstatups.put(SecondaryStat.TrueSniping, new Pair<Integer, Integer>(applyto.trueSniping, primary ? localDuration : (int) applyto.getBuffLimit(this.sourceid)));
+        localstatups.put(SecondaryStat.TrueSniping, new Pair<Integer, Integer>(applyTo.trueSniping, primary ? localDuration : (int) applyTo.getBuffLimit(this.sourceid)));
         break;
       }
       case 400031017:
       {
-        localstatups.put(SecondaryStat.RideVehicleExpire, new Pair<Integer, Integer>(SecondaryStatEffect.parseMountInfo(applyto, this.sourceid), localDuration));
+        localstatups.put(SecondaryStat.RideVehicleExpire, new Pair<Integer, Integer>(SecondaryStatEffect.parseMountInfo(applyTo, this.sourceid), localDuration));
         localstatups.put(SecondaryStat.IgnisRore, new Pair<Integer, Integer>(10, localDuration));
         break;
       }
@@ -7493,39 +7528,39 @@ public class SecondaryStatEffect
       }
       case 400031014:
       {
-        if (applyto.getBuffedEffect(SecondaryStat.RideVehicle) != null)
+        if (applyTo.getBuffedEffect(SecondaryStat.RideVehicle) != null)
         {
           break;
         }
-        SkillFactory.getSkill(33001001).getEffect(1).applyTo(applyto, 0);
+        SkillFactory.getSkill(33001001).getEffect(1).applyTo(applyTo, 0);
         localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(this.x, 2000));
         break;
       }
       case 400031028:
       {
-        if (applyto.getBuffedEffect(SecondaryStat.AdvancedQuiver) != null)
+        if (applyTo.getBuffedEffect(SecondaryStat.AdvancedQuiver) != null)
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.AdvancedQuiver);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.AdvancedQuiver);
         }
         localstatups.put(SecondaryStat.QuiverFullBurst, new Pair<Integer, Integer>(this.x, localDuration));
         break;
       }
       case 400031034:
       {
-        if (applyto.getCooldownLimit(400031034) == 0L)
+        if (applyTo.getCooldownLimit(400031034) == 0L)
         {
-          applyto.setSkillCustomInfo(this.sourceid, applyto.렐릭게이지, 0L);
+          applyTo.setSkillCustomInfo(this.sourceid, applyTo.렐릭게이지, 0L);
           localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, 1200));
           localstatups.put(SecondaryStat.IgnorePCounter, new Pair<Integer, Integer>(1, 1200));
-          MapleCharacter.렐릭게이지(applyto.getClient(), this.sourceid);
+          MapleCharacter.렐릭게이지(applyTo.getClient(), this.sourceid);
           break;
         }
-        if (applyto.getBuffedEffect(SecondaryStat.NextAttackEnhance) != null)
+        if (applyTo.getBuffedEffect(SecondaryStat.NextAttackEnhance) != null)
         {
           break;
         }
-        int gauge = (int) applyto.getSkillCustomValue0(this.sourceid);
-        applyto.removeSkillCustomInfo(this.sourceid);
+        int gauge = (int) applyTo.getSkillCustomValue0(this.sourceid);
+        applyTo.removeSkillCustomInfo(this.sourceid);
         if (gauge == 1000)
         {
           localstatups.put(SecondaryStat.NextAttackEnhance, new Pair<Integer, Integer>(100, 1000));
@@ -7575,12 +7610,12 @@ public class SecondaryStatEffect
         {
           localstatups.put(SecondaryStat.IndieUnkIllium, new Pair<Integer, Integer>(1, localDuration));
         }
-        if (applyfrom.getId() != applyto.getId())
+        if (applyFrom.getId() != applyTo.getId())
         {
           break;
         }
-        MapleCharacter.렐릭게이지(applyto.getClient(), this.sourceid);
-        MapleCharacter.문양(applyto.getClient(), this.sourceid);
+        MapleCharacter.렐릭게이지(applyTo.getClient(), this.sourceid);
+        MapleCharacter.문양(applyTo.getClient(), this.sourceid);
         break;
       }
       case 400031044:
@@ -7599,16 +7634,16 @@ public class SecondaryStatEffect
       case 400031047:
       case 400031049:
       {
-        MapleCharacter.렐릭게이지(applyto.getClient(), this.sourceid);
-        MapleCharacter.문양(applyto.getClient(), this.sourceid);
+        MapleCharacter.렐릭게이지(applyTo.getClient(), this.sourceid);
+        MapleCharacter.문양(applyTo.getClient(), this.sourceid);
         break;
       }
       case 400031051:
       {
         if (primary)
         {
-          MapleCharacter.렐릭게이지(applyto.getClient(), this.sourceid);
-          MapleCharacter.문양(applyto.getClient(), this.sourceid);
+          MapleCharacter.렐릭게이지(applyTo.getClient(), this.sourceid);
+          MapleCharacter.문양(applyTo.getClient(), this.sourceid);
           break;
         }
         return;
@@ -7634,7 +7669,7 @@ public class SecondaryStatEffect
       }
       case 400031055:
       {
-        applyto.repeatingCrossbowCatridge = this.x;
+        applyTo.repeatingCrossbowCatridge = this.x;
         localstatups.put(SecondaryStat.RepeatingCrossbowCatridge, new Pair<Integer, Integer>(this.x, localDuration));
         break;
       }
@@ -7643,11 +7678,11 @@ public class SecondaryStatEffect
         aftercancel = true;
         showEffect = false;
         localstatups.put(SecondaryStat.ShadowAssult, new Pair<Integer, Integer>(3, 0));
-        if (applyfrom.getSkillCustomValue0(400041002) > 0L)
+        if (applyFrom.getSkillCustomValue0(400041002) > 0L)
         {
-          applyfrom.removeCooldown(400041002);
+          applyFrom.removeCooldown(400041002);
         }
-        applyfrom.setSkillCustomInfo(400041002, 3L, 0L);
+        applyFrom.setSkillCustomInfo(400041002, 3L, 0L);
         break;
       }
       case 400041003:
@@ -7655,7 +7690,7 @@ public class SecondaryStatEffect
         aftercancel = true;
         showEffect = false;
         localstatups.put(SecondaryStat.ShadowAssult, new Pair<Integer, Integer>(2, 0));
-        applyfrom.setSkillCustomInfo(400041002, 2L, 0L);
+        applyFrom.setSkillCustomInfo(400041002, 2L, 0L);
         break;
       }
       case 400041004:
@@ -7663,19 +7698,19 @@ public class SecondaryStatEffect
         aftercancel = true;
         showEffect = false;
         localstatups.put(SecondaryStat.ShadowAssult, new Pair<Integer, Integer>(1, 0));
-        applyfrom.setSkillCustomInfo(400041002, 1L, 0L);
+        applyFrom.setSkillCustomInfo(400041002, 1L, 0L);
         break;
       }
       case 400041005:
       {
         showEffect = false;
-        applyfrom.setSkillCustomInfo(400041002, 0L, 0L);
-        applyto.cancelEffectFromBuffStat(SecondaryStat.ShadowAssult);
+        applyFrom.setSkillCustomInfo(400041002, 0L, 0L);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.ShadowAssult);
         break;
       }
       case 400041008:
       {
-        if (!applyto.getBuffedValue(400041008))
+        if (!applyTo.getBuffedValue(400041008))
         {
           localstatups.put(SecondaryStat.ShadowSpear, new Pair<Integer, Integer>(Integer.valueOf(this.level), localDuration));
           break;
@@ -7733,12 +7768,12 @@ public class SecondaryStatEffect
       case 400041032:
       {
         localstatups.clear();
-        if (applyto.getBuffedValue(400041032))
+        if (applyTo.getBuffedValue(400041032))
         {
-          localstatups.put(SecondaryStat.IndieEvasion, new Pair<Integer, Integer>(this.w, (int) (applyto.getBuffLimit(400041032) * (long) this.u / 100L)));
-          localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>(this.q, (int) (applyto.getBuffLimit(400041032) * (long) this.u / 100L)));
-          localstatups.put(SecondaryStat.IndieShotDamage, new Pair<Integer, Integer>(this.s, (int) (applyto.getBuffLimit(400041032) * (long) this.u / 100L)));
-          localstatups.put(SecondaryStat.ReadyToDie, new Pair<Integer, Integer>(2, (int) (applyto.getBuffLimit(400041032) * (long) this.u / 100L)));
+          localstatups.put(SecondaryStat.IndieEvasion, new Pair<Integer, Integer>(this.w, (int) (applyTo.getBuffLimit(400041032) * (long) this.u / 100L)));
+          localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>(this.q, (int) (applyTo.getBuffLimit(400041032) * (long) this.u / 100L)));
+          localstatups.put(SecondaryStat.IndieShotDamage, new Pair<Integer, Integer>(this.s, (int) (applyTo.getBuffLimit(400041032) * (long) this.u / 100L)));
+          localstatups.put(SecondaryStat.ReadyToDie, new Pair<Integer, Integer>(2, (int) (applyTo.getBuffLimit(400041032) * (long) this.u / 100L)));
           break;
         }
         localstatups.put(SecondaryStat.IndieEvasion, new Pair<Integer, Integer>(this.x, localDuration));
@@ -7749,22 +7784,22 @@ public class SecondaryStatEffect
       }
       case 400041037:
       {
-        localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>(applyto.shadowBite, localDuration));
-        applyto.shadowBite = 0;
+        localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>(applyTo.shadowBite, localDuration));
+        applyTo.shadowBite = 0;
         break;
       }
       case 400041040:
       {
         localstatups.clear();
-        applyto.cancelEffect(this);
+        applyTo.cancelEffect(this);
         if (primary)
         {
           localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, 2000));
-          MapleMonster mob = applyto.getMap().getMonsterByOid(applyto.getMarkOfPhantomOid());
-          applyto.setMarkofPhantom(0);
-          applyto.setMarkOfPhantomOid(0);
+          MapleMonster mob = applyTo.getMap().getMonsterByOid(applyTo.getMarkOfPhantomOid());
+          applyTo.setMarkofPhantom(0);
+          applyTo.setMarkOfPhantomOid(0);
           aftercancel = true;
-          pos = mob != null ? mob.getTruePosition() : applyto.getTruePosition();
+          pos = mob != null ? mob.getTruePosition() : applyTo.getTruePosition();
           ArrayList<RangeAttack> skills = new ArrayList<RangeAttack>();
           skills.add(new RangeAttack(400041045, pos, 0, 0, 0));
           skills.add(new RangeAttack(400041045, pos, 0, 0, 0));
@@ -7774,21 +7809,21 @@ public class SecondaryStatEffect
           skills.add(new RangeAttack(400041045, pos, 0, 0, 0));
           skills.add(new RangeAttack(400041045, pos, 0, 0, 0));
           skills.add(new RangeAttack(400041046, pos, 0, 0, 0));
-          applyto.getClient().getSession().writeAndFlush(CField.rangeAttack(400041040, skills));
+          applyTo.getClient().getSession().writeAndFlush(CField.rangeAttack(400041040, skills));
           break;
         }
         aftercancel = true;
-        if (applyto.getMarkofPhantom() < this.x)
+        if (applyTo.getMarkofPhantom() < this.x)
         {
-          applyto.setMarkofPhantom(applyto.getMarkofPhantom() + 1);
+          applyTo.setMarkofPhantom(applyTo.getMarkofPhantom() + 1);
         }
-        localstatups.put(SecondaryStat.MarkOfPhantomDebuff, new Pair<Integer, Integer>(applyto.getMarkofPhantom(), 0));
-        localstatups.put(SecondaryStat.MarkOfPhantomStack, new Pair<Integer, Integer>(applyto.getMarkofPhantom(), 0));
+        localstatups.put(SecondaryStat.MarkOfPhantomDebuff, new Pair<Integer, Integer>(applyTo.getMarkofPhantom(), 0));
+        localstatups.put(SecondaryStat.MarkOfPhantomStack, new Pair<Integer, Integer>(applyTo.getMarkofPhantom(), 0));
         break;
       }
       case 400041047:
       {
-        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(SkillFactory.getSkill(400041044).getEffect(applyfrom.getSkillLevel(400041044)).getS(), localDuration));
+        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(SkillFactory.getSkill(400041044).getEffect(applyFrom.getSkillLevel(400041044)).getS(), localDuration));
         break;
       }
       case 400041048:
@@ -7798,13 +7833,13 @@ public class SecondaryStatEffect
       }
       case 400041053:
       {
-        applyto.cancelEffectFromBuffStat(SecondaryStat.SageWrathOfGods, 400041052);
-        applyto.cancelEffectFromBuffStat(SecondaryStat.IndieSummon, 400041052);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.SageWrathOfGods, 400041052);
+        applyTo.cancelEffectFromBuffStat(SecondaryStat.IndieSummon, 400041052);
         aftercancel = false;
         if (primary)
         {
           localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, 5000));
-          this.applyTo(applyto, false);
+          this.applyTo(applyTo, false);
           break;
         }
         localstatups.put(SecondaryStat.AdventOfGods, new Pair<Integer, Integer>(1, 30000));
@@ -7817,7 +7852,7 @@ public class SecondaryStatEffect
       }
       case 400041061:
       {
-        applyto.throwBlasting = this.x;
+        applyTo.throwBlasting = this.x;
         localstatups.put(SecondaryStat.ThrowBlasting, new Pair<Integer, Integer>(this.x, localDuration));
         break;
       }
@@ -7848,20 +7883,20 @@ public class SecondaryStatEffect
       }
       case 400051002:
       {
-        applyto.transformEnergyOrb = this.w;
+        applyTo.transformEnergyOrb = this.w;
         localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>(Integer.valueOf(this.indiePmdR), localDuration));
         localstatups.put(SecondaryStat.Transform, new Pair<Integer, Integer>(this.w, localDuration));
         break;
       }
       case 400051010:
       {
-        for (MapleCoolDownValueHolder cooldown : applyto.getCooldowns())
+        for (MapleCoolDownValueHolder cooldown : applyTo.getCooldowns())
         {
           if (SkillFactory.getSkill(cooldown.skillId) == null || SkillFactory.getSkill(cooldown.skillId).isHyper() || !GameConstants.isEunWol(cooldown.skillId / 10000) || SkillFactory.getSkill(cooldown.skillId).isNotCooltimeReset())
           {
             continue;
           }
-          applyto.removeCooldown(cooldown.skillId);
+          applyTo.removeCooldown(cooldown.skillId);
         }
         localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>(Integer.valueOf(this.indiePmdR), localDuration));
         localstatups.put(SecondaryStat.BonusAttack, new Pair<Integer, Integer>(Integer.valueOf(this.level), localDuration));
@@ -7875,13 +7910,13 @@ public class SecondaryStatEffect
           localstatups.put(SecondaryStat.EnergyBurst, new Pair<Integer, Integer>(1, localDuration));
           break;
         }
-        if (applyfrom.getBuffedValue(SecondaryStat.IndieNotDamaged) != null)
+        if (applyFrom.getBuffedValue(SecondaryStat.IndieNotDamaged) != null)
         {
           break;
         }
-        int up = applyto.getEnergyBurst() >= 50 ? 2 : (applyto.getEnergyBurst() >= 25 ? 1 : 0);
+        int up = applyTo.getEnergyBurst() >= 50 ? 2 : (applyTo.getEnergyBurst() >= 25 ? 1 : 0);
         localDuration = 6000 + this.s * up * 1000;
-        applyto.setEnergyBurst(0);
+        applyTo.setEnergyBurst(0);
         localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, localDuration));
         break;
       }
@@ -7912,7 +7947,7 @@ public class SecondaryStatEffect
         if (primary)
         {
           localstatups.put(SecondaryStat.MemoryOfSource, new Pair<Integer, Integer>(Integer.valueOf(this.level), 30000));
-          SkillFactory.getSkill(this.sourceid).getEffect(this.level).applyTo(applyto, false);
+          SkillFactory.getSkill(this.sourceid).getEffect(this.level).applyTo(applyTo, false);
           break;
         }
         localstatups.put(SecondaryStat.IndieNotDamaged, new Pair<Integer, Integer>(1, 10000));
@@ -7920,28 +7955,28 @@ public class SecondaryStatEffect
       }
       case 400051044:
       {
-        if (applyto.striker3rdStack < 8)
+        if (applyTo.striker3rdStack < 8)
         {
           aftercancel = true;
           bufftimeR = false;
-          ++applyto.striker3rdStack;
-          localstatups.put(SecondaryStat.Striker3rd, new Pair<Integer, Integer>(applyto.striker3rdStack, 0));
+          ++applyTo.striker3rdStack;
+          localstatups.put(SecondaryStat.Striker3rd, new Pair<Integer, Integer>(applyTo.striker3rdStack, 0));
           break;
         }
-        if (applyto.getSkillCustomValue(400051044) != null)
+        if (applyTo.getSkillCustomValue(400051044) != null)
         {
           break;
         }
         ArrayList<RangeAttack> skills = new ArrayList<RangeAttack>();
-        skills.add(new RangeAttack(400051044, applyto.getPosition(), applyto.isFacingLeft() ? -1 : 0, 0, 0));
-        skills.add(new RangeAttack(400051045, applyto.getPosition(), applyto.isFacingLeft() ? -1 : 0, 0, 0));
-        skills.add(new RangeAttack(400051045, applyto.getPosition(), applyto.isFacingLeft() ? -1 : 0, 0, 0));
-        skills.add(new RangeAttack(400051045, applyto.getPosition(), applyto.isFacingLeft() ? -1 : 0, 0, 0));
-        skills.add(new RangeAttack(400051045, applyto.getPosition(), applyto.isFacingLeft() ? -1 : 0, 0, 0));
-        applyto.getClient().getSession().writeAndFlush(CField.rangeAttack(400051044, skills));
-        applyto.setSkillCustomInfo(400051044, 0L, this.getCooldown(applyto));
-        applyto.striker3rdStack = 0;
-        applyto.cancelEffect(this);
+        skills.add(new RangeAttack(400051044, applyTo.getPosition(), applyTo.isFacingLeft() ? -1 : 0, 0, 0));
+        skills.add(new RangeAttack(400051045, applyTo.getPosition(), applyTo.isFacingLeft() ? -1 : 0, 0, 0));
+        skills.add(new RangeAttack(400051045, applyTo.getPosition(), applyTo.isFacingLeft() ? -1 : 0, 0, 0));
+        skills.add(new RangeAttack(400051045, applyTo.getPosition(), applyTo.isFacingLeft() ? -1 : 0, 0, 0));
+        skills.add(new RangeAttack(400051045, applyTo.getPosition(), applyTo.isFacingLeft() ? -1 : 0, 0, 0));
+        applyTo.getClient().getSession().writeAndFlush(CField.rangeAttack(400051044, skills));
+        applyTo.setSkillCustomInfo(400051044, 0L, this.getCooldown(applyTo));
+        applyTo.striker3rdStack = 0;
+        applyTo.cancelEffect(this);
         break;
       }
       case 400051045:
@@ -7950,20 +7985,20 @@ public class SecondaryStatEffect
       }
       case 400051058:
       {
-        if (!applyto.getBuffedValue(400051058))
+        if (!applyTo.getBuffedValue(400051058))
         {
-          applyto.striker4thAttack = this.x;
-          localstatups.put(SecondaryStat.Striker4th, new Pair<Integer, Integer>(applyto.striker4thAttack, localDuration));
+          applyTo.striker4thAttack = this.x;
+          localstatups.put(SecondaryStat.Striker4th, new Pair<Integer, Integer>(applyTo.striker4thAttack, localDuration));
           break;
         }
         aftercancel = true;
-        --applyto.striker4thAttack;
-        if (applyto.striker4thAttack <= 1)
+        --applyTo.striker4thAttack;
+        if (applyTo.striker4thAttack <= 1)
         {
-          applyto.cancelEffectFromBuffStat(SecondaryStat.Striker4th);
+          applyTo.cancelEffectFromBuffStat(SecondaryStat.Striker4th);
           break;
         }
-        localstatups.put(SecondaryStat.Striker4th, new Pair<Integer, Integer>(applyto.striker4thAttack, (int) applyto.getBuffLimit(400051058)));
+        localstatups.put(SecondaryStat.Striker4th, new Pair<Integer, Integer>(applyTo.striker4thAttack, (int) applyTo.getBuffLimit(400051058)));
         break;
       }
       case 400051072:
@@ -7979,7 +8014,7 @@ public class SecondaryStatEffect
       }
       case 400051078:
       {
-        if (applyto.getBuffedValue(400051078))
+        if (applyTo.getBuffedValue(400051078))
         {
           break;
         }
@@ -7996,7 +8031,7 @@ public class SecondaryStatEffect
       }
       case 400001020:
       {
-        applyto.setSkillCustomInfo(2320048, this.v, 0L);
+        applyTo.setSkillCustomInfo(2320048, this.v, 0L);
         break;
       }
       case 80001535:
@@ -8018,18 +8053,18 @@ public class SecondaryStatEffect
       case 80003070:
       {
         aftercancel = true;
-        localstatups.put(SecondaryStat.NatureFriend, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(this.sourceid), 0));
+        localstatups.put(SecondaryStat.NatureFriend, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(this.sourceid), 0));
         break;
       }
       case 162120038:
       {
         if (primary)
         {
-          applyto.setSkillCustomInfo(162120038, applyto.getStat().getCurrentMaxHp() * (long) this.x / 100L, 0L);
+          applyTo.setSkillCustomInfo(162120038, applyTo.getStat().getCurrentMaxHp() * (long) this.x / 100L, 0L);
           localDuration += this.u * 1000;
         }
         localstatups.put(SecondaryStat.IndieUnk1, new Pair<Integer, Integer>(2, localDuration));
-        localstatups.put(SecondaryStat.IndieBarrier, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(162120038), localDuration));
+        localstatups.put(SecondaryStat.IndieBarrier, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(162120038), localDuration));
         break;
       }
       case 162121043:
@@ -8050,11 +8085,11 @@ public class SecondaryStatEffect
         localstatups.put(SecondaryStat.IndieUnk1, new Pair<Integer, Integer>(1, this.q * 1000));
         localstatups.put(SecondaryStat.AntiMagicShell, new Pair<Integer, Integer>(1, this.q * 1000));
         localstatups.put(SecondaryStat.DreamDowon, new Pair<Integer, Integer>(1, this.q * 1000));
-        if (applyto.getSkillLevel(162120038) <= 0)
+        if (applyTo.getSkillLevel(162120038) <= 0)
         {
           break;
         }
-        SkillFactory.getSkill(162120038).getEffect(1).applyTo(applyto, this.q * 1000);
+        SkillFactory.getSkill(162120038).getEffect(1).applyTo(applyTo, this.q * 1000);
         break;
       }
       case 162121003:
@@ -8088,17 +8123,17 @@ public class SecondaryStatEffect
       }
       case 80003059:
       {
-        SecondaryStatEffect eff = SkillFactory.getSkill(162111000).getEffect(applyfrom.getSkillLevel(162111000));
+        SecondaryStatEffect eff = SkillFactory.getSkill(162111000).getEffect(applyFrom.getSkillLevel(162111000));
         localstatups.put(SecondaryStat.NewFlying, new Pair<Integer, Integer>(1, (int) eff.getT() * 1000));
         break;
       }
-      //리마스터
+      // 리마스터
       case 5111017:
       {
         bufftimeR = false;
         aftercancel = true;
         localDuration = 0;
-        localstatups.put(SecondaryStat.SerpentStone, new Pair<Integer, Integer>(applyto.서펜트스톤, localDuration));
+        localstatups.put(SecondaryStat.SerpentStone, new Pair<Integer, Integer>(applyTo.서펜트스톤, localDuration));
         break;
       }
       case 5110020:
@@ -8127,8 +8162,8 @@ public class SecondaryStatEffect
       case 3111015:
       {
         bufftimeR = false;
-        //aftercancel = true;
-        localstatups.put(SecondaryStat.FlashMirage, new Pair<Integer, Integer>(applyto.플레시미라주스택, 0));
+        // aftercancel = true;
+        localstatups.put(SecondaryStat.FlashMirage, new Pair<Integer, Integer>(applyTo.플레시미라주스택, 0));
         break;
       }
       case 1320016:
@@ -8137,7 +8172,7 @@ public class SecondaryStatEffect
         break;
       case 1321020:
       {
-        localstatups.put(SecondaryStat.ReincarnationAccept, new Pair<Integer, Integer>(applyto.리인카네이션, 0));
+        localstatups.put(SecondaryStat.ReincarnationAccept, new Pair<Integer, Integer>(applyTo.리인카네이션, 0));
         break;
       }
       case 5101017:
@@ -8189,10 +8224,10 @@ public class SecondaryStatEffect
       }
       case 162110007:
       {
-        applyto.addHP(applyto.getStat().getCurrentMaxHp() * (long) this.u / 100L);
-        applyto.addMP(applyto.getStat().getCurrentMaxMp(applyto) * (long) this.u / 100L);
+        applyTo.addHP(applyTo.getStat().getCurrentMaxHp() * (long) this.u / 100L);
+        applyTo.addMP(applyTo.getStat().getCurrentMaxMp(applyTo) * (long) this.u / 100L);
         localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>(this.x, localDuration));
-        if (applyto.getSkillLevel(162120037) <= 0)
+        if (applyTo.getSkillLevel(162120037) <= 0)
         {
           break;
         }
@@ -8219,14 +8254,14 @@ public class SecondaryStatEffect
       }
       case 80003064:
       {
-        if (applyto.getKeyValue(100857, "feverCnt") < 0L)
+        if (applyTo.getKeyValue(100857, "feverCnt") < 0L)
         {
-          applyto.setKeyValue(100857, "feverCnt", "0");
+          applyTo.setKeyValue(100857, "feverCnt", "0");
           break;
         }
-        if (applyto.getKeyValue(100857, "feverCnt") >= 10L)
+        if (applyTo.getKeyValue(100857, "feverCnt") >= 10L)
         {
-          applyto.dropMessage(5, "오늘은 이미 <리액션 팡팡>을 10번 완료하였습니다.");
+          applyTo.dropMessage(5, "오늘은 이미 <리액션 팡팡>을 10번 완료하였습니다.");
           break;
         }
         localstatups.put(SecondaryStat.EventSpecialSkill, new Pair<Integer, Integer>(1, localDuration));
@@ -8234,14 +8269,14 @@ public class SecondaryStatEffect
       }
       case 400021005:
       {
-        int skillid = applyto.getBuffedValue(20040220) ? 20040220 : 20040219;
-        long duration = applyto.getBuffLimit(skillid);
-        while (applyto.getBuffedEffect(SecondaryStat.Larkness) != null)
+        int skillid = applyTo.getBuffedValue(20040220) ? 20040220 : 20040219;
+        long duration = applyTo.getBuffLimit(skillid);
+        while (applyTo.getBuffedEffect(SecondaryStat.Larkness) != null)
         {
-          applyto.cancelEffect(applyto.getBuffedEffect(SecondaryStat.Larkness));
+          applyTo.cancelEffect(applyTo.getBuffedEffect(SecondaryStat.Larkness));
         }
-        applyto.setUseTruthDoor(true);
-        SkillFactory.getSkill(20040220).getEffect(1).applyTo(applyfrom, applyto, false, pos, (int) duration, (byte) 0, true);
+        applyTo.setUseTruthDoor(true);
+        SkillFactory.getSkill(20040220).getEffect(1).applyTo(applyFrom, applyTo, false, pos, (int) duration, (byte) 0, true);
         break;
       }
       case 11001022:
@@ -8265,11 +8300,11 @@ public class SecondaryStatEffect
         if (primary)
         {
           localstatups.put(SecondaryStat.AntiMagicShell, new Pair<Integer, Integer>(0, 0));
-          applyto.setAntiMagicShell((byte) 1);
+          applyTo.setAntiMagicShell((byte) 1);
           break;
         }
         localstatups.put(SecondaryStat.AntiMagicShell, new Pair<Integer, Integer>(1, localDuration));
-        applyto.setAntiMagicShell((byte) 100);
+        applyTo.setAntiMagicShell((byte) 100);
         break;
       }
       case 80002421:
@@ -8280,7 +8315,7 @@ public class SecondaryStatEffect
       case 80001809:
       {
         int itemid;
-        if (applyto.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -29) == null || (itemid = applyto.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -29).getItemId()) < 1182001 || itemid > 1182005)
+        if (applyTo.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -29) == null || (itemid = applyTo.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -29).getItemId()) < 1182001 || itemid > 1182005)
         {
           break;
         }
@@ -8338,7 +8373,7 @@ public class SecondaryStatEffect
       }
       case 400011055:
       {
-        if (!applyfrom.getBuffedValue(this.sourceid))
+        if (!applyFrom.getBuffedValue(this.sourceid))
         {
           break;
         }
@@ -8347,14 +8382,14 @@ public class SecondaryStatEffect
       case 80002280:
       {
         bufftimeR = false;
-        if (applyfrom.getSkillLevel(20010294) <= 0)
+        if (applyFrom.getSkillLevel(20010294) <= 0)
         {
-          if (applyfrom.getSkillLevel(80000369) <= 0)
+          if (applyFrom.getSkillLevel(80000369) <= 0)
           {
             break;
           }
         }
-        final int skilllv = (applyfrom.getSkillLevel(20010294) <= 0) ? applyfrom.getSkillLevel(80000369) : applyfrom.getSkillLevel(20010294);
+        final int skilllv = (applyFrom.getSkillLevel(20010294) <= 0) ? applyFrom.getSkillLevel(80000369) : applyFrom.getSkillLevel(20010294);
         final int plus = (skilllv != 1) ? 50 : 30;
         localDuration += localDuration / 100 * plus;
         break;
@@ -8372,25 +8407,25 @@ public class SecondaryStatEffect
       }
       case 80003046:
       {
-        if (applyfrom.getKeyValue(100794, "today") >= (long) (Calendar.getInstance().get(7) == 7 || Calendar.getInstance().get(7) == 1 ? 6000 : 3000))
+        if (applyFrom.getKeyValue(100794, "today") >= (long) (Calendar.getInstance().get(7) == 7 || Calendar.getInstance().get(7) == 1 ? 6000 : 3000))
         {
           return;
         }
-        if (applyfrom.getBuffedValue(this.sourceid))
+        if (applyFrom.getBuffedValue(this.sourceid))
         {
           return;
         }
-        applyfrom.getClient().send(SLFCGPacket.FollowNpctoSkill(false, 9062524, 0));
-        applyfrom.getClient().send(SLFCGPacket.FollowNpctoSkill(true, 9062524, 80003051));
-        if (applyfrom.getQuestStatus(100801) == 2)
+        applyFrom.getClient().send(SLFCGPacket.FollowNpctoSkill(false, 9062524, 0));
+        applyFrom.getClient().send(SLFCGPacket.FollowNpctoSkill(true, 9062524, 80003051));
+        if (applyFrom.getQuestStatus(100801) == 2)
         {
-          applyfrom.getClient().send(SLFCGPacket.FollowNpctoSkill(false, 9062525, 0));
-          applyfrom.getClient().send(SLFCGPacket.FollowNpctoSkill(true, 9062525, 80003052));
+          applyFrom.getClient().send(SLFCGPacket.FollowNpctoSkill(false, 9062525, 0));
+          applyFrom.getClient().send(SLFCGPacket.FollowNpctoSkill(true, 9062525, 80003052));
         }
-        if (applyfrom.getQuestStatus(100801) == 3)
+        if (applyFrom.getQuestStatus(100801) == 3)
         {
-          applyfrom.getClient().send(SLFCGPacket.FollowNpctoSkill(false, 9062526, 0));
-          applyfrom.getClient().send(SLFCGPacket.FollowNpctoSkill(true, 9062526, 80003053));
+          applyFrom.getClient().send(SLFCGPacket.FollowNpctoSkill(false, 9062526, 0));
+          applyFrom.getClient().send(SLFCGPacket.FollowNpctoSkill(true, 9062526, 80003053));
         }
         localstatups.clear();
         localstatups.put(SecondaryStat.EventSpecialSkill, new Pair<Integer, Integer>(1, 0));
@@ -8400,9 +8435,9 @@ public class SecondaryStatEffect
       {
         localstatups.clear();
         int type = 0;
-        type = applyto.getSkillCustomValue0(80002625) == 1L ? 2 : 1;
-        applyto.setSkillCustomInfo(80002625, type, 0L);
-        localstatups.put(SecondaryStat.BlackMageDebuff, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(80002625), 0x200B20));
+        type = applyTo.getSkillCustomValue0(80002625) == 1L ? 2 : 1;
+        applyTo.setSkillCustomInfo(80002625, type, 0L);
+        localstatups.put(SecondaryStat.BlackMageDebuff, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(80002625), 0x200B20));
         break;
       }
       case 80002902:
@@ -8435,11 +8470,11 @@ public class SecondaryStatEffect
       case 131001026:
       {
         aftercancel = true;
-        if (primary && applyto.getSkillCustomValue0(131001026) < (long) this.x)
+        if (primary && applyTo.getSkillCustomValue0(131001026) < (long) this.x)
         {
-          applyto.addSkillCustomInfo(131001026, 1L);
+          applyTo.addSkillCustomInfo(131001026, 1L);
         }
-        localstatups.put(SecondaryStat.PinkBeanMagicShow, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(131001026), 0));
+        localstatups.put(SecondaryStat.PinkBeanMagicShow, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(131001026), 0));
         break;
       }
       case 131001023:
@@ -8451,7 +8486,7 @@ public class SecondaryStatEffect
       case 80001740:
       {
         localstatups.clear();
-        localstatups.put(SecondaryStat.BattlePvP_LangE_Protection, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(80001740), localDuration));
+        localstatups.put(SecondaryStat.BattlePvP_LangE_Protection, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(80001740), localDuration));
         break;
       }
       case 80002673:
@@ -8470,19 +8505,19 @@ public class SecondaryStatEffect
       case 80002338:
       {
         localstatups.clear();
-        if (!applyto.getBuffedValue(this.sourceid) && applyto.getSkillCustomValue0(this.sourceid) > 0L)
+        if (!applyTo.getBuffedValue(this.sourceid) && applyTo.getSkillCustomValue0(this.sourceid) > 0L)
         {
-          applyto.removeSkillCustomInfo(this.sourceid);
+          applyTo.removeSkillCustomInfo(this.sourceid);
         }
-        applyto.setSkillCustomInfo(this.sourceid, applyto.getSkillCustomValue0(this.sourceid) + 1L, 0L);
-        if (applyto.getSkillCustomValue0(this.sourceid) >= 3L)
+        applyTo.setSkillCustomInfo(this.sourceid, applyTo.getSkillCustomValue0(this.sourceid) + 1L, 0L);
+        if (applyTo.getSkillCustomValue0(this.sourceid) >= 3L)
         {
-          applyto.removeSkillCustomInfo(this.sourceid);
+          applyTo.removeSkillCustomInfo(this.sourceid);
           localstatups.put(SecondaryStat.Stun, new Pair<Integer, Integer>(1, 1000));
           break;
         }
         localDuration = 6000;
-        localstatups.put(SecondaryStat.BattlePvP_Rude_Stack, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(this.sourceid), localDuration));
+        localstatups.put(SecondaryStat.BattlePvP_Rude_Stack, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(this.sourceid), localDuration));
         break;
       }
       case 80002342:
@@ -8530,7 +8565,7 @@ public class SecondaryStatEffect
       }
       case 80001675:
       {
-        int dam = applyfrom.getBattleGroundChr().getLevel() >= 11 ? 60 : (applyfrom.getBattleGroundChr().getLevel() >= 9 ? 50 : (applyfrom.getBattleGroundChr().getLevel() >= 7 ? 40 : (applyfrom.getBattleGroundChr().getLevel() >= 5 ? 30 : 20)));
+        int dam = applyFrom.getBattleGroundChr().getLevel() >= 11 ? 60 : (applyFrom.getBattleGroundChr().getLevel() >= 9 ? 50 : (applyFrom.getBattleGroundChr().getLevel() >= 7 ? 40 : (applyFrom.getBattleGroundChr().getLevel() >= 5 ? 30 : 20)));
         localstatups.clear();
         localDuration = 10000;
         localstatups.put(SecondaryStat.Poison, new Pair<Integer, Integer>(dam, localDuration));
@@ -8569,7 +8604,7 @@ public class SecondaryStatEffect
       {
         localstatups.clear();
         localDuration = 10000;
-        localstatups.put(SecondaryStat.Slow, new Pair<Integer, Integer>(applyto.getBattleGroundChr().getSpeed() - 50, localDuration));
+        localstatups.put(SecondaryStat.Slow, new Pair<Integer, Integer>(applyTo.getBattleGroundChr().getSpeed() - 50, localDuration));
         break;
       }
       case 80001651:
@@ -8649,12 +8684,12 @@ public class SecondaryStatEffect
       }
       case 142121004:
       {
-        if (applyto.getSkillCustomValue0(142121004) <= 0L)
+        if (applyTo.getSkillCustomValue0(142121004) <= 0L)
         {
           break;
         }
         localstatups.clear();
-        localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(142121004), localDuration));
+        localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(142121004), localDuration));
         break;
       }
       case 60001216:
@@ -8662,9 +8697,9 @@ public class SecondaryStatEffect
       {
         localstatups.clear();
         localstatups.put(SecondaryStat.ReshuffleSwitch, new Pair<Integer, Integer>(0, 0));
-        while (applyfrom.getBuffedEffect(SecondaryStat.ReshuffleSwitch) != null)
+        while (applyFrom.getBuffedEffect(SecondaryStat.ReshuffleSwitch) != null)
         {
-          applyfrom.cancelEffect(applyfrom.getBuffedEffect(SecondaryStat.ReshuffleSwitch));
+          applyFrom.cancelEffect(applyFrom.getBuffedEffect(SecondaryStat.ReshuffleSwitch));
         }
         break;
       }
@@ -8677,7 +8712,7 @@ public class SecondaryStatEffect
       case 135001013:
       {
         localstatups.clear();
-        int up = applyfrom.getLevel() / this.y;
+        int up = applyFrom.getLevel() / this.y;
         localstatups.put(SecondaryStat.IndieStatR, new Pair<Integer, Integer>(up, localDuration));
         break;
       }
@@ -8692,7 +8727,7 @@ public class SecondaryStatEffect
       {
         aftercancel = true;
         localstatups.clear();
-        localstatups.put(SecondaryStat.VMatrixStackBuff, new Pair<Integer, Integer>((int) applyfrom.getSkillCustomValue0(this.sourceid), 0));
+        localstatups.put(SecondaryStat.VMatrixStackBuff, new Pair<Integer, Integer>((int) applyFrom.getSkillCustomValue0(this.sourceid), 0));
         break;
       }
       case 135001015:
@@ -8719,15 +8754,15 @@ public class SecondaryStatEffect
           localstatups.put(SecondaryStat.YetiAnger, new Pair<Integer, Integer>(1, 0));
           break;
         }
-        if (applyfrom.getBuffedEffect(SecondaryStat.YetiAngerMode) == null)
+        if (applyFrom.getBuffedEffect(SecondaryStat.YetiAngerMode) == null)
         {
-          while (applyfrom.getBuffedValue(135001005))
+          while (applyFrom.getBuffedValue(135001005))
           {
-            applyfrom.cancelEffect(this);
+            applyFrom.cancelEffect(this);
           }
-          applyfrom.setSkillCustomInfo(13500, 1L, 0L);
-          applyfrom.setSkillCustomInfo(135001007, 3L, 0L);
-          SkillFactory.getSkill(135001007).getEffect(1).applyTo(applyfrom);
+          applyFrom.setSkillCustomInfo(13500, 1L, 0L);
+          applyFrom.setSkillCustomInfo(135001007, 3L, 0L);
+          SkillFactory.getSkill(135001007).getEffect(1).applyTo(applyFrom);
         }
         localstatups.clear();
         localstatups.put(SecondaryStat.IndieSpeed, new Pair<Integer, Integer>(Integer.valueOf(this.indieSpeed), localDuration));
@@ -8770,7 +8805,7 @@ public class SecondaryStatEffect
       }
       case 2300009:
       {
-        localstatups.put(SecondaryStat.BlessingAnsanble, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(2320013), 0));
+        localstatups.put(SecondaryStat.BlessingAnsanble, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(2320013), 0));
         break;
       }
       case 2321006:
@@ -8780,7 +8815,7 @@ public class SecondaryStatEffect
         {
           bufftimeR = false;
           aftercancel = true;
-          int plus = applyfrom.getStat().getTotalInt() / this.y * this.w;
+          int plus = applyFrom.getStat().getTotalInt() / this.y * this.w;
           localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(this.x + plus, this.subTime));
           break;
         }
@@ -8791,8 +8826,8 @@ public class SecondaryStatEffect
       case 400001042:
       {
         localstatups.clear();
-        double d = (double) applyto.getBuffedValue(SecondaryStat.BasicStatUp).intValue() / 100.0;
-        double up = Math.floor(d * (double) applyto.getStat().getStr());
+        double d = (double) applyTo.getBuffedValue(SecondaryStat.BasicStatUp).intValue() / 100.0;
+        double up = Math.floor(d * (double) applyTo.getStat().getStr());
         int a = (int) (up / 100.0 * (double) this.x);
         localstatups.put(SecondaryStat.IndieAllStat, new Pair<Integer, Integer>(a, localDuration));
         localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(Integer.valueOf(this.indieDamR), localDuration));
@@ -8803,10 +8838,10 @@ public class SecondaryStatEffect
         // TODO: 威尔匹配BUFF
         break;
       }
-      
+
       case 1111003:
       {
-        localstatups.put(SecondaryStat.刺痕剑, new Pair<Integer, Integer>(SkillFactory.getSkill(1111003).getEffect(applyto.getSkillLevel(1111003)).getDuration(), localDuration));
+        localstatups.put(SecondaryStat.刺痕剑, new Pair<Integer, Integer>(SkillFactory.getSkill(1111003).getEffect(applyTo.getSkillLevel(1111003)).getDuration(), localDuration));
         break;
       }
       case 80003025:
@@ -8838,13 +8873,13 @@ public class SecondaryStatEffect
       case 150011077:
       {
         localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(SkillFactory.getSkill(150011074).getEffect(1).getQ(), localDuration));
-        applyto.getClient().getSession().writeAndFlush(SLFCGPacket.OnYellowDlg(3001534, 5000, "헤이! 왓썹 브로. 롱타임노씨이지만 유와 내 하트가 뜨겁게 뛰고있으니 전혀 걱정하지 않았돠아!\r\n말이 나왔으니 오랜만에 내 뮤직을 리슨.", ""));
+        applyTo.getClient().getSession().writeAndFlush(SLFCGPacket.OnYellowDlg(3001534, 5000, "헤이! 왓썹 브로. 롱타임노씨이지만 유와 내 하트가 뜨겁게 뛰고있으니 전혀 걱정하지 않았돠아!\r\n말이 나왔으니 오랜만에 내 뮤직을 리슨.", ""));
         break;
       }
       case 150011076:
       {
         localstatups.put(SecondaryStat.IndieReduceCooltime, new Pair<Integer, Integer>(SkillFactory.getSkill(150011074).getEffect(1).getW(), localDuration));
-        applyto.getClient().getSession().writeAndFlush(SLFCGPacket.OnYellowDlg(3001533, 5000, "이전 너와 교신한 후 1년 이상 지난 것이다, 치르.\n연락이 너무 뜸하다는 생각이 드는 것이다, 치르.\n바크바크 녀석처럼 마음만 있으면 된다는 생각을 하는 것은 아니라고 믿는다, 치르.", ""));
+        applyTo.getClient().getSession().writeAndFlush(SLFCGPacket.OnYellowDlg(3001533, 5000, "이전 너와 교신한 후 1년 이상 지난 것이다, 치르.\n연락이 너무 뜸하다는 생각이 드는 것이다, 치르.\n바크바크 녀석처럼 마음만 있으면 된다는 생각을 하는 것은 아니라고 믿는다, 치르.", ""));
         break;
       }
       case 150011075:
@@ -8852,13 +8887,13 @@ public class SecondaryStatEffect
         localstatups.put(SecondaryStat.IndieExp, new Pair<Integer, Integer>(SkillFactory.getSkill(150011074).getEffect(1).getS() / 2, localDuration));
         localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(SkillFactory.getSkill(150011074).getEffect(1).getQ() / 2, localDuration));
         localstatups.put(SecondaryStat.IndieReduceCooltime, new Pair<Integer, Integer>(SkillFactory.getSkill(150011074).getEffect(1).getW() / 2, localDuration));
-        applyto.getClient().getSession().writeAndFlush(SLFCGPacket.OnYellowDlg(3001532, 5000, "\uc548\ub155! \uc6b0\ub9ac\ub294 \uc0c8\ub85c\uc6b4 \uacf3\uc744 \ubc1c\uacac\ud574\uc11c \uac00\ubcf4\ub824\uace0 \ud558\ub294 \uc911\uc774\uc57c. \uc5b4\ub5a4 \uacf3\uc77c\uc9c0 \ubaa8\ub450\ub4e4 \uae30\ub300\ud558\uace0 \uc788\uc5b4...\uadf8\ub7f0\ub370 \ub610 \ubcc4\ubcfc\uc77c \uc5c6\ub294 \uacf3\uc774\uba74 \uc5b4\uca4c\uc9c0.....\ubaa8\ub450\uac00 \uc2e4\ub9dd\ud558\ub294 \uac78 \ubcf4\uae34 \uc2eb\uc740\ub370... \uadf8\ub807\ub2e4\uace0 \uac00\uc9c0 \uc54a\uc744 \uc218\ub294 \uc5c6\uace0...", ""));
+        applyTo.getClient().getSession().writeAndFlush(SLFCGPacket.OnYellowDlg(3001532, 5000, "\uc548\ub155! \uc6b0\ub9ac\ub294 \uc0c8\ub85c\uc6b4 \uacf3\uc744 \ubc1c\uacac\ud574\uc11c \uac00\ubcf4\ub824\uace0 \ud558\ub294 \uc911\uc774\uc57c. \uc5b4\ub5a4 \uacf3\uc77c\uc9c0 \ubaa8\ub450\ub4e4 \uae30\ub300\ud558\uace0 \uc788\uc5b4...\uadf8\ub7f0\ub370 \ub610 \ubcc4\ubcfc\uc77c \uc5c6\ub294 \uacf3\uc774\uba74 \uc5b4\uca4c\uc9c0.....\ubaa8\ub450\uac00 \uc2e4\ub9dd\ud558\ub294 \uac78 \ubcf4\uae34 \uc2eb\uc740\ub370... \uadf8\ub807\ub2e4\uace0 \uac00\uc9c0 \uc54a\uc744 \uc218\ub294 \uc5c6\uace0...", ""));
         break;
       }
       case 150011078:
       {
         localstatups.put(SecondaryStat.IndieExp, new Pair<Integer, Integer>(SkillFactory.getSkill(150011074).getEffect(1).getS(), localDuration));
-        applyto.getClient().getSession().writeAndFlush(SLFCGPacket.OnYellowDlg(3001535, 3000, "\uc557, \ubc18\uc9dd\ubc18\uc9dd\ud55c \uac78 \uc900 \uc0ac\ub78c, \uc798 \uc788\uc5c8\ub0d0! \ub098 \uc694\uc998 \ubc25 \ub9ce\uc774 \uba39\uc5c8\ub354\ub2c8 \uc774\ub9cc\ud07c \ucef8\ub2e4! \uc5b4\uc81c\ub294 \ub118\uc5b4\uc9c0\uace0 \uc6b8\uc9c0\ub3c4 \uc54a\uc74c! \ud5e4\ud5e4\u2026..(\uc774\uac74 \ube44\ubc00\uc778\ub370 \uc774 \uadfc\ucc98\uc5d0\uc11c \ubc18\uc9dd\ubc18\uc9dd\ud558\ub294 \uac83\ub3c4 \ubc1c\uacac\ud588\ub2e4!)", ""));
+        applyTo.getClient().getSession().writeAndFlush(SLFCGPacket.OnYellowDlg(3001535, 3000, "\uc557, \ubc18\uc9dd\ubc18\uc9dd\ud55c \uac78 \uc900 \uc0ac\ub78c, \uc798 \uc788\uc5c8\ub0d0! \ub098 \uc694\uc998 \ubc25 \ub9ce\uc774 \uba39\uc5c8\ub354\ub2c8 \uc774\ub9cc\ud07c \ucef8\ub2e4! \uc5b4\uc81c\ub294 \ub118\uc5b4\uc9c0\uace0 \uc6b8\uc9c0\ub3c4 \uc54a\uc74c! \ud5e4\ud5e4\u2026..(\uc774\uac74 \ube44\ubc00\uc778\ub370 \uc774 \uadfc\ucc98\uc5d0\uc11c \ubc18\uc9dd\ubc18\uc9dd\ud558\ub294 \uac83\ub3c4 \ubc1c\uacac\ud588\ub2e4!)", ""));
         break;
       }
       case 164101006:
@@ -8871,16 +8906,16 @@ public class SecondaryStatEffect
         bufftimeR = false;
         localstatups.clear();
         localstatups.put(SecondaryStat.Novility, new Pair<Integer, Integer>(Integer.valueOf(this.level), localDuration));
-        if (applyfrom.getSkillLevel(151120038) > 0)
+        if (applyFrom.getSkillLevel(151120038) > 0)
         {
           localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(SkillFactory.getSkill(151120038).getEffect(1).getX(), localDuration));
         }
         if (primary)
         {
-          applyto.setSkillCustomInfo(151111005, applyto.getId(), 0L);
+          applyTo.setSkillCustomInfo(151111005, applyTo.getId(), 0L);
           break;
         }
-        applyto.setSkillCustomInfo(151111005, applyfrom.getId(), 0L);
+        applyTo.setSkillCustomInfo(151111005, applyFrom.getId(), 0L);
         break;
       }
       case 151111003:
@@ -8904,7 +8939,7 @@ public class SecondaryStatEffect
       {
         aftercancel = true;
         localstatups.clear();
-        localstatups.put(SecondaryStat.RwMagnumBlow, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(37121052), 0));
+        localstatups.put(SecondaryStat.RwMagnumBlow, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(37121052), 0));
         bufftimeR = false;
         break;
       }
@@ -8914,7 +8949,7 @@ public class SecondaryStatEffect
       case 37001002:
       {
         localstatups.clear();
-        if (applyto.getBuffedValue(SecondaryStat.RWMaximizeCannon) != null)
+        if (applyTo.getBuffedValue(SecondaryStat.RWMaximizeCannon) != null)
         {
           localDuration = 1000;
         }
@@ -8948,7 +8983,7 @@ public class SecondaryStatEffect
       case 30000227:
       {
         localstatups.clear();
-        localstatups.put(SecondaryStat.HiddenPieceOn, new Pair<Integer, Integer>((int) (applyto.getKeyValue(19752, "hiddenpiece") <= 0L ? 0L : applyto.getKeyValue(19752, "hiddenpiece")), 0));
+        localstatups.put(SecondaryStat.HiddenPieceOn, new Pair<Integer, Integer>((int) (applyTo.getKeyValue(19752, "hiddenpiece") <= 0L ? 0L : applyTo.getKeyValue(19752, "hiddenpiece")), 0));
         break;
       }
       case 30001080:
@@ -8970,15 +9005,15 @@ public class SecondaryStatEffect
       case 400001016:
       {
         localstatups.clear();
-        localstatups.put(SecondaryStat.DemonDamageAbsorbShield, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(400001016), localDuration));
+        localstatups.put(SecondaryStat.DemonDamageAbsorbShield, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(400001016), localDuration));
         bufftimeR = false;
         break;
       }
       case 400021105:
       {
         localstatups.clear();
-        int whitestack = (int) applyto.getSkillCustomValue0(400021107) * 1000;
-        int blackstack = (int) applyto.getSkillCustomValue0(400021108) * 1000;
+        int whitestack = (int) applyTo.getSkillCustomValue0(400021107) * 1000;
+        int blackstack = (int) applyTo.getSkillCustomValue0(400021108) * 1000;
         int finalstack = 1 + (whitestack + blackstack);
         if (whitestack == blackstack)
         {
@@ -8986,11 +9021,11 @@ public class SecondaryStatEffect
         }
         HashMap<SecondaryStat, Pair<Integer, Integer>> hashMap = new HashMap<SecondaryStat, Pair<Integer, Integer>>();
         hashMap.put(SecondaryStat.LiberationOrb, new Pair<Integer, Integer>(1, 0));
-        applyto.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.cancelBuff(hashMap, applyto));
-        applyto.setSkillCustomInfo(400021105, finalstack % 10, 0L);
-        applyto.setSkillCustomInfo(400021110, this.v2, 0L);
-        applyto.removeSkillCustomInfo(400021107);
-        applyto.removeSkillCustomInfo(400021108);
+        applyTo.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.cancelBuff(hashMap, applyTo));
+        applyTo.setSkillCustomInfo(400021105, finalstack % 10, 0L);
+        applyTo.setSkillCustomInfo(400021110, this.v2, 0L);
+        applyTo.removeSkillCustomInfo(400021107);
+        applyTo.removeSkillCustomInfo(400021108);
         localstatups.put(SecondaryStat.LiberationOrbActive, new Pair<Integer, Integer>(finalstack, localDuration));
         break;
       }
@@ -9009,22 +9044,22 @@ public class SecondaryStatEffect
       case 50001214:
       {
         localstatups.clear();
-        if (!applyto.getBuffedValue(50001214))
+        if (!applyTo.getBuffedValue(50001214))
         {
-          applyto.setSkillCustomInfo(50001214, this.y, 0L);
+          applyTo.setSkillCustomInfo(50001214, this.y, 0L);
         }
         else
         {
-          applyto.addSkillCustomInfo(50001214, -1L);
+          applyTo.addSkillCustomInfo(50001214, -1L);
         }
-        if (applyto.getSkillCustomValue0(50001214) <= 0L)
+        if (applyTo.getSkillCustomValue0(50001214) <= 0L)
         {
-          applyto.removeSkillCustomInfo(50001214);
-          applyto.cancelEffect(this);
+          applyTo.removeSkillCustomInfo(50001214);
+          applyTo.cancelEffect(this);
           break;
         }
         localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>(Integer.valueOf(this.indieDamR), localDuration));
-        localstatups.put(SecondaryStat.MichaelProtectofLight, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(50001214), localDuration));
+        localstatups.put(SecondaryStat.MichaelProtectofLight, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(50001214), localDuration));
         break;
       }
       case 51121054:
@@ -9037,7 +9072,7 @@ public class SecondaryStatEffect
       case 400001043:
       {
         localstatups.clear();
-        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>((int) ((long) this.q + applyfrom.getSkillCustomValue0(400001043)), localDuration));
+        localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>((int) ((long) this.q + applyFrom.getSkillCustomValue0(400001043)), localDuration));
         localstatups.put(SecondaryStat.Bless5th, new Pair<Integer, Integer>(1, localDuration));
         break;
       }
@@ -9045,7 +9080,7 @@ public class SecondaryStatEffect
       {
         localstatups.clear();
         localstatups.put(SecondaryStat.IgnoreMobDamR, new Pair<Integer, Integer>(this.w, localDuration));
-        applyto.addHP(applyto.getStat().getCurrentMaxHp() / 100L * (long) this.z);
+        applyTo.addHP(applyTo.getStat().getCurrentMaxHp() / 100L * (long) this.z);
         break;
       }
       case 80001878:
@@ -9056,7 +9091,7 @@ public class SecondaryStatEffect
       }
       case 63121044:
       {
-        applyto.setSkillCustomInfo(this.sourceid, applyfrom.getId(), 0L);
+        applyTo.setSkillCustomInfo(this.sourceid, applyFrom.getId(), 0L);
         localstatups.clear();
         localstatups.put(SecondaryStat.IncarnationAura, new Pair<Integer, Integer>(1, localDuration));
         if (!primary)
@@ -9072,7 +9107,7 @@ public class SecondaryStatEffect
       {
         aftercancel = true;
         localstatups.clear();
-        localstatups.put(SecondaryStat.GripOfAgony, new Pair<Integer, Integer>((int) applyfrom.getSkillCustomValue0(400031066), 0));
+        localstatups.put(SecondaryStat.GripOfAgony, new Pair<Integer, Integer>((int) applyFrom.getSkillCustomValue0(400031066), 0));
         break;
       }
       case 400031062:
@@ -9119,7 +9154,7 @@ public class SecondaryStatEffect
       {
         aftercancel = true;
         localstatups.clear();
-        localstatups.put(SecondaryStat.PriorPryperation, new Pair<Integer, Integer>((int) applyto.getSkillCustomValue0(this.sourceid), 0));
+        localstatups.put(SecondaryStat.PriorPryperation, new Pair<Integer, Integer>((int) applyTo.getSkillCustomValue0(this.sourceid), 0));
         break;
       }
       case 410115:
@@ -9144,7 +9179,7 @@ public class SecondaryStatEffect
       case 1210016:
       {
         localstatups.clear();
-        localstatups.put(SecondaryStat.BlessingArmor, new Pair<Integer, Integer>((int) applyfrom.getSkillCustomValue0(this.sourceid), localDuration));
+        localstatups.put(SecondaryStat.BlessingArmor, new Pair<Integer, Integer>((int) applyFrom.getSkillCustomValue0(this.sourceid), localDuration));
         localstatups.put(SecondaryStat.BlessingArmorIncPad, new Pair<Integer, Integer>(Integer.valueOf(this.epad), localDuration));
         break;
       }
@@ -9221,7 +9256,7 @@ public class SecondaryStatEffect
           {
             if (this.sourceid == 400021047)
             {
-              if (applyto.getBuffedValue(this.sourceid))
+              if (applyTo.getBuffedValue(this.sourceid))
               {
                 break;
               }
@@ -9252,22 +9287,22 @@ public class SecondaryStatEffect
       }
       localstatups.put(entry.getKey(), new Pair(entry.getValue().left, localDuration));
     }
-    if (this.sourceid == 5321054 && applyto.getKeyValue(51384, "ww_buck") != -1L)
+    if (this.sourceid == 5321054 && applyTo.getKeyValue(51384, "ww_buck") != -1L)
     {
       Pair vz = localstatups.get(SecondaryStat.IndiePmdR);
       localstatups.remove(SecondaryStat.IndiePmdR);
       vz.left = (Integer) vz.left * -1 + 100;
       localstatups.put(SecondaryStat.IndiePmdR, vz);
     }
-    if (this.sourceid == 80002924 && applyto.getKeyValue(53714, "atk") != -1L)
+    if (this.sourceid == 80002924 && applyTo.getKeyValue(53714, "atk") != -1L)
     {
-      localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>((int) applyto.getKeyValue(53714, "atk"), 0));
+      localstatups.put(SecondaryStat.IndieDamR, new Pair<Integer, Integer>((int) applyTo.getKeyValue(53714, "atk"), 0));
     }
     if (this.sourceid == 400001012)
     {
-      applyto.cancelEffectFromBuffStat(SecondaryStat.IndieSummon, 3111005);
-      applyto.cancelEffectFromBuffStat(SecondaryStat.IndieSummon, 3211005);
-      applyto.cancelEffectFromBuffStat(SecondaryStat.IndieSummon, 3311009);
+      applyTo.cancelEffectFromBuffStat(SecondaryStat.IndieSummon, 3111005);
+      applyTo.cancelEffectFromBuffStat(SecondaryStat.IndieSummon, 3211005);
+      applyTo.cancelEffectFromBuffStat(SecondaryStat.IndieSummon, 3311009);
     }
     if (this.isMonsterRiding() && !localstatups.containsKey(SecondaryStat.RideVehicle))
     {
@@ -9275,7 +9310,7 @@ public class SecondaryStatEffect
       {
         localDuration = 0;
       }
-      localstatups.put(SecondaryStat.RideVehicle, new Pair<Integer, Integer>(SecondaryStatEffect.parseMountInfo(applyto, this.sourceid), 0));
+      localstatups.put(SecondaryStat.RideVehicle, new Pair<Integer, Integer>(SecondaryStatEffect.parseMountInfo(applyTo, this.sourceid), 0));
     }
     else if (SkillFactory.getSkill(this.sourceid) != null && this.sourceid != 22171080 && SkillFactory.getSkill(this.sourceid).getVehicleID() > 0)
     {
@@ -9284,42 +9319,42 @@ public class SecondaryStatEffect
         localDuration = 0;
       }
       localstatups.put(SecondaryStat.RideVehicle, new Pair<Integer, Integer>(SkillFactory.getSkill(this.sourceid).getVehicleID(), localDuration));
-      if (applyfrom.getMapId() == ServerConstants.warpMap && this.sourceid / 10000 == 8000)
+      if (applyFrom.getMapId() == ServerConstants.warpMap && this.sourceid / 10000 == 8000)
       {
-        applyfrom.getClient().send(CField.UIPacket.detailShowInfo("휴식 포인트 적립을 시작합니다.", 3, 20, 20));
-        applyfrom.setSkillCustomInfo(applyfrom.getMapId(), 0L, 60000L);
+        applyFrom.getClient().send(CField.UIPacket.detailShowInfo("휴식 포인트 적립을 시작합니다.", 3, 20, 20));
+        applyFrom.setSkillCustomInfo(applyFrom.getMapId(), 0L, 60000L);
       }
     }
-    if (this.skill && !applyto.isHidden() && !isPetBuff && applyfrom.getId() == applyto.getId())
+    if (this.skill && !applyTo.isHidden() && !isPetBuff && applyFrom.getId() == applyTo.getId())
     {
-      if (this.sourceid >= 400041009 && this.sourceid <= 400041015 && showEffect && applyfrom.getId() == applyto.getId())
+      if (this.sourceid >= 400041009 && this.sourceid <= 400041015 && showEffect && applyFrom.getId() == applyTo.getId())
       {
-        applyto.getClient().getSession().writeAndFlush(CField.EffectPacket.showEffect(applyto, 0, this.sourceid, 1, 0, 0, (byte) (applyto.getTruePosition().x > pos.x ? 1 : 0), true, pos, null, null));
-        applyto.getMap().broadcastMessage(applyto, CField.EffectPacket.showEffect(applyto, 0, this.sourceid, 1, 0, 0, (byte) (applyto.getTruePosition().x > pos.x ? 1 : 0), true, pos, null, null), false);
+        applyTo.getClient().getSession().writeAndFlush(CField.EffectPacket.showEffect(applyTo, 0, this.sourceid, 1, 0, 0, (byte) (applyTo.getTruePosition().x > pos.x ? 1 : 0), true, pos, null, null));
+        applyTo.getMap().broadcastMessage(applyTo, CField.EffectPacket.showEffect(applyTo, 0, this.sourceid, 1, 0, 0, (byte) (applyTo.getTruePosition().x > pos.x ? 1 : 0), true, pos, null, null), false);
       }
-      if (!GameConstants.isLinkMap(applyto.getMapId()) && showEffect)
+      if (!GameConstants.isLinkMap(applyTo.getMapId()) && showEffect)
       {
         if (this.sourceid != 400051334 && (this.sourceid < 400041009 || this.sourceid > 400041015))
         {
-          applyto.getMap().broadcastMessage(applyto, CField.EffectPacket.showEffect(applyto, 0, this.sourceid, 1, 0, 0, (byte) (applyto.getTruePosition().x > pos.x ? 1 : 0), false, pos, null, null), false);
+          applyTo.getMap().broadcastMessage(applyTo, CField.EffectPacket.showEffect(applyTo, 0, this.sourceid, 1, 0, 0, (byte) (applyTo.getTruePosition().x > pos.x ? 1 : 0), false, pos, null, null), false);
         }
       }
-      else if (this.isPartyBuff(applyfrom, applyto))
+      else if (this.isPartyBuff(applyFrom, applyTo))
       {
-        Rectangle bounds = this.calculateBoundingBox(applyfrom.getTruePosition(), applyfrom.isFacingLeft());
+        Rectangle bounds = this.calculateBoundingBox(applyFrom.getTruePosition(), applyFrom.isFacingLeft());
         if (this.sourceid == 155001001 || this.sourceid == 155101003 || this.sourceid == 155111005 || this.sourceid == 155121005)
         {
-          bounds = SkillFactory.getSkill(155121043).getEffect(1).calculateBoundingBox(applyfrom.getTruePosition(), applyfrom.isFacingLeft());
+          bounds = SkillFactory.getSkill(155121043).getEffect(1).calculateBoundingBox(applyFrom.getTruePosition(), applyFrom.isFacingLeft());
         }
-        List<MapleMapObject> list = applyfrom.getMap().getMapObjectsInRect(bounds, Collections.singletonList(MapleMapObjectType.PLAYER));
+        List<MapleMapObject> list = applyFrom.getMap().getMapObjectsInRect(bounds, Collections.singletonList(MapleMapObjectType.PLAYER));
         for (MapleMapObject affectedmo : list)
         {
           MapleCharacter affected = (MapleCharacter) affectedmo;
-          if (applyfrom.getId() == affected.getId())
+          if (applyFrom.getId() == affected.getId())
           {
             continue;
           }
-          this.applyBuffEffect(applyto, affected, primary, localDuration, pos, showEffect);
+          this.applyBuffEffect(applyTo, affected, primary, localDuration, pos, showEffect);
           affected.getClient().getSession().writeAndFlush(CField.EffectPacket.showEffect(affected, 0, this.sourceid, 4, 0, 0, (byte) (affected.getTruePosition().x > pos.x ? 1 : 0), true, pos, null, null));
           affected.getMap().broadcastMessage(affected, CField.EffectPacket.showEffect(affected, 0, this.sourceid, 4, 0, 0, (byte) (affected.getTruePosition().x > pos.x ? 1 : 0), false, pos, null, null), false);
         }
@@ -9327,9 +9362,9 @@ public class SecondaryStatEffect
     }
     if (localstatups.containsKey(SecondaryStat.JaguarSummoned))
     {
-      applyto.cancelEffectFromBuffStat(SecondaryStat.RideVehicle);
+      applyTo.cancelEffectFromBuffStat(SecondaryStat.RideVehicle);
     }
-    for (int FreudsProtection : FreudsProtections = new int[]{400001025, 400001026, 400001027, 400001028, 400001029, 400001030})
+    for (int FreudsProtection : FreudsProtections = new int[] { 400001025, 400001026, 400001027, 400001028, 400001029, 400001030 })
     {
       if (this.sourceid != FreudsProtection)
       {
@@ -9337,15 +9372,15 @@ public class SecondaryStatEffect
       }
       for (int s : FreudsProtections)
       {
-        if (!applyto.getBuffedValue(s))
+        if (!applyTo.getBuffedValue(s))
         {
           continue;
         }
-        applyto.cancelEffect(applyto.getBuffedEffect(s), null, true);
+        applyTo.cancelEffect(applyTo.getBuffedEffect(s), null, true);
       }
       break;
     }
-    
+
     // BroadCast Effect to Self
     long starttime = System.currentTimeMillis();
     boolean exit = false;
@@ -9353,45 +9388,45 @@ public class SecondaryStatEffect
     List<Pair<SecondaryStat, SecondaryStatValueHolder>> addV = new ArrayList<>();
     for (Map.Entry<SecondaryStat, Pair<Integer, Integer>> statup : localstatups.entrySet())
     {
-      if (applyto.getBuffedEffect(statup.getKey(), this.sourceid) != null)
+      if (applyTo.getBuffedEffect(statup.getKey(), this.sourceid) != null)
       {
-        applyto.cancelEffect(this, Collections.singletonList(statup.getKey()), true);
-        
+        applyTo.cancelEffect(this, Collections.singletonList(statup.getKey()), true);
+
         if (statup.getValue().right == 0 && !aftercancel)
         {
           exit = true;
           continue;
         }
       }
-      
+
       if (statup.getValue().right > 0)
       {
         aftercancel = true;
         if (this.skill && SkillFactory.getSkill(this.sourceid) != null && !SkillFactory.getSkill(this.sourceid).isHyper() && bufftimeR && this.sourceid < 400000000 && statup.getKey() != SecondaryStat.IndieNotDamaged && statup.getKey() != SecondaryStat.NotDamaged && this.getSummonMovementType() == null)
         {
-          statup.getValue().right = this.alchemistModifyVal(applyfrom, statup.getValue().right, false);
+          statup.getValue().right = this.alchemistModifyVal(applyFrom, statup.getValue().right, false);
         }
-//                System.out.println("버프 시작점 : " + SkillFactory.getSkill(this.sourceid).getName() + " / " + SkillFactory.getSkill(this.sourceid).getId());
-        applyto.registerEffect(this, starttime, statup, false, applyfrom.getId(), indieList1, indieList2);
+        //                System.out.println("버프 시작점 : " + SkillFactory.getSkill(this.sourceid).getName() + " / " + SkillFactory.getSkill(this.sourceid).getId());
+        applyTo.registerEffect(this, starttime, statup, false, applyFrom.getId(), indieList1, indieList2);
       }
       else
       {
-//                System.out.println("버프 종착점 : " + SkillFactory.getSkill(this.sourceid).getName() + " / " + SkillFactory.getSkill(this.sourceid).getId());
-        addV.add(new Pair(statup.getKey(), new SecondaryStatValueHolder(this, starttime, (statup.getValue()).left, statup.getValue().right, applyfrom.getId(), indieList1, indieList2)));
+        //                System.out.println("버프 종착점 : " + SkillFactory.getSkill(this.sourceid).getName() + " / " + SkillFactory.getSkill(this.sourceid).getId());
+        addV.add(new Pair(statup.getKey(), new SecondaryStatValueHolder(this, starttime, (statup.getValue()).left, statup.getValue().right, applyFrom.getId(), indieList1, indieList2)));
       }
     }
     if (exit)
     {
-      applyto.getClient().getSession().writeAndFlush(CWvsContext.enableActions(applyto, true, false));
+      applyTo.getClient().getSession().writeAndFlush(CWvsContext.enableActions(applyTo, true, false));
       return;
     }
     if (!addV.isEmpty())
     {
-      applyto.getEffects().addAll(addV);
+      applyTo.getEffects().addAll(addV);
     }
     if (this.isHide())
     {
-      applyto.getMap().broadcastMessage(applyto, CField.removePlayerFromMap(applyto.getId()), false);
+      applyTo.getMap().broadcastMessage(applyTo, CField.removePlayerFromMap(applyTo.getId()), false);
     }
     if (this.sourceid >= 400041002 && this.sourceid <= 400041005 || this.sourceid == 11121014)
     {
@@ -9401,11 +9436,11 @@ public class SecondaryStatEffect
     {
       if (SkillFactory.getSkill(this.sourceid) != null && (this.sourceid == 24121003 || this.sourceid == 30010186 || this.isHeroWill() || localstatups.size() > 0 || this.isMist() || this.damage > 0 || SkillFactory.getSkill(this.sourceid).getType() == 41 || SkillFactory.getSkill(this.sourceid).getType() == 51))
       {
-        applyto.getClient().getSession().writeAndFlush(CWvsContext.enableActions(applyto, true, false));
+        applyTo.getClient().getSession().writeAndFlush(CWvsContext.enableActions(applyTo, true, false));
       }
       else
       {
-        applyto.getClient().getSession().writeAndFlush(CWvsContext.enableActions(applyto, false, false));
+        applyTo.getClient().getSession().writeAndFlush(CWvsContext.enableActions(applyTo, false, false));
       }
     }
     if (localstatups.size() > 0)
@@ -9436,15 +9471,15 @@ public class SecondaryStatEffect
           {
             break;
           }
-          applyto.addCooldown(this.sourceid, System.currentTimeMillis(), localDuration);
+          applyTo.addCooldown(this.sourceid, System.currentTimeMillis(), localDuration);
           break;
         }
       }
-      applyto.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.giveBuff(localstatups, this, applyto));
-      applyto.getMap().broadcastMessage(applyto, CWvsContext.BuffPacket.giveForeignBuff(applyto, localstatups, this), false);
+      applyTo.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.giveBuff(localstatups, this, applyTo));
+      applyTo.getMap().broadcastMessage(applyTo, CWvsContext.BuffPacket.giveForeignBuff(applyTo, localstatups, this), false);
       if (showEffect || this.sourceid == 3110001 || this.sourceid == 3210001 || this.sourceid == 3110012 || this.sourceid == 3101009)
       {
-        applyto.getClient().getSession().writeAndFlush(CWvsContext.enableActions(applyto, false, true));
+        applyTo.getClient().getSession().writeAndFlush(CWvsContext.enableActions(applyTo, false, true));
       }
       if (this.sourceid != 21110016)
       {
@@ -9459,12 +9494,12 @@ public class SecondaryStatEffect
           {
             if (GameConstants.getJaguarSummonId(i2) > 0)
             {
-              if (GameConstants.getSelectJaguarSkillId(GameConstants.getMountItem(33001001, applyto)) != i2)
+              if (GameConstants.getSelectJaguarSkillId(GameConstants.getMountItem(33001001, applyTo)) != i2)
               {
-                final MapleSummon tosummon = new MapleSummon(applyfrom, i2, new Point(applyto.getPosition().x + Randomizer.rand(-400, 400), applyto.getPosition().y), SummonMovementType.SUMMON_JAGUAR, (byte) 0, localDuration);
-                tosummon.setPosition(new Point(applyto.getPosition().x + Randomizer.rand(-400, 400), applyto.getPosition().y));
-                applyfrom.getMap().spawnSummon(tosummon, localDuration);
-                applyfrom.addSummon(tosummon);
+                final MapleSummon tosummon = new MapleSummon(applyFrom, i2, new Point(applyTo.getPosition().x + Randomizer.rand(-400, 400), applyTo.getPosition().y), SummonMovementType.SUMMON_JAGUAR, (byte) 0, localDuration);
+                tosummon.setPosition(new Point(applyTo.getPosition().x + Randomizer.rand(-400, 400), applyTo.getPosition().y));
+                applyFrom.getMap().spawnSummon(tosummon, localDuration);
+                applyFrom.addSummon(tosummon);
                 ++size3;
               }
             }
@@ -9474,15 +9509,15 @@ public class SecondaryStatEffect
             }
           }
         }
-        applyto.getClient().send(CField.aranCombo(500));
+        applyTo.getClient().send(CField.aranCombo(500));
         return;
       }
-      applyto.getClient().getSession().writeAndFlush(CWvsContext.enableActions(applyto, true, false));
+      applyTo.getClient().getSession().writeAndFlush(CWvsContext.enableActions(applyTo, true, false));
     }
   }
-  
-  //와드
-  public void giveAnotherBuff(MapleCharacter applyto, MapleCharacter applyfrom, Map<SecondaryStat, Pair<Integer, Integer>> localstatups, boolean BuffTimeR)
+
+  // 와드
+  public void giveAnotherBuff (MapleCharacter applyto, MapleCharacter applyfrom, Map<SecondaryStat, Pair<Integer, Integer>> localstatups, boolean BuffTimeR)
   {
     ArrayList<Pair<SecondaryStat, SecondaryStatValueHolder>> addV = new ArrayList<Pair<SecondaryStat, SecondaryStatValueHolder>>();
     ArrayList<Pair<Integer, Integer>> indieList1 = new ArrayList<Pair<Integer, Integer>>();
@@ -9510,13 +9545,13 @@ public class SecondaryStatEffect
     applyto.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.giveBuff(localstatups, this, applyto));
     applyto.getMap().broadcastMessage(applyto, CWvsContext.BuffPacket.giveForeignBuff(applyto, localstatups, this), false);
   }
-  
-  public int getMonsterRidingId()
+
+  public int getMonsterRidingId ()
   {
     return this.monsterRidingId;
   }
-  
-  private final int calcHPChange(MapleCharacter applyfrom, boolean primary)
+
+  private final int calcHPChange (MapleCharacter applyfrom, boolean primary)
   {
     MapleMonster seren;
     int hpchange = 0;
@@ -9592,8 +9627,8 @@ public class SecondaryStatEffect
     }
     return hpchange;
   }
-  
-  private final int calcMPChange(MapleCharacter applyfrom, boolean primary)
+
+  private final int calcMPChange (MapleCharacter applyfrom, boolean primary)
   {
     int mpchange = 0;
     if (this.mp != 0)
@@ -9645,8 +9680,8 @@ public class SecondaryStatEffect
     }
     return mpchange;
   }
-  
-  public final int alchemistModifyVal(MapleCharacter chr, int val, boolean withX)
+
+  public final int alchemistModifyVal (MapleCharacter chr, int val, boolean withX)
   {
     if (!this.skill)
     {
@@ -9671,8 +9706,8 @@ public class SecondaryStatEffect
     }
     return val * (100 + chr.getStat().BuffUP_Summon) / 100;
   }
-  
-  public final int calcPowerChange(MapleCharacter applyfrom, boolean primary)
+
+  public final int calcPowerChange (MapleCharacter applyfrom, boolean primary)
   {
     int powerchange = 0;
     if (!primary)
@@ -9685,25 +9720,25 @@ public class SecondaryStatEffect
     }
     return powerchange;
   }
-  
-  public final boolean isInflation()
+
+  public final boolean isInflation ()
   {
     return this.inflation > 0;
   }
-  
-  public final int getInflation()
+
+  public final int getInflation ()
   {
     return this.inflation;
   }
-  
-  private boolean isPartyBuff(MapleCharacter applyfrom, MapleCharacter applyto)
+
+  private boolean isPartyBuff (MapleCharacter applyfrom, MapleCharacter applyto)
   {
     SecondaryStat[] partybuff;
     if (this.lt == null || this.rb == null || applyfrom.getMapId() == 450013700 || applyto.getMapId() == 450013700)
     {
       return false;
     }
-    for (SecondaryStat buff : partybuff = new SecondaryStat[]{SecondaryStat.BasicStatUp, SecondaryStat.MaxLevelBuff})
+    for (SecondaryStat buff : partybuff = new SecondaryStat[] { SecondaryStat.BasicStatUp, SecondaryStat.MaxLevelBuff })
     {
       if (!this.statups.containsKey(buff))
       {
@@ -9805,118 +9840,118 @@ public class SecondaryStatEffect
     }
     return false;
   }
-  
-  public final boolean isHeal()
+
+  public final boolean isHeal ()
   {
     return this.skill && (this.sourceid == 9101000 || this.sourceid == 9001000);
   }
-  
-  public final boolean isResurrection()
+
+  public final boolean isResurrection ()
   {
     return this.skill && (this.sourceid == 9001005 || this.sourceid == 9101005 || this.sourceid == 2321006 || this.sourceid == 1221016);
   }
-  
-  public final boolean isTimeLeap()
+
+  public final boolean isTimeLeap ()
   {
     return this.skill && this.sourceid == 5121010;
   }
-  
-  public final short getHp()
+
+  public final short getHp ()
   {
     return this.hp;
   }
-  
-  public final short getMp()
+
+  public final short getMp ()
   {
     return this.mp;
   }
-  
-  public final double getHpR()
+
+  public final double getHpR ()
   {
     return this.hpR;
   }
-  
-  public final double getMpR()
+
+  public final double getMpR ()
   {
     return this.mpR;
   }
-  
-  public final byte getMastery()
+
+  public final byte getMastery ()
   {
     return this.mastery;
   }
-  
-  public final short getWatk()
+
+  public final short getWatk ()
   {
     return this.pad;
   }
-  
-  public final short getMatk()
+
+  public final short getMatk ()
   {
     return this.mad;
   }
-  
-  public final short getMdef()
+
+  public final short getMdef ()
   {
     return this.mdef;
   }
-  
-  public final short getAcc()
+
+  public final short getAcc ()
   {
     return this.acc;
   }
-  
-  public final short getAvoid()
+
+  public final short getAvoid ()
   {
     return this.avoid;
   }
-  
-  public final short getHands()
+
+  public final short getHands ()
   {
     return this.hands;
   }
-  
-  public final short getSpeed()
+
+  public final short getSpeed ()
   {
     return this.speed;
   }
-  
-  public final short getJump()
+
+  public final short getJump ()
   {
     return this.jump;
   }
-  
-  public final short getPassiveSpeed()
+
+  public final short getPassiveSpeed ()
   {
     return this.psdSpeed;
   }
-  
-  public final short getPassiveJump()
+
+  public final short getPassiveJump ()
   {
     return this.psdJump;
   }
-  
-  public final int getDuration()
+
+  public final int getDuration ()
   {
     return this.duration;
   }
-  
-  public final void setDuration(int d)
+
+  public final void setDuration (int d)
   {
     this.duration = d;
   }
-  
-  public final int getSubTime()
+
+  public final int getSubTime ()
   {
     return this.subTime;
   }
-  
-  public final Map<SecondaryStat, Pair<Integer, Integer>> getStatups()
+
+  public final Map<SecondaryStat, Pair<Integer, Integer>> getStatups ()
   {
     return this.statups;
   }
-  
-  public final boolean sameSource(SecondaryStatEffect effect)
+
+  public final boolean sameSource (SecondaryStatEffect effect)
   {
     boolean sameSrc = this.sourceid == effect.sourceid;
     switch (this.sourceid)
@@ -9948,103 +9983,103 @@ public class SecondaryStatEffect
     }
     return effect != null && sameSrc && this.skill == effect.skill;
   }
-  
-  public final int getCr()
+
+  public final int getCr ()
   {
     return this.cr;
   }
-  
-  public final double getT()
+
+  public final double getT ()
   {
     return this.t;
   }
-  
-  public final int getU()
+
+  public final int getU ()
   {
     return this.u;
   }
-  
-  public final int getV()
+
+  public final int getV ()
   {
     return this.v;
   }
-  
-  public final void setV(int newvalue)
+
+  public final void setV (int newvalue)
   {
     this.v = newvalue;
   }
-  
-  public final int getW()
+
+  public final int getW ()
   {
     return this.w;
   }
-  
-  public final int getX()
+
+  public final int getX ()
   {
     return this.x;
   }
-  
-  public final int addX(int b)
+
+  public final int addX (int b)
   {
     return this.x + b;
   }
-  
-  public final int getY()
+
+  public final int getY ()
   {
     return this.y;
   }
-  
-  public final void setY(int newvalue)
+
+  public final void setY (int newvalue)
   {
     this.y = newvalue;
   }
-  
-  public final int getZ()
+
+  public final int getZ ()
   {
     return this.z;
   }
-  
-  public final int getS()
+
+  public final int getS ()
   {
     return this.s;
   }
-  
-  public final short getDamage()
+
+  public final short getDamage ()
   {
     return this.damage;
   }
-  
-  public final short getPVPDamage()
+
+  public final short getPVPDamage ()
   {
     return this.PVPdamage;
   }
-  
-  public final byte getAttackCount()
+
+  public final byte getAttackCount ()
   {
     return this.attackCount;
   }
-  
-  public final byte getBulletCount()
+
+  public final byte getBulletCount ()
   {
     return this.bulletCount;
   }
-  
-  public final int getBulletConsume()
+
+  public final int getBulletConsume ()
   {
     return this.bulletConsume;
   }
-  
-  public final byte getMobCount()
+
+  public final byte getMobCount ()
   {
     return this.mobCount;
   }
-  
-  public final int getMoneyCon()
+
+  public final int getMoneyCon ()
   {
     return this.moneyCon;
   }
-  
-  public boolean cantIgnoreCooldown()
+
+  public boolean cantIgnoreCooldown ()
   {
     switch (this.sourceid)
     {
@@ -10109,8 +10144,8 @@ public class SecondaryStatEffect
     }
     return false;
   }
-  
-  public boolean ignoreCooldown(MapleCharacter chra)
+
+  public boolean ignoreCooldown (MapleCharacter chra)
   {
     Skill skill = SkillFactory.getSkill(this.sourceid);
     if (skill.isHyper() || skill.isVMatrix() || skill.isNotCooltimeReset() || this.cantIgnoreCooldown())
@@ -10119,7 +10154,7 @@ public class SecondaryStatEffect
     }
     return Randomizer.isSuccess(chra.getStat().randCooldown);
   }
-  
+
   // 쿨타임
     /*public final int getCooldown(MapleCharacter chra) {
         int localCooltime = 0;
@@ -10205,17 +10240,17 @@ public class SecondaryStatEffect
         }
         return Math.max(0, localCooltime);
     }*/
-  public final int getCooldown(final MapleCharacter chra)
+  public final int getCooldown (final MapleCharacter chra)
   { // 쿨타임
     int localCooltime = 0;
     int ItemCooltime = 0;
     int minusCooltime = 0;
-    
+
     if (cooltime == 0 && cooltimeMS == 0)
     {
       return 0;
     }
-    
+
     if (cooltime > 0)
     {
       if (cooltime < 5000)
@@ -10227,12 +10262,12 @@ public class SecondaryStatEffect
             } else {
                 localCooltime = Math.max(5, (cooltime * (100 - (chra.getStat().reduceCooltime * 5)) / 100));
             }*/
-      
+
       localCooltime = cooltime;
-      
+
       ItemCooltime = chra.getStat().reduceCooltime * 1000;
       minusCooltime = 0;
-      
+
       if (chra.getBuffedEffect(SecondaryStat.IndieReduceCooltime) != null && !GameConstants.isBeginnerJob(sourceid / 10000) && !SkillFactory.getSkill(sourceid).isVMatrix() && ((sourceid / 1000) != 8000))
       {
         localCooltime -= localCooltime * chra.getBuffedValue(SecondaryStat.IndieReduceCooltime) / 100;
@@ -10257,112 +10292,112 @@ public class SecondaryStatEffect
         localCooltime -= localCooltime * chra.getBuffedValue(SecondaryStat.IndieReduceCooltime) / 100;
       }
     }
-    
+
     if (sourceid == 31121003 && chra.getBuffedEffect(SecondaryStat.InfinityForce) != null)
     {
       localCooltime /= 2;
     }
-    
+
     if (chra.getSkillLevel(71000231) > 0)
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(71000231).getEffect(chra.getSkillLevel(71000231)).coolTimeR / 100;
     }
-    
+
     if (chra.getSkillLevel(1220051) > 0 && sourceid == 1221011)
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(1220051).getEffect(1).coolTimeR / 100;
     }
-    
+
     if (chra.getSkillLevel(2120051) > 0 && sourceid == 2121003)
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(2120051).getEffect(1).coolTimeR / 100;
     }
-    
+
     if (chra.getSkillLevel(14120046) > 0 && sourceid == 14121003)
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(14120046).getEffect(1).coolTimeR / 100;
     }
-    
+
     if (chra.getSkillLevel(22170087) > 0 && (sourceid == 22141012 || sourceid == 22140022))
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(22170087).getEffect(1).coolTimeR / 100;
     }
-    
+
     if (chra.getSkillLevel(22170090) > 0 && sourceid == 22171063)
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(22170090).getEffect(1).coolTimeR / 100;
     }
-    
+
     if (chra.getSkillLevel(22170084) > 0 && sourceid == 22110023)
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(22170084).getEffect(1).coolTimeR / 100;
     }
-    
+
     if (chra.getSkillLevel(24120044) > 0 && sourceid == 24121005)
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(24120044).getEffect(1).coolTimeR / 100;
     }
-    
+
     if (chra.getSkillLevel(32120057) > 0 && sourceid == 32121004)
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(32120057).getEffect(1).coolTimeR / 100;
     }
-    
+
     if (chra.getSkillLevel(32120063) > 0 && sourceid == 32121006)
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(32120063).getEffect(1).coolTimeR / 100;
     }
-    
+
     if (chra.getSkillLevel(33120048) > 0 && (sourceid == 33111006 || sourceid == 33101215 || sourceid == 33121002))
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(33120048).getEffect(1).coolTimeR / 100;
     }
-    
+
     if (chra.getSkillLevel(35120045) > 0 && sourceid == 35111002)
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(35120045).getEffect(1).coolTimeR / 100;
     }
-    
+
     if (chra.getSkillLevel(64120051) > 0 && sourceid == 64121001)
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(64120051).getEffect(1).coolTimeR / 100;
     }
-    
+
     if (chra.getSkillLevel(65120048) > 0 && sourceid == 65121002)
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(65120048).getEffect(1).coolTimeR / 100;
     }
-    
+
     if (chra.getSkillLevel(142120040) > 0 && sourceid == 142121004)
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(142120040).getEffect(1).coolTimeR / 100;
     }
-    
+
     if (chra.getSkillLevel(152120036) > 0 && sourceid == 152121004)
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(152120036).getEffect(1).coolTimeR / 100;
     }
-    
+
     if (chra.getSkillLevel(155120038) > 0 && sourceid == 155111306)
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(155120038).getEffect(1).coolTimeR / 100;
     }
-    
+
     if (chra.getSkillLevel(151120036) > 0 && sourceid == 151121003)
     {
       localCooltime -= localCooltime * SkillFactory.getSkill(151120036).getEffect(1).coolTimeR / 100;
     }
-    
+
     if (localCooltime > 0 && chra.getBuffedValue(SecondaryStat.FixCooltime) != null && sourceid / 10000 != 8000 && sourceid / 10000 <= chra.getJob())
     {
       localCooltime = chra.getBuffedValue(SecondaryStat.FixCooltime) * 1000;
     }
-    
+
     if (chra.getSkillLevel(162120035) > 0 && sourceid == 162111005)
     {
       localCooltime -= (int) (localCooltime * (SkillFactory.getSkill(162120035).getEffect(1).coolTimeR / 100.0));
     }
-    
+
     if (localCooltime <= 10000)
     {
       if (ItemCooltime > 0)
@@ -10391,61 +10426,61 @@ public class SecondaryStatEffect
     {
       localCooltime = Math.max(5000, localCooltime);
     }
-    
+
     if (chra.getStat().coolTimeR > 0)
     {
       localCooltime -= (int) (cooltime * (chra.getStat().coolTimeR / 100.0));
     }
-    
-    return Math.max(0, localCooltime); //왜 누가 5로해둠?
+
+    return Math.max(0, localCooltime); // 왜 누가 5로해둠?
   }
-  
-  public final int getBerserk()
+
+  public final int getBerserk ()
   {
     return this.berserk;
   }
-  
-  public final boolean isHide()
+
+  public final boolean isHide ()
   {
     return this.skill && (this.sourceid == 9001004 || this.sourceid == 9101004);
   }
-  
-  public final boolean isRecovery()
+
+  public final boolean isRecovery ()
   {
     return this.skill && (this.sourceid == 1001 || this.sourceid == 10001001 || this.sourceid == 20001001 || this.sourceid == 20011001 || this.sourceid == 20021001 || this.sourceid == 11001 || this.sourceid == 35121005);
   }
-  
-  public final boolean isBerserk()
+
+  public final boolean isBerserk ()
   {
     return this.skill && this.sourceid == 1320006;
   }
-  
-  public final boolean isMPRecovery()
+
+  public final boolean isMPRecovery ()
   {
     return this.skill && this.sourceid == 5101005;
   }
-  
-  public final boolean isMonsterRiding_()
+
+  public final boolean isMonsterRiding_ ()
   {
     return this.skill && (this.sourceid == 1004 || this.sourceid == 10001004 || this.sourceid == 20001004 || this.sourceid == 20011004 || this.sourceid == 30001004 && this.sourceid >= 80001000 && this.sourceid <= 80001033 || this.sourceid == 80001037 || this.sourceid == 80001038 || this.sourceid == 80001039 || this.sourceid == 80001044 || this.sourceid >= 80001082 && this.sourceid <= 80001090 || this.sourceid == 30011159 || this.sourceid == 30011109 || this.sourceid == 1004 || this.sourceid == 10001004 || this.sourceid == 20001004 || this.sourceid == 20011004 || this.sourceid == 30001004 || this.sourceid == 20021004 || this.sourceid == 20031004 || this.sourceid == 30011004 || this.sourceid == 50001004 || this.sourceid == 35120000 || this.sourceid == 33001001 || this.sourceid == 35001002 || this.sourceid == 35111003);
   }
-  
-  public final boolean isMonsterRiding()
+
+  public final boolean isMonsterRiding ()
   {
     return this.skill && (this.isMonsterRiding_() || GameConstants.checkMountItem(this.sourceid) != 0);
   }
-  
-  public final boolean isMagicDoor()
+
+  public final boolean isMagicDoor ()
   {
     return this.skill && (this.sourceid == 2311002 || this.sourceid % 10000 == 8001 || this.sourceid == 400001001);
   }
-  
-  public final boolean isMechDoor()
+
+  public final boolean isMechDoor ()
   {
     return this.skill && this.sourceid == 35101005;
   }
-  
-  public final boolean isCharge()
+
+  public final boolean isCharge ()
   {
     switch (this.sourceid)
     {
@@ -10461,13 +10496,13 @@ public class SecondaryStatEffect
     }
     return false;
   }
-  
-  public final boolean isPoison()
+
+  public final boolean isPoison ()
   {
     return this.dot > 0 && this.dotTime > 0;
   }
-  
-  public final boolean isMist()
+
+  public final boolean isMist ()
   {
     if (this.skill)
     {
@@ -10533,13 +10568,13 @@ public class SecondaryStatEffect
     }
     return false;
   }
-  
-  private final boolean isDispel()
+
+  private final boolean isDispel ()
   {
     return this.skill && (this.sourceid == 2311001 || this.sourceid == 9001000 || this.sourceid == 9101000);
   }
-  
-  private final boolean isHeroWill()
+
+  private final boolean isHeroWill ()
   {
     switch (this.sourceid)
     {
@@ -10585,8 +10620,8 @@ public class SecondaryStatEffect
     }
     return false;
   }
-  
-  public final boolean isCombo()
+
+  public final boolean isCombo ()
   {
     switch (this.sourceid)
     {
@@ -10598,18 +10633,18 @@ public class SecondaryStatEffect
     }
     return false;
   }
-  
-  public final boolean isMorph()
+
+  public final boolean isMorph ()
   {
     return this.morphId > 0;
   }
-  
-  public final byte getLevel()
+
+  public final byte getLevel ()
   {
     return this.level;
   }
-  
-  public final SummonMovementType getSummonMovementType()
+
+  public final SummonMovementType getSummonMovementType ()
   {
     if (!this.skill || SkillFactory.getSkill(this.sourceid) == null)
     {
@@ -10909,43 +10944,43 @@ public class SecondaryStatEffect
       }
     }
   }
-  
-  public final boolean isAngel()
+
+  public final boolean isAngel ()
   {
     return GameConstants.isAngel(this.sourceid);
   }
-  
-  public final boolean isSkill()
+
+  public final boolean isSkill ()
   {
     return this.skill;
   }
-  
-  public final int getSourceId()
+
+  public final int getSourceId ()
   {
     return this.sourceid;
   }
-  
-  public final void setSourceId(int newid)
+
+  public final void setSourceId (int newid)
   {
     this.sourceid = newid;
   }
-  
-  public final boolean isSoaring()
+
+  public final boolean isSoaring ()
   {
     return this.isSoaring_Normal() || this.isSoaring_Mount();
   }
-  
-  public final boolean isSoaring_Normal()
+
+  public final boolean isSoaring_Normal ()
   {
     return this.skill && GameConstants.isBeginnerJob(this.sourceid / 10000) && this.sourceid % 10000 == 1026;
   }
-  
-  public final boolean isSoaring_Mount()
+
+  public final boolean isSoaring_Mount ()
   {
     return this.skill && (GameConstants.isBeginnerJob(this.sourceid / 10000) && this.sourceid % 10000 == 1142 || this.sourceid == 80001089);
   }
-  
-  public final boolean makeChanceResult()
+
+  public final boolean makeChanceResult ()
   {
     if (this.subprop != 100)
     {
@@ -10953,333 +10988,333 @@ public class SecondaryStatEffect
     }
     return this.prop >= 100 || Randomizer.nextInt(100) < this.prop;
   }
-  
-  public final short getProp()
+
+  public final short getProp ()
   {
     return this.prop;
   }
-  
-  public final short getIgnoreMob()
+
+  public final short getIgnoreMob ()
   {
     return this.ignoreMobpdpR;
   }
-  
-  public final int getEnhancedHP()
+
+  public final int getEnhancedHP ()
   {
     return this.emhp;
   }
-  
-  public final int getEnhancedMP()
+
+  public final int getEnhancedMP ()
   {
     return this.emmp;
   }
-  
-  public final int getEnhancedWatk()
+
+  public final int getEnhancedWatk ()
   {
     return this.epad;
   }
-  
-  public final int getEnhancedWdef()
+
+  public final int getEnhancedWdef ()
   {
     return this.epdd;
   }
-  
-  public final int getEnhancedMdef()
+
+  public final int getEnhancedMdef ()
   {
     return this.emdd;
   }
-  
-  public final short getDOT()
+
+  public final short getDOT ()
   {
     return this.dot;
   }
-  
-  public final short getDOTTime()
+
+  public final short getDOTTime ()
   {
     return this.dotTime;
   }
-  
-  public final short getCriticalDamage()
+
+  public final short getCriticalDamage ()
   {
     return this.criticaldamage;
   }
-  
-  public final short getASRRate()
+
+  public final short getASRRate ()
   {
     return this.asrR;
   }
-  
-  public final short getTERRate()
+
+  public final short getTERRate ()
   {
     return this.terR;
   }
-  
-  public final int getDAMRate()
+
+  public final int getDAMRate ()
   {
     return this.damR;
   }
-  
-  public final short getMesoRate()
+
+  public final short getMesoRate ()
   {
     return this.mesoR;
   }
-  
-  public final int getEXP()
+
+  public final int getEXP ()
   {
     return this.exp;
   }
-  
-  public final short getAttackX()
+
+  public final short getAttackX ()
   {
     return this.padX;
   }
-  
-  public final short getMagicX()
+
+  public final short getMagicX ()
   {
     return this.madX;
   }
-  
-  public final int getPercentHP()
+
+  public final int getPercentHP ()
   {
     return this.mhpR;
   }
-  
-  public final int getPercentMP()
+
+  public final int getPercentMP ()
   {
     return this.mmpR;
   }
-  
-  public final int getConsume()
+
+  public final int getConsume ()
   {
     return this.consumeOnPickup;
   }
-  
-  public final int getSelfDestruction()
+
+  public final int getSelfDestruction ()
   {
     return this.selfDestruction;
   }
-  
-  public final int getCharColor()
+
+  public final int getCharColor ()
   {
     return this.charColor;
   }
-  
-  public final int getSpeedMax()
+
+  public final int getSpeedMax ()
   {
     return this.speedMax;
   }
-  
-  public final int getAccX()
+
+  public final int getAccX ()
   {
     return this.accX;
   }
-  
-  public final int getMaxHpX()
+
+  public final int getMaxHpX ()
   {
     return this.getMhpX();
   }
-  
-  public void setMaxHpX(int hp2)
+
+  public void setMaxHpX (int hp2)
   {
     this.setMhpX(hp2);
   }
-  
-  public final int getMaxMpX()
+
+  public final int getMaxMpX ()
   {
     return this.mmpX;
   }
 
-  public final int getAttackSpeed()
+  public final int getAttackSpeed ()
   {
     return this.attackSpeed;
   }
 
-  public final void setAttackSpeed(int attackSpeed)
+  public final void setAttackSpeed (int attackSpeed)
   {
-     this.attackSpeed = attackSpeed;
+    this.attackSpeed = attackSpeed;
   }
-  
-  public short getIndieDamR()
+
+  public short getIndieDamR ()
   {
     return this.indieDamR;
   }
-  
-  public final List<Integer> getPetsCanConsume()
+
+  public final List<Integer> getPetsCanConsume ()
   {
     return this.petsCanConsume;
   }
-  
-  public final boolean isReturnScroll()
+
+  public final boolean isReturnScroll ()
   {
     return this.skill && (this.sourceid == 80001040 || this.sourceid == 20021110);
   }
-  
-  public final boolean isMechChange()
+
+  public final boolean isMechChange ()
   {
     return false;
   }
-  
-  public final int getRange()
+
+  public final int getRange ()
   {
     return this.range;
   }
-  
-  public final short getER()
+
+  public final short getER ()
   {
     return this.er;
   }
-  
-  public final int getPrice()
+
+  public final int getPrice ()
   {
     return this.price;
   }
-  
-  public final int getExtendPrice()
+
+  public final int getExtendPrice ()
   {
     return this.extendPrice;
   }
-  
-  public final byte getPeriod()
+
+  public final byte getPeriod ()
   {
     return this.period;
   }
-  
-  public final byte getReqGuildLevel()
+
+  public final byte getReqGuildLevel ()
   {
     return this.reqGuildLevel;
   }
-  
-  public final byte getEXPRate()
+
+  public final byte getEXPRate ()
   {
     return this.expR;
   }
-  
-  public final short getLifeID()
+
+  public final short getLifeID ()
   {
     return this.lifeId;
   }
-  
-  public final short getUseLevel()
+
+  public final short getUseLevel ()
   {
     return this.useLevel;
   }
-  
-  public final byte getSlotCount()
+
+  public final byte getSlotCount ()
   {
     return this.slotCount;
   }
-  
-  public final short getStr()
+
+  public final short getStr ()
   {
     return this.str;
   }
-  
-  public final short getStrX()
+
+  public final short getStrX ()
   {
     return this.strX;
   }
-  
-  public final short getDex()
+
+  public final short getDex ()
   {
     return this.dex;
   }
-  
-  public final short getDexX()
+
+  public final short getDexX ()
   {
     return this.dexX;
   }
-  
-  public final short getInt()
+
+  public final short getInt ()
   {
     return this.int_;
   }
-  
-  public final short getIntX()
+
+  public final short getIntX ()
   {
     return this.intX;
   }
-  
-  public final short getLuk()
+
+  public final short getLuk ()
   {
     return this.luk;
   }
-  
-  public final short getLukX()
+
+  public final short getLukX ()
   {
     return this.lukX;
   }
-  
-  public final short getComboConAran()
+
+  public final short getComboConAran ()
   {
     return this.comboConAran;
   }
-  
-  public final short getMPCon()
+
+  public final short getMPCon ()
   {
     return this.mpCon;
   }
-  
-  public final short getMPConReduce()
+
+  public final short getMPConReduce ()
   {
     return this.mpConReduce;
   }
-  
-  public final int getSoulMPCon()
+
+  public final int getSoulMPCon ()
   {
     return this.soulmpCon;
   }
-  
-  public final short getIndieMHp()
+
+  public final short getIndieMHp ()
   {
     return this.indieMhp;
   }
-  
-  public final short getIndieMMp()
+
+  public final short getIndieMMp ()
   {
     return this.indieMmp;
   }
-  
-  public final short getIndieAllStat()
+
+  public final short getIndieAllStat ()
   {
     return this.indieAllStat;
   }
-  
-  public final byte getType()
+
+  public final byte getType ()
   {
     return this.type;
   }
-  
-  public int getBossDamage()
+
+  public int getBossDamage ()
   {
     return this.getBdR();
   }
-  
-  public int getInterval()
+
+  public int getInterval ()
   {
     return this.interval;
   }
-  
-  public ArrayList<Pair<Integer, Integer>> getAvailableMaps()
+
+  public ArrayList<Pair<Integer, Integer>> getAvailableMaps ()
   {
     return this.availableMap;
   }
-  
-  public short getWDEFRate()
+
+  public short getWDEFRate ()
   {
     return this.pddR;
   }
-  
-  public short getMDEFRate()
+
+  public short getMDEFRate ()
   {
     return this.mddR;
   }
-  
-  public short getOnActive()
+
+  public short getOnActive ()
   {
     return this.onActive;
   }
-  
-  public boolean isDoubleDice()
+
+  public boolean isDoubleDice ()
   {
     switch (this.sourceid)
     {
@@ -11293,587 +11328,585 @@ public class SecondaryStatEffect
     }
     return false;
   }
-  
-  public int getPPCon()
+
+  public int getPPCon ()
   {
     return this.ppcon;
   }
-  
-  public int getPPRecovery()
+
+  public int getPPRecovery ()
   {
     return this.ppRecovery;
   }
-  
-  public int getEqskill1()
+
+  public int getEqskill1 ()
   {
     return this.eqskill1;
   }
-  
-  public void setEqskill1(int eqskill1)
+
+  public void setEqskill1 (int eqskill1)
   {
     this.eqskill1 = eqskill1;
   }
-  
-  public int getEqskill2()
+
+  public int getEqskill2 ()
   {
     return this.eqskill2;
   }
-  
-  public void setEqskill2(int eqskill2)
+
+  public void setEqskill2 (int eqskill2)
   {
     this.eqskill2 = eqskill2;
   }
-  
-  public int getEqskill3()
+
+  public int getEqskill3 ()
   {
     return this.eqskill3;
   }
-  
-  public void setEqskill3(int eqskill3)
+
+  public void setEqskill3 (int eqskill3)
   {
     this.eqskill3 = eqskill3;
   }
-  
-  public short getPdd()
+
+  public short getPdd ()
   {
     return this.pdd;
   }
-  
-  public void setPdd(short pdd)
+
+  public void setPdd (short pdd)
   {
     this.pdd = pdd;
   }
-  
-  public short getIndiePmdR()
+
+  public short getIndiePmdR ()
   {
     return this.indiePmdR;
   }
-  
-  public void setIndiePmdR(short IndiePmdR)
+
+  public void setIndiePmdR (short IndiePmdR)
   {
     this.indiePmdR = IndiePmdR;
   }
-  
-  public int getQ()
+
+  public int getQ ()
   {
     return this.q;
   }
-  
-  public int getQ2()
+
+  public int getQ2 ()
   {
     return this.q2;
   }
-  
-  public int getV2()
+
+  public int getV2 ()
   {
     return this.v2;
   }
-  
-  public int getMhpX()
+
+  public int getMhpX ()
   {
     return this.mhpX;
   }
-  
-  public void setMhpX(int mhpX)
+
+  public void setMhpX (int mhpX)
   {
     this.mhpX = mhpX;
   }
-  
-  public short getLv2mhp()
+
+  public short getLv2mhp ()
   {
     return this.lv2mhp;
   }
-  
-  public void setLv2mhp(short lv2mhp)
+
+  public void setLv2mhp (short lv2mhp)
   {
     this.lv2mhp = lv2mhp;
   }
-  
-  public Point getLt()
+
+  public Point getLt ()
   {
     return this.lt;
   }
-  
-  public void setLt(Point lt)
+
+  public void setLt (Point lt)
   {
     this.lt = lt;
   }
-  
-  public long getStarttime()
+
+  public long getStarttime ()
   {
     return this.starttime;
   }
-  
-  public void setStarttime(long starttime)
+
+  public void setStarttime (long starttime)
   {
     this.starttime = starttime;
   }
-  
-  public short getBufftimeR()
+
+  public short getBufftimeR ()
   {
     return this.bufftimeR;
   }
-  
-  public void setBufftimeR(short bufftimeR)
+
+  public void setBufftimeR (short bufftimeR)
   {
     this.bufftimeR = bufftimeR;
   }
-  
-  public short getLv2mmp()
+
+  public short getLv2mmp ()
   {
     return this.lv2mmp;
   }
-  
-  public void setLv2mmp(short lv2mmp)
+
+  public void setLv2mmp (short lv2mmp)
   {
     this.lv2mmp = lv2mmp;
   }
-  
-  public short getIndieMhpR()
+
+  public short getIndieMhpR ()
   {
     return this.indieMhpR;
   }
-  
-  public void setIndieMhpR(short indieMhpR)
+
+  public void setIndieMhpR (short indieMhpR)
   {
     this.indieMhpR = indieMhpR;
   }
-  
-  public int getS2()
+
+  public int getS2 ()
   {
     return this.s2;
   }
-  
-  public void setS2(int s2)
+
+  public void setS2 (int s2)
   {
     this.s2 = s2;
   }
-  
-  public int getPPReq()
+
+  public int getPPReq ()
   {
     return this.ppReq;
   }
-  
-  public void setPPReq(int ppReq)
+
+  public void setPPReq (int ppReq)
   {
     this.ppReq = ppReq;
   }
-  
-  public short getDotInterval()
+
+  public short getDotInterval ()
   {
     return this.dotInterval;
   }
-  
-  public void setDotInterval(short dotInterval)
+
+  public void setDotInterval (short dotInterval)
   {
     this.dotInterval = dotInterval;
   }
-  
-  public short getDotSuperpos()
+
+  public short getDotSuperpos ()
   {
     return this.dotSuperpos;
   }
-  
-  public void setDotSuperpos(short dotSuperpos)
+
+  public void setDotSuperpos (short dotSuperpos)
   {
     this.dotSuperpos = dotSuperpos;
   }
-  
-  public int getU2()
+
+  public int getU2 ()
   {
     return this.u2;
   }
-  
-  public void setU2(int u2)
+
+  public void setU2 (int u2)
   {
     this.u2 = u2;
   }
-  
-  public short getIgnoreMobDamR()
+
+  public short getIgnoreMobDamR ()
   {
     return this.ignoreMobDamR;
   }
-  
-  public void setIgnoreMobDamR(short ignoreMobDamR)
+
+  public void setIgnoreMobDamR (short ignoreMobDamR)
   {
     this.ignoreMobDamR = ignoreMobDamR;
   }
-  
-  public short getKillRecoveryR()
+
+  public short getKillRecoveryR ()
   {
     return this.killRecoveryR;
   }
-  
-  public void setKillRecoveryR(short killRecoveryR)
+
+  public void setKillRecoveryR (short killRecoveryR)
   {
     this.killRecoveryR = killRecoveryR;
   }
-  
-  public int getW2()
+
+  public int getW2 ()
   {
     return this.w2;
   }
-  
-  public void setW2(int w2)
+
+  public void setW2 (int w2)
   {
     this.w2 = w2;
   }
-  
-  public short getMaxDemonForce()
+
+  public short getMaxDemonForce ()
   {
     return this.mdf;
   }
-  
-  public short getForceCon()
+
+  public short getForceCon ()
   {
     return this.forceCon;
   }
-  
-  public void setForceCon(short forceCon)
+
+  public void setForceCon (short forceCon)
   {
     this.forceCon = forceCon;
   }
-  
-  public short getBdR()
+
+  public short getBdR ()
   {
     return this.bdR;
   }
-  
-  public void setBdR(short bdR)
+
+  public void setBdR (short bdR)
   {
     this.bdR = bdR;
   }
-  
-  public double getExpRPerM()
+
+  public double getExpRPerM ()
   {
     return this.expRPerM;
   }
-  
-  public void setExpRPerM(double expRPerM)
+
+  public void setExpRPerM (double expRPerM)
   {
     this.expRPerM = expRPerM;
   }
-  
-  public short getHpFX()
+
+  public short getHpFX ()
   {
     return this.hpFX;
   }
-  
-  public void setHpFX(short hpFX)
+
+  public void setHpFX (short hpFX)
   {
     this.hpFX = hpFX;
   }
-  
-  public short getSummonTimeR()
+
+  public short getSummonTimeR ()
   {
     return this.summonTimeR;
   }
-  
-  public void setSummonTimeR(short summonTimeR)
+
+  public void setSummonTimeR (short summonTimeR)
   {
     this.summonTimeR = summonTimeR;
   }
-  
-  public short getTargetPlus()
+
+  public short getTargetPlus ()
   {
     return this.targetPlus;
   }
-  
-  public void setTargetPlus(short targetPlus)
+
+  public void setTargetPlus (short targetPlus)
   {
     this.targetPlus = targetPlus;
   }
-  
-  public short getTargetPlus_5th()
+
+  public short getTargetPlus_5th ()
   {
     return this.targetPlus_5th;
   }
-  
-  public void setTargetPlus_5th(short targetPlus_5th)
+
+  public void setTargetPlus_5th (short targetPlus_5th)
   {
     this.targetPlus_5th = targetPlus_5th;
   }
-  
-  public short getIndieExp()
+
+  public short getIndieExp ()
   {
     return this.IndieExp;
   }
-  
-  public short getSubprop()
+
+  public short getSubprop ()
   {
     return this.subprop;
   }
-  
-  public int getCoolRealTime()
+
+  public int getCoolRealTime ()
   {
     return this.cooltime;
   }
-  
-  public final short getMPRCon()
+
+  public final short getMPRCon ()
   {
     return this.mpRCon;
   }
-  
-  public short getPsdSpeed()
+
+  public short getPsdSpeed ()
   {
     return this.psdSpeed;
   }
-  
-  public void setPsdSpeed(short psdSpeed)
+
+  public void setPsdSpeed (short psdSpeed)
   {
     this.psdSpeed = psdSpeed;
   }
-  
-  public short getPsdJump()
+
+  public short getPsdJump ()
   {
     return this.psdJump;
   }
-  
-  public void setPsdJump(short psdJump)
+
+  public void setPsdJump (short psdJump)
   {
     this.psdJump = psdJump;
   }
-  
-  public int getStanceProp()
+
+  public int getStanceProp ()
   {
     return this.stanceProp;
   }
-  
-  public void setStanceProp(int stanceProp)
+
+  public void setStanceProp (int stanceProp)
   {
     this.stanceProp = stanceProp;
   }
-  
-  public int getDamAbsorbShieldR()
+
+  public int getDamAbsorbShieldR ()
   {
     return this.damAbsorbShieldR;
   }
-  
-  public void setDamAbsorbShieldR(int damAbsorbShieldR)
+
+  public void setDamAbsorbShieldR (int damAbsorbShieldR)
   {
     this.damAbsorbShieldR = damAbsorbShieldR;
   }
-  
-  public short getPdR()
+
+  public short getPdR ()
   {
     return this.pdR;
   }
-  
-  public void setPdR(short pdR)
+
+  public void setPdR (short pdR)
   {
     this.pdR = pdR;
   }
-  
-  public short getStrFX()
+
+  public short getStrFX ()
   {
     return this.strFX;
   }
-  
-  public void setStrFX(short strFX)
+
+  public void setStrFX (short strFX)
   {
     this.strFX = strFX;
   }
-  
-  public short getDexFX()
+
+  public short getDexFX ()
   {
     return this.dexFX;
   }
-  
-  public void setDexFX(short dexFX)
+
+  public void setDexFX (short dexFX)
   {
     this.dexFX = dexFX;
   }
-  
-  public short getIntFX()
+
+  public short getIntFX ()
   {
     return this.intFX;
   }
-  
-  public void setIntFX(short intFX)
+
+  public void setIntFX (short intFX)
   {
     this.intFX = intFX;
   }
-  
-  public short getLukFX()
+
+  public short getLukFX ()
   {
     return this.lukFX;
   }
-  
-  public void setLukFX(short lukFX)
+
+  public void setLukFX (short lukFX)
   {
     this.lukFX = lukFX;
   }
-  
-  public int getDamPlus()
+
+  public int getDamPlus ()
   {
     return this.damPlus;
   }
-  
-  public short getPddX()
+
+  public short getPddX ()
   {
     return this.pddX;
   }
-  
-  public short getMddX()
+
+  public short getMddX ()
   {
     return this.mddX;
   }
-  
-  public short getArcX()
+
+  public short getArcX ()
   {
     return this.arcX;
   }
-  
-  public short getNbdR()
+
+  public short getNbdR ()
   {
     return this.nbdR;
   }
-  
-  public short getStarX()
+
+  public short getStarX ()
   {
     return this.starX;
   }
-  
-  public short getMdR()
+
+  public short getMdR ()
   {
     return this.mdR;
   }
-  
-  public short getPadR()
+
+  public short getPadR ()
   {
     return this.padR;
   }
-  
-  public short getMadR()
+
+  public short getMadR ()
   {
     return this.madR;
   }
-  
-  public short getStrR()
+
+  public short getStrR ()
   {
     return this.strR;
   }
-  
-  public short getDexR()
+
+  public short getDexR ()
   {
     return this.dexR;
   }
-  
-  public short getIntR()
+
+  public short getIntR ()
   {
     return this.intR;
   }
-  
-  public short getLukR()
+
+  public short getLukR ()
   {
     return this.lukR;
   }
-  
-  public short getDropR()
+
+  public short getDropR ()
   {
     return this.dropR;
   }
-  
-  public void setDropR(short dropR)
+
+  public void setDropR (short dropR)
   {
     this.dropR = dropR;
   }
-  
-  public Point getRb()
+
+  public Point getRb ()
   {
     return this.rb;
   }
-  
-  public void setRb(Point rb2)
+
+  public void setRb (Point rb2)
   {
     this.rb = rb2;
   }
-  
-  public short getLv2pad()
+
+  public short getLv2pad ()
   {
     return this.lv2pad;
   }
-  
-  public void setLv2pad(short lv2pad)
+
+  public void setLv2pad (short lv2pad)
   {
     this.lv2pad = lv2pad;
   }
-  
-  public short getLv2mad()
+
+  public short getLv2mad ()
   {
     return this.lv2mad;
   }
-  
-  public void setLv2mad(short lv2mad)
+
+  public void setLv2mad (short lv2mad)
   {
     this.lv2mad = lv2mad;
   }
-  
-  public short getPddR()
+
+  public short getPddR ()
   {
     return this.pddR;
   }
-  
-  public int getNocoolProps()
+
+  public int getNocoolProps ()
   {
     return this.nocoolProps;
   }
-  
-  public Point getLt2()
+
+  public Point getLt2 ()
   {
     return this.lt2;
   }
-  
-  public void setLt2(Point lt2)
+
+  public void setLt2 (Point lt2)
   {
     this.lt2 = lt2;
   }
-  
-  public Point getLt3()
+
+  public Point getLt3 ()
   {
     return this.lt3;
   }
-  
-  public void setLt3(Point lt3)
+
+  public void setLt3 (Point lt3)
   {
     this.lt3 = lt3;
   }
-  
-  public Point getRb2()
+
+  public Point getRb2 ()
   {
     return this.rb2;
   }
-  
-  public void setRb2(Point rb2)
+
+  public void setRb2 (Point rb2)
   {
     this.rb2 = rb2;
   }
-  
-  public Point getRb3()
+
+  public Point getRb3 ()
   {
     return this.rb3;
   }
-  
-  public void setRb3(Point rb3)
+
+  public void setRb3 (Point rb3)
   {
     this.rb3 = rb3;
   }
-  
-  public static class CancelDiseaseAction
-      implements Runnable
+
+  public static class CancelDiseaseAction implements Runnable
   {
-    
+
     private final WeakReference<MapleCharacter> target;
     private final Map<SecondaryStat, Pair<Integer, Integer>> statup;
-    
-    public CancelDiseaseAction(MapleCharacter target, Map<SecondaryStat, Pair<Integer, Integer>> statup)
+
+    public CancelDiseaseAction (MapleCharacter target, Map<SecondaryStat, Pair<Integer, Integer>> statup)
     {
       this.target = new WeakReference<MapleCharacter>(target);
       this.statup = statup;
     }
-    
-    @Override
-    public void run()
+
+    @Override public void run ()
     {
       MapleCharacter realTarget = this.target.get();
       if (realTarget != null)

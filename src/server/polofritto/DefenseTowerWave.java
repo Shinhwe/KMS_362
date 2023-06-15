@@ -95,17 +95,17 @@ public class DefenseTowerWave
 
                   long baseExp = Long.parseLong(c.getPlayer().getV("poloFrittoBaseExp"));
 
-                  monster.setExp(baseExp * 850);
+                  System.out.println("塔防小遊戲, 基礎怪物經驗值  = " + baseExp);
 
-                  monster2.setExp(baseExp * 850);
+                  monster.setExp(baseExp * 12);
+
+                  monster2.setExp(baseExp * 12);
 
                   monster.addListener(new MonsterListener()
                   {
                     @Override public void monsterKilled ()
                     {
                       DefenseTowerWave.this.checkFinish(c);
-
-                      monster.removeListener();
                     }
                   });
 
@@ -114,8 +114,6 @@ public class DefenseTowerWave
                     @Override public void monsterKilled ()
                     {
                       DefenseTowerWave.this.checkFinish(c);
-
-                      monster2.removeListener();
                     }
                   });
 
@@ -144,7 +142,6 @@ public class DefenseTowerWave
     {
       return;
     }
-
 
     if (this.life == 0)
     {
@@ -228,47 +225,33 @@ public class DefenseTowerWave
     waves.add(9831001);
     this.waveData.add(waves);
     ArrayList<Integer> waves2 = new ArrayList<Integer>();
-    waves2.add(9831003);
-    waves2.add(9831003);
-    waves2.add(9831004);
-    waves2.add(9831004);
-    waves2.add(9831003);
-    waves2.add(9831004);
-    waves2.add(9831005);
-    waves2.add(9831005);
-    waves2.add(9831003);
-    waves2.add(9831004);
-    waves2.add(9831003);
-    waves2.add(9831004);
+    waves2.add(9831006);
+    waves2.add(9831006);
+    waves2.add(9831006);
+    waves2.add(9831006);
+    waves2.add(9831007);
+    waves2.add(9831007);
+    waves2.add(9831007);
+    waves2.add(9831007);
+    waves2.add(9831006);
+    waves2.add(9831006);
+    waves2.add(9831006);
+    waves2.add(9831006);
     this.waveData.add(waves2);
     ArrayList<Integer> waves3 = new ArrayList<Integer>();
-    waves3.add(9831006);
-    waves3.add(9831006);
-    waves3.add(9831007);
-    waves3.add(9831007);
-    waves3.add(9831006);
-    waves3.add(9831007);
-    waves3.add(9831009);
-    waves3.add(9831010);
-    waves3.add(9831006);
-    waves3.add(9831007);
-    waves3.add(9831006);
-    waves3.add(9831007);
+    waves3.add(9831013);
+    waves3.add(9831013);
+    waves3.add(9831013);
+    waves3.add(9831013);
+    waves3.add(9831014);
+    waves3.add(9831014);
+    waves3.add(9831014);
+    waves3.add(9831014);
+    waves3.add(9831013);
+    waves3.add(9831013);
+    waves3.add(9831013);
+    waves3.add(9831013);
     this.waveData.add(waves3);
-    ArrayList<Integer> waves4 = new ArrayList<Integer>();
-    waves3.add(9831012);
-    waves3.add(9831013);
-    waves3.add(9831012);
-    waves3.add(9831013);
-    waves3.add(9831012);
-    waves3.add(9831013);
-    waves3.add(9831014);
-    waves3.add(9831014);
-    waves3.add(9831012);
-    waves3.add(9831012);
-    waves3.add(9831013);
-    waves3.add(9831013);
-    this.waveData.add(waves4);
   }
 
   public void attacked (MapleClient c, int monsterObjectId)

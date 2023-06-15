@@ -63,8 +63,8 @@ public class Skill
   private boolean encode4Byte;
   private boolean ignoreCounter;
   private List<SecondAtom2> secondAtoms;
-  
-  public Skill(final int id)
+
+  public Skill (final int id)
   {
     this.name = "";
     this.psdDamR = "";
@@ -111,8 +111,8 @@ public class Skill
     this.randomSkills = new ArrayList<RandomSkillEntry>();
     this.id = id;
   }
-  
-  public static final Skill loadFromData(final int id, final MapleData data, final MapleData delayData)
+
+  public static final Skill loadFromData (final int id, final MapleData data, final MapleData delayData)
   {
     final Skill ret = new Skill(id);
     boolean isBuff = false;
@@ -383,8 +383,8 @@ public class Skill
     }
     return ret;
   }
-  
-  public static SecondAtom2 parseSecondAtom(final MapleData d, final int id)
+
+  public static SecondAtom2 parseSecondAtom (final MapleData d, final int id)
   {
     final List<Point> aExtraPos = new ArrayList<Point>();
     final List<Integer> aCustom = new ArrayList<Integer>();
@@ -414,28 +414,28 @@ public class Skill
     }
     return new SecondAtom2(dataIndex, 0, createDelay, enableDelay, expire, 0, attackableCount, pos, rotate, aExtraPos, aCustom, localOnly, id);
   }
-  
-  public String getDesc()
+
+  public String getDesc ()
   {
     return this.desc;
   }
-  
-  public void setDesc(final String desc)
+
+  public void setDesc (final String desc)
   {
     this.desc = desc;
   }
-  
-  public int getId()
+
+  public int getId ()
   {
     return this.id;
   }
-  
-  public String getName()
+
+  public String getName ()
   {
     return this.name;
   }
-  
-  public void setName(final String name)
+
+  public void setName (final String name)
   {
     this.name = name;
   }
@@ -454,18 +454,18 @@ public class Skill
             return this.getEffects().get(level - 1);
         }
     }*/
-  
+
   // 제로꺼 가져옴
-  public SecondaryStatEffect getEffect(final int level)
+  public SecondaryStatEffect getEffect (final int level)
   {
     if (getEffects().size() < level)
     {
       if (getEffects().size() > 0)
-      { //incAllskill
+      { // incAllskill
         return getEffects().get(getEffects().size() - 1);
       }
       return null;
-      
+
     }
     else if (level <= 0)
     {
@@ -473,8 +473,8 @@ public class Skill
     }
     return getEffects().get(level - 1);
   }
-  
-  public SecondaryStatEffect getPVPEffect(final int level)
+
+  public SecondaryStatEffect getPVPEffect (final int level)
   {
     if (this.pvpEffects == null)
     {
@@ -497,18 +497,18 @@ public class Skill
       return this.pvpEffects.get(level - 1);
     }
   }
-  
-  public int getSkillType()
+
+  public int getSkillType ()
   {
     return this.skillType;
   }
-  
-  public List<Integer> getAllAnimation()
+
+  public List<Integer> getAllAnimation ()
   {
     return this.animation;
   }
-  
-  public int getAnimation()
+
+  public int getAnimation ()
   {
     if (this.animation == null)
     {
@@ -516,53 +516,53 @@ public class Skill
     }
     return this.animation.get(Randomizer.nextInt(this.animation.size()));
   }
-  
-  public boolean isPVPDisabled()
+
+  public boolean isPVPDisabled ()
   {
     return this.pvpDisabled;
   }
-  
-  public boolean isChargeSkill()
+
+  public boolean isChargeSkill ()
   {
     return this.chargeskill;
   }
-  
-  public boolean isInvisible()
+
+  public boolean isInvisible ()
   {
     return this.invisible;
   }
-  
-  public boolean isEncode4Byte()
+
+  public boolean isEncode4Byte ()
   {
     return this.encode4Byte;
   }
-  
-  public boolean hasRequiredSkill()
+
+  public boolean hasRequiredSkill ()
   {
     return this.requiredSkill.size() > 0;
   }
-  
-  public List<Pair<String, Integer>> getRequiredSkills()
+
+  public List<Pair<String, Integer>> getRequiredSkills ()
   {
     return this.requiredSkill;
   }
-  
-  public int getMaxLevel()
+
+  public int getMaxLevel ()
   {
     return this.maxLevel;
   }
-  
-  public int getTrueMax()
+
+  public int getTrueMax ()
   {
     return this.trueMax;
   }
-  
-  public boolean combatOrders()
+
+  public boolean combatOrders ()
   {
     return this.combatOrders;
   }
-  
-  public boolean canBeLearnedBy(final MapleCharacter chr)
+
+  public boolean canBeLearnedBy (final MapleCharacter chr)
   {
     final int jid;
     final short job = (short) (jid = chr.getJob());
@@ -605,13 +605,13 @@ public class Skill
     }
     return jid / 100 == skillForJob / 100 && jid / 1000 == skillForJob / 1000 && (!GameConstants.isCannon(skillForJob) || GameConstants.isCannon(job)) && (!GameConstants.isDemonSlayer(skillForJob) || GameConstants.isDemonSlayer(job)) && (!GameConstants.isAdventurer(skillForJob) || GameConstants.isAdventurer(job)) && (!GameConstants.isKOC(skillForJob) || GameConstants.isKOC(job)) && (!GameConstants.isAran(skillForJob) || GameConstants.isAran(job)) && (!GameConstants.isEvan(skillForJob) || GameConstants.isEvan(job)) && (!GameConstants.isMercedes(skillForJob) || GameConstants.isMercedes(job)) && (!GameConstants.isResist(skillForJob) || GameConstants.isResist(job)) && (jid / 10 % 10 != 0 || skillForJob / 10 % 10 <= jid / 10 % 10) && (skillForJob / 10 % 10 == 0 || skillForJob / 10 % 10 == jid / 10 % 10) && skillForJob % 10 <= jid % 10;
   }
-  
-  public boolean isTimeLimited()
+
+  public boolean isTimeLimited ()
   {
     return this.timeLimited;
   }
-  
-  public boolean sub_4FD900(final int a1)
+
+  public boolean sub_4FD900 (final int a1)
   {
     if (a1 <= 5320007)
     {
@@ -714,8 +714,8 @@ public class Skill
       return a1 == 21121008 || (a1 >= 21120020 && a1 <= 21120021);
     }
   }
-  
-  public boolean sub_4FDA20(final int a1)
+
+  public boolean sub_4FDA20 (final int a1)
   {
     boolean result = false;
     if (a1 - 92000000 >= 1000000 || a1 % 10000 != 0)
@@ -728,8 +728,8 @@ public class Skill
     }
     return result;
   }
-  
-  public boolean sub_4FD870(final int a1)
+
+  public boolean sub_4FD870 (final int a1)
   {
     int v1 = a1 / 10000;
     if (a1 / 10000 == 8000)
@@ -738,8 +738,8 @@ public class Skill
     }
     return v1 - 800000 <= 99;
   }
-  
-  public boolean sub_48AEF0(final int a1)
+
+  public boolean sub_48AEF0 (final int a1)
   {
     int v1 = a1 / 10000;
     if (a1 / 10000 == 8000)
@@ -749,8 +749,8 @@ public class Skill
     final boolean result = v1 - 40000 > 5 && this.sub_48A360(v1);
     return result;
   }
-  
-  public boolean sub_48A360(final int a1)
+
+  public boolean sub_48A360 (final int a1)
   {
     boolean v2;
     if (a1 > 6001)
@@ -786,8 +786,8 @@ public class Skill
     }
     return v2 || a1 - 800000 < 100;
   }
-  
-  public boolean sub_4FD8B0(final int a1)
+
+  public boolean sub_4FD8B0 (final int a1)
   {
     boolean result;
     if (a1 >= 0)
@@ -805,8 +805,8 @@ public class Skill
     }
     return result;
   }
-  
-  public int sub_48A160(final int a1)
+
+  public int sub_48A160 (final int a1)
   {
     int result = a1 / 10000;
     if (a1 / 10000 == 8000)
@@ -815,8 +815,8 @@ public class Skill
     }
     return result;
   }
-  
-  public int sub_489A10(final int a1)
+
+  public int sub_489A10 (final int a1)
   {
     int result = 0;
     if (this.sub_48A360(a1) || a1 % 100 == 0 || a1 == 501 || a1 == 3101)
@@ -878,8 +878,8 @@ public class Skill
     }
     return result;
   }
-  
-  public boolean sub_4FD7F0(final int a1)
+
+  public boolean sub_4FD7F0 (final int a1)
   {
     boolean v1;
     if (a1 > 101100101)
@@ -926,8 +926,8 @@ public class Skill
     }
     return v1;
   }
-  
-  public boolean isFourthJob()
+
+  public boolean isFourthJob ()
   {
     final int a1 = this.id;
     boolean result;
@@ -943,185 +943,185 @@ public class Skill
     }
     return result;
   }
-  
-  public Element getElement()
+
+  public Element getElement ()
   {
     return this.element;
   }
-  
-  public int getAnimationTime()
+
+  public int getAnimationTime ()
   {
     return this.animationTime;
   }
-  
-  public int getMasterLevel()
+
+  public int getMasterLevel ()
   {
     return this.masterLevel;
   }
-  
-  public int getDelay()
+
+  public int getDelay ()
   {
     return this.delay;
   }
-  
-  public int getTamingMob()
+
+  public int getTamingMob ()
   {
     return this.eventTamingMob;
   }
-  
-  public boolean isBeginnerSkill()
+
+  public boolean isBeginnerSkill ()
   {
     final int jobId = this.id / 10000;
     return GameConstants.isBeginnerJob(jobId);
   }
-  
-  public boolean isMagic()
+
+  public boolean isMagic ()
   {
     return this.magic;
   }
-  
-  public boolean isMovement()
+
+  public boolean isMovement ()
   {
     return this.casterMove;
   }
-  
-  public boolean isPush()
+
+  public boolean isPush ()
   {
     return this.pushTarget;
   }
-  
-  public boolean isPull()
+
+  public boolean isPull ()
   {
     return this.pullTarget;
   }
-  
-  public int getPsd()
+
+  public int getPsd ()
   {
     return this.psd;
   }
-  
-  public String getPsdDamR()
+
+  public String getPsdDamR ()
   {
     return this.psdDamR;
   }
-  
-  public boolean isHyper()
+
+  public boolean isHyper ()
   {
     return this.hyper;
   }
-  
-  public boolean isVMatrix()
+
+  public boolean isVMatrix ()
   {
     return this.vSkill;
   }
-  
-  public boolean isNotCooltimeReset()
+
+  public boolean isNotCooltimeReset ()
   {
     return this.notCooltimeReset;
   }
-  
-  public boolean isNotIncBuffDuration()
+
+  public boolean isNotIncBuffDuration ()
   {
     return this.notIncBuffDuration;
   }
-  
-  public boolean isSpecialSkill()
+
+  public boolean isSpecialSkill ()
   {
     final int jobId = this.id / 10000;
     return jobId == 900 || jobId == 800 || jobId == 9000 || jobId == 9200 || jobId == 9201 || jobId == 9202 || jobId == 9203 || jobId == 9204;
   }
-  
-  public List<SecondaryStatEffect> getEffects()
+
+  public List<SecondaryStatEffect> getEffects ()
   {
     return this.effects;
   }
-  
-  public int getType()
+
+  public int getType ()
   {
     return this.type;
   }
-  
-  public void setType(final int type)
+
+  public void setType (final int type)
   {
     this.type = type;
   }
-  
-  public List<Integer> getPsdSkills()
+
+  public List<Integer> getPsdSkills ()
   {
     return this.psdSkills;
   }
-  
-  public void setPsdSkills(final List<Integer> psdSkills)
+
+  public void setPsdSkills (final List<Integer> psdSkills)
   {
     this.psdSkills = psdSkills;
   }
-  
-  public boolean isChainAttack()
+
+  public boolean isChainAttack ()
   {
     return this.chainAttack;
   }
-  
-  public void setChainAttack(final boolean chainAttack)
+
+  public void setChainAttack (final boolean chainAttack)
   {
     this.chainAttack = chainAttack;
   }
-  
-  public boolean isFinalAttack()
+
+  public boolean isFinalAttack ()
   {
     return this.finalAttack;
   }
-  
-  public List<Integer> getSkillList()
+
+  public List<Integer> getSkillList ()
   {
     return this.skillList;
   }
-  
-  public List<Integer> getSkillList2()
+
+  public List<Integer> getSkillList2 ()
   {
     return this.skillList2;
   }
-  
-  public boolean isIgnoreCounter()
+
+  public boolean isIgnoreCounter ()
   {
     return this.ignoreCounter;
   }
-  
-  public List<SecondAtom2> getSecondAtoms()
+
+  public List<SecondAtom2> getSecondAtoms ()
   {
     return this.secondAtoms;
   }
-  
-  public void setSecondAtoms(final List<SecondAtom2> secondAtoms)
+
+  public void setSecondAtoms (final List<SecondAtom2> secondAtoms)
   {
     this.secondAtoms = secondAtoms;
   }
-  
-  public int getFinalAttackIdx()
+
+  public int getFinalAttackIdx ()
   {
     return this.finalAttackId;
   }
-  
-  public int getWeaponIdx()
+
+  public int getWeaponIdx ()
   {
     return this.weaponIdx;
   }
-  
-  public List<RandomSkillEntry> getRSE()
+
+  public List<RandomSkillEntry> getRSE ()
   {
     return this.randomSkills;
   }
-  
-  public int getVehicleID()
+
+  public int getVehicleID ()
   {
     return this.vehicleID;
   }
-  
-  public int getCategoryIndex()
+
+  public int getCategoryIndex ()
   {
     return this.categoryIndex;
   }
-  
-  public void setCategoryIndex(final int categoryIndex)
+
+  public void setCategoryIndex (final int categoryIndex)
   {
     this.categoryIndex = categoryIndex;
   }

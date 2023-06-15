@@ -68,10 +68,6 @@ public class PlayerHandler
     return acCheckLong;
   }
 
-  public static boolean isFinisher (int skillid)
-  {
-    return skillid == 400011027;
-  }
 
   public static void ChangeSkillMacro (LittleEndianAccessor slea, MapleCharacter chr)
   {

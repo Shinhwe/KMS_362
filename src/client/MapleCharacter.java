@@ -7349,47 +7349,87 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     return this.getTotalSkillLevel(SkillFactory.getSkill(skillid));
   }
 
-  public final void handleOrbgain (final AttackInfo attack, final int skillid)
+  public final void handleGainOrb (final AttackInfo attack, final int skillid)
   {
-    int 현재콤보어택개수 = this.getBuffedValue(SecondaryStat.ComboCounter);
-    final Skill combo = SkillFactory.getSkill(1101013);
-    final Skill advcombo = SkillFactory.getSkill(1120003);
-    final SecondaryStatEffect ceffect = SkillFactory.getSkill(1101013).getEffect(this.getTotalSkillLevel(1101013));
-    final int advComboSkillLevel = this.getTotalSkillLevel(advcombo);
-    int 플러스콤보어택 = 1;
-    int suc = 0;
-    if (this.getSkillLevel(1110013) > 0)
+    if (skillid == 400011073 || skillid == 400011074 || skillid == 400011075 || skillid == 400011076)
     {
-      suc = 80;
+      return;
     }
-    else
+
+    int 當前鬥氣點數 = this.getBuffedValue(SecondaryStat.ComboCounter);
+
+    int 最大鬥氣點數 = 1;
+
+    int 鬥氣集中技能Id = 1101013;
+
+    int 鬥氣協和技能Id = 1110013;
+
+    int 進階鬥氣技能Id = 1120003;
+
+    final Skill 鬥氣集中 = SkillFactory.getSkill(鬥氣集中技能Id);
+
+    final Skill 鬥氣協和 = SkillFactory.getSkill(鬥氣協和技能Id);
+
+    final Skill 進階鬥氣 = SkillFactory.getSkill(進階鬥氣技能Id);
+
+    int 增加的鬥氣點數 = 1;
+
+    int 鬥氣集中技能等級 = this.getSkillLevel(鬥氣集中技能Id);
+
+    int 鬥氣協和技能等級 = this.getSkillLevel(鬥氣協和技能Id);
+
+    int 進階鬥氣技能等級 = this.getSkillLevel(進階鬥氣技能Id);
+
+    SecondaryStatEffect 鬥氣集中Effect = 鬥氣集中.getEffect(鬥氣集中技能等級);
+
+    SecondaryStatEffect 鬥氣協和Effect = 鬥氣協和.getEffect(鬥氣協和技能等級);
+
+    SecondaryStatEffect 進階鬥氣Effect = 進階鬥氣.getEffect(進階鬥氣技能等級);
+
+
+    if (鬥氣集中技能等級 == 0)
     {
-      suc = 40;
+      return;
     }
-    if (this.getTotalSkillLevel(advcombo) > 0 && Randomizer.isSuccess((this.getSkillLevel(1120044) > 0) ? 100 : 80))
+
+    int suc = 40;
+
+    if (鬥氣協和技能等級 > 0)
     {
-      ++플러스콤보어택;
+      suc = 鬥氣協和Effect.getProp();
+      最大鬥氣點數 = 6;
     }
+
+    if (進階鬥氣技能等級 > 0)
+    {
+      suc = 進階鬥氣Effect.getProp();
+      增加的鬥氣點數 = 2;
+      最大鬥氣點數 = 進階鬥氣Effect.getV() + 1;
+    }
+
     if (this.getBuffedValue(400011073))
     {
       suc /= 2;
     }
+
     if (Randomizer.isSuccess(suc))
     {
-      if (skillid == 1120013 || skillid == 400011073 || skillid == 400011074 || skillid == 400011075 || skillid == 400011076)
+      當前鬥氣點數 += 增加的鬥氣點數;
+
+      if (當前鬥氣點數 >= 最大鬥氣點數)
       {
-        return;
+        當前鬥氣點數 = 最大鬥氣點數;
       }
-      현재콤보어택개수 += 플러스콤보어택;
-      if (현재콤보어택개수 >= 11)
-      {
-        현재콤보어택개수 = 11;
-      }
-      final EnumMap<SecondaryStat, Pair<Integer, Integer>> stat = new EnumMap<SecondaryStat, Pair<Integer, Integer>>(SecondaryStat.class);
-      stat.put(SecondaryStat.ComboCounter, new Pair<Integer, Integer>(현재콤보어택개수, 0));
-      this.setBuffedValue(SecondaryStat.ComboCounter, 현재콤보어택개수);
-      this.client.getSession().writeAndFlush(CWvsContext.BuffPacket.giveBuff(stat, combo.getEffect(this.getTotalSkillLevel(combo)), this));
-      this.map.broadcastMessage(this, CWvsContext.BuffPacket.giveForeignBuff(this, stat, combo.getEffect(this.getTotalSkillLevel(combo))), false);
+      final EnumMap<SecondaryStat, Pair<Integer, Integer>> stat = new EnumMap<>(SecondaryStat.class);
+
+      stat.put(SecondaryStat.ComboCounter, new Pair<>(當前鬥氣點數, 0));
+
+      this.setBuffedValue(SecondaryStat.ComboCounter, 當前鬥氣點數);
+
+      this.client.getSession().writeAndFlush(CWvsContext.BuffPacket.giveBuff(stat, 鬥氣集中Effect, this));
+
+      this.map.broadcastMessage(this, CWvsContext.BuffPacket.giveForeignBuff(this, stat, 鬥氣集中Effect), false);
+
     }
   }
 
@@ -16162,9 +16202,9 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       case 111:
       case 112:
       {
-        if (!PlayerHandler.isFinisher(skillid) & this.getBuffedValue(SecondaryStat.ComboCounter) != null)
+        if (this.getBuffedValue(SecondaryStat.ComboCounter) != null)
         {
-          this.handleOrbgain(attack, skillid);
+          this.handleGainOrb(attack, skillid);
           break;
         }
         break;
