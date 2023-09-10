@@ -9314,16 +9314,16 @@ public class PlayerHandler
 
   public static void DailyGift (MapleClient c)
   {
-    int date = Integer.parseInt(c.getKeyValue("dailyGiftDay"));
+    int 已簽到天數 = Integer.parseInt(c.getKeyValue("dailyGiftDay"));
     int complete = Integer.parseInt(c.getKeyValue("dailyGiftComplete"));
     if (complete == 0)
     {
-      if (date >= GameConstants.dailyItems.size())
+      if (已簽到天數 >= GameConstants.dailyItems.size())
       {
         c.getSession().writeAndFlush(CField.dailyGift(c.getPlayer(), 3, 0));
         return;
       }
-      DailyGiftItemInfo item = GameConstants.dailyItems.get(date);
+      DailyGiftItemInfo item = GameConstants.dailyItems.get(已簽到天數);
       int itemId = item.getItemId();
       int quantity = item.getQuantity();
       if (item.getItemId() == 0 && item.getSN() > 0)
@@ -9358,11 +9358,23 @@ public class PlayerHandler
         }
         MapleInventoryManipulator.addbyItem(c, addItem);
       }
-      c.setKeyValue("dailyGiftDay", String.valueOf(date + 1));
+      int 簽到天數 = 已簽到天數 + 1;
+
+      c.setKeyValue("dailyGiftDay", String.valueOf(已簽到天數 + 1));
+
       c.setKeyValue("dailyGiftComplete", "1");
-      c.getSession().writeAndFlush(CWvsContext.updateDailyGift("count=" + c.getKeyValue("dailyGiftComplete") + ";day=" + c.getKeyValue("dailyGiftDay") + ";date=" + c.getPlayer().getKeyValue(16700, "date")));
+      
+      int 今天日期 = GameConstants.getCurrentDate_NoTime();
+
+      String dailyGiftPackage = "day=" + c.getKeyValue("dailyGiftDay") + ";date=" + 今天日期;
+
+      // 是否已完成: count 0 = 未完成; 1 = 已完成; 已完成天數: day = 0; 當前日期: date = YYYYMMDD
+      c.getSession().writeAndFlush(CWvsContext.updateDailyGift(dailyGiftPackage));
+
       c.getSession().writeAndFlush(CField.dailyGift(c.getPlayer(), 2, itemId));
+
       c.getSession().writeAndFlush(CField.dailyGift(c.getPlayer(), 0, itemId));
+
     }
     else
     {

@@ -2210,7 +2210,7 @@ public class Equip extends Item implements Serializable
 
   public short getTotalStr ()
   {
-    return (short) (this.getTemplate().getStr() + enchantStr + starForceStr + flameStr + authenticStr);
+    return (short) (this.getTemplate().getStr() + enchantStr + starForceStr + flameStr + arcStr + authenticStr);
   }
 
   public short getTotalDex ()

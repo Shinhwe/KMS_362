@@ -57,6 +57,7 @@ import tools.packet.*;
 import java.awt.*;
 import java.io.Serializable;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
@@ -5446,6 +5447,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     }
     for (final Map.Entry<Integer, String> q : this.getClient().getCustomKeyValue().entrySet())
     {
+      System.out.println("customKeyValue key = " + q.getKey() + "; value = " + q.getValue());
       mplew.writeInt(q.getKey());
       mplew.writeMapleAsciiString((q.getValue() == null) ? "" : q.getValue());
     }
@@ -5454,7 +5456,15 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   public final void specialQustInfoPacket (final MaplePacketLittleEndianWriter mplew)
   {
     final Map<Integer, String> customQuestInfo = new HashMap<Integer, String>();
-    customQuestInfo.put(15, "count=" + this.client.getKeyValue("dailyGiftComplete") + ";day=" + this.client.getKeyValue("dailyGiftDay") + ";date=" + this.getKeyValue(16700, "date"));
+    String 是否已完成簽到 = getClient().getKeyValue("dailyGiftComplete");
+
+    String 已簽到天數 = getClient().getKeyValue("dailyGiftDay");
+
+    int 今天日期 = GameConstants.getCurrentDate_NoTime();
+
+    // 是否已完成: count 0 = 未完成; 1 = 已完成; 已完成天數: day = 0; 當前日期: date = YYYYMMDD; 任務id = 15
+    customQuestInfo.put(15, "count=" + 是否已完成簽到 + ";day=" + 已簽到天數 + ";date=" + 今天日期);
+
     mplew.writeInt(customQuestInfo.size());
     for (final Map.Entry<Integer, String> q : customQuestInfo.entrySet())
     {
@@ -18986,9 +18996,9 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
         final double rate2 = GameConstants.UnionAttackerRate(union.getLevel());
         final int a55 = union.getLevel() * union.getLevel() * union.getLevel();
         final int ab = (int) (rate2 * a55) + 12500;
-        final int a56 = union.getStarForce() * union.getStarForce() * union.getStarForce();
-        final int a57 = union.getStarForce() * union.getStarForce();
-        final int abc = (int) (GameConstants.UnionStarForceRate(union.getStarForce()) * a56 + GameConstants.UnionStarForceRate2(union.getStarForce()) * a57 + (GameConstants.UnionStarForceRate3(union.getStarForce()) * union.getStarForce() + GameConstants.UnionStarForceRate4(union.getStarForce())));
+        final int a56 = union.getStarForceLevel() * union.getStarForceLevel() * union.getStarForceLevel();
+        final int a57 = union.getStarForceLevel() * union.getStarForceLevel();
+        final int abc = (int) (GameConstants.UnionStarForceRate(union.getStarForceLevel()) * a56 + GameConstants.UnionStarForceRate2(union.getStarForceLevel()) * a57 + (GameConstants.UnionStarForceRate3(union.getStarForceLevel()) * union.getStarForceLevel() + GameConstants.UnionStarForceRate4(union.getStarForceLevel())));
         hob = ab + abc;
         rate += hob;
       }
@@ -22277,18 +22287,23 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
 
       for (String keyValue : clientDateKeyValues)
       {
-        if (this.client.getKeyValue(keyValue) != null)
-        {
-          this.client.setKeyValue(keyValue, "0");
-        }
         if (keyValue.equals("dailyGiftComplete"))
         {
-          this.client.send(CWvsContext.updateDailyGift("count=0;day=" + this.client.getKeyValue("dailyGiftDay") + ";date=" + GameConstants.getCurrentDate_NoTime()));
-          this.client.send(CField.dailyGift(this.client.getPlayer(), 1, 0));
+          int 已簽到天數 = Integer.parseInt(client.getKeyValue("dailyGiftDay"));
+          int 今天日期 = GameConstants.getCurrentDate_NoTime();
           if (kc.getDayt() == 1)
           {
-            this.client.setKeyValue("dailyGiftDay", "0");
+            已簽到天數 = 0;
+            client.setKeyValue("dailyGiftDay", "0");
           }
+          client.setKeyValue("dailyGiftComplete", "0");
+          client.send(CWvsContext.updateDailyGift("count=0;day=" + 已簽到天數 + ";date=" + 今天日期));
+          client.send(CField.dailyGift(client.getPlayer(), 1, 0));
+          client.getPlayer().updateInfoQuest(16700, "count=0;date=" + 今天日期);
+        }
+        else if (client.getKeyValue(keyValue) != null && keyValue.equals("dailyGiftDay") == false)
+        {
+          client.setKeyValue(keyValue, "0");
         }
       }
       for (Pair<Integer, String> keyz : clientCustomDatas)

@@ -2484,6 +2484,12 @@ public final class MapleMap
           broadcastMessage(CField.startMapEffect((this.eliteCount <= 15) ? "어두운 기운이 사라지지 않아 이곳을 음산하게 만들고 있습니다." : "이곳이 어둠으로 가득차 곧 무슨일이 일어날 듯 합니다.", 5120124, true));
         }
       }
+      if (monster.getStats().getLevel() - 21 <= chr.getLevel() && chr.getLevel() <= monster.getStats().getLevel() + 21 && chr.getKeyValue(16700, "count") <= 300L)
+      {
+        String questData = "count=" + chr.getKeyValue(16700, "count") + ";date=" + chr.getKeyValue(16700, "date");
+        chr.updateInfoQuest(16700, questData);
+        System.out.println("questData = " + questData);
+      }
       if (chr.getBuffedEffect(SecondaryStat.SoulMP) != null)
       {
         Item toDrop = new Item(4001536, (short) 0, (short) Randomizer.rand(1, 5), 0);

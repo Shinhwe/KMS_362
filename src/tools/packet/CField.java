@@ -988,21 +988,10 @@ public class CField
     return mplew.getPacket();
   }
 
-  public static byte[] getCubeStart (MapleCharacter chr, Item item, boolean up, int cubeId, int remainCount)
+  public static byte[] getIngameCubeStart (MapleCharacter chr, Item item, boolean up, int cubeId, int remainCount)
   {
     MaplePacketLittleEndianWriter mplew = new MaplePacketLittleEndianWriter();
-    boolean adi = false;
-    switch (cubeId)
-    {
-      case 2730000:
-      case 2730001:
-      case 2730002:
-      case 2730004:
-      case 2730005:
-        adi = true;
-        break;
-    }
-    mplew.writeShort(adi ? (SendPacketOpcode.SHOW_CUBE_EFFECT.getValue() + 1) : SendPacketOpcode.SHOW_CUBE_EFFECT.getValue());
+    mplew.writeShort(SendPacketOpcode.SHOW_INGAME_CUBE_EFFECT.getValue());
     mplew.writeInt(chr.getId());
     mplew.write(up);
     mplew.writeInt(cubeId);
@@ -1012,10 +1001,24 @@ public class CField
     return mplew.getPacket();
   }
 
+  public static byte[] getIngameAdditionalCubeStart (MapleCharacter chr, Item item, boolean up, int cubeId, int remainCount)
+  {
+    MaplePacketLittleEndianWriter mplew = new MaplePacketLittleEndianWriter();
+    mplew.writeShort(SendPacketOpcode.SHOW_INGAME_ADDITIONAL_CUBE_EFFECT.getValue());
+    mplew.writeInt(chr.getId());
+    mplew.write(up);
+    mplew.writeInt(cubeId);
+    mplew.writeInt(item.getPosition());
+    mplew.writeInt(remainCount);
+    PacketHelper.addItemInfo(mplew, item);
+
+    return mplew.getPacket();
+  }
+
   public static byte[] getAdditionalPotentialCubeStart (MapleCharacter chr, Item item, boolean up, int cubeId, int remainCount)
   {
     MaplePacketLittleEndianWriter mplew = new MaplePacketLittleEndianWriter();
-    mplew.writeShort(SendPacketOpcode.SHOW_ADDITIONALPOTENTIAL_CUBE_EFFECT.getValue());
+    mplew.writeShort(SendPacketOpcode.SHOW_ADDITIONAL_CUBE_EFFECT.getValue());
     mplew.writeInt(chr.getId());
     mplew.write(up);
     mplew.writeInt(cubeId);
@@ -3477,10 +3480,10 @@ public class CField
       mplew.write(1);
       mplew.writeLong(PacketHelper.getTime(System.currentTimeMillis()));
       mplew.writeLong(PacketHelper.getTime(-1L));
-      mplew.writeInt(28); // 28
-      mplew.writeInt(2); // 2
-      mplew.writeInt(28); // 28 存疑
-      mplew.writeInt(300);
+      mplew.writeInt(28); // 天數
+      mplew.writeInt(0); // 不知道是啥
+      mplew.writeInt(16700); // 任務 id
+      mplew.writeInt(300); // 任務數量
       mplew.writeInt(GameConstants.dailyItems.size());
       for (DailyGiftItemInfo item : GameConstants.dailyItems)
       {
@@ -3532,7 +3535,6 @@ public class CField
     //   p.writeInt(0);
     //   p.writeInt(0);
     // }
-
 
 
     return mplew.getPacket();
@@ -3732,7 +3734,7 @@ public class CField
     }
     mplew.writeShort(SendPacketOpcode.OPEN_UNION.getValue());
     mplew.writeInt(c.getPlayer().getUnionCoin());
-    mplew.writeInt(0);
+    mplew.writeInt(0); // union rank?
     mplew.writeInt(c.getPlayer().getUnions().getUnions().size());
     for (MapleUnion chr : c.getPlayer().getUnions().getUnions())
     {
@@ -3760,6 +3762,7 @@ public class CField
       mplew.writeMapleAsciiString("");
     }
     mplew.write(0);
+    System.out.println(mplew);
     return mplew.getPacket();
   }
 

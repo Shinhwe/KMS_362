@@ -5220,7 +5220,7 @@ public class InventoryHandler
 
           c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, itemId, eq.getItemId()));
 
-          c.getSession().writeAndFlush(CField.getRedCubeStart(c.getPlayer(), item, up, itemId, c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
+          c.getSession().writeAndFlush(CField.getIngameCubeStart(c.getPlayer(), item, up, itemId, c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
 
           c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
 
@@ -10343,7 +10343,7 @@ public class InventoryHandler
 
           c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, cubeId, eq.getItemId()));
 
-          c.getSession().writeAndFlush(CField.getRedCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
+          c.getSession().writeAndFlush(CField.getIngameCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
 
           MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (short) 1, false, true);
 
@@ -10386,7 +10386,7 @@ public class InventoryHandler
             return;
           }
 
-          if (eq.獲取附加潛能等級().獲取潛能等級的值() > 16)
+          if (eq.獲取附加潛能等級().獲取潛能等級的值() > 17)
           {
             c.getPlayer().dropMessage(1, "該裝備的附加潛能太強, 無法使用可疑的附加方塊!");
 
@@ -10443,7 +10443,7 @@ public class InventoryHandler
 
           c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, cubeId, eq.getItemId()));
 
-          c.getSession().writeAndFlush(CField.getRedCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
+          c.getSession().writeAndFlush(CField.getIngameAdditionalCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
 
           MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (short) 1, false, true);
 
@@ -10573,7 +10573,7 @@ public class InventoryHandler
 
           c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, cubeId, eq.getItemId()));
 
-          c.getSession().writeAndFlush(CField.getRedCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
+          c.getSession().writeAndFlush(CField.getIngameCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
 
           MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (short) 1, false, true);
 
@@ -10703,7 +10703,7 @@ public class InventoryHandler
 
           c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, cubeId, eq.getItemId()));
 
-          c.getSession().writeAndFlush(CField.getRedCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
+          c.getSession().writeAndFlush(CField.getIngameCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
 
           MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (short) 1, false, true);
 

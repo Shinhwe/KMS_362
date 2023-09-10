@@ -143,7 +143,7 @@ public class MapleUnion
     this.name = name;
   }
   
-  public int getStarForce()
+  public int getStarForceLevel ()
   {
     return this.starforce;
   }

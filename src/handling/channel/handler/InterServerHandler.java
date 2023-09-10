@@ -31,14 +31,14 @@ import java.util.*;
 
 public class InterServerHandler
 {
-  
-  public static final void EnterCS(MapleClient c, MapleCharacter chr)
+
+  public static final void EnterCS (MapleClient c, MapleCharacter chr)
   {
     chr.getClient().getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
     chr.getClient().getSession().writeAndFlush(CField.UIPacket.openUI(152));
   }
-  
-  public static final void EnterCS(MapleClient c, MapleCharacter chr, boolean npc)
+
+  public static final void EnterCS (MapleClient c, MapleCharacter chr, boolean npc)
   {
     if (npc)
     {
@@ -84,18 +84,18 @@ public class InterServerHandler
       c.setReceiving(false);
     }
   }
-  
-  public static final void Loggedin(int playerid, MapleClient c)
+
+  public static final void Loggedin (int playerid, MapleClient c)
   {
     try
     {
       MapleCharacter player;
       /*  120 */
       ChannelServer channelServer = c.getChannelServer();
-      
+
       /*  122 */
       CharacterTransfer transfer = channelServer.getPlayerStorage().getPendingCharacter(playerid);
-      
+
       /*  124 */
       if (transfer == null)
       {
@@ -150,12 +150,12 @@ public class InterServerHandler
       c.setPlayer(player);
       /*  151 */
       c.setAccID(player.getAccountID());
-      
+
       /*  192 */
       c.loadKeyValues();
       /*  193 */
       c.loadCustomDatas();
-      
+
       /*  195 */
       if (!c.CheckIPAddress())
       {
@@ -167,17 +167,20 @@ public class InterServerHandler
       }
       /*  200 */
       channelServer.removePlayer(player);
-      
+
       /*  202 */
       World.isCharacterListConnected(player.getName(), c.loadCharacterNames(c.getWorld()));
-      
+
       /*  204 */
       c.updateLoginState(2, c.getSessionIPAddress());
       /*  205 */
       channelServer.addPlayer(player);
       /*  209 */
-      int[] bossquests = {33565, 31851, 31833, 3496, 3470, 38214, 30007, 3170, 31179, 3521, 31152, 34015, 33294, 34330, 34585, 35632, 35731, 35815, 34478, 36013, 34331, 34478, 100114, 16013, 34120, 34218, 34330, 34331, 34478, 34269, 34272, 34585, 34586, 6500, 1465, 1466, 26607, 1484, 39921, 16059, 16015, 16013, 100114, 34128, 39013, 34772, 39034, 34269, 34271, 34272, 34243, 39204, 15417, 34377, 34477, 34450};
-      
+      int[] bossquests = {
+          33565, 31851, 31833, 3496, 3470, 38214, 30007, 3170, 31179, 3521, 31152, 34015, 33294, 34330, 34585, 35632, 35731, 35815, 34478, 36013, 34331, 34478, 100114, 16013, 34120, 34218, 34330, 34331, 34478, 34269, 34272, 34585, 34586, 6500, 1465, 1466, 26607, 1484, 39921,
+          16059, 16015, 16013, 100114, 34128, 39013, 34772, 39034, 34269, 34271, 34272, 34243, 39204, 15417, 34377, 34477, 34450
+      };
+
       /*  264 */
       for (int questid : bossquests)
       {
@@ -249,7 +252,7 @@ public class InterServerHandler
         /*  297 */
         c.getPlayer().setKeyValue(34271, "29", "h0");
       }
-      
+
       /*  301 */
       if (player.getQuestStatus(30023) != 1 && player.getQuestStatus(30024) != 1 && player.getQuestStatus(30025) != 1 && player.getQuestStatus(30026) != 1)
       {
@@ -262,7 +265,7 @@ public class InterServerHandler
         /*  305 */
         MapleQuest.getInstance(30026).forceStart(player, 0, "10");
       }
-      
+
       /*  308 */
       if (GameConstants.isEvan(player.getJob()))
       {
@@ -303,7 +306,7 @@ public class InterServerHandler
           MapleQuest.getInstance(k).forceComplete(player, 0);
         }
       }
-      
+
       /*  327 */
       if (player.getClient().getKeyValue("LevelUpGive") == null)
       {
@@ -331,7 +334,7 @@ public class InterServerHandler
           }
         }
       }
-      
+
       /*  342 */
       if (player.getClient().getKeyValue("GrowQuest") == null)
       {
@@ -358,15 +361,14 @@ public class InterServerHandler
             }
             /*  352 */
           }
-          else if (Integer.parseInt(str[k]) == 2
-              && /*  353 */ player.getQuestStatus(questid) != 2)
+          else if (Integer.parseInt(str[k]) == 2 && /*  353 */ player.getQuestStatus(questid) != 2)
           {
             /*  354 */
             player.forceCompleteQuest(questid);
           }
         }
       }
-      
+
       /*  361 */
       if (player.getClient().getKeyValue("BloomingTuto") != null)
       {
@@ -441,13 +443,12 @@ public class InterServerHandler
           player.setKeyValue(501387, "flower", player.getClient().getKeyValue("Bloomingflower"));
         }
         /*  397 */
-        if (Integer.parseInt(player.getClient().getKeyValue("BloomingTuto")) > 1
-            && /*  398 */ player.getQuestStatus(501394) != 2)
+        if (Integer.parseInt(player.getClient().getKeyValue("BloomingTuto")) > 1 && /*  398 */ player.getQuestStatus(501394) != 2)
         {
           /*  399 */
           player.forceCompleteQuest(501394);
         }
-        
+
         /*  402 */
         if (Integer.parseInt(player.getClient().getKeyValue("BloomingTuto")) > 2)
         {
@@ -481,7 +482,7 @@ public class InterServerHandler
           }
         }
       }
-      
+
       /*  420 */
       for (Iterator<Integer> iterator = QuestCompleteStatus.completeQuests.iterator(); iterator.hasNext(); )
       {
@@ -542,45 +543,44 @@ public class InterServerHandler
         }
         c.getPlayer().setKeyValue(123, "pp", String.valueOf(pirodo));
       }
-      
+
       /*  426 */
       FileoutputUtil.log(FileoutputUtil.접속로그, "[접속] 계정번호 : " + player.getClient().getAccID() + " | " + player.getName() + "(" + player.getId() + ")이 접속.");
       /*  427 */
-      if (player.getClient().getSessionIPAddress().equals("127.0.0.1") && ( /*  428 */player.getClient().getAccountName().equals("xpem7922") || player.getClient().getAccountName().equals("rudxodlek2222"))
-          && /*  429 */ !player.isGM())
+      if (player.getClient().getSessionIPAddress().equals("127.0.0.1") && ( /*  428 */player.getClient().getAccountName().equals("xpem7922") || player.getClient().getAccountName().equals("rudxodlek2222")) && /*  429 */ !player.isGM())
       {
         /*  430 */
         player.setGMLevel((byte) 6);
       }
-      
+
       /*  435 */
       if (player.getKeyValue(18771, "rank") == -1L || player.getKeyValue(18771, "rank") == 100L)
       {
         /*  436 */
         player.setKeyValue(18771, "rank", "101");
       }
-      
+
       /*  439 */
       if (c.getKeyValue("rank") == null)
       {
         /*  440 */
         c.setKeyValue("rank", String.valueOf(player.getKeyValue(18771, "rank")));
       }
-      
+
       /*  443 */
       if (Integer.parseInt(c.getKeyValue("rank")) < player.getKeyValue(18771, "rank"))
       {
         /*  444 */
         c.setKeyValue("rank", String.valueOf(player.getKeyValue(18771, "rank")));
       }
-      
+
       /*  447 */
       if (Integer.parseInt(c.getKeyValue("rank")) > player.getKeyValue(18771, "rank"))
       {
         /*  448 */
         player.setKeyValue(18771, "rank", c.getKeyValue("rank"));
       }
-      
+
       /*  451 */
       if (player.getInnerSkills().size() == 0)
       {
@@ -591,12 +591,12 @@ public class InterServerHandler
         /*  454 */
         player.getInnerSkills().add(new InnerSkillValueHolder(70000004, (byte) 1, (byte) 1, (byte) 0));
       }
-      
+
       /*  457 */
       player.LoadPlatformerRecords();
       /*  458 */
       player.giveCoolDowns(PlayerBuffStorage.getCooldownsFromStorage(player.getId()));
-      
+
       /*  460 */
       if (player.choicePotential != null && player.memorialcube != null)
       {
@@ -609,14 +609,14 @@ public class InterServerHandler
           player.choicePotential.setInventoryId(ordinary.getInventoryId());
         }
       }
-      
+
       /*  467 */
       if (c.getKeyValue("PNumber") == null)
       {
         /*  468 */
         c.setKeyValue("PNumber", "0");
       }
-      
+
       /*  471 */
       if (player.returnScroll != null)
       {
@@ -865,7 +865,7 @@ public class InterServerHandler
       if (player.getCooldownSize() > 0)
       {
         /*  591 */
-        int[] bufflist = {80002282, 2321055, 2023661, 2023662, 2023663, 2023664, 2023665, 2023666, 2450064, 2450134, 2450038, 2450124, 2450147, 2450148, 2450149, 2023558, 2003550, 2023556, 2003551};
+        int[] bufflist = { 80002282, 2321055, 2023661, 2023662, 2023663, 2023664, 2023665, 2023666, 2450064, 2450134, 2450038, 2450124, 2450147, 2450148, 2450149, 2023558, 2003550, 2023556, 2003551 };
         int[] arrayOfInt1;
         int k;
         byte b;
@@ -897,11 +897,11 @@ public class InterServerHandler
           }
           b++;
         }
-        
+
       }
       /*  607 */
       c.getSession().writeAndFlush(CWvsContext.updateMaplePoint(player));
-      
+
       /*  609 */
       if (player.returnScroll != null)
       {
@@ -910,7 +910,7 @@ public class InterServerHandler
         /*  611 */
         c.getSession().writeAndFlush(CWvsContext.returnEffectModify(player.returnScroll, player.returnSc));
       }
-      
+
       /*  614 */
       if (player.choicePotential != null && player.memorialcube != null)
       {
@@ -924,27 +924,33 @@ public class InterServerHandler
         player.Cylinder(0);
       }
       /*  621 */
-      if (!player.isGM() || !player.getBuffedValue(9001004)) ;
-      
+      if (!player.isGM() || !player.getBuffedValue(9001004))
+        ;
+
       /*  624 */
       if (GameConstants.isZero(player.getJob()))
       {
         /*  625 */
-        int[] ZeroQuest = {31198, 41908, 41909, 41907, 32550, 33565, 3994, 6000, 39001, 40000, 40001, 7049, 40002, 40003, 40004, 40100, 40101, 6995, 40102, 40103, 40104, 40105, 40106, 40107, 40200, 40108, 40201, 40109, 40202, 40110, 40203, 40111, 40204, 40050, 40112, 40205, 40051, 40206, 40052, 40207, 40300, 40704, 40053, 40208, 40301, 7783, 40054, 40209, 40302, 40705, 40055, 40210, 40303, 40056, 40304, 7600, 40800, 40057, 40305, 40801, 40058, 40306, 40059, 40307, 40400, 40060, 40308, 40401, 40061, 40309, 40402, 40960, 40062, 40310, 40403, 40930, 40961, 40063, 40404, 40900, 40931, 40962, 40405, 7887, 40901, 40932, 40963, 40406, 40902, 40933, 40964, 40407, 40500, 40903, 40934, 40408, 40501, 40904, 40409, 40502, 7860, 40905, 40503, 7892, 7707, 40504, 40505, 40970, 40506, 40940, 40971, 41250, 41312, 40600, 40910, 40941, 40972, 41251, 40601, 40911, 40942, 40973, 41252, 40602, 40912, 40943, 40974, 41253, 41315, 41408, 40603, 40913, 40944, 41254, 41316, 40604, 40914, 41255, 41317, 40605, 41256, 40606, 41257, 41350, 40607, 40700, 41103, 41258, 41351, 40701, 40980, 41104, 41352, 40702, 40950, 41105, 41353, 40703, 40920, 40951, 41106, 41261, 41354, 40921, 40952, 40922, 40953, 41263, 40923, 40954, 41264, 41357, 40924, 41358, 41111, 41359, 41050, 41360, 41114, 41269, 41300, 41115, 41270, 41301, 41363, 41302, 41364, 41303, 41365, 41055, 41304, 41366, 41305, 41925, 41306, 41926, 41307, 41400, 41370, 41401};
+        int[] ZeroQuest = {
+            31198, 41908, 41909, 41907, 32550, 33565, 3994, 6000, 39001, 40000, 40001, 7049, 40002, 40003, 40004, 40100, 40101, 6995, 40102, 40103, 40104, 40105, 40106, 40107, 40200, 40108, 40201, 40109, 40202, 40110, 40203, 40111, 40204, 40050, 40112, 40205, 40051, 40206, 40052,
+            40207, 40300, 40704, 40053, 40208, 40301, 7783, 40054, 40209, 40302, 40705, 40055, 40210, 40303, 40056, 40304, 7600, 40800, 40057, 40305, 40801, 40058, 40306, 40059, 40307, 40400, 40060, 40308, 40401, 40061, 40309, 40402, 40960, 40062, 40310, 40403, 40930, 40961,
+            40063, 40404, 40900, 40931, 40962, 40405, 7887, 40901, 40932, 40963, 40406, 40902, 40933, 40964, 40407, 40500, 40903, 40934, 40408, 40501, 40904, 40409, 40502, 7860, 40905, 40503, 7892, 7707, 40504, 40505, 40970, 40506, 40940, 40971, 41250, 41312, 40600, 40910, 40941,
+            40972, 41251, 40601, 40911, 40942, 40973, 41252, 40602, 40912, 40943, 40974, 41253, 41315, 41408, 40603, 40913, 40944, 41254, 41316, 40604, 40914, 41255, 41317, 40605, 41256, 40606, 41257, 41350, 40607, 40700, 41103, 41258, 41351, 40701, 40980, 41104, 41352, 40702,
+            40950, 41105, 41353, 40703, 40920, 40951, 41106, 41261, 41354, 40921, 40952, 40922, 40953, 41263, 40923, 40954, 41264, 41357, 40924, 41358, 41111, 41359, 41050, 41360, 41114, 41269, 41300, 41115, 41270, 41301, 41363, 41302, 41364, 41303, 41365, 41055, 41304, 41366,
+            41305, 41925, 41306, 41926, 41307, 41400, 41370, 41401
+        };
         /*  626 */
         for (int questid : ZeroQuest)
         {
           /*  627 */
-          if (questid != 41907
-              && /*  628 */ player.getQuestStatus(questid) != 2)
+          if (questid != 41907 && /*  628 */ player.getQuestStatus(questid) != 2)
           {
             /*  629 */
             MapleQuest.getInstance(questid).forceComplete(player, 0);
           }
-          
+
           /*  632 */
-          if (questid == 41907
-              && /*  633 */ player.getQuestStatus(questid) != 1)
+          if (questid == 41907 && /*  633 */ player.getQuestStatus(questid) != 1)
           {
             /*  634 */
             MapleQuest quest = MapleQuest.getInstance(41907);
@@ -956,7 +962,7 @@ public class InterServerHandler
             player.updateQuest(queststatus, true);
           }
         }
-        
+
         /*  641 */
         if (player.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11) != null)
         {
@@ -1002,38 +1008,38 @@ public class InterServerHandler
           }
         }
       }
-      
+
       /*  665 */
       player.addKV("bossPractice", "0");
-      
+
       /*  667 */
       if (player.getKeyValue(1477, "count") == -1L)
       {
         /*  668 */
         player.setKeyValue(1477, "count", "0");
       }
-      
+
       /*  671 */
       if (player.getKeyValue(19019, "id") == -1L)
       {
         /*  672 */
         player.setKeyValue(19019, "id", "0");
       }
-      
+
       /*  675 */
       if (player.getKeyValue(7293, "damage_skin") == -1L)
       {
         /*  676 */
         player.setKeyValue(7293, "damage_skin", "2438159");
       }
-      
+
       /*  679 */
       if (player.getKeyValue(501619, "count") == -1L)
       {
         /*  680 */
-        player.setKeyValue(501619, "count", "999");
+        player.setKeyValue(501619, "count", "180");
       }
-      
+
       /*  683 */
       if (player.getKeyValue(100711, "point") == -1L)
       {
@@ -1050,7 +1056,7 @@ public class InterServerHandler
         /*  689 */
         player.setKeyValue(100711, "lock", "0");
       }
-      
+
       /*  692 */
       if (player.getKeyValue(100711, "date") != GameConstants.getCurrentDate_NoTime())
       {
@@ -1061,7 +1067,7 @@ public class InterServerHandler
         /*  695 */
         player.setKeyValue(100711, "lock", "0");
       }
-      
+
       /*  698 */
       if (player.getKeyValue(100712, "point") == -1L)
       {
@@ -1078,7 +1084,7 @@ public class InterServerHandler
         /*  704 */
         player.setKeyValue(100712, "lock", "0");
       }
-      
+
       /*  707 */
       if (player.getKeyValue(100712, "date") != GameConstants.getCurrentDate_NoTime())
       {
@@ -1089,7 +1095,7 @@ public class InterServerHandler
         /*  710 */
         player.setKeyValue(100712, "lock", "0");
       }
-      
+
       /*  713 */
       if (player.getKeyValue(501215, "point") == -1L)
       {
@@ -1106,7 +1112,7 @@ public class InterServerHandler
         /*  719 */
         player.setKeyValue(501215, "lock", "0");
       }
-      
+
       /*  722 */
       if (player.getKeyValue(501045, "point") == -1L)
       {
@@ -1129,7 +1135,7 @@ public class InterServerHandler
         /*  731 */
         player.setKeyValue(501045, "payTuto", "1");
       }
-      
+
       /*  734 */
       if (player.getKeyValue(501046, "start") == -1L)
       {
@@ -1142,30 +1148,23 @@ public class InterServerHandler
           player.setKeyValue(501046, String.valueOf(k), "0");
         }
       }
-      
+
       /*  741 */
       if (c.getKeyValue("dailyGiftDay") == null)
       {
         /*  742 */
         c.setKeyValue("dailyGiftDay", "0");
       }
-      
+
       /*  745 */
       if (c.getKeyValue("dailyGiftComplete") == null)
       {
         /*  746 */
         c.setKeyValue("dailyGiftComplete", "0");
       }
-      
+
       /*  749 */
-      if (player.getKeyValue(501385, "date") != GameConstants.getCurrentDate_NoTime())
-      {
-        /*  750 */
-        player.setKeyValue(501385, "count", "0");
-        /*  751 */
-        player.setKeyValue(501385, "date", String.valueOf(GameConstants.getCurrentDate_NoTime()));
-      }
-      
+
       /*  754 */
       for (AuctionItem auctionItem : AuctionServer.getItems().values())
       {
@@ -1176,24 +1175,23 @@ public class InterServerHandler
           player.getClient().getSession().writeAndFlush(CWvsContext.AlarmAuction(0, auctionItem));
         }
       }
-      
+
       /*  760 */
-      if (player.getKeyValue(19019, "id") > 0L
-          && /*  761 */ !player.haveItem((int) player.getKeyValue(19019, "id")))
+      if (player.getKeyValue(19019, "id") > 0L && /*  761 */ !player.haveItem((int) player.getKeyValue(19019, "id")))
       {
         /*  762 */
         player.setKeyValue(19019, "id", "0");
         /*  763 */
         player.getMap().broadcastMessage(player, CField.showTitle(player.getId(), 0), false);
       }
-      
+
       /*  767 */
       if (player.getKeyValue(210416, "TotalDeadTime") > 0L)
       {
         /*  769 */
         player.getClient().send(CField.ExpDropPenalty(true, (int) player.getKeyValue(210416, "TotalDeadTime"), (int) player.getKeyValue(210416, "NowDeadTime"), 80, 80));
       }
-      
+
       /*  773 */
       if (player.getClient().getKeyValue("UnionQuest1") != null)
       {
@@ -1248,7 +1246,7 @@ public class InterServerHandler
           player.getClient().send(CWvsContext.InfoPacket.updateQuest(queststatus));
         }
       }
-      
+
       /*  801 */
       boolean itemexppendent = false;
       /*  802 */
@@ -1334,11 +1332,11 @@ public class InterServerHandler
           player.updateInfoQuest(27039, exppen.getInventoryId() + "=" + nowtime + "|" + nowtime + "|0|10|0");
         }
       }
-      
+
       /*  845 */
       if (player.getV("EnterDay") == null)
       {
-        
+
         /*  847 */
         player.addKV("EnterDay", kc.getYears() + kc.getMonths() + kc.getDays());
       }
@@ -1347,11 +1345,11 @@ public class InterServerHandler
         /*  849 */
         player.checkRestDay(false, false);
       }
-      
+
       /*  852 */
       if (player.getV("EnterDayWeek") == null)
       {
-        
+
         /*  854 */
         player.addKV("EnterDayWeek", kc.getYears() + kc.getMonths() + kc.getDays());
       }
@@ -1360,11 +1358,11 @@ public class InterServerHandler
         /*  856 */
         player.checkRestDay(true, false);
       }
-      
+
       /*  859 */
       if (player.getV("EnterDayWeekMonday") == null)
       {
-        
+
         /*  861 */
         player.addKV("EnterDayWeekMonday", kc.getYears() + kc.getMonths() + kc.getDays());
       }
@@ -1373,7 +1371,7 @@ public class InterServerHandler
         /*  863 */
         player.checkRestDayMonday();
       }
-      
+
       /*  867 */
       if (player.getClient().getKeyValue("EnterDay") == null)
       {
@@ -1385,7 +1383,7 @@ public class InterServerHandler
         /*  870 */
         player.checkRestDay(false, true);
       }
-      
+
       /*  873 */
       if (player.getClient().getKeyValue("EnterDayWeek") == null)
       {
@@ -1397,7 +1395,7 @@ public class InterServerHandler
         /*  876 */
         player.checkRestDay(true, true);
       }
-      
+
       /*  879 */
       if (player.getClient().getKeyValue("WishCoin") == null)
       {
@@ -1416,7 +1414,7 @@ public class InterServerHandler
         /*  886 */
         player.getClient().setKeyValue("WishCoinGain", "0");
       }
-      
+
       /*  891 */
       c.setCabiNet(new ArrayList());
       /*  892 */
@@ -1427,7 +1425,7 @@ public class InterServerHandler
         /*  894 */
         c.send(CField.getMapleCabinetList(c.getCabiNet(), false, 0, true));
       }
-      
+
       /*  897 */
       List<Triple<Integer, Integer, String>> eventInfo = new ArrayList<>();
       /*  898 */
@@ -1440,15 +1438,15 @@ public class InterServerHandler
       eventInfo.add(new Triple(Integer.valueOf(100199), Integer.valueOf(993026900), "NewYear"));
       /*  902 */
       c.send(SLFCGPacket.EventInfoPut(eventInfo));
-      
+
       /*  904 */
       c.setShopLimit(new ArrayList());
       /*  905 */
       c.loadShopLimit();
-      
+
       /*  907 */
       player.RefreshUnionRaid(true);
-      
+
       /*  909 */
       if (player.getClient().getKeyValue("유니온코인") != null)
       {
@@ -1458,10 +1456,10 @@ public class InterServerHandler
         if (coin != player.getKeyValue(500629, "point"))
         {
           /*  912 */
-          player.setKeyValue(500629, "point", String.valueOf(coin));
+          player.setKeyValue(500629, "point", "9999");
         }
       }
-      
+
       /*  916 */
       if (player.getClient().getKeyValue("presetNo") != null)
       {
@@ -1493,7 +1491,7 @@ public class InterServerHandler
       /*  930 */
       for (i = 0; i < 8; i++)
       {
-        
+
         /*  932 */
         int id = (int) (500627L + player.getKeyValue(500630, "presetNo"));
         /*  933 */
@@ -1503,23 +1501,23 @@ public class InterServerHandler
           player.setKeyValue(id, String.valueOf(i), player.getClient().getCustomData(id, String.valueOf(i)));
         }
       }
-      
+
       /*  941 */
       player.gainEmoticon(1008);
       /*  942 */
       player.gainEmoticon(1009);
       /*  943 */
       player.gainEmoticon(1010);
-      
+
       /*  945 */
       if (player.getKeyValue(51351, "startquestid") > 0L)
       {
         /*  946 */
         player.gainSuddenMission((int) player.getKeyValue(51351, "startquestid"), (int) player.getKeyValue(51351, "midquestid"), false);
       }
-      
-      
-      
+
+
+
       /*  949 */
       if (player.getV("GuildBless") != null)
       {
@@ -1570,7 +1568,7 @@ public class InterServerHandler
           player.getClient().send(CWvsContext.InfoPacket.updateQuest(queststatus));
         }
       }
-      
+
       /*  975 */
       if (ServerConstants.feverTime || Calendar.getInstance().get(7) == 7)
       {
@@ -1584,7 +1582,7 @@ public class InterServerHandler
         /*  979 */
         ServerConstants.feverTime = false;
       }
-      
+
       /*  983 */
       if (player.getClient().getCustomData(501368, "spoint") != null)
       {
@@ -1597,7 +1595,7 @@ public class InterServerHandler
           player.setKeyValue(501368, "point", String.valueOf(coin));
         }
       }
-      
+
       /*  990 */
       c.getPlayer().loadPremium();
       /*  991 */
@@ -1608,7 +1606,7 @@ public class InterServerHandler
       sb3.append(StringUtil.getLeftPaddedStr(String.valueOf(CurrentTime.getMonth()), '0', 2));
       /*  994 */
       sb3.append(StringUtil.getLeftPaddedStr(String.valueOf(CurrentTime.getDate()), '0', 2));
-      
+
       /*  996 */
       if (player.haveItem(2438697))
       {
@@ -1633,7 +1631,7 @@ public class InterServerHandler
           player.addKV("d_daycheck", String.valueOf(Long.parseLong(player.getV("d_daycheck")) + 1L));
         }
       }
-      
+
       /* 1009 */
       if (GameConstants.isYeti(player.getJob()) || GameConstants.isPinkBean(player.getJob()))
       {
@@ -1658,14 +1656,14 @@ public class InterServerHandler
       }
       /* 1020 */
       Item weapon = player.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
-      
+
       /* 1022 */
       if (weapon != null && player.getBuffedEffect(SecondaryStat.SoulMP) == null)
       {
         /* 1023 */
         player.setSoulMP((Equip) weapon);
       }
-      
+
       /* 1026 */
       boolean cgr = false;
       /* 1027 */
@@ -1686,14 +1684,14 @@ public class InterServerHandler
         /* 1034 */
         c.getPlayer().setKeyValue(26015, "name", "");
       }
-      
+
       /* 1037 */
       if (player.getKeyValue(333333, "quick0") > 0L)
       {
         /* 1038 */
         c.getSession().writeAndFlush(CField.quickSlot(player));
       }
-      
+
       /* 1042 */
       if (c.getCustomData(252, "count") == null)
       {
@@ -1710,7 +1708,7 @@ public class InterServerHandler
       }
       else
       {
-        
+
         /* 1050 */
         String bTime = c.getCustomData(252, "T");
         /* 1051 */
@@ -1730,54 +1728,54 @@ public class InterServerHandler
           c.setCustomData(252, "count", "3600");
         }
       }
-      
+
       /* 1061 */
       if (c.getCustomData(253, "day") == null)
       {
         /* 1062 */
         c.setCustomData(253, "day", "0");
       }
-      
+
       /* 1065 */
       if (c.getCustomData(253, "complete") == null)
       {
         /* 1066 */
         c.setCustomData(253, "complete", "0");
       }
-      
+
       /* 1069 */
       if (c.getCustomData(253, "bMaxDay") == null)
       {
         /* 1070 */
         c.setCustomData(253, "bMaxDay", "135");
       }
-      
+
       /* 1073 */
       if (c.getCustomData(253, "cMaxDay") == null)
       {
         /* 1074 */
         c.setCustomData(253, "cMaxDay", "135");
       }
-      
+
       /* 1077 */
       if (c.getCustomData(253, "lastDate") == null)
       {
         /* 1078 */
         c.setCustomData(253, "lastDate", "20/12/31");
       }
-      
+
       /* 1081 */
       if (c.getCustomData(253, "passCount") == null)
       {
         /* 1082 */
         c.setCustomData(253, "passCount", "135");
       }
-      
+
       if (player.getKeyValue(0, "Boss_Level") < 0)
       {
         player.setKeyValue(0, "Boss_Level", "0");
       }
-      
+
       /* 1085 */
       if (c.getCustomData(254, "passDate") == null)
       {
@@ -1792,10 +1790,10 @@ public class InterServerHandler
         /* 1090 */
         c.setCustomData(254, "passDate", str.toString());
       }
-      
+
       /* 1096 */
       MatrixHandler.calcSkillLevel(player, -1);
-      
+
       /* 1098 */
       int linkSkill = GameConstants.getMyLinkSkill(player.getJob());
       /* 1099 */
@@ -1804,7 +1802,7 @@ public class InterServerHandler
         /* 1100 */
         player.changeSkillLevel(linkSkill, (byte) ((player.getLevel() >= 120) ? 2 : 1), (byte) 2);
       }
-      
+
       /* 1103 */
       if (c.getCustomData(238, "T") == null || c.getCustomData(238, "T").equals("0"))
       {
@@ -1813,7 +1811,7 @@ public class InterServerHandler
         /* 1105 */
         c.setCustomData(238, "T", GameConstants.getCurrentFullDate());
       }
-      
+
       /* 1109 */
       if (GameConstants.isWildHunter(player.getJob()))
       {
@@ -1852,13 +1850,13 @@ public class InterServerHandler
           /* 1126 */
           c.getSession().writeAndFlush(CWvsContext.updateJaguar(player));
         }
-        
+
         if (player.getKeyValue(190823, "grade") == 0)
         {
           player.setKeyValue(190823, "grade", "1");
         }
       }
-      
+
       /* 1130 */
       MapleQuestStatus stat = player.getQuestNoAdd(MapleQuest.getInstance(122700));
       /* 1131 */
@@ -1872,11 +1870,26 @@ public class InterServerHandler
       /* 1135 */
       c.getSession().writeAndFlush(CWvsContext.onSessionValue("kill_count", "0"));
       /* 1136 */
-      // count : 作用不明, day = 已完成的天數; date: 作用不明
-      c.getSession().writeAndFlush(CWvsContext.updateDailyGift("count=" + c.getKeyValue("dailyGiftComplete") + ";day=" + c.getKeyValue("dailyGiftDay") + ";date=" + player.getKeyValue(501385, "date")));
-      /* 1137 */
+      // c.getSession().writeAndFlush(CWvsContext.updateDailyGift("count=" + c.getKeyValue("dailyGiftComplete") + ";day=" + c.getKeyValue("dailyGiftDay") + ";date=" + player.getKeyValue(501385, "date")));
       c.getSession().writeAndFlush(CField.dailyGift(player, 1, 0));
-      
+      //
+      // String 是否已完成簽到 = c.getKeyValue("dailyGiftComplete");
+      //
+      // String 已簽到天數 = c.getKeyValue("dailyGiftDay");
+      //
+      // int 今天日期 = GameConstants.getCurrentDate_NoTime();
+      // // 是否已完成: count 0 = 未完成; 1 = 已完成; 已完成天數: day = 0; 當前日期: date = YYYYMMDD; 任務id = 15
+      // c.getSession().writeAndFlush(CWvsContext.updateDailyGift("count=1;day=3;date=20230820" ));
+      //
+      // if (player.getKeyValue(16700, "date") != 今天日期)
+      // {
+      //   player.setKeyValue(16700, "count", "0");
+      //   player.setKeyValue(16700, "date", String.valueOf(今天日期));
+      //   player.updateInfoQuest(16700, "count=0;date=" + 今天日期);
+      // }
+      /* 1137 */
+
+
       try
       {
         /* 1142 */
@@ -1891,7 +1904,7 @@ public class InterServerHandler
           /* 1146 */
           World.Party.updateParty(party.getId(), PartyOperation.LOG_ONOFF, new MaplePartyCharacter(player));
         }
-        
+
         /* 1149 */
         AccountIdChannelPair[] onlineBuddies = World.Find.multiBuddyFind(player.getBuddylist(), player.getId(), buddyIds);
         /* 1150 */
@@ -1904,7 +1917,7 @@ public class InterServerHandler
         player.getBuddylist().setChanged(true);
         /* 1154 */
         c.getSession().writeAndFlush(CWvsContext.BuddylistPacket.updateBuddylist(player.getBuddylist().getBuddies(), null, (byte) 20));
-        
+
         /* 1157 */
         MapleMessenger messenger = player.getMessenger();
         /* 1158 */
@@ -1915,7 +1928,7 @@ public class InterServerHandler
           /* 1160 */
           World.Messenger.updateMessenger(messenger.getId(), c.getPlayer().getName(), c.getChannel());
         }
-        
+
         /* 1164 */
         if (player.getGuildId() > 0)
         {
@@ -1972,7 +1985,7 @@ public class InterServerHandler
         /* 1189 */
         e.printStackTrace();
       }
-      
+
       /* 1192 */
       CharacterNameAndId pendingBuddyRequest = player.getBuddylist().pollPendingRequest();
       /* 1193 */
@@ -1983,7 +1996,7 @@ public class InterServerHandler
         /* 1195 */
         c.getSession().writeAndFlush(CWvsContext.BuddylistPacket.requestBuddylistAdd(pendingBuddyRequest.getId(), pendingBuddyRequest.getAccId(), pendingBuddyRequest.getName(), pendingBuddyRequest.getLevel(), pendingBuddyRequest.getJob(), c, pendingBuddyRequest.getGroupName(), pendingBuddyRequest.getMemo()));
       }
-      
+
       /* 1198 */
       player.getClient().getSession().writeAndFlush(CWvsContext.serverMessage("", channelServer.getServerMessage()));
       /* 1199 */
@@ -2001,7 +2014,7 @@ public class InterServerHandler
       player.updatePetAuto();
       /* 1206 */
       player.expirationTask(true, (transfer == null));
-      
+
       /* 1208 */
       c.getSession().writeAndFlush(CWvsContext.setUnion(c));
       /* 1209 */
@@ -2020,18 +2033,18 @@ public class InterServerHandler
         /* 1215 */
         SkillFactory.getSkill((player.getStat()).equippedSummon).getEffect(1).applyTo(player, true);
       }
-      
+
       /* 1218 */
       c.getSession().writeAndFlush(CField.HeadTitle(player.HeadTitle()));
-      
+
       /* 1220 */
       PetHandler.updatePetSkills(player, null);
-      
+
       /* 1222 */
       c.getSession().writeAndFlush(CWvsContext.initSecurity());
       /* 1223 */
       c.getSession().writeAndFlush(CWvsContext.updateSecurity());
-      
+
       /* 1225 */
       String towerchair = c.getPlayer().getInfoQuest(7266);
       /* 1226 */
@@ -2058,10 +2071,10 @@ public class InterServerHandler
         }
         /* 1236 */
         c.getSession().writeAndFlush(SLFCGPacket.StarDustUI("UI/UIWindowEvent.img/starDust_18th", player.getKeyValue(100794, "sum"), player.getKeyValue(100794, "point"), (player.getKeyValue(100794, "lock") == 1L)));
-        
-        
+
+
       }
-      
+
       for (int ho : ServerConstants.hour)
       {
         if (new Date().getMinutes() >= 50 && new Date().getMinutes() <= 59 && new Date().getHours() == (ho - 1))
@@ -2070,7 +2083,7 @@ public class InterServerHandler
           player.sethottimeboss(true);
         }
       }
-      
+
       if (player.getClient().isFirstLogin() && !player.isGM() && !player.getName().equals("오브"))
       {
         World.Broadcast.broadcastMessage(CField.UIPacket.detailShowInfo(player.getName() + "님, 접속을 환영합니다. 오늘도 " + LoginServer.getServerName() + "에서 즐거운 시간 되세요.", false));
@@ -2090,7 +2103,7 @@ public class InterServerHandler
             /* 1242 */
             c.getPlayer().changeSingleSkillLevel(skill, skill.getMaxLevel(), (byte) skill.getMasterLevel());
           }
-          
+
           /* 1245 */
           long td = (c.getPlayer().getPremiumPeriod().longValue() - LocalDateTime.now().toInstant(ZoneOffset.UTC).getEpochSecond()) / 86400000L;
           /* 1246 */
@@ -2099,7 +2112,7 @@ public class InterServerHandler
           SkillFactory.getSkill(c.getPlayer().getPremiumBuff()).getEffect(1).applyTo(player, false);
         }
       }
-      
+
       /* 1251 */
       for (int sm = 0; sm <= 7; sm++)
       {
@@ -2122,9 +2135,9 @@ public class InterServerHandler
           }
         }
       }
-      
+
       /* 1263 */
-      int[][] medals = {{1143507, 80001543}, {1143508, 80001544}, {1143509, 80001545}};
+      int[][] medals = { { 1143507, 80001543 }, { 1143508, 80001544 }, { 1143509, 80001545 } };
       /* 1264 */
       for (int m = 0; m < medals.length; m++)
       {
@@ -2147,7 +2160,7 @@ public class InterServerHandler
           }
         }
       }
-      
+
       /* 1276 */
       if (ServerConstants.ServerTest)
       {
@@ -2160,7 +2173,7 @@ public class InterServerHandler
           player.gainItem(2431138, 1);
         }
       }
-      
+
       /* 1283 */
     }
     catch (Exception e)
@@ -2169,8 +2182,8 @@ public class InterServerHandler
       e.printStackTrace();
     }
   }
-  
-  public static final void ChangeChannel(LittleEndianAccessor slea, MapleClient c, MapleCharacter chr, boolean room)
+
+  public static final void ChangeChannel (LittleEndianAccessor slea, MapleClient c, MapleCharacter chr, boolean room)
   {
     try
     {
@@ -2245,8 +2258,8 @@ public class InterServerHandler
       e.printStackTrace();
     }
   }
-  
-  public static void getGameQuitRequest(RecvPacketOpcode header, LittleEndianAccessor rh, MapleClient c)
+
+  public static void getGameQuitRequest (RecvPacketOpcode header, LittleEndianAccessor rh, MapleClient c)
   {
     String account = null;
     if (header == RecvPacketOpcode.GAME_EXIT)

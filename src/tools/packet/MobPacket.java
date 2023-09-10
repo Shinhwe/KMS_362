@@ -1278,8 +1278,9 @@ public class MobPacket
     
     if (getMse(mse, MonsterStatus.刺伤))
     {
-      mplew.writeInt(-99);
-      mplew.writeInt(-99);
+      // todo 減傷是對的, 但是減命中好像不太對
+      mplew.writeInt(-30);
+      mplew.writeInt(-20);
     }
     
         /*

@@ -13042,9 +13042,9 @@
 <imgdir name="common">
 <int name="maxLevel" value="25"/>
 <string name="mpCon" value="500"/>
-<string name="cooltime" value="20"/>
+<string name="cooltime" value="20-d(x/10)"/>
 <string name="damage" value="400+16*x"/>
-<string name="attackCount" value="14"/>
+<string name="attackCount" value="15"/>
 <string name="mobCount" value="15"/>
 <string name="x" value="2"/>
 <string name="time" value="5"/>
@@ -23176,13 +23176,13 @@
 <int name="maxLevel" value="25"/>
 <string name="mpCon" value="1000"/>
 <string name="time" value="30"/>
-<string name="cooltime" value="240"/>
+<string name="cooltime" value="180"/>
 <string name="x" value="50"/>
-<string name="t" value="5+d(x/2)"/>
-<string name="mobCount" value="6"/>
-<string name="attackCount" value="6"/>
+<string name="t" value="10+d(x/2)"/>
+<string name="mobCount" value="8"/>
+<string name="attackCount" value="8"/>
 <string name="damage" value="200+8*x"/>
-<string name="s" value="3"/>
+<string name="s" value="5"/>
 </imgdir>
 <int name="notRemoved" value="1"/>
 <imgdir name="action">
@@ -23356,8 +23356,8 @@
 </imgdir>
 <imgdir name="common">
 <int name="maxLevel" value="25"/>
-<string name="attackCount" value="6"/>
-<string name="mobCount" value="6"/>
+<string name="attackCount" value="8"/>
+<string name="mobCount" value="8"/>
 <string name="damage" value="200+8*x"/>
 <vector name="lt" x="-365" y="-260"/>
 <vector name="rb" x="-35" y="65"/>
@@ -23454,8 +23454,8 @@
 </imgdir>
 <imgdir name="common">
 <int name="maxLevel" value="25"/>
-<string name="attackCount" value="6"/>
-<string name="mobCount" value="6"/>
+<string name="attackCount" value="8"/>
+<string name="mobCount" value="8"/>
 <string name="damage" value="200+8*x"/>
 <vector name="lt" x="-400" y="-245"/>
 <vector name="rb" x="-50" y="90"/>
@@ -23632,8 +23632,8 @@
 </imgdir>
 <imgdir name="common">
 <int name="maxLevel" value="25"/>
-<string name="attackCount" value="6"/>
-<string name="mobCount" value="6"/>
+<string name="attackCount" value="8"/>
+<string name="mobCount" value="8"/>
 <string name="damage" value="200+8*x"/>
 <vector name="lt" x="-445" y="-160"/>
 <vector name="rb" x="130" y="130"/>

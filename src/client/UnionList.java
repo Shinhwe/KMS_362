@@ -8,34 +8,44 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class UnionList
 {
   private List<MapleUnion> unions = new ArrayList<>();
-  
-  public void loadFromDb(int accId) throws SQLException
+
+  public void loadFromDb (int accId) throws SQLException
   {
+    HashMap<Integer, MapleUnion> mapleUnionCharacterIdMap = new HashMap<>();
     Connection con = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
     try
     {
       con = DatabaseConnection.getConnection();
-      ps = con.prepareStatement("SELECT u.unk1, u.unk3, sum(ive.starForceLevel) as starforce, c.name as unionname, c.id as id, c.job as unionjob, c.level as unionlevel, u.position, u.position2, u.priset, u.priset1, u.priset2, u.priset3, u.priset4, u.pos, u.pos1, u.pos2, u.pos3, u.pos4 FROM unions as u, characters as c, inventoryitems as iv, inventoryequipment as ive WHERE c.id = u.id && c.accountid = ? && characterid = c.id && iv.position < 0 && ive.inventoryitemid = iv.inventoryitemid group by unionname");
+      ps = con.prepareStatement("SELECT u.unk1, u.unk3, ive.starForceLevel as starforce,  c.name as unionname,  c.id as id,  c.job as unionjob,  c.level as unionlevel,  u.position,  u.position2,  u.priset,  u.priset1,  u.priset2,  u.priset3,  u.priset4,  u.pos,  u.pos1,  u.pos2,  u.pos3,  u.pos4 FROM  unions as u,  characters as c,  inventoryitems as iv,  inventoryequipment as ive WHERE  c.id = u.id AND c.accountid = ? AND characterid = c.id AND iv.position < 0 AND ive.inventoryitemid = iv.inventoryitemid ORDER BY c.id");
       ps.setInt(1, accId);
       rs = ps.executeQuery();
       while (rs.next())
       {
-        if (GameConstants.isZero(rs.getInt("unionjob")) ? (
-            rs.getInt("unionlevel") < 130) : (
-            
-            
-            rs.getInt("unionlevel") < 60))
+        if (GameConstants.isZero(rs.getInt("unionjob")) ? (rs.getInt("unionlevel") < 130) : (rs.getInt("unionlevel") < 60))
         {
           continue;
         }
-        this.unions.add(new MapleUnion(rs.getInt("id"), rs.getInt("unionlevel"), rs.getInt("unionjob"), rs.getInt("unk1"), rs.getInt("position2"), rs.getInt("position"), rs.getInt("unk3"), rs.getString("unionname"), rs.getInt("starforce"), rs.getInt("priset"), rs.getInt("priset1"), rs.getInt("priset2"), rs.getInt("priset3"), rs.getInt("priset4"), rs.getInt("pos"), rs.getInt("pos1"), rs.getInt("pos2"), rs.getInt("pos3"), rs.getInt("pos4")));
+        int characterId = rs.getInt("id");
+        int starForceLevel = rs.getInt("starforce");
+        if (mapleUnionCharacterIdMap.containsKey(characterId))
+        {
+          MapleUnion mapleUnion = mapleUnionCharacterIdMap.get(characterId);
+          mapleUnion.setStarForce(mapleUnion.getStarForceLevel() + starForceLevel);
+        }
+        else
+        {
+          MapleUnion mapleUnion = new MapleUnion(characterId, rs.getInt("unionlevel"), rs.getInt("unionjob"), rs.getInt("unk1"), rs.getInt("position2"), rs.getInt("position"), rs.getInt("unk3"), rs.getString("unionname"), starForceLevel, rs.getInt("priset"), rs.getInt("priset1"), rs.getInt("priset2"), rs.getInt("priset3"), rs.getInt("priset4"), rs.getInt("pos"), rs.getInt("pos1"), rs.getInt("pos2"), rs.getInt("pos3"), rs.getInt("pos4"));
+          mapleUnionCharacterIdMap.put(characterId, mapleUnion);
+          this.unions.add(mapleUnion);
+        }
       }
       rs.close();
       ps.close();
@@ -86,13 +96,13 @@ public class UnionList
       }
     }
   }
-  
-  public void loadFromTransfer(List<MapleUnion> unions)
+
+  public void loadFromTransfer (List<MapleUnion> unions)
   {
     this.unions.addAll(unions);
   }
-  
-  public void savetoDB(Connection con, int accId) throws SQLException
+
+  public void savetoDB (Connection con, int accId) throws SQLException
   {
     PreparedStatement ps = null;
     try
@@ -152,13 +162,13 @@ public class UnionList
       }
     }
   }
-  
-  public List<MapleUnion> getUnions()
+
+  public List<MapleUnion> getUnions ()
   {
     return this.unions;
   }
-  
-  public void setUnions(List<MapleUnion> unions)
+
+  public void setUnions (List<MapleUnion> unions)
   {
     this.unions = unions;
   }

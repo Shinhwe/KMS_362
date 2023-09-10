@@ -650,13 +650,12 @@ public class MapleShop
       itemm.setQuantity(quantity);
       c.getPlayer().getRebuy().add(itemm);
       MapleInventoryManipulator.removeFromSlot(c, type, slot, quantity, false);
+
       if (itemm.getReward() != null)
       {
         if (c.getPlayer().getKeyValue(501619, "count") <= 0)
         {
-          System.out.println(c.getPlayer() + " 새끼가 결정석 핵 쓰려고 시도함.");
-          c.disconnect(true, false, false);
-          c.getSession().close();
+          System.out.println(c.getPlayer() + " 嘗試超額賣BOSS結晶!");
           return;
         }
         else
@@ -685,6 +684,16 @@ public class MapleShop
         c.getPlayer().gainMeso(recvMesos, false);
       }
       c.getSession().writeAndFlush(CField.NPCPacket.confirmShopTransactionItem((byte) 11, this, c, -1, item.getItemId()));
+
+
+      if (itemm.getReward() != null)
+      {
+        long 剩餘可賣BOSS結晶數量 = c.getPlayer().getKeyValue(501619, "count") - 1L;
+
+        c.getPlayer().setKeyValue(501619, "count", String.valueOf(剩餘可賣BOSS結晶數量));
+
+        c.getPlayer().updateInfoQuest(501619, "count=" + 剩餘可賣BOSS結晶數量 + ";");
+      }
     }
   }
 
