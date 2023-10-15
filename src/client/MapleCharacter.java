@@ -57,7 +57,6 @@ import tools.packet.*;
 import java.awt.*;
 import java.io.Serializable;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
@@ -8796,11 +8795,6 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     }
     if (!ign)
     {
-      if (this.getBuffedValue(SecondaryStat.DemonFrenzy) != null && delta > 0L && this.getBuffedEffect(SecondaryStat.DemonFrenzy).getQ2() < this.getStat().getHPPercent())
-      {
-        final int w = SkillFactory.getSkill(400011010).getEffect(this.getSkillLevel(400011010)).getW();
-        delta = delta / 10L * w;
-      }
       if (this.getSkillCustomValue0(143143) == 1L)
       {
         delta /= 10L;
@@ -8866,6 +8860,11 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
           immuneBarrier.applyTo(this, false);
         }
       }
+    }
+    if (this.getBuffedValue(SecondaryStat.DemonFrenzy) != null && delta > 0L && this.getBuffedEffect(SecondaryStat.DemonFrenzy).getQ2() < this.getStat().getHPPercent())
+    {
+      final int w = SkillFactory.getSkill(400011010).getEffect(this.getSkillLevel(400011010)).getW();
+      delta = this.getStat().getMaxHp() * w / 100;
     }
     if (this.getBuffedEffect(SecondaryStat.NotDamaged) == null && this.getBuffedEffect(SecondaryStat.IndieNotDamaged) == null && delta <= 0L)
     {
@@ -17218,20 +17217,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
         break;
       }
     }
-    if (this.getSkillCustomValue0(30010232) != ownskillid && this.getSkillCustomValue0(30010232) != 0L)
-    {
-      if (this.getSkillLevel(31220044) > 0)
-      {
-        if (this.getExceed() < 19)
-        {
-          this.gainExceed((short) 1);
-        }
-      }
-      else if (this.getExceed() < 20)
-      {
-        this.gainExceed((short) 1);
-      }
-    }
+    this.gainExceed((short) 1);
     this.setSkillCustomInfo(30010232, ownskillid, 0L);
     final SecondaryStatEffect effect = SkillFactory.getSkill(skillid).getEffect(this.getTotalSkillLevel(skillid));
     final EnumMap<SecondaryStat, Pair<Integer, Integer>> statups = new EnumMap<SecondaryStat, Pair<Integer, Integer>>(SecondaryStat.class);
@@ -17244,23 +17230,27 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     return this.exceed;
   }
 
-  public void setExceed (final short amount)
+  public void gainExceed (final int amount)
   {
-    this.exceed = amount;
-    if (this.getSkillLevel(31220044) > 0 && this.exceed > 18)
-    {
-      this.exceed = 18;
-    }
+    this.setExceed(this.exceed + amount);
   }
 
-  public void gainExceed (final short amount)
+  public void setExceed (final int exceed)
   {
-    this.exceed += amount;
-    if (this.getSkillLevel(31220044) > 0 && this.exceed >= 18)
+    int maxExceed = 20;
+
+    if (this.getSkillLevel(31220044) > 0)
     {
-      this.exceed = 18;
+      final int x = SkillFactory.getSkill(31220044).getEffect(this.getSkillLevel(31220044)).getX();
+      maxExceed = maxExceed - x;
     }
-    this.updateExceed(this.exceed);
+
+    this.exceed = Math.min(maxExceed, exceed);
+
+    if (this.exceed > 0)
+    {
+      SkillFactory.getSkill(30010230).getEffect(1).applyTo(this);
+    }
   }
 
   public void updateExceed (final int amount)

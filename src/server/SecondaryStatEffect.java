@@ -5239,26 +5239,29 @@ public class SecondaryStatEffect implements Serializable
       }
       case 31011001:
       {
-        int IndiePmdR = 0;
-        int maxcount = applyTo.getSkillLevel(31220044) > 0 ? 18 : 20;
-        int heal = (int) Math.floor((double) applyTo.getExceed() / (double) maxcount * 100.0);
-        double d = applyTo.getSkillLevel(31210006) > 0 ? 1.25 : 0.625;
-        IndiePmdR = (int) Math.floor((double) applyTo.getExceed() * d);
-        if (maxcount == applyTo.getExceed())
+        int maxExceed = 20;
+        int IndiePmdR = SkillFactory.getSkill(31011001).getEffect(applyTo.getSkillLevel(31011001)).getIndiePmdR();
+        if (applyTo.getSkillLevel(31210006) > 0)
         {
-          heal = 100;
-          IndiePmdR = applyTo.getSkillLevel(31210006) > 0 ? 25 : 15;
+          final int y = SkillFactory.getSkill(31210006).getEffect(applyTo.getSkillLevel(31210006)).getY();
+          IndiePmdR = y;
         }
-        applyTo.setExceed((short) 0);
+        if (applyTo.getSkillLevel(31220044) > 0)
+        {
+          final int x = SkillFactory.getSkill(31220044).getEffect(applyTo.getSkillLevel(31220044)).getX();
+          maxExceed = maxExceed - x;
+        }
+        int heal = Math.min(100, (int) Math.ceil(applyTo.getExceed() / maxExceed * 100.0));
+        IndiePmdR = Math.min(IndiePmdR, (int) Math.ceil(IndiePmdR * applyTo.getExceed() / maxExceed));
+        // double d = applyTo.getSkillLevel(31210006) > 0 ? 1.25 : 0.625;
+        // IndiePmdR = (int) Math.floor((double) applyTo.getExceed() * d);
+        applyTo.setExceed(0);
         applyTo.cancelEffectFromBuffStat(SecondaryStat.OverloadCount);
         HashMap<SecondaryStat, Pair<Integer, Integer>> cancelList = new HashMap<SecondaryStat, Pair<Integer, Integer>>();
         cancelList.put(SecondaryStat.ExceedOverload, new Pair<Integer, Integer>(1, 0));
         applyTo.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.cancelBuff(cancelList, applyTo));
-        long healhp = applyTo.getStat().getCurrentMaxHp() / 100L * (long) heal;
-        if (applyTo.getBuffedEffect(SecondaryStat.DemonFrenzy) != null)
-        {
-          healhp = healhp / 100L * (long) this.y;
-        }
+        long maxHp = applyTo.getStat().getCurrentMaxHp();
+        long healhp = Math.min(maxHp, (int) (maxHp * Math.ceil(heal / 100)));
         applyTo.setSkillCustomInfo(30010232, 0L, 0L);
         applyTo.addHP(healhp, applyTo.getBuffedEffect(SecondaryStat.DemonFrenzy) != null, false);
         localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>(IndiePmdR, localDuration));

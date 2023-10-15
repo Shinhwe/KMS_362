@@ -154,8 +154,8 @@
 <int name="maxLevel" value="20"/>
 <string name="hpRCon" value="3"/>
 <string name="damage" value="200+5*x"/>
-<string name="attackCount" value="3"/>
-<string name="mobCount" value="10"/>
+<string name="attackCount" value="4"/>
+<string name="mobCount" value="12"/>
 <vector name="lt" x="-250" y="-120"/>
 <vector name="rb" x="250" y="60"/>
 </imgdir>

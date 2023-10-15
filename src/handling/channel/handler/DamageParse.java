@@ -3970,17 +3970,6 @@ public class DamageParse
       }
       if (GameConstants.isExceedAttack(attack.skill))
       {
-        if (player.getSkillLevel(31220044) > 0)
-        {
-          if (player.getExceed() < 19)
-          {
-            player.gainExceed((short) 1);
-          }
-        }
-        else if (player.getExceed() < 20)
-        {
-          player.gainExceed((short) 1);
-        }
         player.handleExceedAttack(attack.skill);
       }
       if (player.getBuffedValue(31221054))

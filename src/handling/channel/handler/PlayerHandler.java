@@ -5691,17 +5691,6 @@ public class PlayerHandler
       }
       if (GameConstants.isDemonAvenger(chr.getJob()) && GameConstants.isExceedAttack(attack.skill))
       {
-        if (chr.getSkillLevel(31220044) > 0)
-        {
-          if (chr.getExceed() < 18)
-          {
-            chr.gainExceed((short) 1);
-          }
-        }
-        else if (chr.getExceed() < 20)
-        {
-          chr.gainExceed((short) 1);
-        }
         chr.handleExceedAttack(attack.skill);
       }
       switch (attack.skill)
@@ -9655,8 +9644,9 @@ public class PlayerHandler
       return;
     }
     SecondaryStatEffect Frenzy = c.getPlayer().getBuffedEffect(400011010);
-    MapleFoothold fh = c.getPlayer().getMap().getFootholds().findBelow(c.getPlayer().getTruePosition());
-    if (Frenzy == null || c.getPlayer().getSkillCustomValue(400010010) != null || (c.getPlayer().getPosition()).y < fh.getY1() || !c.getPlayer().isAlive())
+    // MapleFoothold fh = c.getPlayer().getMap().getFootholds().findBelow(c.getPlayer().getTruePosition());
+    // if (Frenzy == null || c.getPlayer().getSkillCustomValue(400010010) != null || (c.getPlayer().getPosition()).y < fh.getY1() || !c.getPlayer().isAlive())
+    if (Frenzy == null || c.getPlayer().getSkillCustomValue(400010010) != null || !c.getPlayer().isAlive())
     {
       return;
     }

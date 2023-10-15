@@ -21,10 +21,6 @@ public class HyperHandler
     int sp = rh.readInt();
     if (value.equals("needHyperStatLv") || value.equals("incHyperStat"))
     {
-      if (value.equals("honorLeveling"))
-      {
-        return;
-      }
       int up = 0;
       if (value.equals("incHyperStat"))
       {
