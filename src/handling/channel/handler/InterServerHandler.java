@@ -546,12 +546,6 @@ public class InterServerHandler
 
       /*  426 */
       FileoutputUtil.log(FileoutputUtil.접속로그, "[접속] 계정번호 : " + player.getClient().getAccID() + " | " + player.getName() + "(" + player.getId() + ")이 접속.");
-      /*  427 */
-      if (player.getClient().getSessionIPAddress().equals("127.0.0.1") && ( /*  428 */player.getClient().getAccountName().equals("xpem7922") || player.getClient().getAccountName().equals("rudxodlek2222")) && /*  429 */ !player.isGM())
-      {
-        /*  430 */
-        player.setGMLevel((byte) 6);
-      }
 
       /*  435 */
       if (player.getKeyValue(18771, "rank") == -1L || player.getKeyValue(18771, "rank") == 100L)
