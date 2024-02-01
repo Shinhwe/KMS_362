@@ -1463,13 +1463,13 @@
 </imgdir>
 <imgdir name="common">
 <string name="mpCon" value="80-x"/>
-<string name="x" value="10+x"/>
-<string name="mobCount" value="1"/>
+<string name="x" value="10+d(x/2)"/>
+<string name="mobCount" value="3"/>
 <string name="time" value="21000000"/>
 <int name="maxLevel" value="30"/>
-<string name="y" value="10+x"/>
+<string name="y" value="10+d(x/3)"/>
 <string name="z" value="0"/>
-<string name="w" value="1"/>
+<string name="w" value="3"/>
 </imgdir>
 <imgdir name="effect">
 <canvas name="0" width="280" height="204">
