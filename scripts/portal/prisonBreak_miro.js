@@ -6,6 +6,6 @@ function enter(pi) {
 	    pi.warp(921160300 + ((Math.floor(Math.random() * 6) | 0) * 10),0);
 	}
     } else {
-	pi.playerMessage("´ëÈ­°¡ ¾ø½À´Ï´Ù.");
+	pi.playerMessage("ëŒ€í™”ê°€ ì—†ìŠµë‹ˆë‹¤.");
     }
 }

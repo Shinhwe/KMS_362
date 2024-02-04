@@ -11,7 +11,7 @@ function enter(pi) {
          pi.getEventInstance().setProperty("DavyzonePQ_Monster","9999");
 	pi.getPlayer().getClient().getSession().write(UIPacket.AchievementRatio(25));
      } else {
-         pi.playerMessage("¸ğµç ¸ó½ºÅÍ¸¦ ¹°¸®ÃÄ¾ß ´ÙÀ½ Àå¼Ò·Î ÀÌµ¿ÇÒ ¼ö ÀÖ½À´Ï´Ù.");
+         pi.playerMessage("ëª¨ë“  ëª¬ìŠ¤í„°ë¥¼ ë¬¼ë¦¬ì³ì•¼ ë‹¤ìŒ ì¥ì†Œë¡œ ì´ë™í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
      }
  }
 

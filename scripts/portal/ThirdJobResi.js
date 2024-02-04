@@ -4,7 +4,7 @@ function enter(pi) {
 	    pi.resetMap(931000200);
 	    pi.warp(931000200,0);
 	} else {
-	    pi.playerMessage("´ëÈ­°¡ ¾ø½À´Ï´Ù.");
+	    pi.playerMessage("ëŒ€í™”ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	}
     }
 }

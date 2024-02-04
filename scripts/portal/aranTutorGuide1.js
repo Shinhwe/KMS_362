@@ -1,6 +1,6 @@
 function enter(pi) {
     if (pi.getInfoQuest(21002).equals("normal=o;arr0=o;arr1=o;mo1=o;mo2=o;mo3=o;mo4=o")) {
-	pi.playerMessage(5,"CtrlÅ°¸¦ ¿¬¼ÓÇØ¼­ ´©¸£¸é ¿¬¼Ó°ø°İ ÇÒ ¼ö ÀÖ½À´Ï´Ù.");
+	pi.playerMessage(5,"Ctrlí‚¤ë¥¼ ì—°ì†í•´ì„œ ëˆ„ë¥´ë©´ ì—°ì†ê³µê²© í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
 	pi.updateInfoQuest(21002,"normal=o;arr0=o;arr1=o;mo1=o;chain=o;mo2=o;mo3=o;mo4=o");
 	pi.AranTutorialGuide("aran/tutorialGuide2");
     }

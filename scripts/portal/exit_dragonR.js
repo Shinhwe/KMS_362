@@ -1,6 +1,6 @@
 function enter(pi) {
     pi.playPortalSE();
     pi.warp(240030102, 0);
-    pi.playerMessage(5, "Ãµ°øÀÇ ³ª·çÅÍ¿¡¼­ ³ª°©´Ï´Ù.");
+    pi.playerMessage(5, "ì²œê³µì˜ ë‚˜ë£¨í„°ì—ì„œ ë‚˜ê°‘ë‹ˆë‹¤.");
     return true;
 }

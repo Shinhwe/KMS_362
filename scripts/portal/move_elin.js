@@ -21,6 +21,6 @@
 */
 function enter(pi) {
     pi.warp(300000100, "out00");
-    pi.getPlayer().dropMessage(5, "½Ã°£ÀÇ ¹®À» Åë°úÇÕ´Ï´Ù.");
+    pi.getPlayer().dropMessage(5, "ì‹œê°„ì˜ ë¬¸ì„ í†µê³¼í•©ë‹ˆë‹¤.");
     return true;
 }

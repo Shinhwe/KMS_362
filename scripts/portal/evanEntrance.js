@@ -3,7 +3,7 @@ function enter(pi) {
     pi.warp(100030400, "east00");
     return true;
 	} else {
-	pi.dropMessage("Æ©Åä¸®¾óÀ» ¿Ï·áÇØ¾ß ³ª°¥ ¼ö ÀÖ½À´Ï´Ù.");
+	pi.dropMessage("íŠœí† ë¦¬ì–¼ì„ ì™„ë£Œí•´ì•¼ ë‚˜ê°ˆ ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
 	return false;
 	}
 }  

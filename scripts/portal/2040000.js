@@ -20,8 +20,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 /* NPC Base
-	À§ÇèÇÑ¼û¹Ù²ÀÁú (931000001)
-	±ôÂïÀÌ
+	ìœ„í—˜í•œìˆ¨ë°”ê¼­ì§ˆ (931000001)
+	ê¹œì°ì´
  */
 var status;
 
@@ -40,7 +40,7 @@ function action(mode, type, selection) {
             status--;
         if (status == 0) {
 		
-		cm.sendOk("¿À¸¥ÂÊÀ¸·Î °¡½Ã¸é ¹è¸¦ Å¸½Ç ¼ö ÀÖ½À´Ï´Ù.");
+		cm.sendOk("ì˜¤ë¥¸ìª½ìœ¼ë¡œ ê°€ì‹œë©´ ë°°ë¥¼ íƒ€ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
 		cm.dispose();
 
 	}

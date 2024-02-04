@@ -3,17 +3,17 @@
 
 /*
 
-	¿Àµò KMS ÆÀ ¼Ò½ºÀÇ ½ºÅ©¸³Æ® ÀÔ´Ï´Ù.
+	ì˜¤ë”˜ KMS íŒ€ ì†ŒìŠ¤ì˜ ìŠ¤í¬ë¦½íŠ¸ ìž…ë‹ˆë‹¤.
 
-	Æ÷Å»ÀÌ ÀÖ´Â ¸Ê : 109040004
+	í¬íƒˆì´ ìžˆëŠ” ë§µ : 109040004
 
-	Æ÷Å» ¼³¸í : ½ÃÀÛ¸Ê Æ÷Å»Â÷´Ü
+	í¬íƒˆ ì„¤ëª… : ì‹œìž‘ë§µ í¬íƒˆì°¨ë‹¨
 
 
 */
 
 
 function enter(pi) {
-    pi.getPlayer().message(5, "Æ÷Å»À» ÅëÇØ¼­´Â ³ª°¡½Ç ¼ö ¾ø½À´Ï´Ù.");
+    pi.getPlayer().message(5, "í¬íƒˆì„ í†µí•´ì„œëŠ” ë‚˜ê°€ì‹¤ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
     return false;
 }

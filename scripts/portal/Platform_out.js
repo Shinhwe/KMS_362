@@ -2,7 +2,7 @@ function enter(pi) {
     pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.SetIngameDirectionMode(true, true, true, false));
     pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.playSE("Sound/MiniGame.img/prize"));
     pi.getClient().getSession().writeAndFlush(Packages.tools.packet.CField.environmentChange("monsterPark/clearF", 0x13));
-    pi.getClient().getSession().writeAndFlush(Packages.tools.packet.CField.enforceMSG("½ºÅ×ÀÌÁö Å¬¸®¾î´Ù. ·Îºñ·Î ÀÌµ¿ÇÏÁö.", 212, 2000));
+    pi.getClient().getSession().writeAndFlush(Packages.tools.packet.CField.enforceMSG("ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´ë‹¤. ë¡œë¹„ë¡œ ì´ë™í•˜ì§€.", 212, 2000));
     Packages.server.Timer.MapTimer.getInstance().schedule(function () {
         pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.playSE("Sound/MiniGame.img/Catch"));
     }, 1000)

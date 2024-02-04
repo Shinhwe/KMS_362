@@ -1,5 +1,5 @@
 importPackage(Packages.packet.creators);
 
 function enter(pi) {
-	pi.getClient().getSession().write(MainPacketCreator.getGMText(20, "[¾Ë¸²] ¸ŞÀÌÇÃ ¿ùµå·Î ÀÌµ¿ÇÏ½Ã·Á¸é Ä³½Ã¼¥ ¿· ½ºÅ¸ÇÃ·¡´Ö/¸ŞÀÌÇÃ¿ùµå ¹öÆ°À» ÀÌ¿ëÇØÁÖ¼¼¿ä."));
+	pi.getClient().getSession().write(MainPacketCreator.getGMText(20, "[ì•Œë¦¼] ë©”ì´í”Œ ì›”ë“œë¡œ ì´ë™í•˜ì‹œë ¤ë©´ ìºì‹œìƒµ ì˜† ìŠ¤íƒ€í”Œë˜ë‹›/ë©”ì´í”Œì›”ë“œ ë²„íŠ¼ì„ ì´ìš©í•´ì£¼ì„¸ìš”."));
 }

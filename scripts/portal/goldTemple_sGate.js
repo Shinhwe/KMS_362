@@ -1,6 +1,6 @@
 function enter(pi) {
             if (pi.getQuestStatus(3856) == 0) {
-                pi.sendOk("Äè½ºÆ®°¡ ÁøÇàÁßÀÌ ¾Æ´Õ´Ï´Ù.");
+                pi.sendOk("ì¾ŒìŠ¤íŠ¸ê°€ ì§„í–‰ì¤‘ì´ ì•„ë‹™ë‹ˆë‹¤.");
                 pi.dispose();
                 return;
 }

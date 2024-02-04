@@ -3,11 +3,11 @@
 
 /*
 
-	¿Àµò KMS ÆÀ ¼Ò½ºÀÇ ½ºÅ©¸³Æ® ÀÔ´Ï´Ù.
+	ì˜¤ë”˜ KMS íŒ€ ì†ŒìŠ¤ì˜ ìŠ¤í¬ë¦½íŠ¸ ì…ë‹ˆë‹¤.
 
-	Æ÷Å»ÀÌ ÀÖ´Â ¸Ê : 103050370
+	í¬íƒˆì´ ìˆëŠ” ë§µ : 103050370
 
-	Æ÷Å» ¼³¸í : ¼ö·ÃÀå3 ³ª°¡´Â Æ÷Å»
+	í¬íƒˆ ì„¤ëª… : ìˆ˜ë ¨ì¥3 ë‚˜ê°€ëŠ” í¬íƒˆ
 
 
 */
@@ -23,7 +23,7 @@ function enter(pi) {
         pi.getPlayer().setKeyValue2("2ndJobTrialCompleteTime2", ((System.currentTimeMillis() / 1000) - startTime)+"");
         return true;
     } else {
-        pi.getPlayer().message(5, "°ËÀº ±¸½½À» ¾ÆÁ÷ ´Ù ¸ğÀ¸Áö ¸øÇØ ³ª°¥ ¼ö ¾ø´Ù.");
+        pi.getPlayer().message(5, "ê²€ì€ êµ¬ìŠ¬ì„ ì•„ì§ ë‹¤ ëª¨ìœ¼ì§€ ëª»í•´ ë‚˜ê°ˆ ìˆ˜ ì—†ë‹¤.");
         return false;
     }
 }

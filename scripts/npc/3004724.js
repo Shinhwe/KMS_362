@@ -73,15 +73,15 @@ function action(mode, type, sel) {
 		return;
 	}
 	if (status == 0) {
-		var 게임약관 = "#fs14#       해피 전직 도우미\r\n";
+		var 게임약관 = "#fs14#你好, 歡迎來到百合子的楓之谷\r\n";
 		게임약관 += "" + 회색 + "────────────────────────────\r\n";
-		게임약관 += " " + 검정 + "#e해피#n#k에 온 #b#h ##k 용사님 만나서 반가워요!\r\n";
-		게임약관 += "저는 " + 검정 + "부우섬을 지키고 있는#k #fs14##e" + 검정 + "트리켓#n#k#fs14# 이라고 해요!\r\n";
-		게임약관 += " #e" + 검정 + "해피#k#n는 #b용사님들과 함께 만들어가는 서버#k에요 !\r\n";
-		게임약관 += "앞으로 잘 부탁하고 무슨 일이 생기면 #r언제든지#k 절 불러주세요!\r\n";
+		게임약관 += " " + 검정 + "服務器設置:\r\n";
+		게임약관 += " " + 검정 + "3倍經驗;3倍楓幣;楓幣可以購買全部魔方!\r\n";
+		게임약관 += " " + 검정 + "刷怪數量雙倍;怪刷新時間減半;快樂打怪!\r\n";
+		게임약관 += " " + 검정 + "強化全部用痕跡; 痕跡提供強力屬性!\r\n";
+		게임약관 += " " + 검정 + "神秘球/技能核心/真實球打怪掉落; 寵物自動吸楓幣!\r\n";
+		게임약관 += " " + 검정 + "自動轉職, 自動學技能, 簡化遊戲流程!\r\n";
 		게임약관 += "" + 회색 + "────────────────────────────\r\n";
-		게임약관 += "#b#h ##k님이 " + 검정 + "#e해피#n#k는 #r모든 플레이 기록#k은 서버에 #r저장#k되며, 필요에 의해 타인에게 #r공개#k되거나 #r증거#k로 활용될 수 있습니다.\r\n\r\n";
-		게임약관 += "위 내용에 #r이의#k가 없으면 #b'예'#k 버튼을 눌려주세요.";
 
 		cm.sendYesNoS(게임약관, 0x4);
 	} else if (status == 1) {
@@ -407,126 +407,120 @@ function action(mode, type, sel) {
 }
 
 function SecondJob(i) {
-	var adventure = "#fs14##b#h ##k 용사님! #b해피 서버#k에서 즐길 직업을 선택해주세요!" + enter;
+	var adventure = "#fs14##b#h ##k 請選擇職業!" + enter;
 	switch (i) {
 		case 1:
-			//adventure += "너는 #b전사#k를 택했군!\r\n";
-			adventure += "#L110# #r파이터#k로 #b해피 서버#k에 참여할게!\r\n";
-			adventure += "#L120# #r페이지#k로 #b해피 서버#k에 참여할게!\r\n";
-			adventure += "#L130# #r스피어맨#k으로 #b해피 서버#k에 참여할게!\r\n";
+			adventure += "#L110# #r英雄!\r\n";
+			adventure += "#L120# #r聖騎士!\r\n";
+			adventure += "#L130# #r黑騎士!\r\n";
 			break;
 		case 2:
-			//adventure += "현재 당신이 선택한 직업군은 #b마법사#k 입니다.\r\n";
-			adventure += "#L210# #r불,독위자드#k로 #b해피 서버#k에 참여할게!\r\n";
-			adventure += "#L220# #r썬,콜위자드#k로 #b해피 서버#k에 참여할게!\r\n";
-			adventure += "#L230# #r클레릭#k으로 #b해피 서버#k에 참여할게!\r\n";
+			adventure += "#L210# #r大魔導士(火、毒)!\r\n";
+			adventure += "#L220# #r大魔導士(冰、雷)!\r\n";
+			adventure += "#L230# #r主教!\r\n";
 			break;
 		case 3:
-			adventure += "현재 당신이 선택한 직업군은 #b궁수#k 입니다.\r\n";
-			adventure += "#L310# #r헌터#k로 #b해피 서버#k에 참여할게!\r\n";
-			adventure += "#L320# #r사수#k로 #b해피 서버#k에 참여할게!\r\n";
-			//adventure += "#L330# #r패스파인더#k로 #b해피 서버#k에 참여할게!\r\n";
+			adventure += "#L210# #r箭神(弓)!\r\n";
+			adventure += "#L320# #r神射手(弩)!\r\n";
 			break;
 		case 4:
-			//adventure += "현재 당신이 선택한 직업군은 #b도적#k 입니다.\r\n";
-			adventure += "#L410# #r어쌔신#k로 #b해피 서버#k에 참여할게!\r\n";
-			adventure += "#L420# #r시프#k로 #b해피 서버#k에 참여할게!\r\n";
+			adventure += "#L410# #r夜使者(標飛)!\r\n";
+			adventure += "#L420# #r暗影神偷(刀飛)!\r\n";
 			break;
 		case 5:
-			//adventure += "현재 당신이 선택한 직업군은 #b해적#k 입니다.\r\n";
-			adventure += "#L510# #r인파이터#k로 #b해피 서버#k에 참여할게!\r\n";
-			adventure += "#L520# #r건슬링거#k로 #b해피 서버#k에 참여할게!\r\n";
+			adventure += "#L510# #r拳霸(衝鋒隊長)!\r\n";
+			adventure += "#L520# #r槍神(船長)!\r\n";
 			break;
 	}
 	return adventure;
 }
 
 function FirstJob(i) {
-	var chat = "#fs14#용사님! #b해피 서버#k에서 즐길 직업을 선택해주세요!" + enter;
+	var chat = "#fs14##b#h ##k 請選擇職業!" + enter;
 	switch (i) {
 		case 0:
-			chat += "#L1# #r전사#k로 #b해피 서버#k에 참여할게!\r\n";
-			chat += "#L2# #r마법사#k로 #b해피 서버#k에 참여할게!\r\n";
-			chat += "#L3# #r궁수#k로 #b해피 서버#k에 참여할게!\r\n";
-			chat += "#L4# #r도적#k으로 #b해피 서버#k에 참여할게!\r\n";
-			chat += "#L5# #r해적#k으로 #b해피 서버#k에 참여할게!\r\n";
-			chat += "#L330# #r패스파인더#k로 #b해피 서버#k에 참여할게!\r\n";
-			chat += "#L430# #r듀얼블레이드#k로 #b해피 서버#k에 참여할게!\r\n";
-			chat += "#L530# #r캐논슈터#k로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L1# #r冒險家戰士!\r\n";
+			chat += "#L2# #r冒險家魔法師!\r\n";
+			chat += "#L3# #r冒險家弓箭手!\r\n";
+			chat += "#L4# #r冒險家飛俠!\r\n";
+			chat += "#L5# #r冒險家海盜!\r\n";
+			chat += "#L330# #r開拓者!\r\n";
+			chat += "#L430# #r影武者!\r\n";
+			chat += "#L530# #r重砲指揮官!\r\n";
 			break;
 		case 1000:
-			chat += "#L1100# #r소울마스터#k로 #b해피 서버#k에 참여할게!\r\n";
-			chat += "#L1200# #r플레임위자드#k로 #b해피 서버#k에 참여할게!\r\n";
-			chat += "#L1300# #r윈드브레이커#k로 #b해피 서버#k에 참여할게!\r\n";
-			chat += "#L1400# #r나이트워커#k로 #b해피 서버#k에 참여할게!\r\n";
-			chat += "#L1500# #r스트라이커#k로 #b해피 서버#k에 참여할게!\r\n";
+		    chat += "#L1100# #r聖魂劍士!\r\n";
+			chat += "#L1200# #烈焰巫師!\r\n";
+			chat += "#L1300# #破風使者!\r\n";
+			chat += "#L1400# #暗夜行者!\r\n";
+			chat += "#L1500# #閃雷悍將!\r\n";
 			break;
 		case 2000:
-			chat += "#L2100# #r아란#k으로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L2100# #狂狼勇士!\r\n";
 			break;
 		case 2001:
-			chat += "#L2200# #r에반#k으로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L2200# #龍魔導士!\r\n";
 			break;
 		case 2002:
-			chat += "#L2300# #r메르세데스#k로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L2200# #精靈遊俠!\r\n";
 			break;
 		case 2003:
-			chat += "#L2400# #r팬텀#k으로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L2300# #幻影俠盜!\r\n";
 			break;
 		case 2004:
-			chat += "#L2700# #r루미너스#k로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L2400# #隱月!\r\n";
 			break;
 		case 2005:
-			chat += "#L2500# #r은월#k로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L2500# #夜光!\r\n";
 			break;
 		case 3000:
-			chat += "#L3200# #r배틀메이지#k로 #b해피 서버#k에 참여할게!\r\n";
-			chat += "#L3300# #r와일드헌터#k로 #b해피 서버#k에 참여할게!\r\n";
-			chat += "#L3500# #r메카닉#k으로 #b해피 서버#k에 참여할게!\r\n";
-			chat += "#L3700# #r블래스터#k로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L3200# #煉獄巫師!\r\n";
+			chat += "#L3300# #狂豹獵人!\r\n";
+			chat += "#L3500# #機甲戰神!\r\n";
+			chat += "#L3700# #爆拳枪神!\r\n";
 			break;
 		case 3001:
-			chat += "#L3100# #r데몬슬레이어#k로 #b해피 서버#k에 참여할게!\r\n";
-			chat += "#L3101# #r데몬어벤져#k로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L3100# #惡魔殺手(紅毛)!\r\n";
+			chat += "#L3101# #惡魔復仇者(白毛)!\r\n";
 			break;
 		case 3002:
-			chat += "#L3600# #r제논#k으로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L3600# #傑諾(尖兵)!\r\n";
 			break;
 		case 5000:
-			chat += "#L5100# #r미하일#k로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L5100# #米哈逸!\r\n";
 			break;
 		case 6000:
-			chat += "#L6100# #r카이저#k으로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L6100# #凱撒!\r\n";
 			break;
 		case 6001:
-			chat += "#L6500# #r엔젤릭버스터#k로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L6500# #天使破壞者!\r\n";
 			break;
 		case 6002:
-			chat += "#L6400# #r카데나#k로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L6400# #卡蒂娜!\r\n";
 			break;
 		case 6003:
-			chat += "#L6300# #r카인#k으로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L6300# #凱殷!\r\n";
 			break;
 		case 10112:
-			chat += "#L10112# #r제로#k로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L10112# #神之子!\r\n";
 			break;
 		case 14000:
-			chat += "#L14200# #r키네시스#k로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L14200# #凱內西斯!\r\n";
 			break;
 		case 15000:
-			chat += "#L99999# 일리움은 현재 전직이 불가능한 직업입니다.\r\n";
+			chat += "#L15200# #伊利恩!\r\n";
 			break;
 		case 15001:
-			chat += "#L15500# #r아크#k로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L15500# #亞克!\r\n";
 			break;
 		case 15002:
-			chat += "#L15100# #r아델#k로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L15100# #阿戴爾!\r\n";
 			break;
 		case 16000:
-			chat += "#L16400# #r호영#k으로 #b해피 서버#k에 참여할게!\r\n";
+			chat += "#L16400# #虎影!\r\n";
 			break;
 		case 16001:
-			chat += "#L16200# #r라라#k로 #b해피 서버k에 참여할게!\r\n";
+			chat += "#L16200# #菈菈!\r\n";
 			break;
 	}
 	cm.sendOkS(chat, 0x4);
@@ -552,12 +546,12 @@ function addMedal()
 
 function addPet()
 {
-	Packages.server.MapleInventoryManipulator.addId_Item(cm.getClient(), 5000707, 1, "", Packages.client.inventory.MaplePet.createPet(5000707, -1), -1, "", false);
-	Packages.server.MapleInventoryManipulator.addId_Item(cm.getClient(), 5000708, 1, "", Packages.client.inventory.MaplePet.createPet(5000708, -1), -1, "", false);
-	Packages.server.MapleInventoryManipulator.addId_Item(cm.getClient(), 5000709, 1, "", Packages.client.inventory.MaplePet.createPet(5000709, -1), -1, "", false);
-	petEquip1 = Packages.server.MapleItemInformationProvider.getInstance().generateEquipById(1802597, -1, false);
-	petEquip2 = Packages.server.MapleItemInformationProvider.getInstance().generateEquipById(1802597, -1, false);
-	petEquip3 = Packages.server.MapleItemInformationProvider.getInstance().generateEquipById(1802597, -1, false);
+	Packages.server.MapleInventoryManipulator.addId_Item(cm.getClient(), 5002079, 1, "", Packages.client.inventory.MaplePet.createPet(5002079, -1), -1, "", false);
+	Packages.server.MapleInventoryManipulator.addId_Item(cm.getClient(), 5002080, 1, "", Packages.client.inventory.MaplePet.createPet(5002080, -1), -1, "", false);
+	Packages.server.MapleInventoryManipulator.addId_Item(cm.getClient(), 5002081, 1, "", Packages.client.inventory.MaplePet.createPet(5002081, -1), -1, "", false);
+	petEquip1 = Packages.server.MapleItemInformationProvider.getInstance().generateEquipById(1802715, -1, false);
+	petEquip2 = Packages.server.MapleItemInformationProvider.getInstance().generateEquipById(1802715, -1, false);
+	petEquip3 = Packages.server.MapleItemInformationProvider.getInstance().generateEquipById(1802716, -1, false);
 	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), petEquip1, false);
 	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), petEquip2, false);
 	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), petEquip3, false);

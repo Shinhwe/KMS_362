@@ -7,94 +7,94 @@ function enter(pi) {
         var count = pi.getPlayer().getKeyValue(20190208, "shuttlecount");
         switch (count) {
             case 1:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ÁÁ¾Æ ½ÃÀÛÀÌ´Ù! ÇÏ³ª!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ì¢‹ì•„ ì‹œì‘ì´ë‹¤! í•˜ë‚˜!", ""));
                 break;
             case 2:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "µÑ!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ë‘˜!", ""));
                 break;
             case 3:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "¼Â!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ì…‹!", ""));
                 break;
             case 4:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "³İ!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ë„·!", ""));
                 break;
             case 5:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "´Ù¼¸! ºûº¸´Ù ºü¸£°Ô!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ë‹¤ì„¯! ë¹›ë³´ë‹¤ ë¹ ë¥´ê²Œ!", ""));
                 break;
             case 6:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "¿©¼¸!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ì—¬ì„¯!", ""));
                 break;
             case 7:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ÀÏ°ö!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ì¼ê³±!", ""));
                 break;
             case 8:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "¿©´ü!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ì—¬ëŸ!", ""));
                 break;
             case 9:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "¾ÆÈ©!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ì•„í™‰!", ""));
                 break;
             case 10:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "¿­! ³» ÀÌ¸§Àº ¶óÀÌÆ®´× º¼Æ®!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ì—´! ë‚´ ì´ë¦„ì€ ë¼ì´íŠ¸ë‹ ë³¼íŠ¸!", ""));
                 break;
             case 11:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "¿­ÇÏ³ª!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ì—´í•˜ë‚˜!", ""));
                 break;
             case 12:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "¿­µÑ!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ì—´ë‘˜!", ""));
                 break;
             case 13:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "¿­¼Â!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ì—´ì…‹!", ""));
                 break;
             case 14:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "¿­³İ!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ì—´ë„·!", ""));
                 break;
             case 15:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "¿­´Ù¼¸! Èûµé¾îµµ ±Ù¼ºÀÌ´Ù!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ì—´ë‹¤ì„¯! í˜ë“¤ì–´ë„ ê·¼ì„±ì´ë‹¤!", ""));
                 break;
             case 16:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "¿­¿©¼¸!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ì—´ì—¬ì„¯!", ""));
                 break;
             case 17:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "¿­ÀÏ°ö!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ì—´ì¼ê³±!", ""));
                 break;
             case 18:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "¿­¿©´ü!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ì—´ì—¬ëŸ!", ""));
                 break;
             case 19:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "¿­¾ÆÈ©!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ì—´ì•„í™‰!", ""));
                 break;
             case 20:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "½º¹°! ¾ö¸¶ »ı°¢ ³ªÁö?!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ìŠ¤ë¬¼! ì—„ë§ˆ ìƒê° ë‚˜ì§€?!", ""));
                 break;
             case 21:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "½º¹°ÇÏ³ª!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ìŠ¤ë¬¼í•˜ë‚˜!", ""));
                 break;
             case 22:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "½º¹°µÑ!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ìŠ¤ë¬¼ë‘˜!", ""));
                 break;
             case 23:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "½º¹°¼Â!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ìŠ¤ë¬¼ì…‹!", ""));
                 break;
             case 24:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "½º¹°³İ!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ìŠ¤ë¬¼ë„·!", ""));
                 break;
             case 25:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "½º¹°´Ù¼¸! ÀÌÁ¦ ´Ù¼¸ °³ ³²¾Ò´Ù!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ìŠ¤ë¬¼ë‹¤ì„¯! ì´ì œ ë‹¤ì„¯ ê°œ ë‚¨ì•˜ë‹¤!", ""));
                 break;
             case 26:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "½º¹°¿©¼¸!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ìŠ¤ë¬¼ì—¬ì„¯!", ""));
                 break;
             case 27:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "½º¹°ÀÏ°ö!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ìŠ¤ë¬¼ì¼ê³±!", ""));
                 break;
             case 28:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "½º¹°¿©´ü!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ìŠ¤ë¬¼ì—¬ëŸ!", ""));
                 break;
             case 29:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "½º¹°¾ÆÈ©! ¸¶Áö¸· ÇÑ °³!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ìŠ¤ë¬¼ì•„í™‰! ë§ˆì§€ë§‰ í•œ ê°œ!", ""));
                 break;
             case 29:
-                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "¼­¸¥! ÁÁ¾Æ! Àß Çß¾î! ¼º°øÀÌ¾ß!", ""));
+                pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070203, 1000, "ì„œë¥¸! ì¢‹ì•„! ì˜ í–ˆì–´! ì„±ê³µì´ì•¼!", ""));
                 break;
         }
         if (count == 30) {
@@ -107,7 +107,7 @@ function enter(pi) {
             var schedule = Packages.server.Timer.MapTimer.getInstance().schedule(function () {
                 pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.playSE("Sound/MiniGame.img/Catch"));
             }, 1000)
-            pi.getClient().getSession().writeAndFlush(Packages.tools.packet.CField.enforceMSG("½ºÅ×ÀÌÁö Å¬¸®¾î´Ù. ·Îºñ·Î ÀÌµ¿ÇÏÁö.", 212, 2000));
+            pi.getClient().getSession().writeAndFlush(Packages.tools.packet.CField.enforceMSG("ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´ë‹¤. ë¡œë¹„ë¡œ ì´ë™í•˜ì§€.", 212, 2000));
             pi.getPlayer().RegisterPlatformerRecord(18);
             pi.getPlayer().warpdelay(993001000, 2);
             var schedule = Packages.server.Timer.MapTimer.getInstance().schedule(function () {

@@ -20,6 +20,7 @@ import handling.farm.FarmServer;
 import handling.login.LoginInformationProvider;
 import handling.login.LoginServer;
 import handling.world.World;
+import scripting.CacheScript;
 import server.control.MapleEtcControl;
 import server.events.MapleOxQuizFactory;
 import server.field.boss.FieldSkillFactory;
@@ -404,6 +405,9 @@ public class Start
       MapleMonsterDropDataProvider.getInstance().loadAllData();
       System.out.println("[Loading ShopData]");
       MapleShopFactory.getInstance().loadShop();
+      System.out.println("[緩存全部腳本文件]");
+      CacheScript.CacheAllScript();
+      System.out.println("[緩存全部腳本文件完成]");
       潛能生成器.加載裝備潛能權重();
       潛能生成器.加載裝備附加潛能權重();
       Runtime.getRuntime().addShutdownHook(new Thread(new Shutdown()));
@@ -422,6 +426,7 @@ public class Start
     }
     catch (Exception ex2)
     {
+      ex2.printStackTrace();
     }
   }
 

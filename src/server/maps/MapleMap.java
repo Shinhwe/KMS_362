@@ -7071,19 +7071,18 @@ public final class MapleMap
   }
 
   public void loadMonsterRate (boolean first)
-  {// 몹 젠
+  {
+    // 몹 젠
     ChannelServer channelServer = ChannelServer.getInstance(this.channel);
+
     float mobRate = channelServer.getMobRate();
+
     int reduceMobRespawnDelay = channelServer.getReduceMobRespawnDelay();
+
     int spawnSize = this.monsterSpawn.size();
-    if (spawnSize >= 20 || this.partyBonusRate > 0)
-    {
-      this.maxRegularSpawn = Math.round(spawnSize / this.monsterRate * mobRate);
-    }
-    else
-    {
-      this.maxRegularSpawn = (int) Math.ceil((spawnSize * this.monsterRate * mobRate));
-    }
+
+    this.maxRegularSpawn = (int) Math.ceil((spawnSize * this.monsterRate * mobRate));
+
     if (this.fixedMob > 0)
     {
       this.maxRegularSpawn = this.fixedMob;
@@ -7116,7 +7115,7 @@ public final class MapleMap
 
     this.createMobInterval -= reduceMobRespawnDelay;
 
-    System.out.println("mapId = " + getId() + "; createMobInterval = " + createMobInterval + "; mobRate = " + mobRate + ";maxRegularSpawn = " + maxRegularSpawn);
+    spawnDebug();
 
     if (first && spawnSize > 0)
     {
@@ -7363,7 +7362,7 @@ public final class MapleMap
 
   public String spawnDebug ()
   {
-    String sb = "Mobs in map : " + getNumMonsters() + " spawnedMonstersOnMap: " + this.spawnedMonstersOnMap + " spawnpoints: " + this.monsterSpawn.size() + " maxRegularSpawn: " + this.maxRegularSpawn + " monster rate: " + this.monsterRate + " fixed" + ": " + this.fixedMob;
+    String sb = "Mobs in map : " + getNumMonsters() + " spawnedMonstersOnMap: " + this.spawnedMonstersOnMap + " spawnpoints: " + this.monsterSpawn.size() + " maxRegularSpawn: " + this.maxRegularSpawn + " monster rate: " + this.monsterRate + " fixed" + ": " + this.fixedMob + " partyBonusRate" + ": " + this.partyBonusRate;
     return sb;
   }
 

@@ -1,5 +1,5 @@
 /*
- *  ∏Æ≈œ
+ *  Î¶¨ÌÑ¥
  */
 
 function enter(pi) {

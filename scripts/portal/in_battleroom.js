@@ -1,6 +1,6 @@
 function enter(pi) {
     if (pi.getQuestRecord(100188).getCustomData() != "complete") {
-        pi.getPlayer().dropMessage(5, "¾îµåº¥Ã³ Æú·Î ¿£ÇÇ½Ã¸¦ ÅëÇØ ÀÔÀå Äù½ºÆ®¸¦ ¿Ï·áÇØ ÁÖ¼¼¿ä.");
+        pi.getPlayer().dropMessage(5, "ì–´ë“œë²¤ì²˜ í´ë¡œ ì—”í”¼ì‹œë¥¼ í†µí•´ ì…ì¥ í€˜ìŠ¤íŠ¸ë¥¼ ì™„ë£Œí•´ ì£¼ì„¸ìš”.");
     } else {
         pi.openNpc(9062147, "adventure_drill");
     }

@@ -2,12 +2,12 @@
 function enter(pi) {
      if (pi.getQuestStatus(3519) == 2) {
           pi.warp(271000000, 0);
-          pi.playerMessage(5, "½Ã°£ÀÇ ¹® ¾ÈÀ¸·Î µé¾î¿Ô´Ù. ¿©±â´Â ¾îµğÁö?");
+          pi.playerMessage(5, "ì‹œê°„ì˜ ë¬¸ ì•ˆìœ¼ë¡œ ë“¤ì–´ì™”ë‹¤. ì—¬ê¸°ëŠ” ì–´ë””ì§€?");
 if (pi.getQuestStatus(31102) == 1) {
 pi.openNpc(2143002);
 }
           return; 
      }
-        pi.playerMessage(5, "ÀÌ ¹® ³Ê¸Ó¿¡´Â ¹«¾ùÀÌ ÀÖÀ»±î?");
+        pi.playerMessage(5, "ì´ ë¬¸ ë„ˆë¨¸ì—ëŠ” ë¬´ì—‡ì´ ìˆì„ê¹Œ?");
  	pi.playPortalSE();    
 }

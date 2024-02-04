@@ -1,11 +1,11 @@
 /*
 
-	¿Àµò KMS ÆÀ ¼Ò½ºÀÇ ½ºÅ©¸³Æ® ÀÔ´Ï´Ù. (Á¦ÀÛ : ¿¤µµ¶óµµ)
-        ¼öÁ¤ : OnS¿Â ¶óÀÎ
+	ì˜¤ë”˜ KMS íŒ€ ì†ŒìŠ¤ì˜ ìŠ¤í¬ë¦½íŠ¸ ì…ë‹ˆë‹¤. (ì œì‘ : ì—˜ë„ë¼ë„)
+        ìˆ˜ì • : OnSì˜¨ ë¼ì¸
 
-	Æ÷Å»ÀÌ ÀÖ´Â ¸Ê : 130030001
+	í¬íƒˆì´ ìˆëŠ” ë§µ : 130030001
 
-	Æ÷Å» ¼³¸í : ½ÃÀÛÇÏ´Â°÷ Äù½ºÆ® Ã¼Å© (20010 ~ 20014)
+	í¬íƒˆ ì„¤ëª… : ì‹œì‘í•˜ëŠ”ê³³ í€˜ìŠ¤íŠ¸ ì²´í¬ (20010 ~ 20014)
 
 
 */
@@ -14,25 +14,25 @@
 function enter(pi) {
     var Qid = 20010;
     var Wmid = 130030002;
-    var Nname = "Å°¹«";
+    var Nname = "í‚¤ë¬´";
     if (pi.getPlayer().getMapId() == 130030002) {
         Qid = 20011;
         Wmid = 130030003;
-        Nname = "Å°ÀÜ";
+        Nname = "í‚¤ì”";
     } else if (pi.getPlayer().getMapId() == 130030003) {
         Qid = 20012;
         Wmid = 130030004;
-        Nname = "Å°´©";
+        Nname = "í‚¤ëˆ„";
     } else if (pi.getPlayer().getMapId() == 130030004) {
         Qid = 20013;
         Wmid = 130030005;
-        Nname = "Å°¾Æ";
+        Nname = "í‚¤ì•„";
     }
     if (pi.getQuestStatus(Qid) == (Qid == 20010 ? 1:2)) {
         pi.warp(Wmid, 0);
         return true;
     } else {
-        pi.getPlayer().dropMessage(5, Nname+"¿¡°Ô Äù½ºÆ®¸¦ ¹Ş°í ÁøÇàÇØ ÁÖ½Ê½Ã¿À.");
+        pi.getPlayer().dropMessage(5, Nname+"ì—ê²Œ í€˜ìŠ¤íŠ¸ë¥¼ ë°›ê³  ì§„í–‰í•´ ì£¼ì‹­ì‹œì˜¤.");
         return false;
     }
 }

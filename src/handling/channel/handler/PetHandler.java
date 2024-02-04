@@ -218,61 +218,61 @@ public class PetHandler
       {
         return;
       }
-      Iterator<MapleMapItem> dropsIterator = chr.getMap().getAllItems().iterator();
-      while (dropsIterator.hasNext())
-      {
-        MapleMapItem mapItem = dropsIterator.next();
-        if (mapItem.getMeso() > 0)
-        {
-          int meso = mapItem.getMeso();
-
-          if (chr.getParty() != null && mapItem.getOwner() != chr.getId())
-          {
-            LinkedList<MapleCharacter> toGive = new LinkedList<MapleCharacter>();
-
-            for (MaplePartyCharacter member : chr.getParty().getMembers())
-            {
-              MapleCharacter memberCharacter = member.getPlayer();
-
-              if (member.isOnline() && memberCharacter.isAlive() && memberCharacter.getMapId() == chr.getMapId())
-              {
-                toGive.add(memberCharacter);
-              }
-            }
-
-            int partySize = toGive.size();
-
-
-            if (partySize > 1)
-            {
-              meso = (int) Math.floor(meso * (1.2 + (partySize - 2) * 0.1d));
-            }
-
-            for (MapleCharacter member : toGive)
-            {
-              if (member.getId() == chr.getId())
-              {
-                member.gainMeso((long) Math.floor(meso * (0.4 + 0.6 / partySize)), true, false, true, true);
-              }
-              else
-              {
-                member.gainMeso((long) Math.floor(meso * 0.6 / partySize), true, false, true, true);
-              }
-            }
-          }
-          else
-          {
-            chr.gainMeso(meso, true, false, true, true);
-          }
-          if (mapItem.getDropper().getType() == MapleMapObjectType.MONSTER)
-          {
-            chr.getClient().getSession().writeAndFlush(CWvsContext.onMesoPickupResult(mapItem.getMeso()));
-          }
-          mapItem.setPickedUp(true);
-          chr.getMap().broadcastMessage(CField.removeItemFromMap(mapItem.getObjectId(), 5, chr.getId(), 0));
-          chr.getMap().removeMapObject(mapItem);
-        }
-      }
+      // Iterator<MapleMapItem> dropsIterator = chr.getMap().getAllItems().iterator();
+      // while (dropsIterator.hasNext())
+      // {
+      //   MapleMapItem mapItem = dropsIterator.next();
+      //   if (mapItem.getMeso() > 0)
+      //   {
+      //     int meso = mapItem.getMeso();
+      //
+      //     if (chr.getParty() != null && mapItem.getOwner() != chr.getId())
+      //     {
+      //       LinkedList<MapleCharacter> toGive = new LinkedList<MapleCharacter>();
+      //
+      //       for (MaplePartyCharacter member : chr.getParty().getMembers())
+      //       {
+      //         MapleCharacter memberCharacter = member.getPlayer();
+      //
+      //         if (member.isOnline() && memberCharacter.isAlive() && memberCharacter.getMapId() == chr.getMapId())
+      //         {
+      //           toGive.add(memberCharacter);
+      //         }
+      //       }
+      //
+      //       int partySize = toGive.size();
+      //
+      //
+      //       if (partySize > 1)
+      //       {
+      //         meso = (int) Math.floor(meso * (1.2 + (partySize - 2) * 0.1d));
+      //       }
+      //
+      //       for (MapleCharacter member : toGive)
+      //       {
+      //         if (member.getId() == chr.getId())
+      //         {
+      //           member.gainMeso((long) Math.floor(meso * (0.4 + 0.6 / partySize)), true, false, true, true);
+      //         }
+      //         else
+      //         {
+      //           member.gainMeso((long) Math.floor(meso * 0.6 / partySize), true, false, true, true);
+      //         }
+      //       }
+      //     }
+      //     else
+      //     {
+      //       chr.gainMeso(meso, true, false, true, true);
+      //     }
+      //     if (mapItem.getDropper().getType() == MapleMapObjectType.MONSTER)
+      //     {
+      //       chr.getClient().getSession().writeAndFlush(CWvsContext.onMesoPickupResult(mapItem.getMeso()));
+      //     }
+      //     mapItem.setPickedUp(true);
+      //     chr.getMap().broadcastMessage(CField.removeItemFromMap(mapItem.getObjectId(), 5, chr.getId(), 0));
+      //     chr.getMap().removeMapObject(mapItem);
+      //   }
+      // }
       pet.updatePosition(res);
       chr.getMap().broadcastMessage(chr, PetPacket.movePet(chr.getId(), pet.getUniqueId(), (byte) petId, res, pet.getPos()), false);
       if (chr.getStat().pickupRange <= 0.0 || chr.inPVP())

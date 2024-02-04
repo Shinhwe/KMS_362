@@ -1,6 +1,3 @@
-/*
- * ��ī�̷�
- */
 function enter(pi) {
     var hard = true;
     var em = pi.getEventManager("Hard_Hillah");

@@ -1,15 +1,6 @@
-/*
- * ǻ��¶��� �ҽ� ��ũ��Ʈ �Դϴ�.
- * 
- * ��Ż��ġ : ������ ���� 2
- * ��Ż���� : ������ �Ӹ� ��ȯ
- * 
- * ���� : ��ũ����
- * 
- */
 importPackage(Packages.server.life);
 function enter(pi) {
-    //2408003������ ��ġ�� 8810025, 8810129 ��ȯ
+
     var map = pi.getPlayer().getMap();
     if (map.getReactor(2408003).getState() <= 0) {
         var pos = map.getReactor(2408003).getPosition();

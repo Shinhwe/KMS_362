@@ -10,7 +10,7 @@ function enter(pi) {
          pi.getEventInstance().setProperty("DavyzonePQ_Gate","0");
 	pi.getPlayer().getClient().getSession().write(UIPacket.AchievementRatio(50));
      } else {
-         pi.playerMessage("Áö±İÀº Æ÷Å»ÀÌ ºÀÀÎµÇ¾î ÀÖ½À´Ï´Ù.");
+         pi.playerMessage("ì§€ê¸ˆì€ í¬íƒˆì´ ë´‰ì¸ë˜ì–´ ìˆìŠµë‹ˆë‹¤.");
      }
  }
 

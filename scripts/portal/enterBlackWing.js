@@ -2,7 +2,7 @@
 
 function enter(pi) {
 	if (!pi.getPlayer().haveItem(1003134, 1, true, true)) {
-		pi.getPlayer().message(5, "ºí·¢À®ÀÇ Â¡Ç¥°¡ ¾øÀÌ´Â µé¾î°¥ ¼ö ¾ø½À´Ï´Ù.");
+		pi.getPlayer().message(5, "ë¸”ë™ìœ™ì˜ ì§•í‘œê°€ ì—†ì´ëŠ” ë“¤ì–´ê°ˆ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 		return false;
 	} else {
 		pi.warp(310050000, 1);

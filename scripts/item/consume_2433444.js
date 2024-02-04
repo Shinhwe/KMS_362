@@ -13,16 +13,18 @@ function action(M, T, S) {
 	}
 
 	if (M == 1)
+	{
 		St++;
+	}
+
+	if (!cm.haveItem(2433444)) {
+		cm.dispose();
+		return;
+	}
 
 	if (St == 0) {
-		if (!cm.haveItem(2433444)) {
-			cm.dispose();
-			return;
-		}
 		if (cm.getPlayer().getJob() == 10112) {
-
-			cm.sendOkS("#b#h ##k님의 여정을 돕고자, 아이템들에 #e#r상당한 추가 옵션#k#n을 부여했습니다. 아이템들은 #e#r최대 7일 동안 사용#k#n이 가능하니까 기간 내에 더 좋은 장비를 맞추시기 바래요.\r\n#r#e(제로 직업군은 무기를 획득할 수 없습니다)#n\r\n\r\n#b"
+			cm.sendOkS("#b#h ##k恭喜, 成功領取下列裝備!\r\n\r\n#b"
 				+ "#fUI/UIWindow2.img/QuestIcon/4/0#\r\n"
 				+ "  #i1003863:# #t1003863:#\r\n"
 				+ "  #i1052612:# #t1052612:#\r\n"
@@ -43,50 +45,80 @@ function action(M, T, S) {
 
 		wList = [];
 		getWeapon(cm.getPlayer().getJob());
-		selStr = "메이플 월드에 오신 #b#h ##k님을 위해 준비한 장비를 지금 바로 받으시겠어요? #r#e블랙 방어구 세트와 함께 지급받을 무기(타임리프 1회차 이상은 방어구 지급 X)#k#n를 선택해주세요.\r\n\r\n";
+		selStr = "#b#h ##k你好, 每個角色都可以領取一套初試裝備!\r\n#r#e請從下面的列表中挑選武器#n\r\n\r\n#b";
 		selStr += "#fUI/UIWindow2.img/QuestIcon/3/0#\r\n";
-		selStr += "#L999##r#e나중에 다시 선택한다.#b#n#l\r\n\r\n";
 		for (i = 0; i < wList.length; i++) {
 			selStr += "#L" + i + "##i" + wList[i] + ":# #t" + wList[i] + ":##l\r\n";
 		}
-
 		cm.sendSimpleS(selStr, 4, 2007);
-
-	}
-
-	else if (St == 1) {
+	} else if (St == 1) {
 		if (S == 999 || S == 1212000) {
-			cm.getPlayer().dropMessage(5, "상자 사용을 취소했습니다. 사용 가능 기간 내에 상자를 사용하지 않을 경우 상자를 다시 지급해드리지 않으니 반드시 기간 내에 사용하시기 바랍니다.");
 			cm.dispose();
 			return;
 		}
 		if (cm.getPlayer().getKeyValue(1912211, "timerf") == -1 && cm.getPlayer().getLevel() <= 20) {
-			cm.sendOkS("#b#h ##k님의 여정을 돕고자, 아이템들에 #e#r상당한 추가 옵션#k#n을 부여했습니다. 아이템들은 #e#r최대 7일 동안 사용#k#n이 가능하니까 기간 내에 더 좋은 장비를 맞추시기 바라요.\r\n\r\n#b"
+			cm.sendOkS("#b#h ##k恭喜, 成功領取下列裝備!\r\n\r\n#b"
 				+ "#fUI/UIWindow2.img/QuestIcon/4/0#\r\n"
-				+ "#fUI/UIWindow2.img/QuestIcon/4/0#\r\n"
+				+ "  #i" + wList[S] + ":# #t" + wList[S] + ":#\r\n", 4, 2007);
 				+ "  #i1003863:# #t1003863:#\r\n"
 				+ "  #i1052612:# #t1052612:#\r\n"
 				+ "  #i1102562:# #t1102562:#\r\n"
 				+ "  #i1012376:# #t1012376:#\r\n"
 				+ "  #i1122252:# #t1122252:#\r\n"
 				+ "  #i1132228:# #t1132228:#\r\n"
-				+ "  #i" + wList[S] + ":# #t" + wList[S] + ":# #e#r(선택한 무기)#k#n\r\n", 4, 2007);
-		} else {
-			cm.sendOkS("#b#h ##k님의 여정을 돕고자, 아이템들에 #e#r상당한 추가 옵션#k#n을 부여했습니다. 아이템들은 #e#r최대 7일 동안 사용#k#n이 가능하니까 기간 내에 더 좋은 장비를 맞추시기 바라요.\r\n\r\n#b"
-				+ "#fUI/UIWindow2.img/QuestIcon/4/0#\r\n"
-				+ "  #i" + wList[S] + ":# #t" + wList[S] + ":# #e#r(선택한 무기)#k#n\r\n", 4, 2007);
-		}
-		if (cm.getPlayer().getKeyValue(1912211, "timerf") == -1) {
-			addOption(1003863, false);
-			addOption(1052612, false);
-			addOption(1102562, false);
-			addOption(1012376, false);
-			addOption(1122252, false);
-			addOption(1132228, false);
-		}
+		addOption(1003863, false);
+		addOption(1052612, false);
+		addOption(1102562, false);
+		addOption(1012376, false);
+		addOption(1122252, false);
+		addOption(1132228, false);
 		addOption(wList[S], true);
 		cm.gainItem(2433444, -1);
+		if (isBow(wList[S])) {
+			cm.gainItem(2060008, 9999);
+		}
+		if (isCrossbow(wList[S])) {
+			cm.gainItem(2061006, 9999);
+		}
+		if (isGun(wList[S])) {
+			cm.gainItem(2330001, 9999);
+		}
 		cm.dispose();
+	}
+}
+
+function isGun(itemId) {
+	switch (itemId) {
+		case 1492181:
+		case 1532100:
+			return true;
+
+		default:
+			return false;
+	}
+}
+
+function isBow(itemId) {
+	switch (itemId) {
+		case 1452207:
+		case 1592030:
+		case 1214020:
+			return true;
+
+		default:
+			return false;
+	}
+}
+
+function isCrossbow(itemId) {
+	switch (itemId) {
+		case 1462195:
+		case 1522096:
+		case 1214020:
+			return true;
+
+		default:
+			return false;
 	}
 }
 
@@ -100,11 +132,9 @@ function isMagician(i) {
 		case 142:
 		case 152:
 			return true;
-			break;
 
 		default:
 			return false;
-			break;
 	}
 }
 

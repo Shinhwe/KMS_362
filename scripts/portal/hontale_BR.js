@@ -4,22 +4,22 @@ function enter(pi) {
     var em = check == 0 ? pi.getEventManager("Normal_Horntail") : pi.getEventManager("Chaos_Horntail");
     var eim = pi.getPlayer().getEventInstance();
     if (em == null || eim == null) {
-        pi.getPlayer().dropMessage(5, "ºñÁ¤»óÀûÀÎ °ªÀÔ´Ï´Ù. ¿î¿µÀÚ²² ¹®ÀÇÇØ ÁÖ¼¼¿ä.");
+        pi.getPlayer().dropMessage(5, "ë¹„ì •ìƒì ì¸ ê°’ì…ë‹ˆë‹¤. ìš´ì˜ìê»˜ ë¬¸ì˜í•´ ì£¼ì„¸ìš”.");
     }
     if (map == 240060000 || map == 240060001) {
         if (eim.getProperty("stage") == "0") {
-            pi.getPlayer().dropMessage(5, "Áö±İÀº Æ÷Å»ÀÌ ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù.");
+            pi.getPlayer().dropMessage(5, "ì§€ê¸ˆì€ í¬íƒˆì´ ì‘ë™í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
         } else if (!pi.isLeader()) {
-	pi.getPlayer().dropMessage(5, "ÆÄÆ¼Àå¸¸ÀÌ ÀÔÀåÀ» ½ÃµµÇÒ ¼ö ÀÖ½À´Ï´Ù.");
+	pi.getPlayer().dropMessage(5, "íŒŒí‹°ì¥ë§Œì´ ì…ì¥ì„ ì‹œë„í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
         } else {
             pi.warpParty(map + 100);
 	eim.changedMap(pi.getPlayer(), map + 100);
         }
     } else if (map == 240060100 || map == 240060101) {
         if (eim.getProperty("stage") == "1") {
-            pi.getPlayer().dropMessage(5, "Áö±İÀº Æ÷Å»ÀÌ ÀÛµ¿ÇÏÁö ¾Ê½À´Ï´Ù.");
+            pi.getPlayer().dropMessage(5, "ì§€ê¸ˆì€ í¬íƒˆì´ ì‘ë™í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
         } else if (!pi.isLeader()) {
-	pi.getPlayer().dropMessage(5, "ÆÄÆ¼Àå¸¸ÀÌ ÀÔÀåÀ» ½ÃµµÇÒ ¼ö ÀÖ½À´Ï´Ù.");
+	pi.getPlayer().dropMessage(5, "íŒŒí‹°ì¥ë§Œì´ ì…ì¥ì„ ì‹œë„í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
         } else {
             pi.warpParty(map + 100);
 	eim.changedMap(pi.getPlayer(), map + 100);

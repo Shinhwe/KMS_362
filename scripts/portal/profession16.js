@@ -3,11 +3,11 @@
 
 /*
 
-	¿Àµò KMS ÆÀ ¼Ò½ºÀÇ ½ºÅ©¸³Æ® ÀÔ´Ï´Ù.
+	ì˜¤ë”˜ KMS íŒ€ ì†ŒìŠ¤ì˜ ìŠ¤í¬ë¦½íŠ¸ ìž…ë‹ˆë‹¤.
 
-	Æ÷Å»ÀÌ ÀÖ´Â ¸Ê : ¿¡·¹ºê °¥¸²±æ
+	í¬íƒˆì´ ìžˆëŠ” ë§µ : ì—ë ˆë¸Œ ê°ˆë¦¼ê¸¸
 
-	Æ÷Å» ¼³¸í : Àü¹®±â¼ú¸¶À» ÀÔÀå
+	í¬íƒˆ ì„¤ëª… : ì „ë¬¸ê¸°ìˆ ë§ˆì„ ìž…ìž¥
 
 
 */
@@ -15,7 +15,7 @@
 
 function enter(pi) {
     if (pi.getPlayer().getLevel() < 30) {
-	pi.getPlayer().message(5, "·¹º§ 30ÀÌ»ó¸¸ ÀÔÀå °¡´ÉÇÕ´Ï´Ù.");
+	pi.getPlayer().message(5, "ë ˆë²¨ 30ì´ìƒë§Œ ìž…ìž¥ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 	return false;
     }
     pi.playPortalSE();

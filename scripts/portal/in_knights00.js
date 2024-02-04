@@ -9,10 +9,10 @@ function enter(pi) {
 if (pi.getQuestStatus(31124) < 2) {
 
 if (pi.getQuestStatus(31124) == 1) {
-    pi.getPlayer().send(UIPacket.showInfo("±æÀÌ ¸·ÇôÀÖ´Ù. ¾Ë·º½ºÇÑÅ× °¡¼­ º¸°íÇÏÀÚ."));
+    pi.getPlayer().send(UIPacket.showInfo("ê¸¸ì´ ë§‰í˜€ìžˆë‹¤. ì•Œë ‰ìŠ¤í•œí…Œ ê°€ì„œ ë³´ê³ í•˜ìž."));
     pi.forceCompleteQuest(31124);
 } else {
-    pi.getPlayer().send(UIPacket.showInfo("½Ã±×³Ê½º ¿ä»õ Á¤Âû Äù½ºÆ®¸¦ Å¬¸®¾î ÇØÁÖ½Ê½Ã¿À."));
+    pi.getPlayer().send(UIPacket.showInfo("ì‹œê·¸ë„ˆìŠ¤ ìš”ìƒˆ ì •ì°° í€˜ìŠ¤íŠ¸ë¥¼ í´ë¦¬ì–´ í•´ì£¼ì‹­ì‹œì˜¤."));
 }
 } else if (pi.getQuestStatus(31124) == 2) {
     pi.playPortalSE();

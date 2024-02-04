@@ -1,15 +1,15 @@
 function enter(pi) {
     if (!pi.isLeader()) {
-	pi.playerMessage(5, "ÆÄÆ¼Àå ¸¸ÀÌ ´ÙÀ½ ½ºÅ×ÀÌÁö·Î ÀÌµ¿ ÇÒ ¼ö ÀÖ½À´Ï´Ù.");
+	pi.playerMessage(5, "íŒŒí‹°ì¥ ë§Œì´ ë‹¤ìŒ ìŠ¤í…Œì´ì§€ë¡œ ì´ë™ í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
     } else {
 	if (pi.getMap().getAllMonstersThreadsafe().size() != 0) {
-	    pi.playerMessage(5, "¸ÊÀÇ ¸ğµç ¸ó½ºÅÍ¸¦ ÅğÄ¡ÇØ¾ß¸¸ ´ÙÀ½ ½ºÅ×ÀÌÁö·Î ÀÌµ¿ÀÌ °¡´ÉÇÕ´Ï´Ù.");
+	    pi.playerMessage(5, "ë§µì˜ ëª¨ë“  ëª¬ìŠ¤í„°ë¥¼ í‡´ì¹˜í•´ì•¼ë§Œ ë‹¤ìŒ ìŠ¤í…Œì´ì§€ë¡œ ì´ë™ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 	    return;
 	}
 	if (((pi.getMapId() % 10) | 0) == 4) { //last stage
 	    if (!pi.getPlayer().isGM()){
 	    if (pi.getMap().getReactorByName("switch0").getState() < 1 || pi.getMap().getReactorByName("switch1").getState() < 1) {
-		pi.playerMessage(5, "¸ğµç ½ºÀ§Ä¡¸¦ ÀÛµ¿½ÃÄÑ¾ß ´ÙÀ½ ½ºÅ×ÀÌÁö·Î ÀÌµ¿ÀÌ °¡´ÉÇÕ´Ï´Ù.");
+		pi.playerMessage(5, "ëª¨ë“  ìŠ¤ìœ„ì¹˜ë¥¼ ì‘ë™ì‹œì¼œì•¼ ë‹¤ìŒ ìŠ¤í…Œì´ì§€ë¡œ ì´ë™ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 		return;
 	    }
 	    }

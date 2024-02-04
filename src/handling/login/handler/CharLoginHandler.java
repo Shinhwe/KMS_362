@@ -34,14 +34,14 @@ import java.util.Map;
 
 public class CharLoginHandler
 {
-  
-  private static final boolean loginFailCount(MapleClient c)
+
+  private static final boolean loginFailCount (MapleClient c)
   {
     c.loginAttempt = (short) (c.loginAttempt + 1);
     return (c.loginAttempt > 5);
   }
-  
-  public static final void login(LittleEndianAccessor slea, MapleClient c) throws UnsupportedEncodingException
+
+  public static final void login (LittleEndianAccessor slea, MapleClient c) throws UnsupportedEncodingException
   {
     byte[] m = slea.read(6);
     StringBuilder sb = new StringBuilder();
@@ -65,12 +65,15 @@ public class CharLoginHandler
       if (AutoRegister.createAccount(login, pwd, c.getSession().remoteAddress().toString()))
       {
         loginok = c.login(login, pwd, sb.toString(), (ipBan || macBan));
-        c.getSession().writeAndFlush(CWvsContext.serverNotice(1, "", "[시스템]\r\n가입이 성공적으로 완료되었습니다!"));
+        // c.getSession().writeAndFlush(CWvsContext.serverNotice(1, "", "[시스템]\r\n가입이 성공적으로 완료되었습니다!"));
+        // c.getSession().writeAndFlush(LoginPacket.getLoginFailed(21));
+      }
+      else
+      {
+        c.getSession().writeAndFlush(CWvsContext.serverNotice(1, "", "[시스템]\r\n 1 아이피당 계정 1개를 생성하실 수 있습니다."));
         c.getSession().writeAndFlush(LoginPacket.getLoginFailed(21));
         return;
       }
-      c.getSession().writeAndFlush(CWvsContext.serverNotice(1, "", "[시스템]\r\n 1 아이피당 계정 1개를 생성하실 수 있습니다."));
-      c.getSession().writeAndFlush(LoginPacket.getLoginFailed(21));
     }
     Calendar tempbannedTill = c.getTempBanCalendar();
     if (loginok == 0 && (ipBan || macBan) && !c.isGm())
@@ -177,20 +180,20 @@ public class CharLoginHandler
       LoginWorker.registerClient(c, login, pwd);
     }
   }
-  
-  public static final void HackShield(LittleEndianAccessor slea, MapleClient c)
+
+  public static final void HackShield (LittleEndianAccessor slea, MapleClient c)
   {
     c.getSession().writeAndFlush(LoginPacket.HackShield());
   }
-  
-  public static final void SessionCheck(LittleEndianAccessor slea, MapleClient c)
+
+  public static final void SessionCheck (LittleEndianAccessor slea, MapleClient c)
   {
     int pRequest = slea.readInt();
     int pResponse = pRequest ^ SendPacketOpcode.SESSION_CHECK.getValue();
     c.getSession().writeAndFlush(LoginPacket.SessionCheck(pResponse));
   }
-  
-  public static final void checkLoadWzData(LittleEndianAccessor slea, MapleClient c)
+
+  public static final void checkLoadWzData (LittleEndianAccessor slea, MapleClient c)
   {
     int type = slea.readInt();
     if (type == 22)
@@ -198,8 +201,8 @@ public class CharLoginHandler
       c.getSession().writeAndFlush(LoginPacket.enableLogin());
     }
   }
-  
-  public static void getLoginRequest(LittleEndianAccessor slea, MapleClient c)
+
+  public static void getLoginRequest (LittleEndianAccessor slea, MapleClient c)
   {
     short webStart = slea.readByte();
     if (webStart == 1)
@@ -226,8 +229,8 @@ public class CharLoginHandler
       System.out.println("로그인시도 오류 발생?");
     }
   }
-  
-  public static final void ServerListRequest(MapleClient c, boolean leaving)
+
+  public static final void ServerListRequest (MapleClient c, boolean leaving)
   {
     LocalDateTime time = LocalDateTime.now();
     if (time.getDayOfWeek().getValue() == 7)
@@ -242,8 +245,8 @@ public class CharLoginHandler
     c.getSession().writeAndFlush(LoginPacket.getEndOfServerList());
     c.getSession().writeAndFlush(LoginPacket.enableRecommended());
   }
-  
-  public static final void ServerStatusRequest(MapleClient c)
+
+  public static final void ServerStatusRequest (MapleClient c)
   {
     int numPlayer = LoginServer.getUsersOn();
     int userLimit = LoginServer.getUserLimit();
@@ -260,8 +263,8 @@ public class CharLoginHandler
       c.getSession().writeAndFlush(LoginPacket.getServerStatus(0));
     }
   }
-  
-  public static final void CharlistRequest(LittleEndianAccessor slea, MapleClient c)
+
+  public static final void CharlistRequest (LittleEndianAccessor slea, MapleClient c)
   {
     boolean isFirstLogin = (slea.readByte() == 0);
     int server = slea.readByte();
@@ -316,8 +319,8 @@ public class CharLoginHandler
       c.getSession().close();
     }
   }
-  
-  public static final void SelectChannelList(MapleClient c, int world)
+
+  public static final void SelectChannelList (MapleClient c, int world)
   {
     if (LoginServer.isAdminOnly() && !c.isGm() && !c.isLocalhost())
     {
@@ -344,13 +347,13 @@ public class CharLoginHandler
       c.getSession().writeAndFlush(LoginPacket.getSelectedChannelResult(world));
     }
   }
-  
-  public static final void CheckCharName(String name, MapleClient c)
+
+  public static final void CheckCharName (String name, MapleClient c)
   {
     c.getSession().writeAndFlush(LoginPacket.charNameResponse(name, (!MapleCharacterUtil.canCreateChar(name, c.isGm()) || (LoginInformationProvider.getInstance().isForbiddenName(name) && !c.isGm()))));
   }
-  
-  public static final void CheckCharNameChange(LittleEndianAccessor slea, MapleClient c)
+
+  public static final void CheckCharNameChange (LittleEndianAccessor slea, MapleClient c)
   {
     int cid = slea.readInt();
     String beforename = slea.readMapleAsciiString();
@@ -360,8 +363,8 @@ public class CharLoginHandler
     MapleCharacter.updateNameChangeCoupon(c);
     c.getSession().writeAndFlush(CWvsContext.serverNotice(1, "", "캐릭터 이름이 성공적으로 변경되었습니다. 변경을 위해 다시 로그인 바랍니다."));
   }
-  
-  public static final void CreateChar(LittleEndianAccessor slea, MapleClient c)
+
+  public static final void CreateChar (LittleEndianAccessor slea, MapleClient c)
   {
     int hairColor = -1;
     int hat = -1;
@@ -504,7 +507,7 @@ public class CharLoginHandler
     {
       return;
     }
-    int[][] equips = {{hat, -1}, {top, -5}, {bottom, -6}, {cape, -9}, {shoes, -7}, {weapon, -11}, {shield, -10}}, array2 = equips, array = array2;
+    int[][] equips = { { hat, -1 }, { top, -5 }, { bottom, -6 }, { cape, -9 }, { shoes, -7 }, { weapon, -11 }, { shield, -10 } }, array2 = equips, array = array2;
     for (int[] i : array2)
     {
       if (i[0] > 0)
@@ -516,9 +519,11 @@ public class CharLoginHandler
       }
     }
     int[][] skills = {
-        {80001152, 30001061}, {80001152, 1281}, {10001244, 10000252, 80001152, 10001253, 10001254}, {20000194, 20000297}, {20010022, 20010194, 20010294}, {20020109, 20021110, 20020111, 20020112}, {30010110, 30010185}, {20031208, 20040190, 20031203, 20031205, 20030206, 20031207, 20031209, 20031251, 20031260, 20030204}, {}, {50001214, 50000074},
-        {20040216, 20040217, 20040218, 20040219, 20040221, 20041222}, {60001216, 60001217}, {60011216, 60010217, 60011218, 60011219, 60011220, 60011221, 60011222}, {}, {30020232, 30020233, 30020234, 30020240, 30021235, 30021236, 30021237}, {100000279, 100000282, 100001262, 100001263, 100001264, 100001265, 100001266, 100001268, 100000271}, {20051284, 20050285, 20050286}, {}, {140000291, 14200, 14210, 14211, 14212, 140000292}, {60020216, 60021217, 6020218},
-        {150000017}, {150010079, 150011005, 150010241}, {}, {160000001}, {}, {}, {}, {}};
+        { 80001152, 30001061 }, { 80001152, 1281 }, { 10001244, 10000252, 80001152, 10001253, 10001254 }, { 20000194, 20000297 }, { 20010022, 20010194, 20010294 }, { 20020109, 20021110, 20020111, 20020112 }, { 30010110, 30010185 },
+        { 20031208, 20040190, 20031203, 20031205, 20030206, 20031207, 20031209, 20031251, 20031260, 20030204 }, { }, { 50001214, 50000074 }, { 20040216, 20040217, 20040218, 20040219, 20040221, 20041222 }, { 60001216, 60001217 },
+        { 60011216, 60010217, 60011218, 60011219, 60011220, 60011221, 60011222 }, { }, { 30020232, 30020233, 30020234, 30020240, 30021235, 30021236, 30021237 }, { 100000279, 100000282, 100001262, 100001263, 100001264, 100001265, 100001266, 100001268, 100000271 },
+        { 20051284, 20050285, 20050286 }, { }, { 140000291, 14200, 14210, 14211, 14212, 140000292 }, { 60020216, 60021217, 6020218 }, { 150000017 }, { 150010079, 150011005, 150010241 }, { }, { 160000001 }, { }, { }, { }, { }
+    };
     if ((skills[job.type]).length > 0)
     {
       Map<Skill, SkillEntry> ss = new HashMap<>();
@@ -542,7 +547,7 @@ public class CharLoginHandler
       }
       newchar.changeSkillLevel_Skip(ss, false);
     }
-    int[][] guidebooks = {{4161001, 0}, {4161047, 1}, {4161048, 2000}, {4161052, 2001}, {4161054, 3}, {4161079, 2002}};
+    int[][] guidebooks = { { 4161001, 0 }, { 4161047, 1 }, { 4161048, 2000 }, { 4161052, 2001 }, { 4161054, 3 }, { 4161079, 2002 } };
     int guidebook = 0;
     for (int[] l : guidebooks)
     {
@@ -580,8 +585,8 @@ public class CharLoginHandler
       c.getSession().writeAndFlush(LoginPacket.addNewCharEntry(newchar, false));
     }
   }
-  
-  public static final void Character_WithoutSecondPassword(LittleEndianAccessor slea, MapleClient c)
+
+  public static final void Character_WithoutSecondPassword (LittleEndianAccessor slea, MapleClient c)
   {
     int key = slea.readInt();
     short size = slea.readShort();
@@ -635,8 +640,8 @@ public class CharLoginHandler
       c.getSession().writeAndFlush(LoginPacket.secondPwError((byte) 20));
     }
   }
-  
-  public static final void LoginWithCreateCharacter(LittleEndianAccessor slea, MapleClient c)
+
+  public static final void LoginWithCreateCharacter (LittleEndianAccessor slea, MapleClient c)
   {
     int charId = slea.readInt();
     if (!c.isLoggedIn() || loginFailCount(c) || c.getSecondPassword() == null || !c.login_Auth(charId) || ChannelServer.getInstance(c.getChannel()) == null)
@@ -653,8 +658,8 @@ public class CharLoginHandler
     c.updateLoginState(1, s);
     c.getSession().writeAndFlush(CField.getServerIP(c, Integer.parseInt(ChannelServer.getInstance(c.getChannel()).getIP().split(":")[1]), charId));
   }
-  
-  public static final void CreateUltimate(LittleEndianAccessor slea, MapleClient c)
+
+  public static final void CreateUltimate (LittleEndianAccessor slea, MapleClient c)
   {
     PlayerStats stat21, stat24, stat27, stat31, stat3, stat6, stat9, stat13, stat22, stat25, stat28, stat32, stat4, stat7, stat10, stat14, stat23, stat26, stat29, stat33, stat5, stat8, stat11, stat15, stat30, stat34, stat12, stat16, stat35, stat17, stat36, stat18;
     if (!c.isLoggedIn() || c.getPlayer() == null || c.getPlayer().getLevel() < 120 || c.getPlayer().getMapId() != 130000000 || c.getPlayer().getQuestStatus(20734) != 0 || c.getPlayer().getQuestStatus(20616) != 2 || !GameConstants.isKOC(c.getPlayer().getJob()) || !c.canMakeCharacter(c.getPlayer().getWorld()))
@@ -769,8 +774,8 @@ public class CharLoginHandler
     newchar.changeSkillLevel_Skip(ss, false);
     MapleItemInformationProvider li = MapleItemInformationProvider.getInstance();
     int[] items = {
-        1142257, hat, top, shoes, glove, weapon, hat + 1, top + 1, shoes + 1, glove + 1,
-        weapon + 1};
+        1142257, hat, top, shoes, glove, weapon, hat + 1, top + 1, shoes + 1, glove + 1, weapon + 1
+    };
     byte j;
     for (j = 0; j < items.length; j = (byte) (j + 1))
     {
@@ -792,8 +797,8 @@ public class CharLoginHandler
       c.getSession().writeAndFlush(CField.createUltimate(0));
     }
   }
-  
-  public static final void DeleteChar(LittleEndianAccessor slea, MapleClient c)
+
+  public static final void DeleteChar (LittleEndianAccessor slea, MapleClient c)
   {
     String Secondpw_Client = slea.readMapleAsciiString();
     int Character_ID = slea.readInt();
@@ -821,8 +826,8 @@ public class CharLoginHandler
     }
     c.getSession().writeAndFlush(LoginPacket.deleteCharResponse(Character_ID, state));
   }
-  
-  public static final void checkSecondPassword(LittleEndianAccessor rh, MapleClient c)
+
+  public static final void checkSecondPassword (LittleEndianAccessor rh, MapleClient c)
   {
     String code = rh.readMapleAsciiString();
     if (!c.CheckSecondPassword(code))
@@ -834,8 +839,8 @@ public class CharLoginHandler
       c.getSession().writeAndFlush(LoginPacket.getSecondPasswordConfirm((byte) 0));
     }
   }
-  
-  public static void NewPassWordCheck(MapleClient c)
+
+  public static void NewPassWordCheck (MapleClient c)
   {
     for (ChannelServer cserv : ChannelServer.getAllInstances())
     {
@@ -893,8 +898,8 @@ public class CharLoginHandler
     c.getSession().writeAndFlush(LoginPacket.NewSendPasswordWay(c));
     c.getSession().writeAndFlush(LoginPacket.enableLogin());
   }
-  
-  public static final void onlyRegisterSecondPassword(LittleEndianAccessor slea, MapleClient c)
+
+  public static final void onlyRegisterSecondPassword (LittleEndianAccessor slea, MapleClient c)
   {
     String secondpw = slea.readMapleAsciiString();
     if (secondpw.length() >= 6 && secondpw.length() <= 16)
@@ -908,15 +913,15 @@ public class CharLoginHandler
       c.getSession().writeAndFlush(LoginPacket.secondPwError((byte) 20));
     }
   }
-  
-  public static final void ResetSecondPW(LittleEndianAccessor slea, MapleClient c)
+
+  public static final void ResetSecondPW (LittleEndianAccessor slea, MapleClient c)
   {
     c.setSecondPassword("초기화");
     c.updateSecondPassword();
     c.getSession().writeAndFlush(CWvsContext.serverNotice(1, "", "2차 비밀번호 초기화가 완료 되었습니다."));
   }
-  
-  public static final void OTPSetting(LittleEndianAccessor slea, MapleClient c)
+
+  public static final void OTPSetting (LittleEndianAccessor slea, MapleClient c)
   {
     if (c.getSecondPw() == 0)
     {
@@ -931,8 +936,8 @@ public class CharLoginHandler
       c.getSession().writeAndFlush(CWvsContext.serverNotice(1, "", "2차 비밀번호 입력 기능이 활성화 되었습니다."));
     }
   }
-  
-  public static final void InputOTP(LittleEndianAccessor slea, MapleClient c) throws UnsupportedEncodingException
+
+  public static final void InputOTP (LittleEndianAccessor slea, MapleClient c) throws UnsupportedEncodingException
   {
     int num = slea.readInt();
     if (num == c.getSaveOTPNum())

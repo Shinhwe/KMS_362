@@ -47,7 +47,7 @@ function action(mode, type, selection) {
         		cm.TimeMoveMap(310030211, 310030200, 18);
         		
     		} else {
-			cm.getPlayer().dropMessage(5, "ÀÌ¹Ì ¿¤¸®º£ÀÌÅÍ¿¡ ´©±º°¡°¡ ÀÖ´Â °Í °°´Ù.");
+			cm.getPlayer().dropMessage(5, "ì´ë¯¸ ì—˜ë¦¬ë² ì´í„°ì— ëˆ„êµ°ê°€ê°€ ìˆëŠ” ê²ƒ ê°™ë‹¤.");
 			
     		}
 		cm.dispose();

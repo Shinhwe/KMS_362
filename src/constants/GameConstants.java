@@ -12466,7 +12466,7 @@ public class GameConstants
     return a1 == 0 || a1 == 100 || isHero(a1) || isPaladin(a1) || isDarkKnight(a1) || a1 == 200 || isFPMage(a1) || isILMage(a1) || isBishop(a1) || a1 == 300 || isBowMaster(a1) || isMarksMan(a1) || isPathFinder(a1) || a1 == 400 || isNightLord(a1) || isShadower(a1) || isDualBlade(a1) || a1 == 500 || isViper(a1) || isCaptain(a1) || isCannon(a1) || isIllium(a1) || isArk(a1) || isKOC(a1) || isResist(a1) || isEvan(a1) || isMercedes(a1) || isPhantom(a1) || isMichael(a1) || isLuminous(a1) || isKaiser(a1) || isKadena(a1) || isAngelicBuster(a1) || isAdel(a1) || isZero(a1) || isEunWol(a1) || isAran(a1) || isKinesis(a1) || isHoyeong(a1) || isCain(a1) || isLara(a1);
   }
 
-  public static byte[] getServerIp (String ip)
+  public static byte[] getServerIp ()
   {
     return new byte[] { -81, -49, 0, 33 };
   }

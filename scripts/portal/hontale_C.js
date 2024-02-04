@@ -1,17 +1,17 @@
 /*
- * Ç»¾î¿Â¶óÀÎ ¼Ò½º ½ºÅ©¸³Æ® ÀÔ´Ï´Ù.
+ * í“¨ì–´ì˜¨ë¼ì¸ ì†ŒìŠ¤ ìŠ¤í¬ë¦½íŠ¸ ì…ë‹ˆë‹¤.
  * 
- * Æ÷Å»À§Ä¡ : ¼±ÅÃÀÇ µ¿±¼
- * Æ÷Å»¼³¸í : µ¿±¼ ÀÔÀå
+ * í¬íƒˆìœ„ì¹˜ : ì„ íƒì˜ ë™êµ´
+ * í¬íƒˆì„¤ëª… : ë™êµ´ ì…ì¥
  * 
- * Á¦ÀÛ : ÁÖÅ©ºí·¢
+ * ì œì‘ : ì£¼í¬ë¸”ë™
  * 
  */
 
 function enter(pi) {
     var eim = pi.getPlayer().getEventInstance();
     if (eim.getProperty("choiceCave") == null) {
-        pi.getPlayer().message(5, "¾ÆÁ÷ µ¿±¼ÀÌ ¼±ÅÃµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+        pi.getPlayer().message(5, "ì•„ì§ ë™êµ´ì´ ì„ íƒë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
         return false;
     }
     if (eim.getProperty("choiceCave").equals("0")) {

@@ -6,6 +6,6 @@ function enter(pi) {
     } else if (pi.getQuestStatus(21703) == 1) {
 	pi.warp(914010200,0);
     } else {
-	pi.playerMessage("Çª¿À¿¡°Ô ¼ö·ÃÀ» ¹ŞÀ» ¶§¸¸ Æë±Ï ¼ö·ÃÀå¿¡ ÀÔÀåÇÒ ¼ö ÀÖ´Ù.");
+	pi.playerMessage("í‘¸ì˜¤ì—ê²Œ ìˆ˜ë ¨ì„ ë°›ì„ ë•Œë§Œ í­ê·„ ìˆ˜ë ¨ì¥ì— ì…ì¥í•  ìˆ˜ ìˆë‹¤.");
     }
 }

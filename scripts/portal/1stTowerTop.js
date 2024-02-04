@@ -1,7 +1,7 @@
 function enter(pi) {
     if (pi.getQuestStatus(3164) == 1) {
 	pi.forceCompleteQuest(3164);
-	pi.playerMessage("Äù½ºÆ®¿Ï·á");
+	pi.playerMessage("í€˜ìŠ¤íŠ¸ì™„ë£Œ");
     }
     pi.warp(211060201,0);
 }

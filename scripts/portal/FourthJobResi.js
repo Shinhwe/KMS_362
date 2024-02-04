@@ -8,7 +8,7 @@ function enter(pi) {
 		pi.warp(EnterMap[i],0);
 		return;
 	    } else {
-		pi.playerMessage("´ëÈ­°¡ ¾ø½À´Ï´Ù.");
+		pi.playerMessage("ëŒ€í™”ê°€ ì—†ìŠµë‹ˆë‹¤.");
 	    }
 	} else {
 	    pi.warp(310060220,0);

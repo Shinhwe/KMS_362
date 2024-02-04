@@ -4,7 +4,7 @@ function enter(pi) {
         pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.CharReLocationPacket(-4129, -88));
         var m = (pi.getPlayer().getPosition().x + 830) / 100;
         pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.SendPacket(694, "05 00 00 00 D0 07 00 00 00"));
-        pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070201, 3000, "³× Á¡ÇÁ ±â·ÏÀº " + m + " ¹ÌÅÍ¾ß. ´Ù½Ã µµÀüÇØ ºÁ!", ""));
+        pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070201, 3000, "ë„¤ ì í”„ ê¸°ë¡ì€ " + m + " ë¯¸í„°ì•¼. ë‹¤ì‹œ ë„ì „í•´ ë´!", ""));
         return;
     }
 }

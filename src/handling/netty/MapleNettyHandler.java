@@ -2626,7 +2626,6 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
       }
     }
     this.tracker.put(address, new Pair<Long, Byte>(System.currentTimeMillis(), count));
-    boolean check = !address.contains("219.250.30.201") && !address.contains("1.248.193.246") && !address.contains("36.39.235.217") && !address.contains("103.226.79.71");
     switch (this.serverType)
     {
       case LOGIN:

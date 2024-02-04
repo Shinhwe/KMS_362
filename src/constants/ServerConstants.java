@@ -28,7 +28,6 @@ public class ServerConstants
   public static String mrank1 = null;
   public static String prank1 = null;
   public static String crank1 = null;
-  public static String Gateway_IP;
   public static boolean MAPLE_VERSION_IS_TEST;
   public static boolean Use_Fixed_IV;
   public static boolean Use_Localhost;
@@ -94,7 +93,6 @@ public class ServerConstants
   
   static
   {
-    ServerConstants.Gateway_IP = "175.207.0.33";
     ServerConstants.MAPLE_VERSION_IS_TEST = false;
     ServerConstants.Use_Fixed_IV = false;
     ServerConstants.Use_Localhost = false;

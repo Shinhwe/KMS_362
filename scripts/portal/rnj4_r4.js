@@ -8,6 +8,6 @@ function enter(pi) {
 	pi.warp(926100304,0);
 	pi.getMap().broadcastMessage(MainPacketCreator.environmentChange("r4",2));
     } else {
-	pi.playerMessage("´ëÈ­°¡ ¾ø½À´Ï´Ù.");
+	pi.playerMessage("ëŒ€í™”ê°€ ì—†ìŠµë‹ˆë‹¤.");
     }
 }

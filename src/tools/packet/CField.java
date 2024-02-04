@@ -66,7 +66,7 @@ public class CField
     mplew.writeShort(SendPacketOpcode.SERVER_IP.getValue());
     mplew.writeShort(0);
     mplew.writeShort(0);
-    mplew.write(GameConstants.getServerIp(ServerConstants.Gateway_IP));
+    mplew.write(GameConstants.getServerIp());
     mplew.writeShort(port);
     mplew.writeInt(clientId);
     mplew.writeMapleAsciiString("normal");
@@ -86,7 +86,7 @@ public class CField
     MaplePacketLittleEndianWriter mplew = new MaplePacketLittleEndianWriter();
     mplew.writeShort(SendPacketOpcode.CHANGE_CHANNEL.getValue());
     mplew.write(1);
-    mplew.write(GameConstants.getServerIp(ServerConstants.Gateway_IP));
+    mplew.write(GameConstants.getServerIp());
     mplew.writeShort(port);
     return mplew.getPacket();
   }

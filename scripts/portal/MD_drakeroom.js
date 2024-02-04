@@ -9,7 +9,7 @@ function enter(pi) {
 	    }
 	    return;
 	} else {
-	    pi.playerMessage("ÇöÀç ¸ğµç ¹Ì´Ï ´øÀüÀÌ »ç¿ëµÇ°í ÀÖ½À´Ï´Ù.");
+	    pi.playerMessage("í˜„ì¬ ëª¨ë“  ë¯¸ë‹ˆ ë˜ì „ì´ ì‚¬ìš©ë˜ê³  ìˆìŠµë‹ˆë‹¤.");
 	}
     }
 }

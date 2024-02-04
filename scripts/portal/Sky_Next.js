@@ -2,6 +2,6 @@ function enter(pi) {
     if (pi.getMonsterCount(pi.getMapId()) == 0) {
 	pi.warpParty(pi.getMapId() + 100);
     } else {
-	pi.showinfoMessage("¸ó½ºÅÍ°¡ " + pi.getMonsterCount(pi.getMapId()) + "¸¶¸® ³²¾Ò½À´Ï´Ù.");
+	pi.showinfoMessage("ëª¬ìŠ¤í„°ê°€ " + pi.getMonsterCount(pi.getMapId()) + "ë§ˆë¦¬ ë‚¨ì•˜ìŠµë‹ˆë‹¤.");
     }
 }

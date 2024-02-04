@@ -1,9 +1,9 @@
 /*
-È÷³ªµµ¹Ú
+íˆë‚˜ë„ë°•
  */
 
 function enter(pi) {
-    pi.getPlayer().message(5, "µµ¹ÚÀå¿¡¼­ ³ª¿À¼Ì½À´Ï´Ù.");
+    pi.getPlayer().message(5, "ë„ë°•ì¥ì—ì„œ ë‚˜ì˜¤ì…¨ìŠµë‹ˆë‹¤.");
     pi.warp(100000000);
     return true;
 }

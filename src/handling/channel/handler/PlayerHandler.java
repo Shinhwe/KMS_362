@@ -6509,6 +6509,11 @@ public class PlayerHandler
 
   public static final void Heal (LittleEndianAccessor slea, MapleCharacter chr)
   {
+    if (chr == null)
+    {
+      return;
+    }
+    
     slea.skip(8);
 
     int healHP = slea.readShort();
@@ -6516,6 +6521,11 @@ public class PlayerHandler
     int healMP = slea.readShort();
 
     boolean isChair = slea.readByte() == 2;
+
+    if (chr == null)
+    {
+      return;
+    }
 
     PlayerStats stats = chr.getStat();
 
@@ -9352,7 +9362,7 @@ public class PlayerHandler
       c.setKeyValue("dailyGiftDay", String.valueOf(已簽到天數 + 1));
 
       c.setKeyValue("dailyGiftComplete", "1");
-      
+
       int 今天日期 = GameConstants.getCurrentDate_NoTime();
 
       String dailyGiftPackage = "day=" + c.getKeyValue("dailyGiftDay") + ";date=" + 今天日期;

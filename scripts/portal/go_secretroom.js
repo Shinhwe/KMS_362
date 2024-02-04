@@ -1,4 +1,4 @@
 function enter(pi) {
-    pi.getPlayer().message(5, "¹«¾ğ°¡¿¡ °¡·Î¸·Çô µé¾î°¥ ¼ö ¾ø½À´Ï´Ù.");
+    pi.getPlayer().message(5, "ë¬´ì–¸ê°€ì— ê°€ë¡œë§‰í˜€ ë“¤ì–´ê°ˆ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
     return false;
 }

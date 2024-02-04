@@ -1,7 +1,7 @@
 function enter(pi) {
-    if (pi.getClient().getChannel() % 2 == 1) { //Ä«¿À½º ÀÔÀå
+    if (pi.getClient().getChannel() % 2 == 1) { //ì¹´ì˜¤ìŠ¤ ì…ì¥
         pi.warp(211042301,1);
-    } else { //³ë¸Ö ÀÔÀå
+    } else { //ë…¸ë©€ ì…ì¥
         pi.warp(211042300,1);
     }
     return true;

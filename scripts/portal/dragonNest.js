@@ -4,8 +4,9 @@ function enter(pi) {
             pi.resetMap(240040611);
             pi.warp(240040611,0);
         } else {
-	    pi.showinfoMessage("ÀÌ¹Ì ´©±º°¡°¡ ¾È¿¡ ÀÖ½À´Ï´Ù.");
+	    pi.showinfoMessage("ì´ë¯¸ ëˆ„êµ°ê°€ê°€ ì•ˆì— ìˆìŠµë‹ˆë‹¤.");
+        }
     } else {
-	pi.showinfoMessage("³ªÀÎ½ºÇÇ¸´ÀÇ ¾ËÀÌ ¾øÀ¸¸é ÀÔÀåÇÒ ¼ö ¾ø½À´Ï´Ù.");
+	pi.showinfoMessage("ë‚˜ì¸ìŠ¤í”¼ë¦¿ì˜ ì•Œì´ ì—†ìœ¼ë©´ ì…ì¥í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
     }
 }

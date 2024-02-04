@@ -11,6 +11,6 @@ function enter(pi) {
           pi.warp(301050300, 0);
           return; 
      }
-    pi.playerMessage(5, "´õ ÀÌ»ó ÁøÇàÇÒ ¼ö ¾ø½À´Ï´Ù.");
+    pi.playerMessage(5, "ë” ì´ìƒ ì§„í–‰í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
 	pi.playPortalSE();    
 }

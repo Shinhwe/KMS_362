@@ -1,10 +1,10 @@
 /*
- * Ç»¾î¿Â¶óÀÎ ¼Ò½º ½ºÅ©¸³Æ® ÀÔ´Ï´Ù.
+ * í“¨ì–´ì˜¨ë¼ì¸ ì†ŒìŠ¤ ìŠ¤í¬ë¦½íŠ¸ ì…ë‹ˆë‹¤.
  * 
- * Æ÷Å»À§Ä¡ : 
- * Æ÷Å»¼³¸í : 
+ * í¬íƒˆìœ„ì¹˜ : 
+ * í¬íƒˆì„¤ëª… : 
  * 
- * Á¦ÀÛ : ÁÖÅ©ºí·¢
+ * ì œì‘ : ì£¼í¬ë¸”ë™
  * 
  */
 importPackage(java.lang);
@@ -20,13 +20,13 @@ function enter(pi) {
         pi.getPlayer().gainExp(30000, true, true, true);
         eim.unregisterPlayer(pi.getPlayer());
         pi.getPlayer().addInnerExp(100 * pi.getPlayer().getInnerLevel());
-        pi.getPlayer().message(5, 100 * pi.getPlayer().getInnerLevel()+"ÀÇ ¸í¼ºÄ¡¸¦ ¾ò¾ú½À´Ï´Ù.");
+        pi.getPlayer().message(5, 100 * pi.getPlayer().getInnerLevel()+"ì˜ ëª…ì„±ì¹˜ë¥¼ ì–»ì—ˆìŠµë‹ˆë‹¤.");
         pi.getPlayer().makeNewAswanShop();
         pi.warp(262000000);
         return true;
     } else {
-        pi.getPlayer().send(UIPacket.showInfo("´øÀü ³»ÀÇ ¸ó½ºÅÍ¸¦ ¸ğµÎ Àâ¾Æ¾ß ´ÙÀ½ ½ºÅ×ÀÌÁö·Î ÀÌµ¿ÇÒ ¼ö ÀÖ½À´Ï´Ù."));
-        pi.getPlayer().message(5, "¸ó½ºÅÍ¸¦ ¸ğµÎ ÀâÀ¸½Å ÈÄ ´ÙÀ½ Æ÷Å»·Î ÀÌµ¿ÇØ ÁÖ¼¼¿ä.");
+        pi.getPlayer().send(UIPacket.showInfo("ë˜ì „ ë‚´ì˜ ëª¬ìŠ¤í„°ë¥¼ ëª¨ë‘ ì¡ì•„ì•¼ ë‹¤ìŒ ìŠ¤í…Œì´ì§€ë¡œ ì´ë™í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤."));
+        pi.getPlayer().message(5, "ëª¬ìŠ¤í„°ë¥¼ ëª¨ë‘ ì¡ìœ¼ì‹  í›„ ë‹¤ìŒ í¬íƒˆë¡œ ì´ë™í•´ ì£¼ì„¸ìš”.");
         return false;
     }
 }

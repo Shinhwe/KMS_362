@@ -1,12 +1,12 @@
 function enter(pi) {
     if (pi.getPlayer().getLevel() < 70) {
-	pi.getPlayer().dropMessage(5, "¹«¾ð°¡ À§ÇèÇØ º¸ÀÌ´Â ¹®ÀÌ´Ù.");
+	pi.getPlayer().dropMessage(5, "ë¬´ì–¸ê°€ ìœ„í—˜í•´ ë³´ì´ëŠ” ë¬¸ì´ë‹¤.");
 	return false;
     } else if (pi.getPlayerCount(310030210) == 0) {
         pi.TimeMoveMap(310030210, 310060120, 18);
         return true;
     } else {
-	pi.getPlayer().dropMessage(5, "ÀÌ¹Ì ¿¤¸®º£ÀÌÅÍ¿¡ ´©±º°¡°¡ ÀÖ´Â °Í °°´Ù.");
+	pi.getPlayer().dropMessage(5, "ì´ë¯¸ ì—˜ë¦¬ë² ì´í„°ì— ëˆ„êµ°ê°€ê°€ ìžˆëŠ” ê²ƒ ê°™ë‹¤.");
 	return false;
     }
 }

@@ -15,13 +15,14 @@ import java.util.stream.Stream;
 public abstract class AbstractScriptManager
 {
   private static final ScriptEngineManager sem = new ScriptEngineManager();
-  
-  protected Invocable getInvocable(String path, MapleClient c)
+
+
+  protected Invocable getInvocable (String path, MapleClient c)
   {
     return getInvocable(path, c, false);
   }
-  
-  protected Invocable getInvocable(String path, MapleClient c, boolean npc)
+
+  protected Invocable getInvocable (String path, MapleClient c, boolean npc)
   {
     path = "scripts/" + path;
     ScriptEngine engine = null;
@@ -41,16 +42,34 @@ public abstract class AbstractScriptManager
       {
         c.setScriptEngine(path, engine);
       }
-      try (Stream<String> stream = Files.lines(scriptFile.toPath(), StandardCharsets.UTF_8))
+
+      String cachedScript = CacheScript.getScriptByPath(path);
+
+      if (cachedScript != null)
       {
-        String lines = "load('nashorn:mozilla_compat.js');";
-        lines = lines + stream.collect(Collectors.joining(System.lineSeparator()));
-        engine.eval(lines);
+        try
+        {
+          engine.eval(cachedScript);
+        }
+        catch (ScriptException e)
+        {
+          e.printStackTrace();
+          return null;
+        }
       }
-      catch (ScriptException | java.io.IOException e)
+      else
       {
-        e.printStackTrace();
-        return null;
+        try (Stream<String> stream = Files.lines(scriptFile.toPath(), StandardCharsets.UTF_8))
+        {
+          String lines = "load('nashorn:mozilla_compat.js');";
+          lines = lines + stream.collect(Collectors.joining(System.lineSeparator()));
+          engine.eval(lines);
+        }
+        catch (ScriptException | java.io.IOException e)
+        {
+          e.printStackTrace();
+          return null;
+        }
       }
     }
     return (Invocable) engine;

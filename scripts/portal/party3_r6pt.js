@@ -25,7 +25,7 @@ function enter(pi) {
 	}
 
 	} else {
-// Áß°£ Ãþ
+// ì¤‘ê°„ ì¸µ
 
     	 if (pi.getPortal().getName().startsWith("rp05" + em.getProperty("stare_04"))) {
 	pi.currentPortal(10);

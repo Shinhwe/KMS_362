@@ -7,11 +7,11 @@ function enter(pi) {
 	pi.getPlayer().getEventInstance().setProperty("OrbiPQ","0");
 	pi.resetMap(920010300);
 	pi.warpParty(920010300);
-	pi.getPlayer().spawn»ø¸®¿Â(-210,-504);
-	pi.getPlayer().spawn»ø¸®¿Â(-216,-915);
-	pi.getPlayer().spawn»ø¸®¿Â(-215,-1310);
-	pi.getPlayer().spawn»ø¸®¿Â(128,-1121);
-	pi.getPlayer().spawn»ø¸®¿Â(128,-717);
+	pi.getPlayer().spawnìƒë¦¬ì˜¨(-210,-504);
+	pi.getPlayer().spawnìƒë¦¬ì˜¨(-216,-915);
+	pi.getPlayer().spawnìƒë¦¬ì˜¨(-215,-1310);
+	pi.getPlayer().spawnìƒë¦¬ì˜¨(128,-1121);
+	pi.getPlayer().spawnìƒë¦¬ì˜¨(128,-717);
 	} else if (pi.getMapId() == 920010300) {
 	pi.resetMap(920010200);
 	pi.warpParty(920010200);

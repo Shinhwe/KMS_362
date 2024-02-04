@@ -10,7 +10,7 @@ function enter(pi) {
             var schedule = Packages.server.Timer.MapTimer.getInstance().schedule(function () {
                 pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.playSE("Sound/MiniGame.img/Catch"));
             }, 1000)
-            pi.getClient().getSession().writeAndFlush(Packages.tools.packet.CField.enforceMSG("½ºÅ×ÀÌÁö Å¬¸®¾î´Ù. ·Îºñ·Î ÀÌµ¿ÇÏÁö.", 212, 2000));
+            pi.getClient().getSession().writeAndFlush(Packages.tools.packet.CField.enforceMSG("ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´ë‹¤. ë¡œë¹„ë¡œ ì´ë™í•˜ì§€.", 212, 2000));
             pi.getPlayer().RegisterPlatformerRecord(12);
             pi.getPlayer().warpdelay(993001000, 2);
             var schedule = Packages.server.Timer.MapTimer.getInstance().schedule(function () {
@@ -19,7 +19,7 @@ function enter(pi) {
         }
         else {
             pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.SendPacket(694, "05 00 00 00 D0 07 00 00 00"));
-            pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070201, 3000, "³× Á¡ÇÁ ±â·ÏÀº " + m + " ¹ÌÅÍ¾ß. ´Ù½Ã µµÀüÇØ ºÁ!", ""));
+            pi.getClient().getSession().writeAndFlush(Packages.tools.packet.SLFCGPacket.OnYellowDlg(9070201, 3000, "ë„¤ ì í”„ ê¸°ë¡ì€ " + m + " ë¯¸í„°ì•¼. ë‹¤ì‹œ ë„ì „í•´ ë´!", ""));
         }
         return;
     }
