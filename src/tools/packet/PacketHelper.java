@@ -2088,10 +2088,10 @@ public class PacketHelper
       mplew.writeShort(chr.getBuffedSkill(SecondaryStat.Darkness));
       mplew.writeInt(chr.getBuffSource(SecondaryStat.Darkness));
     }
-    if (statups.containsKey(SecondaryStat.FlashMirage))
+    if (statups.containsKey(SecondaryStat.閃光幻象))
     {
-      mplew.writeShort(chr.getBuffedSkill(SecondaryStat.FlashMirage));
-      mplew.writeInt(chr.getBuffSource(SecondaryStat.FlashMirage));
+      mplew.writeShort(chr.getBuffedSkill(SecondaryStat.閃光幻象));
+      mplew.writeInt(chr.getBuffSource(SecondaryStat.閃光幻象));
     }
     if (statups.containsKey(SecondaryStat.Seal))
     {
@@ -3198,10 +3198,10 @@ public class PacketHelper
       mplew.writeShort(chr.getBuffedSkill(SecondaryStat.흡수_해));
       mplew.writeInt(chr.getBuffSource(SecondaryStat.흡수_해));
     }
-    if (statups.containsKey(SecondaryStat.HolyBlood))
+    if (statups.containsKey(SecondaryStat.神聖之血))
     {
-      mplew.writeShort(chr.getBuffedSkill(SecondaryStat.HolyBlood));
-      mplew.writeInt(chr.getBuffSource(SecondaryStat.HolyBlood));
+      mplew.writeShort(chr.getBuffedSkill(SecondaryStat.神聖之血));
+      mplew.writeInt(chr.getBuffSource(SecondaryStat.神聖之血));
     }
     if (statups.containsKey(SecondaryStat.TeleportMastery))
     {

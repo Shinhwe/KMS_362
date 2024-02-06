@@ -3370,14 +3370,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
         this.changeCooldown(cooldown.skillId, -this.getBuffedValue(SecondaryStat.IndieReduceCooltime).intValue() * 100);
       }
     }
-    if (this.getBuffedEffect(SecondaryStat.DotHealHPPerSecond) != null)
-    {
-      this.addHP(this.getStat().getCurrentMaxHp() / 100L * (long) this.getBuffedValue(SecondaryStat.DotHealHPPerSecond).intValue());
-    }
-    if (this.getBuffedEffect(SecondaryStat.DotHealMPPerSecond) != null)
-    {
-      this.addMP(this.getStat().getCurrentMaxMp(this) / 100L * (long) this.getBuffedValue(SecondaryStat.DotHealMPPerSecond).intValue());
-    }
+
     if (this.getBuffedValue(152101000) && (summon = this.getSummon(152101000)) != null)
     {
       this.client.send(CField.SummonPacket.ElementalRadiance(summon, 3));
@@ -7403,10 +7396,14 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
 
     int suc = 40;
 
+    if (鬥氣集中技能等級 > 0)
+    {
+      最大鬥氣點數 = 6;
+    }
+
     if (鬥氣協和技能等級 > 0)
     {
       suc = 鬥氣協和Effect.getProp();
-      最大鬥氣點數 = 6;
     }
 
     if (進階鬥氣技能等級 > 0)
@@ -8807,7 +8804,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       {
         delta = 0L;
       }
-      if (this.getBuffedValue(SecondaryStat.HolyBlood) != null && delta > 0)
+      if (this.getBuffedValue(SecondaryStat.神聖之血) != null && delta > 0)
       {
         delta -= delta / 100 * 99;
       }

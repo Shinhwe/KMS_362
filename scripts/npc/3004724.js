@@ -76,10 +76,10 @@ function action(mode, type, sel) {
 		var 게임약관 = "#fs14#你好, 歡迎來到百合子的楓之谷\r\n";
 		게임약관 += "" + 회색 + "────────────────────────────\r\n";
 		게임약관 += " " + 검정 + "服務器設置:\r\n";
-		게임약관 += " " + 검정 + "3倍經驗;3倍楓幣;楓幣可以購買全部魔方!\r\n";
+		게임약관 += " " + 검정 + "3倍經驗;5倍楓幣;楓幣可以購買全部魔方!\r\n";
 		게임약관 += " " + 검정 + "刷怪數量雙倍;怪刷新時間減半;快樂打怪!\r\n";
 		게임약관 += " " + 검정 + "強化全部用痕跡; 痕跡提供強力屬性!\r\n";
-		게임약관 += " " + 검정 + "神秘球/技能核心/真實球打怪掉落; 寵物自動吸楓幣!\r\n";
+		게임약관 += " " + 검정 + "神秘球/技能核心/真實球打怪掉落; 上線送P寵!\r\n";
 		게임약관 += " " + 검정 + "自動轉職, 自動學技能, 簡化遊戲流程!\r\n";
 		게임약관 += "" + 회색 + "────────────────────────────\r\n";
 
@@ -533,14 +533,14 @@ function addMedal()
 	item.setEnchantDex(50);
 	item.setEnchantInt(50);
 	item.setEnchantLuk(50);
-	item.setEnchantWatk(20);
-	item.setEnchantMatk(20);
+	item.setEnchantWatk(10);
+	item.setEnchantMatk(10);
 	item.setEnchantHp(1000);
 	item.setEnchantMp(1000);
-	item.setPotentialLevel(19);
-	item.setPotential1(20086);
-	item.setPotential2(20086);
-	item.setPotential3(20086);
+	// item.setPotentialLevel(19);
+	// item.setPotential1(20086);
+	// item.setPotential2(20086);
+	// item.setPotential3(20086);
 	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), item, false);
 }
 

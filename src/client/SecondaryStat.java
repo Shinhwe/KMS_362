@@ -369,7 +369,7 @@ public enum SecondaryStat implements Serializable
   ChillingStep(357),
   DotBasedBuff(358),
   BlessingAnsanble(359), //361 sniffer +1
-  刺痕剑(360),
+
   ExtremeArchery(361),
   NaviFlying(362), //361 sniffer +1 362
   QuiverCatridge(363),
@@ -688,10 +688,12 @@ public enum SecondaryStat implements Serializable
   SeaSerpent(688),
   SerpentStone(689),
   SerpentScrew(690),
-  HolyWater(695),
-  Triumph(696),
-  FlashMirage(697),
-  HolyBlood(698),
+  傷痕之劍(693),
+  IceVortex(694),
+  神聖之水(695),
+  勝利之羽(696),
+  閃光幻象(697),
+  神聖之血(698),
   
   EnergyCharged(699),
   DashJump(700),
@@ -704,6 +706,8 @@ public enum SecondaryStat implements Serializable
   RelikGauge(707),
   Grave(708),
   CountPlus1(709);
+
+
   
   private static final long serialVersionUID = 0L;
   private int buffstat;

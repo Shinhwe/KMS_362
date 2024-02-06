@@ -2236,11 +2236,10 @@ public class GameConstants
       case 36111009:
       case 36111010:
         return 36111000;
+      case 155101204:
+        return 155101104;
     }
-    if (id == 155101204)
-    {
-      return 155101104;
-    }
+
     return id;
   }
 

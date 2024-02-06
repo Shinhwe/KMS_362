@@ -97,7 +97,7 @@ public class SecondaryStatEffect implements Serializable
   private short ignoreMobpdpR;
   private short ignoreMobDamR;
   private short dot;
-  private short dotTime;
+  private int dotTime;
   private short dotInterval;
   private short dotSuperpos;
   private short criticaldamage;
@@ -115,6 +115,8 @@ public class SecondaryStatEffect implements Serializable
   private short selfDestruction;
   private short PVPdamage;
   private short indiePad;
+
+  private short indiePowerGuard;
   private short indiePadR;
   private short indieMad;
   private short indieDamReduceR;
@@ -504,7 +506,7 @@ public class SecondaryStatEffect implements Serializable
         ret.subTime *= 1000;
       }
       ret.cooltime *= 1000;
-      ret.dotTime = (short) (ret.dotTime * 1000);
+      ret.dotTime = ret.dotTime * 1000;
       ret.dotInterval = (short) (ret.dotInterval * 1000);
       ret.mastery = (byte) SecondaryStatEffect.parseEval("mastery", source, 0, variables, level);
       ret.pad = (short) SecondaryStatEffect.parseEval("pad", source, 0, variables, level);
@@ -528,6 +530,7 @@ public class SecondaryStatEffect implements Serializable
       ret.indieDEX = (short) SecondaryStatEffect.parseEval("indieDEX", source, 0, variables, level);
       ret.indieCr = (short) SecondaryStatEffect.parseEval("indieCr", source, 0, variables, level);
       ret.indiePad = (short) SecondaryStatEffect.parseEval("indiePad", source, 0, variables, level);
+      ret.indiePowerGuard = (short) SecondaryStatEffect.parseEval("indiePowerGuard", source, 0, variables, level);
       ret.indiePadR = (short) SecondaryStatEffect.parseEval("indiePadR", source, 0, variables, level);
       ret.indieMad = (short) SecondaryStatEffect.parseEval("indieMad", source, 0, variables, level);
       ret.indieMadR = (short) SecondaryStatEffect.parseEval("indieMadR", source, 0, variables, level);
@@ -869,7 +872,7 @@ public class SecondaryStatEffect implements Serializable
           case 1101006:
           {
             ret.statups.put(SecondaryStat.IndiePad, new Pair<Integer, Integer>(Integer.valueOf(ret.indiePad), ret.duration));
-            ret.statups.put(SecondaryStat.PowerGaurd, new Pair<Integer, Integer>(ret.x, ret.duration));
+            ret.statups.put(SecondaryStat.PowerGaurd, new Pair<Integer, Integer>(Integer.valueOf(ret.indiePowerGuard), ret.duration));
             break;
           }
           case 1101013:
@@ -1041,7 +1044,7 @@ public class SecondaryStatEffect implements Serializable
           }
           case 2311015:
           {
-            ret.statups.put(SecondaryStat.Triumph, new Pair<Integer, Integer>(1, ret.duration));
+            ret.statups.put(SecondaryStat.勝利之羽, new Pair<Integer, Integer>(1, ret.duration));
             break;
           }
           case 13121005:
@@ -4141,7 +4144,7 @@ public class SecondaryStatEffect implements Serializable
       {
         localDuration = this.w;
         int int_ = applyTo.getStat().getTotalInt() / this.s;
-        localstatups.put(SecondaryStat.HolyBlood, new Pair<Integer, Integer>(1, localDuration));
+        localstatups.put(SecondaryStat.神聖之血, new Pair<Integer, Integer>(1, localDuration));
         localstatups.put(SecondaryStat.IndieShotDamage, new Pair<Integer, Integer>(this.v, localDuration));
         localstatups.put(SecondaryStat.IndiePmdR, new Pair<Integer, Integer>(Math.min(this.s2, this.u + (this.u * int_)), localDuration));
         break;
@@ -6383,10 +6386,10 @@ public class SecondaryStatEffect implements Serializable
       }
       case 80002758:
       {
-        for (int i = 1; i <= 3; ++i)
-        {
-          Timer.BuffTimer.getInstance().schedule(() -> applyTo.addHP(this.y), 1000 * i);
-        }
+        int skillLevel = applyFrom.getSkillLevel(80002758);
+        int duration = SkillFactory.getSkill(80002758).getEffect(skillLevel).getDuration();
+        int healValue = SkillFactory.getSkill(80002758).getEffect(skillLevel).getY();
+        localstatups.put(SecondaryStat.DotHealHPPerSecond, new Pair<Integer, Integer>(healValue, duration));
         break;
       }
       case 80002762:
@@ -8166,7 +8169,7 @@ public class SecondaryStatEffect implements Serializable
       {
         bufftimeR = false;
         // aftercancel = true;
-        localstatups.put(SecondaryStat.FlashMirage, new Pair<Integer, Integer>(applyTo.플레시미라주스택, 0));
+        localstatups.put(SecondaryStat.閃光幻象, new Pair<Integer, Integer>(applyTo.플레시미라주스택, 0));
         break;
       }
       case 1320016:
@@ -8844,7 +8847,7 @@ public class SecondaryStatEffect implements Serializable
 
       case 1111003:
       {
-        localstatups.put(SecondaryStat.刺痕剑, new Pair<Integer, Integer>(SkillFactory.getSkill(1111003).getEffect(applyTo.getSkillLevel(1111003)).getDuration(), localDuration));
+        localstatups.put(SecondaryStat.傷痕之劍, new Pair<Integer, Integer>(SkillFactory.getSkill(1111003).getEffect(applyTo.getSkillLevel(1111003)).getDuration(), localDuration));
         break;
       }
       case 80003025:
@@ -11032,7 +11035,7 @@ public class SecondaryStatEffect implements Serializable
     return this.dot;
   }
 
-  public final short getDOTTime ()
+  public final int getDOTTime ()
   {
     return this.dotTime;
   }

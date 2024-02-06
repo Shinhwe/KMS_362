@@ -2262,6 +2262,7 @@ public class PlayerHandler
       chr.getClient().getSession().writeAndFlush(CField.rangeAttack(5311013, Collections.singletonList(new RangeAttack(5311014, chr.getTruePosition(), 1, 330, 1))));
     }
     int skillLevel = slea.readInt();
+    int 無形的信任技能等級 = -1;
     final Skill skill = SkillFactory.getSkill(skillid);
     if (skill == null || (GameConstants.isAngel(skillid) && chr.getStat().equippedSummon % 10000 != skillid % 10000) || (chr.inPVP() && skill.isPVPDisabled()))
     {
@@ -2274,11 +2275,32 @@ public class PlayerHandler
     {
       linkcool = chr.handleCainSkillCooldown(skillid);
     }
-    if (((linkcool && chr.getTotalSkillLevel(GameConstants.getLinkedSkill(skillid)) <= 0) || (chr.getTotalSkillLevel(GameConstants.getLinkedSkill(skillid)) != skillLevel && linkcool)) && !GameConstants.isMulungSkill(skillid) && !GameConstants.isPyramidSkill(skillid) && chr.getTotalSkillLevel(GameConstants.getLinkedSkill(skillid)) <= 0 && !GameConstants.isAngel(skillid) && !GameConstants.isFusionSkill(skillid))
+
+    if (skillid == 80002758)
+    {
+      無形的信任技能等級 = chr.getTotalSkillLevel(80002758);
+
+      if (GameConstants.isHero(chr.getJob()))
+      {
+        無形的信任技能等級 += chr.getTotalSkillLevel(252);
+      }
+      else if (GameConstants.isPaladin(chr.getJob()))
+      {
+        無形的信任技能等級 += chr.getTotalSkillLevel(253);
+      }
+      else if (GameConstants.isDarkKnight(chr.getJob()))
+      {
+        無形的信任技能等級 += chr.getTotalSkillLevel(254);
+      }
+
+      System.out.println("characterSkillLevel 80002758 = " + 無形的信任技能等級);
+    }
+    else if (((linkcool && chr.getTotalSkillLevel(GameConstants.getLinkedSkill(skillid)) <= 0) || (chr.getTotalSkillLevel(GameConstants.getLinkedSkill(skillid)) != skillLevel && linkcool)) && !GameConstants.isMulungSkill(skillid) && !GameConstants.isPyramidSkill(skillid) && chr.getTotalSkillLevel(GameConstants.getLinkedSkill(skillid)) <= 0 && !GameConstants.isAngel(skillid) && !GameConstants.isFusionSkill(skillid))
     {
       System.out.println("세션클로즈 999 : " + skillid + " lv : " + chr.getTotalSkillLevel(GameConstants.getLinkedSkill(skillid)));
       return;
     }
+
     switch (skillid)
     {
       case 2211012:
@@ -2311,7 +2333,7 @@ public class PlayerHandler
         break;
     }
 
-    skillLevel = chr.getTotalSkillLevel(GameConstants.getLinkedSkill(skillid));
+    skillLevel = 無形的信任技能等級 > 0 ? 無形的信任技能等級 : chr.getTotalSkillLevel(GameConstants.getLinkedSkill(skillid));
     final SecondaryStatEffect effect = chr.inPVP() ? skill.getPVPEffect(skillLevel) : skill.getEffect(skillLevel);
 
     if (effect.isMPRecovery() && chr.getStat().getHp() < (chr.getStat().getMaxHp() / 100) * 10)
@@ -2513,6 +2535,11 @@ public class PlayerHandler
     {
       switch (skillid)
       {
+        case 80002758:
+        {
+          effect.applyToBuff(chr);
+          break;
+        }
         case 400020046:
         {
           Point pos123 = slea.readPos();
@@ -3144,7 +3171,7 @@ public class PlayerHandler
           }
           chr.홀리워터스택 -= size;
           HashMap<SecondaryStat, Pair<Integer, Integer>> statups = new HashMap<SecondaryStat, Pair<Integer, Integer>>();
-          statups.put(SecondaryStat.HolyWater, new Pair<Integer, Integer>(chr.홀리워터스택, 0));
+          statups.put(SecondaryStat.神聖之水, new Pair<Integer, Integer>(chr.홀리워터스택, 0));
           chr.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.giveBuff(statups, null, chr));
           break;
         }
@@ -5996,7 +6023,7 @@ public class PlayerHandler
       }
     }
     Integer[] skills = new Integer[] { 3111013, 3121020, 400031054, 400030002, 400031020, 400031021, 400031029, 95001000 };
-    if (chr.getBuffedValue(SecondaryStat.FlashMirage) != null && attack.skill != 3111016 && attack.skill != 3100001)
+    if (chr.getBuffedValue(SecondaryStat.閃光幻象) != null && attack.skill != 3111016 && attack.skill != 3100001)
     {
       SecondaryStatEffect flashmirage = SkillFactory.getSkill(3111015).getEffect(chr.getSkillLevel(3111015));
       int count = flashmirage.getU();
@@ -6513,7 +6540,7 @@ public class PlayerHandler
     {
       return;
     }
-    
+
     slea.skip(8);
 
     int healHP = slea.readShort();
@@ -8612,6 +8639,25 @@ public class PlayerHandler
       e.printStackTrace();
     }
 
+  }
+
+  public static void handlePlayerDotHeal (LittleEndianAccessor slea, MapleClient client)
+  {
+    MapleCharacter character = client.getPlayer();
+
+    if (character == null || character.isAlive() == false)
+    {
+      return;
+    }
+
+    if (character.getBuffedEffect(SecondaryStat.DotHealHPPerSecond) != null)
+    {
+      character.addHP(character.getStat().getCurrentMaxHp() / 100L * (long) character.getBuffedValue(SecondaryStat.DotHealHPPerSecond).intValue());
+    }
+    if (character.getBuffedEffect(SecondaryStat.DotHealMPPerSecond) != null)
+    {
+      character.addMP(character.getStat().getCurrentMaxMp(character) / 100L * (long) character.getBuffedValue(SecondaryStat.DotHealMPPerSecond).intValue());
+    }
   }
 
   public static void SymbolExp (LittleEndianAccessor slea, MapleClient c)

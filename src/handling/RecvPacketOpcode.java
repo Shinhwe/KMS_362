@@ -317,6 +317,7 @@ public enum RecvPacketOpcode implements WritableIntValueHolder
   AUT_SYMBOL_LEVELUP,
   UPDATE_CORE,
   USE_FLAME_SCROLL,
+  PLAYER_DOT_HEAL,
   UNLINK_SKILL,
   LINK_SKILL,
   SHOW_SOULEFFECT_R,

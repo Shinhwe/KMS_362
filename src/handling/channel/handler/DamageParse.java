@@ -376,13 +376,13 @@ public class DamageParse
             applys.add(new Pair<MonsterStatus, MonsterStatusEffect>(MonsterStatus.MS_Burned, new MonsterStatusEffect(attack.skill, eff.getDOTTime(), (long) eff.getDOT() * totDamageToOneMonster / (long) attack.allDamage.size() / 10000L)));
             monster.applyStatus(player.getClient(), applys, effect);
           }
-          if (attack.skill == 1121015)
-          {
-            ArrayList<Pair<MonsterStatus, MonsterStatusEffect>> applys = new ArrayList<Pair<MonsterStatus, MonsterStatusEffect>>();
-            SecondaryStatEffect eff = SkillFactory.getSkill(1121015).getEffect(player.getSkillLevel(1121015));
-            applys.add(new Pair<MonsterStatus, MonsterStatusEffect>(MonsterStatus.MS_Burned, new MonsterStatusEffect(attack.skill, 60000, (long) eff.getDOT() * totDamageToOneMonster / (long) attack.allDamage.size() / 10000L)));
-            monster.applyStatus(player.getClient(), applys, effect);
-          }
+          // if (attack.skill == 1121015)
+          // {
+          //   ArrayList<Pair<MonsterStatus, MonsterStatusEffect>> applys = new ArrayList<Pair<MonsterStatus, MonsterStatusEffect>>();
+          //   SecondaryStatEffect eff = SkillFactory.getSkill(1121015).getEffect(player.getSkillLevel(1121015));
+          //   applys.add(new Pair<MonsterStatus, MonsterStatusEffect>(MonsterStatus.MS_Burned, new MonsterStatusEffect(attack.skill, 60000, (long) eff.getDOT() * totDamageToOneMonster / (long) attack.allDamage.size() / 10000L)));
+          //   monster.applyStatus(player.getClient(), applys, effect);
+          // }
           if (player.getBuffedValue(SecondaryStat.QuiverCatridge) != null && attack.skill != 400031021 && attack.skill != 95001000 && attack.skill != 3111013 && attack.skill != 3100010 && attack.skill != 400031000)
           {
             boolean adquiver = player.getBuffedValue(SecondaryStat.AdvancedQuiver) != null;
@@ -1148,8 +1148,16 @@ public class DamageParse
               }
               case 1121015:
               {
-                statusz.add(new Triple<MonsterStatus, MonsterStatusEffect, Long>(MonsterStatus.MS_Incizing, new MonsterStatusEffect(attack.skill, effect.getSubTime() > 0 ? effect.getSubTime() : effect.getDuration()), 1L));
-                // statusz.add(new Triple<MonsterStatus, MonsterStatusEffect, Long>(MonsterStatus.MS_Burned, new MonsterStatusEffect(attack.skill, 60000), (long) effect.getDOT() * totDamageToOneMonster / (long) attack.allDamage.size() / 10000L));
+                int skillLevel = player.getSkillLevel(1121015);
+                int duration = SkillFactory.getSkill(1121015).getEffect(skillLevel).getDuration();
+                int critDamage = SkillFactory.getSkill(1121015).getEffect(skillLevel).getX();
+                int dot = SkillFactory.getSkill(1121015).getEffect(skillLevel).getDOT();
+                int dotTime = SkillFactory.getSkill(1121015).getEffect(skillLevel).getDOTTime();
+                int dotInterval = SkillFactory.getSkill(1121015).getEffect(skillLevel).getDotInterval();
+                int skillDamage = SkillFactory.getSkill(1121015).getEffect(skillLevel).getDamage();
+                long dotDamage = ((long) dot * totDamageToOneMonster / (long) attack.allDamage.size() / (long) skillDamage);
+                statusz.add(new Triple<MonsterStatus, MonsterStatusEffect, Long>(MonsterStatus.MS_Incizing, new MonsterStatusEffect(1121015, duration), (long) critDamage));
+                statusz.add(new Triple<MonsterStatus, MonsterStatusEffect, Long>(MonsterStatus.MS_Burned, new MonsterStatusEffect(1121015, dotTime, skillLevel, dotInterval), dotDamage));
                 break;
               }
               case 1201011:
@@ -1849,8 +1857,9 @@ public class DamageParse
                 {
                   int skillLevel = player.getSkillLevel(1111003);
                   int duration = SkillFactory.getSkill(1111003).getEffect(skillLevel).getV() * 1000;
-                  System.out.println("duration = " + duration);
-                  applys.add(new Pair<MonsterStatus, MonsterStatusEffect>(MonsterStatus.刺伤, new MonsterStatusEffect(1111003, duration, 1)));
+                  int AccuracyReduce = SkillFactory.getSkill(1111003).getEffect(skillLevel).getX();
+                  applys.add(new Pair<MonsterStatus, MonsterStatusEffect>(MonsterStatus.刺傷, new MonsterStatusEffect(1111003, duration, 1, skillLevel)));
+                  statusz.add(new Triple<MonsterStatus, MonsterStatusEffect, Long>(MonsterStatus.MS_Blind, new MonsterStatusEffect(1111003, duration), Long.valueOf(AccuracyReduce)));
                   break;
                 }
                 if (player.getBuffedValue(5311004))
@@ -5252,7 +5261,7 @@ public class DamageParse
             player.홀리워터스택 = 5;
           }
           HashMap<SecondaryStat, Pair<Integer, Integer>> statups = new HashMap<SecondaryStat, Pair<Integer, Integer>>();
-          statups.put(SecondaryStat.HolyWater, new Pair<Integer, Integer>(player.홀리워터스택, 0));
+          statups.put(SecondaryStat.神聖之水, new Pair<Integer, Integer>(player.홀리워터스택, 0));
           player.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.giveBuff(statups, null, player));
         }
       }
@@ -5440,7 +5449,7 @@ public class DamageParse
           }
         }
       }
-      if (attack.targets > 0 && player.getBuffedEffect(SecondaryStat.Triumph) != null && attack.skill != 2311017 && System.currentTimeMillis() - player.TriumphTime >= 2000)
+      if (attack.targets > 0 && player.getBuffedEffect(SecondaryStat.勝利之羽) != null && attack.skill != 2311017 && System.currentTimeMillis() - player.TriumphTime >= 2000)
       {
         List<MapleMapObject> objs = player.getMap().getMapObjectsInRange(player.getTruePosition(), 500000.0, Collections.singletonList(MapleMapObjectType.MONSTER));
         if (objs.size() > 0)

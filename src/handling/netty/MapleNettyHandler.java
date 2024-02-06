@@ -1541,6 +1541,11 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
         PlayerHandler.SymbolExp(slea, c);
         break;
       }
+      case PLAYER_DOT_HEAL:
+      {
+        PlayerHandler.handlePlayerDotHeal(slea, c);
+        break;
+      }
       case UNLINK_SKILL:
       {
         PlayerHandler.UnlinkSkill(slea.readInt(), c);

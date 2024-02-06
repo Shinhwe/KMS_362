@@ -1609,18 +1609,18 @@ public final class MapleMap
       }
       else if (mobLevel > 200 && mobLevel < 240)
       {
-        minimumMesosDropped = (int) Math.round(mobLevel * 6.1);
-        maximumMesosDropped = (int) Math.round(mobLevel * 8.9);
+        minimumMesosDropped = (int) Math.round(mobLevel * 6.6);
+        maximumMesosDropped = (int) Math.round(mobLevel * 9.6);
       }
       else if (mobLevel >= 240 && mobLevel < 270)
       {
-        minimumMesosDropped = (int) Math.round(mobLevel * 6.6);
-        maximumMesosDropped = (int) Math.round(mobLevel * 9.4);
+        minimumMesosDropped = (int) Math.round(mobLevel * 7.6);
+        maximumMesosDropped = (int) Math.round(mobLevel * 11.2);
       }
       else if (mobLevel >= 270 && mobLevel <= 300)
       {
-        minimumMesosDropped = (int) Math.round(mobLevel * 7.1);
-        maximumMesosDropped = (int) Math.round(mobLevel * 9.9);
+        minimumMesosDropped = (int) Math.round(mobLevel * 8.4);
+        maximumMesosDropped = (int) Math.round(mobLevel * 13.8);
       }
       int mesos = Randomizer.nextInt(1 + maximumMesosDropped - minimumMesosDropped) + minimumMesosDropped;
 
@@ -7115,7 +7115,7 @@ public final class MapleMap
 
     this.createMobInterval -= reduceMobRespawnDelay;
 
-    spawnDebug();
+    System.out.println(spawnDebug());
 
     if (first && spawnSize > 0)
     {
@@ -7362,7 +7362,7 @@ public final class MapleMap
 
   public String spawnDebug ()
   {
-    String sb = "Mobs in map : " + getNumMonsters() + " spawnedMonstersOnMap: " + this.spawnedMonstersOnMap + " spawnpoints: " + this.monsterSpawn.size() + " maxRegularSpawn: " + this.maxRegularSpawn + " monster rate: " + this.monsterRate + " fixed" + ": " + this.fixedMob + " partyBonusRate" + ": " + this.partyBonusRate;
+    String sb = "mapId: " + this.mapid + "Mobs in map : " + getNumMonsters() + " spawnedMonstersOnMap: " + this.spawnedMonstersOnMap + " spawnpoints: " + this.monsterSpawn.size() + " maxRegularSpawn: " + this.maxRegularSpawn + " monster rate: " + this.monsterRate + " fixed" + ": " + this.fixedMob + " partyBonusRate" + ": " + this.partyBonusRate;
     return sb;
   }
 
@@ -10432,7 +10432,14 @@ public final class MapleMap
             if (damage)
             {
               buff.setLastPoisonTime(time);
-              life.damage(buff.getChr(), Math.min(life.getHp() - 1L, buff.getValue()), true);
+              if (buff.getSkill() == 1121015)
+              {
+                life.damage(buff.getChr(), buff.getValue(), true);
+              }
+              else
+              {
+                life.damage(buff.getChr(), Math.min(life.getHp() - 1L, buff.getValue()), true);
+              }
               if (buff.getSkill() == 25121006 && buff.getChr().getSkillLevel(25121006) > 0 && buff.getChr().isAlive())
               {
                 buff.getChr().getClient().getSession().writeAndFlush(CField.EffectPacket.showEffect(buff.getChr(), 0, 25121006, 4, 0, 0, (byte) (buff.getChr().isFacingLeft() ? 1 : 0), true, buff.getChr().getPosition(), null, null));
