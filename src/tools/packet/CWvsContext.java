@@ -229,7 +229,7 @@ public class CWvsContext
     packet.writeMapleAsciiString(value);
     packet.writeInt(array);
     packet.writeInt(mode);
-    packet.write(skill);
+    packet.write(skill ? 1 : 0);
     packet.writeInt(table);
     packet.writeZeroBytes(120);
     return packet.getPacket();

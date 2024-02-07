@@ -2292,8 +2292,6 @@ public class PlayerHandler
       {
         無形的信任技能等級 += chr.getTotalSkillLevel(254);
       }
-
-      System.out.println("characterSkillLevel 80002758 = " + 無形的信任技能等級);
     }
     else if (((linkcool && chr.getTotalSkillLevel(GameConstants.getLinkedSkill(skillid)) <= 0) || (chr.getTotalSkillLevel(GameConstants.getLinkedSkill(skillid)) != skillLevel && linkcool)) && !GameConstants.isMulungSkill(skillid) && !GameConstants.isPyramidSkill(skillid) && chr.getTotalSkillLevel(GameConstants.getLinkedSkill(skillid)) <= 0 && !GameConstants.isAngel(skillid) && !GameConstants.isFusionSkill(skillid))
     {

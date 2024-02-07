@@ -10118,6 +10118,16 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     {
       this.getClient().getSession().writeAndFlush(CWvsContext.updateHyperPresets(this, 0, (byte) 0));
       this.setKeyValue(2498, "hyperstats", "" + 0);
+      Map<Skill, SkillEntry> list = new HashMap<>();
+      for (int i = 80000400; i <= 80000417; i++)
+      {
+        Skill skil = SkillFactory.getSkill(i);
+        if (skil != null && getSkillLevel(skil) <= 0)
+        {
+          list.put(skil, new SkillEntry((byte) 0, (byte) skil.getMaxLevel(), -1));
+        }
+      }
+      this.changeSkillsLevel(list);
     }
     if (GameConstants.isZero(this.job))
     {

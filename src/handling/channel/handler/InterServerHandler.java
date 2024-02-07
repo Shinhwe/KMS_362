@@ -850,7 +850,7 @@ public class InterServerHandler
       /*  586 */
       c.send(CField.BossMatchingChance(list));
       /*  587 */
-      c.getSession().writeAndFlush(CSPacket.enableCSUse());
+      // c.getSession().writeAndFlush(CSPacket.enableCSUse());
       /*  588 */
       player.updateLinkSkillPacket();
       /*  589 */
@@ -918,8 +918,7 @@ public class InterServerHandler
         player.Cylinder(0);
       }
       /*  621 */
-      if (!player.isGM() || !player.getBuffedValue(9001004))
-        ;
+      // if (!player.isGM() || !player.getBuffedValue(9001004));
 
       /*  624 */
       if (GameConstants.isZero(player.getJob()))
