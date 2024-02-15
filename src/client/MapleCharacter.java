@@ -89,6 +89,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   private final Map<Skill, SkillEntry> skills;
   private final transient Map<Integer, SkillCustomInfo> customInfo;
   private final transient Map<Integer, MapleCoolDownValueHolder> coolDowns;
+  private ReentrantLock cooldownLock = new ReentrantLock();
   private final PlayerStats stats;
 
   private final EnumMap<MapleTrait.MapleTraitType, MapleTrait> traits; // 傾向
@@ -98,7 +99,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   public Timer ConstentTimer;
   public int 에테르소드, 에테르, 활성화된소드;
   public int 홀리워터, 홀리워터스택, 서펜트스톤, 서펜트스크류;
-  public int 발할라검격;
+  public int 戰靈附體剩餘劍擊數量;
   public int 리인카네이션;
   public int 플레시미라주스택, 스킬카운트;
   public long lastConcentrationTime, lastSilhouetteMirageCreateTime, lastSilhouetteMirageAttackTime, lastVerseOfRelicsTime, lastTimeleapTime, lastDemonicFrenzyTime, lastChainArtsFuryTime, lastFireArrowTime, lastThunderTime, lastChairPointTime, lastVamTime, lastAltergoTime, lastButterflyTime, lastUnionRaidTime;
@@ -395,6 +396,11 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   private Pair<Integer, Integer> eqpSpCore;
   private long damageMeter;
   private transient ScheduledFuture<?> mapTimeLimitTask;
+  private long 下一次隨機傳送門刷新時間 = 0; // timespan
+
+  private String 地圖隨機傳送門擊殺數據 = ""; // 格式: mapid_count
+
+  private boolean isDailyGiftTooltipPacketSend = false;
 
   private MapleCharacter (final boolean ChannelServer, final boolean firstIngame)
   {
@@ -449,7 +455,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     this.홀리워터스택 = 0;
     this.서펜트스톤 = 0;
     this.서펜트스크류 = 0;
-    this.발할라검격 = 12;
+    this.戰靈附體剩餘劍擊數量 = 0;
     this.리인카네이션 = 0;
     this.플레시미라주스택 = 1;
     this.스킬카운트 = 0;
@@ -3063,7 +3069,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
             break;
           }
         }
-        if (c.getPlayer().skillisCooling(targetskill))
+        if (c.getPlayer().isSkillCooling(targetskill))
         {
           c.getPlayer().changeCooldown(targetskill, -쿨감량);
         }
@@ -3582,7 +3588,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
         this.ReHolyUnityBuff(this.getBuffedEffect(400011003));
       }
     }
-    if (this.getBuffedValue(31121054) && this.getBuffedValue(31121007) && this.getSkillCustomValue(31121007) == null && this.skillisCooling(31121054))
+    if (this.getBuffedValue(31121054) && this.getBuffedValue(31121007) && this.getSkillCustomValue(31121007) == null && this.isSkillCooling(31121054))
     {
       this.changeCooldown(31121054, -2000);
       this.setSkillCustomInfo(31121007, 0L, 3000L);
@@ -5103,13 +5109,13 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       this.deleteWhereCharacterId(con, "DELETE FROM skills_cooldowns WHERE charid = ?");
       if (dc && cd.size() > 0)
       {
-        final PreparedStatement ps = con.prepareStatement("INSERT INTO skills_cooldowns (charid, SkillID, StartTime, length) VALUES (?, ?, ?, ?)");
+        final PreparedStatement ps = con.prepareStatement("INSERT INTO skills_cooldowns (charid, SkillID, StartTime, cooldownTimeMS) VALUES (?, ?, ?, ?)");
         ps.setInt(1, this.getId());
         for (final MapleCoolDownValueHolder cooling : cd)
         {
           ps.setInt(2, cooling.skillId);
           ps.setLong(3, cooling.startTime);
-          ps.setLong(4, cooling.length);
+          ps.setLong(4, cooling.cooldownTimeMS);
           ps.execute();
         }
         ps.close();
@@ -5433,13 +5439,11 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     mplew.writeShort(this.questinfo.size() + this.getClient().getCustomKeyValue().size());
     for (final Map.Entry<Integer, String> q : this.questinfo.entrySet())
     {
-      System.out.println("questinfo key = " + q.getKey() + "; value = " + q.getValue());
       mplew.writeInt(q.getKey());
       mplew.writeMapleAsciiString((q.getValue() == null) ? "" : q.getValue());
     }
     for (final Map.Entry<Integer, String> q : this.getClient().getCustomKeyValue().entrySet())
     {
-      System.out.println("customKeyValue key = " + q.getKey() + "; value = " + q.getValue());
       mplew.writeInt(q.getKey());
       mplew.writeMapleAsciiString((q.getValue() == null) ? "" : q.getValue());
     }
@@ -5448,6 +5452,8 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   public final void specialQustInfoPacket (final MaplePacketLittleEndianWriter mplew)
   {
     final Map<Integer, String> customQuestInfo = new HashMap<Integer, String>();
+
+    // 這裏用於初次登錄時初始化提示已完成的tooltip(如果已完成)
     String 是否已完成簽到 = getClient().getKeyValue("dailyGiftComplete");
 
     String 已簽到天數 = getClient().getKeyValue("dailyGiftDay");
@@ -5458,9 +5464,9 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     customQuestInfo.put(15, "count=" + 是否已完成簽到 + ";day=" + 已簽到天數 + ";date=" + 今天日期);
 
     mplew.writeInt(customQuestInfo.size());
+
     for (final Map.Entry<Integer, String> q : customQuestInfo.entrySet())
     {
-      System.out.println("specialQustInfoPacket key = " + q.getKey() + "; value = " + q.getValue());
       mplew.writeInt(q.getKey());
       mplew.writeMapleAsciiString((q.getValue() == null) ? "" : q.getValue());
     }
@@ -5479,7 +5485,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     {
       return this.questinfo.get(questid);
     }
-    return "";
+    return null;
   }
 
   public final int getNumQuest ()
@@ -6250,7 +6256,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       }
       case 400011010:
       {
-        if (!this.skillisCooling(effect.getSourceId()) && !overwrite)
+        if (!this.isSkillCooling(effect.getSourceId()) && !overwrite)
         {
           this.client.send(CField.skillCooldown(effect.getSourceId(), SkillFactory.getSkill(GameConstants.getLinkedSkill(effect.getSourceId())).getEffect(this.getSkillLevel(effect.getSourceId())).getZ() * 1000));
           this.addCooldown(effect.getSourceId(), System.currentTimeMillis(), SkillFactory.getSkill(GameConstants.getLinkedSkill(effect.getSourceId())).getEffect(this.getSkillLevel(effect.getSourceId())).getZ() * 1000L);
@@ -7351,9 +7357,9 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     return this.getTotalSkillLevel(SkillFactory.getSkill(skillid));
   }
 
-  public final void handleGainOrb (final AttackInfo attack, final int skillid)
+  public synchronized final void 處理增加鬥氣 (final int 技能Id)
   {
-    if (skillid == 400011073 || skillid == 400011074 || skillid == 400011075 || skillid == 400011076)
+    if (技能Id == 400011073 || 技能Id == 400011074 || 技能Id == 400011075 || 技能Id == 400011076)
     {
       return;
     }
@@ -7367,6 +7373,8 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     int 鬥氣協和技能Id = 1110013;
 
     int 進階鬥氣技能Id = 1120003;
+
+    int 戰靈附體技能Id = 1121054;
 
     final Skill 鬥氣集中 = SkillFactory.getSkill(鬥氣集中技能Id);
 
@@ -7387,7 +7395,6 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     SecondaryStatEffect 鬥氣協和Effect = 鬥氣協和.getEffect(鬥氣協和技能等級);
 
     SecondaryStatEffect 進階鬥氣Effect = 進階鬥氣.getEffect(進階鬥氣技能等級);
-
 
     if (鬥氣集中技能等級 == 0)
     {
@@ -7418,6 +7425,18 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       suc /= 2;
     }
 
+    if (技能Id == 鬥氣協和技能Id)
+    {
+      suc = 鬥氣協和Effect.getSubprop();
+      增加的鬥氣點數 = 1;
+    }
+
+    if (技能Id == 戰靈附體技能Id)
+    {
+      suc = 100;
+      增加的鬥氣點數 = 最大鬥氣點數;
+    }
+
     if (Randomizer.isSuccess(suc))
     {
       當前鬥氣點數 += 增加的鬥氣點數;
@@ -7426,6 +7445,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       {
         當前鬥氣點數 = 最大鬥氣點數;
       }
+
       final EnumMap<SecondaryStat, Pair<Integer, Integer>> stat = new EnumMap<>(SecondaryStat.class);
 
       stat.put(SecondaryStat.ComboCounter, new Pair<>(當前鬥氣點數, 0));
@@ -7435,7 +7455,6 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       this.client.getSession().writeAndFlush(CWvsContext.BuffPacket.giveBuff(stat, 鬥氣集中Effect, this));
 
       this.map.broadcastMessage(this, CWvsContext.BuffPacket.giveForeignBuff(this, stat, 鬥氣集中Effect), false);
-
     }
   }
 
@@ -7855,7 +7874,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     {
       this.eventInstance.changedMap(this, to.getId());
     }
-    if ((to.getId() == 800000000 || to.getId() == 740000000 || to.getId() == 500000000 || to.getId() == 270051100) && this.getV("d_map_" + to.getId()) == "0")
+    if ((to.getId() == 800000000 || to.getId() == 740000000 || to.getId() == 500000000 || to.getId() == 270051100) && this.getV("d_map_" + to.getId()).equals("0"))
     {
       this.addKV("d_map_" + to.getId(), "1");
     }
@@ -13529,9 +13548,9 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     this.messenger = messenger;
   }
 
-  public void addCooldown (final int skillId, final long startTime, final long length)
+  public void addCooldown (final int skillId, final long startTime, final long cooldownTimeMS)
   {
-    this.coolDowns.put(skillId, new MapleCoolDownValueHolder(skillId, startTime, length));
+    this.coolDowns.put(skillId, new MapleCoolDownValueHolder(skillId, startTime, cooldownTimeMS));
   }
 
   public void removeCooldown (final int skillId)
@@ -13559,28 +13578,26 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     if (this.coolDowns.containsKey(skillId))
     {
       final MapleCoolDownValueHolder mapleCoolDownValueHolder = this.coolDowns.get(skillId);
-      mapleCoolDownValueHolder.length += reduce;
-      this.getClient().getSession().writeAndFlush(CField.skillCooldown(skillId, (int) Math.max(0L, this.coolDowns.get(skillId).length - (System.currentTimeMillis() - this.coolDowns.get(skillId).startTime))));
-      if (System.currentTimeMillis() - this.coolDowns.get(skillId).startTime >= this.coolDowns.get(skillId).length)
+      mapleCoolDownValueHolder.cooldownTimeMS += reduce;
+      this.getClient().getSession().writeAndFlush(CField.skillCooldown(skillId, (int) Math.max(0L, this.coolDowns.get(skillId).cooldownTimeMS - (System.currentTimeMillis() - this.coolDowns.get(skillId).startTime))));
+      if (System.currentTimeMillis() - this.coolDowns.get(skillId).startTime >= this.coolDowns.get(skillId).cooldownTimeMS)
       {
         this.removeCooldown(skillId);
       }
     }
   }
 
-  public boolean skillisCooling (final int skillId)
+  public boolean isSkillCooling (final int skillId)
   {
-    return (!this.coolDowns.containsKey(skillId) || this.coolDowns.get(skillId).startTime + this.coolDowns.get(skillId).length - System.currentTimeMillis() >= 0L) && this.coolDowns.containsKey(skillId);
-  }
-
-  public long skillcool (final int skillId)
-  {
-    return this.coolDowns.get(skillId).startTime + this.coolDowns.get(skillId).length - System.currentTimeMillis();
-  }
-
-  public void giveCoolDowns (final int skillid, final long starttime, final long length)
-  {
-    this.addCooldown(skillid, starttime, length);
+    this.cooldownLock.lock();
+    try
+    {
+      return this.coolDowns.containsKey(skillId);
+    }
+    finally
+    {
+      this.cooldownLock.unlock();
+    }
   }
 
   public void giveCoolDowns (final List<MapleCoolDownValueHolder> cooldowns)
@@ -13600,16 +13617,16 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       try
       {
         con = DatabaseConnection.getConnection();
-        ps = con.prepareStatement("SELECT SkillID,StartTime,length FROM skills_cooldowns WHERE charid = ?");
+        ps = con.prepareStatement("SELECT * FROM skills_cooldowns WHERE charid = ?");
         ps.setInt(1, this.getId());
         rs = ps.executeQuery();
         while (rs.next())
         {
-          if (rs.getLong("length") + rs.getLong("StartTime") - System.currentTimeMillis() <= 0L)
+          if (rs.getLong("cooldownTimeMS") + rs.getLong("StartTime") - System.currentTimeMillis() <= 0L)
           {
             continue;
           }
-          this.giveCoolDowns(rs.getInt("SkillID"), rs.getLong("StartTime"), rs.getLong("length"));
+          this.addCooldown(rs.getInt("SkillID"), rs.getLong("StartTime"), rs.getLong("cooldownTimeMS"));
         }
         ps.close();
         rs.close();
@@ -14035,11 +14052,11 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     if (skillid == 2311001 && statupz.size() > 0)
     {
       SecondaryStatEffect effect = SkillFactory.getSkill(2311001).getEffect(owner.getSkillLevel(2311001));
-      if (owner.skillisCooling(2311001))
+      if (owner.isSkillCooling(2311001))
       {
         owner.changeCooldown(2311001, -(effect.getY() * 1000));
       }
-      if (owner.skillisCooling(2311012))
+      if (owner.isSkillCooling(2311012))
       {
         owner.changeCooldown(2311012, -effect.getDuration());
       }
@@ -15499,7 +15516,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
 
   public void setIgnition (final int stack)
   {
-    if (stack > 0 && this.skillisCooling(400021042))
+    if (stack > 0 && this.isSkillCooling(400021042))
     {
       return;
     }
@@ -15512,7 +15529,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
 
   public void gainIgnition ()
   {
-    if (this.skillisCooling(400021042))
+    if (this.isSkillCooling(400021042))
     {
       return;
     }
@@ -16220,7 +16237,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       {
         if (this.getBuffedValue(SecondaryStat.ComboCounter) != null)
         {
-          this.handleGainOrb(attack, skillid);
+          this.處理增加鬥氣(skillid);
           break;
         }
         break;
@@ -16855,7 +16872,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
 
   public void unchooseStolenSkill (final int skillID)
   {
-    if (this.skillisCooling(20031208) || this.stolenSkills == null)
+    if (this.isSkillCooling(20031208) || this.stolenSkills == null)
     {
       this.dropMessage(-6, "[Loadout] The skill is under cooldown. Please wait.");
       return;
@@ -16969,7 +16986,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
 
   public void chooseStolenSkill (final int skillID)
   {
-    if (this.skillisCooling(20031208) || this.stolenSkills == null)
+    if (this.isSkillCooling(20031208) || this.stolenSkills == null)
     {
       this.dropMessage(-6, "[Loadout] The skill is under cooldown. Please wait.");
       return;
@@ -16987,7 +17004,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
 
   public void addStolenSkill (int skillID, int skillLevel)
   {
-    if (this.skillisCooling(20031208) || this.stolenSkills == null)
+    if (this.isSkillCooling(20031208) || this.stolenSkills == null)
     {
       this.dropMessage(-6, "[Loadout] The skill is under cooldown. Please wait.");
       return;
@@ -17024,7 +17041,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
 
   public void removeStolenSkill (int skillID)
   {
-    if (this.skillisCooling(20031208) || this.stolenSkills == null)
+    if (this.isSkillCooling(20031208) || this.stolenSkills == null)
     {
       this.dropMessage(-6, "[Loadout] The skill is under cooldown. Please wait.");
       return;
@@ -17304,7 +17321,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     {
       if (mcdvh.skillId == skillid)
       {
-        return mcdvh.length - (System.currentTimeMillis() - mcdvh.startTime);
+        return mcdvh.cooldownTimeMS - (System.currentTimeMillis() - mcdvh.startTime);
       }
     }
     return 0L;
@@ -17671,7 +17688,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
           Collections.shuffle(skilllist);
           for (final Integer skill : skilllist)
           {
-            if (this.skillisCooling(skill))
+            if (this.isSkillCooling(skill))
             {
               this.removeCooldown(skill);
               break;
@@ -17841,7 +17858,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
           }
         }
       }
-      else if (!install1 && !chr.skillisCooling(63111009) && createcount > 0)
+      else if (!install1 && !chr.isSkillCooling(63111009) && createcount > 0)
       {
         final Rectangle bounds2 = SkillFactory.getSkill(63111010).getEffect(chr.getSkillLevel(63111010)).calculateBoundingBox(chr.getTruePosition(), chr.isFacingLeft());
         for (int i = 0; i < createcount; ++i)
@@ -17977,7 +17994,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       {
         cooltime = SkillFactory.getSkill(skillid).getEffect(this.getSkillLevel(cskillid)).getCooldown(this);
       }
-      if (!this.skillisCooling(skillid) && !this.skillisCooling(cskillid))
+      if (!this.isSkillCooling(skillid) && !this.isSkillCooling(cskillid))
       {
         this.addCooldown(skillid, System.currentTimeMillis(), cooltime);
         this.getClient().getSession().writeAndFlush(CField.skillCooldown(skillid, cooltime));
@@ -17990,7 +18007,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   {
     final int skilllv = (this.getSkillLevel(80003070) > 0) ? this.getSkillLevel(80003070) : this.getSkillLevel(160010001);
     final int skillld = (this.getSkillLevel(80003070) > 0) ? 80003058 : 160010001;
-    if (this.skillisCooling(skillld))
+    if (this.isSkillCooling(skillld))
     {
       return;
     }
@@ -18027,7 +18044,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   public void handlePriorPrepaRation (final int skillid, final int type)
   {
     final SecondaryStatEffect effect = SkillFactory.getSkill(skillid).getEffect(this.getSkillLevel(skillid));
-    if (!this.getBuffedValue(skillid) && !this.skillisCooling(skillid))
+    if (!this.getBuffedValue(skillid) && !this.isSkillCooling(skillid))
     {
       if (type == 1)
       {
@@ -22536,7 +22553,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
           {
             this.setSpCount(0);
           }
-          if (!this.skillisCooling(coreSkillId))
+          if (!this.isSkillCooling(coreSkillId))
           {
             this.gainSpCount(1);
             if (this.getSpCount() >= spOption.getCount())
@@ -22560,7 +22577,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
             this.setSpAttackCountMobId(mobObjectId);
             this.setSpCount(0);
           }
-          else if (!this.skillisCooling(coreSkillId))
+          else if (!this.isSkillCooling(coreSkillId))
           {
             this.gainSpCount(1);
             if (this.getSpCount() >= spOption.getCount())
@@ -22575,7 +22592,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
         case "rune":
         case "cooltime":
         {
-          if (!this.skillisCooling(coreSkillId) && effect != null)
+          if (!this.isSkillCooling(coreSkillId) && effect != null)
           {
             this.applySpecialCoreSkills(spOption);
             break;
@@ -22584,7 +22601,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
         }
         case "combokill":
         {
-          if (this.getMonsterCombo() > 0 && this.getMonsterCombo() % spOption.getCount() == 0 && !this.skillisCooling(coreSkillId))
+          if (this.getMonsterCombo() > 0 && this.getMonsterCombo() % spOption.getCount() == 0 && !this.isSkillCooling(coreSkillId))
           {
             this.applySpecialCoreSkills(spOption);
           }
@@ -22593,7 +22610,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
         }
         case "die":
         {
-          if (!this.skillisCooling(coreSkillId))
+          if (!this.isSkillCooling(coreSkillId))
           {
             this.applySpecialCoreSkills(spOption);
             break;
@@ -22606,7 +22623,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
           {
             this.setSpLastValidTime(time);
           }
-          if (this.skillisCooling(coreSkillId))
+          if (this.isSkillCooling(coreSkillId))
           {
             break;
           }
@@ -22975,7 +22992,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     final int[] cooling = array = new int[] { 101121200, 101110200, 101101200, 101101100, 101121100, 101111100 };
     for (final int cool : array)
     {
-      if (this.skillisCooling(cool) && cool != nocool)
+      if (this.isSkillCooling(cool) && cool != nocool)
       {
         this.changeCooldown(cool, -4000);
       }
@@ -23542,6 +23559,36 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   public boolean gethottimebossattackcheck ()
   {
     return hottimebossattackcheck;
+  }
+
+  public synchronized long 獲取下一次隨機傳送門刷新時間 ()
+  {
+    return this.下一次隨機傳送門刷新時間;
+  }
+
+  public synchronized void 設置下一次隨機傳送門刷新時間 (long 下一次隨機傳送門刷新時間)
+  {
+    this.下一次隨機傳送門刷新時間 = 下一次隨機傳送門刷新時間;
+  }
+
+  public synchronized String 獲取地圖隨機傳送門擊殺數據 ()
+  {
+    return this.地圖隨機傳送門擊殺數據;
+  }
+
+  public synchronized void 設置地圖隨機傳送門擊殺數據 (String 地圖隨機傳送門擊殺數據)
+  {
+    this.地圖隨機傳送門擊殺數據 = 地圖隨機傳送門擊殺數據;
+  }
+
+  public boolean getIsDailyGiftTooltipPacketSend ()
+  {
+    return this.isDailyGiftTooltipPacketSend;
+  }
+
+  public void setIsDailyGiftTooltipPacketSend (boolean isDailyGiftTooltipPacketSend)
+  {
+    this.isDailyGiftTooltipPacketSend = isDailyGiftTooltipPacketSend;
   }
 
   public void startMapTimeLimitTask (int time, final MapleMap to)
@@ -24441,7 +24488,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       {
         for (final MapleCoolDownValueHolder m : MapleCharacter.this.getCooldowns())
         {
-          if (m.startTime + m.length < now)
+          if (m.startTime + m.cooldownTimeMS < now)
           {
             cooldowns.add(m);
           }

@@ -4482,7 +4482,7 @@
 <int name="maxLevel" value="1"/>
 <string name="damage" value="370"/>
 <string name="w" value="3"/>
-<string name="subTime" value="900"/>
+<string name="subTime" value="4000"/>
 <string name="time" value="10000"/>
 <string name="attackDelay" value="120"/>
 <string name="q" value="70"/>

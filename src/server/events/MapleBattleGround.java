@@ -670,7 +670,7 @@ public class MapleBattleGround
         coollist.add(new Pair<>(Integer.valueOf(80001678), Integer.valueOf(30)));
         for (Pair<Integer, Integer> cooll : coollist)
         {
-          if (c.getPlayer().skillisCooling(cooll.getLeft().intValue()))
+          if (c.getPlayer().isSkillCooling(cooll.getLeft().intValue()))
           {
             c.send(BattleGroundPacket.CoolDown(cooll.getLeft().intValue(), cooll.getRight().intValue() * 1000, (int) ((cooll.getRight().intValue() * 1000) - c.getPlayer().getCooldownLimit(cooll.getLeft().intValue()))));
             if (cooll.getLeft().intValue() == 80003012)
@@ -773,7 +773,7 @@ public class MapleBattleGround
         coollist.add(new Pair<>(Integer.valueOf(80001678), Integer.valueOf(30)));
         for (Pair<Integer, Integer> cooll : coollist)
         {
-          if (c.getPlayer().skillisCooling(cooll.getLeft().intValue()))
+          if (c.getPlayer().isSkillCooling(cooll.getLeft().intValue()))
           {
             c.send(BattleGroundPacket.CoolDown(cooll.getLeft().intValue(), cooll.getRight().intValue() * 1000, (int) ((cooll.getRight().intValue() * 1000) - c.getPlayer().getCooldownLimit(cooll.getLeft().intValue()))));
             if (cooll.getLeft().intValue() == 80003012)

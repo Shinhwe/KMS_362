@@ -8329,7 +8329,7 @@ public class InventoryHandler
             if (getPQ != c.getPlayer().getMap().getKerningPQ())
             {
               /* 4845 */
-              if (stage4 == "0")
+              if (stage4.equals("0"))
               {
                 /* 4846 */
                 c.getPlayer().getMap().setKerningPQ(i);
@@ -8354,7 +8354,7 @@ public class InventoryHandler
                   /*      */
                   case "2":
                     /* 4855 */
-                    if (stage4 == "0")
+                    if (stage4.equals("0"))
                     {
                       /*      */
                       break;
@@ -8368,7 +8368,7 @@ public class InventoryHandler
                   /*      */
                   case "3":
                     /* 4862 */
-                    if (stage4 == "0")
+                    if (stage4.equals("0"))
                     {
                       /*      */
                       break;
@@ -8382,7 +8382,7 @@ public class InventoryHandler
                   /*      */
                   case "4":
                     /* 4869 */
-                    if (stage4 == "0")
+                    if (stage4.equals("0"))
                     {
                       /*      */
                       break;

@@ -785,7 +785,7 @@ public class PlayersHandler
     {
       if (m.skillId == 80002282 && !chr.isGM())
       {
-        chr.getClient().getSession().writeAndFlush(CField.RuneAction(2, (int) (m.length + m.startTime - System.currentTimeMillis())));
+        chr.getClient().getSession().writeAndFlush(CField.RuneAction(2, (int) (m.cooldownTimeMS + m.startTime - System.currentTimeMillis())));
         return;
       }
     }
@@ -947,7 +947,7 @@ public class PlayersHandler
         {
           if (m.skillId == 80002282)
           {
-            chr.getClient().getSession().writeAndFlush(CField.RuneAction(2, (int) (m.length + m.startTime - System.currentTimeMillis())));
+            chr.getClient().getSession().writeAndFlush(CField.RuneAction(2, (int) (m.cooldownTimeMS + m.startTime - System.currentTimeMillis())));
             break;
           }
         }

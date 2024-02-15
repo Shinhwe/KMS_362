@@ -529,14 +529,14 @@ function FirstJob(i) {
 function addMedal()
 {
 	item = Packages.server.MapleItemInformationProvider.getInstance().generateEquipById(1142358, -1, false);
-	item.setEnchantStr(50);
-	item.setEnchantDex(50);
-	item.setEnchantInt(50);
-	item.setEnchantLuk(50);
+	item.setEnchantStr(10);
+	item.setEnchantDex(10);
+	item.setEnchantInt(10);
+	item.setEnchantLuk(10);
 	item.setEnchantWatk(10);
 	item.setEnchantMatk(10);
-	item.setEnchantHp(1000);
-	item.setEnchantMp(1000);
+	item.setEnchantHp(500);
+	item.setEnchantMp(500);
 	// item.setPotentialLevel(19);
 	// item.setPotential1(20086);
 	// item.setPotential2(20086);

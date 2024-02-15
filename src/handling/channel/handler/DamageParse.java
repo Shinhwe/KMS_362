@@ -240,7 +240,7 @@ public class DamageParse
                   skillid = 5121023;
                 }
               }
-              if (!chr.skillisCooling(skillid) && !chr.getBuffedValue(5110020))
+              if (!chr.isSkillCooling(skillid) && !chr.getBuffedValue(5110020))
               {
                 chr.getClient().getSession().writeAndFlush(CField.rangeAttack(5101017, Collections.singletonList(new RangeAttack(skillid, chr.getPosition(), ((attack.facingleft >>> 4 & 0xF) == 0) ? 0 : 1, 0, 1))));
                 if (chr.서펜트스톤 < max)
@@ -258,7 +258,7 @@ public class DamageParse
             }
             else if (attack.skill == 5121007)
             {
-              if (!chr.skillisCooling(5121025) && !chr.getBuffedValue(5110020))
+              if (!chr.isSkillCooling(5121025) && !chr.getBuffedValue(5110020))
               {
                 chr.getClient().getSession().writeAndFlush(CField.rangeAttack(5101017, Collections.singletonList(new RangeAttack(5121025, chr.getPosition(), ((attack.facingleft >>> 4 & 0xF) == 0) ? 0 : 1, 0, 1))));
                 if (chr.서펜트스톤 < max)
@@ -728,23 +728,7 @@ public class DamageParse
               }
             }
           }
-          if (player.getJob() == 112)
-          {
-            if ((attack.skill == 1101011 || attack.skill == 1111010 || attack.skill == 1121008 || attack.skill == 1121015) && attack.targets > 0 && player.getBuffedValue(1121054) && player.발할라검격 >= 3)
-            {
-              for (int i = 0; i < 3; i++)
-              {
-                MapleSummon summon4 = new MapleSummon(player, 1121055, attack.attackPosition, SummonMovementType.STATIONARY, (byte) 0, 10000);
-                player.getMap().spawnSummon(summon4, 10000);
-                player.addSummon(summon4);
-                player.발할라검격--;
-              }
-              SecondaryStatEffect eff = SkillFactory.getSkill(1121054).getEffect(player.getSkillLevel(1121054));
-              HashMap<SecondaryStat, Pair<Integer, Integer>> statups3 = new HashMap<SecondaryStat, Pair<Integer, Integer>>();
-              statups3.put(SecondaryStat.Stance, new Pair<Integer, Integer>(100, (int) player.skillcool(1121054) - 90000));
-              player.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.giveBuff(statups3, eff, player));
-            }
-          }
+
           if (attack.skill == 3301008 && attack.targets > 0)
           {
             MapleAtom atom = new MapleAtom(true, player.getId(), 58, true, 3301009, player.getTruePosition().x, player.getTruePosition().y);
@@ -1156,8 +1140,8 @@ public class DamageParse
                 int dotInterval = SkillFactory.getSkill(1121015).getEffect(skillLevel).getDotInterval();
                 int skillDamage = SkillFactory.getSkill(1121015).getEffect(skillLevel).getDamage();
                 long dotDamage = ((long) dot * totDamageToOneMonster / (long) attack.allDamage.size() / (long) skillDamage);
-                statusz.add(new Triple<MonsterStatus, MonsterStatusEffect, Long>(MonsterStatus.MS_Incizing, new MonsterStatusEffect(1121015, duration), (long) critDamage));
-                statusz.add(new Triple<MonsterStatus, MonsterStatusEffect, Long>(MonsterStatus.MS_Burned, new MonsterStatusEffect(1121015, dotTime, skillLevel, dotInterval), dotDamage));
+                statusz.add(new Triple<MonsterStatus, MonsterStatusEffect, Long>(MonsterStatus.MS_Incizing, new MonsterStatusEffect(1121015, duration, critDamage), (long) critDamage));
+                statusz.add(new Triple<MonsterStatus, MonsterStatusEffect, Long>(MonsterStatus.MS_Burned, new MonsterStatusEffect(1121015, dotTime, dotDamage, skillLevel, dotInterval), dotDamage));
                 break;
               }
               case 1201011:
@@ -1858,7 +1842,7 @@ public class DamageParse
                   int skillLevel = player.getSkillLevel(1111003);
                   int duration = SkillFactory.getSkill(1111003).getEffect(skillLevel).getV() * 1000;
                   int AccuracyReduce = SkillFactory.getSkill(1111003).getEffect(skillLevel).getX();
-                  applys.add(new Pair<MonsterStatus, MonsterStatusEffect>(MonsterStatus.刺傷, new MonsterStatusEffect(1111003, duration, 1, skillLevel)));
+                  applys.add(new Pair<MonsterStatus, MonsterStatusEffect>(MonsterStatus.刺傷, new MonsterStatusEffect(1111003, duration, 1L, skillLevel)));
                   statusz.add(new Triple<MonsterStatus, MonsterStatusEffect, Long>(MonsterStatus.MS_Blind, new MonsterStatusEffect(1111003, duration), Long.valueOf(AccuracyReduce)));
                   break;
                 }
@@ -2267,7 +2251,7 @@ public class DamageParse
               SkillFactory.getSkill(80002770).getEffect(player.getSkillLevel(80002770)).applyTo(player, false);
             }
           }
-          if (player.getBuffedValue(SecondaryStat.BMageDeath) != null && player.skillisCooling(32001114) && GameConstants.isBMDarkAtackSkill(attack.skill) && player.getBuffedValue(SecondaryStat.AttackCountX) != null)
+          if (player.getBuffedValue(SecondaryStat.BMageDeath) != null && player.isSkillCooling(32001114) && GameConstants.isBMDarkAtackSkill(attack.skill) && player.getBuffedValue(SecondaryStat.AttackCountX) != null)
           {
             player.changeCooldown(32001114, -500);
           }
@@ -2312,7 +2296,7 @@ public class DamageParse
               }
               player.getClient().getSession().writeAndFlush(CField.bonusAttackRequest(400011133, mobList, false, 0));
             }
-            else if (!player.getBuffedValue(400011116) && attack.targets > 0 && player.skillisCooling(400011116) && !player.skillisCooling(400011117))
+            else if (!player.getBuffedValue(400011116) && attack.targets > 0 && player.isSkillCooling(400011116) && !player.isSkillCooling(400011117))
             {
               ArrayList<Triple<Integer, Integer, Integer>> mobList = new ArrayList<Triple<Integer, Integer, Integer>>();
               int i = 0;
@@ -2506,6 +2490,26 @@ public class DamageParse
           }
           effect.applyTo(player, false, monster.getTruePosition());
         }
+        if (GameConstants.isHero(player.getJob()))
+        {
+          if ((attack.skill == 1101011 || attack.skill == 1111010 || attack.skill == 1120017 || attack.skill == 1121008) && attack.targets > 0 && player.getBuffedValue(1121054) && player.戰靈附體剩餘劍擊數量 >= 3 && player.isSkillCooling(1121055) == false)
+          {
+            SecondaryStatEffect eff1 = SkillFactory.getSkill(1121055).getEffect(player.getSkillLevel(1121055));
+            player.addCooldown(1121055, System.currentTimeMillis(), eff1.getCoolRealTime());
+            SecondaryStatEffect eff = SkillFactory.getSkill(1121054).getEffect(player.getSkillLevel(1121054));
+            HashMap<SecondaryStat, Pair<Integer, Integer>> statups = new HashMap<SecondaryStat, Pair<Integer, Integer>>();
+            statups.put(SecondaryStat.Stance, new Pair<Integer, Integer>(100, (int) player.getBuffLimit(1121054)));
+            int 戰靈附體劍擊數量 = eff.getW();
+            for (int i = 0; i < 戰靈附體劍擊數量; i++)
+            {
+              MapleSummon summon4 = new MapleSummon(player, 1121055, attack.attackPosition, SummonMovementType.STATIONARY, (byte) 0, 10000);
+              player.getMap().spawnSummon(summon4, 10000);
+              player.addSummon(summon4);
+              player.戰靈附體剩餘劍擊數量--;
+            }
+            player.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.giveBuff(statups, eff, player));
+          }
+        }
         if (attack.skill == 5121013 || attack.skill == 5221013 || attack.skill == 400051040)
         {
           if (player.getSkillLevel(5121013) > 0 && attack.skill == 5121013 && player.getSkillLevel(400051040) > 0 && player.getCooldownLimit(400051040) <= 8000L)
@@ -2524,7 +2528,7 @@ public class DamageParse
             int[] reduceSkills = array2 = new int[] { 5210015, 5210016, 5210017, 5210018, 5220014, 5211007, 5221022, 5220023, 5220024, 5220025 };
             for (final int reduceSkill : array2)
             {
-              if (!player.skillisCooling(reduceSkill))
+              if (!player.isSkillCooling(reduceSkill))
               {
                 continue;
               }
@@ -2559,15 +2563,15 @@ public class DamageParse
           }
           if (attack.skill == 5321001)
           {
-            if (player.skillisCooling(5311004))
+            if (player.isSkillCooling(5311004))
             {
               player.changeCooldown(5311004, (int) (-(player.getCooldownLimit(5311004) / 2L)));
             }
-            if (player.skillisCooling(5311005))
+            if (player.isSkillCooling(5311005))
             {
               player.changeCooldown(5311005, (int) (-(player.getCooldownLimit(5311005) / 2L)));
             }
-            if (player.skillisCooling(5320007))
+            if (player.isSkillCooling(5320007))
             {
               player.changeCooldown(5320007, (int) (-(player.getCooldownLimit(5320007) / 2L)));
             }
@@ -2692,7 +2696,7 @@ public class DamageParse
             {
               give = true;
             }
-            else if (player.getPerfusion() >= SkillFactory.getSkill(400021071).getEffect(player.getSkillLevel(400021071)).getX() - 1 && player.skillisCooling(400021071))
+            else if (player.getPerfusion() >= SkillFactory.getSkill(400021071).getEffect(player.getSkillLevel(400021071)).getX() - 1 && player.isSkillCooling(400021071))
             {
               give = true;
             }
@@ -3146,7 +3150,7 @@ public class DamageParse
           {
             ego_weapon.applyTo(player, false);
           }
-          else if (player.getGender() == 1 && player.getMap().getMist(player.getId(), 400011035) == null && player.getCooldownLimit(400011135) == 0L && !player.skillisCooling(400011135))
+          else if (player.getGender() == 1 && player.getMap().getMist(player.getId(), 400011035) == null && player.getCooldownLimit(400011135) == 0L && !player.isSkillCooling(400011135))
           {
             SecondaryStatEffect a = SkillFactory.getSkill(400011135).getEffect(player.getSkillLevel(400011134));
             player.getClient().getSession().writeAndFlush(CField.EffectPacket.showEffect(player, 0, 400011135, 1, 0, 0, (byte) (player.isFacingLeft() ? 1 : 0), true, player.getTruePosition(), null, null));
@@ -3177,7 +3181,7 @@ public class DamageParse
         {
           break block858;
         }
-        if (monster == null || player.getBuffedValue(400011118) || !player.skillisCooling(400011118) || player.getSkillCustomValue(400011118) != null)
+        if (monster == null || player.getBuffedValue(400011118) || !player.isSkillCooling(400011118) || player.getSkillCustomValue(400011118) != null)
         {
           break block859;
         }
@@ -3201,7 +3205,7 @@ public class DamageParse
       {
         player.getMap().spawnSecondAtom(player, Collections.singletonList(new SecondAtom(11, player.getId(), 0, 400011119, 5000, 0, -1, attack.position, new ArrayList<Integer>())), 0);
       }
-      else if (attack.skill != 400011118 && !player.skillisCooling(400111119))
+      else if (attack.skill != 400011118 && !player.isSkillCooling(400111119))
       {
         for (SecondAtom at : player.getMap().getAllSecondAtomsThreadsafe())
         {
@@ -3254,7 +3258,7 @@ public class DamageParse
       skills.add(new RangeAttack(400041073, attack.position, -1, 5370, 1));
       player.getClient().getSession().writeAndFlush(CField.rangeAttack(attack.skill, skills));
     }
-    if (player.getSkillLevel(400011048) > 0 && !player.skillisCooling(400011048) && attack.targets > 0 && SkillFactory.getSkill(400011048).getSkillList().contains(attack.skill))
+    if (player.getSkillLevel(400011048) > 0 && !player.isSkillCooling(400011048) && attack.targets > 0 && SkillFactory.getSkill(400011048).getSkillList().contains(attack.skill))
     {
       SecondaryStatEffect flear = SkillFactory.getSkill(400011048).getEffect(player.getSkillLevel(400011048));
       ArrayList<RangeAttack> skills = new ArrayList<RangeAttack>();
@@ -3287,7 +3291,7 @@ public class DamageParse
       int[] linkCooldownSkills;
       for (int ck : linkCooldownSkills = new int[] { 23121052, 400031007, 23111002, 23121002 })
       {
-        if (!player.skillisCooling(ck))
+        if (!player.isSkillCooling(ck))
         {
           continue;
         }
@@ -3853,7 +3857,7 @@ public class DamageParse
     {
       if (attack.targets > 0)
       {
-        if (player.getBuffedValue(400031062) && !player.skillisCooling(400031063))
+        if (player.getBuffedValue(400031062) && !player.isSkillCooling(400031063))
         {
           boolean facingleft = (attack.facingleft >>> 4 & 0xF) == 8;
           for (int i = 0; i < player.getBuffedEffect(400031062).getMobCount(); ++i)
@@ -4105,7 +4109,7 @@ public class DamageParse
     }
     else if (GameConstants.isMichael(player.getJob()))
     {
-      if (player.skillisCooling(400011032) && player.getSkillCustomValue(400011033) == null)
+      if (player.isSkillCooling(400011032) && player.getSkillCustomValue(400011033) == null)
       {
         ArrayList<Triple<Integer, Integer, Integer>> mobList = new ArrayList<Triple<Integer, Integer, Integer>>();
         player.getClient().getSession().writeAndFlush(CField.bonusAttackRequest(400011033, mobList, true, 0));
@@ -4303,10 +4307,10 @@ public class DamageParse
           player.getClient().send(CField.getEarlySkillActive(180));
         }
       }
-      if (player.skillisCooling(400051047) || player.skillisCooling(400051048))
+      if (player.isSkillCooling(400051047) || player.isSkillCooling(400051048))
       {
         SecondaryStatEffect eff = SkillFactory.getSkill(400051047).getEffect(player.getSkillLevel(400051047));
-        if (player.skillisCooling(400051047))
+        if (player.isSkillCooling(400051047))
         {
           if (SkillFactory.getSkill(400051047).getSkillList().contains(attack.skill) && !player.getWeaponChanges().contains(attack.skill))
           {
@@ -4314,7 +4318,7 @@ public class DamageParse
             player.changeCooldown(400051047, -(eff.getX() * 1000));
           }
         }
-        else if (player.skillisCooling(400051048) && SkillFactory.getSkill(400051048).getSkillList().contains(attack.skill) && !player.getWeaponChanges2().contains(attack.skill))
+        else if (player.isSkillCooling(400051048) && SkillFactory.getSkill(400051048).getSkillList().contains(attack.skill) && !player.getWeaponChanges2().contains(attack.skill))
         {
           player.getWeaponChanges2().add(attack.skill);
           player.changeCooldown(400051048, -(eff.getX() * 1000));
@@ -4352,7 +4356,7 @@ public class DamageParse
         player.getMap().spawnMist(mist, false);
       }
     }
-    if (player.getSkillLevel(400041063) > 0 && attack.targets > 0 && !player.skillisCooling(400041067))
+    if (player.getSkillLevel(400041063) > 0 && attack.targets > 0 && !player.isSkillCooling(400041067))
     {
       ArrayList<Integer> sungi_skills = new ArrayList<Integer>();
       Point pos = null;
@@ -4505,7 +4509,7 @@ public class DamageParse
       if (GameConstants.isPollingmoonAttackskill(attack.skill))
       {
         SkillFactory.getSkill(11121011).getEffect(20).applyTo(player);
-        if (player.getSkillLevel(400011048) > 0 && player.skillisCooling(400011048) && attack.targets > 0)
+        if (player.getSkillLevel(400011048) > 0 && player.isSkillCooling(400011048) && attack.targets > 0)
         {
           player.changeCooldown(400011048, -300);
         }
@@ -4513,7 +4517,7 @@ public class DamageParse
       else if (GameConstants.isRisingsunAttackskill(attack.skill))
       {
         SkillFactory.getSkill(11121012).getEffect(20).applyTo(player);
-        if (player.getSkillLevel(400011048) > 0 && player.skillisCooling(400011048) && attack.targets > 0)
+        if (player.getSkillLevel(400011048) > 0 && player.isSkillCooling(400011048) && attack.targets > 0)
         {
           player.changeCooldown(400011048, -300);
         }
@@ -4550,7 +4554,7 @@ public class DamageParse
       {
         eff = SkillFactory.getSkill(finalSkill).getEffect(player.getSkillLevel(finalSkill));
       }
-      if (advSkill == attack.skill || finalSkill == attack.skill || (advSkill == 2120013 || advSkill == 2220014 || advSkill == 32121011) && !player.skillisCooling(finalSkill) || finalSkill == 4341054 && player.getBuffedEffect(SecondaryStat.WindBreakerFinal) == null || finalSkill == 5311004 && ((value = player.getBuffedValue(SecondaryStat.Roulette)) == null || value != 1))
+      if (advSkill == attack.skill || finalSkill == attack.skill || (advSkill == 2120013 || advSkill == 2220014 || advSkill == 32121011) && !player.isSkillCooling(finalSkill) || finalSkill == 4341054 && player.getBuffedEffect(SecondaryStat.WindBreakerFinal) == null || finalSkill == 5311004 && ((value = player.getBuffedValue(SecondaryStat.Roulette)) == null || value != 1))
       {
         break;
       }
@@ -5156,7 +5160,7 @@ public class DamageParse
           }
         }
       }
-      if (player.getBuffedValue(SecondaryStat.BMageDeath) != null && player.skillisCooling(32001114) && GameConstants.isBMDarkAtackSkill(attack.skill) && player.getBuffedValue(SecondaryStat.AttackCountX) != null)
+      if (player.getBuffedValue(SecondaryStat.BMageDeath) != null && player.isSkillCooling(32001114) && GameConstants.isBMDarkAtackSkill(attack.skill) && player.getBuffedValue(SecondaryStat.AttackCountX) != null)
       {
         player.changeCooldown(32001114, -500);
       }
@@ -5323,7 +5327,7 @@ public class DamageParse
           {
             if (GameConstants.isLightSkills(attack.skill))
             {
-              if (!(player.getBuffedValue(20040219) || player.getBuffedValue(20040220) || player.getBuffedValue(400021105) || !GameConstants.isLightSkills(attack.skill) || player.getSkillLevel(400021105) <= 0 || player.skillisCooling(400021106)))
+              if (!(player.getBuffedValue(20040219) || player.getBuffedValue(20040220) || player.getBuffedValue(400021105) || !GameConstants.isLightSkills(attack.skill) || player.getSkillLevel(400021105) <= 0 || player.isSkillCooling(400021106)))
               {
                 effect2 = SkillFactory.getSkill(400021105).getEffect(player.getSkillLevel(400021105));
                 if (player.getSkillCustomValue0(400021107) < (long) effect2.getU())
@@ -5365,7 +5369,7 @@ public class DamageParse
           }
           else if (GameConstants.isDarkSkills(attack.skill))
           {
-            if (!player.getBuffedValue(400021105) && GameConstants.isDarkSkills(attack.skill) && player.getSkillLevel(400021105) > 0 && !player.skillisCooling(400021106))
+            if (!player.getBuffedValue(400021105) && GameConstants.isDarkSkills(attack.skill) && player.getSkillLevel(400021105) > 0 && !player.isSkillCooling(400021106))
             {
               effect2 = SkillFactory.getSkill(400021105).getEffect(player.getSkillLevel(400021105));
               if (player.getSkillCustomValue0(400021108) < (long) effect2.getU())
@@ -5471,7 +5475,7 @@ public class DamageParse
         {
           give = true;
         }
-        else if (player.getPerfusion() >= SkillFactory.getSkill(400021071).getEffect(player.getSkillLevel(400021071)).getX() - 1 && player.skillisCooling(400021071))
+        else if (player.getPerfusion() >= SkillFactory.getSkill(400021071).getEffect(player.getSkillLevel(400021071)).getX() - 1 && player.isSkillCooling(400021071))
         {
           give = true;
         }
@@ -6369,7 +6373,7 @@ public class DamageParse
   {
     if (SkillFactory.getSkill(skillid) != null)
     {
-      if (chr.getJob() == 512 && chr.skillisCooling(5121013))
+      if (chr.getJob() == 512 && chr.isSkillCooling(5121013))
       {
         if (skillid == 5001002 || skillid == 5101004 || skillid == 5111009 || skillid == 5121007 || skillid == 5121020)
         {

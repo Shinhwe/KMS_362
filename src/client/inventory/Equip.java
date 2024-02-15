@@ -11,14 +11,11 @@ import tools.CalcTools;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Equip extends Item implements Serializable
 {
-  public static final int ARMOR_RATIO = 350000;
-  public static final int WEAPON_RATIO = 700000;
   public StarForceStats starForceStats = new StarForceStats(new ArrayList<>());
   private 裝備潛能等級 潛能等級 = 裝備潛能等級.沒有潛能;
   private 裝備潛能等級 附加潛能等級 = 裝備潛能等級.沒有潛能;
@@ -417,11 +414,11 @@ public class Equip extends Item implements Serializable
     ret.arcInt = this.arcInt;
     ret.arcLuk = this.arcLuk;
     ret.arcHp = this.arcHp;
-    this.authenticStr = this.authenticStr;
-    this.authenticDex = this.authenticDex;
-    this.authenticInt = this.authenticInt;
-    this.authenticLuk = this.authenticLuk;
-    this.authenticHp = this.authenticHp;
+    ret.authenticStr = this.authenticStr;
+    ret.authenticDex = this.authenticDex;
+    ret.authenticInt = this.authenticInt;
+    ret.authenticLuk = this.authenticLuk;
+    ret.authenticHp = this.authenticHp;
     ret.starForceLevel = this.starForceLevel;
     ret.enchantLevel = this.enchantLevel;
     ret.durability = this.durability;
@@ -1039,6 +1036,11 @@ public class Equip extends Item implements Serializable
 
   public byte getTotalReductReqLevel ()
   {
+    if (enchantReductReqLevel + flameReductReqLevel + 10 >= template.getReqLevel())
+    {
+      return (byte) (template.getReqLevel() - 10);
+    }
+
     return (byte) Math.min(template.getReqLevel(), enchantReductReqLevel + flameReductReqLevel);
   }
 
@@ -1801,15 +1803,12 @@ public class Equip extends Item implements Serializable
 
       for (int j = 0; j < i; ++j)
       {
-        int n = i;
-        rebirth[n] = rebirth[n] * 1000L;
+        rebirth[i] = rebirth[i] * 1000L;
       }
 
     }
 
-    long flame = rebirth[0] + rebirth[1] + rebirth[2] + rebirth[3];
-
-    return flame;
+    return rebirth[0] + rebirth[1] + rebirth[2] + rebirth[3];
   }
 
   public int getMoru ()

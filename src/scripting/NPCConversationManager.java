@@ -3992,7 +3992,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         for (MapleCharacter chr : player.getMap().getCharacters())
         {
           /* 2336 */
-          if (chr.mapiajob == "마피아")
+          if (chr.mapiajob.equals("마피아"))
           {
             /* 2337 */
             chr.isMapiaVote = true;
@@ -4000,7 +4000,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
             chr.dropMessage(6, "마피아인 당신 동료는 " + mapialist + " 들이 있습니다. 밤이되면 같이 의논하여 암살할 사람을 선택해 주시기 바랍니다.");
             /* 2339 */
           }
-          else if (chr.mapiajob == "경찰")
+          else if (chr.mapiajob.equals("경찰"))
           {
             /* 2340 */
             chr.isPoliceVote = true;
@@ -4008,7 +4008,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
             chr.dropMessage(6, "경찰인 당신 동료는 " + policelist + " 들이 있습니다. 밤이되면 마피아같다는 사람을 지목하면 마피아인지 아닌지를 알 수 있습니다.");
             /* 2342 */
           }
-          else if (chr.mapiajob == "의사")
+          else if (chr.mapiajob.equals("의사"))
           {
             /* 2343 */
             chr.isDrVote = true;
@@ -4016,7 +4016,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
             chr.dropMessage(6, "당신은 하나밖에 없는 의사입니다. 당신에게 부여된 임무는 시민과 경찰을 살리는 것입니다. 밤이되면 마피아가 지목했을것 같은 사람을 선택하면 살리실 수 있습니다.");
             /* 2345 */
           }
-          else if (chr.mapiajob == "시민")
+          else if (chr.mapiajob.equals("시민"))
           {
             /* 2346 */
             chr.dropMessage(6, "당신은 시민입니다. 낮이되면 대화를 통해 마피아를 찾아내 투표로 처형시키면 됩니다.");
@@ -6555,7 +6555,6 @@ public class NPCConversationManager extends AbstractPlayerInteraction
   public void addPoloAndFrittoExp (int expRate)
   {
     long baseExp = Long.parseLong(this.c.getPlayer().getV("poloFrittoBaseExp"));
-    System.out.println("addPoloAndFrittoExp method ! expRate = " + expRate + " ; baseExp = " + baseExp + " ;  server exp Rate = " + this.c.getChannelServer().getExpRate());
     this.c.getPlayer().gainExp(expRate * baseExp * this.c.getChannelServer().getExpRate(), true, true, true);
   }
 

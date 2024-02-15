@@ -31,7 +31,11 @@ function action(M, T, S) {
           "  #i1102562:# #t1102562:#\r\n" +
           "  #i1012376:# #t1012376:#\r\n" +
           "  #i1122252:# #t1122252:#\r\n" +
-          "  #i1132228:# #t1132228:#\r\n",
+          "  #i1132228:# #t1132228:#\r\n" +
+          "  #i1072672:# #t1072672:#\r\n" +
+          "  #i1152099:# #t1152099:#\r\n" +
+          "  #i1032148:# #t1032148:#\r\n" +
+          "  #i1082438:# #t1082438:#\r\n",
         4,
         2007
       );
@@ -41,6 +45,10 @@ function action(M, T, S) {
       addOption(1012376, false);
       addOption(1122252, false);
       addOption(1132228, false);
+      addOption(1072672, false);
+      addOption(1152099, false);
+      addOption(1032148, false);
+      addOption(1082438, false);
       cm.gainItem(2433444, -1);
       cm.dispose();
       return;
@@ -77,7 +85,11 @@ function action(M, T, S) {
           "  #i1102562:# #t1102562:#\r\n" +
           "  #i1012376:# #t1012376:#\r\n" +
           "  #i1122252:# #t1122252:#\r\n" +
-          "  #i1132228:# #t1132228:#\r\n",
+          "  #i1132228:# #t1132228:#\r\n" +
+          "  #i1072672:# #t1072672:#\r\n" +
+          "  #i1152099:# #t1152099:#\r\n" +
+          "  #i1032148:# #t1032148:#\r\n" +
+          "  #i1082438:# #t1082438:#\r\n",
         4,
         2007
       );
@@ -87,6 +99,10 @@ function action(M, T, S) {
       addOption(1012376, false);
       addOption(1122252, false);
       addOption(1132228, false);
+      addOption(1072672, false);
+      addOption(1152099, false);
+      addOption(1032148, false);
+      addOption(1082438, false);
       addOption(wList[S], true);
       cm.gainItem(2433444, -1);
       if (isBow(wList[S])) {
@@ -391,16 +407,16 @@ function action(M, T, S) {
       );
     if (!isWeapon) {
       if (hpJobCheck(cm.getPlayer().getJob())) {
-        item.setEnchantHp(item.getEnchantHp() + 2500);
+        item.setEnchantHp(item.getEnchantHp() + 1000);
         // item.setPotentialLevel(19);
         // item.setPotential1(20045);
         // item.setPotential2(20045);
         // item.setPotential3(20045);
       } else {
-        item.setEnchantStr(item.getEnchantStr() + 50);
-        item.setEnchantDex(item.getEnchantDex() + 50);
-        item.setEnchantInt(item.getEnchantInt() + 50);
-        item.setEnchantLuk(item.getEnchantLuk() + 50);
+        item.setEnchantStr(item.getEnchantStr() + 20);
+        item.setEnchantDex(item.getEnchantDex() + 20);
+        item.setEnchantInt(item.getEnchantInt() + 20);
+        item.setEnchantLuk(item.getEnchantLuk() + 20);
         // item.setPotentialLevel(19);
         // item.setPotential1(20086);
         // item.setPotential2(20086);
@@ -409,22 +425,22 @@ function action(M, T, S) {
     } else {
       item.setEnchantDamage(10);
       if (hpJobCheck(cm.getPlayer().getJob())) {
-        item.setEnchantHp(item.getEnchantHp() + 5000);
-        item.setEnchantWatk(item.getEnchantWatk() + 100);
+        item.setEnchantHp(item.getEnchantHp() + 1000);
+        item.setEnchantWatk(item.getEnchantWatk() + 50);
         // item.setPotentialLevel(19);
         // item.setPotential1(20045);
         // item.setPotential2(20045);
         // item.setPotential3(20045);
       } else {
-        item.setEnchantStr(item.getEnchantStr() + 100);
-        item.setEnchantDex(item.getEnchantDex() + 100);
-        item.setEnchantInt(item.getEnchantInt() + 100);
-        item.setEnchantLuk(item.getEnchantLuk() + 100);
+        item.setEnchantStr(item.getEnchantStr() + 20);
+        item.setEnchantDex(item.getEnchantDex() + 20);
+        item.setEnchantInt(item.getEnchantInt() + 20);
+        item.setEnchantLuk(item.getEnchantLuk() + 20);
 
         if (isMagician(cm.getPlayer().getJob())) {
-          item.setEnchantMatk(item.getEnchantMatk() + 100);
+          item.setEnchantMatk(item.getEnchantMatk() + 50);
         } else {
-          item.setEnchantWatk(item.getEnchantWatk() + 100);
+          item.setEnchantWatk(item.getEnchantWatk() + 50);
         }
         // item.setPotentialLevel(19);
         // item.setPotential1(20086);
@@ -436,13 +452,12 @@ function action(M, T, S) {
     item.setSuccessUpgradeSlots(item.getTemplate().getUpgradeSlots());
     item.setStarForceLevel(8);
     item.calcStarForceStats();
+    item.setEnchantReductReqLevel(90);
     // item.setExpiration(System.currentTimeMillis() + (7 * 24 * 3600 * 1000));
     Packages.server.MapleInventoryManipulator.addbyItem(
       cm.getClient(),
       item,
       false
     );
-
-    item.setEnchantReductReqLevel(90);
   }
 }

@@ -347,7 +347,7 @@ public final class MapleMap
     String guessname = "";
     for (MapleCharacter chr : getCharacters())
     {
-      if (chr.getpolicevote == 1 && !chr.isDead && chr.mapiajob == "마피아")
+      if (chr.getpolicevote == 1 && !chr.isDead && chr.mapiajob.equals("마피아"))
       {
         iii++;
       }
@@ -368,7 +368,7 @@ public final class MapleMap
           ii++;
         }
       }
-      if (chr.mapiajob == "시민" && !chr.isDead)
+      if (chr.mapiajob.equals("시민") && !chr.isDead)
       {
         citizen++;
       }
@@ -566,7 +566,7 @@ public final class MapleMap
             chr.dropMessage(6, charinfo[0] + " 님의 직업은 " + charinfo[1] + " 입니다.");
             chr.dropMessage(5, "잠시 후 밤이 됩니다.");
           }
-          if (chr.mapiajob == "마피아" && !chr.isDead)
+          if (chr.mapiajob.equals("마피아") && !chr.isDead)
           {
             mapia++;
           }
@@ -632,25 +632,25 @@ public final class MapleMap
               chr.getmapiavote = 0;
               chr.getpolicevote = 0;
               chr.voteamount = 0;
-              if (chr.mapiajob == "시민")
+              if (chr.mapiajob.equals("시민"))
               {
                 chr.warp(maps[citizen]);
                 chr.dropMessage(5, MapleMap.this.nightnumber + "번째 밤이 되었습니다. 마피아, 경찰, 의사가 투표를 모두 할때까지 잠시만 기다려 주세요.");
                 citizen++;
               }
-              else if (chr.mapiajob == "마피아")
+              else if (chr.mapiajob.equals("마피아"))
               {
                 chr.warp(MapleMap.this.mapiamap);
                 chr.isMapiaVote = true;
                 chr.dropMessage(5, MapleMap.this.nightnumber + "번째 밤이 되었습니다. 바로 옆의 엔피시를 통해 암살할 사람을 지목해 주세요. 제한시간은 " + MapleMap.this.nighttime + "초 입니다.");
               }
-              else if (chr.mapiajob == "경찰")
+              else if (chr.mapiajob.equals("경찰"))
               {
                 chr.warp(MapleMap.this.policemap);
                 chr.isPoliceVote = true;
                 chr.dropMessage(5, MapleMap.this.nightnumber + "번째 밤이 되었습니다. 바로 옆의 엔피시를 통해 마피아 일것 같다는 사람을 지목 해 주세요. 제한시간은 " + MapleMap.this.nighttime + "초 입니다.");
               }
-              else if (chr.mapiajob == "의사")
+              else if (chr.mapiajob.equals("의사"))
               {
                 chr.warp(MapleMap.this.drmap);
                 chr.isDrVote = true;
@@ -2484,12 +2484,23 @@ public final class MapleMap
           broadcastMessage(CField.startMapEffect((this.eliteCount <= 15) ? "어두운 기운이 사라지지 않아 이곳을 음산하게 만들고 있습니다." : "이곳이 어둠으로 가득차 곧 무슨일이 일어날 듯 합니다.", 5120124, true));
         }
       }
-      if (monster.getStats().getLevel() - 21 <= chr.getLevel() && chr.getLevel() <= monster.getStats().getLevel() + 21 && chr.getKeyValue(16700, "count") <= 300L)
+
+      if (monster.getStats().getLevel() - 21 <= chr.getLevel() && chr.getLevel() <= monster.getStats().getLevel() + 21 && chr.getClient().getKeyValue("dailyGiftComplete").equals("0"))
       {
-        String questData = "count=" + chr.getKeyValue(16700, "count") + ";date=" + chr.getKeyValue(16700, "date");
-        chr.updateInfoQuest(16700, questData);
-        System.out.println("questData = " + questData);
+        if (chr.getIsDailyGiftTooltipPacketSend() == false &&  chr.getKeyValue(16700, "count") == 300L)
+        {
+          chr.setIsDailyGiftTooltipPacketSend(true);
+          int 已簽到天數 = Integer.parseInt(chr.getClient().getKeyValue("dailyGiftDay"));
+          int 當前日期 = GameConstants.getCurrentDate_NoTime();
+          chr.getClient().send(CWvsContext.updateDailyGift("count=0;day=" + 已簽到天數 + ";date=" + 當前日期));
+        }
+        else if (chr.getKeyValue(16700, "count") < 300L)
+        {
+          long 每日簽到已擊殺怪物數量 = Math.min(chr.getKeyValue(16700, "count") + 1L, 300L);
+          chr.setKeyValue(16700, "count", String.valueOf(每日簽到已擊殺怪物數量));
+        }
       }
+
       if (chr.getBuffedEffect(SecondaryStat.SoulMP) != null)
       {
         Item toDrop = new Item(4001536, (short) 0, (short) Randomizer.rand(1, 5), 0);
@@ -7362,7 +7373,7 @@ public final class MapleMap
 
   public String spawnDebug ()
   {
-    String sb = "mapId: " + this.mapid + "Mobs in map : " + getNumMonsters() + " spawnedMonstersOnMap: " + this.spawnedMonstersOnMap + " spawnpoints: " + this.monsterSpawn.size() + " maxRegularSpawn: " + this.maxRegularSpawn + " monster rate: " + this.monsterRate + " fixed" + ": " + this.fixedMob + " partyBonusRate" + ": " + this.partyBonusRate;
+    String sb = "mapId: " + this.mapid + " Mobs in map : " + getNumMonsters() + " spawnedMonstersOnMap: " + this.spawnedMonstersOnMap + " spawnpoints: " + this.monsterSpawn.size() + " maxRegularSpawn: " + this.maxRegularSpawn + " monster rate: " + this.monsterRate + " fixed" + ": " + this.fixedMob + " partyBonusRate" + ": " + this.partyBonusRate + " createMobInterval: " + this.createMobInterval;
     return sb;
   }
 

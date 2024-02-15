@@ -6,12 +6,12 @@ public class MapleCoolDownValueHolder
   
   public long startTime;
   
-  public long length;
+  public long cooldownTimeMS;
   
-  public MapleCoolDownValueHolder(int skillId, long startTime, long length)
+  public MapleCoolDownValueHolder(int skillId, long startTime, long cooldownTimeMS)
   {
     this.skillId = skillId;
     this.startTime = startTime;
-    this.length = length;
+    this.cooldownTimeMS = cooldownTimeMS;
   }
 }

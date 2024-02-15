@@ -538,7 +538,6 @@ public class CWvsContext
     mplew.write(34);
     mplew.writeInt(15);
     mplew.writeMapleAsciiString(key);
-    System.out.println(mplew);
     return mplew.getPacket();
   }
 
@@ -3001,7 +3000,7 @@ public class CWvsContext
       }
       if (statups.containsKey(SecondaryStat.Asr) && (statups.containsKey(SecondaryStat.Ter)) && chr.getBuffedValue(1121054))
       {
-        mplew.writeInt(chr.발할라검격);
+        mplew.writeInt(chr.戰靈附體剩餘劍擊數量);
       }
       if (statups.containsKey(SecondaryStat.DiceRoll))
       {
@@ -3775,7 +3774,7 @@ public class CWvsContext
       }
       if (statups.containsKey(SecondaryStat.Stance) && chr.getBuffedValue(1121054))
       {
-        mplew.writeInt(chr.발할라검격);
+        mplew.writeInt(chr.戰靈附體剩餘劍擊數量);
       }
       mplew.writeShort(0);
       mplew.write(0);

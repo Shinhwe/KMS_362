@@ -264,7 +264,7 @@ public enum ItemLoader
 
               if (reqLevel > 0)
               {
-                equip.setEnchantReductReqLevel((byte) (template.getReqLevel() - reqLevel));
+                equip.setEnchantReductReqLevel((byte) Math.max(template.getReqLevel() - reqLevel, 0));
               }
 
               if (equip.getItemId() >= 1113098 && equip.getItemId() <= 1113128)
@@ -1019,7 +1019,7 @@ public enum ItemLoader
 
               if (reqLevel > 0)
               {
-                equip.setEnchantReductReqLevel((byte) (template.getReqLevel() - reqLevel));
+                equip.setEnchantReductReqLevel((byte) Math.max(template.getReqLevel() - reqLevel, 0));
               }
 
               if (equip.getItemId() >= 1113098 && equip.getItemId() <= 1113128)

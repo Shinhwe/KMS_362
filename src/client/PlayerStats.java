@@ -422,7 +422,7 @@ public class PlayerStats implements Serializable
       {
         if (!igskill)
         {
-          if (!chra.skillisCooling(1320016) && !chra.skillisCooling(1320019) && chra.getBuffedValue(1321020) && chra.getSkillLevel(1320016) > 0)
+          if (!chra.isSkillCooling(1320016) && !chra.isSkillCooling(1320019) && chra.getBuffedValue(1321020) && chra.getSkillLevel(1320016) > 0)
           {
             SecondaryStatEffect rein = SkillFactory.getSkill(1320019).getEffect(chra.getSkillLevel(1320016));
             rein.applyTo(chra, true);
@@ -5910,11 +5910,11 @@ public class PlayerStats implements Serializable
           this.critical_rate = (short) (this.critical_rate + eff.getCr());
         }
         String info = chra.getInfoQuest(23008);
-        if (info.contains("6=1") || info.contains("7=1"))
+        if ((info != null) && info.contains("6=1") || info.contains("7=1"))
         {
           this.BuffUP_Skill += 10;
         }
-        else if (info.contains("5=1"))
+        else if ((info != null) && info.contains("5=1"))
         {
           this.critical_rate = (short) (this.critical_rate + 5);
         }

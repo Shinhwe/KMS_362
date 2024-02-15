@@ -260,7 +260,7 @@ public class SuperGMCommand
     {
       World.Broadcast.broadcastMessage(CWvsContext.serverNotice(6, "", "게임 데이터 저장을 시작합니다. 잠시 렉이 걸려도 나가지 말아주세요."));
       int saved = 0;
-      if (splitted[1] == "-1")
+      if (splitted[1] .equals("-1"))
       {
         for (ChannelServer cs : ChannelServer.getAllInstances())
         {

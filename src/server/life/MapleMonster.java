@@ -48,6 +48,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
   public long lastRedObstacleTime = System.currentTimeMillis();
   public long lastChainTime = System.currentTimeMillis();
   public long lastSpearTime = System.currentTimeMillis();
+
   public long lastThunderTime = System.currentTimeMillis();
   public long lastEyeTime = System.currentTimeMillis();
   public long lastBWThunder = System.currentTimeMillis();
@@ -1173,17 +1174,17 @@ public class MapleMonster extends AbstractLoadedMapleLife
               break;
           }
         }
-        if (getStats().isBoss() && from.getSkillLevel(131001026) > 0 && !from.getBuffedValue(131003026) && !from.skillisCooling(131001026))
+        if (getStats().isBoss() && from.getSkillLevel(131001026) > 0 && !from.getBuffedValue(131003026) && !from.isSkillCooling(131001026))
         {
           SkillFactory.getSkill(131001026).getEffect(1).applyTo(from);
         }
         if (this.hp <= 0L)
         {
-          if (GameConstants.isExecutionSkill(lastSkill) && from.skillisCooling(63001002))
+          if (GameConstants.isExecutionSkill(lastSkill) && from.isSkillCooling(63001002))
           {
             from.removeCooldown(63001002);
           }
-          if (from.getSkillLevel(131001026) > 0 && !from.getBuffedValue(131003026) && !from.skillisCooling(131001026))
+          if (from.getSkillLevel(131001026) > 0 && !from.getBuffedValue(131003026) && !from.isSkillCooling(131001026))
           {
             SkillFactory.getSkill(131001026).getEffect(1).applyTo(from);
           }
@@ -1211,11 +1212,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
           {
             from.setMonsterComboTime(System.currentTimeMillis());
           }
-          if (from.getKeyValue(16700, "count") < 300L)
-          {
-            from.setKeyValue(16700, "count", String.valueOf(from.getKeyValue(16700, "count") + 1L));
-          }
-          if (GameConstants.isExecutionSkill(lastSkill) && from.skillisCooling(63001002))
+          if (GameConstants.isExecutionSkill(lastSkill) && from.isSkillCooling(63001002))
           {
             from.removeCooldown(63001002);
           }
@@ -1636,25 +1633,21 @@ public class MapleMonster extends AbstractLoadedMapleLife
     }
     if (!FieldLimitType.Event.check(this.map.getFieldLimit()) && !this.map.isEliteField() && !this.map.getIsEliteBossMap() && !this.map.getIsEliteBossRewardMap() && !this.map.isEliteChampionFinal() && !GameConstants.isContentsMap(getMap().getId()) && !GameConstants.보스맵(getMap().getId()) && !GameConstants.사냥컨텐츠맵(getMap().getId()) && !GameConstants.튜토리얼(getMap().getId()) && !GameConstants.로미오줄리엣(getMap().getId()) && !GameConstants.피라미드(getMap().getId()) && getStats().getLevel() >= killer.getLevel() - 20 && getStats().getLevel() <= killer.getLevel() + 20)
     {
-      // TODO: 同一个角色不能同时刷出红门和黄门
-      long lastPoloFrittoPortalSpawnTime = killer.getV("nextPoloFrittoPortalSpawnTime", 0L);
+      long 下一次隨機傳送門刷新時間 = killer.獲取下一次隨機傳送門刷新時間();
 
-      long lastFlamePortalSpawnTime = killer.getV("nextFlameWolfPortalSpawnTime", 0L);
+      long 當前時間 = System.currentTimeMillis();
 
-      long nowTime = System.currentTimeMillis();
-
-
-      if (lastPoloFrittoPortalSpawnTime < nowTime)
+      if (當前時間 > 下一次隨機傳送門刷新時間)
       {
-        String poloFrittoPhase0Data = killer.getV("poloFrittoPhase0Data"); // mapid_count
+        String 地圖隨機傳送門擊殺數據 = killer.獲取地圖隨機傳送門擊殺數據(); // mapid_count
 
         int mapId = killer.getMapId();
 
         int killMobCount = 0;
 
-        if (poloFrittoPhase0Data != null && poloFrittoPhase0Data.length() > 0)
+        if (地圖隨機傳送門擊殺數據 != null && 地圖隨機傳送門擊殺數據.isEmpty() == false)
         {
-          String[] killMobDataArray = poloFrittoPhase0Data.split("_");
+          String[] killMobDataArray = 地圖隨機傳送門擊殺數據.split("_");
 
           int lastMapId = Integer.valueOf(killMobDataArray[0]);
 
@@ -1666,46 +1659,14 @@ public class MapleMonster extends AbstractLoadedMapleLife
 
         killMobCount += 1;
 
-        killer.addKV("poloFrittoPhase0Data", mapId + "_" + killMobCount); // mapid_count
+        killer.設置地圖隨機傳送門擊殺數據(mapId + "_" + killMobCount); // mapid_count
 
-        if (killMobCount >= 1000 && Randomizer.isSuccess(1, 100))
+        if (killMobCount >= 2000 && Randomizer.isSuccess(5))
         {
-          MapleRandomPortal portal = new MapleRandomPortal(2, getTruePosition(), this.map.getId(), killer.getId(), Randomizer.nextBoolean(), totalBaseExp);
+          int RandomPortalType = Randomizer.rand(2, 3);
+          MapleRandomPortal portal = RandomPortalType == 2 ? new MapleRandomPortal(2, getTruePosition(), this.map.getId(), killer.getId(), Randomizer.nextBoolean(), totalBaseExp) : new MapleRandomPortal(3, getTruePosition(), this.map.getId(), killer.getId(), false, totalBaseExp);
           this.map.spawnRandomPortal(portal);
-          killer.addKV("nextPoloFrittoPortalSpawnTime", String.valueOf(nowTime + (15 * 60 * 1000)));
-        }
-      }
-
-
-      if (lastFlamePortalSpawnTime < nowTime)
-      {
-        String flameWolfPhase0Data = killer.getV("flameWolfPhase0Data"); // mapid_count
-
-        int mapId = killer.getMapId();
-
-        int killMobCount = 0;
-
-        if (flameWolfPhase0Data != null && flameWolfPhase0Data.length() > 0)
-        {
-          String[] killMobDataArray = flameWolfPhase0Data.split("_");
-
-          int lastMapId = Integer.valueOf(killMobDataArray[0]);
-
-          if (lastMapId == mapId)
-          {
-            killMobCount = Integer.valueOf(killMobDataArray[1]);
-          }
-        }
-
-        killMobCount += 1;
-
-        killer.addKV("flameWolfPhase0Data", mapId + "_" + killMobCount); // mapid_count
-
-        if (killMobCount >= 1000 && Randomizer.isSuccess(1, 100))
-        {
-          MapleRandomPortal portal = new MapleRandomPortal(3, getTruePosition(), this.map.getId(), killer.getId(), false, totalBaseExp);
-          this.map.spawnRandomPortal(portal);
-          killer.addKV("nextFlameWolfPortalSpawnTime", String.valueOf(nowTime + (15 * 60 * 1000)));
+          killer.設置下一次隨機傳送門刷新時間(當前時間 + (15 * 60 * 1000));
         }
       }
     }

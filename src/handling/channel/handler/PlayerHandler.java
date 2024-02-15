@@ -1231,6 +1231,12 @@ public class PlayerHandler
             {
               continue;
             }
+
+            if (owner.getBuffedEffect(sum.getSkill()) == null || owner.getBuffedEffect(sum.getSkill()).getX() == 0)
+            {
+              continue;
+            }
+
             boolean damaged = false;
             int refDmg = (int) ((double) owner.getBuffedEffect(sum.getSkill()).getX() * 0.01) * damage;
             ArrayList<Pair<Integer, List<Long>>> allDamage = new ArrayList<Pair<Integer, List<Long>>>();
@@ -1257,7 +1263,6 @@ public class PlayerHandler
             }
             owner.getMap().broadcastMessage(CField.SummonPacket.summonAttack(sum, sum.getSkill(), (byte) -120, (byte) 17, allDamage, owner.getLevel(), sum.getPosition(), true));
             attacker.damage(owner, refDmg, true);
-
           }
         }
         else if (type == -5)
@@ -1574,6 +1579,17 @@ public class PlayerHandler
         chr.cancelEffectFromBuffStat(SecondaryStat.IndiePadR, 80001479);
         chr.cancelEffectFromBuffStat(SecondaryStat.IndieMadR, 80001479);
       }
+    }
+    int 鬥氣協和技能Id = 1110013;
+
+    final Skill 鬥氣協和 = SkillFactory.getSkill(鬥氣協和技能Id);
+
+    int 鬥氣協和技能等級 = chr.getSkillLevel(鬥氣協和技能Id);
+
+    // 處理受到增加鬥氣
+    if (chr.getBuffedValue(SecondaryStat.ComboCounter) != null && 鬥氣協和技能等級 > 0)
+    {
+      chr.處理增加鬥氣(鬥氣協和技能Id);
     }
     byte offset = 0;
     int offset_d = 0;
@@ -1898,7 +1914,7 @@ public class PlayerHandler
     {
       chr.setKeyDownSkill_Time(System.currentTimeMillis());
     }
-    if (effect.getCooldown(chr) > 0 && !chr.skillisCooling(sourceid) && GameConstants.isAfterCooltimeSkill(sourceid))
+    if (effect.getCooldown(chr) > 0 && !chr.isSkillCooling(sourceid) && GameConstants.isAfterCooltimeSkill(sourceid))
     {
       chr.getClient().getSession().writeAndFlush(CField.skillCooldown(sourceid, effect.getCooldown(chr)));
       chr.addCooldown(sourceid, System.currentTimeMillis(), effect.getCooldown(chr));
@@ -2170,7 +2186,7 @@ public class PlayerHandler
         }
       }
     }
-    if (cooltime && eff != null && !eff.ignoreCooldown(chr) && !chr.skillisCooling(skillId) && !chr.skillisCooling(skill.getId()) && eff.getCooldown(chr) > 0 && skillId != 3111013 && skillId != 22171083 && !GameConstants.isAfterCooltimeSkill(skillId))
+    if (cooltime && eff != null && !eff.ignoreCooldown(chr) && !chr.isSkillCooling(skillId) && !chr.isSkillCooling(skill.getId()) && eff.getCooldown(chr) > 0 && skillId != 3111013 && skillId != 22171083 && !GameConstants.isAfterCooltimeSkill(skillId))
     {
       chr.addCooldown(skillId, System.currentTimeMillis(), eff.getCooldown(chr));
       chr.getClient().getSession().writeAndFlush(CField.skillCooldown(skillId, eff.getCooldown(chr)));
@@ -2347,7 +2363,7 @@ public class PlayerHandler
     final SecondaryStatEffect linkEffect = SkillFactory.getSkill(GameConstants.getLinkedSkill(skillid)).getEffect(skillLevel);
     if (linkEffect.getCooldown(chr) > 0 && effect.getSourceId() != 35111002 && effect.getSourceId() != 151100002 && effect.getSourceId() != 20031205 && !effect.ignoreCooldown(chr) && (linkEffect.getSourceId() < 400041003 || linkEffect.getSourceId() > 400041005) && linkcool)
     {
-      if (chr.skillisCooling(linkEffect.getSourceId()) && !GameConstants.isCooltimeKeyDownSkill(skillid) && !GameConstants.isNoApplySkill(skillid) && !chr.getBuffedValue(skillid) && skillid != 155001104 && skillid != 155001204 && /*chr.unstableMemorize != skillid &&*/ skillid != 400001010 && skillid != 400001011 && skillid != 5121055 && skillid != 400020046)
+      if (chr.isSkillCooling(linkEffect.getSourceId()) && !GameConstants.isCooltimeKeyDownSkill(skillid) && !GameConstants.isNoApplySkill(skillid) && !chr.getBuffedValue(skillid) && skillid != 155001104 && skillid != 155001204 && /*chr.unstableMemorize != skillid &&*/ skillid != 400001010 && skillid != 400001011 && skillid != 5121055 && skillid != 400020046)
       {
         c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         System.out.println("언에이블 : " + effect.getSourceId() + " / " + chr.unstableMemorize + " / " + skillid);
@@ -2446,7 +2462,7 @@ public class PlayerHandler
     }
     if (skillid == 2321016)
     {
-      if (c.getPlayer().skillisCooling(skillid))
+      if (c.getPlayer().isSkillCooling(skillid))
       {
         final SecondaryStatEffect effz = SkillFactory.getSkill(skillid).getEffect(chr.getSkillLevel(skillid));
         int int_ = c.getPlayer().getStat().getTotalInt() / effz.getS();
@@ -5021,7 +5037,8 @@ public class PlayerHandler
             }
             if (skill.getId() == 1121054)
             {
-              chr.발할라검격 = 12;
+              SecondaryStatEffect eff = SkillFactory.getSkill(1121054).getEffect(chr.getSkillLevel(1121054));
+              chr.戰靈附體剩餘劍擊數量 = eff.getU2();
             }
             if (effect.isMagicDoor())
             {
@@ -5038,11 +5055,7 @@ public class PlayerHandler
             }
             if (skill.getId() == 1121054 && chr.getBuffedEffect(SecondaryStat.ComboCounter) != null)
             {
-              final EnumMap<SecondaryStat, Pair<Integer, Integer>> stat = new EnumMap<SecondaryStat, Pair<Integer, Integer>>(SecondaryStat.class);
-              stat.put(SecondaryStat.ComboCounter, new Pair<Integer, Integer>(11, 0));
-              chr.setBuffedValue(SecondaryStat.ComboCounter, 11);
-              chr.getClient().getSession().writeAndFlush(CWvsContext.BuffPacket.giveBuff(stat, SkillFactory.getSkill(1101013).getEffect(chr.getSkillLevel(1101013)), chr));
-              chr.getMap().broadcastMessage(chr, CWvsContext.BuffPacket.giveForeignBuff(chr, stat, SkillFactory.getSkill(1101013).getEffect(chr.getSkillLevel(1101013))), false);
+              chr.處理增加鬥氣(1121054);
               break;
             }
             if (skill.getId() == 400011012)
@@ -5264,7 +5277,7 @@ public class PlayerHandler
       }
       else if (GameConstants.isMichael(chr.getJob()))
       {
-        if (!chr.skillisCooling(400011032) && (attack.skill == 400011032 || attack.skill == 400011033 || attack.skill == 400011034 || attack.skill == 400011035 || attack.skill == 400011036 || attack.skill == 400011037 || attack.skill == 400011067))
+        if (!chr.isSkillCooling(400011032) && (attack.skill == 400011032 || attack.skill == 400011033 || attack.skill == 400011034 || attack.skill == 400011035 || attack.skill == 400011036 || attack.skill == 400011037 || attack.skill == 400011067))
         {
           SecondaryStatEffect effect2 = SkillFactory.getSkill(400011032).getEffect(chr.getSkillLevel(400011032));
           chr.setSkillCustomInfo(400011033, 0L, 5000L);
@@ -5443,7 +5456,7 @@ public class PlayerHandler
           chr.cancelEffectFromBuffStat(SecondaryStat.StopForceAtominfo);
           break;
       }
-      if (!chr.skillisCooling(attack.skill) && (attack.skill == 155120000 || attack.skill == 155110000))
+      if (!chr.isSkillCooling(attack.skill) && (attack.skill == 155120000 || attack.skill == 155110000))
       {
         c.getSession().writeAndFlush(CField.skillCooldown(155001102, 2200));
       }
@@ -5453,7 +5466,7 @@ public class PlayerHandler
         if (weapon_item != null)
         {
           String weapon_name = MapleItemInformationProvider.getInstance().getName(weapon_item.getItemId());
-          if (weapon_name != null && weapon_name.startsWith("제네시스 ") && !chr.getBuffedValue(80002632) && !chr.skillisCooling(80002632))
+          if (weapon_name != null && weapon_name.startsWith("제네시스 ") && !chr.getBuffedValue(80002632) && !chr.isSkillCooling(80002632))
           {
             SecondaryStatEffect effcts = SkillFactory.getSkill(80002632).getEffect(chr.getSkillLevel(80002632));
             effcts.applyTo(chr);
@@ -5495,7 +5508,7 @@ public class PlayerHandler
       }
       if (effect.getCooldown(chr) > 0 && !effect.ignoreCooldown(chr) && (attack.skill < 400041003 || attack.skill > 400041005) && linkcool && attack.skill != 1111016)
       {
-        if (!energy && chr.skillisCooling(effect.getSourceId()) && !GameConstants.isCooltimeKeyDownSkill(effect.getSourceId()) && !GameConstants.isNoApplySkill(effect.getSourceId()) && !GameConstants.isLinkedSkill(attack.skill) && !chr.getBuffedValue(effect.getSourceId()))
+        if (!energy && chr.isSkillCooling(effect.getSourceId()) && !GameConstants.isCooltimeKeyDownSkill(effect.getSourceId()) && !GameConstants.isNoApplySkill(effect.getSourceId()) && !GameConstants.isLinkedSkill(attack.skill) && !chr.getBuffedValue(effect.getSourceId()))
         {
           c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
           return;
@@ -5557,7 +5570,7 @@ public class PlayerHandler
             chr.addCooldown(effect.getSourceId(), System.currentTimeMillis(), effect.getCooldown(chr));
           }
         }
-        else if (!chr.skillisCooling(effect.getSourceId()) && !GameConstants.isAutoAttackSkill(effect.getSourceId()) && !GameConstants.isAfterCooltimeSkill(effect.getSourceId()))
+        else if (!chr.isSkillCooling(effect.getSourceId()) && !GameConstants.isAutoAttackSkill(effect.getSourceId()) && !GameConstants.isAfterCooltimeSkill(effect.getSourceId()))
         {
           c.getSession().writeAndFlush(CField.skillCooldown(effect.getSourceId(), effect.getCooldown(chr)));
           chr.addCooldown(effect.getSourceId(), System.currentTimeMillis(), effect.getCooldown(chr));
@@ -5582,7 +5595,7 @@ public class PlayerHandler
     }
     if (GameConstants.isBattleMage(chr.getJob()))
     {
-      if (chr.getBuffedValue(SecondaryStat.BMageDeath) != null && !chr.skillisCooling(32001114))
+      if (chr.getBuffedValue(SecondaryStat.BMageDeath) != null && !chr.isSkillCooling(32001114))
       {
         int duration = (chr.getSkillLevel(32120019) > 0) ? 5000 : ((chr.getSkillLevel(32110017) > 0) ? 6000 : ((chr.getSkillLevel(32100010) > 0) ? 8000 : 9000));
         if (chr.getSkillCustomValue0(32120019) > 0L)
@@ -5735,7 +5748,7 @@ public class PlayerHandler
         if (weapon_item != null)
         {
           String weapon_name = MapleItemInformationProvider.getInstance().getName(weapon_item.getItemId());
-          if (weapon_name != null && weapon_name.startsWith("제네시스 ") && !chr.skillisCooling(80002632) && !chr.getBuffedValue(80002632))
+          if (weapon_name != null && weapon_name.startsWith("제네시스 ") && !chr.isSkillCooling(80002632) && !chr.getBuffedValue(80002632))
           {
             SecondaryStatEffect effcts = SkillFactory.getSkill(80002632).getEffect(chr.getSkillLevel(80002632));
             effcts.applyTo(chr);
@@ -5746,7 +5759,7 @@ public class PlayerHandler
       }
       if (effect.getCooldown(chr) > 0 && !effect.ignoreCooldown(chr) && attack.skill != 162111006)
       {
-        if (chr.skillisCooling(attack.skill) && !GameConstants.isCooltimeKeyDownSkill(attack.skill) && !GameConstants.isNoApplySkill(attack.skill) && !GameConstants.isLinkedSkill(attack.skill) && !chr.getBuffedValue(attack.skill))
+        if (chr.isSkillCooling(attack.skill) && !GameConstants.isCooltimeKeyDownSkill(attack.skill) && !GameConstants.isNoApplySkill(attack.skill) && !GameConstants.isLinkedSkill(attack.skill) && !chr.getBuffedValue(attack.skill))
         {
           c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
           return;
@@ -5775,12 +5788,12 @@ public class PlayerHandler
             chr.addCooldown(attack.skill, System.currentTimeMillis(), effect.getCooldown(chr));
           }
         }
-        else if (!chr.skillisCooling(attack.skill))
+        else if (!chr.isSkillCooling(attack.skill))
         {
           c.getSession().writeAndFlush(CField.skillCooldown(attack.skill, effect.getCooldown(chr)));
           chr.addCooldown(attack.skill, System.currentTimeMillis(), effect.getCooldown(chr));
         }
-        if (GameConstants.isLinkedSkill(attack.skill) && !chr.skillisCooling(GameConstants.getLinkedSkill(attack.skill)))
+        if (GameConstants.isLinkedSkill(attack.skill) && !chr.isSkillCooling(GameConstants.getLinkedSkill(attack.skill)))
         {
           c.getSession().writeAndFlush(CField.skillCooldown(GameConstants.getLinkedSkill(attack.skill), effect.getCooldown(chr)));
           chr.addCooldown(GameConstants.getLinkedSkill(attack.skill), System.currentTimeMillis(), effect.getCooldown(chr));
@@ -5933,7 +5946,7 @@ public class PlayerHandler
         if (weapon_item != null)
         {
           String weapon_name = MapleItemInformationProvider.getInstance().getName(weapon_item.getItemId());
-          if (weapon_name != null && weapon_name.startsWith("제네시스 ") && !chr.skillisCooling(80002632) && !chr.getBuffedValue(80002632))
+          if (weapon_name != null && weapon_name.startsWith("제네시스 ") && !chr.isSkillCooling(80002632) && !chr.getBuffedValue(80002632))
           {
             SecondaryStatEffect effcts = SkillFactory.getSkill(80002632).getEffect(chr.getSkillLevel(80002632));
             effcts.applyTo(chr);
@@ -5953,7 +5966,7 @@ public class PlayerHandler
       }
       if (effect.getCooldown(chr) > 0 && !effect.ignoreCooldown(chr) && linkcool)
       {
-        if (chr.skillisCooling(effect.getSourceId()) && !GameConstants.isCooltimeKeyDownSkill(effect.getSourceId()) && !GameConstants.isNoApplySkill(attack.skill) && !GameConstants.isLinkedSkill(effect.getSourceId()) && !chr.getBuffedValue(effect.getSourceId()))
+        if (chr.isSkillCooling(effect.getSourceId()) && !GameConstants.isCooltimeKeyDownSkill(effect.getSourceId()) && !GameConstants.isNoApplySkill(attack.skill) && !GameConstants.isLinkedSkill(effect.getSourceId()) && !chr.getBuffedValue(effect.getSourceId()))
         {
           c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
           return;
@@ -5990,7 +6003,7 @@ public class PlayerHandler
             chr.addCooldown(effect.getSourceId(), System.currentTimeMillis(), effect.getCooldown(chr));
           }
         }
-        else if (!chr.skillisCooling(effect.getSourceId()) && !GameConstants.isAutoAttackSkill(effect.getSourceId()) && !GameConstants.isAfterCooltimeSkill(effect.getSourceId()))
+        else if (!chr.isSkillCooling(effect.getSourceId()) && !GameConstants.isAutoAttackSkill(effect.getSourceId()) && !GameConstants.isAfterCooltimeSkill(effect.getSourceId()))
         {
           c.getSession().writeAndFlush(CField.skillCooldown(effect.getSourceId(), effect.getCooldown(chr)));
           chr.addCooldown(effect.getSourceId(), System.currentTimeMillis(), effect.getCooldown(chr));
@@ -6267,7 +6280,7 @@ public class PlayerHandler
     {
       if (GameConstants.is_evan_force_skill(attack.skill))
       {
-        if (!chr.skillisCooling(attack.skill))
+        if (!chr.isSkillCooling(attack.skill))
         {
           skill.getEffect(skillLevel).applyTo(chr);
         }
@@ -6331,7 +6344,7 @@ public class PlayerHandler
       if (weapon_item != null)
       {
         String weapon_name = MapleItemInformationProvider.getInstance().getName(weapon_item.getItemId());
-        if (weapon_name != null && weapon_name.startsWith("제네시스 ") && !chr.skillisCooling(80002632) && !chr.getBuffedValue(80002632))
+        if (weapon_name != null && weapon_name.startsWith("제네시스 ") && !chr.isSkillCooling(80002632) && !chr.getBuffedValue(80002632))
         {
           SecondaryStatEffect effcts = SkillFactory.getSkill(80002632).getEffect(chr.getSkillLevel(80002632));
           effcts.applyTo(chr);
@@ -6342,7 +6355,7 @@ public class PlayerHandler
     }
     if (effect.getCooldown(chr) > 0 && !effect.ignoreCooldown(chr) && attack.skill != 142101009 && attack.skill != 12120011 && attack.skill != 2220014 && attack.skill != 2120013 && attack.skill != 400021004)
     {
-      if (chr.skillisCooling(effect.getSourceId()) && !GameConstants.isCooltimeKeyDownSkill(effect.getSourceId()) && !GameConstants.isNoApplySkill(attack.skill) && !GameConstants.isLinkedSkill(effect.getSourceId()) && !chr.getBuffedValue(effect.getSourceId()) && chr.unstableMemorize != effect.getSourceId())
+      if (chr.isSkillCooling(effect.getSourceId()) && !GameConstants.isCooltimeKeyDownSkill(effect.getSourceId()) && !GameConstants.isNoApplySkill(attack.skill) && !GameConstants.isLinkedSkill(effect.getSourceId()) && !chr.getBuffedValue(effect.getSourceId()) && chr.unstableMemorize != effect.getSourceId())
       {
         c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         return;
@@ -6371,7 +6384,7 @@ public class PlayerHandler
           chr.addCooldown(effect.getSourceId(), System.currentTimeMillis(), effect.getCooldown(chr));
         }
       }
-      else if (!chr.skillisCooling(effect.getSourceId()) && !GameConstants.isAutoAttackSkill(effect.getSourceId()) && !GameConstants.isAfterCooltimeSkill(effect.getSourceId()) && !chr.memoraizecheck)
+      else if (!chr.isSkillCooling(effect.getSourceId()) && !GameConstants.isAutoAttackSkill(effect.getSourceId()) && !GameConstants.isAfterCooltimeSkill(effect.getSourceId()) && !chr.memoraizecheck)
       {
         c.getSession().writeAndFlush(CField.skillCooldown(effect.getSourceId(), effect.getCooldown(chr)));
         chr.addCooldown(effect.getSourceId(), System.currentTimeMillis(), effect.getCooldown(chr));
@@ -6392,7 +6405,7 @@ public class PlayerHandler
     }
     if (GameConstants.isBattleMage(chr.getJob()))
     {
-      if (chr.getBuffedValue(SecondaryStat.BMageDeath) != null && !chr.skillisCooling(32001114))
+      if (chr.getBuffedValue(SecondaryStat.BMageDeath) != null && !chr.isSkillCooling(32001114))
       {
         int duration = (chr.getSkillLevel(32120019) > 0) ? 5000 : ((chr.getSkillLevel(32110017) > 0) ? 6000 : ((chr.getSkillLevel(32100010) > 0) ? 8000 : 9000));
         if (chr.getSkillCustomValue0(32120019) > 0L)
@@ -9403,13 +9416,13 @@ public class PlayerHandler
       }
       int 簽到天數 = 已簽到天數 + 1;
 
-      c.setKeyValue("dailyGiftDay", String.valueOf(已簽到天數 + 1));
+      c.setKeyValue("dailyGiftDay", String.valueOf(簽到天數));
 
       c.setKeyValue("dailyGiftComplete", "1");
 
       int 今天日期 = GameConstants.getCurrentDate_NoTime();
 
-      String dailyGiftPackage = "day=" + c.getKeyValue("dailyGiftDay") + ";date=" + 今天日期;
+      String dailyGiftPackage = "count=1;day=" + 簽到天數 + ";date=" + 今天日期;
 
       // 是否已完成: count 0 = 未完成; 1 = 已完成; 已完成天數: day = 0; 當前日期: date = YYYYMMDD
       c.getSession().writeAndFlush(CWvsContext.updateDailyGift(dailyGiftPackage));
@@ -9849,7 +9862,7 @@ public class PlayerHandler
     }
     if (skill.getEffect(skilllevel_serv).getCooldown(chr) > 0 && chr.getCooldownLimit(skillId) == 0L)
     {
-      chr.giveCoolDowns(skillId, System.currentTimeMillis(), skill.getEffect(skilllevel_serv).getCooldown(chr));
+      chr.addCooldown(skillId, System.currentTimeMillis(), skill.getEffect(skilllevel_serv).getCooldown(chr));
       chr.getClient().getSession().writeAndFlush(CField.skillCooldown(skillId, skill.getEffect(skilllevel_serv).getCooldown(chr)));
     }
     if (skillId == 64101002)
@@ -11066,7 +11079,7 @@ public class PlayerHandler
       SkillFactory.getSkill(cristalLevel).getEffect(c.getPlayer().getSkillLevel(cristalLevel)).applyTo(c.getPlayer());
     }
     SecondaryStatEffect attackEff = SkillFactory.getSkill(attack).getEffect(c.getPlayer().getSkillLevel(attack));
-    if (!c.getPlayer().skillisCooling(attack))
+    if (!c.getPlayer().isSkillCooling(attack))
     {
       c.getPlayer().addCooldown(attack, System.currentTimeMillis(), attackEff.getCooldown(c.getPlayer()));
       c.getSession().writeAndFlush(CField.skillCooldown(attack, attackEff.getCooldown(c.getPlayer())));
@@ -11395,7 +11408,7 @@ public class PlayerHandler
           }
         }
       }
-      else if (!chr.skillisCooling(155001008))
+      else if (!chr.isSkillCooling(155001008))
       {
         int plus = 13;
         if (chr.getSkillLevel(155120034) > 0)
@@ -12292,7 +12305,7 @@ public class PlayerHandler
         }
         return;
       case 13111023:
-        if (info == "")
+        if (info.equals(""))
         {
           c.getPlayer().updateInfoQuest(1544, "alba=1");
           c.getPlayer().getMap().broadcastMessage(CField.getRefreshQuestInfo(c.getPlayer().getId(), 1, skillid, 1));
@@ -12309,7 +12322,7 @@ public class PlayerHandler
         }
         return;
       case 35101002:
-        if (info == "")
+        if (info.equals(""))
         {
           c.getPlayer().updateInfoQuest(1544, "35101002=1;");
         }
@@ -12323,7 +12336,7 @@ public class PlayerHandler
         }
         return;
       case 14001026:
-        if (info == "")
+        if (info.equals(""))
         {
           c.getPlayer().updateInfoQuest(1544, "14001026=1;");
         }
@@ -12337,7 +12350,7 @@ public class PlayerHandler
         }
         return;
       case 32001016:
-        if (info == "")
+        if (info.equals(""))
         {
           c.getPlayer().updateInfoQuest(1544, "32001016=1;");
           c.getPlayer().getMap().broadcastMessage(CField.getRefreshQuestInfo(c.getPlayer().getId(), 1, skillid, 0));
@@ -12354,7 +12367,7 @@ public class PlayerHandler
         }
         return;
       case 14121052:
-        if (info == "")
+        if (info.equals(""))
         {
           c.getPlayer().updateInfoQuest(1544, "14121052=1;");
           c.getPlayer().getMap().broadcastMessage(CField.getRefreshQuestInfo(c.getPlayer().getId(), 1, skillid, 0));
@@ -12371,7 +12384,7 @@ public class PlayerHandler
         }
         return;
       case 51121009:
-        if (info == "")
+        if (info.equals(""))
         {
           c.getPlayer().updateInfoQuest(1544, "51121009=1;");
         }
@@ -12385,7 +12398,7 @@ public class PlayerHandler
         }
         return;
       case 400011121:
-        if (info == "")
+        if (info.equals(""))
         {
           c.getPlayer().updateInfoQuest(1544, "400011121=1;");
         }
@@ -12435,7 +12448,7 @@ public class PlayerHandler
     else if (skillid == 151001004)
     {
       info = c.getPlayer().getInfoQuest(21770);
-      if (info == "")
+      if (info.equals(""))
       {
         c.getPlayer().updateInfoQuest(21770, "lw0=1;");
       }
@@ -12451,7 +12464,7 @@ public class PlayerHandler
     else if (skillid == 30010110)
     {
       info = c.getPlayer().getInfoQuest(21770);
-      if (info == "")
+      if (info.equals(""))
       {
         c.getPlayer().updateInfoQuest(21770, "ds0=1;");
       }
@@ -12493,7 +12506,7 @@ public class PlayerHandler
       String id = "";
       List<Pair<Byte, Byte>> list = new ArrayList<>();
       info = c.getPlayer().getInfoQuest(21770);
-      String[] info_ = (info == "") ? null : info.split(";");
+      String[] info_ = (info.equals("")) ? null : info.split(";");
       info = "";
       int i;
       for (i = 0; i < 10; i++)
@@ -12541,7 +12554,7 @@ public class PlayerHandler
           id = "10";
           break;
       }
-      if (id == "")
+      if (id.equals(""))
       {
         c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
         return;
@@ -12568,7 +12581,7 @@ public class PlayerHandler
       {
         if (((Byte) ((Pair) list.get(j)).getLeft()).byteValue() != -1)
         {
-          if (info == "")
+          if (info.equals(""))
           {
             info = ((Pair) list.get(j)).getLeft() + "=" + ((Pair) list.get(j)).getRight();
           }
@@ -13806,7 +13819,7 @@ public class PlayerHandler
     {
       case 30000008:
       case 30000020:
-        if (!chr.skillisCooling(skillId) && Randomizer.isSuccess(1, 1000))
+        if (!chr.isSkillCooling(skillId) && Randomizer.isSuccess(1, 1000))
         {
           SecondaryStatEffect effect = SkillFactory.getSkill(skillId).getEffect(chr.getSkillLevel(chr.getSkillLevel(skillId)));
           effect.applyTo(chr);
@@ -13819,7 +13832,7 @@ public class PlayerHandler
       case 30000016:
       case 30000018:
       case 30000023:
-        if (!chr.skillisCooling(skillId))
+        if (!chr.isSkillCooling(skillId))
         {
           SecondaryStatEffect effect = SkillFactory.getSkill(skillId).getEffect(chr.getSkillLevel(chr.getSkillLevel(skillId)));
           effect.applyTo(chr);

@@ -897,6 +897,10 @@ public class SecondaryStatEffect implements Serializable
             ret.statups.put(SecondaryStat.Ter, new Pair<Integer, Integer>(ret.y, ret.duration));
             break;
           }
+          case 1121055:
+          {
+            ret.cooltime = SecondaryStatEffect.parseEval("subTime", source, -1, variables, level);
+          }
           case 1200014:
           case 1220010:
           {
@@ -6403,7 +6407,7 @@ public class SecondaryStatEffect implements Serializable
       }
       case 80002770:
       {
-        if (applyTo.skillisCooling(80002770))
+        if (applyTo.isSkillCooling(80002770))
         {
           break;
         }
@@ -6933,7 +6937,7 @@ public class SecondaryStatEffect implements Serializable
       {
         for (MapleCoolDownValueHolder cooldown : applyTo.getCooldowns())
         {
-          if (cooldown.skillId == this.sourceid || !GameConstants.isZero(cooldown.skillId / 10000) || SkillFactory.getSkill(cooldown.skillId).isHyper() || !applyTo.skillisCooling(cooldown.skillId))
+          if (cooldown.skillId == this.sourceid || !GameConstants.isZero(cooldown.skillId / 10000) || SkillFactory.getSkill(cooldown.skillId).isHyper() || !applyTo.isSkillCooling(cooldown.skillId))
           {
             continue;
           }

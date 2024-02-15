@@ -345,7 +345,7 @@ public class PacketHelper
     for (MapleCoolDownValueHolder cooling : cd)
     {
       mplew.writeInt(cooling.skillId);
-      mplew.writeInt((int) (cooling.length + cooling.startTime - System.currentTimeMillis()) / 1000);
+      mplew.writeInt((int) (cooling.cooldownTimeMS + cooling.startTime - System.currentTimeMillis()) / 1000);
     }
   }
 

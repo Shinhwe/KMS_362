@@ -3,6 +3,7 @@ package client;
 import database.DatabaseConnection;
 import tools.packet.CWvsContext;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,26 +13,26 @@ import java.util.*;
 
 public class BuddyList implements Serializable
 {
-  private static final long serialVersionUID = 1413738569L;
-  
+  @Serial private static final long serialVersionUID = 1413738569L;
+
   private final Map<Integer, BuddylistEntry> buddies;
-  
+
   private byte capacity;
   private boolean changed = false;
   private Deque<CharacterNameAndId> pendingRequests = new LinkedList<>();
-  
-  public BuddyList(byte capacity)
+
+  public BuddyList (byte capacity)
   {
     this.buddies = new LinkedHashMap<>();
     this.capacity = capacity;
   }
-  
-  public boolean contains(int accId)
+
+  public boolean contains (int accId)
   {
     return this.buddies.containsKey(Integer.valueOf(accId));
   }
-  
-  public boolean containsVisible(int accId)
+
+  public boolean containsVisible (int accId)
   {
     BuddylistEntry ble = this.buddies.get(Integer.valueOf(accId));
     if (ble == null)
@@ -40,23 +41,23 @@ public class BuddyList implements Serializable
     }
     return ble.isVisible();
   }
-  
-  public byte getCapacity()
+
+  public byte getCapacity ()
   {
     return this.capacity;
   }
-  
-  public void setCapacity(byte capacity)
+
+  public void setCapacity (byte capacity)
   {
     this.capacity = capacity;
   }
-  
-  public BuddylistEntry get(int accId)
+
+  public BuddylistEntry get (int accId)
   {
     return this.buddies.get(Integer.valueOf(accId));
   }
-  
-  public BuddylistEntry get(String characterName)
+
+  public BuddylistEntry get (String characterName)
   {
     String lowerCaseName = characterName.toLowerCase();
     for (BuddylistEntry ble : this.buddies.values())
@@ -68,29 +69,29 @@ public class BuddyList implements Serializable
     }
     return null;
   }
-  
-  public void put(BuddylistEntry entry)
+
+  public void put (BuddylistEntry entry)
   {
     this.buddies.put(Integer.valueOf(entry.getAccountId()), entry);
   }
-  
-  public void remove(int accId)
+
+  public void remove (int accId)
   {
     this.buddies.remove(Integer.valueOf(accId));
     this.changed = true;
   }
-  
-  public Collection<BuddylistEntry> getBuddies()
+
+  public Collection<BuddylistEntry> getBuddies ()
   {
     return this.buddies.values();
   }
-  
-  public boolean isFull()
+
+  public boolean isFull ()
   {
     return (this.buddies.size() >= this.capacity);
   }
-  
-  public int[] getBuddyIds()
+
+  public int[] getBuddyIds ()
   {
     int[] buddyIds = new int[this.buddies.size()];
     int i = 0;
@@ -100,8 +101,8 @@ public class BuddyList implements Serializable
     }
     return buddyIds;
   }
-  
-  public void loadFromTransfer(Map<CharacterNameAndId, Boolean> data)
+
+  public void loadFromTransfer (Map<CharacterNameAndId, Boolean> data)
   {
     for (Map.Entry<CharacterNameAndId, Boolean> qs : data.entrySet())
     {
@@ -115,8 +116,8 @@ public class BuddyList implements Serializable
       put(new BuddylistEntry(buddyid.getName(), buddyid.getRepName(), buddyid.getAccId(), buddyid.getId(), buddyid.getGroupName(), -1, true, buddyid.getLevel(), buddyid.getJob(), buddyid.getMemo()));
     }
   }
-  
-  public void loadFromDb(int accId) throws SQLException
+
+  public void loadFromDb (int accId) throws SQLException
   {
     Connection con = null;
     PreparedStatement ps = null;
@@ -148,7 +149,7 @@ public class BuddyList implements Serializable
     }
     catch (Exception exception)
     {
-    
+      exception.printStackTrace();
     }
     finally
     {
@@ -166,8 +167,8 @@ public class BuddyList implements Serializable
       }
     }
   }
-  
-  public void addBuddyRequest(MapleClient c, int accid, int cidFrom, String nameFrom, String repName, int channelFrom, int levelFrom, int jobFrom, String groupName, String memo)
+
+  public void addBuddyRequest (MapleClient c, int accid, int cidFrom, String nameFrom, String repName, int channelFrom, int levelFrom, int jobFrom, String groupName, String memo)
   {
     put(new BuddylistEntry(nameFrom, repName, accid, cidFrom, groupName, channelFrom, false, levelFrom, jobFrom, memo));
     if (getPendingRequests().isEmpty())
@@ -179,37 +180,37 @@ public class BuddyList implements Serializable
       getPendingRequests().push(new CharacterNameAndId(cidFrom, accid, nameFrom, repName, levelFrom, jobFrom, groupName, memo));
     }
   }
-  
-  public void setChanged(boolean v)
+
+  public void setChanged (boolean v)
   {
     this.changed = v;
   }
-  
-  public boolean changed()
+
+  public boolean changed ()
   {
     return this.changed;
   }
-  
-  public CharacterNameAndId pollPendingRequest()
+
+  public CharacterNameAndId pollPendingRequest ()
   {
     return getPendingRequests().pollLast();
   }
-  
-  public Deque<CharacterNameAndId> getPendingRequests()
+
+  public Deque<CharacterNameAndId> getPendingRequests ()
   {
     return this.pendingRequests;
   }
-  
-  public void setPendingRequests(Deque<CharacterNameAndId> pendingRequests)
+
+  public void setPendingRequests (Deque<CharacterNameAndId> pendingRequests)
   {
     this.pendingRequests = pendingRequests;
   }
-  
+
   public enum BuddyOperation
   {
     ADDED, DELETED
   }
-  
+
   public enum BuddyAddResult
   {
     BUDDYLIST_FULL, ALREADY_ON_LIST, OK

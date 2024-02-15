@@ -114,14 +114,14 @@ public class MonsterPyramid
   
   public static void addQueue(MapleCharacter mapleCharacter, int n)
   {
-    if (mapleCharacter.skillisCooling(100668) && !mapleCharacter.isGM())
+    if (mapleCharacter.isSkillCooling(100668) && !mapleCharacter.isGM())
     {
       String 초 = "";
       for (MapleCoolDownValueHolder m : mapleCharacter.getCooldowns())
       {
         if (m.skillId == 100668)
         {
-          초 = String.valueOf((m.length + m.startTime - System.currentTimeMillis()) / 1000L / 60L);
+          초 = String.valueOf((m.cooldownTimeMS + m.startTime - System.currentTimeMillis()) / 1000L / 60L);
           break;
         }
       }

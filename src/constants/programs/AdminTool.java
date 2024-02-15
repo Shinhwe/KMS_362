@@ -833,14 +833,14 @@ public class AdminTool extends JFrame
       if (ch.얼리기())
       {
         ch.얼리기(false);
-        if (msg == "")
+        if (msg.equals(""))
         {
           msg = "얼리기";
         }
         continue;
       }
       ch.얼리기(true);
-      if (msg == "")
+      if (msg.equals(""))
       {
         msg = "녹이기";
       }

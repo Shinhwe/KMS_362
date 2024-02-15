@@ -17,6 +17,7 @@ import handling.world.*;
 import handling.world.guild.MapleGuild;
 import scripting.NPCScriptManager;
 import server.MapleItemInformationProvider;
+import server.Timer;
 import server.maps.FieldLimitType;
 import server.maps.MapleMap;
 import server.quest.MapleQuest;
@@ -880,11 +881,11 @@ public class InterServerHandler
                 if (MapleItemInformationProvider.getInstance().getItemEffect(a.intValue()) != null)
                 {
                   /*  597 */
-                  MapleItemInformationProvider.getInstance().getItemEffect(a.intValue()).applyTo(player, false, (int) (mapleCoolDownValueHolder.length + mapleCoolDownValueHolder.startTime - System.currentTimeMillis()));
+                  MapleItemInformationProvider.getInstance().getItemEffect(a.intValue()).applyTo(player, false, (int) (mapleCoolDownValueHolder.cooldownTimeMS + mapleCoolDownValueHolder.startTime - System.currentTimeMillis()));
                   break;
                 }
                 /*  599 */
-                SkillFactory.getSkill(a.intValue()).getEffect(player.getSkillLevel(a.intValue())).applyTo(player, false, (int) (mapleCoolDownValueHolder.length + mapleCoolDownValueHolder.startTime - System.currentTimeMillis()));
+                SkillFactory.getSkill(a.intValue()).getEffect(player.getSkillLevel(a.intValue())).applyTo(player, false, (int) (mapleCoolDownValueHolder.cooldownTimeMS + mapleCoolDownValueHolder.startTime - System.currentTimeMillis()));
                 break;
               }
             }
@@ -1142,23 +1143,6 @@ public class InterServerHandler
         }
       }
 
-      /*  741 */
-      if (c.getKeyValue("dailyGiftDay") == null)
-      {
-        /*  742 */
-        c.setKeyValue("dailyGiftDay", "0");
-      }
-
-      /*  745 */
-      if (c.getKeyValue("dailyGiftComplete") == null)
-      {
-        /*  746 */
-        c.setKeyValue("dailyGiftComplete", "0");
-      }
-
-      /*  749 */
-
-      /*  754 */
       for (AuctionItem auctionItem : AuctionServer.getItems().values())
       {
         /*  755 */
@@ -1864,24 +1848,62 @@ public class InterServerHandler
       c.getSession().writeAndFlush(CWvsContext.onSessionValue("kill_count", "0"));
       /* 1136 */
       // c.getSession().writeAndFlush(CWvsContext.updateDailyGift("count=" + c.getKeyValue("dailyGiftComplete") + ";day=" + c.getKeyValue("dailyGiftDay") + ";date=" + player.getKeyValue(501385, "date")));
-      c.getSession().writeAndFlush(CField.dailyGift(player, 1, 0));
+      // c.getSession().writeAndFlush(CField.dailyGift(player, 1, 0));
       //
-      // String 是否已完成簽到 = c.getKeyValue("dailyGiftComplete");
-      //
-      // String 已簽到天數 = c.getKeyValue("dailyGiftDay");
-      //
-      // int 今天日期 = GameConstants.getCurrentDate_NoTime();
-      // // 是否已完成: count 0 = 未完成; 1 = 已完成; 已完成天數: day = 0; 當前日期: date = YYYYMMDD; 任務id = 15
-      // c.getSession().writeAndFlush(CWvsContext.updateDailyGift("count=1;day=3;date=20230820" ));
-      //
-      // if (player.getKeyValue(16700, "date") != 今天日期)
-      // {
-      //   player.setKeyValue(16700, "count", "0");
-      //   player.setKeyValue(16700, "date", String.valueOf(今天日期));
-      //   player.updateInfoQuest(16700, "count=0;date=" + 今天日期);
-      // }
-      /* 1137 */
 
+      if (c.getKeyValue("dailyGiftDay") == null)
+      {
+        c.setKeyValue("dailyGiftDay", "0");
+      }
+
+      if (c.getKeyValue("dailyGiftComplete") == null)
+      {
+        c.setKeyValue("dailyGiftComplete", "0");
+      }
+
+      int 已簽到天數 = Integer.parseInt(c.getKeyValue("dailyGiftDay"));
+
+      boolean 已完成簽到 = c.getKeyValue("dailyGiftComplete").equals("0");
+
+      int 當前日期 = GameConstants.getCurrentDate_NoTime();
+
+      if (c.getPlayer().getInfoQuest(16700) == null)
+      {
+        c.getPlayer().updateInfoQuest(16700, "count=0;date=" + 當前日期);
+      }
+
+      long 上次簽到日期 = c.getPlayer().getKeyValue(16700, "date");
+
+      if (當前日期 != 上次簽到日期)
+      {
+        已完成簽到 = false;
+        c.setKeyValue("dailyGiftComplete", "0");
+      }
+
+      if (當前日期 - 上次簽到日期 > 31) // 20240201 - 20240131 = 70 > 31 簡單的隔月換算
+      {
+        已簽到天數 = 0;
+        c.setKeyValue("dailyGiftDay", "0");
+      }
+
+      c.send(CWvsContext.updateDailyGift("count=" + (已完成簽到 ? "1" : "0") + ";day=" + 已簽到天數 + ";date=" + 當前日期));
+
+      // 延遲一定時間後, 發送一次updateDailyGift包即可顯示已完成, 我也不知道為啥非要這樣, 很怪, but it just works
+      Timer.PingTimer.getInstance().schedule(new Runnable()
+      {
+        @Override public void run ()
+        {
+          if (c != null && c.getPlayer() != null && c.getPlayer().getIsDailyGiftTooltipPacketSend() == false && c.getPlayer().getKeyValue(16700, "count") == 300L && c.getKeyValue("dailyGiftComplete").equals("0"))
+          {
+            int 已簽到天數 = Integer.parseInt(c.getKeyValue("dailyGiftDay"));
+            int 當前日期 = GameConstants.getCurrentDate_NoTime();
+            c.send(CWvsContext.updateDailyGift("count=0;day=" + 已簽到天數 + ";date=" + 當前日期));
+            c.getPlayer().setIsDailyGiftTooltipPacketSend(true);
+          }
+        }
+      }, 5 * 1000);
+
+      c.send(CField.dailyGift(c.getPlayer(), 1, 0));
 
       try
       {
@@ -2041,7 +2063,7 @@ public class InterServerHandler
       /* 1225 */
       String towerchair = c.getPlayer().getInfoQuest(7266);
       /* 1226 */
-      if (!towerchair.equals(""))
+      if (towerchair != null)
       {
         /* 1227 */
         c.getPlayer().updateInfoQuest(7266, towerchair);
