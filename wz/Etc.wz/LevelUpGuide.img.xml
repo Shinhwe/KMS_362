@@ -1,2147 +1,2141 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <imgdir name="LevelUpGuide.img">
-<imgdir name="Contents">
-<imgdir name="0">
-<string name="title" value="[정보]\n스탯 정보"/>
-<string name="message" value="더 강해지는 방법! 스탯을 올려보자!"/>
-<imgdir name="desc">
-<string name="0" value="10레벨 이후부터는 레벨업을 하게 되면 캐릭터 창을(S키) 열어 스탯을 찍으 실 수 있습니다."/>
-<string name="1" value="자신의 직업에 맞게 스탯을 올려 지금 보다 더 강력한 힘을 가져보세요!\n"/>
-<string name="2" value="#fEtc/LevelUpGuide.img/Image/0_0#"/>
-<string name="3" value="\n#e1.ABILITY POINT#n : 현재 내가 가지고 있는 스텟 포인트로 보유하고 있는 스탯 포인트 만큼 배분이 가능합니다."/>
-<string name="4" value="\n#e2.자동 배분#n : 자신의 직업에 맞게 자동적으로 스탯을 분배합니다."/>
-<string name="5" value="\n#e3.스탯의 종류#n"/>
-<string name="6" value="-STR(힘) : 전사와 해적(인파이터)의 공격력을 결정하는 주요 능력치"/>
-<string name="7" value="-DEX(민첩) : 궁수와 해적(건슬링거)의 공격력을 결정하는 주요 능력치"/>
-<string name="8" value="-INT(지력) : 마법사의 마력을 결정하는 주요 능력치"/>
-<string name="9" value="-LUK(운) : 마법사의 명중률 및 도적의 공격력을 결정하는 주요 능력치#n"/>
-<string name="10" value="\n#bTIP : 자동 배분키를 사용하면 직업에 맞춰 쉽게 스탯 설정이 가능합니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="title" value="[테마 던전]\n버섯의 성 (Lv 30~40) "/>
-<string name="message" value="위기에 빠진 버섯 왕국을 구하자!"/>
-<int name="npc" value="1300000"/>
-<imgdir name="desc">
-<string name="0" value="헤네시스 근처에 있는 버섯왕국에 위기가 닥쳤다. 사악한 페페킹에게 왕국을 빼앗긴 데다가, 머쉬킹의 금지옥엽 비올레타 공주는 주페왕자와 강제로 결혼할 처지에 놓이게 되었는데... 머쉬킹을 도와 페페킹을 없애고 비올레타 공주를 구하자."/>
-<string name="1" value="\n#e-추천 레벨#n : 30~40레벨"/>
-<string name="2" value="\n#e-이동 방법 $LVUPNVBT$#n"/>
-<string name="3" value="1) 위기의 머쉬킹 왕국 퀘스트"/>
-<string name="4" value="2) 헤네시스에서 서쪽으로 걸어서 이동"/>
-<string name="5" value="\n#e-최종 보상#n"/>
-<string name="6" value="#i1142188##t1142188#"/>
-<string name="7" value="\n#e★어떻게 시작하나요?"/>
-<string name="8" value="버섯의 성은 보통 2차 전직을 하게 되면 전직관의 추천서를 통해 이동이 가능합니다."/>
-<string name="9" value="또는, 직접 헤네시스의 유령버섯의 숲을 통해서도 입장이 가능합니다."/>
-<string name="10" value="#fEtc/LevelUpGuide.img/Image/1_0#"/>
-<string name="11" value="\n#e★클리어 방법!"/>
-<string name="12" value="버섯의 성에 입장하면 페페들에게 쫓겨난 버섯들을 만날 수 있습니다."/>
-<string name="13" value="일단, 머쉬킹에게서 퀘스트를 완료 하신 후, 다른 버섯들에게 퀘스트를 받아 진행을 시작하면 됩니다."/>
-<string name="14" value="#fEtc/LevelUpGuide.img/Image/1_1#"/>
-<string name="15" value="\n버섯의 성에 들어가기 위해서는 일단, 버섯의 성에 걸려있는 마법 포자 결계와 가시덩굴을 제거해야 합니다."/>
-<string name="16" value="퀘스트들을 차근차근 진행하다보면 이 결계를 제거할 수 있는 제거제와 덩굴 가시 제거제를 얻을 수 있는데, 이 아이템을 사용하면 버섯의 성으로 들어갈 수 있습니다."/>
-<string name="17" value="#fEtc/LevelUpGuide.img/Image/1_2#"/>
-<string name="18" value="\n성에 입장하면 투구 페페를 비롯한 다양한 페페킹의 부하들을 만날 수 있습니다."/>
-<string name="19" value="이러한 몬스터들을 차근차근 제거하면서 맨 오른쪽에 위치한 결혼식장 입구에 도착하면 먼저 페페킹 타도 퀘스트를 진행합니다."/>
-<string name="20" value="#fEtc/LevelUpGuide.img/Image/1_3#"/>
-<string name="21" value="\n페페킹 타도를 클릭하면 페페킹이 예티를 타고 등장합니다."/>
-<string name="22" value="#fEtc/LevelUpGuide.img/Image/1_4#"/>
-<string name="23" value="3번의 대결을 모두 마치면 결혼식장 열쇠를 얻을 수 있는데, 이를 통해 비올레타 구출 퀘스트 진행이 가능합니다."/>
-<string name="24" value="\n마찬가지로 결혼식장 입구에서 비올레타 구출 퀘스트를 클릭하여 입장하면 비올레타 공주에게서 총리대신을 없애달라는 퀘스트를 받아 진행을 할 수 있습니다."/>
-<string name="25" value="#fEtc/LevelUpGuide.img/Image/1_5#"/>
-<string name="26" value="등장하는 총리대신을 제거하고 버섯의 성 마을로 돌아가면 버섯의 성 퀘스트가 종료됩니다."/>
-</imgdir>
-<int name="addNpcX" value="10"/>
-<int name="addNpcY" value="10"/>
-<int name="npcScale" value="70"/>
-</imgdir>
-<imgdir name="2">
-<string name="title" value="[테마 던전]\n커닝 스퀘어 백화점(Lv 35~45)"/>
-<string name="message" value="공익 근무 요원 혁이의 꿈을 이뤄주자!"/>
-<int name="npc" value="1052117"/>
-<int name="naviField" value="103020000"/>
-<imgdir name="desc">
-<string name="0" value="커닝시티 지하철의 공익 근무 요원 혁이에게는 꿈이 있다고 한다. 그것이 바로 가수가 되어 멋진 무대를 갖는 것. 커닝스퀘어 백화점에 있는 사람들을 섭외해 혁이의 꿈을 이뤄주자."/>
-<string name="1" value="\n#e-추천 레벨#n : 35~45 레벨"/>
-<string name="2" value="\n#e-이동 방법 $LVUPNVBT$#n"/>
-<string name="3" value="커닝시티 지하철 이용"/>
-<string name="4" value="\n#e-최종 보상#n"/>
-<string name="5" value="#i1032075##t1032075#"/>
-<string name="6" value="\n#e★어떻게 시작하나요?"/>
-<string name="7" value="커닝스퀘어 백화점은 웅이의 편지로부터 시작됩니다. 웅이로부터 편지를 받고난 후 커닝스케어에 위치한 지하철로 가서 커닝스퀘어 행 지하철을 타면 됩니다."/>
-<string name="8" value="#fEtc/LevelUpGuide.img/Image/2_0#"/>
-<string name="9" value="#b(웅이의 편지를 받고 지하철로 가서 커닝스퀘어행 지하철을 타자)"/>
-<string name="10" value="#fEtc/LevelUpGuide.img/Image/2_1#"/>
-<string name="11" value="#e★클리어 방법!"/>
-<string name="12" value="지하철에서 내리면 혁이를 만날 수 있습니다. 혁이에게 대화를 걸면 본격적인 퀘스트가 시작됩니다."/>
-<string name="13" value="\n먼저 커닝스퀘어 로비로 가 &quot;라나&quot;에게 대화를 걸면 혁이의 데뷔에 대한 이야기를 들을 수 있습니다. 라나에게서 공연을 위해 요리사, 메이크업 아티스트,헤어 디자이너, 향수, CD, 작곡가를 섭외하는 퀘스트를 진행하게 됩니다."/>
-<string name="14" value="#fEtc/LevelUpGuide.img/Image/2_2#"/>
-<string name="15" value="\n퀘스트를 모두 완료하면 마지막으로 &quot;락 스피릿&quot;과의 대결을 펼치게 됩니다."/>
-<string name="16" value="#fEtc/LevelUpGuide.img/Image/2_3#"/>
-<string name="17" value="#b(락 스피릿을 처치하자!)"/>
-<string name="18" value="\n락 스피릿을 처치하고 악보를 얻어 효과음으로 나오는 연주를 잘 기억해 둡니다."/>
-<string name="19" value="작곡가 노마에게서 악보에서 들었던 노래를 찾아 알려주면 끝!"/>
-<string name="20" value="#fEtc/LevelUpGuide.img/Image/2_4#"/>
-<string name="21" value="다시 &quot;라나&quot;에게 돌아가면 혁이의 데뷔 무대에 대한 이야기를 들을 수 있습니다."/>
-<string name="22" value="#fEtc/LevelUpGuide.img/Image/2_5#"/>
-<string name="23" value="혁이에게 돌아가 대화를 걸면 보상과 함께 퀘스트가 최종 종료 됩니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="3">
-<string name="title" value="[정보]\n대륙 이동"/>
-<string name="message" value="이제 더 넓은 메이플 대륙으로 떠나볼까요?"/>
-<imgdir name="desc">
-<string name="0" value="메이플에는 다양한 대륙이 존재 합니다. 더 강한 몬스터와 흥미로운 이야기를 만나고 싶다면 다른 대륙으로 지금 바로 떠나보세요!"/>
-<string name="1" value="#fEtc/LevelUpGuide.img/Image/3_0#"/>
-<string name="2" value="대륙이동을 하기 위해서는 각 대륙에 위치한 정거장에서 대륙을 이동하는 이동수단을 이용해야 합니다."/>
-<string name="3" value="#fEtc/LevelUpGuide.img/Image/3_1#"/>
-<string name="4" value="\n#e★빅토리아 아일랜드 정거장#n"/>
-<string name="5" value="정거장 위치 : 포트로드"/>
-<string name="6" value="갈 수 있는 곳 : 에델슈타인/오르비스/에레브"/>
-<string name="7" value="\n#e★에레브의 정거장#n"/>
-<string name="8" value="정거장 위치 : 하늘 나루"/>
-<string name="9" value="갈 수 있는 곳 : 빅토라이 아일랜드/오르비스"/>
-<string name="10" value="\n#e★아쿠아로드의 길#n"/>
-<string name="11" value="정거장 위치 : 뾰족한 사각지대"/>
-<string name="12" value="갈 수 있는 곳 : 아랫마을 우물"/>
-<string name="13" value="정거장 위치 : 바다 나들목"/>
-<string name="14" value="갈 수 있는 곳 : 오르비스탑 "/>
-<string name="15" value="정거장 위치 : 아쿠아리움(돌고래)"/>
-<string name="16" value="갈 수 있는 곳 : 뾰족한 사각지대/백초마을/안개바다"/>
-<string name="17" value="\n#e★엘나스 산맥의 정거장#n"/>
-<string name="18" value="정거장 위치 : 오르비스 정거장"/>
-<string name="19" value="갈 수 있는 곳 : 빅토리아 아일랜드/루디브리엄/리프레/아리안트/무릉 도원/에레브/루디브리엄/에델슈타인"/>
-<string name="20" value="\n#e★리엔의 정거장#n"/>
-<string name="21" value="정거장 위치 : 펭귄 항구"/>
-<string name="22" value="갈 수 잇는 곳 : 빅토리아 아일랜드"/>
-<string name="23" value="\n#e★루더스호수의 정거장#n"/>
-<string name="24" value="정거장 위치 : 루디브리엄 정거장"/>
-<string name="25" value="갈 수 있는 곳 : 오르비스"/>
-<string name="26" value="\n#e★니할사막의 정거장#n"/>
-<string name="27" value="정거장 위치 : 아리안트 정거장"/>
-<string name="28" value="갈 수 있는 곳 : 오르비스"/>
-<string name="29" value="\n#e★무릉도원의 정거장#n"/>
-<string name="30" value="정거장 위치 : 무릉 사원"/>
-<string name="31" value="갈 수 있는 곳 : 무릉도원/오르비스"/>
-<string name="32" value="\n#e★미나르숲의 정거장#n"/>
-<string name="33" value="정거장 위치 : 리프레 정거장"/>
-<string name="34" value="갈 수 있는 곳 : 시간의 신전/오르비스"/>
-</imgdir>
-</imgdir>
-<imgdir name="4">
-<string name="title" value="[파티 퀘스트] 월묘의 떡(Lv 30~59)"/>
-<string name="message" value="어흥이에게 줄 월묘의 떡을 구하자!"/>
-<int name="npc" value="1012112"/>
-<imgdir name="desc">
-<string name="0" value="#b#m100000200##k의 #b#p1012112##k가 #b#p1012114##k에게 #r#t04001101##k을 구해줄 모험가들을  찾고 있다. 월묘가 있는 달맞이꽃 언덕으로 가자."/>
-<string name="1" value="\n1. 달맞이꽃 씨앗을 훔쳐 먹은 돼지들을 처치하고 씨앗을 되찾자."/>
-<string name="2" value="2. 정해진 위치에 씨앗을 심어 달맞이꽃 6개를 피우면 월묘가 나타난다."/>
-<string name="3" value="3. #r떡 10개#k를 다 만들 때까지 난폭한 동물들에게서 월묘를 안전하게 지켜주자."/>
-<string name="4" value="4. 어흥이가 나눠 준 떡을 토리에게 가져다 주면 선물을 받을 수 있다."/>
-<string name="5" value="\n#e-제한 시간#n : 10분"/>
-<string name="6" value="\n#e-참가 인원#n : 2~6 명"/>
-<string name="7" value="\n#e-이동 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="8" value="\n#e-특별 보상#n : "/>
-<string name="9" value="#b#i1003418:# #t1003418##k\n"/>
-<string name="10" value="#b#i1003419:# #t1003419##k\n"/>
-</imgdir>
-</imgdir>
-<imgdir name="5">
-<string name="title" value="[파티 퀘스트]\n첫번째 동행(Lv 50~69)"/>
-<string name="message" value="킹슬라임을 물리치자!"/>
-<int name="npc" value="9020000"/>
-<imgdir name="desc">
-<string name="0" value="#b#m103000000##k의 #b#p9020000##k가 용감한 모험가들을 기다리고 있다. #b차원의 거울#k을 통해 라케리스에게 가서 과제들을 풀어내고 #r#o9300003##k을 물리치자! "/>
-<string name="1" value="\n1단계 : 퀴즈의 정답 숫자만큼 통행증 구하기"/>
-<string name="2" value="2단계 : 다음 단계로 가는 밧줄 찾기"/>
-<string name="3" value="3단계 : 다음 단계로 가는 고양이 발판 찾기"/>
-<string name="4" value="4단계 : 커즈아이 모두 퇴치하기"/>
-<string name="5" value="5단계 : 킹슬라임 퇴치"/>
-<string name="6" value="\n#e-제한 시간#n : 20분"/>
-<string name="7" value="\n#e-참가 인원#n : 3~6 명"/>
-<string name="8" value="\n#e-이동 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="9" value="#e-특별 보상#n : "/>
-<string name="10" value=" #b#i1072533:# #t1072533# #k"/>
-<string name="11" value="\n#e★어떻게 시작하나요?"/>
-<string name="12" value="첫번째 동행 파티 퀘스트는 50레벨 이상의 유저 3명이 모여야 진행이 가능합니다. 마을에 위치한 차원의 거울이나 빠른 이동메뉴에서 &quot;첫번째 동행&quot;을 클릭하여 시작하세요."/>
-<string name="13" value="#fEtc/LevelUpGuide.img/Image/5_0#"/>
-<string name="14" value="#fEtc/LevelUpGuide.img/Image/5_1#"/>
-<string name="15" value="\n#e★클리어 방법!"/>
-<string name="16" value="첫번째 동행은 총 5단계로 구성되어 있으며, 마지막 킹슬라임을 처치하면 퀘스트가 완료됩니다. 각 파티원들이 주어진 미션을 완료하고 파티장이 클로토에게 말을 걸면 다음 스테이지를 진행할 수 있게 됩니다."/>
-<string name="17" value="\n#bTIP : 파티원과 파티장의 역할을 나누고 힘을 합쳐 퀴즈를 풀어보세요."/>
-</imgdir>
-</imgdir>
-<imgdir name="6">
-<string name="title" value="[파티 퀘스트]\n차원의 균열 (Lv 50~69)"/>
-<string name="message" value="차원의 균열으로 침입한 몬스터들을 막아라!"/>
-<int name="npc" value="2040034"/>
-<imgdir name="desc">
-<string name="0" value="#b#m220000000##k에 차원의 균열이 생겨났다! 이곳으로부터 침입한 몬스터들을 막아내려면 용감한 모험가들의 자발적인 도움이 절실하다. #b차원의 거울#k을 통해 균열이 생긴 곳으로 가자."/>
-<string name="1" value="\n1단계 : 라츠, 블랙라츠 완전 퇴치"/>
-<string name="2" value="2단계 : 문 안에 있는 몬스터 모두 퇴치"/>
-<string name="3" value="3단계 : 박스 위에 숨겨진 포탈 타고 올라가기"/>
-<string name="4" value="4단계 : 롬바드 퇴치"/>
-<string name="5" value="5단계 : 퀴즈 풀기"/>
-<string name="6" value="6단계 : 알리샤르 퇴치"/>
-<string name="7" value="\n#e-제한 시간#n : 20분"/>
-<string name="8" value="\n#e-참가 인원#n : 3~6 명"/>
-<string name="9" value="\n#e-이동 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="10" value="\n#e-특별 보상#n : "/>
-<string name="11" value=" #b#i1022073:# #t1022073# #k"/>
-</imgdir>
-</imgdir>
-<imgdir name="7">
-<string name="title" value="[파티 퀘스트]\n아이스나이트의 저주 (Lv 90~109)"/>
-<string name="message" value="아이스나이트의 저주에 걸린 준을 도와주자!"/>
-<int name="npc" value="2159018"/>
-<imgdir name="desc">
-<string name="0" value="#b#m932000000##k의 #b#p2159018##k이 #b#o9300442##k의 저주에 걸린 #b#p2159017##k을 도와 줄 모험가들을  찾고 있다. 차원의 거울을 통해 얼음 벌판으로 가보자."/>
-<string name="1" value="\n#e-제한 시간#n : 20분"/>
-<string name="2" value="\n#e-참가 인원#n : 3~6 명"/>
-<string name="3" value="\n#e-이동 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="4" value="\n#e-특별 보상#n : "/>
-<string name="5" value="#b#i1032100:# #t1032100##k\n#b#i1072510:# #t1072510##k\n"/>
-</imgdir>
-</imgdir>
-<imgdir name="8">
-<string name="title" value="[보스 컨텐츠]\n마왕 발록(Lv 45~200)"/>
-<string name="message" value="마왕 발록을 퇴치하자!"/>
-<int name="npc" value="1061014"/>
-<int name="naviField" value="105100000"/>
-<imgdir name="desc">
-<string name="0" value="오래 전 영웅 트리스탄은 마왕 발록을 저주받은 신전 밑바닥으로 떨어뜨렸다. 하지만 발록의 봉인은 완전하지 않았다. 사라지지 않은 발록의 힘! 마왕 발록을 퇴치하자."/>
-<string name="1" value="\n#e-원정대 참가 자격#n: 45~200 레벨"/>
-<string name="2" value="\n#e-참가 인원#n : 1인 이상의 발록 원정대"/>
-<string name="3" value="\n#e-이동 방법 $LVUPNVBT$#n"/>
-<string name="4" value="슬리피우드, 저주받은 신전 끝"/>
-<string name="5" value="\n#e-최종 보상#n"/>
-<string name="6" value="베인 아이템"/>
-<string name="7" value="\n#e★어떻게 시작하나요?#n"/>
-<string name="8" value="마왕 발록과의 대결을 펼치기 위해서는 &quot;발록의 신전 신전의 밑바닥&quot;까지 이동하셔야 합니다."/>
-<string name="9" value="#fEtc/LevelUpGuide.img/Image/8_0#"/>
-<string name="10" value="이동하기 위해서는 슬리피우드를 통해 직접 걸어오거나 페리온에 위치한 만지를 통해 이동이 가능합니다. 신전 밑바닥에 도착하면 &quot;무영&quot;과의 대화를 통해 발록의 제단으로 입장이 가능합니다."/>
-<string name="11" value="\n#e★원정대에 참가하세요!#n"/>
-<string name="12" value="#fEtc/LevelUpGuide.img/Image/8_1#"/>
-<string name="13" value="마왕 발록과의 대결을 펼치기 위해서는 1인 이상의 인원이 발록 원정대에 참가해야 합니다."/>
-<string name="14" value="\n#e★마왕 발록과의 대결!#n"/>
-<string name="15" value="마왕 발록과의 대결이 시작되면 스텟이 하향되고 3,4차 스킬을 사용할 수 없는 버프가 발동되게 됩니다. 이 버프는 해제가 불가능하니 참고하세요"/>
-<string name="16" value="\n#bTIP : 발록이 제단을 통해 HP를 회복하려고 하면 일반 공격으로 제단을 공격하세요."/>
-<string name="17" value="#bTIP : 공격력 반사 스킬이 발동되면 공격을 멈춰주세요. 이 때 공격을 계속하면 공격이 반사되어 피해를 입게됩니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="9">
-<string name="title" value="[테마던전]\n천상의 섬 크리세(Lv 55~70)"/>
-<string name="message" value="위기에 처한 거인족들을 구하자!"/>
-<int name="npc" value="2012018"/>
-<imgdir name="desc">
-<string name="0" value="오르비스 하늘 위 거인족이 살고 있는 섬 크리세에 이변이 생겼다. 미카엘라의 애완동물이었던 산양 크세르가 우연찮게 힘을 얻어 사악한 힘을 얻게 된 것이다. 위기에 처한 거인족들을 구하자."/>
-<string name="1" value="\n#e-추천 레벨#n : 55~70 레벨"/>
-<string name="2" value="\n#e-이동 방법 $LVUPNVBT$#n"/>
-<string name="3" value="\n오르비스 공원에서 에릭손을 통해 이동"/>
-<string name="4" value="\n#e-최종 보상#n"/>
-<string name="5" value="#i1142259##t1142259#"/>
-</imgdir>
-</imgdir>
-<imgdir name="10">
-<string name="title" value="[몬스터파크]\n어둠의 사원(Lv 60~69)"/>
-<string name="message" value="몬스터파크에서 몬스터들을 퇴치하자!"/>
-<int name="npc" value="9071000"/>
-<imgdir name="desc">
-<string name="0" value="#e-추천 레벨#n :  60~69 레벨, 몬스터파크 티켓 소지자"/>
-<string name="1" value="#e-이동 방법#n : 각 마을에 있는 몬스터파크 셔틀 및 빠른이동 메뉴"/>
-<string name="2" value="#e-최종 보상#n"/>
-<string name="3" value="슈피겔만의 뱃지함(몬스터파크 기념주화 30개 필요)"/>
-<string name="4" value="슈피겔만의 콧수염(몬스터파크 기념주화 50개 필요)"/>
-<string name="5" value="슈피겔만의 친필 사인(몬스터파크 기념주화 100개 필요)"/>
-<string name="6" value="슈피겔만의 열기구 7일 이용권(몬스터파크 기념 주화 70개 필요)"/>
-<string name="7" value="\n#e★몬스터파크란?#n"/>
-<string name="8" value="#fEtc/LevelUpGuide.img/Image/10_0#"/>
-<string name="9" value="몬스터파크란 &quot;슈피겔만&quot;이 메이플 월드를 돌며 수집한 몬스터들을 만날 수 있는 곳입니다. 파티를 맺고 몬스터들을 처치해나가면 추가 경험치와 몬스터파크만의 특별한 아이템을 획득 할 수 있습니다."/>
-<string name="10" value="\n#e★어떻게 시작하나요?#n"/>
-<string name="11" value="#fEtc/LevelUpGuide.img/Image/10_1#"/>
-<string name="12" value="#b(마을에 위치한 몬스터파크 셔틀을 이용하자)"/>
-<string name="13" value="\n몬스터파크에 입장하기 위해서는 각 마을에 있는 몬스터파크 셔틀을 이용하면 됩니다."/>
-<string name="14" value="몬스터파크에 입장하기 위해서는 입장 티켓이 필요한데, 이 입장 티켓은 일반 필드에서 몬스터를 사냥하면 나오는 &quot;티켓 조각&quot;을 모아 몬스터파크에 있는 메리에게 교환하여 획득 할 수 있습니다."/>
-<string name="15" value="또는 몬스터파크에 있는 메리에게서 직접 구입도 가능(티켓 종류와 상관없이 하루 5장만 가능)하니 참고하세요~."/>
-<string name="16" value="\n#fEtc/LevelUpGuide.img/Image/10_2#"/>
-<string name="17" value="#b(조각들을 모아 티켓으로 교환이 가능하다)"/>
-<string name="18" value="#fEtc/LevelUpGuide.img/Image/10_3#"/>
-<string name="19" value="#b(&quot;메리&quot;에게 조각을 가져다 주면 티켓으로 바꿔준다)"/>
-<string name="20" value="\n#e★파티를 맺으세요!#n"/>
-<string name="21" value="파티 찾기 단축키인 O키를 누르거나 채널에서 파티에 참가할 사람들을 모집해보세요."/>
-<string name="22" value="\n#e★몬스터파크 시작!#n"/>
-<string name="23" value="파티가 구성이 되었다면 이제 본격적인 몬스터파크를 시작할 수 있습니다. 몬스터파크 시작은 파티장만이 가능하며, 파티장이 원하는 던전을 선택하면 됩니다. "/>
-<string name="24" value="#fEtc/LevelUpGuide.img/Image/10_4#"/>
-<string name="25" value="#b(슈피겔만 옆에 위치한 포탈에서 던전 선택이 가능)"/>
-<string name="26" value="#fEtc/LevelUpGuide.img/Image/10_5#"/>
-<string name="27" value="#bTIP : 몬스터파크 내에서 몬스터들을 처치하고 얻은 &quot;몬스터파크 기념주화&quot;는 잡화상인 라쿠에게서 특별한 아이템으로 교환할 수 있으니 꼭 챙겨두세요~!"/>
-<string name="28" value="#fEtc/LevelUpGuide.img/Image/10_6#"/>
-</imgdir>
-</imgdir>
-<imgdir name="11">
-<string name="title" value="[전투 퀘스트]\n네트의 피라미드-노말(Lv 60~89)"/>
-<string name="message" value="예티 파라오에게 도전하라!"/>
-<int name="npc" value="2103013"/>
-<imgdir name="desc">
-<string name="0" value="오랫동안 모래사막 깊은 곳에 묻혀있던  복수의 신 #r네트의 피라미드#k가 지상으로 올라왔다. 피라미드로 가서 예티 파라오에게 도전해보자."/>
-<string name="1" value="\n#e-참가 인원#n : 4인 파티"/>
-<string name="2" value="\n#e-이동 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="3" value="\n#e-특별 보상 : "/>
-<string name="4" value="#b#i1132013:# #t1132013##k\n#b#i1132012:# #t1132012##k"/>
-<string name="5" value="\n#e★어떻게 시작하나요?"/>
-<string name="6" value="네트의 피라미드 파티 퀘스트는 60레벨 이상의 유저 4명이 모여야 진행이 가능합니다."/>
-<string name="7" value="먼저 아리안트 마을에 위치한 바이런에게서 &quot;의문의 피라미드를 찾아서..&quot;퀘스트를 받아 먼저 완료하셔야 합니다."/>
-<string name="8" value="#fEtc/LevelUpGuide.img/Image/11_0#"/>
-<string name="9" value="#b(아리안트 마을의 바이런을 만나 퀘스트를 진행하자)"/>
-<string name="10" value="\n퀘스트를 완료하셨다면 마을에 위치한 차원의 거울이나 빠른 이동메뉴에서 &quot;네트의 피라미드&quot;를 클릭하여 피라미드 문지기 두아트에게 말을 걸고 피라미드에 입장하시면 됩니다."/>
-<string name="11" value="#fEtc/LevelUpGuide.img/Image/11_1#"/>
-<string name="12" value="#b(빠른 이동 메뉴를 클릭하여 &quot;네트의 피라미드를 선택&quot;)"/>
-<string name="13" value="#fEtc/LevelUpGuide.img/Image/11_2#"/>
-<string name="14" value="#b(문지기 두아트에게 대화를 걸면 피라미드 입장)"/>
-<string name="15" value="\n#e★클리어 방법!"/>
-<string name="16" value="피라미드 안으로 입장하면, 각 스테이지 별로 1~4층의 맨 우측 통로에서 다양한 종류의 몬스터들이 소환됩니다."/>
-<string name="17" value="소환된 몬스터들은 네트신의 성물 오벨리스크를 파괴하기 위해 왼쪽으로 이동합니다. 몬스터들이 오벨리스크를 파괴하지 못하도록 저지하세요!"/>
-<string name="18" value="#fEtc/LevelUpGuide.img/Image/11_3#"/>
-<string name="19" value="#b(오벨리스크 타워를 지켜라!)"/>
-<string name="20" value="\n#e★다양한 효과의 눈 아이템을 사용하자!"/>
-<string name="21" value="소환된 몬스터들을 처치하면 포인트를 얻을 수 있습니다. 획득한 포인트로는 캐릭터를 강화하거나 몬스터에게 상태 이상 효과를 걸 수 있는 다양한 눈 아이템을 구입할 수 있습니다. "/>
-</imgdir>
-<int name="npcScale" value="85"/>
-<int name="addNpcY" value="10"/>
-</imgdir>
-<imgdir name="12">
-<string name="title" value="[몬스터파크]\n마녀의 설원 (Lv 70~79)"/>
-<string name="message" value="몬스터파크에서 몬스터들을 퇴치하자!"/>
-<int name="npc" value="9071000"/>
-<imgdir name="desc">
-<string name="0" value="#e-추천 레벨#n :  70~79 레벨, 몬스터파크 티켓 소지자"/>
-<string name="1" value="#e-이동 방법#n : 각 마을에 있는 몬스터파크 셔틀 및 빠른이동 메뉴"/>
-<string name="2" value="\n#e-최종 보상"/>
-<string name="3" value="슈피겔만의 뱃지함(몬스터파크 기념주화 30개 필요)"/>
-<string name="4" value="슈피겔만의 콧수염(몬스터파크 기념주화 50개 필요)"/>
-<string name="5" value="슈피겔만의 친필 사인(몬스터파크 기념주화 100개 필요)"/>
-<string name="6" value="슈피겔만의 열기구 7일 이용권(몬스터파크 기념 주화 70개 필요)"/>
-</imgdir>
-</imgdir>
-<imgdir name="13">
-<string name="title" value="[파티 퀘스트]\n여신의 흔적(Lv 70~99)"/>
-<string name="message" value="오르비스의 여신을 구하라!"/>
-<int name="npc" value="2013000"/>
-<imgdir name="desc">
-<string name="0" value="#b#m200000000##k의 여신을 구하기 위한 모험이 시작된다! #b차원의 거울#k을 통해 미네르바 여신의 탑으로 가자.  "/>
-<string name="1" value="\n휴게실 : 음악을 찾아 레코드판에 틀기"/>
-<string name="2" value="창고 : 차례차례 출현하는 샐리온 퇴치하기"/>
-<string name="3" value="산책로 : 픽시를 잡아 작은 조각 모으기"/>
-<string name="4" value="올라가는 길 : 정답 발판을 찾아 꼭대기로"/>
-<string name="5" value="여신상 복구 : 여신상 조각으로 복구하기"/>
-<string name="6" value="정원 : 파파픽시 퇴치"/>
-<string name="7" value="\n#e-제한 시간#n : 20분"/>
-<string name="8" value="\n#e-참가 인원#n : 3~6 명"/>
-<string name="9" value="\n#e-이동 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="10" value="\n#e-특별 보상#n : "/>
-<string name="11" value="#b#i01082232:# #t01082232##k\n"/>
-<string name="12" value="(#r파파픽시 드롭)"/>
-<string name="13" value=" #b#i01072455:# #t01072455##k\n"/>
-<string name="14" value="(#r파파픽시 드롭)"/>
-<string name="15" value="#b#i01082322:# #t01082322##k\n"/>
-<string name="16" value="(#r여신의 깃털 15개 필요)"/>
-<string name="17" value=" #b#i01072534:# #t01072534##k\n"/>
-<string name="18" value="(#r여신의 깃털 10개 필요)"/>
-</imgdir>
-<int name="npcScale" value="80"/>
-<int name="addNpcY" value="10"/>
-</imgdir>
-<imgdir name="14">
-<string name="title" value="[파티 퀘스트]\n로미오와 줄리엣(Lv 70~99)"/>
-<string name="message" value="비운의 커플을 만나러 가보자!"/>
-<int name="npc" value="2112018"/>
-<imgdir name="desc">
-<string name="0" value="#b#m261000000##k의 비운의 커플 #b#p2112004##k와 #b#p2112003##k. #b차원의 거울#k을 통해 로미오, 줄리엣을 만나고 제뉴미스트 학파와 알카드노 학파를 향한 음모를 파해쳐라!"/>
-<string name="1" value="\n1단계 : 연구실 내의  수상한 스위치 찾기"/>
-<string name="2" value="2단계 : 모든 몬스터 퇴치하기"/>
-<string name="3" value="3단계 : 수상한 액체를 비커에 모으기"/>
-<string name="4" value="4단계 : 어두운 연구실에 들어가 실험자료 찾기"/>
-<string name="5" value="5단계 : 몬스터를 퇴치한 후 수상한 스위치 찾기"/>
-<string name="6" value="6단계 : 맞는 발판을 찾아 위로 올라가기"/>
-<string name="7" value="7단계 : 프랑켄로이드 퇴치"/>
-<string name="8" value="\n#e-제한 시간#n : 20분"/>
-<string name="9" value="\n#e-참가 인원#n : 4 명"/>
-<string name="10" value="\n#e-이동 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="11" value="\n#e-특별 보상#n : "/>
-<string name="12" value="#b#i1122116:# #t1122116##k"/>
-<string name="13" value="#b#i1122117:# #t1122117##k"/>
-<string name="14" value="#b#i1122118:# #t1122118##k"/>
-</imgdir>
-</imgdir>
-<imgdir name="15">
-<string name="title" value="[파티 퀘스트]\n해적 데비존(Lv 100~129)"/>
-<string name="message" value="해적 데비존을 막아라!"/>
-<int name="npc" value="2094000"/>
-<imgdir name="desc">
-<string name="0" value="#b#m251000000##k에 #r해적 #o9300119##k이 습격해왔다! #b차원의 거울#k을 통해 도라지들의 왕, #b#p2094001##k이 잡혀간 곳으로 가자."/>
-<string name="1" value="\n#e-제한 시간#n :\n    1) 1단계 : 4분\n    2) 2단계 : 7분\n    3) 3단계 : 5분\n    4) 4단계 : 6분\n"/>
-<string name="2" value="\n#e-참가 인원#n : 3~6 명"/>
-<string name="3" value="\n#e-이동 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="4" value="\n#e-특별 보상#n : "/>
-<string name="5" value="#b#i1003267:# #t1003267##k"/>
-</imgdir>
-<int name="npcScale" value="80"/>
-</imgdir>
-<imgdir name="16">
-<string name="title" value="[파티 퀘스트]\n독안개의 숲(Lv 100~129)"/>
-<string name="message" value="오염된 엘린 숲을 구하자!"/>
-<int name="npc" value="2133000"/>
-<imgdir name="desc">
-<string name="0" value="#b핼리오스탑 101층, 망가진 시간의 문#k을 통해 갈 수 있는 과거의 시간. 엘린 숲의 요정이 오염된 숲을 구해줄 용사를 기다리고 있다. 하지만 과연... 과거의 역사에 개입해도 되는 걸까?"/>
-<string name="1" value="\n#e-제한 시간#n : 20분"/>
-<string name="2" value="\n#e-참가 인원#n : 3~5 명"/>
-<string name="3" value="\n#e-이동 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="4" value="\n#e-특별 보상#n : "/>
-<string name="5" value="#b#i1032101:# #t1032101##k"/>
-</imgdir>
-<int name="addNpcY" value="20"/>
-<int name="addNpcX" value="-5"/>
-</imgdir>
-<imgdir name="17">
-<string name="title" value="[몬스터파크]\n고요의 바다(Lv75~84)"/>
-<string name="message" value="몬스터파크에서 몬스터들을 퇴치하자!"/>
-<int name="npc" value="9071000"/>
-<imgdir name="desc">
-<string name="0" value="#e-추천 레벨#n :  75~84 레벨, 몬스터파크 티켓 소지자"/>
-<string name="1" value="#e-이동 방법#n : 각 마을에 있는 몬스터파크 셔틀 및 빠른이동 메뉴"/>
-<string name="2" value="\n#e-최종 보상#n"/>
-<string name="3" value="슈피겔만의 뱃지함(몬스터파크 기념주화 30개 필요)"/>
-<string name="4" value="슈피겔만의 콧수염(몬스터파크 기념주화 50개 필요)"/>
-<string name="5" value="슈피겔만의 친필 사인(몬스터파크 기념주화 100개 필요)"/>
-<string name="6" value="슈피겔만의 열기구 7일 이용권(몬스터파크 기념 주화 70개 필요)"/>
-</imgdir>
-</imgdir>
-<imgdir name="18">
-<string name="title" value="[몬스터파크]\n까막산 고개(Lv 80~89)"/>
-<string name="message" value="몬스터파크에서 몬스터들을 퇴치하자!"/>
-<int name="npc" value="9071000"/>
-<imgdir name="desc">
-<string name="0" value="#e-추천 레벨#n :  80~89 레벨, 몬스터파크 티켓 소지자"/>
-<string name="1" value="#e-이동 방법#n : 각 마을에 있는 몬스터파크 셔틀 및 빠른이동 메뉴"/>
-<string name="2" value="\n#e-최종 보상#n"/>
-<string name="3" value="슈피겔만의 뱃지함(몬스터파크 기념주화 30개 필요)"/>
-<string name="4" value="슈피겔만의 콧수염(몬스터파크 기념주화 50개 필요)"/>
-<string name="5" value="슈피겔만의 친필 사인(몬스터파크 기념주화 100개 필요)"/>
-<string name="6" value="슈피겔만의 열기구 7일 이용권(몬스터파크 기념 주화 70개 필요)"/>
-</imgdir>
-</imgdir>
-<imgdir name="19">
-<string name="title" value="[경쟁 컨텐츠]\n몬스터 카니발(Lv 110~130)"/>
-<string name="message" value="진정한 강자들의 축제에 참가하라!"/>
-<int name="npc" value="9071000"/>
-<imgdir name="desc">
-<string name="0" value="진정한 강자들의 축제, 몬스터 카니발! 몬스터를 사냥하면 얻는 CP를 #b#e7#n#k분 안에 많이 얻는 파티가 승리한다."/>
-<string name="1" value="\n#e-참여 조건#n :  80~200 레벨"/>
-<string name="2" value="\n#e-제한 시간#n : 7분"/>
-<string name="3" value="\n#e-이동 방법#n : 매 15분, 45분 마다 도착한 몬스터 카니발 초대장을 클릭하여 이동 가능"/>
-<string name="4" value="\n#e-최종 보상#n"/>
-<string name="5" value="#b#i1122162:# #t1122162##k"/>
-<string name="6" value="#r(#t4001254# 100개 필요)#n"/>
-<string name="7" value="#b#i1102327:# #t1102327##k"/>
-<string name="8" value="\n#e★몬스터 카니발이란?#n"/>
-<string name="9" value="몬스터 카니발은 6:6 으로 파티를 구성하여 대결을 펼치는 모드입니다."/>
-<string name="10" value="7분간 필드에 등장하는 몬스터를 처치하여 결과적으로 많은 CP(카니발 포인트)를 획득하는 팀이 승리하게 됩니다."/>
-<string name="11" value="\n#e★어떻게 시작하나요?#n"/>
-<string name="12" value="몬스터 카니발에 입장하기 위해서는 15분,45분 마다 날아오는 슈피겔만의 초대장을 클릭하여 초대에 응하면 됩니다."/>
-<string name="13" value="#fEtc/LevelUpGuide.img/Image/19_0#"/>
-<string name="14" value="#fEtc/LevelUpGuide.img/Image/19_1#"/>
-<string name="15" value="\n#e★몬스터 카니발 시작!#n"/>
-<string name="16" value="초대장에 응하게 되면 카니발 필드 &lt;대기실&gt;로 이동합니다. 1 분 뒤에 자동으로 파티가 맺어지고, 카니발 필드로 이동합니다. 카니발 필드에서 쏟아지는 몬스터를 잡아 CP를 모으고, 모은 CP로 몬스터를 소환하거나, 스킬을 사용할 수 있습니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="20">
-<string name="title" value="[몬스터파크]\n그레이의 은신처(Lv 85~94)"/>
-<string name="message" value="몬스터파크에서 몬스터들을 퇴치하자!"/>
-<int name="npc" value="9071000"/>
-<imgdir name="desc">
-<string name="0" value="#e-추천 레벨#n :  85~94 레벨, 몬스터파크 티켓 소지자"/>
-<string name="1" value="#e-이동 방법#n : 각 마을에 있는 몬스터파크 셔틀 및 빠른이동 메뉴"/>
-<string name="2" value="\n#e-최종 보상#n"/>
-<string name="3" value="슈피겔만의 뱃지함(몬스터파크 기념주화 30개 필요)"/>
-<string name="4" value="슈피겔만의 콧수염(몬스터파크 기념주화 50개 필요)"/>
-<string name="5" value="슈피겔만의 친필 사인(몬스터파크 기념주화 100개 필요)"/>
-<string name="6" value="슈피겔만의 열기구 7일 이용권(몬스터파크 기념 주화 70개 필요)"/>
-</imgdir>
-</imgdir>
-<imgdir name="21">
-<string name="title" value="[파티 퀘스트]\n네트의 피라미드-하드(Lv 90~109)"/>
-<string name="message" value="예티 파라오에게 도전하라!"/>
-<int name="npc" value="2103013"/>
-<imgdir name="desc">
-<string name="0" value="오랫동안 모래사막 깊은 곳에 묻혀있던  복수의 신 #r네트의 피라미드#k가 지상으로 올라왔다. 피라미드로 가서 예티 파라오에게 도전해보자."/>
-<string name="1" value="\n#e-참가 인원#n : 4인 파티"/>
-<string name="2" value="\n#e-이동 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="3" value="\n#e-특별 보상#n : "/>
-<string name="4" value="#b#i1132013:# #t1132013##k\n#b#i1132012:# #t1132012##k"/>
-</imgdir>
-<int name="addNpcY" value="10"/>
-<int name="npcScale" value="85"/>
-</imgdir>
-<imgdir name="22">
-<string name="title" value="[테마던전]\n엘린숲(Lv 95~105)"/>
-<string name="message" value="과거로 신비한 여행을 떠나보자!"/>
-<int name="npc" value="9071000"/>
-<int name="naviField" value="222020400"/>
-<imgdir name="desc">
-<string name="0" value="슈피겔만이 한 가지 재미있는 소식을 알려준다. 동심을 지키기 위해 시간이 멈춘, 장난감 성과 루디브리엄의 시계탑 중 한 곳이 고장이 나 과거로 갈 수 있게 되었다는데… 지금 당장 헬리오스탑으로 가 과거로 신비한 여행을 떠나보자."/>
-<string name="1" value="\n#e-추천 레벨#n : 95~105 레벨"/>
-<string name="2" value="\n#e-이동 방법 $LVUPNVBT$#n"/>
-<string name="3" value="헬리오스탑 101층, 망가진 시간의 문"/>
-<string name="4" value="\n#e-최종 보상#n"/>
-<string name="5" value="엘린숲의 수호자(칭호)"/>
-</imgdir>
-</imgdir>
-<imgdir name="23">
-<string name="title" value="[보스 컨텐츠]\n자쿰(Lv 50~200)"/>
-<string name="message" value="자쿰을 물리치고 지하의 일족을 구하자!"/>
-<int name="npc" value="2030013"/>
-<imgdir name="desc">
-<string name="0" value="엘나스 폐광 지하 깊은 곳, 사악한 힘에 의해 변해버린 자쿰 나무로 인해 사람들이 숭배하던 석상은 공포의 대상으로 변해버렸다. 자쿰을 물리쳐 지하의 일족을 구원하라."/>
-<string name="1" value="\n#e-원정대 참가 자격#n"/>
-<string name="2" value="1) 일반 모드 : 50레벨 이상"/>
-<string name="3" value="2) 카오스 모드 : 100레벨 이상"/>
-<string name="4" value="\n#e-참가 인원#n : 1인 이상의 자쿰 원정대"/>
-<string name="5" value="\n#e-이동 방법 $LVUPNVBT$#n"/>
-<string name="6" value="엘나스 폐광 깊은 곳으로"/>
-<string name="7" value="\n#e-최종 보상#n"/>
-<string name="8" value="#i1002357# #t1002357#"/>
-</imgdir>
-</imgdir>
-<imgdir name="24">
-<string name="title" value="[테마 던전]\n사자왕의 성 (Lv 110~125)"/>
-<string name="message" value="사자왕의 성에 걸린 봉인을 풀자!"/>
-<int name="npc" value="2161002"/>
-<imgdir name="desc">
-<string name="0" value="크로스헌터 요원 비스트가 편지를 보냈다. 엘나스에 위치한 사자왕의 성에서 차디찬 공포와 어둠의 기운이 느껴지지만, 몇 가지 봉인으로 인해 조사에 어려움이 따른다고 한다. 사자왕의 성에 걸린 봉인을 풀고, 어둠의 기운을 물리치자."/>
-<string name="1" value="\n#e-추천 레벨#n : 110~125 레벨"/>
-<string name="2" value="\n#e-이동 방법 $LVUPNVBT$#n"/>
-<string name="3" value="메이플 우체통에서 &quot;적막한 고성 &quot; 편지 확인 "/>
-<string name="4" value="\n#e-최종 보상#n"/>
-<string name="5" value="루덴의 마스터리 북,영원한 충정"/>
-</imgdir>
-</imgdir>
-<imgdir name="25">
-<string name="title" value="[파티 퀘스트]\n드래곤 라이더 (Lv 120~200)"/>
-<string name="message" value="드래곤 라이더의 정체를 밝혀라!"/>
-<int name="npc" value="2085000"/>
-<imgdir name="desc">
-<string name="0" value="#b차원의 거울#k을 통해 #b&lt;천공의 문&gt;#k으로 가서 #r드래곤 라이더#k의 정체를 알아보자. #b플라잉#k스킬로 하늘을 날아 와이번을 물리치며 쫓아가면 그를 발견할 수 있을것이다."/>
-<string name="1" value="\n#e-참가 자격#n : 플라잉 스킬 습득"/>
-<string name="2" value="\n#e-제한 시간#n : 20분"/>
-<string name="3" value="\n#e-참가 인원#n : 3~6 명"/>
-<string name="4" value="\n#e-이동 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="5" value="\n#e-특별 보상#n : "/>
-<string name="6" value="#b#i2430376:# #t2430376##k\n"/>
-<string name="7" value="#b#i2430377:# #t2430377##k\n"/>
-<string name="8" value="#b#i2430379:# #t2430379##k\n"/>
-<string name="9" value="#b#i2430378:# #t2430378##k\n"/>
-<string name="10" value="#b#i2430380:# #t2430380##k\n"/>
-</imgdir>
-</imgdir>
-<imgdir name="26">
-<string name="title" value="[파티 퀘스트]\n위험에 빠진 켄타 (Lv 140~200)"/>
-<string name="message" value="위험에 빠진 켄타를 도와주자!"/>
-<int name="npc" value="9020003"/>
-<imgdir name="desc">
-<string name="0" value="#b#m923040000##k의 #b#p9020003##k가 위험에 빠진 #b켄타#k를 도와 줄 모험가들을  찾고 있다. 차원의 거울을 통해 위험한 바다 갈림길로 가보자."/>
-<string name="1" value="\n1. 켄타를 위협하는 난폭해진 몬스터들을 모두 물리쳐야 한다."/>
-<string name="2" value="2. 산소가 부족한 켄타를 위해 몬스터를 처치하고 공기방울 20개를 구하자."/>
-<string name="3" value="3. 난폭해진 바다생물들로부터 3분 동안 켄타를 지켜야 한다."/>
-<string name="4" value="4. 위험한 동굴 안의 피아누스를 처치해서 켄타의 조사를 도와야 한다"/>
-<string name="5" value="\n#e-제한 시간#n : 20분"/>
-<string name="6" value="\n#e-참가 인원#n : 3~6 명"/>
-<string name="7" value="\n#e-이동 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="8" value="\n#e-특별 보상#n : "/>
-<string name="9" value="#b#i1022123:# #t1022123##k\n"/>
-</imgdir>
-<int name="npcScale" value="80"/>
-<int name="addNpcY" value="50"/>
-</imgdir>
-<imgdir name="27">
-<string name="title" value="[파티 퀘스트]\n탈출 (Lv 120~250)"/>
-<string name="message" value="공중 감옥에 갇혀 있는 사람들을 구출하자!"/>
-<int name="npc" value="9020005"/>
-<imgdir name="desc">
-<string name="0" value="#b#m921160000##k의 #b젠#k이 숨겨진 탑의 공중 감옥에 갇혀 있는 사람들을 구해줄 모험가들을  찾고 있다."/>
-<string name="1" value="\n1. 장애물을 피해 탑을 벗어나야 한다."/>
-<string name="2" value="2. 맵 내의 모든 경비병들을 제거해야 한다."/>
-<string name="3" value="3. 감옥으로의 접근을 막기 위해 만든 미로를 벗어나야 한다."/>
-<string name="4" value="4. 문을 지키고 있는 경비병을 모두 처치해야 한다."/>
-<string name="5" value="5. 공중감옥으로 가는 마지막 장애물을 통과해야 한다."/>
-<string name="6" value="6. 경비병을 처치하고 감옥 열쇠를 되찾아 감옥문을 열어야 한다."/>
-<string name="7" value="7. 교도관 아니를 되찾고 갇혀있던 이들에게 자유를 되찾아 줘야 한다."/>
-<string name="8" value="\n#e-제한 시간#n : 20분"/>
-<string name="9" value="\n#e-참가 인원#n : 3~6 명"/>
-<string name="10" value="\n#e-이동 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="11" value="\n#e-특별 보상#n : "/>
-<string name="12" value="#b#i1132094:# #t1132094##k\n"/>
-<string name="13" value="#b#i1132095:# #t1132095##k\n"/>
-<string name="14" value="#b#i1132096:# #t1132096##k\n"/>
-<string name="15" value="#b#i1132097:# #t1132097##k\n"/>
-</imgdir>
-</imgdir>
-<imgdir name="28">
-<string name="title" value="[파티 퀘스트]\n호브 제왕의 부활 (Lv 150~250)"/>
-<string name="message" value="드래곤 라이더의 정체를 밝혀라!"/>
-<int name="npc" value="2022005"/>
-<imgdir name="desc">
-<string name="0" value="호브의 제왕 #r#o9300281##k를 봉인했던 봉인석의 힘이 점점 약해지고 있다. 더 큰 위험이 다가오기 전에 #b차원의 거울#k을 통해 #b#p2022005##k를 만나 자세한 이야기를 듣자."/>
-<string name="1" value="\n#e-제한 시간#n : 20분"/>
-<string name="2" value="\n#e-참가 인원#n : 2~6 명"/>
-<string name="3" value="\n#e-이동 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="4" value="\n#e-특별 보상#n : "/>
-<string name="5" value="#b#i1032102:# #t1032102##k\n"/>
-<string name="6" value="#b#i1032103:# #t1032103##k\n"/>
-<string name="7" value="#b#i1032104:# #t1032104##k\n"/>
-<string name="8" value="#b#i1902048:# #t1902048##k"/>
-</imgdir>
-</imgdir>
-<imgdir name="29">
-<string name="title" value="[경쟁 컨텐츠]\n안개바다의 유령선 (Lv 120~159)"/>
-<string name="message" value="유령선에서 치열한 대결을 펼쳐보자!"/>
-<int name="npc" value="2060103"/>
-<imgdir name="desc">
-<string name="0" value="2개 파티가 입장하여 #b보다 빠르게 보스맵에 도달하여, 먼저 보스를 격파#k하는 파티가 승리하게 되는 #b#e파티간 경쟁 레이드#n#k에 참여해보자."/>
-<string name="1" value="\n#e-참여 조건#n : 3명의 120 레벨~ 159레벨 파티"/>
-<string name="2" value="\n#e-이동 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="3" value="\n#e-최종 보상#n"/>
-<string name="4" value="#b#i1102227# #t1102227##k\n"/>
-<string name="5" value="유령선 함장에게서 획득 가능\n"/>
-<string name="6" value="(#t4001533# 100개,\n#t1102227# 필요)\"/>
-<string name="7" value="#b#i1082400# #t1082400##k\n#r(#t4001533# 100개 필요)"/>
-<string name="8" value="\n#e★안개바다의 유령선?#n"/>
-<string name="9" value="안개바다의 유령선은 6명의 유저가 3:3으로 파티를 구성하여 대결을 펼치는 모드입니다."/>
-<string name="10" value="제한 시간 내에 보스 몬스터를 처치하는 팀이 승리하게 됩니다"/>
-<string name="11" value="\n#e★어떻게 시작하나요?#n"/>
-<string name="12" value="안개바다의 유령선을 시작하려면 먼저 무릉도원 백초마을의 &quot;황선장&quot;에게서 &quot;안개바다에 떠도는 소문&quot; 퀘스트를 진행하여야 합니다."/>
-<string name="13" value="#fEtc/LevelUpGuide.img/Image/29_0#"/>
-<string name="14" value="퀘스트를 완료하면 각 마을의 차원의 거울을 이용하거나 무릉도원 백초마을의 &quot;돌고래 택시&quot;로 가서 안개바다에 위치한 유령선으로 이동할 수 있습니다."/>
-<string name="15" value="#fEtc/LevelUpGuide.img/Image/29_1#"/>
-<string name="16" value="\n#e★파티를 맺으세요!#n"/>
-<string name="17" value="안개바다의 유령선은 파티로만 진행이 가능하기 때문에 파티 맺기는 필수 입니다. 파티 찾기 단축키인 O키를 누르거나 채널에서 파티에 참가할 사람들을 모집해보세요."/>
-<string name="18" value="\n#e★안개바다의 유령선 대결!#n"/>
-<string name="19" value="파티가 구성이 되었다면 이제 본격적인 안개바다의 유령선 대결을 시작할 수 있습니다. 파티장이 노링턴에게 말을 걸어 방을 개설하고 상대팀을 맞이하면 게임이 시작됩니다."/>
-<string name="20" value="마지막 유령선 함정을 처치하기 까지 총 6단계의 스테이지로 구성되어 있습니다. 파티원들과 협동하여 스테이지를 빠르게 클리어해가며 최종 유령선 함장을 먼저 처치하면 대결에서 승리하게 됩니다."/>
-<string name="21" value="#fEtc/LevelUpGuide.img/Image/29_2#"/>
-</imgdir>
-</imgdir>
-<imgdir name="30">
-<string name="title" value="[보스 컨텐츠]\n사자왕 반 레온(Lv 120~200)"/>
-<string name="message" value="사자왕 반 레온을 물리쳐라!"/>
-<int name="npc" value="2161000"/>
-<int name="naviField" value="211060000"/>
-<imgdir name="desc">
-<string name="0" value="복수를 위해 검은 마법사에게 영혼을 판 남자, 사자왕 반 레온이 부활했다. 반 레온을 물리쳐라!"/>
-<string name="1" value="\n#e-원정대 참가 자격#n : 120~200 레벨"/>
-<string name="2" value="\n#e-참가 인원#n : 1인 이상의 반 레온 원정대"/>
-<string name="3" value="\n#e-이동 방법 $LVUPNVBT$#n"/>
-<string name="4" value="엘나스에서 사자왕의 성으로"/>
-<string name="5" value="\n#e-최종 보상#n"/>
-<string name="6" value="반 레온 아이템 세트"/>
-</imgdir>
-<int name="npcScale" value="80"/>
-<int name="addNpcY" value="10"/>
-</imgdir>
-<imgdir name="31">
-<string name="title" value="[보스 컨텐츠]\n피아누스 (Lv 120~200)"/>
-<string name="message" value="바다 속 피아누스를 퇴치 하라!"/>
-<int name="npc" value="2060101"/>
-<imgdir name="desc">
-<string name="0" value="아쿠아리움 심해 깊은 곳, 바위에 갇혀 움직일 수 없지만 그렇기에 오히려 더 포악한 횡포를 부리는 피아누스라는 몬스터가 존재한다. 피아누스를 퇴치하자."/>
-<string name="1" value="\n#e-원정대 참가 자격#n : 120~200 레벨"/>
-<string name="2" value="\n#e-참가 인원#n : 솔로, 혹은 파티"/>
-<string name="3" value="\n#e-이동 방법 $LVUPNVBT$#n"/>
-<string name="4" value="심해 위험한 동굴 깊은 곳"/>
-</imgdir>
-</imgdir>
-<imgdir name="32">
-<string name="title" value="[보스 컨텐츠]\n혼테일(Lv 110~200)"/>
-<string name="message" value="용족의 배신자 혼테일을 물리치자!"/>
-<int name="npc" value="2081006"/>
-<imgdir name="desc">
-<string name="0" value="오랫동안 미나르 숲에서 살아온 용족의 배신자, 혼테일을 물리치고 나인스피릿의 알을 구해라."/>
-<string name="1" value="\n#e-원정대 참가 자격#n"/>
-<string name="2" value="1) 일반 모드 : 80레벨 이상"/>
-<string name="3" value="2) 카오스 모드 : 110레벨 이상"/>
-<string name="4" value="\n#e-참가 인원#n : 혼테일 원정대, 카오스 혼테일 원정대"/>
-<string name="5" value="\n#e-이동 방법 $LVUPNVBT$#n"/>
-<string name="6" value="위험한 둥지 밑 생명의 동굴로"/>
-<string name="7" value="\n#e-최종 보상#n"/>
-<string name="8" value="#i1122000# #t1122000#"/>
-</imgdir>
-</imgdir>
-<imgdir name="33">
-<string name="title" value="[테마 던전]\n네오시티 (Lv 125~135)"/>
-<string name="message" value="앤디를 도와 뒤틀린 시간을 바로잡자!"/>
-<int name="npc" value="2082004"/>
-<imgdir name="desc">
-<string name="0" value="과거의 오류를 바로잡기 위해 2503년의 네오시티에서 온 시간여행자 앤디. 하지만 시간여행에 실패해 버린 그는 미나르숲에 떨어지고 말았다. 앤디를 도와 뒤틀린 시간을 바로잡자"/>
-<string name="1" value="\n#e-추천 레벨#n : 125~135 레벨"/>
-<string name="2" value="\n#e-이동 방법 $LVUPNVBT$#n"/>
-<string name="3" value="리프레에서 동쪽으로 걸어서 이동"/>
-<string name="4" value="\n#e-최종 보상#n"/>
-<string name="5" value="#i1003039##t1003039#"/>
-</imgdir>
-</imgdir>
-<imgdir name="34">
-<string name="title" value="[보스 컨텐츠]\n파풀라투스(Lv 130~200)"/>
-<string name="message" value="파풀라투스를 퇴치하자!"/>
-<int name="npc" value="2041023"/>
-<imgdir name="desc">
-<string name="0" value="루디브리엄의 시계탑 깊은 곳에 시간에 구멍이 생기고 말았다. 차원의 균열을 틈타 다른 세계에서 넘어온 위험한 몬스터, 파풀라투스를 퇴치하자."/>
-<string name="1" value="\n#e-원정대 참가 자격#n : 130~200 레벨"/>
-<string name="2" value="\n#e-참가 인원#n : 솔로, 혹은 파티"/>
-<string name="3" value="\n#e-이동 방법 $LVUPNVBT$#n"/>
-<string name="4" value="시계탑 지하 깊은 곳으로"/>
-</imgdir>
-</imgdir>
-<imgdir name="35">
-<string name="title" value="[몬스터파크]\n자동 경비 구역 (Lv 135~144)"/>
-<string name="message" value="몬스터파크에서 몬스터들을 퇴치하자!"/>
-<int name="npc" value="9071000"/>
-<imgdir name="desc">
-<string name="0" value="#e-추천 레벨#n :  135~144 레벨, 몬스터파크 티켓 소지자"/>
-<string name="1" value="#e-이동 방법#n : 각 마을에 있는 몬스터파크 셔틀 및 빠른이동 메뉴"/>
-<string name="2" value="\n#e-최종 보상#n"/>
-<string name="3" value="슈피겔만의 뱃지함(몬스터파크 기념주화 30개 필요)"/>
-<string name="4" value="슈피겔만의 콧수염(몬스터파크 기념주화 50개 필요)"/>
-<string name="5" value="슈피겔만의 친필 사인(몬스터파크 기념주화 100개 필요)"/>
-<string name="6" value="슈피겔만의 열기구 7일 이용권(몬스터파크 기념 주화 70개 필요)"/>
-</imgdir>
-</imgdir>
-<imgdir name="36">
-<string name="title" value="[연속 퀘스트]\n크로스헌터(Lv 75~160)"/>
-<string name="message" value="크로스헌터에 도전하라!"/>
-<int name="npc" value="9073000"/>
-<imgdir name="desc">
-<string name="0" value="블랙윙의 하수인의 습격을 받고 부상을 당한 #b셰릴#k에게 S.O.S 요청이 들어왔다. 지금 당장 #b커닝시티의 지하철#k로 가서 위기에 빠진 셰릴을 구해주자."/>
-<string name="1" value="\n#e-추천 레벨#n : 75~160 레벨"/>
-<string name="2" value="\n#e-시작 방법#n : "/>
-<string name="3" value="S.O.S 요청 퀘스트 시작 후 커닝시티 지하철 매표소\n#b&quot;정비 중인 지하철&quot;#k로 이동"/>
-<string name="4" value="\n#eChapter1 헌터의 자격#n"/>
-<string name="5" value="-타이머(Lv75)처치"/>
-<string name="6" value="-제노(Lv78)처치"/>
-<string name="7" value="-데우(Lv80)처치"/>
-<string name="8" value="-선인인형(Lv86)처치"/>
-<string name="9" value="-디트와 로이(Lv96)처치"/>
-<string name="10" value="\n\n#eChapter2 헌터의 증명#n"/>
-<string name="11" value="-요괴 지네(Lv100)처치"/>
-<string name="12" value="-마스터 호브(Lv106)처치"/>
-<string name="13" value="-마스터 하프(Lv113)처치"/>
-<string name="14" value="-마스터 버크(Lv117)처치"/>
-<string name="15" value="-켄타우로스킹(Lv119)처치"/>
-<string name="16" value="\n#eChapter3 끝없는 헌터의 길#n"/>
-<string name="17" value="-키메라(Lv120)처치"/>
-<string name="18" value="-마뇽(Lv125)처치"/>
-<string name="19" value="-그리프(Lv130)처치"/>
-<string name="20" value="-파풀라투스(Lv135)처치"/>
-<string name="21" value="-리치(Lv140)처치"/>
-<string name="22" value="\n\n\n#eChapter4 전설의 헌터#n"/>
-<string name="23" value="-피아누스(Lv140)처치"/>
-<string name="24" value="-레비아탄(Lv145)처치"/>
-<string name="25" value="-도도(Lv150)처치"/>
-<string name="26" value="-릴리노흐(Lv155)처치"/>
-<string name="27" value="-라이카(Lv160)처치"/>
-</imgdir>
-</imgdir>
-<imgdir name="37">
-<string name="title" value="[전투 컨텐츠]\n무릉 도장(Lv 90~200)"/>
-<string name="message" value="당신의 실력을 시험해 보고 싶은가?"/>
-<int name="npc" value="2091005"/>
-<int name="naviField" value="250000100"/>
-<imgdir name="desc">
-<string name="0" value="강함을 시험해보고 싶은가? 새로운 도전을 원하는가? 그렇다면 #b무릉도장#k에 있는 #b소공#k를 찾아가보자."/>
-<string name="1" value="\n#e-추천 레벨#n : 90~200 레벨"/>
-<string name="2" value="\n#e-이동 방법 $LVUPNVBT$#n"/>
-<string name="3" value="각 마을에 있는 차원의 거울"/>
-<string name="4" value="\n#e&lt;하드모드 보상&gt;#b#n"/>
-<string name="5" value="SS등급 :#i1022135:# #t1022135#"/>
-<string name="6" value="S등급 :#i1022136:# #t1022135#"/>
-<string name="7" value="A등급 :#i2022957:# #t2022957#"/>
-<string name="8" value="B등급 :#i2001505:# #t2001505#"/>
-<string name="9" value="\n\n#e&lt;랭킹모드 보상&gt;#b#n"/>
-<string name="10" value="1등 :#i1082392:# #t1082392#"/>
-<string name="11" value="2등 :#i1082393:# #t1082393#"/>
-<string name="12" value="3등 :#i1082394:# #t1082394#"/>
-<string name="13" value="\n#e&lt;무공의 증표 보상&gt;#b#n"/>
-<string name="14" value="#i1132112:# #t1132112# #r(#t4001620# 25개 필요)#b"/>
-<string name="15" value="#i1132113:# #t1132113# #r(#t4001620# 50개 필요)#b"/>
-<string name="16" value="#i1132114:# #t1132114# #r(#t4001620# 100개 필요)#b"/>
-<string name="17" value="#i1132115:# #t1132115# #r(#t4001620# 125개 필요)#b"/>
-<string name="18" value="\n#e★무릉 도장이란?"/>
-<string name="19" value="나의 강함을 증명해 보고 싶으신가요? 그렇다면 지금 당장 무릉 도장으로 가보세요! 다양한 보스 몬스터와의 테스트를 통해 나의 실력을 검증할 수 있습니다."/>
-<string name="20" value="\n#e★어떻게 시작하나요?"/>
-<string name="21" value="무릉 도장은 무릉사원에 위치하고 있습니다. 무릉 도장에 입장하고 싶다면 무릉사원에 있는 무릉 도장 공고문이나 각 마을에 위치한 차원의 거울을 통해 입장할 수 있습니다."/>
-<string name="22" value="\n#e★소공의 테스트"/>
-<string name="23" value="무릉 도장에 도전하게 되면 먼저 무릉 도장을 지키고 있는 소공과 대결을 펼쳐야 합니다. 소공과의 대결에서 승리하면 비로서 본격적인 무릉 도장에 도전할 수 있습니다."/>
-<string name="24" value="\n#e★도전! 무릉 도장"/>
-<string name="25" value="무릉도장은 노말/하드/랭킹 총 3개의 난이도로 구성되어 있습니다. 90레벨 이상이면 노말 모드, 120레벨 이상이면 하드 모드, 130레벨이면 랭킹 모드에 도전할 수 있습니다. "/>
-<string name="26" value="하드 모드에서는 플레이에 따라 무릉 점수를 쌓을 수 있으며, 일주일 동안 누적한 무릉 점수에 따라 등급이 책정되어, 이 등급에 따라 특별한 보상을 받을 수 있습니다."/>
-<string name="27" value="\n#e★무릉 도장의 특징"/>
-<string name="28" value="1.무릉 도장 전용 물약만 사용 가능"/>
-<string name="29" value="무릉 도장에서는 일반 물약을 사용하실 수 없습니다. 무릉도장에서 등장하는 몬스터들을 잡으면 전용 물약을 얻을 수 있는데 줍는 즉시 물약 효과가 발동되니 물약을 적절히 줍는 것이 중요합니다. "/>
-<string name="30" value="\n2.보스몬스터 처치 시 버프 획득"/>
-<string name="31" value="보스 몬스터를 처치하면 10종류의 버프 아이템이 떨어집니다. 이중 하나를 선택하여 획득하면 해당 버프 효과가 발동됩니다. 하나를 선택하면 나머지 버프 아이템들을 사라지니 신중하게 선택하세요."/>
-<string name="32" value="\n3.필살기를 받아랏!"/>
-<string name="33" value="무릉도장에서는 3가지 특별 스킬을 사용할 수 있습니다. 왼쪽 상단에 위치한 필살기 게이지를 모두 모으면 커맨드를 입력하여 필살기 사용이 가능합니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="38">
-<string name="title" value="[테마 던전]\n황금사원(Lv 115~125)"/>
-<string name="message" value="위기에 빠진 황금사원을 구하라!"/>
-<int name="npc" value="9000074"/>
-<imgdir name="desc">
-<string name="0" value="관광객들로 붐비던 황금사원이 사나워진 원숭이들로 인해 황폐해지고 말았다. 더군다나 사원을 지키는 승려들마저 하나 둘씩 사라지기 시작하는데… 지금 당장 위기에 빠진 황금사원을 구하러 떠나보자."/>
-<string name="1" value="\n#e-추천 레벨#n : 115~125 레벨"/>
-<string name="2" value="\n#e-이동 방법#n"/>
-<string name="3" value="&quot;승려 노이의 청언&quot; 퀘스트 시작 후 \n차원의 거울 또는 무릉사원의 학(택시)를 이용"/>
-<string name="4" value="\n#e-최종 보상#n"/>
-<string name="5" value="#i1003455:# #t1003455#"/>
-<string name="6" value="#i1142385:# #t1142385#"/>
-</imgdir>
-</imgdir>
-<imgdir name="39">
-<string name="title" value="[테마 던전]\n판타스틱 테마파크(Lv 120~130)"/>
-<string name="message" value="판타스틱 테마파크의 비밀을 파헤쳐 보자."/>
-<int name="npc" value="2190001"/>
-<imgdir name="desc">
-<string name="0" value="메이플월드의 유일한 대규모 놀이공원 판타스틱 테마파크가 개장했다. 재밌고, 스릴넘치고 판타스틱한 놀이공원에서는 하루가 눈깜짝할 사이에 지나가겠지? 테마파크로 가서 즐거운 하루를 보내보자."/>
-<string name="1" value="\n#e-추천 레벨#n : 120~130 레벨"/>
-<string name="2" value="\n#e-이동 방법#n"/>
-<string name="3" value="&quot;어색한 축하&quot; 퀘스트 시작 후 \n루디브리엄 동쪽의 케이블카를 이용해서 이동"/>
-<string name="4" value="#fEtc/LevelUpGuide.img/Image/39_0#"/>
-<string name="5" value="\n#e-최종 보상#n"/>
-<string name="6" value="#i1142409:# #t1142409#"/>
-<string name="7" value="(&quot;Big3 즐기기&quot;, &quot;오픈 이벤트:보물찾기&quot;, &quot;위험한 공연&quot;, &quot;낙서 절대 금지!&quot; 퀘스트 완료 시 획득 가능)"/>
-<string name="8" value="#i1082431:# #t1082431#"/>
-<string name="9" value="#i1003534:# #t1003534#"/>
-<string name="10" value="#i1003535:# #t1003535#"/>
-<string name="11" value="(#o8145100#, #o8145200# 에게서 획득 가능)"/>
-<string name="12" value="\n#e★판타스틱 테마파크?#n"/>
-<string name="13" value="판타스틱 테마파크는 메이플월드 유일의 대형 놀이동산으로 세 가지 설립이념에 따라 #e&lt;퍼니&gt;, &lt;익스트림&gt;, &lt;판타지&gt;#n등 세 개의 스테이션으로 구성되어 있다. "/>
-<string name="14" value="#fEtc/LevelUpGuide.img/Image/39_1#"/>
-<string name="15" value="\n#e★Big3?#n"/>
-<string name="16" value="세 개의 스테이션에는 각각 1개씩의 대표 어트랙션이 존재한다."/>
-<string name="17" value="#b#eBig1!#n 퍼니 스테이션의 #e&lt;유령의 집&gt;#n#k : 헌티드 맨션을 모티브로 유령이  나오는  집의 내부를 돌아다니면서 공포를 만끽할 수 있는 어트랙션이다. 연인과 함께 가는 것을 추천한다."/>
-<string name="18" value="#fEtc/LevelUpGuide.img/Image/39_2#"/>
-<string name="19" value="#b#eBig2!#n 익스트림 스테이션의 #e&lt;자이로 드롭&gt;#n#k :  수십미터 상공에서 자유낙하하는 아찔한 스릴을 느낄 수 있는 어트랙션이다. 자신의 용감함을 뽑내고 싶은 분들께 강력 추천! 젊은이들에게 인기가 많다."/>
-<string name="20" value="#fEtc/LevelUpGuide.img/Image/39_3#"/>
-<string name="21" value="#b#eBig3!#n 판타지 스테이션의 #e&lt;바이킹&gt;#n#k :  해적선을 타고  즐거운 모험을 떠나는 것 같은 즐거움을 느길 수 있는 어트랙션이다. 특히 어린이들이 좋아해서 가족단위 관람객에게 인기가 많다."/>
-<string name="22" value="#fEtc/LevelUpGuide.img/Image/39_4#"/>
-<string name="23" value="\n\n    "/>
-<string name="24" value="\n#e★판타스틱 애니멀 쇼?#n"/>
-<string name="25" value="보스 몬스터 #e타르가#n와 #e스칼리온#n을 만날 수 있는 판타스틱 애니멀쇼! 판타스틱 테마파크의 퀘스트를 차례로 완료하다 보면 판타스틱 애니멀쇼를 관람할 수 있다. 특히 타르가와 스칼리온에게서 판타스틱 테마파크만의 다양한 아이템을 얻을 수 있다고 한다."/>
-<string name="26" value="#fEtc/LevelUpGuide.img/Image/39_5#"/>
-</imgdir>
-</imgdir>
-<imgdir name="40">
-<string name="title" value="[보스 컨텐츠]\n시그너스 여제(Lv 170~200)"/>
-<string name="message" value="시그너스 여제를 퇴치하자!"/>
-<int name="npc" value="2143004"/>
-<int name="naviField" value="271040000"/>
-<imgdir name="desc">
-<string name="0" value="타락해버린 시그너스 기사단은 에레브를 검은 마법사의 요새로 만들어 버렸다. 무엇이 진실인지 혼란스러울 뿐이지만 지금 해야할 일은 단 하나!"/>
-<string name="1" value="\n#e-원정대 참가 자격#n: 170~200 레벨"/>
-<string name="2" value="\n#e-참가 인원#n : 3명~18명으로 구성된 시그너스 원정대"/>
-<string name="3" value="#fEtc/LevelUpGuide.img/Image/40_3#"/>
-<string name="4" value="#e-최종 보상#n : 140렙제 무기"/>
-<string name="5" value="#i1302152:##i1332130:##i1372084:##i1382104:##i1402095:##i1432086:##i1442116:##i1452111:##i1462099:##i1472122:##i1482084:##i1492085:##i1522018:##i1532018:##i1362019:##i1312065:##i1322096:##i1342036:##i1412065:##i1422066:#"/>
-<string name="6" value="\n#e-이동 방법 $LVUPNVBT$#n"/>
-<string name="7" value="시간의 신전, 미래의 문, 시그너스의 전당"/>
-<string name="8" value="#fEtc/LevelUpGuide.img/Image/40_0#"/>
-<string name="9" value="\n#e★어떻게 시작하나요?#n"/>
-<string name="10" value="시간의 신전에서 미래의 문 지역으로 이동. 시그너스의 정원에서 원정대를 구성하여 입장할 수 있다."/>
-<string name="11" value="\n#e★입장제한 조건은?#n"/>
-<string name="12" value="13채널에서만 시그너스의 전당으로 이동가능."/>
-<string name="13" value="1일 2회만 입장 가능"/>
-<string name="14" value="\n#e★여제 시그너스와의 대결!#n"/>
-<string name="15" value="여제 시그너스는 끊임없이 타락한 기사들을 소환해 내고, 본인은 마법진의 힘으로 보호받고 있습니다. 시그너스를 감싸고 있는 마법의 힘이 약해질 때마다 기회를 놓치지 말고 공격해야합니다."/>
-<string name="16" value="#fEtc/LevelUpGuide.img/Image/40_2#"/>
-<string name="17" value="#bTIP : 공격력 반사 스킬이 발동되면 공격을 멈춰주세요. 이 때 공격을 계속하면 공격이 반사되어 피해를 입게됩니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="41">
-<string name="title" value="[보스 컨텐츠]\n힐라(Lv 120~200)"/>
-<string name="message" value="힐라를 퇴치하자!"/>
-<int name="npc" value="2184000"/>
-<int name="naviField" value="262000000"/>
-<imgdir name="desc">
-<string name="0" value="젊음과 미모에 집착하던 힐라. 그녀에 의해 파괴된 도시 아스완. 아스완의 완전한 해방을 위해 힐라를 처치해야 한다."/>
-<string name="1" value="\n#e-원정대 참가 자격#n"/>
-<string name="2" value="노말모드&gt; 120레벨 이상"/>
-<string name="3" value="하드모드&gt; 170레벨 이상"/>
-<string name="4" value="\n#e-참가 인원#n : 1인 이상의 힐라 원정대"/>
-<string name="5" value="#fEtc/LevelUpGuide.img/Image/41_0#"/>
-<string name="6" value="\n#e-최종 보상#n"/>
-<string name="7" value="노말모드&gt;"/>
-<string name="8" value="네크로 무기 20종"/>
-<string name="9" value="#i1162009:# #i5000217:# #i1802354:#"/>
-<string name="10" value="하드모드&gt;"/>
-<string name="11" value="네크로 무기 20종, 네크로 무기 전용 주문서"/>
-<string name="12" value="#i1032136:# #i1162009:# #i5000217:# #i1802354:#"/>
-<string name="13" value="\n#e-이동 방법#n"/>
-<string name="14" value="니할사막, 아스완, 아스완 피난처에서 오른쪽 포탈로 진입"/>
-<string name="15" value="차원의 거울을 통해서 이동 가능"/>
-<string name="16" value="#fEtc/LevelUpGuide.img/Image/41_1#"/>
-<string name="17" value="\n#e★어떻게 시작하나요?#n"/>
-<string name="18" value="아스완 피난처에서 힐라의 탑 입구로 이동하여 원정대를 구성한 후, 무녀 메디사를 통해 입장할 수 있다."/>
-<string name="19" value="입장 시, 노말 모드와 하드 모드 중 선택하여 입장이 가능하다."/>
-<string name="20" value="\n#e★입장제한 조건은?#n"/>
-<string name="21" value="1일 2회만 입장 가능"/>
-<string name="22" value="#fEtc/LevelUpGuide.img/Image/41_2#"/>
-<string name="23" value="\n#e★힐라와의 대결!#n"/>
-<string name="24" value="원정대원이 한 명씩 사망할 때마다 힐라는 더욱 강해집니다. 원정대원이 총 15회 부활하게 되면 너무나 강력해진 힐라의 힘에 의해 쫓겨나게 됩니다."/>
-<string name="25" value="#fEtc/LevelUpGuide.img/Image/41_4#"/>
-<string name="26" value="힐라는 각종 흑마술을 사용하여 캐릭터를 끌어 당기는 석상을 소환합니다. 석상에 붙잡혔을 때는 석상을 부숴야만 풀려날 수 있습니다."/>
-<string name="27" value="#fEtc/LevelUpGuide.img/Image/41_3#"/>
-<string name="28" value="힐라는 원정대원 중 한 명을 제물로 삼아 자신의 체력을 회복합니다. 원정대원이 힐라의 제물로 선택되었을 때는 재빨리 원정대원을 구해내야합니다."/>
-<string name="29" value="#fEtc/LevelUpGuide.img/Image/41_7#"/>
-<string name="30" value="위기가 닥치면 무녀 메디사가 나타나서 보호마법으로 원정대를 지켜줍니다."/>
-<string name="31" value="#fEtc/LevelUpGuide.img/Image/41_5#"/>
-<string name="32" value="힐라가 약해지면 마력이 감소하면서 머리카락이 백발로 변하게 됩니다. 이 때를 놓치지 않고 공격하면 힐라를 퇴치할 수 있습니다."/>
-<string name="33" value="#fEtc/LevelUpGuide.img/Image/41_6#"/>
-</imgdir>
-</imgdir>
-<imgdir name="42">
-<string name="title" value="[테마 던전]\n지상낙원 골드비치(Lv 40~45)"/>
-<string name="message" value="골드비치에 나타난 검은 물질의 정체는?!"/>
-<int name="npc" value="1082100"/>
-<int name="naviField" value="120040000"/>
-<imgdir name="desc">
-<string name="0" value="골드리치의 특별한 초대! 오픈 예정인 골드비치 리조트를 미리 체험해 볼 수 있다고 한다."/>
-<string name="1" value="\n#e-추천 레벨#n : 40~45 레벨"/>
-<string name="2" value="\n#e-이동 방법 #n"/>
-<string name="3" value="#m104020000#에서 조종사 어빈을 통해 이동"/>
-<string name="4" value="골드리치의 초대 퀘스트"/>
-<string name="5" value="\n#e-최종 보상#n"/>
-<string name="6" value="#i1142551##t1142551#"/>
-<string name="7" value="#i1012346##t1012346#"/>
-<string name="8" value="\n#e★어떻게 시작하나요?"/>
-<string name="9" value="골드리치의 초대 퀘스트로부터 시작됩니다. "/>
-<string name="10" value="#b(골드리치의 초대를 받고 골드비치 리조트로 이동하자)"/>
-<string name="11" value="#e★클리어 방법!"/>
-<string name="12" value="골드비치에 도착하면 조종사 어빈을 만날 수 있습니다. 어빈에게 말을 걸면 본격적인 퀘스트가 시작됩니다."/>
-<string name="13" value="\n퀘스트를 모두 완료하면 마지막으로 &quot;캡틴 블랙 슬라임&quot;과의 대결을 펼치게 됩니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="43">
-<string name="title" value="[파티 퀘스트]\n탕윤의 요리교실(Lv 60~90)"/>
-<string name="message" value="노틸러스의 해적들을 위해 요리를  만들자!"/>
-<int name="npc" value="1092000"/>
-<imgdir name="desc">
-<string name="0" value="멋진 센스로 맛있는 요리를 만들 사람이라면 #b차원의 거울 이동포탈#k을 통해 탕윤의 주방으로 가보자."/>
-<string name="1" value="\n1. 요리에 맞는 재료를 선택하자."/>
-<string name="2" value="2. 음식을 태우지 않으려면 미각파괴불꽃을 처치해 불 조절을 해야한다."/>
-<string name="3" value="3. 적정량의 조미료를 넣어 간을 맞춰보자."/>
-<string name="4" value="\n#e-제한 시간#n : 30분"/>
-<string name="5" value="\n#e-참가 인원#n : 1~4 명"/>
-<string name="6" value="\n#e-이동 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="7" value="\n#e-특별 보상#n : "/>
-<string name="8" value="#b#i1003762:# #t1003762##k\n"/>
-<string name="9" value="#b#i1052578:# #t1052578##k\n"/>
-<string name="10" value="#b#i1142589:# #t1142589##k\n"/>
-</imgdir>
-</imgdir>
-<imgdir name="44">
-<string name="title" value="[테마 던전]\n크림슨우드 성채(Lv 130~140)"/>
-<string name="message" value="잊혀진 마족들의 대륙, 마스테리아의 메세지"/>
-<int name="npc" value="2134012"/>
-<int name="naviField" value="301000000"/>
-<imgdir name="desc">
-<string name="0" value="하인즈로부터 마스테리아에서 온 메세지를 듣게 되는데... 그 곳에서는 무슨 일이?"/>
-<string name="1" value="\n#e-추천 레벨#n : 130~140 레벨"/>
-<string name="2" value="\n#e-이동 방법 #n"/>
-<string name="3" value="하인즈의 도서관으로 퀘스트 진행"/>
-<string name="4" value="\n#e-이동 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="5" value="\n#e-최종 보상#n"/>
-<string name="6" value="#i1142619##t1142619#"/>
-<string name="7" value="\n#e★어떻게 시작하나요?"/>
-<string name="8" value="하인즈의 도서관으로 퀘스트로부터 시작됩니다."/>
-<string name="9" value="#b(하인즈의 부름을 받고 엘리니아 마법 도서관으로 이동하자)"/>
-<string name="10" value="#e★클리어 방법!"/>
-<string name="11" value="각 마을에 있는 차원의 거울을 통해 크림슨우드로 이동하면 마스테리아에서의 본격적인 퀘스트가 시작됩니다."/>
-<string name="12" value="\n퀘스트를 모두 완료하고 갇혀있던 마족들을 모두 구출해야 합니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="45">
-<string name="title" value="[테마 던전]\n암벽거인(Lv 150~160)"/>
-<string name="message" value="미나르 숲 남부에 &apos;암벽 거인&apos;이 나타났다!"/>
-<int name="npc" value="2081000"/>
-<int name="naviField" value="240090000"/>
-<imgdir name="desc">
-<string name="0" value="미나르 숲 남부에 갑자기 솟아난 &apos;암벽 거인&apos;의 정체는 무엇인가?"/>
-<string name="1" value="\n#e-추천 레벨#n : 150~160 레벨"/>
-<string name="2" value="\n#e-이동 방법 #n"/>
-<string name="3" value="미나르숲 #m240010400#에서 콜로서스로 이동"/>
-<string name="4" value="거인에 대한 소문 퀘스트"/>
-<string name="5" value="\n#e-최종 보상#n"/>
-<string name="6" value="#i1142618##t1142618#"/>
-<string name="7" value="#i2550014##t2550014#"/>
-<string name="8" value="#i2431745##t2431745#"/>
-<string name="9" value="\n#e★어떻게 시작하나요?"/>
-<string name="10" value="거인에 대한 소문 퀘스트로부터 시작됩니다. "/>
-<string name="11" value="#b(거인에 대한 소문을 듣고 리프레의 촌장 타타모를 찾아가보자.)"/>
-<string name="12" value="#e★클리어 방법!"/>
-<string name="13" value="미나르 남쪽 숲 콜로서스를 탐사하며 암벽 거인의 정체를 밝혀내자."/>
-</imgdir>
-</imgdir>
-<imgdir name="46">
-<string name="title" value="[테마 던전]\n요정학원 엘리넬(Lv 30~40)"/>
-<string name="message" value="&apos;요정학원 엘리넬&apos;을 도와주자!"/>
-<int name="npc" value="1500011"/>
-<int name="naviField" value="101030000"/>
-<imgdir name="desc">
-<string name="0" value="엘리니아 숲 북부 &apos;요정학원 엘리넬&apos;에 소동이 일어났다는데?"/>
-<string name="1" value="\n#e-추천 레벨#n : 30~40 레벨"/>
-<string name="2" value="\n#e-이동 방법 #n"/>
-<string name="3" value="북쪽숲 #m101030000#에서 좌측하단 포탈을 통해 엘리넬로 이동"/>
-<string name="4" value="[요정학원 엘리넬] 요정학원의 납치범 퀘스트"/>
-<string name="5" value="\n#e-최종 보상#n"/>
-<string name="6" value="#i1102590##t1102590#"/>
-<string name="7" value="#i1082533##t1082533#"/>
-<string name="8" value="#i2047954##t2047954#"/>
-<string name="9" value="\n#e★어떻게 시작하나요?"/>
-<string name="10" value="각 직업군의 전직관 또는 펜시로 부터 받는 퀘스트에서 시작됩니다."/>
-<string name="11" value="#b(펜시에게서 이야기를 듣고 엘리넬로 향하자. )"/>
-<string name="12" value="#e★클리어 방법!"/>
-<string name="13" value="요정학원 엘리넬에 도착하여 문제를 해결하자. "/>
-</imgdir>
-</imgdir>
-<imgdir name="47">
-<string name="title" value="[파티 퀘스트]\n마스테리아의 제단(Lv 130~150)"/>
-<string name="message" value="사악한 다섯 마스터들을 처치하자!"/>
-<int name="npc" value="2135017"/>
-<imgdir name="desc">
-<string name="0" value="#b마스테리아 대륙#k의 사악한 #r다섯 마스터#k를 처치한 후 #b#m930100000##k에 전설의 무기를 되돌려 놓아야 한다! #b차원의 거울#k을 통해 크림슨우드 성채로 입장 후 마스테리아 제단으로 향하자."/>
-<string name="1" value="\n1단계 : 다섯 마스터를 상징하는 포탈 활성화하기"/>
-<string name="2" value="2단계 : 장애물을 피해 다섯 개의 포탈 활성화 하기"/>
-<string name="3" value="3단계 : 다섯 명의 보스 퇴치 후 전설의 무기를 제단에 놓기"/>
-<string name="4" value="4단계 : 보상 획득 후 보너스 스테이지 입장"/>
-<string name="5" value="\n#e-제한 시간#n : 30분"/>
-<string name="6" value="\n#e-참가 인원#n : 3~5 명"/>
-<string name="7" value="\n#e-이동 방법#n : 차원의 거울을 통해 크림슨우드 성채로 간 뒤 #m930100000#으로 이동"/>
-<string name="8" value="\n#e-특별 보상#n : "/>
-<string name="9" value=" #b#i1152135:# #t1152135# #k"/>
-</imgdir>
-<int name="npcScale" value="55"/>
-<int name="addNpcY" value="36"/>
-</imgdir>
-<imgdir name="48">
-<string name="title" value="[경쟁 컨텐츠]\n아리안트 투기장 (Lv 50~80)"/>
-<string name="message" value="투기장에서 다른 유저들과 기량을 겨뤄보자!"/>
-<int name="npc" value="2101014"/>
-<imgdir name="desc">
-<string name="0" value="2~6명의 유저가 입장하여 #b몬스터의 체력을 줄이고 #t2270002##k를 사용하여 그 힘을 흡수하자."/>
-<string name="1" value="\n#e-참여 조건#n : 50 레벨~ 80레벨"/>
-<string name="2" value="\n#e-이용 방법#n : 각 마을에 있는 차원의 거울"/>
-<string name="3" value="\n#e-최종 보상#n"/>
-<string name="4" value="#b#i1113048# #t1113048##k\n"/>
-<string name="5" value="압둘라 8세 혹은 파티퀘스트 통합 대기맵에 있는 세자르에게서 획득 가능\n"/>
-<string name="6" value="#b(투기장 스코어 150점 필요)"/>
-<string name="7" value="\n#e★아리안트 투기대회?#n"/>
-<string name="8" value="아리안트 투기대회는 2~6명의 유저가 몬스터를 포획하는 모드입니다."/>
-<string name="9" value="제한 시간 내에 더 많은 영혼의 보석을 획득하는 사람이 승리하게 됩니다"/>
-<string name="10" value="\n#e★어떻게 시작하나요?#n"/>
-<string name="11" value="파티퀘스트 통합 대기맵에 있는 &quot;세자르&quot;에게 대기열을 신청하면 됩니다."/>
-<string name="12" value="\n#e★아리안트 투기대회!!#n"/>
-<string name="13" value="대기열이 등록되었으면 본격적으로 다른 유저들과 기량을 겨뤄볼 수 있습니다."/>
-<string name="14" value="제한 시간 동안 가장 많은 수의 영혼을 보석을 획득하는 사람이 승리합니다. 때로는 다른 유저들을 방해하는 것도 좋은 방법일 것입니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="49">
-<string name="title" value="[테마던전]\n리에나 해협(Lv 50~70)"/>
-<string name="message" value="빙하 지대 리에나 해협에 위협이!"/>
-<int name="npc" value="1510009"/>
-<imgdir name="desc">
-<string name="0" value="마녀에 대항해 연합을 구성한 리에나 주민들. 그 원인은?"/>
-<string name="1" value="\n#e-추천 레벨#n : 50~70 레벨"/>
-<string name="2" value="\n#e-이동 방법 #n"/>
-<string name="3" value="리스항구에서 펭귄 [푸로]를 통해 리엔으로 이동"/>
-<string name="4" value="[리에나 해협으로의 초대] 퀘스트"/>
-<string name="5" value="\n#e-최종 보상#n"/>
-<string name="6" value="#i1142629##t1142629#"/>
-<string name="7" value="#i1012389##t1012389#"/>
-<string name="9" value="\n#e★어떻게 시작하나요?"/>
-<string name="10" value="[리에나 해협으로의 초대] 퀘스트를 통해 시작합니다."/>
-<string name="11" value="#b(리엔으로 이동하여 리린과 대화하자.)"/>
-<string name="12" value="#e★클리어 방법!"/>
-<string name="13" value="빙하 지대를 항해하며 리에나 해협을 위협하는 세력을 밝혀내자!"/>
-</imgdir>
-</imgdir>
-<imgdir name="50">
-<string name="title" value="[월드 통합 파티 퀘스트] (Lv50~180)"/>
-<string name="message" value="2주마다 바뀌는 파티퀘스트를 수행하자!"/>
-<int name="npc" value="9076000"/>
-<imgdir name="desc">
-<string name="0" value="월드 통합 파티 퀘스트가 오픈되었다. 슈피겔만의 게스트 하우스에서 월드 통합 지역으로 이동한 후 2주 단위로 변경되는 파티 퀘스트를 수행하도록 하자."/>
-<string name="1" value="\n#e-추천 레벨#n : 50~180 레벨"/>
-<string name="2" value="\n#e-이동 방법 #n"/>
-<string name="3" value="1. 슈피겔만의 게스트하우스에서 포탈로 이동"/>
-<string name="4" value="2. 차원의 포탈로 이동"/>
-<string name="5" value="\n#e-최종 보상#n"/>
-<string name="6" value="1. 경험치"/>
-<string name="7" value="2. 퍼브에게서 물품을 구입할 수 있는 파티포인트 획득"/>
-<string name="9" value="\n#e★파티퀘스트 종류★"/>
-<string name="10" value="&lt;&lt; 월묘의 떡 &gt;&gt;"/>
-<string name="11" value="&lt;&lt; 첫번째 동행 &gt;&gt;"/>
-<string name="12" value="&lt;&lt; 독안개의 숲 &gt;&gt;"/>
-<string name="13" value="&lt;&lt; 여신의 흔적 &gt;&gt;"/>
-</imgdir>
-</imgdir>
-</imgdir>
-<imgdir name="Guide">
-<imgdir name="10">
-<imgdir name="info">
-<string name="message" value="레벨 10이 되신 것을 축하합니다!\n10~19 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="19"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="23010"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="1">
-<int name="questId" value="21100"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="2">
-<int name="questId" value="1400"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="3">
-<int name="questId" value="22100"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="4">
-<int name="questId" value="2570"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="5">
-<int name="questId" value="25400"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="6">
-<int name="questId" value="2800"/>
-<string name="goal" value="(Lv 10) - 괴목 스텀피 처치"/>
-</imgdir>
-<imgdir name="7">
-<int name="questId" value="2850"/>
-<string name="goal" value="(Lv 10) - 다일 처치"/>
-</imgdir>
-<imgdir name="8">
-<int name="questId" value="2900"/>
-<string name="goal" value="(Lv 10) - 킹크랑 처치"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="0"/>
-</imgdir>
-</imgdir>
-<imgdir name="20">
-<imgdir name="info">
-<string name="message" value="레벨 20이 되신 것을 축하합니다!\n20~29 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="29"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="2725"/>
-<string name="goal" value="(Lv20)"/>
-</imgdir>
-<imgdir name="1">
-<int name="questId" value="2622"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="100040100"/>
-<int name="1" value="310030300"/>
-<int name="2" value="310040000"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="0"/>
-</imgdir>
-</imgdir>
-<imgdir name="30">
-<imgdir name="info">
-<string name="message" value="레벨 30이 되신것을 축하 합니다!\n30~34 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="34"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="23020"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="1">
-<int name="questId" value="21200"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="2">
-<int name="questId" value="20200"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="3">
-<int name="questId" value="1410"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="4">
-<int name="questId" value="1414"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="5">
-<int name="questId" value="1418"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="6">
-<int name="questId" value="1421"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="7">
-<int name="questId" value="1424"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="8">
-<int name="questId" value="25100"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="9">
-<int name="questId" value="22102"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="10">
-<int name="questId" value="23021"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="11">
-<int name="questId" value="23210"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="12">
-<int name="questId" value="24010"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="13">
-<int name="questId" value="1427"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="14">
-<int name="questId" value="23022"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="15">
-<int name="questId" value="2087"/>
-<string name="goal" value="(Lv 30)"/>
-</imgdir>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="1"/>
-<int name="1" value="46"/>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="103020000"/>
-</imgdir>
-</imgdir>
-<imgdir name="35">
-<imgdir name="info">
-<string name="message" value="레벨 35가 되신 것을 축하합니다!\n35~39 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="39"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="2292"/>
-<string name="goal" value="(Lv 35) - 락스피릿 처치"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="2"/>
-</imgdir>
-</imgdir>
-<imgdir name="40">
-<imgdir name="info">
-<string name="message" value="레벨 40이 되신 것을 축하합니다!\n40~44 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="44"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="2096"/>
-<string name="goal" value="(Lv 40)"/>
-</imgdir>
-<imgdir name="1">
-<int name="questId" value="2038"/>
-<string name="goal" value="(Lv 43)"/>
-</imgdir>
-<imgdir name="2">
-<int name="questId" value="2043"/>
-<string name="goal" value="(Lv 43)"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="105020000"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="42"/>
-</imgdir>
-</imgdir>
-<imgdir name="45">
-<imgdir name="info">
-<string name="message" value="레벨 45가 되신 것을 축하합니다!\n45~49 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="49"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="2047"/>
-<string name="goal" value="(Lv 45)"/>
-</imgdir>
-<imgdir name="1">
-<int name="questId" value="2235"/>
-<string name="goal" value="(Lv 48)"/>
-</imgdir>
-<imgdir name="2">
-<int name="questId" value="2641"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="105030100"/>
-<int name="1" value="200010100"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="3"/>
-<int name="1" value="42"/>
-<int name="2" value="8"/>
-</imgdir>
-</imgdir>
-<imgdir name="50">
-<imgdir name="info">
-<string name="message" value="레벨 50이 되신 것을 축하합니다!\n50~54 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="54"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="3111"/>
-<string name="goal" value="(Lv 53) - 엘리쟈 처치"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="200070000"/>
-<int name="1" value="200010300"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="8"/>
-<int name="1" value="6"/>
-<int name="2" value="48"/>
-<int name="3" value="49"/>
-<int name="4" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="55">
-<imgdir name="info">
-<string name="message" value="레벨 55가 되신 것을 축하합니다!\n55~59 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="59"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="3004"/>
-<string name="goal" value="(Lv 55)"/>
-</imgdir>
-<imgdir name="1">
-<int name="questId" value="3184"/>
-<string name="goal" value="(Lv 57)"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="220010400"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="9"/>
-<int name="1" value="8"/>
-<int name="2" value="6"/>
-<int name="3" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="60">
-<imgdir name="info">
-<string name="message" value="레벨 60이 되신 것을 축하합니다!\n60~64 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="64"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="3601"/>
-<string name="goal" value="(Lv 55)"/>
-</imgdir>
-<imgdir name="1">
-<int name="questId" value="3641"/>
-<string name="goal" value="(Lv 60) - 구미호처치"/>
-</imgdir>
-<imgdir name="2">
-<int name="questId" value="3256"/>
-<string name="goal" value="(Lv 60)"/>
-</imgdir>
-<imgdir name="3">
-<int name="questId" value="23030"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="4">
-<int name="questId" value="23031"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="5">
-<int name="questId" value="23032"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="6">
-<int name="questId" value="21300"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="7">
-<int name="questId" value="20300"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="8">
-<int name="questId" value="1430"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="9">
-<int name="questId" value="1434"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="10">
-<int name="questId" value="1438"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="11">
-<int name="questId" value="1441"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="12">
-<int name="questId" value="1444"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="13">
-<int name="questId" value="22106"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="14">
-<int name="questId" value="24012"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="15">
-<int name="questId" value="1448"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="16">
-<int name="questId" value="25110"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="17">
-<int name="questId" value="20320"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="260010700"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="11"/>
-<int name="1" value="10"/>
-<int name="2" value="9"/>
-<int name="3" value="8"/>
-<int name="4" value="43"/>
-<int name="5" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="65">
-<imgdir name="info">
-<string name="message" value="레벨 65가 되신 것을 축하합니다!\n65~69 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="69"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="3239"/>
-<string name="goal" value="(Lv 65)"/>
-</imgdir>
-<imgdir name="1">
-<int name="questId" value="3251"/>
-<string name="goal" value="(Lv 65)"/>
-</imgdir>
-<imgdir name="2">
-<int name="questId" value="3230"/>
-<string name="goal" value="(Lv 68)"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="260010100"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="11"/>
-<int name="1" value="10"/>
-<int name="2" value="9"/>
-<int name="3" value="8"/>
-<int name="4" value="43"/>
-<int name="5" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="70">
-<imgdir name="info">
-<string name="message" value="레벨 70이 되신 것을 축하합니다!\n70~74 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="74"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="3097"/>
-<string name="goal" value="(Lv 70) - 파파픽시 처치"/>
-</imgdir>
-<imgdir name="1">
-<int name="questId" value="3430"/>
-<string name="goal" value="(Lv 70)"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="260020630"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="14"/>
-<int name="1" value="13"/>
-<int name="2" value="12"/>
-<int name="3" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="75">
-<imgdir name="info">
-<string name="message" value="레벨 75가 되신 것을 축하합니다!\n75~79 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="79"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="3900"/>
-<string name="goal" value="(Lv 75)"/>
-</imgdir>
-<imgdir name="1">
-<int name="questId" value="3927"/>
-<string name="goal" value="(Lv 75)"/>
-</imgdir>
-<imgdir name="2">
-<int name="questId" value="3952"/>
-<string name="goal" value="(Lv 75) - 데우 처치"/>
-</imgdir>
-<imgdir name="3">
-<int name="questId" value="3453"/>
-<string name="goal" value="(Lv 75) - 제노 처치"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="260020620"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="17"/>
-<int name="1" value="36"/>
-<int name="2" value="14"/>
-<int name="3" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="80">
-<imgdir name="info">
-<string name="message" value="레벨 80이 되신 것을 축하합니다!\n80~84 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="84"/>
-</imgdir>
-<imgdir name="quest">
-</imgdir>
-<imgdir name="field">
-<int name="0" value="250010302"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="18"/>
-<int name="1" value="17"/>
-<int name="2" value="36"/>
-<int name="3" value="14"/>
-<int name="4" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="85">
-<imgdir name="info">
-<string name="message" value="레벨 85가 되신 것을 축하합니다!\n85~89 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="89"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="3835"/>
-<string name="goal" value="(Lv 85) - 태륜 처치"/>
-</imgdir>
-<imgdir name="1">
-<int name="questId" value="3300"/>
-<string name="goal" value="(Lv 85)"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="261010101"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="20"/>
-<int name="1" value="18"/>
-<int name="2" value="36"/>
-<int name="3" value="14"/>
-<int name="4" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="90">
-<imgdir name="info">
-<string name="message" value="레벨 90이 되신 것을 축하합니다!\n90~94 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="94"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="3840"/>
-<string name="goal" value="(Lv 90) - 요괴선사 처치"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="261010102"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="21"/>
-<int name="1" value="37"/>
-<int name="2" value="20"/>
-<int name="3" value="36"/>
-<int name="4" value="7"/>
-<int name="5" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="95">
-<imgdir name="info">
-<string name="message" value="레벨 95가 되신 것을 축하합니다!\n95~99 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="99"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="31200"/>
-<string name="goal" value="(Lv 95) - 에피네아 처치"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="251010401"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="22"/>
-<int name="1" value="21"/>
-<int name="2" value="37"/>
-<int name="3" value="7"/>
-<int name="4" value="36"/>
-<int name="5" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="100">
-<imgdir name="info">
-<string name="message" value="레벨 100이 되신 것을 축하합니다!\n100~104 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="104"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="3851"/>
-<string name="goal" value="(Lv 100)"/>
-</imgdir>
-<imgdir name="1">
-<int name="questId" value="23040"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="2">
-<int name="questId" value="23041"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="3">
-<int name="questId" value="23042"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="4">
-<int name="questId" value="21400"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="5">
-<int name="questId" value="1450"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="6">
-<int name="questId" value="1452"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="7">
-<int name="questId" value="1454"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="8">
-<int name="questId" value="1456"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="9">
-<int name="questId" value="1458"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="10">
-<int name="questId" value="20400"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="11">
-<int name="questId" value="23215"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="12">
-<int name="questId" value="24013"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="13">
-<int name="questId" value="25120"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="14">
-<int name="questId" value="20410"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="251010403"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="23"/>
-<int name="1" value="22"/>
-<int name="2" value="21"/>
-<int name="3" value="37"/>
-<int name="4" value="36"/>
-<int name="5" value="15"/>
-<int name="6" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="105">
-<imgdir name="info">
-<string name="message" value="레벨 105가 되신 것을 축하합니다!\n105~109 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="109"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="3702"/>
-<string name="goal" value="(Lv 105)"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="220070200"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="23"/>
-<int name="1" value="22"/>
-<int name="2" value="21"/>
-<int name="3" value="37"/>
-<int name="4" value="36"/>
-<int name="5" value="15"/>
-<int name="6" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="110">
-<imgdir name="info">
-<string name="message" value="레벨 110이 되신 것을 축하합니다!\n110~114 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="114"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="3444"/>
-<string name="goal" value="(Lv 112)"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="240020500"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="24"/>
-<int name="1" value="37"/>
-<int name="2" value="19"/>
-<int name="3" value="36"/>
-<int name="4" value="23"/>
-<int name="5" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="115">
-<imgdir name="info">
-<string name="message" value="레벨 115가 되신 것을 축하합니다!\n115~119 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="119"/>
-</imgdir>
-<imgdir name="quest">
-</imgdir>
-<imgdir name="field">
-<int name="0" value="220060300"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="38"/>
-<int name="1" value="24"/>
-<int name="2" value="37"/>
-<int name="3" value="36"/>
-<int name="4" value="23"/>
-<int name="5" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="120">
-<imgdir name="info">
-<string name="message" value="레벨 120이 되신 것을 축하합니다!\n120~124 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="124"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="22108"/>
-<string name="goal" value="(전직)"/>
-</imgdir>
-<imgdir name="1">
-<int name="questId" value="3075"/>
-<string name="goal" value="(Lv 120) - 피아누스 처치"/>
-</imgdir>
-<imgdir name="2">
-<int name="questId" value="7300"/>
-<string name="goal" value="(Lv 120) - 혼테일 처치"/>
-</imgdir>
-<imgdir name="3">
-<int name="questId" value="3105"/>
-<string name="goal" value="(Lv 120) - 스노우맨 처치"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="240030000"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="27"/>
-<int name="1" value="25"/>
-<int name="2" value="39"/>
-<int name="3" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="125">
-<imgdir name="info">
-<string name="message" value="레벨 125가 되신 것을 축하합니다!\n125~129 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="129"/>
-</imgdir>
-<imgdir name="quest">
-</imgdir>
-<imgdir name="field">
-<int name="0" value="211041500"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="33"/>
-<int name="1" value="30"/>
-<int name="2" value="31"/>
-<int name="3" value="32"/>
-<int name="4" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="130">
-<imgdir name="info">
-<string name="message" value="레벨 130이 되신 것을 축하합니다!\n130~134 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="134"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="7100"/>
-<string name="goal" value="(Lv 130) - 파풀라투스 처치"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="270010100"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="33"/>
-<int name="1" value="44"/>
-<int name="2" value="34"/>
-<int name="3" value="31"/>
-<int name="4" value="30"/>
-<int name="5" value="32"/>
-<int name="6" value="47"/>
-<int name="7" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="135">
-<imgdir name="info">
-<string name="message" value="레벨 135가 되신 것을 축하합니다!\n135~139 레벨까지 추천 레벨 업 정보를 알려 드려요!"/>
-<int name="lvmax" value="139"/>
-</imgdir>
-<imgdir name="quest">
-<imgdir name="0">
-<int name="questId" value="3188"/>
-<string name="goal" value="(Lv 135) - 리치 처치"/>
-</imgdir>
-</imgdir>
-<imgdir name="field">
-<int name="0" value="240030300"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="35"/>
-<int name="1" value="34"/>
-<int name="2" value="33"/>
-<int name="3" value="31"/>
-<int name="4" value="32"/>
-<int name="5" value="50"/>
-</imgdir>
-</imgdir>
-<imgdir name="140">
-<imgdir name="info">
-<string name="message" value="레벨 140이 되신 것을 축하합니다!\n140 레벨까지의 추천 레벨 업 정보는 준비중입니다."/>
-<int name="lvmax" value="200"/>
-</imgdir>
-<imgdir name="quest">
-</imgdir>
-<imgdir name="field">
-<int name="0" value="271030100"/>
-<int name="1" value="271030300"/>
-<int name="2" value="273060300"/>
-</imgdir>
-<imgdir name="contents">
-<int name="0" value="45"/>
-<int name="1" value="40"/>
-<int name="2" value="41"/>
-<int name="3" value="27"/>
-<int name="4" value="28"/>
-<int name="5" value="50"/>
-</imgdir>
-</imgdir>
-</imgdir>
-<imgdir name="Image">
-<canvas name="0_0" width="157" height="126">
-<vector name="origin" x="78" y="63"/>
-<string name="_hash" value="43b0e8487cac5f7cd01f35ff3f3b6e6182786b07800ebbdaeed9d75f898184a4"/>
-</canvas>
-<canvas name="1_0" width="331" height="159">
-<vector name="origin" x="165" y="79"/>
-<string name="_hash" value="3642e9d96433f0223cf6a0994b04cb67a20962c10e9c0062474bc8329ef902ac"/>
-</canvas>
-<canvas name="1_1" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="ca52c6f98f5a60e86daec1411743a2292a49e6fe7bf0edbb2f65ea04d31bb298"/>
-</canvas>
-<canvas name="1_2" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="a683427aad2f56a5a688e34d78567be835b7314bcb0b00267f04069d436a3f1c"/>
-</canvas>
-<canvas name="1_3" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="2cbed22e272add987b879b1e227e51c848139b8b299a0790ffbb56e0939b6a84"/>
-</canvas>
-<canvas name="1_4" width="331" height="144">
-<vector name="origin" x="165" y="72"/>
-<string name="_hash" value="f1423772eec595ddedfe77a56b4e7448ebe0ece5eb93bbe480041a70d43af002"/>
-</canvas>
-<canvas name="1_5" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="a4ca3cbcc660eee7a09f9df678d0b2954f6e98ae6157d5a304e47b0a99093b92"/>
-</canvas>
-<canvas name="2_0" width="332" height="143">
-<vector name="origin" x="166" y="71"/>
-<string name="_hash" value="ccf44be50413da4ba925fbb62b2e3eeac2dc21ff463f5cca37dd8a8c79a9c5e9"/>
-</canvas>
-<canvas name="2_1" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="4b881097b379a8171fc65bed70edbb2eaab9a8c9777c7273368618c88841bc9d"/>
-</canvas>
-<canvas name="2_2" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="744e3873636356f2e370464188a7464e09cd55f68d6529b45db5b60dddf643a0"/>
-</canvas>
-<canvas name="2_3" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="56554f8aeb147192bb927a214cca7cdc787edf6d3880f7f93a3f9e3820956837"/>
-</canvas>
-<canvas name="2_4" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="69dfd3cd7504b411af6c62f8620d5ebde3eb1523be488f1d84132bd59757268c"/>
-</canvas>
-<canvas name="2_5" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="ff036664cdbc73af07050db364359660baf877bf67bffd5756e5b8bce07737e0"/>
-</canvas>
-<canvas name="3_0" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="f69bc2e1bc0c5d16ec74711a7e4f1867f5b72e6a3534962e9a8ae21df6ad1ef7"/>
-</canvas>
-<canvas name="3_1" width="184" height="151">
-<vector name="origin" x="92" y="75"/>
-<string name="_hash" value="2f929a08f9200d20fa244fc25eddbeb5ef4208a4927316959bc7551bc8c70070"/>
-</canvas>
-<canvas name="5_0" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="73911396fd9a1afe76c19c573c8879d2da00048bf85357cf07ce6d393a566791"/>
-</canvas>
-<canvas name="5_1" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="853bddff307e0cfd84f6f6e6db13e78715219aca32682057f88d0bef9a64a15d"/>
-</canvas>
-<canvas name="8_0" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="a5d5cea2dda966f69d567433330b2241b84540bc205e2e80b6f23120317757e2"/>
-</canvas>
-<canvas name="8_1" width="332" height="288">
-<vector name="origin" x="166" y="144"/>
-<string name="_hash" value="291526460c0ae85b2a17142186d218818dc9221543da90ad7ea3baf8d9bf219e"/>
-</canvas>
-<canvas name="10_0" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="3d974dff9ac2ffff5658f8f24d989c44896dac0b8c4fd4987a1e6a5168232643"/>
-</canvas>
-<canvas name="10_1" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="981c0fcca7a7795f80e5fd15655bb8cf83b3b28e4994aa3ae8bccb131be83151"/>
-</canvas>
-<canvas name="10_2" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="e1af544d1cebb222ebab3bcab64e3909f560d32b3977ef55a60043d7ed5f8def"/>
-</canvas>
-<canvas name="10_3" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="a76ad94b68a9695e0a22aa6334fe70c6bef27f064d0c4d8c3fa6c815717b8435"/>
-</canvas>
-<canvas name="10_4" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="58840b9549200babfc5a256ea3754a692b4aa0fea3cf91d4b95a041e6bc88b31"/>
-</canvas>
-<canvas name="10_5" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="7611b85da10173f3d9912cf3452f86609993108c135753049ba2ffdd6915a777"/>
-</canvas>
-<canvas name="10_6" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="953610c8b1a1a2b5b7359a70ce730702d1e0f45aeb55bca2a9c0b14e23f2670e"/>
-</canvas>
-<canvas name="11_0" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="8fea4560feef729cef66810b0d66061639b27257426d0ba76dfca924202a7ee3"/>
-</canvas>
-<canvas name="11_1" width="332" height="288">
-<vector name="origin" x="166" y="144"/>
-<string name="_hash" value="c5e226d33a06b98a9908620f7201cc8cb1d4fae3a2492d1905eaa1424c682ac9"/>
-</canvas>
-<canvas name="11_2" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="b4ea057ef27e7eafa7052a4d729b6f7833c794936e515e4e0803c1414096d5ea"/>
-</canvas>
-<canvas name="11_3" width="332" height="288">
-<vector name="origin" x="166" y="144"/>
-<string name="_hash" value="c9aa901e722ef0f8de9dae73d5c2c55bd718e66d7d7f669da3c9c00507541acd"/>
-</canvas>
-<canvas name="11_4" width="332" height="288">
-<vector name="origin" x="166" y="144"/>
-<string name="_hash" value="ae6713684bc567b8939e31a38febfb68a2d42949b0c3e50acc1e1e023c575e11"/>
-</canvas>
-<canvas name="19_0" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="5792f23ffe3f80f0f80b9d4bc7d050d03923b9e33d87d02dbbd416456b002bf7"/>
-</canvas>
-<canvas name="19_1" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="33e12ed2911acfa113687b9e167a387f240ff7dd12cddc91ef8742aa997786cd"/>
-</canvas>
-<canvas name="19_2" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="3898ccbaec1051ca905ed92cbfd85f9bbd72e8f53655dd126f731d905c58b752"/>
-</canvas>
-<canvas name="29_0" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="eeeb29b7a1a8a01da69371a2f5e1a3dbe2dd51a15e7f21b14878a11c7e6d948c"/>
-</canvas>
-<canvas name="29_1" width="332" height="144">
-<vector name="origin" x="166" y="72"/>
-<string name="_hash" value="21155f1880673e5e2a5b9ae5ae3deeb7b05c8973832982df08b625148836beac"/>
-</canvas>
-<canvas name="29_2" width="324" height="160">
-<vector name="origin" x="162" y="80"/>
-<string name="_hash" value="86e5760ddc10ec0c9aa4019308065e7d611177eee6c43769460b012fd5fb4240"/>
-</canvas>
-<canvas name="39_0" width="328" height="154">
-<vector name="origin" x="159" y="107"/>
-<int name="z" value="0"/>
-<string name="_hash" value="010caa71cb4ebba5686a8e3d8adac81802eacb21aaab080529dc1b4eca39241f"/>
-</canvas>
-<canvas name="39_1" width="321" height="233">
-<vector name="origin" x="160" y="116"/>
-<int name="z" value="0"/>
-<string name="_hash" value="98bd3720cc41d5b7091daf015532b455c53d868809c1e8f7c78cbfd160b388b5"/>
-</canvas>
-<canvas name="39_2" width="201" height="233">
-<vector name="origin" x="100" y="116"/>
-<int name="z" value="0"/>
-<string name="_hash" value="d446e314cd0b3fc9a2654000eae386e2071d20911b2ee6fa101aece2ec972e11"/>
-</canvas>
-<canvas name="39_3" width="254" height="223">
-<vector name="origin" x="127" y="111"/>
-<int name="z" value="0"/>
-<string name="_hash" value="b4fe5682d2929f89632a017be0f7d028eba437c6efbc7b2a1124e516ed8d71ce"/>
-</canvas>
-<canvas name="39_4" width="294" height="213">
-<vector name="origin" x="147" y="106"/>
-<int name="z" value="0"/>
-<string name="_hash" value="9dc420c61ba674538aa1a40c828bd3ed01797016fd0fcaa658de4be5660d8926"/>
-</canvas>
-<canvas name="39_5" width="334" height="182">
-<vector name="origin" x="167" y="91"/>
-<int name="z" value="0"/>
-<string name="_hash" value="a1afb87681f855cde4b412b9e1ac07cdcee62d73861dfebbf5abc780a901f51b"/>
-</canvas>
-<canvas name="40_0" width="258" height="109">
-<vector name="origin" x="129" y="54"/>
-<int name="z" value="0"/>
-<string name="_hash" value="99520d00cb5d54ed52db8e5d8c8358b3139c62271c3cc977ef572ab268ec2036"/>
-</canvas>
-<canvas name="40_1" width="225" height="182">
-<vector name="origin" x="112" y="91"/>
-<int name="z" value="0"/>
-<string name="_hash" value="9c118bffdc7ea08c9d1e4c2026b5c8ed47225ba1e76e2c8f4325e0d7366e0cd6"/>
-</canvas>
-<canvas name="40_2" width="308" height="192">
-<vector name="origin" x="154" y="96"/>
-<int name="z" value="0"/>
-<string name="_hash" value="b119266de62d26128f87d3dede36dcccd3b0ff4e3cb5611b54b5990a28819516"/>
-</canvas>
-<canvas name="40_3" width="250" height="52">
-<vector name="origin" x="125" y="26"/>
-<int name="z" value="0"/>
-<string name="_hash" value="99e4d6e8ae6a96bed474dcdb9e0c8d91825fdc08e01a898899da079170e44ef7"/>
-</canvas>
-<canvas name="41_0" width="250" height="52">
-<vector name="origin" x="125" y="26"/>
-<int name="z" value="0"/>
-<string name="_hash" value="6d617f50ad09901b2efa52be282f7ae5bf8a95b9ebc6f669db40b78c8efd558b"/>
-</canvas>
-<canvas name="41_1" width="121" height="130">
-<vector name="origin" x="60" y="65"/>
-<int name="z" value="0"/>
-<string name="_hash" value="2755174d2994b9495fe5cc611a48481b768e735c7d801d6d5aa16754b5645aff"/>
-</canvas>
-<canvas name="41_2" width="269" height="160">
-<vector name="origin" x="134" y="80"/>
-<int name="z" value="0"/>
-<string name="_hash" value="9e8b7ef2da423fe437bd866ca25f66b72b54ef181b2bcf540b44ac169abe323b"/>
-</canvas>
-<canvas name="41_3" width="138" height="139">
-<vector name="origin" x="69" y="69"/>
-<int name="z" value="0"/>
-<string name="_hash" value="06824d239fd69bb99522d99944dff7c4256905f03eeaec8c47adbb81c4a61e1a"/>
-</canvas>
-<canvas name="41_4" width="247" height="120">
-<vector name="origin" x="123" y="60"/>
-<int name="z" value="0"/>
-<string name="_hash" value="7394cb44259c8763658c1335346e88d2696a21d3282f35a1b2dbe389868fa2ab"/>
-</canvas>
-<canvas name="41_5" width="253" height="143">
-<vector name="origin" x="126" y="71"/>
-<int name="z" value="0"/>
-<string name="_hash" value="1a45e8ffc5d52b9f8d58196e469d73424a0a9d3986b0cc5fe4eefff85ef1744b"/>
-</canvas>
-<canvas name="41_6" width="161" height="112">
-<vector name="origin" x="80" y="56"/>
-<int name="z" value="0"/>
-<string name="_hash" value="375e51928f465dc1f5a17ec23f040fbbb3334fe3483d87aa58196e2311b1d1e8"/>
-</canvas>
-<canvas name="41_7" width="324" height="138">
-<vector name="origin" x="162" y="69"/>
-<int name="z" value="0"/>
-<string name="_hash" value="5c35bcede582934f7c5c21b9cdbdedd9307d0eec21bbaaba20b30b7eb306c72b"/>
-</canvas>
-</imgdir>
+  <imgdir name="Contents">
+    <imgdir name="0">
+      <string name="title" value="[情報]\n屬性情報" />
+      <string name="message" value="變得更強的方法！提升屬性吧！" />
+      <imgdir name="desc">
+        <string name="0" value="10級以後，只要升級的話，開啟角色視窗（S鍵）可以增加屬性。" />
+        <string name="1" value="試著根據自己的職業提升屬性，就能夠擁有比現在更強大的力量！\n" />
+        <string name="2" value="#fEtc/LevelUpGuide.img/Image/0_0#" />
+        <string name="3" value="\n#e1.ABILITYPOINT#n：可以依照自己目前持有的屬性點數來進行分配。" />
+        <string name="4" value="\n#e2.自動分配#n：依照自己的職業自動分配屬性。" />
+        <string name="5" value="\n#e3.屬性種類#n" />
+        <string name="6" value="\n#e3.屬性種類#n" />
+        <string name="7" value="-DEX（敏捷）：決定弓箭手和海賊（槍手）攻擊力的主要能力值" />
+        <string name="8" value="-INT（智力）：決定魔法師魔力的主要能力值" />
+        <string name="9" value="-LUK（運氣）：決定魔法師命中率與盜賊攻擊力的主要能力值#n" />
+        <string name="10" value="\n#bTIP：使用自動分配鍵的話，就可以配合職業輕易設定屬性。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="1">
+      <string name="title" value="[主題迷宮]\n菇菇城（Lv30~40）" />
+      <string name="message" value="拯救陷入危機的菇菇王國吧！" />
+      <int name="npc" value="1300000" />
+      <imgdir name="desc">
+        <string name="0" value="弓箭手村附近的菇菇王國面臨危機了！邪惡的企鵝國王奪走了王國，而且菇菇國王最寶貝呵護的菲歐娜公主將要被迫與蘇佩王子結婚…去幫助菇菇國王消滅企鵝國王，拯救菲歐娜公主吧！" />
+        <string name="1" value="\n#e-建議等級#n：30~40級" />
+        <string name="2" value="\n#e-移動方法$LVUPNVBT$#n" />
+        <string name="3" value="1)危機的菇菇王國任務" />
+        <string name="4" value="2)往弓箭手村西邊移動" />
+        <string name="5" value="\n#e-最終獎勵#n" />
+        <string name="6" value="#i1142188##t1142188#" />
+        <string name="7" value="\n#e★該怎麼開始呢？" />
+        <string name="8" value="菇菇城一般經過2轉的話，便可透過轉職官的推薦書進入。" />
+        <string name="9" value="另外，透過弓箭手村的幽靈菇菇森林也可以進入。" />
+        <string name="10" value="#fEtc/LevelUpGuide.img/Image/1_0#" />
+        <string name="11" value="\n#e★過關方法！" />
+        <string name="12" value="只要進入菇菇城的話，就會看見被企鵝們趕出來的菇菇們。" />
+        <string name="13" value="先去完成菇菇國王給的任務，然後去向其他菇菇領取任務進行即可。" />
+        <string name="14" value="#fEtc/LevelUpGuide.img/Image/1_1#" />
+        <string name="15" value="\n想要進入菇菇城的話，必須先消除施加在城堡的魔法芽孢結界和玫瑰刺藤。" />
+        <string name="16" value="一一進行任務後，就可以獲得能夠消除結界的解除劑和荊棘解除劑，只要使用此一道具，就可以進入菇菇城。" />
+        <string name="17" value="#fEtc/LevelUpGuide.img/Image/1_2#" />
+        <string name="18" value="進入\n城的話，可以見到頭盔企鵝等企鵝國王的手下們。" />
+        <string name="19" value="一一解決這些怪物，並且到達最右邊的禮堂入口的話，就會進行打倒企鵝國王的任務。" />
+        <string name="20" value="#fEtc/LevelUpGuide.img/Image/1_3#" />
+        <string name="21" value="\n點擊打倒企鵝國王的話，企鵝國王會搭乘雪吉拉出現。" />
+        <string name="22" value="#fEtc/LevelUpGuide.img/Image/1_4#" />
+        <string name="23" value="完成3次對決的話，就可以獲得禮堂的鑰匙，接著便能進行拯救菲歐娜公主的任務。" />
+        <string name="24" value="\n同樣地，在禮堂入口點擊拯救菲歐娜公主任務並且進入的話，菲歐娜公主會給予消滅總理大臣的任務。" />
+        <string name="25" value="#fEtc/LevelUpGuide.img/Image/1_5#" />
+        <string name="26" value="消滅登場的總理大臣，回到菇菇城村莊便能完成菇菇任務。" />
+      </imgdir>
+      <int name="addNpcX" value="10" />
+      <int name="addNpcY" value="10" />
+      <int name="npcScale" value="70" />
+    </imgdir>
+    <imgdir name="2">
+      <string name="title" value="[主題迷宮]\n墮落城市百貨公司（Lv35~45）" />
+      <string name="message" value="實現服務員赫一的夢想吧！" />
+      <int name="npc" value="1052117" />
+      <int name="naviField" value="103020000" />
+      <imgdir name="desc">
+        <string name="0" value="墮落城市地鐵站的服務員赫一說自己有個夢想。那就是成為歌手，擁有亮眼的舞台！連繫墮落廣場的人，讓赫一實現夢想吧！" />
+        <string name="1" value="\n#e-建議等級#n：35~45級" />
+        <string name="2" value="\n#e-移動方法$LVUPNVBT$#n" />
+        <string name="3" value="利用墮落城市地鐵" />
+        <string name="4" value="\n#e-最終獎勵#n" />
+        <string name="5" value="#i1032075##t1032075#" />
+        <string name="6" value="\n#e★該怎麼開始呢？" />
+        <string name="7" value="墮落城市百貨公司是由地鐵站服務員的信開始的。收到地鐵站服務員的信後，去墮落城市地鐵搭乘往墮落地鐵的的地鐵即可。" />
+        <string name="8" value="#fEtc/LevelUpGuide.img/Image/2_0#" />
+        <string name="9" value="#b（收到地鐵服務員的信後，去地鐵搭乘往墮落城市的班車。）" />
+        <string name="10" value="#fEtc/LevelUpGuide.img/Image/2_1#" />
+        <string name="11" value="#e★完成方法！" />
+        <string name="12" value="從地鐵下車的話，就可以遇見赫一。和赫一交談的話，任務就會正式開始。" />
+        <string name="13" value="\n只要先去101大樓和&quot;拉娜&quot;交談的話，就可以聽見關於赫一處女秀的事情。為了進行表演，會從拉娜那邊接到聯繫廚師、化妝師、髮型設計師、香水、CD、作曲家的任務。" />
+        <string name="14" value="#fEtc/LevelUpGuide.img/Image/2_2#" />
+        <string name="15" value="\n任務全都完成的話，最後，將要與&quot;搖滾精神&quot;對決。" />
+        <string name="16" value="#fEtc/LevelUpGuide.img/Image/2_3#" />
+        <string name="17" value="#b（解決搖滾精神吧！）" />
+        <string name="18" value="\n解決搖滾精神取得樂譜，牢記效果音中出現的演奏。" />
+        <string name="19" value="只要從樂譜中找出聽到的歌曲，然後告訴作曲家諾馬耶即可！" />
+        <string name="20" value="#fEtc/LevelUpGuide.img/Image/2_4#" />
+        <string name="21" value="再回去找「拉娜」的話，就可以聽關於赫一處女秀的相關消息。" />
+        <string name="22" value="#fEtc/LevelUpGuide.img/Image/2_5#" />
+        <string name="23" value="回去找赫一交談的話，可以獲得獎勵，同時完成任務。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="3">
+      <string name="title" value="[情報]\n移動大陸" />
+      <string name="message" value="要不要去更寬廣的楓之谷大陸？" />
+      <imgdir name="desc">
+        <string name="0" value="楓之谷中存在各種大陸。若是想要遇到更強的怪物和有趣的故事，現在立刻到其他大陸去！" />
+        <string name="1" value="#fEtc/LevelUpGuide.img/Image/3_0#" />
+        <string name="2" value="想要移動到其他大陸的話，必須利用各大陸的移動方法。" />
+        <string name="3" value="#fEtc/LevelUpGuide.img/Image/3_1#" />
+        <string name="4" value="\n#e★維多利亞島站台#n" />
+        <string name="5" value="站台位置：砲台路" />
+        <string name="6" value="可以去的地方：艾德斯塔/天空之城/耶雷弗" />
+        <string name="7" value="\n#e★耶雷弗站台#n" />
+        <string name="8" value="站台位置：天空之樹" />
+        <string name="9" value="可以去的地方：維多利亞島/天空之城" />
+        <string name="10" value="\n#e★水世界之路#n" />
+        <string name="11" value="站台位置：尖銳的死角地帶" />
+        <string name="12" value="可以去的地方：童話村井水" />
+        <string name="13" value="站台位置：海底出入口" />
+        <string name="14" value="可以去的地方：天空之城塔門口" />
+        <string name="15" value="站台位置：水世界（小海豚）" />
+        <string name="16" value="可以去的地方：尖銳的死角地帶/靈藥幻境/霧之海" />
+        <string name="17" value="\n#e★冰原雪域山脈的售票處#n" />
+        <string name="18" value="站台位置：空之城售票處" />
+        <string name="19" value="可以去的地方：維多利亞島/冰原雪域/神木村/納希/武陵桃園/耶雷弗/桃花仙境/艾德斯塔" />
+        <string name="20" value="\n#e★瑞恩的站台#n" />
+        <string name="21" value="站台位置：企鵝港口" />
+        <string name="22" value="可以去的地方：維多利亞島" />
+        <string name="23" value="\n#e★路德斯湖的站台#n" />
+        <string name="24" value="站台位置：桃花仙境站台" />
+        <string name="25" value="可以去的地方：天空之城" />
+        <string name="26" value="\n#e★納希沙漠的站台#n" />
+        <string name="27" value="站台位置：納希站台" />
+        <string name="28" value="可以去的地方：天空之城" />
+        <string name="29" value="\n#e★武陵桃園的站台#n" />
+        <string name="30" value="站台位置：桃花仙境寺院" />
+        <string name="31" value="可以去的地方：武陵桃園/天空之城" />
+        <string name="32" value="\n#e★米納爾森林的站台#n" />
+        <string name="33" value="站台位置：神木村站台" />
+        <string name="34" value="可以去的地方：時間的神殿/天空之城" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="4">
+      <string name="title" value="[組隊任務] 月妙的年糕(Lv 30~59)" />
+      <string name="message" value="找回興兒的月妙年糕吧！" />
+      <int name="npc" value="1012112" />
+      <imgdir name="desc">
+        <string name="0" value="#b#m100000200##k的#b#p1012112##k在尋找能夠為#b#p1012114##k收集#r#t04001101##k的冒險家。前往月妙所在的迎月花山丘。" />
+        <string name="1" value="\n1.除掉偷吃迎月花種子的豬，找回種子。" />
+        <string name="2" value="2.在固定的位置種上迎月花6朵並使之開花的話，月妙就會出現。" />
+        <string name="3" value="3.#r年糕10個#k全部製作完畢之前，要保護月妙不受暴亂的動物們傷害。" />
+        <string name="4" value="4. 將興兒給的年糕拿給多利就可以領取到禮物。" />
+        <string name="5" value="\n#e-限制時間#n：10分鐘" />
+        <string name="6" value="\n#e-參加人員#n : 2~6名" />
+        <string name="7" value="\n#e-移動方法#n：各村莊的次元之鏡" />
+        <string name="8" value="\n#e-特殊獎勵#n：" />
+        <string name="9" value="#b#i1003418:# #t1003418##k\n" />
+        <string name="10" value="#b#i1003419:# #t1003419##k\n" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="5">
+      <string name="title" value="[組隊任務]\n第一個同行（Lv50~69）" />
+      <string name="message" value="擊敗超級綠水靈吧！" />
+      <int name="npc" value="9020000" />
+      <imgdir name="desc">
+        <string name="0" value="#b#m103000000##k的#b#p9020000##k在等待勇敢的冒險家們。透過#b次元之鏡#k前往拉克里斯解開測驗，擊敗#r#o9300003##k吧！" />
+        <string name="1" value="\n第1階段：獲得等同於問題正確數字的通行證" />
+        <string name="2" value="第2階段：尋找前往下一個階段的繩子" />
+        <string name="3" value="第3階段：尋找前往下一個階段的貓咪踏板" />
+        <string name="4" value="第4階段：將風獨眼獸全部擊退" />
+        <string name="5" value="第5階段：擊退超級綠水靈" />
+        <string name="6" value="\n#e-限制時間#n：20分鐘" />
+        <string name="7" value="\n#e-參加人數#n：3~6名" />
+        <string name="8" value="\n#e-移動方法#n：各村莊的次元之鏡" />
+        <string name="9" value="#e-特殊獎勵#n：" />
+        <string name="10" value=" #b#i1072533:# #t1072533# #k" />
+        <string name="11" value="\n#e★該怎麼開始呢？" />
+        <string name="12" value="第一個同行組隊任務是必須聚集50級以上的玩家3名才能進行。在村子的次元之鏡或迅速移動選單中，點擊「第一個同行」來開始。" />
+        <string name="13" value="#fEtc/LevelUpGuide.img/Image/5_0#" />
+        <string name="14" value="#fEtc/LevelUpGuide.img/Image/5_1#" />
+        <string name="15" value="\n#e★過關方法！" />
+        <string name="16" value="第一個同行總共分為5個階段，只要解決最後一個超級綠水靈，就可以完成任務。完成各個成員的任務後，只要小隊長和克魯特交談，即可進行下一個舞台。" />
+        <string name="17" value="\n#bTIP：試著劃分小隊員與隊長的角色，合力解決問題吧！" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="6">
+      <string name="title" value="[組隊任務]\n次元裂縫（Lv50~69）" />
+      <string name="message" value="阻擋利用次元裂縫侵入的怪物！" />
+      <int name="npc" value="2040034" />
+      <imgdir name="desc">
+        <string name="0" value="#b#m220000000##k當中出現次元裂痕了！若是想要在這裡阻擋入侵的怪物，勇敢冒險家們的自發性幫助是必備的。透過#b次元之鏡#k到出現裂痕的地方。" />
+        <string name="1" value="\n第1階段：擊退白色發條鼠和黑色發條鼠" />
+        <string name="2" value="第2階段：擊退門裡的所有怪物" />
+        <string name="3" value="第3階段：利用箱子上面的傳送點上去" />
+        <string name="4" value="第4階段：擊退泥人領導者" />
+        <string name="5" value="第5階段：解開問題" />
+        <string name="6" value="第6階段：擊退巨型戰鬥機" />
+        <string name="7" value="\n#e-限制時間#n：20分鐘" />
+        <string name="8" value="\n#e-參加人數#n：3~6名" />
+        <string name="9" value="\n#e-移動方法#n：各村莊的次元之鏡" />
+        <string name="10" value="\n#e-特殊獎勵#n：" />
+        <string name="11" value=" #b#i1022073:# #t1022073# #k" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="7">
+      <string name="title" value="[組隊任務]\n冰騎士的詛咒 (Lv 90~109)" />
+      <string name="message" value="幫助受冰騎士詛咒的約翰！" />
+      <int name="npc" value="2159018" />
+      <imgdir name="desc">
+        <string name="0" value="#b#m932000000##k的#b#p2159018##k正在尋找冒險者幫助#b#o9300442##k受詛咒的#b#p2159017##k。透過次元之鏡，前往冰雪平原。" />
+        <string name="1" value="\n#e-限制時間#n：20分鐘" />
+        <string name="2" value="\n#e-參加人數#n：3~6名" />
+        <string name="3" value="\n#e-移動方法#n：各村莊的次元之鏡" />
+        <string name="4" value="\n#e-特殊獎勵#n：" />
+        <string name="5" value="#b#i1032100:##t1032100##k\n#b#i1072510:##t1072510##k\n" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="8">
+      <string name="title" value="[魔王單元]\n魔王巴洛古（Lv45~200）" />
+      <string name="message" value="擊敗魔王巴洛古！" />
+      <int name="npc" value="1061014" />
+      <int name="naviField" value="105100000" />
+      <imgdir name="desc">
+        <string name="0" value="很久以前英雄崔斯坦，將魔王巴洛古推向了被詛咒的神殿最深處。不過巴洛古的封印不算完整。永不消失的巴洛古的力量！除掉魔王巴洛古。" />
+        <string name="1" value="\n#e-遠征隊參加資格#n：45~200級" />
+        <string name="2" value="\n#e-參加人數#n：巴洛古遠征隊" />
+        <string name="3" value="\n#e-移動方法$LVUPNVBT$#n" />
+        <string name="4" value="奇幻村，詛咒神殿的盡頭" />
+        <string name="5" value="\n#e-最終獎勵#n" />
+        <string name="6" value="貝恩道具" />
+        <string name="7" value="\n#e★該怎麼開始呢？#n" />
+        <string name="8" value="為了和魔王巴洛古對決，必須移動到&quot;巴洛古神殿底層&quot;。" />
+        <string name="9" value="#fEtc/LevelUpGuide.img/Image/8_0#" />
+        <string name="10" value="想要移動的話，透過奇幻村徒步走，或者是可以藉由勇士之村的麥吉移動。到達神殿底下的話，藉由和「武英」的交談，可以進入巴洛古的祭壇。" />
+        <string name="11" value="\n#e★請參加遠征隊！#n" />
+        <string name="12" value="#fEtc/LevelUpGuide.img/Image/8_1#" />
+        <string name="13" value="為了和魔王巴洛古進行對決，總共有6名以上的人可參加巴洛古遠征隊。" />
+        <string name="14" value="\n#e★和魔王巴洛古的對決！#n" />
+        <string name="15" value="和魔王巴洛古之間的對決開始的話，屬性會提升，然後啟動無法使用3、4轉技能的增益效果。此一增益效果無法解除，提供當作參考。" />
+        <string name="16" value="\n#bTIP：假設巴洛古想要藉由祭壇恢復HP的話，先用一般攻擊攻擊祭壇。" />
+        <string name="17" value="#bTIP：啟動攻擊力反射技能的話，就請停止攻擊。此時，若是持續攻擊的話，攻擊就會反射造成損傷。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="9">
+      <string name="title" value="[主題迷宮]\n天空之島克里塞（Lv55~70）" />
+      <string name="message" value="拯救陷入危機的巨人族！" />
+      <int name="npc" value="2012018" />
+      <imgdir name="desc">
+        <string name="0" value="天空之城天空上方居住巨人族的島克里塞發生了異變。米加爾拉的寵物山羊薛西斯偶然獲得力量，並且得到邪惡的力量。拯救陷入危機的巨人族。" />
+        <string name="1" value="\n#e-建議等級#n：55~70級" />
+        <string name="2" value="\n#e-移動方法$LVUPNVBT$#n" />
+        <string name="3" value="\n在空天之城公園中透過艾利遜移動" />
+        <string name="4" value="\n#e-最終獎勵#n" />
+        <string name="5" value="#i1142259##t1142259#" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="10">
+      <string name="title" value="[怪物公園]\n黑暗寺院(Lv 60~69)" />
+      <string name="message" value="在怪物公園擊退怪物！" />
+      <int name="npc" value="9071000" />
+      <imgdir name="desc">
+        <string name="0" value="#e-建議等級#n：60~69級，怪物區卷持有者" />
+        <string name="1" value="#e-移動方法#n：位於各村的怪物區移動點與迅速移動選單" />
+        <string name="2" value="#e-最終獎勵#n" />
+        <string name="3" value="休菲凱曼的胸章盒（需要怪物區紀念硬幣30個）" />
+        <string name="4" value="休菲凱曼的鬍子（需要怪物區紀念硬幣50個）" />
+        <string name="5" value="休菲凱曼的親筆簽名（需要怪物區紀念硬幣100個）" />
+        <string name="6" value="休菲凱曼的熱氣球7天使用卷（需要怪物區紀念硬幣70個）" />
+        <string name="7" value="\n#e★何謂怪物公園呢?#n" />
+        <string name="8" value="#fEtc/LevelUpGuide.img/Image/10_0#" />
+        <string name="9" value="怪物公園是可以看到&quot;休菲凱曼&quot;周遊楓之谷世界收集的怪物的地方。組隊消滅怪物的話，可以獲得附加經驗值和怪物公園的特殊道具。" />
+        <string name="10" value="\n#e★該怎麼開始呢？#n" />
+        <string name="11" value="#fEtc/LevelUpGuide.img/Image/10_1#" />
+        <string name="12" value="#b（利用位於各村的怪物區移動點）" />
+        <string name="13" value="\n想要進入怪物公園的話，可以利用村莊中的怪物公園公車。" />
+        <string name="14" value="想要進入怪物公園的話，需要入場券，此一入場券，只要收集在一般戰場狩獵怪物會獲得的「卷碎片」，然後和位於怪物公園的梅莉交換即可獲得。" />
+        <string name="15" value="另外，也可以直接向位於怪物公園的梅莉購買。（不限入場券的種類，每天只可購買5張），提供給你當作參考~" />
+        <string name="16" value="\n#fEtc/LevelUpGuide.img/Image/10_2#" />
+        <string name="17" value="#b（收集碎片可交換卷）" />
+        <string name="18" value="#fEtc/LevelUpGuide.img/Image/10_3#" />
+        <string name="19" value="#b（將碎片交給「梅莉」可交換卷）" />
+        <string name="20" value="\n#e★請組成小隊！#n" />
+        <string name="21" value="按下尋找小隊快鍵O鍵，或者在頻道中募集要參加小隊的人。" />
+        <string name="22" value="\n#e★怪物公園開始！#n" />
+        <string name="23" value="若是組成小隊的話，接著便可以正式開始怪物公園，只有小隊長可以決定開始怪物公園，小隊長只要選擇想要的迷宮即可。" />
+        <string name="24" value="#fEtc/LevelUpGuide.img/Image/10_4#" />
+        <string name="25" value="#b（從位於休菲凱曼森林旁邊的傳送點可以選擇迷宮）" />
+        <string name="26" value="#fEtc/LevelUpGuide.img/Image/10_5#" />
+        <string name="27" value="#bTIP：在怪物公園中解決怪物所獲得的&quot;怪物公園紀念貨幣&quot;可以和雜貨商人拉庫交換特殊道具，所以一定要妥善保管~!" />
+        <string name="28" value="#fEtc/LevelUpGuide.img/Image/10_6#" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="11">
+      <string name="title" value="[戰鬥任務]\n奈特的金字塔-一般（Lv60~89）" />
+      <string name="message" value="挑戰雪吉法老王！" />
+      <int name="npc" value="2103013" />
+      <imgdir name="desc">
+        <string name="0" value="長久以來埋藏在沙漠深處的復仇之神#r奈特的金字塔#k浮現至地面上了。前往金字塔向法老雪吉拉挑戰吧！" />
+        <string name="1" value="\n#e-參加人數#n：4人小隊" />
+        <string name="2" value="\n#e-移動方法#n：各村莊的次元之鏡" />
+        <string name="3" value="\n#e-特殊獎勵：" />
+        <string name="4" value="#b#i1132013:# #t1132013##k\n#b#i1132012:# #t1132012##k" />
+        <string name="5" value="\n#e★該怎麼開始呢？" />
+        <string name="6" value="奈特的金字塔組隊任務必須聚集60級以上的玩家4名才可以進行。" />
+        <string name="7" value="必須先去找位於納希的巴伊倫獲得「謎之金字塔」任務，且完成該任務。" />
+        <string name="8" value="#fEtc/LevelUpGuide.img/Image/11_0#" />
+        <string name="9" value="#b（去找納希的巴伊倫執行任務）" />
+        <string name="10" value="\n完成任務的話，透過位於村子的次元之鏡或在迅速移動選單點擊「奈特的金字塔」，和德亞特交談即可進入金字塔。" />
+        <string name="11" value="#fEtc/LevelUpGuide.img/Image/11_1#" />
+        <string name="12" value="#b（點擊迅速移動選單，選擇「奈特的金字塔」）" />
+        <string name="13" value="#fEtc/LevelUpGuide.img/Image/11_2#" />
+        <string name="14" value="#b（和德亞特交談的話，即可進入金字塔）" />
+        <string name="15" value="\n#e★過關方法！" />
+        <string name="16" value="進入金字塔的話，各舞台1~4層樓的最右邊通道中，可以召喚各種的怪物。" />
+        <string name="17" value="召喚出來的怪物為了破壞聖物方尖碑，會往左邊移動。請阻止怪物們無法破壞方尖碑！" />
+        <string name="18" value="" />
+        <string name="19" value="#b（保護方尖碑！）" />
+        <string name="20" value="\n#e★使用各種效果的眼睛道具！" />
+        <string name="21" value="解決召喚出來的怪物後，可以獲得點數！利用獲得的點數可以購買強化角色或讓怪物陷入異常狀態的眼睛道具。" />
+      </imgdir>
+      <int name="npcScale" value="85" />
+      <int name="addNpcY" value="10" />
+    </imgdir>
+    <imgdir name="12">
+      <string name="title" value="[怪物公園]\n魔女的雪原 (Lv 70~79)" />
+      <string name="message" value="在怪物公園擊退怪物！" />
+      <int name="npc" value="9071000" />
+      <imgdir name="desc">
+        <string name="0" value="#e-建議等級#n：70~79級，怪物區卷持有者" />
+        <string name="1" value="#e-移動方法#n：位於各村的怪物區移動點與迅速移動選單" />
+        <string name="2" value="\n#e-最終獎勵" />
+        <string name="3" value="休菲凱曼的胸章盒（需要怪物區紀念硬幣30個）" />
+        <string name="4" value="休菲凱曼的鬍子（需要怪物區紀念硬幣50個）" />
+        <string name="5" value="休菲凱曼的親筆簽名（需要怪物區紀念硬幣100個）" />
+        <string name="6" value="休菲凱曼的熱氣球7天使用卷（需要怪物區紀念硬幣70個）" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="13">
+      <string name="title" value="[組隊任務]\n女神的痕跡(Lv 70~99)" />
+      <string name="message" value="拯救天空之城的女神吧！" />
+      <int name="npc" value="2013000" />
+      <imgdir name="desc">
+        <string name="0" value="拯救#b#m200000000##k女神的冒險開始了！#b透過次元之鏡#k前往雅典娜禁地。" />
+        <string name="1" value="\n休息室：尋找音樂後，轉開唱片" />
+        <string name="2" value="倉庫：擊敗一個個接連出現的紅獨角獅" />
+        <string name="3" value="散步路：擊敗精靈收集小水碎片" />
+        <string name="4" value="向上通道：：找到正解的踏板後，前往頂端" />
+        <string name="5" value="恢復女神像：恢復破碎的女神像" />
+        <string name="6" value="庭園：擊敗遠古精靈" />
+        <string name="7" value="\n#e-限制時間#n：20分鐘" />
+        <string name="8" value="\n#e-參加人數#n：3~6名" />
+        <string name="9" value="\n#e-移動方法#n：各村莊的次元之鏡" />
+        <string name="10" value="\n#e-特殊獎勵#n：" />
+        <string name="11" value="#b#i01082232:# #t01082232##k\n" />
+        <string name="12" value="(#r遠古精靈掉落)" />
+        <string name="13" value=" #b#i01072455:# #t01072455##k\n" />
+        <string name="14" value="(#r遠古精靈掉落)" />
+        <string name="15" value="#b#i01082322:# #t01082322##k\n" />
+        <string name="16" value="(#r需要女神的羽毛15個)" />
+        <string name="17" value=" #b#i01072534:# #t01072534##k\n" />
+        <string name="18" value="(#r需要女神的羽毛10個)" />
+      </imgdir>
+      <int name="npcScale" value="80" />
+      <int name="addNpcY" value="10" />
+    </imgdir>
+    <imgdir name="14">
+      <string name="title" value="[組隊任務]\n羅密歐與茱麗葉(Lv 70~99)" />
+      <string name="message" value="去尋找苦命的情侶！" />
+      <int name="npc" value="2112018" />
+      <imgdir name="desc">
+        <string name="0" value="#b#m261000000##k的苦命情侶#b#p2112004##k和#b#p2112003##k.透過#b次元之鏡#k，和羅密歐，茱麗葉後，破壞蒙特鳩學派和卡帕萊特學派的陰謀！" />
+        <string name="1" value="\n第1階段：尋找研究室內可疑的開關" />
+        <string name="2" value="第2階段：擊退所有的怪物" />
+        <string name="3" value="第3階段：用燒杯收集可疑的液體" />
+        <string name="4" value="第4階段：進入黑暗的研究室，尋找實驗資料" />
+        <string name="5" value="第5階段：擊退怪物後，尋找可疑的開關" />
+        <string name="6" value="第6階段：找到正確的踏板後，前往上方" />
+        <string name="7" value="第7階段：擊退弗蘭肯洛伊德" />
+        <string name="8" value="\n#e-限制時間#n：20分鐘" />
+        <string name="9" value="\n#e-參加人數#n：4名" />
+        <string name="10" value="\n#e-移動方法#n：各村莊的次元之鏡" />
+        <string name="11" value="\n#e-特殊獎勵#n：" />
+        <string name="12" value="#b#i1122116:# #t1122116##k" />
+        <string name="13" value="#b#i1122117:# #t1122117##k" />
+        <string name="14" value="#b#i1122118:# #t1122118##k" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="15">
+      <string name="title" value="[組隊任務]\n金勾海賊王(Lv 100~129)" />
+      <string name="message" value="阻止金勾海賊王！" />
+      <int name="npc" value="2094000" />
+      <imgdir name="desc">
+        <string name="0" value="#b#m251000000##k受到#r海賊#o9300119##k襲擊！透過#b次元之鏡#k前往深山人蔘的大王#b#p2094001##k被抓去的地方。" />
+        <string name="1" value="\n#e-限制時間#n：\n1）第1階段：4分鐘\n2）第2階段：7分鐘\n3）第3階段：5分鐘\n4）第4階段：6分鐘\n" />
+        <string name="2" value="\n#e-參加人數#n：3~6名" />
+        <string name="3" value="\n#e-移動方法#n：各村莊的次元之鏡" />
+        <string name="4" value="\n#e-特殊獎勵#n：" />
+        <string name="5" value="#b#i1003267:# #t1003267##k" />
+      </imgdir>
+      <int name="npcScale" value="80" />
+    </imgdir>
+    <imgdir name="16">
+      <string name="title" value="[組隊任務]\n毒霧森林(Lv 100~129)" />
+      <string name="message" value="拯救受汙染的艾靈森林！" />
+      <int name="npc" value="2133000" />
+      <imgdir name="desc">
+        <string name="0" value="透過#b赫爾奧斯塔101層，忘卻的時間之門#k可以回到過去的時間。艾靈森林的妖精正在期待可以拯救污染森林的勇士。但是…以介入過去的歷史嗎？" />
+        <string name="1" value="\n#e-限制時間#n：20分鐘" />
+        <string name="2" value="\n#e-參加人數#n：3~5名" />
+        <string name="3" value="\n#e-移動方法#n：各村莊的次元之鏡" />
+        <string name="4" value="\n#e-特殊獎勵#n：" />
+        <string name="5" value="#b#i1032101:# #t1032101##k" />
+      </imgdir>
+      <int name="addNpcY" value="20" />
+      <int name="addNpcX" value="-5" />
+    </imgdir>
+    <imgdir name="17">
+      <string name="title" value="[怪物公園]\n寂靜的海洋(Lv75~84)" />
+      <string name="message" value="在怪物公園擊退怪物！" />
+      <int name="npc" value="9071000" />
+      <imgdir name="desc">
+        <string name="0" value="#e-建議等級#n：75~84級，怪物區卷持有者" />
+        <string name="1" value="#e-移動方法#n：位於各村的怪物區移動點與迅速移動選單" />
+        <string name="2" value="\n#e-最終獎勵#n" />
+        <string name="3" value="休菲凱曼的胸章盒（需要怪物區紀念硬幣30個）" />
+        <string name="4" value="休菲凱曼的鬍子（需要怪物區紀念硬幣50個）" />
+        <string name="5" value="休菲凱曼的親筆簽名（需要怪物區紀念硬幣100個）" />
+        <string name="6" value="休菲凱曼的熱氣球7天使用卷（需要怪物區紀念硬幣70個）" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="18">
+      <string name="title" value="[怪物公園]\n烏山山頭(Lv 80~89)" />
+      <string name="message" value="在怪物公園擊退怪物！" />
+      <int name="npc" value="9071000" />
+      <imgdir name="desc">
+        <string name="0" value="#e-建議等級#n：80~89級，怪物區卷持有者" />
+        <string name="1" value="#e-移動方法#n：位於各村的怪物區移動點與迅速移動選單" />
+        <string name="2" value="\n#e-最終獎勵#n" />
+        <string name="3" value="休菲凱曼的胸章盒（需要怪物區紀念硬幣30個）" />
+        <string name="4" value="休菲凱曼的鬍子（需要怪物區紀念硬幣50個）" />
+        <string name="5" value="休菲凱曼的親筆簽名（需要怪物區紀念硬幣100個）" />
+        <string name="6" value="休菲凱曼的熱氣球7天使用卷（需要怪物區紀念硬幣70個）" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="19">
+      <string name="title" value="[競爭單元]\n怪物擂臺賽（Lv 80~200）" />
+      <string name="message" value="參加真正強者們的慶典吧！" />
+      <int name="npc" value="9071000" />
+      <imgdir name="desc">
+        <string name="0" value="真正強者們的慶典，擂臺賽！只要在#b#e7#n#k分鐘內獲得最多CP的小隊就獲得勝利。" />
+        <string name="1" value="\n#e-參加條件#n：80~200級" />
+        <string name="2" value="\n#e-限制時間#n：7分鐘" />
+        <string name="3" value="\n#e-移動方法#n：點擊每15分鐘、45分鐘到達的怪物擂臺賽邀請函可以移動。" />
+        <string name="4" value="\n#e-最終獎勵#n" />
+        <string name="5" value="#b#i1122162:# #t1122162##k" />
+        <string name="6" value="#r（#t4001254#需要100個）#n" />
+        <string name="7" value="#b#i1102327:# #t1102327##k" />
+        <string name="8" value="\n#e★怪物擂臺賽是什麼呢？#n" />
+        <string name="9" value="怪物擂臺賽是以6:6來組隊展開對決的模式。" />
+        <string name="10" value="連續7分鐘內解決戰場上的怪物，最終獲得最多CP（擂臺賽點數）的隊伍就算勝利。" />
+        <string name="11" value="\n#e★該怎麼開始呢？#n" />
+        <string name="12" value="想要參加怪物擂臺賽的話，只要點擊每15分鐘、45分鐘飛來的休菲凱曼的邀請函同意即可。" />
+        <string name="13" value="#fEtc/LevelUpGuide.img/Image/19_0#" />
+        <string name="14" value="#fEtc/LevelUpGuide.img/Image/19_1#" />
+        <string name="15" value="\n#e★怪物擂臺賽開始！#n" />
+        <string name="16" value="只要回應邀請函的話，就會移動到擂臺賽戰場&lt;待機室&gt;。1分鐘後會自動組隊，移動到擂臺賽戰場。獵捕擂臺賽中出現的怪物收集CP，利用收集到的CP召換怪物，或者可以使用技能。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="20">
+      <string name="title" value="[怪物公園]\n葛雷的藏身處(Lv 85~94)" />
+      <string name="message" value="在怪物公園擊退怪物！" />
+      <int name="npc" value="9071000" />
+      <imgdir name="desc">
+        <string name="0" value="#e-建議等級#n：85~94級，怪物區卷持有者" />
+        <string name="1" value="#e-移動方法#n：位於各村的怪物區移動點與迅速移動選單" />
+        <string name="2" value="\n#e-最終獎勵#n" />
+        <string name="3" value="休菲凱曼的胸章盒（需要怪物區紀念硬幣30個）" />
+        <string name="4" value="休菲凱曼的鬍子（需要怪物區紀念硬幣50個）" />
+        <string name="5" value="休菲凱曼的親筆簽名（需要怪物區紀念硬幣100個）" />
+        <string name="6" value="休菲凱曼的熱氣球7天使用卷（需要怪物區紀念硬幣70個）" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="21">
+      <string name="title" value="[組隊任務]\n奈特的金字塔-困難（Lv90~109）" />
+      <string name="message" value="挑戰雪吉法老王！" />
+      <int name="npc" value="2103013" />
+      <imgdir name="desc">
+        <string name="0" value="長久以來埋藏在沙漠深處的復仇之神#r奈特的金字塔#k浮現至地面上了。前往金字塔向法老雪吉拉挑戰吧！" />
+        <string name="1" value="\n#e-參加人數#n：4人小隊" />
+        <string name="2" value="\n#e-移動方法#n：各村莊的次元之鏡" />
+        <string name="3" value="\n#e-特殊獎勵#n：" />
+        <string name="4" value="#b#i1132013:# #t1132013##k\n#b#i1132012:# #t1132012##k" />
+      </imgdir>
+      <int name="addNpcY" value="10" />
+      <int name="npcScale" value="85" />
+    </imgdir>
+    <imgdir name="22">
+      <string name="title" value="[主題迷宮]\n艾靈森林（Lv95~105）" />
+      <string name="message" value="回到過去展開神秘之旅！" />
+      <int name="npc" value="9071000" />
+      <int name="naviField" value="222020400" />
+      <imgdir name="desc">
+        <string name="0" value="休菲凱曼傳來一個相當有趣的消息。為了守住童心而停止了時間，玩具城和桃花仙境的時間塔其中一個地方發生了問題，所以得以回到過去…現在立刻去赫爾奧斯塔展開神秘之旅！" />
+        <string name="1" value="\n#e-建議等級#n：95~105級" />
+        <string name="2" value="\n#e-移動方法$LVUPNVBT$#n" />
+        <string name="3" value="赫爾奧斯塔101層，忘卻的時間之門" />
+        <string name="4" value="\n#e-最終獎勵#n" />
+        <string name="5" value="艾靈森林的守護者（稱號）" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="23">
+      <string name="title" value="[魔王單元]\n殘暴炎魔（Lv50~200）" />
+      <string name="message" value="擊退殘暴炎魔，拯救地下的一族！" />
+      <int name="npc" value="2030013" />
+      <imgdir name="desc">
+        <string name="0" value="冰原雪域廢礦深處，因為邪惡力量而改變的殘暴炎魔樹木讓原本大家崇拜的石像變成恐怖的對象。擊退殘暴炎魔，拯救地下的一族。" />
+        <string name="1" value="\n#e-遠征隊參加資格#n" />
+        <string name="2" value="1)一般模式：50級以上" />
+        <string name="3" value="2)混沌模式：100級以上" />
+        <string name="4" value="\n#e-參加人員#n : 1人或多人殘暴炎魔遠征隊" />
+        <string name="5" value="\n#e-移動方法$LVUPNVBT$#n" />
+        <string name="6" value="到冰原雪域廢礦深處" />
+        <string name="7" value="\n#e-最終獎勵#n" />
+        <string name="8" value="#i1002357##t1002357#" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="24">
+      <string name="title" value="[主題迷宮]\n獅子王城（Lv110~125）" />
+      <string name="message" value="解除獅子王城的封印！" />
+      <int name="npc" value="2161002" />
+      <imgdir name="desc">
+        <string name="0" value="十字獵人的成員皮斯特寄來了信件。雖然在位於冰原雪域的獅子王城中感受到恐怖與黑暗氣息，不過，封印同時也造成了調查上的困難。解除獅子王城的封印，擊退黑暗的氣息！" />
+        <string name="1" value="\n#e-建議等級#n：110~125級" />
+        <string name="2" value="\n#e-移動方法$LVUPNVBT$#n" />
+        <string name="3" value="在楓之谷郵箱當中，確認&quot;寂寞的古城&quot;信件" />
+        <string name="4" value="\n#e-最終獎勵#n" />
+        <string name="5" value="盧頓的技能百科書，永遠的忠貞" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="25">
+      <string name="title" value="[組隊任務]\n龍騎士（Lv120~200）" />
+      <string name="message" value="查出龍騎士的真面目！" />
+      <int name="npc" value="2085000" />
+      <imgdir name="desc">
+        <string name="0" value="透過#b次元之鏡#k前往#b&lt;天空之門&gt;#k查探#r龍騎士#k真面目。利用#b飛翔#k技能飛上天空，擊退翼龍並追蹤，就能發現。" />
+        <string name="1" value="\n#e-參加資格#n：習得飛翔技能" />
+        <string name="2" value="\n#e-限制時間#n：20分鐘" />
+        <string name="3" value="\n#e-參加人數#n：3~6名" />
+        <string name="4" value="\n#e-移動方法#n：各村莊的次元之鏡" />
+        <string name="5" value="\n#e-特殊獎勵#n：" />
+        <string name="6" value="#b#i2430376:# #t2430376##k\n" />
+        <string name="7" value="#b#i2430377:# #t2430377##k\n" />
+        <string name="8" value="#b#i2430379:# #t2430379##k\n" />
+        <string name="9" value="#b#i2430378:# #t2430378##k\n" />
+        <string name="10" value="#b#i2430380:# #t2430380##k\n" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="26">
+      <string name="title" value="[組隊任務]\n陷入危險的坎特 (Lv 140~200)" />
+      <string name="message" value="幫助陷入危機的坎特！" />
+      <int name="npc" value="9020003" />
+      <imgdir name="desc">
+        <string name="0" value="正在尋找可以幫助陷入危險#b#m923040000##k的#b#p9020003##k#b坎特#k的冒險家。透過次元之鏡前往危險之海岔道吧！" />
+        <string name="1" value="\n1.將威脅坎特的狂暴怪物全部除掉吧！" />
+        <string name="2" value="2.為了氧氣不足的坎特除掉怪物取得20個氣泡。" />
+        <string name="3" value="3.守護坎特3分鐘避免遭受狂暴的海底生物攻擊。" />
+        <string name="4" value="4.擊敗危險洞穴內的海怒斯並協助坎特的調查。" />
+        <string name="5" value="\n#e-限制時間#n：20分鐘" />
+        <string name="6" value="\n#e-參加人數#n：3~6名" />
+        <string name="7" value="\n#e-移動方法#n：各村莊的次元之鏡" />
+        <string name="8" value="\n#e-特殊獎勵#n：" />
+        <string name="9" value="#b#i1022123:##t1022123##k\n" />
+      </imgdir>
+      <int name="npcScale" value="80" />
+      <int name="addNpcY" value="50" />
+    </imgdir>
+    <imgdir name="27">
+      <string name="title" value="[組隊任務]\n逃脫 (Lv 120~250)" />
+      <string name="message" value="拯救被關在空中監獄中的人們！" />
+      <int name="npc" value="9020005" />
+      <imgdir name="desc">
+        <string name="0" value="#b#m921160000##k的#b簡#k正在尋找可以拯救隱藏之塔並被囚禁於空中監獄的冒險家。" />
+        <string name="1" value="\n1.必須避開障礙物，且從塔裡離開。" />
+        <string name="2" value="2.必須擊敗地圖內的所有守衛兵。" />
+        <string name="3" value="3.要脫離為了防止接近監獄製作的迷宮。" />
+        <string name="4" value="4.必須將守護門的守衛兵全部擊敗。" />
+        <string name="5" value="5.必須通過前往空中監獄的最後障礙物。" />
+        <string name="6" value="6.擊敗守衛兵，重新找回監獄鑰匙後開啟監獄門。" />
+        <string name="7" value="7.必須找到教官亞尼，讓被囚禁的人們重獲自由。" />
+        <string name="8" value="\n#e-限制時間#n：20分鐘" />
+        <string name="9" value="\n#e-參加人數#n：3~6名" />
+        <string name="10" value="\n#e-移動方法#n：各村莊的次元之鏡" />
+        <string name="11" value="\n#e-特殊獎勵#n：" />
+        <string name="12" value="#b#i1132094:# #t1132094##k\n" />
+        <string name="13" value="#b#i1132095:# #t1132095##k\n" />
+        <string name="14" value="#b#i1132096:# #t1132096##k\n" />
+        <string name="15" value="#b#i1132097:# #t1132097##k\n" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="28">
+      <string name="title" value="[組隊任務]\n侏儒帝王的復活 (Lv 150~250)" />
+      <string name="message" value="查出龍騎士的真面目！" />
+      <int name="npc" value="2022005" />
+      <imgdir name="desc">
+        <string name="0" value="封印侏儒帝王#r#o9300281##k的封印石力量逐漸變弱了。在更大的危機來臨前，請透過#b次元之鏡#k和#b#p2022005##k見面，瞭解詳情。" />
+        <string name="1" value="\n#e-限制時間#n：20分鐘" />
+        <string name="2" value="\n#e-參加人員#n : 2~6名" />
+        <string name="3" value="\n#e-移動方法#n：各村莊的次元之鏡" />
+        <string name="4" value="\n#e-特殊獎勵#n：" />
+        <string name="5" value="#b#i1032102:# #t1032102##k\n" />
+        <string name="6" value="#b#i1032103:# #t1032103##k\n" />
+        <string name="7" value="#b#i1032104:# #t1032104##k\n" />
+        <string name="8" value="#b#i1902048:# #t1902048##k" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="29">
+      <string name="title" value="[競爭單元]\n霧之海的幽靈船（Lv120~159）" />
+      <string name="message" value="在幽靈船中展開激烈的對決！" />
+      <int name="npc" value="2060103" />
+      <imgdir name="desc">
+        <string name="0" value="2個組隊入場後#b更快速達到BOSS地圖，參與先擊敗BOSS#k的隊伍獲得勝利的#b#e組隊競爭戰#n#k。" />
+        <string name="1" value="\n#e-參加條件#n：3名的120級~159級小隊" />
+        <string name="2" value="\n#e-移動方法#n：各村莊的次元之鏡" />
+        <string name="3" value="\n#e-最終獎勵#n" />
+        <string name="4" value="#b#i1102227# #t1102227##k\n" />
+        <string name="5" value="可以向幽靈船船長取得\n" />
+        <string name="6" value="（需要#t4001533#100個、\n#t1102227#）\" />
+        <string name="7" value="#b#i1082400##t1082400##k\n#r（需要#t4001533#100個）" />
+        <string name="8" value="\n#e★霧之海的幽靈船？#n" />
+        <string name="9" value="霧之海的幽靈船是6名玩家以3:3組隊展開對決的模式。" />
+        <string name="10" value="限制時間內解決魔王怪物的隊伍便獲勝。" />
+        <string name="11" value="\n#e★該怎麼開始呢？#n" />
+        <string name="12" value="想要開始霧之海的話，必須從武陵桃園幻境的「黃船長」獲得「霧之海流傳的謠言」一任務執行。" />
+        <string name="13" value="#fEtc/LevelUpGuide.img/Image/29_0#" />
+        <string name="14" value="完成任務的話，利用各村的次元之鏡或武陵桃園幻境的「海豚計程車」去，可以移動到霧之海的幽靈船。" />
+        <string name="15" value="#fEtc/LevelUpGuide.img/Image/29_1#" />
+        <string name="16" value="\n#e★請組成小隊！#n" />
+        <string name="17" value="霧之海的幽靈船只能靠組隊進行，組隊是必備的。請按下組隊快鍵O鍵或在頻道中招募要參加小隊的人。" />
+        <string name="18" value="\n#e★霧之海的幽靈船對決！#n" />
+        <string name="19" value="倘若組隊完成的話，接下來可以進行正式的霧之海幽靈船對決。小隊長和諾靈頓交談，開設房間迎接敵隊的話，遊戲便會開始。" />
+        <string name="20" value="到解決最後幽靈船陷阱為止，總共有6階段的舞台。和小隊員互相合作，迅速完成舞台，只要先解決最終幽靈船陷阱的話，便能獲得勝利。" />
+        <string name="21" value="#fEtc/LevelUpGuide.img/Image/29_2#" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="30">
+      <string name="title" value="[魔王單元]\n獅子王凡雷恩（Lv120~200）" />
+      <string name="message" value="擊退獅子王凡雷恩！" />
+      <int name="npc" value="2161000" />
+      <int name="naviField" value="211060000" />
+      <imgdir name="desc">
+        <string name="0" value="為了報仇而將靈魂賣給黑魔法師的男人，獅子王凡雷恩復活了。擊退凡雷恩吧！" />
+        <string name="1" value="\n#e-遠征隊參加資格#n：120~200級" />
+        <string name="2" value="\n#e-參加人數#n：凡雷恩遠征隊" />
+        <string name="3" value="\n#e-移動方法$LVUPNVBT$#n" />
+        <string name="4" value="從冰原雪域去獅子王城" />
+        <string name="5" value="\n#e-最終獎勵#n" />
+        <string name="6" value="凡雷恩道具套組" />
+      </imgdir>
+      <int name="npcScale" value="80" />
+      <int name="addNpcY" value="10" />
+    </imgdir>
+    <imgdir name="31">
+      <string name="title" value="[魔王單元]\n海怒斯（Lv120~200）" />
+      <string name="message" value="擊敗深海中的海怒斯！" />
+      <int name="npc" value="2060101" />
+      <imgdir name="desc">
+        <string name="0" value="水世界深海之處，有一個叫做海怒斯的怪物被困在岩石中，因為無法移動，結果反而變得更凶殘。擊退海怒斯！" />
+        <string name="1" value="\n#e-遠征隊參加資格#n：120~200級" />
+        <string name="2" value="\n#e-參加人數#n：單槍匹馬或組隊" />
+        <string name="3" value="\n#e-移動方法$LVUPNVBT$#n" />
+        <string name="4" value="深海危險的洞窟的深處" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="32">
+      <string name="title" value="[魔王單元]\n闇黑龍王（Lv110~200）" />
+      <string name="message" value="擊退龍族的闇黑龍王！" />
+      <int name="npc" value="2081006" />
+      <imgdir name="desc">
+        <string name="0" value="長時間在米納爾森林中生存至今的龍族的叛徒，擊退闇黑龍王和取得九靈龍的蛋。" />
+        <string name="1" value="\n#e-遠征隊參加資格#n" />
+        <string name="2" value="1)一般模式：80級以上" />
+        <string name="3" value="2)混沌模式：110級以上" />
+        <string name="4" value="\n#e-參加人數#n：闇黑龍王遠征隊，混沌闇黑龍王遠征隊" />
+        <string name="5" value="\n#e-移動方法$LVUPNVBT$#n" />
+        <string name="6" value="往危險巢穴底下的生命之穴" />
+        <string name="7" value="\n#e-最終獎勵#n" />
+        <string name="8" value="#i1122000# #t1122000#" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="33">
+      <string name="title" value="[主題迷宮]\n奈歐市（Lv125~135）" />
+      <string name="message" value="幫助安迪導正被扭曲的時間！" />
+      <int name="npc" value="2082004" />
+      <imgdir name="desc">
+        <string name="0" value="為了導正過去的錯誤，從2503年的奈歐市來的時光旅行者安迪。不過，時光旅行失敗的他不幸掉落在米納爾森林。幫助安迪導正被扭曲的時間" />
+        <string name="1" value="\n#e-建議等級#n：125~135級" />
+        <string name="2" value="\n#e-移動方法$LVUPNVBT$#n" />
+        <string name="3" value="從神木村往東邊移動" />
+        <string name="4" value="\n#e-最終獎勵#n" />
+        <string name="5" value="#i1003039##t1003039#" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="34">
+      <string name="title" value="[魔王單元]\n拉圖斯（Lv130~200）" />
+      <string name="message" value="擊退拉圖斯！" />
+      <int name="npc" value="2041023" />
+      <imgdir name="desc">
+        <string name="0" value="桃花仙境的時間塔深處形成了時空裂縫。利用次元裂縫從其他世界跨越而來的危險怪物，擊退拉圖斯。" />
+        <string name="1" value="\n#e-遠征隊參加資格#n：130~200級" />
+        <string name="2" value="\n#e-參加人數#n：單槍匹馬或組隊" />
+        <string name="3" value="\n#e-移動方法$LVUPNVBT$#n" />
+        <string name="4" value="到時間塔地下深處" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="35">
+      <string name="title" value="[怪物公園]\自動警備區域(Lv 135~144)" />
+      <string name="message" value="在怪物公園擊退怪物！" />
+      <int name="npc" value="9071000" />
+      <imgdir name="desc">
+        <string name="0" value="#e-建議等級#n：135~144級，怪物區卷持有者" />
+        <string name="1" value="#e-移動方法#n：位於各村的怪物區移動點與迅速移動選單" />
+        <string name="2" value="\n#e-最終獎勵#n" />
+        <string name="3" value="休菲凱曼的胸章盒（需要怪物區紀念硬幣30個）" />
+        <string name="4" value="休菲凱曼的鬍子（需要怪物區紀念硬幣50個）" />
+        <string name="5" value="休菲凱曼的親筆簽名（需要怪物區紀念硬幣100個）" />
+        <string name="6" value="休菲凱曼的熱氣球7天使用卷（需要怪物區紀念硬幣70個）" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="36">
+      <string name="title" value="[連續任務]\n十字獵人(Lv 75~160)" />
+      <string name="message" value="挑戰十字獵人吧！" />
+      <int name="npc" value="9073000" />
+      <imgdir name="desc">
+        <string name="0" value="從被黑色翅膀的爪牙襲擊受傷的#b雪莉#k那裡傳來了S.O.S.的要求。 現在立刻去到#b墮落城市地鐵#k解救陷入危險的雪莉。" />
+        <string name="1" value="\n#e-建議等級#n： 75~160級" />
+        <string name="2" value="\n#e-開始的方法#n： " />
+        <string name="3" value="S.O.S.要求任務開始之後，往墮落城市地鐵售票處\n#b「維修中的地鐵」#k移動" />
+        <string name="4" value="\n#eChapter1 獵人的資格#n" />
+        <string name="5" value="-解決咕咕鐘(Lv75)" />
+        <string name="6" value="-解決葛雷金剛(Lv78)" />
+        <string name="7" value="-解決仙人長老(Lv80)" />
+        <string name="8" value="-解決喵怪仙人(Lv86)" />
+        <string name="9" value="-解決迪特和洛依(Lv96)" />
+        <string name="10" value="\n\n#eChapter2 獵人的證明#n" />
+        <string name="11" value="-解決妖怪蜈蚣(Lv100)" />
+        <string name="12" value="-解決妖怪侏儒(Lv106)" />
+        <string name="13" value="-解決妖怪豎琴(Lv113)" />
+        <string name="14" value="-解決妖怪綿羊(Lv117)" />
+        <string name="15" value="-解決半人馬國王(Lv119)" />
+        <string name="16" value="\n#eChapter3 無止盡的獵人之路#n" />
+        <string name="17" value="-解決奇美拉(Lv120)" />
+        <string name="18" value="-解決噴火龍(Lv125)" />
+        <string name="19" value="-解決格瑞芬多(Lv130)" />
+        <string name="20" value="-解決拉圖斯(Lv135)" />
+        <string name="21" value="-解決厄運死神(Lv140)" />
+        <string name="22" value="\n\n\n#eChapter4 傳說的獵人#n" />
+        <string name="23" value="-解決海怒斯(Lv140)" />
+        <string name="24" value="-解決寒霜冰龍(Lv145)" />
+        <string name="25" value="-解決多多(Lv150)" />
+        <string name="26" value="-解決利里諾斯(Lv155)" />
+        <string name="27" value="-解決萊伊卡(Lv160)" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="37">
+      <string name="title" value="[戰鬥單元]\n武陵道場(Lv 90~200)" />
+      <string name="message" value="你想試煉你的實力嗎？" />
+      <int name="npc" value="2091005" />
+      <int name="naviField" value="250000100" />
+      <imgdir name="desc">
+        <string name="0" value="你想試煉強者嗎？ 你想做全新的挑戰嗎？ 如果是的話，去找#b武陵道場#k的#b蕭公#k吧。" />
+        <string name="1" value="\n#e-建議等級#n： 90~200級" />
+        <string name="2" value="\n#e-移動方法 $LVUPNVBT$#n" />
+        <string name="3" value="在各個村莊的次元之鏡" />
+        <string name="4" value="\n#e&lt;困難模式獎勵&gt;#b#n" />
+        <string name="5" value="SS等級 :#i1022135:# #t1022135#" />
+        <string name="6" value="S等級 :#i1022136:# #t1022135#" />
+        <string name="7" value="A等級 :#i2022957:# #t2022957#" />
+        <string name="8" value="B等級 :#i2001505:# #t2001505#" />
+        <string name="9" value="\n\n#e&lt;排名模式獎勵&gt;#b#n" />
+        <string name="10" value="第1名:#i1082392:# #t1082392#" />
+        <string name="11" value="第2名:#i1082393:# #t1082393#" />
+        <string name="12" value="第3名 :#i1082394:# #t1082394#" />
+        <string name="13" value="\n#e&lt;武公的證明獎勵&gt;#b#n" />
+        <string name="14" value="#i1132112:# #t1132112# #r(#t4001620# 需25個)#b" />
+        <string name="15" value="#i1132113:# #t1132113# #r(#t4001620# 需50個)#b" />
+        <string name="16" value="#i1132114:# #t1132114# #r(#t4001620# 需100個)#b" />
+        <string name="17" value="#i1132115:# #t1132115# #r(#t4001620# 需125個)#b" />
+        <string name="18" value="\n#e★所謂的武陵道場是？" />
+        <string name="19" value="您想證明我是強者嗎？ 如果是的話，請你現在當場去武陵道場！ 通過各種的魔王怪物跟測試能驗證我的實力。" />
+        <string name="20" value="\n#e★該怎麼開始呢？" />
+        <string name="21" value="武陵道場位於桃花仙境。 如果想進入武陵道場，就要通過在桃花仙境的武公下戰帖或位於各個村莊的次元之鏡才能入場。" />
+        <string name="22" value="\n#e★蕭公的測試" />
+        <string name="23" value="如果要挑戰武陵道場，就要先跟看守武陵道場的蕭公展開對決。 如果能在與蕭公的對決中勝出，才能正式挑戰武陵道場。" />
+        <string name="24" value="\n#e★挑戰！ 武陵道場" />
+        <string name="25" value="武陵道場是由一般/困難/排名總共3個難度所構成的。 90級以上是一般模式，120級以上是困難模式，130等級則是挑戰排名模式。 " />
+        <string name="26" value="在困難模式中，會按遊戲來累積武陵點數，並根據一個禮拜的期間所累積的武陵點數來訂定等級，按等級能得到特別的獎勵。" />
+        <string name="27" value="\n#e★武陵道場的特徵" />
+        <string name="28" value="1.只能使用武陵道場專用藥水" />
+        <string name="29" value="在武陵道場中無法使用一般藥水。 在武陵道場中，只要擊敗出現的怪物就能得到專用藥水，在撿起來的同時藥水效果會發動，所以適當時機撿起藥水是很重要的。 " />
+        <string name="30" value="\n2. 解決魔王怪物時，獲得加持" />
+        <string name="31" value="如果解決魔王怪物就會掉落10種的加持道具。 選擇獲得其中的一個的話，就會發動該加持效果。 如果選擇一個，剩下的加持道具都會消失，所以請慎重地選擇。" />
+        <string name="32" value="\n3. 接受必殺技！" />
+        <string name="33" value="在武陵道場能使用3種特別的技能。 如果收集位於左邊下方的全部必殺技計量表，輸入指令就能使用必殺技。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="38">
+      <string name="title" value="[主題迷宮]\n黃金寺廟(Lv 115~125)" />
+      <string name="message" value="解救陷入危險的黃金寺廟！" />
+      <int name="npc" value="9000074" />
+      <imgdir name="desc">
+        <string name="0" value="黃金寺廟因那些騷擾觀光客的可惡猴子而荒廢了。其次，看守寺院的僧侶也開始接二連三地消失…現在立即趕去解救陷入危險的黃金寺廟吧。" />
+        <string name="1" value="\n#e-建議等級#n： 115~125級" />
+        <string name="2" value="\n#e-移動方法#n" />
+        <string name="3" value="「掃地僧的清談」任務開始之後，利用\n次元之鏡或是桃花仙境的鶴(計程車)" />
+        <string name="4" value="\n#e-最終獎勵#n" />
+        <string name="5" value="#i1003455:# #t1003455#" />
+        <string name="6" value="#i1142385:# #t1142385#" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="39">
+      <string name="title" value="[主題副本]\n神奇主題(Lv 120~130)" />
+      <string name="message" value="揭開神奇主題的秘密吧。" />
+      <int name="npc" value="2190001" />
+      <imgdir name="desc">
+        <string name="0" value="楓之谷世界唯一的大規模遊樂公園神奇主題開張了。在有趣，神秘的遊樂公園中可是連眨眼都會感到驚奇呢！請前往遊玩吧" />
+        <string name="1" value="\n#e-推薦等級#n : 120~130 等級" />
+        <string name="2" value="\n#e-移動方法#n" />
+        <string name="3" value="&quot;尷尬的祝福&quot;任務開始後 \n利用玩具城東方的纜車移動" />
+        <string name="4" value="#fEtc/LevelUpGuide.img/Image/39_0#" />
+        <string name="5" value="\n#e-最大獎#n" />
+        <string name="6" value="#i1142409:# #t1142409#" />
+        <string name="7" value="(&quot;享受Big3， &quot;開放活動:尋找寶物&quot;， &quot;危險的公演&quot;， &quot;絕對禁止陌生人！&quot; 任務完成時可獲得)" />
+        <string name="8" value="#i1082431:# #t1082431#" />
+        <string name="9" value="#i1003534:# #t1003534#" />
+        <string name="10" value="#i1003535:# #t1003535#" />
+        <string name="11" value="(#o8145100#， #o8145200# 可以獲得)" />
+        <string name="12" value="\n#e★神奇主題?#n" />
+        <string name="13" value="神奇主題是楓之谷世界唯一的大型遊樂公園，分成三個遊樂動線 #e&lt;滑稽&gt;， &lt;極端&gt;， &lt;幻想&gt;#n三個風格。 " />
+        <string name="14" value="#fEtc/LevelUpGuide.img/Image/39_1#" />
+        <string name="15" value="\n#e★Big3?#n" />
+        <string name="16" value="三個風格各自有一個代表的景點" />
+        <string name="17" value="#b#eBig1！#n 滑稽風格的 #e&lt;幽靈的家&gt;#n#k : 空曠大廈裡出沒著各種幽靈的風格。和戀人來是再好也不過了" />
+        <string name="18" value="#fEtc/LevelUpGuide.img/Image/39_2#" />
+        <string name="19" value="#b#eBig2！#n 極端風格的 #e&lt;下降陀螺&gt;#n#k :從數十米空中落下，可以充分感受到快感的景點。追求刺激的人絕對不能錯過這項年輕人愛好的設施。" />
+        <string name="20" value="#fEtc/LevelUpGuide.img/Image/39_3#" />
+        <string name="21" value="#b#eBig3！#n 幻想風格的 #e&lt;維京海盜&gt;#n#k : 搭著海盜船前往冒險的景點。是小孩的最愛，推薦給家族出遊的遊客。" />
+        <string name="22" value="#fEtc/LevelUpGuide.img/Image/39_4#" />
+        <string name="23" value="\n\n    " />
+        <string name="24" value="\n#e★神奇動物秀?#n" />
+        <string name="25" value="可以遇到BOSS怪獸 #e塔爾加#n和 #e斯卡里恩#n的神奇動物秀！ 完成神奇主題的任務便可以觀賞神奇動物秀。尤其是只有從塔爾加和斯卡里恩獲得神奇主題的多樣道具。" />
+        <string name="26" value="#fEtc/LevelUpGuide.img/Image/39_5#" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="40">
+      <string name="title" value="[BOSS概念]\n女皇西格諾斯(Lv 170~200)" />
+      <string name="message" value="打敗女皇西格諾斯吧！" />
+      <int name="npc" value="2143004" />
+      <int name="naviField" value="271040000" />
+      <imgdir name="desc">
+        <string name="0" value="墮落的皇家騎士團將耶雷弗變成黑魔法師的要塞。雖然不知道什麼是真實十分混亂，但現在要做的事只有一件！" />
+        <string name="1" value="\n#e-遠征隊參加資格#n: 170~200 等級" />
+        <string name="2" value="\n#e-參加人員#n : 3名~18名組成皇家騎士遠征隊" />
+        <string name="3" value="#fEtc/LevelUpGuide.img/Image/40_3#" />
+        <string name="4" value="#e-最大獎勵#n : 140等級製武器" />
+        <string name="5" value="#i1302152:##i1332130:##i1372084:##i1382104:##i1402095:##i1432086:##i1442116:##i1452111:##i1462099:##i1472122:##i1482084:##i1492085:##i1522018:##i1532018:##i1362019:##i1312065:##i1322096:##i1342036:##i1412065:##i1422066:#" />
+        <string name="6" value="\n#e-移動方法 $LVUPNVBT$#n" />
+        <string name="7" value="前往時間神殿之路，未來之門， 西格諾斯殿堂" />
+        <string name="8" value="#fEtc/LevelUpGuide.img/Image/40_0#" />
+        <string name="9" value="\n#e★如何開始?#n" />
+        <string name="10" value="前往時間神殿之路中往未來之門地域移動。 西格諾斯庭園中可組成遠征隊並入場。" />
+        <string name="11" value="\n#e★入場限制條件?#n" />
+        <string name="12" value="只有在13分流才可往西格諾斯殿堂移動。" />
+        <string name="13" value="1天只能進入2次" />
+        <string name="14" value="\n#e★和女皇西格諾斯的對決！#n" />
+        <string name="15" value="女皇西格諾斯不斷地招換墮落的皇家騎士團，本人並受到魔法陣的保護。 趁著西格諾斯魔法陣弱化的時候趕快攻擊。" />
+        <string name="16" value="#fEtc/LevelUpGuide.img/Image/40_2#" />
+        <string name="17" value="#bTIP : 攻擊力反射技能發動的話，請停止攻擊。這時繼續攻擊的話會被反彈回來導致自身受傷。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="41">
+      <string name="title" value="[BOSS概念]\n希拉(Lv 120~200)" />
+      <string name="message" value="打敗希拉！" />
+      <int name="npc" value="2184000" />
+      <int name="naviField" value="262000000" />
+      <imgdir name="desc">
+        <string name="0" value="執著年輕和美貌的希拉。因她而毀壞的都市阿斯旺。 為了完全解放阿斯旺請打敗希拉。" />
+        <string name="1" value="\n#e-遠征隊參加資格#n" />
+        <string name="2" value="普通模式&gt; 120等級以上" />
+        <string name="3" value="高級模式&gt; 170等級以上" />
+        <string name="4" value="\n#e-參加人員#n :1人或多人希拉遠征隊" />
+        <string name="5" value="#fEtc/LevelUpGuide.img/Image/41_0#" />
+        <string name="6" value="\n#e-最大獎#n" />
+        <string name="7" value="普通模式&gt;" />
+        <string name="8" value="附魔武器 20種" />
+        <string name="9" value="#i1162009:# #i5000217:# #i1802354:#" />
+        <string name="10" value="高級模式&gt;" />
+        <string name="11" value="附魔武器 20種， 附魔武器專用卷軸" />
+        <string name="12" value="#i1032136:# #i1162009:# #i5000217:# #i1802354:#" />
+        <string name="13" value="\n#e-移動方法#n" />
+        <string name="14" value="從納希沙漠， 阿斯旺， 阿斯旺避難處右方門口出入" />
+        <string name="15" value="可透過次元之鏡移動" />
+        <string name="16" value="#fEtc/LevelUpGuide.img/Image/41_1#" />
+        <string name="17" value="\n#e★如何開始?#n" />
+        <string name="18" value="阿斯旺避難處中往希拉的塔入口移動，組成遠征隊後， 可透過巫女梅迪沙入場" />
+        <string name="19" value="入場時， 普通模式和高級模式中擇一即可入場" />
+        <string name="20" value="\n#e★入場條件?#n" />
+        <string name="21" value="1天只可進入2次" />
+        <string name="22" value="#fEtc/LevelUpGuide.img/Image/41_2#" />
+        <string name="23" value="\n#e★和希拉的對決！#n" />
+        <string name="24" value="遠征隊員每死亡一名時，希拉就會變得更強。 遠征隊員總共15次復活的話，便會被變得無敵厲害的希拉趕出去。" />
+        <string name="25" value="#fEtc/LevelUpGuide.img/Image/41_4#" />
+        <string name="26" value="希拉使用各種黑魔術並招換吸引角色的雕像。抓住雕像時必須打碎雕像才可以獲得自由。" />
+        <string name="27" value="#fEtc/LevelUpGuide.img/Image/41_3#" />
+        <string name="28" value="希拉會以遠征隊中1名為祭品來使自身的體力恢復。 遠征隊員若被希拉選擇成為祭品的話，需要快速的拯救隊員。" />
+        <string name="29" value="#fEtc/LevelUpGuide.img/Image/41_7#" />
+        <string name="30" value="面臨危機的話巫女梅迪沙會出現用保護魔法膜守護遠征隊。" />
+        <string name="31" value="#fEtc/LevelUpGuide.img/Image/41_5#" />
+        <string name="32" value="希拉變弱的話，魔力減少的同時頭髮會變成白髮。這時馬上攻擊的話便可以打敗希拉。" />
+        <string name="33" value="#fEtc/LevelUpGuide.img/Image/41_6#" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="42">
+      <string name="title" value="[主題副本]\n地上樂園黃金海灘(Lv 40~45)" />
+      <string name="message" value="在黃金海灘出現的黑色物質到底是？！" />
+      <int name="npc" value="1082100" />
+      <int name="naviField" value="120040000" />
+      <imgdir name="desc">
+        <string name="0" value="黃金富豪的特別邀請！搶先體驗即將開幕的黃金海灘度假村！" />
+        <string name="1" value="\n#e-推薦等級#n：40~45級" />
+        <string name="2" value="\n#e-移動方法#n" />
+        <string name="3" value="#m104020000#透過飛行員爾灣移動" />
+        <string name="4" value="黃金富豪的招待任務" />
+        <string name="5" value="\n#e-最終獎勵#n" />
+        <string name="6" value="#i1142551##t1142551#" />
+        <string name="7" value="#i1012346##t1012346#" />
+        <string name="8" value="\n#e★要怎麼開始呢？" />
+        <string name="9" value="從黃金富豪的招待任務開始。" />
+        <string name="10" value="#b(接受黃金富豪的邀請到黃金海灘度假村吧)" />
+        <string name="11" value="#e★過關方法！" />
+        <string name="12" value="到黃金海灘可以見到飛行員爾灣，跟爾灣說話後開始進行主線任務。" />
+        <string name="13" value="\n任務全部完成後，和&quot;隊長黑水靈&quot;展開對決。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="43">
+      <string name="title" value="[組隊任務]\n湯寶寶的料理教室(Lv 60~90)" />
+      <string name="message" value="為鯨魚號的海盜們做出豐盛的料理吧！" />
+      <int name="npc" value="1092000" />
+      <imgdir name="desc">
+        <string name="0" value="如果是會做好吃料理的人，透過#b次元之鏡移動傳點#k到湯寶寶的廚房吧。" />
+        <string name="1" value="\n1. 選擇對的材料。" />
+        <string name="2" value="2. 不想讓食物燒焦的話，要小心破壞味覺的火花，好好的調節火力。" />
+        <string name="3" value="3. 放入適當的調味料嚐嚐看。" />
+        <string name="4" value="\n#e-限制時間#n：30分鐘" />
+        <string name="5" value="\n#e-參加人員#n：1~4 名" />
+        <string name="6" value="\n#e-移動方法#n：在各村莊的次元之鏡" />
+        <string name="7" value="\n#e-特別獎勵#n：" />
+        <string name="8" value="#b#i1003762:# #t1003762##k\n" />
+        <string name="9" value="#b#i1052578:# #t1052578##k\n" />
+        <string name="10" value="#b#i1142589:# #t1142589##k\n" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="44">
+      <string name="title" value="[主題副本]\n地獄森林壁壘(Lv 130~140)" />
+      <string name="message" value="被遺忘的魔族們的棲息地，神秘大陸的訊息" />
+      <int name="npc" value="2134012" />
+      <int name="naviField" value="301000000" />
+      <imgdir name="desc">
+        <string name="0" value="從漢斯那裡聽到來自神秘大陸的訊息，不過…那地方究竟發生了什麼事？" />
+        <string name="1" value="\n#e-推薦等級#n：130~140 等級" />
+        <string name="2" value="\n#e-移動方法#n" />
+        <string name="3" value="到漢斯的圖書館進行任務。" />
+        <string name="4" value="\n#e-移動方法#n：各村莊裡的次元之鏡" />
+        <string name="5" value="\n#e-最終獎勵#n" />
+        <string name="6" value="#i1142619##t1142619#" />
+        <string name="7" value="\n#e★要怎麼開始呢？" />
+        <string name="8" value="從到漢斯的圖書館任務開始。" />
+        <string name="9" value="#b(接受漢斯的委託，到魔法森林魔法圖書館去)" />
+        <string name="10" value="#e★過關方法！" />
+        <string name="11" value="透過各村莊的次元之鏡到地獄森林，開始神秘大陸的任務。" />
+        <string name="12" value="\n任務全部完成後，必須救出所有被關的魔族。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="45">
+      <string name="title" value="[主題副本]\n岩壁巨人(Lv 150~160)" />
+      <string name="message" value="米納爾森林南部出現了'岩壁巨人'！" />
+      <int name="npc" value="2081000" />
+      <int name="naviField" value="240090000" />
+      <imgdir name="desc">
+        <string name="0" value="米納爾森林南部突然冒出的'岩壁巨人'到底是…？" />
+        <string name="1" value="\n#e-推薦等級#n：150~160 等級" />
+        <string name="2" value="\n#e-移動方法#n" />
+        <string name="3" value="到米納爾森林#m240010400#裡，透過克羅索斯移動" />
+        <string name="4" value="有關巨人的消息任務" />
+        <string name="5" value="\n#e-最終獎勵#n" />
+        <string name="6" value="#i1142618##t1142618#" />
+        <string name="7" value="#i2550014##t2550014#" />
+        <string name="8" value="#i2431745##t2431745#" />
+        <string name="9" value="\n#e★要怎麼開始呢？" />
+        <string name="10" value="從有關巨人的消息任務開始。" />
+        <string name="11" value="#b(聽到有關巨人的消息後，去找神木村的村長塔塔木。)" />
+        <string name="12" value="#e★過關方法！" />
+        <string name="13" value="到米納爾森林南部探索克羅索斯，查出岩壁巨人的真實身分。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="46">
+      <string name="title" value="[主題副本]\n妖精學園愛里涅(Lv 30~40)" />
+      <string name="message" value="幫助'妖精學園愛里涅'！" />
+      <int name="npc" value="1500011" />
+      <int name="naviField" value="101030000" />
+      <imgdir name="desc">
+        <string name="0" value="聽說魔法森林北部'妖精學園愛里涅'發生騷亂？" />
+        <string name="1" value="\n#e-推薦等級#n：30~40 等級" />
+        <string name="2" value="\n#e-移動方法#n" />
+        <string name="3" value="透過北方森林#m101030000#左下方的傳點移動到愛里涅" />
+        <string name="4" value="[妖精學園愛里涅]妖精學園的綁匪任務" />
+        <string name="5" value="\n#e-最終獎勵#n" />
+        <string name="6" value="#i1102590##t1102590#" />
+        <string name="7" value="#i1082533##t1082533#" />
+        <string name="8" value="#i2047954##t2047954#" />
+        <string name="9" value="\n#e★要怎麼開始呢？" />
+        <string name="10" value="從各職業的轉職官或是潘喜收到的任務開始。" />
+        <string name="11" value="#b(聽潘喜的說明後去愛里涅。)" />
+        <string name="12" value="#e★過關方法！" />
+        <string name="13" value="到妖精學園愛里涅解決問題。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="47">
+      <string name="title" value="[組隊任務]\n神秘的祭壇(Lv 130~150)" />
+      <string name="message" value="擊敗邪惡的五個魔王！" />
+      <int name="npc" value="2135017" />
+      <imgdir name="desc">
+        <string name="0" value="打倒#b馬斯特利亞大陸#k邪惡的#r五位魔王#k後，將#b#m930100000##k傳說的武器找回來！透過 #b次元之鏡#k進入克林森烏德城前往馬斯特利亞祭壇吧。" />
+        <string name="1" value="\n1階段：開啟象徵五個魔王的傳點" />
+        <string name="2" value="2階段：避開障礙物開啟五個傳點" />
+        <string name="3" value="3階段：擊敗五位魔王後，把傳說武器放到祭壇上" />
+        <string name="4" value="4階段：獲得獎勵後進入獎勵關卡" />
+        <string name="5" value="\n#e-限制時間#n：30分鐘" />
+        <string name="6" value="\n#e-參加人員#n：3~5 名" />
+        <string name="7" value="\n#e-移動方法#n：透過次元之鏡到地獄森林壁壘，往#m930100000#移動" />
+        <string name="8" value="\n#e-特別獎勵#n： " />
+        <string name="9" value=" #b#i1152135:# #t1152135# #k" />
+      </imgdir>
+      <int name="npcScale" value="55" />
+      <int name="addNpcY" value="36" />
+    </imgdir>
+    <imgdir name="48">
+      <string name="title" value="[競爭單元]\n納希綠洲城競技場(Lv 50~80)" />
+      <string name="message" value="在競技場中和其它玩家較量看看!" />
+      <int name="npc" value="2101014" />
+      <imgdir name="desc">
+        <string name="0" value="2~6名的玩家入場,#b減少怪物的體力,使用#t2270002##k可吸收能量." />
+        <string name="1" value="\n#e-參加條件#n : 50級~ 80級" />
+        <string name="2" value="\n#e-使用方法#n : 各村莊的次元之鏡" />
+        <string name="3" value="\n#e-最終獎勵#n" />
+        <string name="4" value="#b#i1113048# #t1113048##k\n" />
+        <string name="5" value="透過阿都拉八世或是組隊任務等待地圖中的杰薩勒即可獲得\n" />
+        <string name="6" value="#b(需要競技場點數150點)" />
+        <string name="7" value="\n#e★納希綠洲城競技大會?#n" />
+        <string name="8" value="納希綠洲城競技大會是2~6名玩家組對捕捉怪物的模式." />
+        <string name="9" value="在一定時間內得到越多靈魂寶石的人即可獲勝" />
+        <string name="10" value="\n#e★如何要開始嗎?#n" />
+        <string name="11" value="透過組隊任務等待地圖中的&quot;杰薩勒&quot;即可申請登記." />
+        <string name="12" value="\n#e★納希綠洲城競技大會!!#n" />
+        <string name="13" value="登記等候的話即可和其它玩家正式比賽競技較量." />
+        <string name="14" value="在一定時間內得到最多靈魂寶石的人即可獲勝. 因此防礙別的玩家也是不錯的方法." />
+      </imgdir>
+    </imgdir>
+    <imgdir name="49">
+      <string name="title" value="[主題副本]\n里艾那海峽(Lv 50~70)" />
+      <string name="message" value="冰川地帶里艾那海峽的威脅！" />
+      <int name="npc" value="1510009" />
+      <imgdir name="desc">
+        <string name="0" value="為了對抗魔女而聯合起來的里艾那住民們，原因是？" />
+        <string name="1" value="\n#e-推薦等級#n：50~70 等級" />
+        <string name="2" value="\n#e-移動方法 #n" />
+        <string name="3" value="在維多利亞港透過企鵝[噗洛]往瑞恩村移動" />
+        <string name="4" value="[往里艾那海峽的邀請]任務" />
+        <string name="5" value="\n#e-最終獎勵#n" />
+        <string name="6" value="#i1142629##t1142629#" />
+        <string name="7" value="#i1012389##t1012389#" />
+        <string name="9" value="\n#e★要怎麼開始呢？" />
+        <string name="10" value="透過任務[里艾那海峽的邀請]開始。" />
+        <string name="11" value="#b(到瑞恩村和莉琳對話。)" />
+        <string name="12" value="#e★過關方法！" />
+        <string name="13" value="航海至冰川地帶探索威脅里艾那海峽的勢力！" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="50">
+      <string name="title" value="[伺服器聯合組隊任務] (Lv50~180)" />
+      <string name="message" value="進行每2週會變更一次的組隊任務吧!" />
+      <int name="npc" value="9076000" />
+      <imgdir name="desc">
+        <string name="0" value="伺服器聯合組隊任務開放了.從休菲凱曼的招待所移動到聯合組隊地圖後,進行每2週會變更一次的組隊任務吧." />
+        <string name="1" value="\n#e-推薦等級#n : 50~180 等級" />
+        <string name="2" value="\n#e-移動方法 #n" />
+        <string name="3" value="1. 經由休菲凱曼的招待所移動" />
+        <string name="4" value="2. 經由次元之門移動" />
+        <string name="5" value="\n#e-最終獎勵#n" />
+        <string name="6" value="1. 經驗值" />
+        <string name="7" value="2. 獲得可從NPC帕夫處購買物品的隊伍點數" />
+        <string name="9" value="\n#e★組隊任務種類★" />
+        <string name="10" value="&lt;&lt; 月妙的年糕 &gt;&gt;" />
+        <string name="11" value="&lt;&lt; 第一次同行 &gt;&gt;" />
+        <string name="12" value="&lt;&lt; 毒霧森林 &gt;&gt;" />
+        <string name="13" value="&lt;&lt; 女神的痕跡 &gt;&gt;" />
+      </imgdir>
+    </imgdir>
+  </imgdir>
+  <imgdir name="Guide">
+    <imgdir name="10">
+      <imgdir name="info">
+        <string name="message" value="恭喜你升上10級！\n讓我告訴你10~19級推薦升級資訊！" />
+        <int name="lvmax" value="19" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="23010" />
+          <string name="goal" value="（轉職）" />
+        </imgdir>
+        <imgdir name="1">
+          <int name="questId" value="21100" />
+          <string name="goal" value="（轉職）" />
+        </imgdir>
+        <imgdir name="2">
+          <int name="questId" value="1400" />
+          <string name="goal" value="（轉職）" />
+        </imgdir>
+        <imgdir name="3">
+          <int name="questId" value="22100" />
+          <string name="goal" value="（轉職）" />
+        </imgdir>
+        <imgdir name="4">
+          <int name="questId" value="2570" />
+          <string name="goal" value="（轉職）" />
+        </imgdir>
+        <imgdir name="5">
+          <int name="questId" value="25400" />
+          <string name="goal" value="（轉職）" />
+        </imgdir>
+        <imgdir name="6">
+          <int name="questId" value="2800" />
+          <string name="goal" value="（Lv10）-解決怪木樹妖王" />
+        </imgdir>
+        <imgdir name="7">
+          <int name="questId" value="2850" />
+          <string name="goal" value="（Lv10）-解決沼澤巨鱷" />
+        </imgdir>
+        <imgdir name="8">
+          <int name="questId" value="2900" />
+          <string name="goal" value="（Lv10）-解決巨居蟹" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field"></imgdir>
+      <imgdir name="contents">
+        <int name="0" value="0" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="20">
+      <imgdir name="info">
+        <string name="message" value="恭喜你升到20級！\n讓我告訴你20~29級推薦升級資訊！" />
+        <int name="lvmax" value="29" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="2725" />
+          <string name="goal" value="(Lv20)" />
+        </imgdir>
+        <imgdir name="1">
+          <int name="questId" value="2622" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="100040100" />
+        <int name="1" value="310030300" />
+        <int name="2" value="310040000" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="0" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="30">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到30級！\n30~34級的升級情報，現在就讓你知道吧！" />
+        <int name="lvmax" value="34" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="23020" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="1">
+          <int name="questId" value="21200" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="2">
+          <int name="questId" value="20200" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="3">
+          <int name="questId" value="1410" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="4">
+          <int name="questId" value="1414" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="5">
+          <int name="questId" value="1418" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="6">
+          <int name="questId" value="1421" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="7">
+          <int name="questId" value="1424" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="8">
+          <int name="questId" value="25100" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="9">
+          <int name="questId" value="22102" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="10">
+          <int name="questId" value="23021" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="11">
+          <int name="questId" value="23210" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="12">
+          <int name="questId" value="24010" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="13">
+          <int name="questId" value="1427" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="14">
+          <int name="questId" value="23022" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="15">
+          <int name="questId" value="2087" />
+          <string name="goal" value="(Lv 30)" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="1" />
+        <int name="1" value="46" />
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="103020000" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="35">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到35級！\n35~39級的升級情報，現在就讓你知道吧！" />
+        <int name="lvmax" value="39" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="2292" />
+          <string name="goal" value="(Lv 35) - 擊退搖滾精神" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field"></imgdir>
+      <imgdir name="contents">
+        <int name="0" value="2" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="40">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到40級！\n40~44級的升級情報，現在就讓你知道吧！" />
+        <int name="lvmax" value="44" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="2096" />
+          <string name="goal" value="(Lv 40)" />
+        </imgdir>
+        <imgdir name="1">
+          <int name="questId" value="2038" />
+          <string name="goal" value="(Lv 43)" />
+        </imgdir>
+        <imgdir name="2">
+          <int name="questId" value="2043" />
+          <string name="goal" value="(Lv 43)" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="105020000" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="42" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="45">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到45級！\n45~49級的升級情報，現在就讓你知道吧！" />
+        <int name="lvmax" value="49" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="2047" />
+          <string name="goal" value="(Lv 45)" />
+        </imgdir>
+        <imgdir name="1">
+          <int name="questId" value="2235" />
+          <string name="goal" value="(Lv 48)" />
+        </imgdir>
+        <imgdir name="2">
+          <int name="questId" value="2641" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="105030100" />
+        <int name="1" value="200010100" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="3" />
+        <int name="1" value="42" />
+        <int name="2" value="8" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="50">
+      <imgdir name="info">
+        <string name="message" value="恭喜你升到50級！\n讓我告訴你50~54級推薦升級資訊！" />
+        <int name="lvmax" value="54" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="3111" />
+          <string name="goal" value="（Lv53）-解決艾利傑" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="200070000" />
+        <int name="1" value="200010300" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="8" />
+        <int name="1" value="6" />
+        <int name="2" value="48" />
+        <int name="3" value="49" />
+        <int name="4" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="55">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到55級！\n55~59級的升級情報，現在就讓你知道吧！" />
+        <int name="lvmax" value="59" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="3004" />
+          <string name="goal" value="(Lv 55)" />
+        </imgdir>
+        <imgdir name="1">
+          <int name="questId" value="3184" />
+          <string name="goal" value="(Lv 57)" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="220010400" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="9" />
+        <int name="1" value="8" />
+        <int name="2" value="6" />
+        <int name="3" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="60">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到60級！\n60~64級的升級情報，現在就讓你知道吧！" />
+        <int name="lvmax" value="64" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="3601" />
+          <string name="goal" value="(Lv 55)" />
+        </imgdir>
+        <imgdir name="1">
+          <int name="questId" value="3641" />
+          <string name="goal" value="(Lv 60) - 擊退九尾狐" />
+        </imgdir>
+        <imgdir name="2">
+          <int name="questId" value="3256" />
+          <string name="goal" value="(Lv 60)" />
+        </imgdir>
+        <imgdir name="3">
+          <int name="questId" value="23030" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="4">
+          <int name="questId" value="23031" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="5">
+          <int name="questId" value="23032" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="6">
+          <int name="questId" value="21300" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="7">
+          <int name="questId" value="20300" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="8">
+          <int name="questId" value="1430" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="9">
+          <int name="questId" value="1434" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="10">
+          <int name="questId" value="1438" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="11">
+          <int name="questId" value="1441" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="12">
+          <int name="questId" value="1444" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="13">
+          <int name="questId" value="22106" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="14">
+          <int name="questId" value="24012" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="15">
+          <int name="questId" value="1448" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="16">
+          <int name="questId" value="25110" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="17">
+          <int name="questId" value="20320" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="260010700" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="11" />
+        <int name="1" value="10" />
+        <int name="2" value="9" />
+        <int name="3" value="8" />
+        <int name="4" value="43" />
+        <int name="5" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="65">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到65級！\n65~69級的升級情報，現在就讓你知道吧！" />
+        <int name="lvmax" value="69" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="3239" />
+          <string name="goal" value="(Lv 65)" />
+        </imgdir>
+        <imgdir name="1">
+          <int name="questId" value="3251" />
+          <string name="goal" value="(Lv 65)" />
+        </imgdir>
+        <imgdir name="2">
+          <int name="questId" value="3230" />
+          <string name="goal" value="(Lv 68)" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="260010100" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="11" />
+        <int name="1" value="10" />
+        <int name="2" value="9" />
+        <int name="3" value="8" />
+        <int name="4" value="43" />
+        <int name="5" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="70">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到70級！\n70~74級的升級情報，現在就讓你知道吧！" />
+        <int name="lvmax" value="74" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="3097" />
+          <string name="goal" value="(Lv 70) - 擊退爸爸精靈" />
+        </imgdir>
+        <imgdir name="1">
+          <int name="questId" value="3430" />
+          <string name="goal" value="(Lv 70)" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="260020630" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="14" />
+        <int name="1" value="13" />
+        <int name="2" value="12" />
+        <int name="3" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="75">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到75級！\n75~79級的升級情報，現在就讓你知道吧！" />
+        <int name="lvmax" value="79" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="3900" />
+          <string name="goal" value="(Lv 75)" />
+        </imgdir>
+        <imgdir name="1">
+          <int name="questId" value="3927" />
+          <string name="goal" value="(Lv 75)" />
+        </imgdir>
+        <imgdir name="2">
+          <int name="questId" value="3952" />
+          <string name="goal" value="(Lv 75) - 擊退仙人長老" />
+        </imgdir>
+        <imgdir name="3">
+          <int name="questId" value="3453" />
+          <string name="goal" value="(Lv 75) - 擊退葛雷金剛" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="260020620" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="17" />
+        <int name="1" value="36" />
+        <int name="2" value="14" />
+        <int name="3" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="80">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到80級！\n80~84級的升級情報，現在就讓你知道吧！" />
+        <int name="lvmax" value="84" />
+      </imgdir>
+      <imgdir name="quest"></imgdir>
+      <imgdir name="field">
+        <int name="0" value="250010302" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="18" />
+        <int name="1" value="17" />
+        <int name="2" value="36" />
+        <int name="3" value="14" />
+        <int name="4" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="85">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到85級！\n85~89級的升級情報，現在就讓你知道吧！" />
+        <int name="lvmax" value="89" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="3835" />
+          <string name="goal" value="(Lv 85) - 擊退肯德熊" />
+        </imgdir>
+        <imgdir name="1">
+          <int name="questId" value="3300" />
+          <string name="goal" value="(Lv 85)" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="261010101" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="20" />
+        <int name="1" value="18" />
+        <int name="2" value="36" />
+        <int name="3" value="14" />
+        <int name="4" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="90">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到90級！\n90~94級的升級情報，現在就讓你知道吧！" />
+        <int name="lvmax" value="94" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="3840" />
+          <string name="goal" value="(Lv 90) -  擊退喵怪仙人" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="261010102" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="21" />
+        <int name="1" value="37" />
+        <int name="2" value="20" />
+        <int name="3" value="36" />
+        <int name="4" value="7" />
+        <int name="5" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="95">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到955級！\n95~99級的升級情報，現在就讓你知道吧！" />
+        <int name="lvmax" value="99" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="31200" />
+          <string name="goal" value="(Lv 95) -  擊退艾畢奈亞" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="251010401" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="22" />
+        <int name="1" value="21" />
+        <int name="2" value="37" />
+        <int name="3" value="7" />
+        <int name="4" value="36" />
+        <int name="5" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="100">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到100級！\n100~104級的升級情報，現在就讓你知道吧！" />
+        <int name="lvmax" value="104" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="3851" />
+          <string name="goal" value="(Lv 100)" />
+        </imgdir>
+        <imgdir name="1">
+          <int name="questId" value="23040" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="2">
+          <int name="questId" value="23041" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="3">
+          <int name="questId" value="23042" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="4">
+          <int name="questId" value="21400" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="5">
+          <int name="questId" value="1450" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="6">
+          <int name="questId" value="1452" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="7">
+          <int name="questId" value="1454" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="8">
+          <int name="questId" value="1456" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="9">
+          <int name="questId" value="1458" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="10">
+          <int name="questId" value="20400" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="11">
+          <int name="questId" value="23215" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="12">
+          <int name="questId" value="24013" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="13">
+          <int name="questId" value="25120" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="14">
+          <int name="questId" value="20410" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="251010403" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="23" />
+        <int name="1" value="22" />
+        <int name="2" value="21" />
+        <int name="3" value="37" />
+        <int name="4" value="36" />
+        <int name="5" value="15" />
+        <int name="6" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="105">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到105級！\n105~109級的升級情報，現在就讓你知道吧！" />
+        <int name="lvmax" value="109" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="3702" />
+          <string name="goal" value="(Lv 105)" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="220070200" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="23" />
+        <int name="1" value="22" />
+        <int name="2" value="21" />
+        <int name="3" value="37" />
+        <int name="4" value="36" />
+        <int name="5" value="15" />
+        <int name="6" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="110">
+      <imgdir name="info">
+        <string name="message" value="恭喜你升到110級！\n讓我告訴你110~114級推薦升級資訊！" />
+        <int name="lvmax" value="114" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="3444" />
+          <string name="goal" value="（Lv112）" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="240020500" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="24" />
+        <int name="1" value="37" />
+        <int name="2" value="19" />
+        <int name="3" value="36" />
+        <int name="4" value="23" />
+        <int name="5" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="115">
+      <imgdir name="info">
+        <string name="message" value="恭喜你升到115級！\n讓我告訴你115~119級推薦升級資訊！" />
+        <int name="lvmax" value="119" />
+      </imgdir>
+      <imgdir name="quest"></imgdir>
+      <imgdir name="field">
+        <int name="0" value="220060300" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="38" />
+        <int name="1" value="24" />
+        <int name="2" value="37" />
+        <int name="3" value="36" />
+        <int name="4" value="23" />
+        <int name="5" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="120">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到120級！\n120~124級的升級情報，現在就讓你知道吧！" />
+        <int name="lvmax" value="124" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="22108" />
+          <string name="goal" value="(轉職)" />
+        </imgdir>
+        <imgdir name="1">
+          <int name="questId" value="3075" />
+          <string name="goal" value="(Lv 120) - 擊退海怒斯" />
+        </imgdir>
+        <imgdir name="2">
+          <int name="questId" value="7300" />
+          <string name="goal" value="(Lv 120) - 擊退闇黑龍王" />
+        </imgdir>
+        <imgdir name="3">
+          <int name="questId" value="3105" />
+          <string name="goal" value="(Lv 120) - 擊退雪毛怪人" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="240030000" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="27" />
+        <int name="1" value="25" />
+        <int name="2" value="39" />
+        <int name="3" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="125">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到125級！\n125~129級的升級情報，現在就讓你知道吧！" />
+        <int name="lvmax" value="129" />
+      </imgdir>
+      <imgdir name="quest"></imgdir>
+      <imgdir name="field">
+        <int name="0" value="211041500" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="33" />
+        <int name="1" value="30" />
+        <int name="2" value="31" />
+        <int name="3" value="32" />
+        <int name="4" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="130">
+      <imgdir name="info">
+        <string name="message" value="恭喜你升到130級！\n讓我告訴你130~134級推薦升級資訊！" />
+        <int name="lvmax" value="134" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="7100" />
+          <string name="goal" value="（Lv130）-解決拉圖斯" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="270010100" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="33" />
+        <int name="1" value="44" />
+        <int name="2" value="34" />
+        <int name="3" value="31" />
+        <int name="4" value="30" />
+        <int name="5" value="32" />
+        <int name="6" value="47" />
+        <int name="7" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="135">
+      <imgdir name="info">
+        <string name="message" value="恭喜你升到135級！\n讓我告訴你135~139級推薦升級資訊！" />
+        <int name="lvmax" value="139" />
+      </imgdir>
+      <imgdir name="quest">
+        <imgdir name="0">
+          <int name="questId" value="3188" />
+          <string name="goal" value="（Lv135）-解決厄運死神" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="field">
+        <int name="0" value="240030300" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="35" />
+        <int name="1" value="34" />
+        <int name="2" value="33" />
+        <int name="3" value="31" />
+        <int name="4" value="32" />
+        <int name="5" value="50" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="140">
+      <imgdir name="info">
+        <string name="message" value="恭喜達到140級！\n正在準備到140級為止的升級情報。" />
+        <int name="lvmax" value="200" />
+      </imgdir>
+      <imgdir name="quest"></imgdir>
+      <imgdir name="field">
+        <int name="0" value="271030100" />
+        <int name="1" value="271030300" />
+        <int name="2" value="273060300" />
+      </imgdir>
+      <imgdir name="contents">
+        <int name="0" value="45" />
+        <int name="1" value="40" />
+        <int name="2" value="41" />
+        <int name="3" value="27" />
+        <int name="4" value="28" />
+        <int name="5" value="50" />
+      </imgdir>
+    </imgdir>
+  </imgdir>
+  <imgdir name="Image">
+    <canvas name="0_0" width="157" height="126">
+      <vector name="origin" x="78" y="63" />
+      <string name="_hash" value="43b0e8487cac5f7cd01f35ff3f3b6e6182786b07800ebbdaeed9d75f898184a4" />
+    </canvas>
+    <canvas name="1_0" width="331" height="159">
+      <vector name="origin" x="165" y="79" />
+      <string name="_hash" value="3642e9d96433f0223cf6a0994b04cb67a20962c10e9c0062474bc8329ef902ac" />
+    </canvas>
+    <canvas name="1_1" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="ca52c6f98f5a60e86daec1411743a2292a49e6fe7bf0edbb2f65ea04d31bb298" />
+    </canvas>
+    <canvas name="1_2" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="a683427aad2f56a5a688e34d78567be835b7314bcb0b00267f04069d436a3f1c" />
+    </canvas>
+    <canvas name="1_3" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="2cbed22e272add987b879b1e227e51c848139b8b299a0790ffbb56e0939b6a84" />
+    </canvas>
+    <canvas name="1_4" width="331" height="144">
+      <vector name="origin" x="165" y="72" />
+      <string name="_hash" value="f1423772eec595ddedfe77a56b4e7448ebe0ece5eb93bbe480041a70d43af002" />
+    </canvas>
+    <canvas name="1_5" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="a4ca3cbcc660eee7a09f9df678d0b2954f6e98ae6157d5a304e47b0a99093b92" />
+    </canvas>
+    <canvas name="2_0" width="332" height="143">
+      <vector name="origin" x="166" y="71" />
+      <string name="_hash" value="ccf44be50413da4ba925fbb62b2e3eeac2dc21ff463f5cca37dd8a8c79a9c5e9" />
+    </canvas>
+    <canvas name="2_1" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="4b881097b379a8171fc65bed70edbb2eaab9a8c9777c7273368618c88841bc9d" />
+    </canvas>
+    <canvas name="2_2" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="744e3873636356f2e370464188a7464e09cd55f68d6529b45db5b60dddf643a0" />
+    </canvas>
+    <canvas name="2_3" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="56554f8aeb147192bb927a214cca7cdc787edf6d3880f7f93a3f9e3820956837" />
+    </canvas>
+    <canvas name="2_4" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="69dfd3cd7504b411af6c62f8620d5ebde3eb1523be488f1d84132bd59757268c" />
+    </canvas>
+    <canvas name="2_5" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="ff036664cdbc73af07050db364359660baf877bf67bffd5756e5b8bce07737e0" />
+    </canvas>
+    <canvas name="3_0" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="f69bc2e1bc0c5d16ec74711a7e4f1867f5b72e6a3534962e9a8ae21df6ad1ef7" />
+    </canvas>
+    <canvas name="3_1" width="184" height="151">
+      <vector name="origin" x="92" y="75" />
+      <string name="_hash" value="2f929a08f9200d20fa244fc25eddbeb5ef4208a4927316959bc7551bc8c70070" />
+    </canvas>
+    <canvas name="5_0" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="73911396fd9a1afe76c19c573c8879d2da00048bf85357cf07ce6d393a566791" />
+    </canvas>
+    <canvas name="5_1" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="853bddff307e0cfd84f6f6e6db13e78715219aca32682057f88d0bef9a64a15d" />
+    </canvas>
+    <canvas name="8_0" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="a5d5cea2dda966f69d567433330b2241b84540bc205e2e80b6f23120317757e2" />
+    </canvas>
+    <canvas name="8_1" width="332" height="288">
+      <vector name="origin" x="166" y="144" />
+      <string name="_hash" value="291526460c0ae85b2a17142186d218818dc9221543da90ad7ea3baf8d9bf219e" />
+    </canvas>
+    <canvas name="10_0" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="3d974dff9ac2ffff5658f8f24d989c44896dac0b8c4fd4987a1e6a5168232643" />
+    </canvas>
+    <canvas name="10_1" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="981c0fcca7a7795f80e5fd15655bb8cf83b3b28e4994aa3ae8bccb131be83151" />
+    </canvas>
+    <canvas name="10_2" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="e1af544d1cebb222ebab3bcab64e3909f560d32b3977ef55a60043d7ed5f8def" />
+    </canvas>
+    <canvas name="10_3" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="a76ad94b68a9695e0a22aa6334fe70c6bef27f064d0c4d8c3fa6c815717b8435" />
+    </canvas>
+    <canvas name="10_4" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="58840b9549200babfc5a256ea3754a692b4aa0fea3cf91d4b95a041e6bc88b31" />
+    </canvas>
+    <canvas name="10_5" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="7611b85da10173f3d9912cf3452f86609993108c135753049ba2ffdd6915a777" />
+    </canvas>
+    <canvas name="10_6" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="953610c8b1a1a2b5b7359a70ce730702d1e0f45aeb55bca2a9c0b14e23f2670e" />
+    </canvas>
+    <canvas name="11_0" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="8fea4560feef729cef66810b0d66061639b27257426d0ba76dfca924202a7ee3" />
+    </canvas>
+    <canvas name="11_1" width="332" height="288">
+      <vector name="origin" x="166" y="144" />
+      <string name="_hash" value="c5e226d33a06b98a9908620f7201cc8cb1d4fae3a2492d1905eaa1424c682ac9" />
+    </canvas>
+    <canvas name="11_2" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="b4ea057ef27e7eafa7052a4d729b6f7833c794936e515e4e0803c1414096d5ea" />
+    </canvas>
+    <canvas name="11_3" width="332" height="288">
+      <vector name="origin" x="166" y="144" />
+      <string name="_hash" value="c9aa901e722ef0f8de9dae73d5c2c55bd718e66d7d7f669da3c9c00507541acd" />
+    </canvas>
+    <canvas name="11_4" width="332" height="288">
+      <vector name="origin" x="166" y="144" />
+      <string name="_hash" value="ae6713684bc567b8939e31a38febfb68a2d42949b0c3e50acc1e1e023c575e11" />
+    </canvas>
+    <canvas name="19_0" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="5792f23ffe3f80f0f80b9d4bc7d050d03923b9e33d87d02dbbd416456b002bf7" />
+    </canvas>
+    <canvas name="19_1" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="33e12ed2911acfa113687b9e167a387f240ff7dd12cddc91ef8742aa997786cd" />
+    </canvas>
+    <canvas name="19_2" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="3898ccbaec1051ca905ed92cbfd85f9bbd72e8f53655dd126f731d905c58b752" />
+    </canvas>
+    <canvas name="29_0" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="eeeb29b7a1a8a01da69371a2f5e1a3dbe2dd51a15e7f21b14878a11c7e6d948c" />
+    </canvas>
+    <canvas name="29_1" width="332" height="144">
+      <vector name="origin" x="166" y="72" />
+      <string name="_hash" value="21155f1880673e5e2a5b9ae5ae3deeb7b05c8973832982df08b625148836beac" />
+    </canvas>
+    <canvas name="29_2" width="324" height="160">
+      <vector name="origin" x="162" y="80" />
+      <string name="_hash" value="86e5760ddc10ec0c9aa4019308065e7d611177eee6c43769460b012fd5fb4240" />
+    </canvas>
+    <canvas name="39_0" width="328" height="154">
+      <vector name="origin" x="159" y="107" />
+      <int name="z" value="0" />
+      <string name="_hash" value="010caa71cb4ebba5686a8e3d8adac81802eacb21aaab080529dc1b4eca39241f" />
+    </canvas>
+    <canvas name="39_1" width="321" height="233">
+      <vector name="origin" x="160" y="116" />
+      <int name="z" value="0" />
+      <string name="_hash" value="98bd3720cc41d5b7091daf015532b455c53d868809c1e8f7c78cbfd160b388b5" />
+    </canvas>
+    <canvas name="39_2" width="201" height="233">
+      <vector name="origin" x="100" y="116" />
+      <int name="z" value="0" />
+      <string name="_hash" value="d446e314cd0b3fc9a2654000eae386e2071d20911b2ee6fa101aece2ec972e11" />
+    </canvas>
+    <canvas name="39_3" width="254" height="223">
+      <vector name="origin" x="127" y="111" />
+      <int name="z" value="0" />
+      <string name="_hash" value="b4fe5682d2929f89632a017be0f7d028eba437c6efbc7b2a1124e516ed8d71ce" />
+    </canvas>
+    <canvas name="39_4" width="294" height="213">
+      <vector name="origin" x="147" y="106" />
+      <int name="z" value="0" />
+      <string name="_hash" value="9dc420c61ba674538aa1a40c828bd3ed01797016fd0fcaa658de4be5660d8926" />
+    </canvas>
+    <canvas name="39_5" width="334" height="182">
+      <vector name="origin" x="167" y="91" />
+      <int name="z" value="0" />
+      <string name="_hash" value="a1afb87681f855cde4b412b9e1ac07cdcee62d73861dfebbf5abc780a901f51b" />
+    </canvas>
+    <canvas name="40_0" width="258" height="109">
+      <vector name="origin" x="129" y="54" />
+      <int name="z" value="0" />
+      <string name="_hash" value="99520d00cb5d54ed52db8e5d8c8358b3139c62271c3cc977ef572ab268ec2036" />
+    </canvas>
+    <canvas name="40_1" width="225" height="182">
+      <vector name="origin" x="112" y="91" />
+      <int name="z" value="0" />
+      <string name="_hash" value="9c118bffdc7ea08c9d1e4c2026b5c8ed47225ba1e76e2c8f4325e0d7366e0cd6" />
+    </canvas>
+    <canvas name="40_2" width="308" height="192">
+      <vector name="origin" x="154" y="96" />
+      <int name="z" value="0" />
+      <string name="_hash" value="b119266de62d26128f87d3dede36dcccd3b0ff4e3cb5611b54b5990a28819516" />
+    </canvas>
+    <canvas name="40_3" width="250" height="52">
+      <vector name="origin" x="125" y="26" />
+      <int name="z" value="0" />
+      <string name="_hash" value="99e4d6e8ae6a96bed474dcdb9e0c8d91825fdc08e01a898899da079170e44ef7" />
+    </canvas>
+    <canvas name="41_0" width="250" height="52">
+      <vector name="origin" x="125" y="26" />
+      <int name="z" value="0" />
+      <string name="_hash" value="6d617f50ad09901b2efa52be282f7ae5bf8a95b9ebc6f669db40b78c8efd558b" />
+    </canvas>
+    <canvas name="41_1" width="121" height="130">
+      <vector name="origin" x="60" y="65" />
+      <int name="z" value="0" />
+      <string name="_hash" value="2755174d2994b9495fe5cc611a48481b768e735c7d801d6d5aa16754b5645aff" />
+    </canvas>
+    <canvas name="41_2" width="269" height="160">
+      <vector name="origin" x="134" y="80" />
+      <int name="z" value="0" />
+      <string name="_hash" value="9e8b7ef2da423fe437bd866ca25f66b72b54ef181b2bcf540b44ac169abe323b" />
+    </canvas>
+    <canvas name="41_3" width="138" height="139">
+      <vector name="origin" x="69" y="69" />
+      <int name="z" value="0" />
+      <string name="_hash" value="06824d239fd69bb99522d99944dff7c4256905f03eeaec8c47adbb81c4a61e1a" />
+    </canvas>
+    <canvas name="41_4" width="247" height="120">
+      <vector name="origin" x="123" y="60" />
+      <int name="z" value="0" />
+      <string name="_hash" value="7394cb44259c8763658c1335346e88d2696a21d3282f35a1b2dbe389868fa2ab" />
+    </canvas>
+    <canvas name="41_5" width="253" height="143">
+      <vector name="origin" x="126" y="71" />
+      <int name="z" value="0" />
+      <string name="_hash" value="1a45e8ffc5d52b9f8d58196e469d73424a0a9d3986b0cc5fe4eefff85ef1744b" />
+    </canvas>
+    <canvas name="41_6" width="161" height="112">
+      <vector name="origin" x="80" y="56" />
+      <int name="z" value="0" />
+      <string name="_hash" value="375e51928f465dc1f5a17ec23f040fbbb3334fe3483d87aa58196e2311b1d1e8" />
+    </canvas>
+    <canvas name="41_7" width="324" height="138">
+      <vector name="origin" x="162" y="69" />
+      <int name="z" value="0" />
+      <string name="_hash" value="5c35bcede582934f7c5c21b9cdbdedd9307d0eec21bbaaba20b30b7eb306c72b" />
+    </canvas>
+  </imgdir>
 </imgdir>

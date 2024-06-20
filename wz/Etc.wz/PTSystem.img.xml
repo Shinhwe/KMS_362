@@ -1,49 +1,49 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <imgdir name="PTSystem.img">
-<imgdir name="Program">
-<imgdir name="0">
-<int name="expTableNo" value="0"/>
-<string name="start" value="20180520000000"/>
-<string name="end" value="20180620235959"/>
-<string name="start_t" value="20180514000000"/>
-<string name="end_t" value="20180524235959"/>
-<string name="start_d" value="20180514000000"/>
-<string name="end_d" value="20180620235959"/>
-<int name="trainerLvMin" value="105"/>
-<int name="traineeLvMin" value="105"/>
-<int name="traineeLvMax" value="189"/>
-<string name="UI" value="UI/UIWindow7.img/PTSystem/15thEvent"/>
-<int name="questID" value="500293"/>
-</imgdir>
-</imgdir>
-<imgdir name="Msg">
-<imgdir name="20">
-<string name="info" value="트레이닝 캐릭터 등록 실패"/>
-<string name="-1" value="알 수 없는 이유로 요청에 실패하였습니다."/>
-<string name="10" value="현재 컨텐츠를 이용할 수 없습니다."/>
-<string name="11" value="유효기간이 만료되었습니다."/>
-<string name="12" value="현재 서버에서는 등록 할 수 없습니다."/>
-<string name="13" value="월드당 한 캐릭터만 등록 할 수 있습니다."/>
-<string name="20" value="레벨이 맞지 않아 트레이닝 캐릭터로 등록할 수 없습니다."/>
-<string name="21" value="버닝 캐릭터는 트레이닝 캐릭터로 등록할 수 없습니다."/>
-<string name="22" value="코치 캐릭터는 트레이닝 캐릭터로 등록할 수 없습니다."/>
-<string name="23" value="트레이닝 중인 캐릭터는 트레이닝 캐릭터로 등록할 수 없습니다."/>
-<string name="24" value="삭제 대기중인 캐릭터는 트레이닝 캐릭터로 등록할 수 없습니다."/>
-<string name="25" value="트레이닝 캐릭터로 등록할 수 없는 직업입니다."/>
-<string name="30" value="레벨이 맞지 않아 코치 캐릭터가 될 수 없습니다."/>
-<string name="31" value="버닝 캐릭터는 코치 캐릭터가 될 수 없습니다."/>
-<string name="32" value="이미 등록한 트레이닝 캐릭터가 있습니다."/>
-<string name="33" value="트레이닝 캐릭터는 코치 캐릭터가 될 수 없습니다."/>
-<string name="34" value="삭제 대기중인 캐릭터는 코치 캐릭터가 될 수 없습니다."/>
-<string name="35" value="코치 캐릭터가 될 수 없는 직업입니다."/>
-<string name="36" value="챕터2를 완료하지 않은 제로 캐릭터는 코치 캐릭터가 될 수 없습니다."/>
-<string name="100" value="현재 서버에 요청이 많아 처리하지 못했습니다. 잠시 후 다시 시도해 주세요."/>
-</imgdir>
-<imgdir name="21">
-<string name="info" value="트레이닝 캐릭터 삭제 실패"/>
-<string name="-1" value="알 수 없는 이유로 요청에 실패하였습니다."/>
-<string name="12" value="현재 서버에서는 삭제 할 수 없습니다."/>
-<string name="1001" value="트레이닝 캐릭터 정보가 존재하지 않습니다."/>
-</imgdir>
-</imgdir>
+  <imgdir name="Program">
+    <imgdir name="0">
+      <int name="expTableNo" value="0" />
+      <string name="start" value="20190717090000" />
+      <string name="end" value="20190806235959" />
+      <string name="start_t" value="20190717090000" />
+      <string name="end_t" value="20190806235959" />
+      <string name="start_d" value="20190717090000" />
+      <string name="end_d" value="20190806235959" />
+      <int name="trainerLvMin" value="105" />
+      <int name="traineeLvMin" value="105" />
+      <int name="traineeLvMax" value="189" />
+      <string name="UI" value="UI/UIWindow7.img/PTSystem/15thEvent" />
+      <int name="questID" value="500293" />
+    </imgdir>
+  </imgdir>
+  <imgdir name="Msg">
+    <imgdir name="20">
+      <string name="info" value="登錄培訓角色失敗" />
+      <string name="-1" value="因不明原因而要求失敗。" />
+      <string name="10" value="無法使用目前內容。" />
+      <string name="11" value="有效期間已過期。" />
+      <string name="12" value="目前伺服器上無法再登錄" />
+      <string name="13" value="每伺服器只能登錄一個角色。" />
+      <string name="20" value="因等級不夠而無法登錄為培訓角色。" />
+      <string name="21" value="燃燒角色無法登錄為培訓角色。" />
+      <string name="22" value="教練角色無法登錄為培訓角色。" />
+      <string name="23" value="已經培訓中的角色，無法再登錄為培訓角色。" />
+      <string name="24" value="等待刪除的角色無法登錄為培訓角色。" />
+      <string name="25" value="無法登錄為培訓角色的職業。" />
+      <string name="30" value="因等級不夠，而無法進行教練角色。" />
+      <string name="31" value="燃燒角色無法成為教練角色。" />
+      <string name="32" value="已經有登錄中的培訓角色。" />
+      <string name="33" value="培訓角色無法成為教練角色。" />
+      <string name="34" value="等待刪除中的角色無法成為教練角色。" />
+      <string name="35" value="無法成為教練角色的職業。" />
+      <string name="36" value="未能完成第二章節的神之子角色是無法成為教練角色。" />
+      <string name="100" value="目前太多伺服器的要求而無法處理。請稍後再試。" />
+    </imgdir>
+    <imgdir name="21">
+      <string name="info" value="培訓角色刪除失敗" />
+      <string name="-1" value="因不明原因而要求失敗。" />
+      <string name="12" value="目前伺服器上無法進行刪除。" />
+      <string name="1001" value="不存在培訓角色的資訊。" />
+    </imgdir>
+  </imgdir>
 </imgdir>

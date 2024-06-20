@@ -53,6 +53,17 @@ public class LittleEndianAccessor
     return (byte) this.bs.readByte();
   }
 
+  public final byte readByteSafe ()
+  {
+    if (this.available() > 1L)
+    {
+      return (byte) this.bs.readByte();
+    }
+    new Error("readByte 出現錯誤, 當前剩餘的封包長度已不足").printStackTrace();
+    this.bs.movePos(1);
+    return (byte) 0;
+  }
+
   public final int readByteToInt ()
   {
     return this.bs.readByte();
@@ -67,11 +78,39 @@ public class LittleEndianAccessor
     return (byte4 << 24) + (byte3 << 16) + (byte2 << 8) + byte1;
   }
 
+  public final int readIntSafe ()
+  {
+    if (this.available() > 4L)
+    {
+      int byte1 = this.bs.readByte();
+      int byte2 = this.bs.readByte();
+      int byte3 = this.bs.readByte();
+      int byte4 = this.bs.readByte();
+      return (byte4 << 24) + (byte3 << 16) + (byte2 << 8) + byte1;
+    }
+    this.bs.movePos(4);
+    new Error("readInt 出現錯誤, 當前剩餘的封包長度已不足").printStackTrace();
+    return 0;
+  }
+
   public final short readShort ()
   {
     int byte1 = this.bs.readByte();
     int byte2 = this.bs.readByte();
     return (short) ((byte2 << 8) + byte1);
+  }
+
+  public final short readShortSafe ()
+  {
+    if (this.available() > 2L)
+    {
+      int byte1 = this.bs.readByte();
+      int byte2 = this.bs.readByte();
+      return (short) ((byte2 << 8) + byte1);
+    }
+    this.bs.movePos(2);
+    new Error("readShort 出現錯誤, 當前剩餘的封包長度已不足").printStackTrace();
+    return 0;
   }
 
   public final int readUShort ()
@@ -100,6 +139,25 @@ public class LittleEndianAccessor
     long byte7 = this.bs.readByte();
     long byte8 = this.bs.readByte();
     return (byte8 << 56L) + (byte7 << 48L) + (byte6 << 40L) + (byte5 << 32L) + (byte4 << 24L) + (byte3 << 16L) + (byte2 << 8L) + byte1;
+  }
+
+  public final long readLongSafe ()
+  {
+    if (this.available() > 8L)
+    {
+      long byte1 = this.bs.readByte();
+      long byte2 = this.bs.readByte();
+      long byte3 = this.bs.readByte();
+      long byte4 = this.bs.readByte();
+      long byte5 = this.bs.readByte();
+      long byte6 = this.bs.readByte();
+      long byte7 = this.bs.readByte();
+      long byte8 = this.bs.readByte();
+      return (byte8 << 56L) + (byte7 << 48L) + (byte6 << 40L) + (byte5 << 32L) + (byte4 << 24L) + (byte3 << 16L) + (byte2 << 8L) + byte1;
+    }
+    new Error("readLong 出現錯誤, 當前剩餘的封包長度已不足").printStackTrace();
+    this.bs.movePos(8);
+    return 0;
   }
 
   public final float readFloat ()
@@ -172,6 +230,13 @@ public class LittleEndianAccessor
   {
     int x = readShort();
     int y = readShort();
+    return new Point(x, y);
+  }
+
+  public final Point readPosSafe ()
+  {
+    int x = readShortSafe();
+    int y = readShortSafe();
     return new Point(x, y);
   }
 

@@ -1,316 +1,316 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <imgdir name="Tips.img">
-<imgdir name="normal">
-<imgdir name="info">
-<imgdir name="0">
-<int name="levelMin" value="1"/>
-<int name="levelMax" value="300"/>
-<int name="interval" value="600000"/>
-<int name="all" value="100"/>
-</imgdir>
-</imgdir>
-<imgdir name="all">
-<string name="0" value="바른 말 고운 말을 사용합시다."/>
-<string name="1" value="게임내에서 다른 사람에게 욕설이나 비방을 할 경우 게임 이용이 제한됩니다."/>
-<string name="2" value="운영자는 절대로 비밀번호를 묻지 않습니다."/>
-<string name="3" value="타인에게 비밀번호를 노출시키는 일이 없도록 하십시오."/>
-<string name="4" value="메이플스토리 홈페이지에서 자신의 랭킹을 확인할 수 있습니다."/>
-<string name="5" value="해킹프로그램 사용이나 기타 게임 이용에 부정한 행위를 하거나 시도할 경우 게임 이용이 제한됩니다."/>
-<string name="6" value="메뉴의 시스템 옵션 기능을 이용하여 게임 사운드를 조절할 수 있습니다."/>
-<string name="7" value="메뉴의 게임 옵션 기능을 이용하여 채팅, 교환, 귓속말 기능 등을 ON/OFF 할 수 있습니다."/>
-<string name="8" value="대화입력창에 &apos;/?&apos;이나 &apos;/도움말&apos;을 입력하면 &apos;/&apos; 를 사용하는 명령어의 설명을 볼 수 있습니다."/>
-<string name="9" value="일부 캐시 아이템은 헤네시스의 의류수거함을 통해 삭제할 수 있습니다."/>
-<string name="10" value="캐시 아이템을 선물하려면, 캐시샵에 있는 해당 아이템의 &apos;구매하기&apos; → &apos;선물하기&apos;를 차례로 선택한 후 상대방 캐릭터 이름을 입력하면 됩니다."/>
-<string name="11" value="해킹 등을 예방하려면 메신저나 이메일로 오는 첨부파일을 함부로 열지 않는 것이 좋습니다."/>
-<string name="12" value="일부 캐시아이템은  캐시아이템교환 기능이나 메이플 옥션을 이용하여 사용 전 1회에 한해 다른 사용자와 교환할 수 있습니다."/>
-<string name="13" value="캐시샵에서 구입한 아이템은 더블클릭하여 아이템인벤토리에 넣어야 사용가능합니다."/>
-<string name="14" value="매크로(자동사냥 프로그램) 사용 시 경고없이 메이플ID의 접속이 금지될 수 있습니다."/>
-<string name="15" value="메소나 아이템은 복사할 수 없습니다. 사기행위에 주의해 주시기 바랍니다."/>
-<string name="16" value="거짓말 탐지기 테스트창이 떠도 스킬 사용, 사냥이 가능합니다."/>
-<string name="17" value="지나친 게임 이용은 건강을 해칠 수 있으니 유의하여 주시기 바랍니다."/>
-<string name="18" value="불법프로그램 사용으로 인한 이용제한에 대해서는 보상 받을 수 없습니다."/>
-<string name="19" value="캐릭터 선택창의 OTP 설정을 클릭하여 지정PC 기능을 사용하면 보다 편하면서 강화된 보안상태로 게임을 이용할 수 있습니다"/>
-<string name="20" value="안전한 게임 이용을 위해 넥슨ID 비밀번호 및 메이플ID 비밀번호를 변경해주세요."/>
-<string name="21" value="NPC듀이의 택배시스템을 이용하여 다른 사용자에게 아이템이나 메소를 보낼 수 있습니다."/>
-<string name="22" value="PC방 전용 혜택은 넥슨 가맹 PC방에서 이용하실 수 있습니다."/>
-<string name="23" value="OTP 서비스를 이용하시면 보다 안전하게 본인의 메이플ID를 보호하실 수 있습니다."/>
-<string name="24" value="OTP를 이용하시면 보다 안전하게 ID를 보호하실 수 있습니다."/>
-<string name="25" value="공용PC를 사용할 경우 꼭 보안프로그램을 확인 하시고, 사용 후 개인PC에서 비밀번호를 변경 해주시기 바랍니다."/>
-<string name="26" value="공식 홈페이지 외의 사이트에서 아이디와 비밀번호를 입력하지 않도록 각별히 유의해 주시기 바랍니다."/>
-<string name="27" value="불법 프로그램 사용 및 인가되지 않은 사이트 방문시 해킹 위험에 노출될 수 있습니다."/>
-<string name="28" value="타인이 쉽게 유추할 수 없는 문자와 숫자가 조합된 비밀번호를 설정하며, 주기적으로 변경하는 것이 좋습니다."/>
-<string name="29" value="소중한 내 넥슨캐시 안전하게 관리하는 법! 넥슨 홈페이지에서 &lt;넥슨캐시 보안설정&gt; 기능을 이용해보세요. "/>
-<string name="30" value="거짓말 탐지기에 지속적으로 적발될 경우 게임 이용이 제한될 수 있습니다."/>
-<string name="31" value="파티장이 상대방을 파티원으로 초대하려면 상대방 캐릭터 위에 마우스 오른쪽 클릭을 하면 &apos;파티초대&apos; 기능이 나옵니다."/>
-<string name="32" value="인기도는 상대방 캐릭터에 마우스 더블 클릭하면 출력되는 캐릭터 정보창에서 올리거나 내릴 수 있습니다."/>
-<string name="33" value="인기도는 하루에 한번만! 그리고 하나의 캐릭터에게는 한 달에 한번만 올리거나 내릴 수 있습니다."/>
-<string name="34" value="대화 입력창에 &apos;/교환 상대방 캐릭터이름&apos;를 입력하시면 교환창이 열립니다."/>
-<string name="35" value="일부 직업은 생성이 불가할 수 있습니다."/>
-<string name="36" value="메이플스토리의 또 다른 재미! 몬스터라이프를 즐겨보세요!"/>
-<string name="37" value="아름다운 언어의 사용은 플레이어의 또 다른 레벨입니다."/>
-<string name="38" value="메이플스토리의 더 많은 내용을 알고 싶다면, [홈페이지 가이드]에서 찾아보세요."/>
-<string name="39" value="자세한 이벤트 내용은 [홈페이지&gt;뉴스&gt;이벤트]에서 볼 수 있습니다."/>
-<string name="40" value="해결되지 않는 궁금증은 [홈페이지&gt;고객지원&gt;도움말/1:1문의]에서 검색해보세요."/>
-<string name="41" value="일부 아이템은 성별, 직업별로 사용이 제한됩니다. 구입시 꼭 확인해주시기 바랍니다. "/>
-</imgdir>
-</imgdir>
-<imgdir name="reboot">
-<imgdir name="info">
-<imgdir name="0">
-<int name="levelMin" value="1"/>
-<int name="levelMax" value="300"/>
-<int name="interval" value="600000"/>
-<int name="all" value="100"/>
-</imgdir>
-</imgdir>
-<imgdir name="all">
-<string name="0" value="바른 말 고운 말을 사용합시다."/>
-<string name="1" value="게임내에서 다른 사람에게 욕설이나 비방을 할 경우 게임 이용이 제한됩니다."/>
-<string name="2" value="운영자는 절대로 비밀번호를 묻지 않습니다."/>
-<string name="3" value="타인에게 비밀번호를 노출시키는 일이 없도록 하십시오."/>
-<string name="4" value="메이플스토리 홈페이지에서 자신의 랭킹을 확인할 수 있습니다."/>
-<string name="5" value="해킹프로그램 사용이나 기타 게임 이용에 부정한 행위를 하거나 시도할 경우 게임 이용이 제한됩니다."/>
-<string name="6" value="메뉴의 시스템 옵션 기능을 이용하여 게임 사운드를 조절할 수 있습니다."/>
-<string name="7" value="일부 캐시 아이템은 헤네시스의 의류수거함을 통해 삭제할 수 있습니다."/>
-<string name="8" value="캐시 아이템을 선물하려면, 캐시샵에 있는 해당 아이템의 &apos;구매하기&apos; → &apos;선물하기&apos;를 차례로 선택한 후 상대방 캐릭터 이름을 입력하면 됩니다."/>
-<string name="9" value="해킹 등을 예방하려면 메신저나 이메일로 오는 첨부파일을 함부로 열지 않는 것이 좋습니다."/>
-<string name="10" value="캐시샵에서 구입한 아이템은 더블클릭하여 아이템인벤토리에 넣어야 사용가능합니다."/>
-<string name="11" value="매크로(자동사냥 프로그램) 사용 시 경고없이 메이플ID의 접속이 금지될 수 있습니다."/>
-<string name="12" value="메소나 아이템은 복사할 수 없습니다. 사기행위에 주의해 주시기 바랍니다."/>
-<string name="13" value="거짓말 탐지기 테스트창이 떠도 스킬 사용, 사냥이 가능합니다."/>
-<string name="14" value="지나친 게임 이용은 건강을 해칠 수 있으니 유의하여 주시기 바랍니다."/>
-<string name="15" value="불법프로그램 사용으로 인한 이용제한에 대해서는 보상 받을 수 없습니다."/>
-<string name="16" value="캐릭터 선택창의 OTP 설정을 클릭하여 지정PC 기능을 사용하면 보다 편하면서 강화된 보안상태로 게임을 이용할 수 있습니다."/>
-<string name="17" value="안전한 게임 이용을 위해 넥슨ID 비밀번호 및 메이플ID 비밀번호를 변경해주세요."/>
-<string name="18" value="PC방 전용 혜택은 넥슨 가맹 PC방에서 이용하실 수 있습니다."/>
-<string name="19" value="OTP 서비스를 이용하시면 보다 안전하게 본인의 메이플ID를 보호하실 수 있습니다."/>
-<string name="20" value="OTP를 이용하시면 보다 안전하게 ID를 보호하실 수 있습니다."/>
-<string name="21" value="공용PC를 사용할 경우 꼭 보안프로그램을 확인 하시고, 사용 후 개인PC에서 비밀번호를 변경 해주시기 바랍니다."/>
-<string name="22" value="공식 홈페이지 외의 사이트에서 아이디와 비밀번호를 입력하지 않도록 각별히 유의해 주시기 바랍니다."/>
-<string name="23" value="불법 프로그램 사용 및 인가되지 않은 사이트 방문시 해킹 위험에 노출될 수 있습니다."/>
-<string name="24" value="타인이 쉽게 유추할 수 없는 문자와 숫자가 조합된 비밀번호를 설정하며, 주기적으로 변경하는 것이 좋습니다."/>
-<string name="25" value="소중한 내 넥슨캐시 안전하게 관리하는 법! 넥슨 홈페이지에서 &lt;넥슨캐시 보안설정&gt; 기능을 이용해보세요."/>
-<string name="26" value="거짓말 탐지기에 지속적으로 적발될 경우 게임 이용이 제한될 수 있습니다."/>
-<string name="27" value="파티장이 상대방을 파티원으로 초대하려면 상대방 캐릭터 위에 마우스 오른쪽 클릭을 하면 &apos;파티초대&apos; 기능이 나옵니다."/>
-<string name="28" value="인기도는 상대방 캐릭터에 마우스 더블 클릭하면 출력되는 캐릭터 정보창에서 올리거나 내릴 수 있습니다."/>
-<string name="29" value="인기도는 하루에 한번만! 그리고 하나의 캐릭터에게는 한 달에 한번만 올리거나 내릴 수 있습니다."/>
-<string name="30" value="일부 직업은 생성이 불가할 수 있습니다."/>
-<string name="31" value="게임내 상세한 정보는 지식 Q&amp;A 게시판을 이용해 주세요."/>
-<string name="32" value="리부트 월드에서는 타인과 거래/교환을 할 수 없습니다."/>
-<string name="33" value="아름다운 언어의 사용은 플레이어의 또 다른 레벨입니다."/>
-<string name="34" value="메이플스토리의 더 많은 내용을 알고 싶다면, [홈페이지 가이드]에서 찾아보세요."/>
-<string name="35" value="자세한 이벤트 내용은 [홈페이지&gt;뉴스&gt;이벤트]에서 볼 수 있습니다."/>
-<string name="36" value="해결되지 않는 궁금증은 [홈페이지&gt;고객지원&gt;도움말/1:1문의]에서 검색해보세요."/>
-</imgdir>
-</imgdir>
-<imgdir name="burning">
-<imgdir name="info">
-<imgdir name="0">
-<int name="levelMin" value="1"/>
-<int name="levelMax" value="300"/>
-<int name="interval" value="600000"/>
-<int name="all" value="100"/>
-</imgdir>
-</imgdir>
-<imgdir name="all">
-<string name="0" value="바른 말 고운 말을 사용합시다."/>
-<string name="1" value="게임내에서 다른 사람에게 욕설이나 비방을 할 경우 게임 이용이 제한됩니다."/>
-<string name="2" value="운영자는 절대로 비밀번호를 묻지 않습니다."/>
-<string name="3" value="타인에게 비밀번호를 노출시키는 일이 없도록 하십시오."/>
-<string name="4" value="메이플스토리 홈페이지에서 자신의 랭킹을 확인할 수 있습니다."/>
-<string name="5" value="해킹프로그램 사용이나 기타 게임 이용에 부정한 행위를 하거나 시도할 경우 게임 이용이 제한됩니다."/>
-<string name="6" value="메뉴의 시스템 옵션 기능을 이용하여 게임 사운드를 조절할 수 있습니다."/>
-<string name="7" value="메뉴의 게임 옵션 기능을 이용하여 채팅, 교환, 귓속말 기능 등을 ON/OFF 할 수 있습니다."/>
-<string name="8" value="대화입력창에 &apos;/?&apos;이나 &apos;/도움말&apos;을 입력하면 &apos;/&apos; 를 사용하는 명령어의 설명을 볼 수 있습니다."/>
-<string name="9" value="일부 캐시 아이템은 헤네시스의 의류수거함을 통해 삭제할 수 있습니다."/>
-<string name="10" value="캐시 아이템을 선물하려면, 캐시샵에 있는 해당 아이템의 &apos;구매하기&apos; → &apos;선물하기&apos;를 차례로 선택한 후 상대방 캐릭터 이름을 입력하면 됩니다."/>
-<string name="11" value="해킹 등을 예방하려면 메신저나 이메일로 오는 첨부파일을 함부로 열지 않는 것이 좋습니다."/>
-<string name="12" value="일부 캐시아이템은  캐시아이템교환 기능이나 메이플 옥션을 이용하여 사용 전 1회에 한해 다른 사용자와 교환할 수 있습니다."/>
-<string name="13" value="캐시샵에서 구입한 아이템은 더블클릭하여 아이템인벤토리에 넣어야 사용가능합니다."/>
-<string name="14" value="매크로(자동사냥 프로그램) 사용 시 경고없이 메이플ID의 접속이 금지될 수 있습니다."/>
-<string name="15" value="메소나 아이템은 복사할 수 없습니다. 사기행위에 주의해 주시기 바랍니다."/>
-<string name="16" value="거짓말 탐지기 테스트창이 떠도 스킬 사용, 사냥이 가능합니다."/>
-<string name="17" value="지나친 게임 이용은 건강을 해칠 수 있으니 유의하여 주시기 바랍니다."/>
-<string name="18" value="불법프로그램 사용으로 인한 이용제한에 대해서는 보상 받을 수 없습니다."/>
-<string name="19" value="캐릭터 선택창의 OTP 설정을 클릭하여 지정PC 기능을 사용하면 보다 편하면서 강화된 보안상태로 게임을 이용할 수 있습니다."/>
-<string name="20" value="안전한 게임 이용을 위해 넥슨ID 비밀번호 및 메이플ID 비밀번호를 변경해주세요."/>
-<string name="21" value="NPC듀이의 택배시스템을 이용하여 다른 사용자에게 아이템이나 메소를 보낼 수 있습니다."/>
-<string name="22" value="PC방 전용 혜택은 넥슨 가맹 PC방에서 이용하실 수 있습니다."/>
-<string name="23" value="OTP 서비스를 이용하시면 보다 안전하게 본인의 메이플ID를 보호하실 수 있습니다."/>
-<string name="24" value="OTP를 이용하시면 보다 안전하게 ID를 보호하실 수 있습니다."/>
-<string name="25" value="공용PC를 사용할 경우 꼭 보안프로그램을 확인 하시고, 사용 후 개인PC에서 비밀번호를 변경 해주시기 바랍니다."/>
-<string name="26" value="공식 홈페이지 외의 사이트에서 아이디와 비밀번호를 입력하지 않도록 각별히 유의해 주시기 바랍니다."/>
-<string name="27" value="불법 프로그램 사용 및 인가되지 않은 사이트 방문시 해킹 위험에 노출될 수 있습니다."/>
-<string name="28" value="타인이 쉽게 유추할 수 없는 문자와 숫자가 조합된 비밀번호를 설정하며, 주기적으로 변경하는 것이 좋습니다."/>
-<string name="29" value="소중한 내 넥슨캐시 안전하게 관리하는 법! 넥슨 홈페이지에서 &lt;넥슨캐시 보안설정&gt; 기능을 이용해보세요. "/>
-<string name="30" value="거짓말 탐지기에 지속적으로 적발될 경우 게임 이용이 제한될 수 있습니다."/>
-<string name="31" value="파티장이 상대방을 파티원으로 초대하려면 상대방 캐릭터 위에 마우스 오른쪽 클릭을 하면 &apos;파티초대&apos; 기능이 나옵니다."/>
-<string name="32" value="인기도는 상대방 캐릭터에 마우스 더블 클릭하면 출력되는 캐릭터 정보창에서 올리거나 내릴 수 있습니다."/>
-<string name="33" value="인기도는 하루에 한번만! 그리고 하나의 캐릭터에게는 한 달에 한번만 올리거나 내릴 수 있습니다."/>
-<string name="34" value="대화 입력창에 &apos;/교환 상대방 캐릭터이름&apos;를 입력하시면 교환창이 열립니다."/>
-<string name="35" value="일부 직업은 생성이 불가할 수 있습니다."/>
-<string name="36" value="메이플스토리의 또 다른 재미! 몬스터라이프를 즐겨보세요!"/>
-<string name="37" value="아름다운 언어의 사용은 플레이어의 또 다른 레벨입니다."/>
-<string name="38" value="메이플스토리의 더 많은 내용을 알고 싶다면, [홈페이지 가이드]에서 찾아보세요."/>
-<string name="39" value="자세한 이벤트 내용은 [홈페이지&gt;뉴스&gt;이벤트]에서 볼 수 있습니다."/>
-<string name="40" value="해결되지 않는 궁금증은 [홈페이지&gt;고객지원&gt;도움말/1:1문의]에서 검색해보세요."/>
-<string name="41" value="일부 아이템은 성별, 직업별로 사용이 제한됩니다. 구입시 꼭 확인해주시기 바랍니다. "/>
-</imgdir>
-</imgdir>
-<imgdir name="swindle">
-<imgdir name="0">
-<imgdir name="word">
-<string name="0" value="캐쉬삼"/>
-<string name="1" value="캐시삼"/>
-<string name="2" value="캐쉬팜"/>
-<string name="3" value="캐시팜"/>
-<string name="4" value="인증번호"/>
-<string name="5" value="전번깜"/>
-<string name="6" value="선불"/>
-</imgdir>
-<imgdir name="warn">
-<string name="0" value="[공지]휴대폰 본인확인 인증번호를 다른 사람에게 알려주면 ID탈퇴, 캐시 충전 등에 악용될 수 있습니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<imgdir name="word">
-<string name="0" value="파티원"/>
-<string name="1" value="파티"/>
-<string name="2" value="파티괌"/>
-<string name="3" value="파티원 구함"/>
-<string name="4" value="파티원괌"/>
-<string name="5" value="파원"/>
-</imgdir>
-<imgdir name="warn">
-<string name="0" value="[공지]파티찾기를 사용하면 좀 더 편하게 파티를 구할 수 있습니다. "/>
-<string name="1" value="[공지]파티 초대 허용 여부는 게임 옵션에서 지정할 수 있습니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<imgdir name="word">
-<string name="0" value="운영자"/>
-<string name="1" value="운영원칙"/>
-<string name="2" value="운영정책"/>
-<string name="3" value="제재"/>
-</imgdir>
-<imgdir name="warn">
-<string name="0" value="[공지]운영자는 결코 유저에게 개인정보나 아이템 등을 요구하지 않습니다. 운영자를 사칭하는 사기 행위에 주의하시기 바랍니다."/>
-<string name="1" value="[공지]운영자를 사칭하거나 운영정책에 위반되는 행위를 할 경우 제재될 수 있습니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="3">
-<imgdir name="word">
-<string name="0" value="주민등록번호"/>
-<string name="1" value="주민번호"/>
-<string name="2" value="민번"/>
-<string name="3" value="전화번호"/>
-<string name="4" value="비번"/>
-<string name="5" value="비밀번호"/>
-<string name="6" value="계좌번호"/>
-<string name="7" value="현금"/>
-</imgdir>
-<imgdir name="warn">
-<string name="0" value="[공지]주민등록번호나 전화번호, 계좌번호 등은 타인이 악용할 수 있으므로, 개인정보 유출에 주의하시기 바랍니다."/>
-<string name="1" value="[공지]전화번호나 계좌번호 등이 유출될 경우 타인이 악용할 수 있으므로, 개인 신상정보를 묻는 사기 행위에 주의하시기 바랍니다."/>
-<string name="2" value="[공지]주민등록번호나 전화번호 등 타인의 신상을 유출해 악용할 경우 제재될 수 있습니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="4">
-<imgdir name="word">
-<string name="0" value="메신저"/>
-<string name="1" value="원격"/>
-<string name="2" value="원격제어"/>
-</imgdir>
-<imgdir name="warn">
-<string name="0" value="[공지]타인이 메신저를 이용해 컴퓨터를 원격 제어할 경우, 컴퓨터에 악성 (해킹) 프로그램이 설치될 수 있으니 주의하시기 바랍니다."/>
-<string name="1" value="[공지]메신저를 이용해 타인의 컴퓨터를 원격 제어하여 악성 프로그램을 설치할 경우 제재될 수 있습니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="5">
-<imgdir name="word">
-<string name="0" value="아이템베이"/>
-<string name="1" value="매니아"/>
-<string name="2" value="매x아"/>
-<string name="3" value="메소"/>
-</imgdir>
-<imgdir name="warn">
-<string name="0" value="[공지]메소나 아이템, 불법프로그램 등을 판매한다고 하며 현금 거래를 유도하는 사기 행위에 주의하시기 바랍니다."/>
-<string name="1" value="[공지]현금거래에서 발생하는 피해는 보상이나 복구 처리를 받으실 수 없습니다."/>
-<string name="2" value="[공지]메소나 아이템, 아이디, 불법프로그램 등을 현금으로 매매하거나 이를 시도하는 경우 제재될 수 있습니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="6">
-<imgdir name="word">
-<string name="0" value="넥슨캐시"/>
-<string name="1" value="넥캐"/>
-<string name="2" value="넥슨캐쉬"/>
-</imgdir>
-<imgdir name="warn">
-<string name="0" value="[공지] 소중한 내 넥슨캐시 안전하게 관리하는 법! 넥슨 홈페이지에서 &lt;넥슨캐시 보안설정&gt; 기능을 이용해보세요. "/>
-</imgdir>
-</imgdir>
-<imgdir name="7">
-<imgdir name="word">
-<string name="0" value="망딜"/>
-<string name="1" value="검딜"/>
-<string name="2" value="딜러"/>
-<string name="3" value="홀짝"/>
-<string name="4" value="네임드"/>
-<string name="5" value="신용"/>
-<string name="6" value="내리기"/>
-<string name="7" value="찌르기"/>
-<string name="8" value="올리기"/>
-</imgdir>
-<imgdir name="warn">
-<string name="0" value="[공지] 우연한 승부로 메소나 아이템을 대가로 주고 받는 행위는 사행성 행위이며 운영정책 위반사항 입니다."/>
-<string name="1" value="[공지] 사행성과 관련한 일체의 행위는 운영정책 위반으로 메이플ID 이용 제한 등의 불이익을 받으실 수 있습니다."/>
-<string name="2" value="[공지] 사행성 행위는 게임 환경을 어지럽히고, 다른 이용자에게 불쾌감을 줄 수 있습니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="8">
-<imgdir name="word">
-<string name="0" value="문상"/>
-<string name="1" value="무통"/>
-</imgdir>
-<imgdir name="warn">
-<string name="0" value="[공지] 게임 내의 자산을 현금이나 그에 준하는 현물로 바꾸는 것은 현금 거래로 인정되며, 운영정책에 위반되어 게임 이용에 제한을 받으실 수 있습니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="9">
-<imgdir name="word">
-<string name="0" value="010"/>
-<string name="1" value="휴대폰"/>
-<string name="2" value="전번"/>
-<string name="3" value="주소"/>
-</imgdir>
-<imgdir name="warn">
-<string name="0" value="[공지] 타인의 개인정보를 유출하거나 이용하는 행위는 운영정책에 위반되어 게임 이용이 제한될 수 있습니다. "/>
-</imgdir>
-</imgdir>
-<imgdir name="10">
-<imgdir name="word">
-<string name="0" value="택배"/>
-<string name="1" value="거래"/>
-<string name="2" value="쪽지"/>
-</imgdir>
-<imgdir name="warn">
-<string name="0" value="[공지] 아이템을 거래하실 때 교환하기 버튼을 누르기 전 교환하고자 하는 아이템이 맞는지 꼭 다시 한 번 확인해 주시기 바랍니다."/>
-<string name="1" value="[공지]택배를 가장한 쪽지 사기에 조심하세요! 쪽지로는 아이템/메소가 발송되지 않습니다. "/>
-<string name="2" value="[공지]택배를 가장한 쪽지 사기에 조심하세요! 쪽지로는 택배 내용이 안내되지 않습니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="11">
-<imgdir name="word">
-<string name="0" value="버그"/>
-<string name="1" value="핵"/>
-<string name="2" value="불프"/>
-<string name="3" value="불법"/>
-</imgdir>
-<imgdir name="warn">
-<string name="0" value="[공지]버그가 악용되는 상황이나 불법프로그램을 확인하면, [홈페이지-고객지원-버그악용/불법프로그램 신고]로 접수해주세요."/>
-<string name="1" value="[공지]버그나 불법프로그램을 이용하면 운영정책에 따라 게임이용이 제한되고, 비정상적으로 얻은 재화가 회수됩니다."/>
-<string name="2" value="[공지]메소나 아이템, 아이디, 불법프로그램 등을 현금으로 매매하거나 이를 시도하는 경우 제재될 수 있습니다."/>
-</imgdir>
-</imgdir>
-</imgdir>
+  <imgdir name="normal">
+    <imgdir name="info">
+      <imgdir name="0">
+        <int name="levelMin" value="1" />
+        <int name="levelMax" value="300" />
+        <int name="interval" value="600000" />
+        <int name="all" value="100" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="all">
+      <string name="0" value="請多使用有益的言語" />
+      <string name="1" value="在遊戲裡中辱罵或誹謗別人時,會予以限制登入處分" />
+      <string name="2" value="遊戲GM是絕對不會跟玩家詢問密碼的喔。" />
+      <string name="3" value="請不要向他人透露自己的帳號與密碼。" />
+      <string name="4" value="可以在新楓之谷官網上確認自己的排名喔。" />
+      <string name="5" value="使用外掛程式或其他不當進行遊戲的行為，會被限制進行遊戲。" />
+      <string name="6" value="選單中的&quot;系統選項&quot;中可調整遊戲音效。" />
+      <string name="7" value="選單中的&quot;遊戲選項&quot;，可以開/關聊天、交換與密語等功能。" />
+      <string name="8" value="在對話視窗輸入 '/?'或是'/助語'時可以看到使用'/' 的指令說明。" />
+      <string name="9" value="部分商城道具可透過弓箭手村的衣物收納箱來刪除。" />
+      <string name="10" value="要送禮商城道具時， 在商城裡，依照順序選擇此道具的'購買' → '送禮'後， 輸入要送禮的對方角色名就可以了。" />
+      <string name="11" value="為了預防駭客，不要亂打開即時通或信件裡的附加檔案，會比較安全喔。" />
+      <string name="12" value="部分付費道具可以使用付費道具交換功能、拍賣場，使用前限定可以與其他玩家進行1回交換。" />
+      <string name="13" value="在商城裡購買的道具，要雙擊後，放入道具背包才能使用喔。" />
+      <string name="14" value="使用外掛(自動腳本程式)時，無事前的警告可直接禁止楓之谷帳號的登入。" />
+      <string name="15" value="楓幣或是道具無法複製。對於詐欺行為請注意。" />
+      <string name="16" value="測謊機測試視窗跳出也能進行技能使用和狩獵。" />
+      <string name="17" value="過度的進行遊戲會對健康造成影響請留意。" />
+      <string name="18" value="關於因使用不法程式導致使用受到限制，無法獲得補償。" />
+      <string name="19" value="beanfun!設定最高防護時，帳號能夠更便利且強化的資安狀態下進行遊戲。" />
+      <string name="20" value="利用NPC篤伊的宅配系統，可將道具或是楓幣交給其它的玩家。" />
+      <string name="21" value="若想使用[經驗加倍服務]時，可至商城購買[經驗值2倍券]。" />
+      <string name="22" value="使用共用網咖時，請務必確認資安程式，使用後請在個人電腦中變更密碼。" />
+      <string name="23" value="使用beanfun!服務，能夠更為安全地保護自己的楓之谷帳號。" />
+      <string name="24" value="使用beanfun!可以更為安全地保護帳號。" />
+      <string name="25" value="建議設定他人無法推測出的由文字和數字組合的密碼，並定期的進行變更。" />
+      <string name="26" value="為了安全的使用遊戲，可使用beanfun!的應用程式進行帳號保護。" />
+      <string name="27" value="持續被測謊機所舉發時，遊戲使用會遭受限制。" />
+      <string name="28" value="組隊隊長要邀請對方成為組隊成員時，請在對方角色上方點選滑鼠右鍵時，就會出現＂組隊邀請＂功能。" />
+      <string name="29" value="為了安全的使用遊戲，可使用beanfun!進行帳號保護。" />
+      <string name="30" value="人氣度一天只有一次！且一個角色一個月只有一次能進行增減。" />
+      <string name="31" value="於對話輸入視窗輸入＂/交易對方角色名稱＂時，交易視窗就會開啟。" />
+      <string name="32" value="滑鼠雙擊對方角色，即可在角色資訊欄時提升或降低對方角色人氣。" />
+      <string name="33" value="新楓之谷的另一種趣味！來與其他玩家進行社交吧！" />
+      <string name="34" value="尊重、包容、友善是玩家的另一個等級。" />
+      <string name="35" value="部份職業無法進行創建。" />
+      <string name="36" value="詳細的活動內容可以在[官網&gt;消息&gt;活動]內確認。" />
+      <string name="37" value="有疑問時，請於[官網&gt;客服中心&gt;小幫手/1:1諮詢]內查詢。" />
+      <string name="38" value="部分道具因性別、職業關係，使用受到限制。購買時請務必留意。" />
+      <string name="39" value="자세한 이벤트 내용은 [홈페이지&gt;뉴스&gt;이벤트]에서 볼 수 있습니다." />
+      <string name="40" value="해결되지 않는 궁금증은 [홈페이지&gt;고객지원&gt;도움말/1:1문의]에서 검색해보세요." />
+      <string name="41" value="일부 아이템은 성별, 직업별로 사용이 제한됩니다. 구입시 꼭 확인해주시기 바랍니다. " />
+    </imgdir>
+  </imgdir>
+  <imgdir name="reboot">
+    <imgdir name="info">
+      <imgdir name="0">
+        <int name="levelMin" value="1" />
+        <int name="levelMax" value="300" />
+        <int name="interval" value="600000" />
+        <int name="all" value="100" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="all">
+      <string name="0" value="請多使用有益的言語。" />
+      <string name="1" value="在遊戲裡中辱罵或誹謗別人時，會予以限制登入處分。" />
+      <string name="2" value="遊戲內的GM是絕對不會跟玩家詢問密碼的喔。" />
+      <string name="3" value="請不要向他人透露自己的帳號與密碼。" />
+      <string name="4" value="可以在新楓之谷官網上確認自己的排名喔。" />
+      <string name="5" value="使用外掛程式進行遊戲的話，帳號會遭到封鎖喔。" />
+      <string name="6" value="選單中的&quot;系統選項&quot;中可調整遊戲音效。" />
+      <string name="7" value="部分商城道具可透過弓箭手村的衣物收納箱來刪除。" />
+      <string name="8" value="要送商城道具作為禮物時，請在商城中依照順序選擇此道具的&quot;購買&quot; → &quot;送禮&quot;後， 輸入要送禮的對象角色名就可以了。" />
+      <string name="9" value="為預防駭客，不隨便打開即時通或信件裡的不明附加檔案，比較安全喔。" />
+      <string name="10" value="在商城裡購買的道具，要雙擊後，放入道具背包才能使用喔。" />
+      <string name="11" value="使用外掛(自動腳本程式)時，無事前的警告可直接禁止楓之谷帳號的登入。" />
+      <string name="12" value="楓幣或是道具無法複製。對於詐欺行為請注意。" />
+      <string name="13" value="測謊機測試視窗跳出也能進行技能使用和狩獵。" />
+      <string name="14" value="過度的進行遊戲會對健康造成影響請留意。" />
+      <string name="15" value="關於因使用不法程式導致使用受到限制，無法獲得補償。" />
+      <string name="16" value="beanfun!設定最高防護時，帳號能夠更便利且強化的資安狀態下進行遊戲。" />
+      <string name="17" value="若想使用[經驗加倍服務]時，可至商城購買[經驗值2倍券]。" />
+      <string name="18" value="使用共用網咖時，請務必確認資安程式，使用後請在個人電腦中變更密碼。" />
+      <string name="19" value="使用beanfun!服務，能夠更為安全地保護自己的楓之谷帳號。" />
+      <string name="20" value="使用beanfun!可以更為安全地保護帳號。" />
+      <string name="21" value="建議設定他人無法推測出的由文字和數字組合的密碼，並定期的進行變更。" />
+      <string name="22" value="能夠更安全的保管珍貴的遊戲帳號方法！歡迎使用&lt;beanfun! 安全防護&gt;功能。" />
+      <string name="23" value="持續被測謊機所舉發時，遊戲使用會遭受限制。" />
+      <string name="24" value="組隊隊長要邀請對方成為組隊成員時，請在對方角色上方點選滑鼠右鍵時，就會出現＂組隊邀請＂功能。" />
+      <string name="25" value="若要提升或減少人氣度，於對方角色上滑鼠按右鍵時，就能進行人氣度 +/-。" />
+      <string name="26" value="人氣度一天只有一次！且一個角色一個月只有一次能進行增減。" />
+      <string name="27" value="部份作業無法進行創建。" />
+      <string name="28" value="滑鼠雙擊對方角色，即可在角色資訊欄時提升或降低對方角色人氣。" />
+      <string name="29" value="Ｒｅｂｏｏｔ伺服器內無法與其他玩家進行交易/交換。" />
+      <string name="30" value="部份職業無法進行創建。" />
+      <string name="31" value="想要知道更多關於楓之谷的內容，請至[官網導覽]確認。" />
+      <string name="32" value="詳細的活動內容可以在[官網&gt;消息&gt;活動]內確認。" />
+      <string name="33" value="有疑問時，請於[官網&gt;客服中心&gt;小幫手/1:1諮詢]內查詢。" />
+      <string name="34" value="메이플스토리의 더 많은 내용을 알고 싶다면, [홈페이지 가이드]에서 찾아보세요." />
+      <string name="35" value="자세한 이벤트 내용은 [홈페이지&gt;뉴스&gt;이벤트]에서 볼 수 있습니다." />
+      <string name="36" value="해결되지 않는 궁금증은 [홈페이지&gt;고객지원&gt;도움말/1:1문의]에서 검색해보세요." />
+    </imgdir>
+  </imgdir>
+  <imgdir name="burning">
+    <imgdir name="info">
+      <imgdir name="0">
+        <int name="levelMin" value="1" />
+        <int name="levelMax" value="300" />
+        <int name="interval" value="600000" />
+        <int name="all" value="100" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="all">
+      <string name="0" value="請有禮貌的發言。" />
+      <string name="1" value="在遊戲中對其它人辱罵或是誹謗時，遊戲使用就會遭受限制。" />
+      <string name="2" value="營運方絕對不會詢問密碼。" />
+      <string name="3" value="請務將密碼露出給他人。" />
+      <string name="4" value="於楓之谷官網中，可確認自己的排名。" />
+      <string name="5" value="使用外掛程式或是在其它的遊戲使用上進行不正當行為時，遊戲使用上則會被受限制。" />
+      <string name="6" value="使用選單的系統選項功能，可以調整遊戲音量。" />
+      <string name="7" value="使用選單的遊戲選項功能，可ON/OFF聊天、交換、悄悄話功能等。" />
+      <string name="8" value="於對話輸入視窗上輸入＂/?＂或是＂/小幫手＂時，就能看到使用＂/＂的指令的說明。" />
+      <string name="9" value="部份現金道具可透過弓箭手村的收納衣類箱進行刪除。" />
+      <string name="10" value="若要贈送現金道具，在現金商店的該道具，依照＂購買＂→ ＂送禮＂的順序選擇後，輸入對方角色名稱即可。" />
+      <string name="11" value="若要預防駭客，請勿隨意開啟從訊息或是信件接收到的附件。" />
+      <string name="12" value="部份現金道具可利用現金道具交換功能或是拍賣場，在使用前只限1次可和其它使用者進行交換。" />
+      <string name="13" value="現金商店所購買的道具，須雙擊後放在道具欄中才可使用。" />
+      <string name="14" value="使用外掛(自動腳本程式)時，無事前的警告可直接禁止楓之谷帳號的登入。" />
+      <string name="15" value="楓幣或是道具無法複製。對於詐欺行為請注意。" />
+      <string name="16" value="測謊機測試視窗跳出也能進行技能使用和狩獵。" />
+      <string name="17" value="過度的進行遊戲會對健康造成影響請留意。" />
+      <string name="18" value="關於因使用不法程式導致使用受到限制，無法獲得補償。" />
+      <string name="19" value="beanfun!設定最高防護時，帳號能夠更便利且強化的資安狀態下進行遊戲。" />
+      <string name="20" value="利用NPC篤伊的宅配系統，可將道具或是楓幣交給其它的玩家。" />
+      <string name="21" value="若想使用[經驗加倍服務]時，可至商城購買[經驗值2倍券]。" />
+      <string name="22" value="使用共用網咖時，請務必確認資安程式，使用後請在個人電腦中變更密碼。" />
+      <string name="23" value="使用beanfun!服務時，能夠更為安全地保護自己的楓之谷帳號。" />
+      <string name="24" value="使用beanfun!，可以更為安全地保護帳號。" />
+      <string name="25" value="建議設定他人無法推測出的由文字和數字組合的密碼，並定期的進行變更。" />
+      <string name="26" value="為了安全的使用遊戲，可使用beanfun!的應用程式進行帳號保護。" />
+      <string name="27" value="持續被測謊機所舉發時，遊戲使用會遭受限制。" />
+      <string name="28" value="組隊隊長要邀請對方成為組隊成員時，請在對方角色上方點選滑鼠右鍵時，就會出現＂組隊邀請＂功能。" />
+      <string name="29" value="為了安全的使用遊戲，可使用beanfun!進行帳號保護。" />
+      <string name="30" value="人氣度一天只有一次！且一個角色一個月只有一次能進行增減。" />
+      <string name="31" value="於對話輸入視窗輸入＂/交易對方角色名稱＂時，交易視窗就會開啟。" />
+      <string name="32" value="滑鼠雙擊對方角色，即可在角色資訊欄時提升或降低對方角色人氣。" />
+      <string name="33" value="新楓之谷的另一種趣味！來與其他玩家進行社交吧！" />
+      <string name="34" value="尊重、包容、友善是玩家的另一個等級。" />
+      <string name="35" value="部份職業無法進行創建。" />
+      <string name="36" value="詳細的活動內容可以在[官網&gt;消息&gt;活動]內確認。" />
+      <string name="37" value="有疑問時，請於[官網&gt;客服中心&gt;小幫手/1:1諮詢]內查詢。" />
+      <string name="38" value="部分道具因性別、職業關係，使用受到限制。購買時請務必留意。" />
+      <string name="39" value="자세한 이벤트 내용은 [홈페이지&gt;뉴스&gt;이벤트]에서 볼 수 있습니다." />
+      <string name="40" value="해결되지 않는 궁금증은 [홈페이지&gt;고객지원&gt;도움말/1:1문의]에서 검색해보세요." />
+      <string name="41" value="일부 아이템은 성별, 직업별로 사용이 제한됩니다. 구입시 꼭 확인해주시기 바랍니다. " />
+    </imgdir>
+  </imgdir>
+  <imgdir name="swindle">
+    <imgdir name="0">
+      <imgdir name="word">
+        <string name="0" value="購入現金" />
+        <string name="1" value="購入現金" />
+        <string name="2" value="賣出現金" />
+        <string name="3" value="賣出現金" />
+        <string name="4" value="認證號碼" />
+        <string name="5" value="給電話號碼" />
+        <string name="6" value="預先支付" />
+      </imgdir>
+      <imgdir name="warn">
+        <string name="0" value="[公告]手機本人確認認證碼若告訴他人時，ID退出、現金儲值等可能會遭受惡意使用。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="1">
+      <imgdir name="word">
+        <string name="0" value="組隊成員" />
+        <string name="1" value="組隊" />
+        <string name="2" value="求組隊" />
+        <string name="3" value="徵求組隊成員" />
+        <string name="4" value="求組隊成員" />
+        <string name="5" value="組隊成員" />
+      </imgdir>
+      <imgdir name="warn">
+        <string name="0" value="[公告]使用尋找隊伍時，更能方便找到隊伍。" />
+        <string name="1" value="[公告]組隊邀請許可與否可在遊戲選項中指定。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="2">
+      <imgdir name="word">
+        <string name="0" value="營運者" />
+        <string name="1" value="營運原則" />
+        <string name="2" value="營運政策" />
+        <string name="3" value="制裁" />
+      </imgdir>
+      <imgdir name="warn">
+        <string name="0" value="[公告]營運者不會向玩家要求個人資料或是道具等，請注意冒充營運者的詐騙行為。" />
+        <string name="1" value="[公告]冒充營運者或是違反營運政策時，可能遭受制裁。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="3">
+      <imgdir name="word">
+        <string name="0" value="身分證號碼" />
+        <string name="1" value="身分證號碼" />
+        <string name="2" value="身分證號碼" />
+        <string name="3" value="電話號碼" />
+        <string name="4" value="密碼" />
+        <string name="5" value="密碼" />
+        <string name="6" value="帳號碼" />
+        <string name="7" value="現金" />
+      </imgdir>
+      <imgdir name="warn">
+        <string name="0" value="[公告]身分證號碼或是電話號碼、帳號碼等可能會遭他人惡用，請注意不要洩漏個人資料。" />
+        <string name="1" value="[公告]電話號碼或是帳號碼等流出時，可能會被他人所惡用，請注意詢問個人資料的詐騙行為。" />
+        <string name="2" value="[公告]身分證號碼或是電話號碼等流到他人的手上遭到惡用時，可能遭受制裁。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="4">
+      <imgdir name="word">
+        <string name="0" value="Messenger" />
+        <string name="1" value="遠端" />
+        <string name="2" value="遠端控制" />
+      </imgdir>
+      <imgdir name="warn">
+        <string name="0" value="[公告]他人使用Messenger，遠端控制電腦時，可能會在電腦上安裝惡意(外掛)程式，請注意。" />
+        <string name="1" value="[公告]利用Messenger，遠端控制他人的電腦，安裝惡意程式時，可能遭受制裁。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="5">
+      <imgdir name="word">
+        <string name="0" value="ITEMBAY" />
+        <string name="1" value="狂熱者" />
+        <string name="2" value="狂x者" />
+        <string name="3" value="楓幣" />
+      </imgdir>
+      <imgdir name="warn">
+        <string name="0" value="[公告]請留意販售楓幣或是道具、不法程式等，誘導現金交易的詐騙行為。" />
+        <string name="1" value="[公告]在現金交易所發生的損害，無法得到補償或是復原處理。" />
+        <string name="2" value="[公告]楓幣或是道具、ID、不法程式等，透過現金買賣或是試圖該行為時，可能遭受制裁。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="6">
+      <imgdir name="word">
+        <string name="0" value="NEXON現金" />
+        <string name="1" value="NEXON現金" />
+        <string name="2" value="NEXON現金" />
+      </imgdir>
+      <imgdir name="warn">
+        <string name="0" value="[公告]安全管理自身貴重的NEXON現金的方法！請在NEXON官網，使用&lt;NEXON現金資安設定&gt;功能吧。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="7">
+      <imgdir name="word">
+        <string name="0" value="鐵鎚攻擊" />
+        <string name="1" value="劍攻擊" />
+        <string name="2" value="攻擊手" />
+        <string name="3" value="單雙數" />
+        <string name="4" value="知名玩家" />
+        <string name="5" value="信用" />
+        <string name="6" value="放下" />
+        <string name="7" value="刺" />
+        <string name="8" value="舉起" />
+      </imgdir>
+      <imgdir name="warn">
+        <string name="0" value="[公告] 用楓幣或是道具作為賭注的行為是投機行為，違反營運政策。" />
+        <string name="1" value="[公告] 投機相關的一切行為，因違反營運政策，可能會得到楓之谷帳號使用限制等的損失。" />
+        <string name="2" value="[公告] 投機行為，會打亂遊戲環境，並對其它的使用者造成不便。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="8">
+      <imgdir name="word">
+        <string name="0" value="禮券" />
+        <string name="1" value="無存摺" />
+      </imgdir>
+      <imgdir name="warn">
+        <string name="0" value="[公告] 遊戲內的資產以現金或是相對的物品交換，視為現金交易，因違反營運政策，遊戲使用上可能遭受限制。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="9">
+      <imgdir name="word">
+        <string name="0" value="010" />
+        <string name="1" value="手機" />
+        <string name="2" value="電話號碼" />
+        <string name="3" value="地址" />
+      </imgdir>
+      <imgdir name="warn">
+        <string name="0" value="[公告] 洩漏或是使用他人個資的行為，因違反營運政策，遊戲使用會受到限制。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="10">
+      <imgdir name="word">
+        <string name="0" value="快遞" />
+        <string name="1" value="交易" />
+        <string name="2" value="紙條" />
+      </imgdir>
+      <imgdir name="warn">
+        <string name="0" value="[公告]交易道具時，在點選交換按鍵之前，請務必先確認要交易的道具是否正確。" />
+        <string name="1" value="[公告]請小心假裝快遞的紙條詐騙！不會透過紙條發放道具/楓幣。" />
+        <string name="2" value="[公告]請小心假裝快遞的紙條詐騙！不會透過紙條告知快遞內容。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="11">
+      <imgdir name="word">
+        <string name="0" value="Bug" />
+        <string name="1" value="外掛" />
+        <string name="2" value="不法程式" />
+        <string name="3" value="不法" />
+      </imgdir>
+      <imgdir name="warn">
+        <string name="0" value="[公告]若確認到Bug被濫用的情況時，請至[官網-客服中心]回報。" />
+        <string name="1" value="[公告]若利用Bug或是不法程式時，根據營運政策，限制遊戲使用，並回收異常獲得的貨幣。" />
+        <string name="2" value="[公告]若楓幣或是道具、ID、不法程式等以現金進行買賣或是試圖進行該行為時，可能遭受制裁。" />
+      </imgdir>
+    </imgdir>
+  </imgdir>
 </imgdir>

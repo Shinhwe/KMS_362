@@ -15,18 +15,18 @@ import java.util.List;
 
 public class MovementParse
 {
-  public static List<LifeMovementFragment> parseMovement(final LittleEndianAccessor lea, final int kind)
+  public static List<LifeMovementFragment> parseMovement (final LittleEndianAccessor lea, final int kind)
   {
     return parseMovement(lea, kind, null);
   }
-  
-  public static List<LifeMovementFragment> parseMovement(final LittleEndianAccessor rh, final int kind, final MapleCharacter chr)
+
+  public static List<LifeMovementFragment> parseMovement (final LittleEndianAccessor rh, final int kind, final MapleCharacter chr)
   {
     final List<LifeMovementFragment> res = new ArrayList<LifeMovementFragment>();
-    final short numCommands = rh.readShort();
+    final short numCommands = rh.readShortSafe();
     for (int i = 0; i < numCommands; ++i)
     {
-      final byte command = rh.readByte();
+      final byte command = rh.readByteSafe();
       short nAttr = 0;
       try
       {
@@ -45,30 +45,29 @@ public class MovementParse
           case 73:
           case 91:
           {
-            if (rh.available() >= 20L)
+
+            final short xpos = rh.readShortSafe();
+            final short ypos = rh.readShortSafe();
+            final short xwobble = rh.readShortSafe();
+            final short ywobble = rh.readShortSafe();
+            final short fh = rh.readShortSafe();
+            if (command == 15 || command == 17)
             {
-              final short xpos = rh.readShort();
-              final short ypos = rh.readShort();
-              final short xwobble = rh.readShort();
-              final short ywobble = rh.readShort();
-              final short fh = rh.readShort();
-              if (command == 15 || command == 17)
-              {
-                nAttr = rh.readShort();
-              }
-              final short xoffset = rh.readShort();
-              final short yoffset = rh.readShort();
-              final short v307 = rh.readShort();
-              final byte newstate = rh.readByte();
-              final short duration = rh.readShort();
-              final byte unk = rh.readByte();
-              final AbsoluteLifeMovement alm = new AbsoluteLifeMovement(command, new Point(xpos, ypos), duration, newstate, fh, unk);
-              alm.setV307(v307);
-              alm.setnAttr(nAttr);
-              alm.setPixelsPerSecond(new Point(xwobble, ywobble));
-              alm.setOffset(new Point(xoffset, yoffset));
-              res.add(alm);
+              nAttr = rh.readShortSafe();
             }
+            final short xoffset = rh.readShortSafe();
+            final short yoffset = rh.readShortSafe();
+            final short v307 = rh.readShortSafe();
+            final byte newstate = rh.readByteSafe();
+            final short duration = rh.readShortSafe();
+            final byte unk = rh.readByteSafe();
+            final AbsoluteLifeMovement alm = new AbsoluteLifeMovement(command, new Point(xpos, ypos), duration, newstate, fh, unk);
+            alm.setV307(v307);
+            alm.setnAttr(nAttr);
+            alm.setPixelsPerSecond(new Point(xwobble, ywobble));
+            alm.setOffset(new Point(xoffset, yoffset));
+            res.add(alm);
+
             break;
           }
           case 1:
@@ -87,18 +86,18 @@ public class MovementParse
           case 96:
           {
             Point v308 = null;
-            final short xmod = rh.readShort();
-            final short ymod = rh.readShort();
+            final short xmod = rh.readShortSafe();
+            final short ymod = rh.readShortSafe();
             if (command == 21 || command == 22)
             {
-              nAttr = rh.readShort();
+              nAttr = rh.readShortSafe();
             }
-            final byte newstate2 = rh.readByte();
-            final short duration2 = rh.readShort();
-            final byte unk2 = rh.readByte();
+            final byte newstate2 = rh.readByteSafe();
+            final short duration2 = rh.readShortSafe();
+            final byte unk2 = rh.readByteSafe();
             if (command == 59)
             {
-              v308 = rh.readPos();
+              v308 = rh.readPosSafe();
             }
             final RelativeLifeMovement rlm = new RelativeLifeMovement(command, new Point(xmod, ymod), duration2, newstate2, unk2);
             rlm.setAttr(nAttr);
@@ -126,17 +125,13 @@ public class MovementParse
           case 84:
           case 86:
           {
-            final short xpos = rh.readShort();
-            final short ypos = rh.readShort();
-            final short fh2 = rh.readShort();
-            final int now = rh.readInt();
-            final byte newstate3 = rh.readByte();
-            final short duration3 = rh.readShort();
-            byte unk3 = 0;
-            if (rh.available() >= 1L)
-            {
-              unk3 = rh.readByte();
-            }
+            final short xpos = rh.readShortSafe();
+            final short ypos = rh.readShortSafe();
+            final short fh2 = rh.readShortSafe();
+            final int now = rh.readIntSafe();
+            final byte newstate3 = rh.readByteSafe();
+            final short duration3 = rh.readShortSafe();
+            byte unk3 = rh.readByteSafe();
             final ChairMovement cm = new ChairMovement(command, new Point(xpos, ypos), duration3, newstate3, fh2, unk3);
             cm.setUnk(now);
             res.add(cm);
@@ -144,18 +139,18 @@ public class MovementParse
           }
           case 12:
           {
-            res.add(new ChangeEquipSpecialAwesome(command, rh.readByte()));
+            res.add(new ChangeEquipSpecialAwesome(command, rh.readByteSafe()));
             break;
           }
           case 14:
           case 16:
           {
-            final short xpos = rh.readShort();
-            final short ypos = rh.readShort();
-            nAttr = rh.readShort();
-            final byte newstate4 = rh.readByte();
-            final short duration4 = rh.readShort();
-            final byte unk4 = rh.readByte();
+            final short xpos = rh.readShortSafe();
+            final short ypos = rh.readShortSafe();
+            nAttr = rh.readShortSafe();
+            final byte newstate4 = rh.readByteSafe();
+            final short duration4 = rh.readShortSafe();
+            final byte unk4 = rh.readByteSafe();
             final SunknownMovement sum = new SunknownMovement(command, new Point(xpos, ypos), duration4, newstate4, unk4);
             sum.setAttr(nAttr);
             res.add(sum);
@@ -165,13 +160,13 @@ public class MovementParse
           case 99:
           case 100:
           {
-            final short xpos = rh.readShort();
-            final short ypos = rh.readShort();
-            final short xoffset2 = rh.readShort();
-            final short yoffset2 = rh.readShort();
-            final byte newstate3 = rh.readByte();
-            final short duration3 = rh.readShort();
-            final byte unk3 = rh.readByte();
+            final short xpos = rh.readShortSafe();
+            final short ypos = rh.readShortSafe();
+            final short xoffset2 = rh.readShortSafe();
+            final short yoffset2 = rh.readShortSafe();
+            final byte newstate3 = rh.readByteSafe();
+            final short duration3 = rh.readShortSafe();
+            final byte unk3 = rh.readByteSafe();
             final TunknownMovement tum = new TunknownMovement(command, new Point(xpos, ypos), duration3, newstate3, unk3);
             tum.setOffset(new Point(xoffset2, yoffset2));
             res.add(tum);
@@ -179,10 +174,10 @@ public class MovementParse
           }
           case 28:
           {
-            final int nnow = rh.readInt();
-            final byte newstate5 = rh.readByte();
-            final short duration5 = rh.readShort();
-            final byte force = rh.readByte();
+            final int nnow = rh.readIntSafe();
+            final byte newstate5 = rh.readByteSafe();
+            final short duration5 = rh.readShortSafe();
+            final byte force = rh.readByteSafe();
             final UnknownMovement3 um = new UnknownMovement3(command, new Point(0, 0), duration5, newstate5, (short) 0, force);
             um.setUnow(nnow);
             res.add(um);
@@ -233,9 +228,9 @@ public class MovementParse
           case 101:
           case 102:
           {
-            final byte newstate6 = rh.readByte();
-            final short duration6 = rh.readShort();
-            final byte unk5 = rh.readByte();
+            final byte newstate6 = rh.readByteSafe();
+            final short duration6 = rh.readShortSafe();
+            final byte unk5 = rh.readByteSafe();
             final AranMovement am = new AranMovement(command, new Point(0, 0), duration6, newstate6, unk5);
             res.add(am);
             break;
@@ -244,14 +239,14 @@ public class MovementParse
           case 55:
           case 67:
           {
-            final short xpos = rh.readShort();
-            final short ypos = rh.readShort();
-            final short xwobble = rh.readShort();
-            final short ywobble = rh.readShort();
-            final short fh = rh.readShort();
-            final byte newstate7 = rh.readByte();
-            final short duration7 = rh.readShort();
-            final byte unk6 = rh.readByte();
+            final short xpos = rh.readShortSafe();
+            final short ypos = rh.readShortSafe();
+            final short xwobble = rh.readShortSafe();
+            final short ywobble = rh.readShortSafe();
+            final short fh = rh.readShortSafe();
+            final byte newstate7 = rh.readByteSafe();
+            final short duration7 = rh.readShortSafe();
+            final byte unk6 = rh.readByteSafe();
             final UnknownMovement um2 = new UnknownMovement(command, new Point(xpos, ypos), duration7, newstate7, fh, unk6);
             um2.setPixelsPerSecond(new Point(xwobble, ywobble));
             res.add(um2);
@@ -261,22 +256,22 @@ public class MovementParse
           {
             if (command == 77 || command == 79)
             {
-              final short xpos = rh.readShort();
-              final short ypos = rh.readShort();
-              final short xwobble = rh.readShort();
-              final short ywobble = rh.readShort();
-              final short fh = rh.readShort();
-              final short xoffset = rh.readShort();
-              final short yoffset = rh.readShort();
+              final short xpos = rh.readShortSafe();
+              final short ypos = rh.readShortSafe();
+              final short xwobble = rh.readShortSafe();
+              final short ywobble = rh.readShortSafe();
+              final short fh = rh.readShortSafe();
+              final short xoffset = rh.readShortSafe();
+              final short yoffset = rh.readShortSafe();
               final UnknownMovement4 alm2 = new UnknownMovement4(command, new Point(xpos, ypos), 0, 0, fh, (byte) 0);
               alm2.setPixelsPerSecond(new Point(xwobble, ywobble));
               alm2.setOffset(new Point(xoffset, yoffset));
               res.add(alm2);
               break;
             }
-            final byte newstate6 = rh.readByte();
-            final short duration6 = rh.readShort();
-            final byte unk5 = rh.readByte();
+            final byte newstate6 = rh.readByteSafe();
+            final short duration6 = rh.readShortSafe();
+            final byte unk5 = rh.readByteSafe();
             final AranMovement um3 = new AranMovement(command, new Point(0, 0), newstate6, duration6, unk5);
             res.add(um3);
             break;
@@ -295,8 +290,8 @@ public class MovementParse
     }
     return res;
   }
-  
-  public static void updatePosition(final List<LifeMovementFragment> movement, final AnimatedMapleMapObject target, final int yoffset)
+
+  public static void updatePosition (final List<LifeMovementFragment> movement, final AnimatedMapleMapObject target, final int yoffset)
   {
     if (movement == null)
     {

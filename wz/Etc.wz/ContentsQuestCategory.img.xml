@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <imgdir name="ContentsQuestCategory.img">
-<string name="0" value="default"/>
-<string name="1" value="테마던전"/>
-<string name="2" value="보스컨텐츠"/>
-<string name="3" value="파티퀘스트"/>
-<string name="4" value="스페셜컨텐츠(전투, 경쟁 등)"/>
+  <string name="0" value="default" />
+  <string name="1" value="主題副本" />
+  <string name="2" value="Boss目錄" />
+  <string name="3" value="組隊任務" />
+  <string name="4" value="特別項目(戰鬥、競爭等)" />
 </imgdir>

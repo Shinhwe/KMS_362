@@ -1,48 +1,48 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <imgdir name="TipsChat.img">
-<imgdir name="help">
-<string name="0" value="-------------------- 도움말 --------------------"/>
-<string name="1" value="* 채팅 입력창에 /명령어 를 입력하면 다양한 명령어를 확인할 수 있습니다."/>
-<string name="2" value="* 채팅 입력창 좌측의 메뉴 또는 Tab키를 누르면 대화 상대를 변경할 수 있습니다."/>
-<string name="3" value="* 설정 메뉴의 옵션 또는 채팅창 탭 우측의 버튼을 이용하여 화면 밖에 채팅창을 표시 또는 화면 안에 채팅창을 표시하도록 설정 할 수 있습니다."/>
-<string name="4" value="* 채팅창 내보내기 기능은 창모드에서만 지원됩니다."/>
-<string name="5" value="* 대화창 탭을 우클릭 하면 필터를 설정할 수 있습니다."/>
-<string name="6" value="* 채팅창의 말풍선 버튼으로 귓속말 상대를 설정할 수 있습니다."/>
-<string name="7" value="* 채팅창의 링크 버튼으로 인벤토리의 아이템 또는 달성한 업적을 채팅창에 링크할 수 있습니다."/>
-<string name="8" value="* 채팅창의 채팅 명령어 버튼으로 채팅 이모티콘 UI나 채팅 단축어 UI를 열 수 있습니다."/>
-<string name="9" value="* 메이플 챗을 이용하여 최대 5명의 다른 플레이어들과 함께 대화할 수 있는 대화방을 개설할 수 있습니다."/>
-</imgdir>
-<imgdir name="command">
-<string name="0" value="-------------------- 명령어 --------------------"/>
-<string name="1" value="/모두 /모 /e /ㄷ"/>
-<string name="2" value="     : 일반대화로 설정"/>
-<string name="3" value="/귓말 /귓 /w /ㅈ"/>
-<string name="4" value="     : 귓속말 상대 선택, 캐릭터이름과 함께 입력 시 해당 캐릭터에게 귓속말"/>
-<string name="5" value="/귓답 /답 /r /ㄱ"/>
-<string name="6" value="     : 최근 상대와 귓속말"/>
-<string name="7" value="/파티 /파 /p /ㅔ"/>
-<string name="8" value="     : 접속해 있는 파티원을 대화 상대로 설정"/>
-<string name="9" value="/파티만들기"/>
-<string name="10" value="     : 새로운 파티 생성"/>
-<string name="11" value="/파티탈퇴"/>
-<string name="12" value="     : 현재 가입되어 있는 파티에서 탈퇴"/>
-<string name="13" value="/파티초대 /파초"/>
-<string name="14" value="     : 내 파티와 파티 초대 캐릭터 리스트 팝업, 캐릭터이름과 함께 입력 시 해당 캐릭터 파티 초대 (파티장만 이용가능)"/>
-<string name="15" value="/파티강퇴 캐릭터이름"/>
-<string name="16" value="     : 강제로 파티에서 퇴장 (파티장만 이용가능)"/>
-<string name="17" value="/길드 /길 /g /ㅎ"/>
-<string name="18" value="     : 접속해 있는 길드원을 대화 상대로 설정"/>
-<string name="19" value="/길드초대 캐릭터이름"/>
-<string name="20" value="     : 해당 캐릭터 길드에 초대 (마스터만 이용가능)"/>
-<string name="21" value="/연합 /연 /u /ㅕ"/>
-<string name="22" value="     : 접속해 있는 연합원을 대화 상대로 설정"/>
-<string name="23" value="/친구 /친 /f /ㄹ"/>
-<string name="24" value="     : 접속해 있는 친구를 대화 상대로 설정"/>
-<string name="25" value="/그룹 /그 /b /ㅠ"/>
-<string name="26" value="     : 대화할 그룹 선택, 그룹이름과 함께 입력 시 접속해 있는 친구 그룹을 대화 상대로 설정"/>
-<string name="27" value="/메이플챗 /챗 /c /ㅊ"/>
-<string name="28" value="     : 메이플챗 대화 입장, 캐릭터이름과 함께 입력 시 해당 캐릭터 메이플챗 초대, 최대 5명까지 함께 입력"/>
-<string name="29" value="/도움말 /?"/>
-<string name="30" value="     : 채팅 도움말 확인"/>
-</imgdir>
+  <imgdir name="help">
+    <string name="0" value="-------------------- 說明 --------------------" />
+    <string name="1" value="* 在聊天輸入窗輸入/指令時，可確認各式的指令。" />
+    <string name="2" value="* 按下聊天室窗左側的選單或Tab鍵可以變更對話對象。" />
+    <string name="3" value="* 利用設定選單的選項或是聊天室窗頁面右側的按鍵，可以設定於畫面外標示聊天視窗或是畫面內標示聊天視窗。" />
+    <string name="4" value="* 聊天視窗送出功能只在視窗模式中支援。" />
+    <string name="5" value="* 對對話窗頁面按右鍵時，可設定篩選。" />
+    <string name="6" value="* 透過聊天視窗的泡泡話框按鍵，可設定悄悄話對象。" />
+    <string name="7" value="* 透過聊天視窗的連結按鍵，可以將物品欄的道具或達成的成就連結至聊天視窗。" />
+    <string name="8" value="＊利用聊天視窗的聊天指令按鍵，可開啟表情符號UI或聊天縮寫UI。" />
+    <string name="9" value="* 可使用Maple Chat開設聊天室，最多可和5名其它玩家一起聊天。" />
+  </imgdir>
+  <imgdir name="command">
+    <string name="0" value="-------------------- 指令 --------------------" />
+    <string name="1" value="/全部 /全 /e /all" />
+    <string name="2" value="     : 設定為一般對話" />
+    <string name="3" value="/私聊 /私 /w /密" />
+    <string name="4" value="     : 悄悄話對象選擇，角色名稱一起輸入時，跟該名角色悄悄話" />
+    <string name="5" value="/私回 /回 /r /答" />
+    <string name="6" value="     : 和最近對象悄悄話" />
+    <string name="7" value="/組隊 /組 /p /隊" />
+    <string name="8" value="     : 將上線的組隊成員設為對話對象" />
+    <string name="9" value="/+" />
+    <string name="10" value="     : 創建新隊伍" />
+    <string name="11" value="/-" />
+    <string name="12" value="     : 從目前加入的隊伍中退出" />
+    <string name="13" value="/組隊邀請 /組邀" />
+    <string name="14" value="     : 我的隊伍和隊伍邀請角色清單視窗，和角色名稱一起輸入時，該角色組隊邀請(只有組隊隊長可使用)" />
+    <string name="15" value="/組隊踢人 角色名稱" />
+    <string name="16" value="     : 強制從組隊中退場(只有組隊隊長可使用)" />
+    <string name="17" value="/公會 /公 /g /家" />
+    <string name="18" value="     : 將上線的公會成員設定為對話對象" />
+    <string name="19" value="/公會邀請 角色名稱" />
+    <string name="20" value="     : 該角色公會邀請(只有邀請權限者可使用)" />
+    <string name="21" value="/聯盟 /聯 /u /盟" />
+    <string name="22" value="     : 將上線的聯盟員設定為對話對象" />
+    <string name="23" value="/好友 /友 /f /朋" />
+    <string name="24" value="     : 將上線的朋友設定為對話對象" />
+    <string name="25" value="/友群 /群 /b" />
+    <string name="26" value="     : 選擇要對話的群組，和群組名稱一起輸入時，上線的朋友群組設定為對話對象" />
+    <string name="27" value="/楓之谷聊天 /聊天 /c /聊" />
+    <string name="28" value="     : Maple Chat對話入場，和角色名稱一起輸入時，該角色邀請至Maple Chat，最多可一次輸入5名" />
+    <string name="29" value="/指令 /?" />
+    <string name="30" value="     : 聊天說明確認" />
+  </imgdir>
 </imgdir>

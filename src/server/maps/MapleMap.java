@@ -2487,10 +2487,10 @@ public final class MapleMap
 
       if (monster.getStats().getLevel() - 21 <= chr.getLevel() && chr.getLevel() <= monster.getStats().getLevel() + 21 && chr.getClient().getKeyValue("dailyGiftComplete").equals("0"))
       {
-        if (chr.getIsDailyGiftTooltipPacketSend() == false &&  chr.getKeyValue(16700, "count") == 300L)
+        if (chr.getIsDailyGiftTooltipPacketSend() == false && chr.getKeyValue(16700, "count") == 300L)
         {
           chr.setIsDailyGiftTooltipPacketSend(true);
-          int 已簽到天數 = Integer.parseInt(chr.getClient().getKeyValue("dailyGiftDay"));
+          int 已簽到天數 = Integer.parseInt(chr.getClient().getKeyValue("dailyGiftDay", "0"));
           int 當前日期 = GameConstants.getCurrentDate_NoTime();
           chr.getClient().send(CWvsContext.updateDailyGift("count=0;day=" + 已簽到天數 + ";date=" + 當前日期));
         }

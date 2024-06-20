@@ -1,1 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><imgdir name="MobSkill.img"><imgdir name="249"><imgdir name="0"></imgdir><imgdir name="1"><string name="name" value="창조의 저주"/><string name="desc" value="빛의 초월자의 권능 중 창조의 힘으로 인한 저주. HP가 서서히 회복되지만 최종 데미지가 감소하고 일정 시간마다 주변에서 화염이 창조되며 피해를 준다. 창조와 파괴의 저주를 한 번에 받았다면 큰 패널티를 받는다."/></imgdir><imgdir name="2"><string name="name" value="파괴의 저주"/><string name="desc" value="빛의 초월자의 권능 중 파괴의 힘으로 인한 저주. 최종 데미지가 증가하지만 피격 데미지가 증가하고 소모품을 사용할 수 없다. 창조와 파괴의 저주를 한 번에 받았다면 큰 패널티를 받는다."/></imgdir></imgdir></imgdir>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<imgdir name="MobSkill.img">
+  <imgdir name="249">
+    <imgdir name="0"></imgdir>
+    <imgdir name="1">
+      <string name="name" value="創造的詛咒" />
+      <string name="desc" value="光之超越者權能中的創造之力的詛咒。HP慢慢恢復但最終傷害減少，每隔一段時間在周圍創造火焰給予傷害。一旦被創造與破壞的詛咒就會遭受嚴懲。" />
+    </imgdir>
+    <imgdir name="2">
+      <string name="name" value="破壞的詛咒" />
+      <string name="desc" value="光之超越者權能中的破壞之力的詛咒。最終傷害提升，但遭受攻擊時的傷害也會增加，並且無法使用消耗品。一旦被創造與破壞的詛咒就會遭受嚴懲。" />
+    </imgdir>
+  </imgdir>
+</imgdir>

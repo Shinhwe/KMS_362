@@ -9,44 +9,50 @@ public class ByteArrayByteStream
   private final byte[] arr;
   private int pos = 0;
   private long bytesRead = 0L;
-  
-  public ByteArrayByteStream(byte[] arr)
+
+  public ByteArrayByteStream (byte[] arr)
   {
     this.arr = arr;
   }
-  
-  public byte[] getByteArray()
+
+  public byte[] getByteArray ()
   {
     return this.arr;
   }
-  
-  public long getPosition()
+
+  public long getPosition ()
   {
     return this.pos;
   }
-  
-  public void seek(long offset) throws IOException
+
+  public void seek (long offset) throws IOException
   {
     this.pos = (int) offset;
   }
-  
-  public long getBytesRead()
+
+  public long getBytesRead ()
   {
     return this.bytesRead;
   }
-  
-  public int readByte()
+
+  public int readByte ()
   {
     this.bytesRead++;
     return this.arr[this.pos++] & 0xFF;
   }
-  
-  public String toString()
+
+  public void movePos (int pos)
+  {
+    this.bytesRead += pos;
+    this.pos += pos;
+  }
+
+  public String toString ()
   {
     return toString(false);
   }
-  
-  public String toString(boolean b)
+
+  public String toString (boolean b)
   {
     String nows = "";
     if (this.arr.length - this.pos > 0)
@@ -61,8 +67,8 @@ public class ByteArrayByteStream
     }
     return nows;
   }
-  
-  public long available()
+
+  public long available ()
   {
     return (this.arr.length - this.pos);
   }

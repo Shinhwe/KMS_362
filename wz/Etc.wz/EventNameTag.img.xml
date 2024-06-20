@@ -1,64 +1,64 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <imgdir name="EventNameTag.img">
-<int name="questId" value="16690"/>
-<imgdir name="0">
-<string name="0" value="카데나보다 까칠하고"/>
-<string name="1" value="이카르트보다 시크하고"/>
-<string name="2" value="류드보다 용감하고"/>
-<string name="3" value="탕윤보다 요리를 잘하고"/>
-<string name="4" value="비올레타보다 연약하고"/>
-<string name="5" value="메르세데스보다 도도하고"/>
-<string name="6" value="하인즈보다 현명하고"/>
-<string name="7" value="껨디보다 유머러스하고"/>
-<string name="8" value="카산드라보다 친절하고"/>
-<string name="9" value="팬텀보다 진지하고"/>
-</imgdir>
-<imgdir name="1">
-<string name="0" value="예티보다 순박한"/>
-<string name="1" value="반 레온보다 긍정적인"/>
-<string name="2" value="아카이럼보다 정직한"/>
-<string name="3" value="카웅처럼 소울이 없는"/>
-<string name="4" value="벨데로스보다 의리 있는"/>
-<string name="5" value="우르스보다 귀여운"/>
-<string name="6" value="핑크빈보다 호기심 많은"/>
-<string name="7" value="무토보다 잘먹는"/>
-<string name="8" value="루시드보다 예의 바른"/>
-<string name="9" value="헤카톤보다 자애로운"/>
-</imgdir>
-<imgdir name="2">
-<string name="0" value="커닝시티 지하철 매표소의"/>
-<string name="1" value="기울어진 탑의"/>
-<string name="2" value="타락한 세계수의"/>
-<string name="3" value="발록의 무덤의"/>
-<string name="4" value="자쿰 손바닥 밑의"/>
-<string name="5" value="고래산 정상의"/>
-<string name="6" value="형님들 구역의"/>
-<string name="7" value="뾰족귀 여우마을의"/>
-<string name="8" value="새비지 터미널의"/>
-<string name="9" value="폐기물 처리장의"/>
-</imgdir>
-<imgdir name="3">
-<string name="0" value="어두운 기운이 사라지지 않은"/>
-<string name="1" value="오른팔에 흑염룡이 깃든"/>
-<string name="2" value="풍선처럼 터질 것 같이 생긴"/>
-<string name="3" value="잠재능력을 부여해 주고 싶은"/>
-<string name="4" value="곧 무슨 일이 일어날 듯한"/>
-<string name="5" value="크리티아스처럼 얼굴이 뒤집힌"/>
-<string name="6" value="아케인심볼처럼 영롱한"/>
-<string name="7" value="건빵처럼 퍽퍽하게 생긴"/>
-<string name="8" value="토벤 머리가 어울리는"/>
-<string name="9" value="로카처럼 수상하게 생긴"/>
-</imgdir>
-<imgdir name="4">
-<string name="0" value="메이플 월드의 마스코트"/>
-<string name="1" value="헤네시스 지킴이"/>
-<string name="2" value="자유시장 문지기"/>
-<string name="3" value="커닝타워 샤이닝스타"/>
-<string name="4" value="몬스터파크 셔틀 운전사"/>
-<string name="5" value="루디브리엄 성형외과 VIP"/>
-<string name="6" value="신수 국제고 신입생"/>
-<string name="7" value="버섯의 성 후계자"/>
-<string name="8" value="걸어 다니는 재앙"/>
-<string name="9" value="나사 빠진 안드로이드"/>
-</imgdir>
+  <int name="questId" value="16690" />
+  <imgdir name="0">
+    <string name="0" value="比卡蒂娜還要刻薄的" />
+    <string name="1" value="比伊卡勒特還要冷傲的" />
+    <string name="2" value="比琉德更勇敢的" />
+    <string name="3" value="比湯寶寶更會做料理的" />
+    <string name="4" value="比菲歐娜還要軟弱的" />
+    <string name="5" value="比精靈遊俠還要高傲的" />
+    <string name="6" value="比漢斯更賢慧的" />
+    <string name="7" value="比甘迪還要有趣的" />
+    <string name="8" value="比微微安更親切的" />
+    <string name="9" value="比幻影俠盜還要認真的" />
+  </imgdir>
+  <imgdir name="1">
+    <string name="0" value="比雪吉拉還要純樸的" />
+    <string name="1" value="比凡雷恩更樂觀的" />
+    <string name="2" value="比阿卡伊農更正直的" />
+    <string name="3" value="像卡翁一樣沒有靈魂的" />
+    <string name="4" value="比貝代洛斯還有義氣的" />
+    <string name="5" value="比烏勒斯還要可愛的" />
+    <string name="6" value="比皮卡啾還要有好奇心的" />
+    <string name="7" value="比武藤還會吃的" />
+    <string name="8" value="比露希妲有禮義的" />
+    <string name="9" value="比海哥頓更仁慈的" />
+  </imgdir>
+  <imgdir name="2">
+    <string name="0" value="墮落城市地鐵賣票所的" />
+    <string name="1" value="傾斜之塔的" />
+    <string name="2" value="墮落世界樹的" />
+    <string name="3" value="巴洛古之墳墓的" />
+    <string name="4" value="炎魔手掌下的" />
+    <string name="5" value="鯨魚山頂峰的" />
+    <string name="6" value="大哥們區域的" />
+    <string name="7" value="尖耳狐狸村的" />
+    <string name="8" value="野蠻之星的" />
+    <string name="9" value="廢棄物處理場的" />
+  </imgdir>
+  <imgdir name="3">
+    <string name="0" value="黑暗氣息並沒有消失的" />
+    <string name="1" value="右手裡凝聚著黑龍氣息的" />
+    <string name="2" value="像氣球一樣快要破開的" />
+    <string name="3" value="想要賦予潛在能力的" />
+    <string name="4" value="感覺擊將要發生事情的" />
+    <string name="5" value="跟克里提亞斯一樣臉是顛倒的" />
+    <string name="6" value="像秘法符文一樣璀璨的" />
+    <string name="7" value="像壓縮餅乾一樣乾巴巴的" />
+    <string name="8" value="適合基本冒險髮型的" />
+    <string name="9" value="像羅卡一樣可疑的" />
+  </imgdir>
+  <imgdir name="4">
+    <string name="0" value="楓之谷世界的吉祥物" />
+    <string name="1" value="弓箭手村守護者" />
+    <string name="2" value="自由市場看守" />
+    <string name="3" value="星光之塔的閃亮明星" />
+    <string name="4" value="怪物公園公車司機" />
+    <string name="5" value="玩具城整形外科 VIP" />
+    <string name="6" value="神獸高中新學生" />
+    <string name="7" value="菇菇城堡繼承者" />
+    <string name="8" value="行走的災難" />
+    <string name="9" value="缺少螺絲的機器人" />
+  </imgdir>
 </imgdir>

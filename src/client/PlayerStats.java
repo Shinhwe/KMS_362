@@ -3104,7 +3104,7 @@ public class PlayerStats implements Serializable
           this.attackSpeed -= 2;
           this.localdex += bx.getEffect(bof).getDexX();
         }
-        bx = SkillFactory.getSkill(3111010);
+        bx = SkillFactory.getSkill(3110007);
         bof = chra.getSkillLevel(bx);
         if (bof > 0)
         {
@@ -3184,13 +3184,13 @@ public class PlayerStats implements Serializable
           this.localstr += bx.getEffect(bof).getStrX();
           this.localdex += bx.getEffect(bof).getDexX();
         }
-        bx = SkillFactory.getSkill(3211010);
+        bx = SkillFactory.getSkill(3210007);
         bof = chra.getSkillLevel(bx);
         if (bof > 0)
         {
           this.percent_hp += bx.getEffect(bof).getPercentHP();
         }
-        bx = SkillFactory.getSkill(0x30FF03);
+        bx = SkillFactory.getSkill(3211011);
         bof = chra.getSkillLevel(bx);
         if (bof > 0)
         {

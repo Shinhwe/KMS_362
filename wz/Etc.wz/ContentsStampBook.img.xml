@@ -1,1722 +1,2019 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <imgdir name="ContentsStampBook.img">
-<imgdir name="0">
-<imgdir name="0">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="infoConditionType" value="0"/>
-<string name="script" value="BH_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="블랙헤븐 Act.2클리어"/>
-<int name="rewardItemID" value="2001567"/>
-<string name="rewardDesc" value="피자호빵 50개"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="BH_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="블랙헤븐 Act.4클리어"/>
-<int name="rewardItemID" value="4310153"/>
-<string name="rewardDesc" value="M.I.B코인 10개"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="BH_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="블랙헤븐 Act.6클리어"/>
-<int name="rewardItemID" value="3015049"/>
-<string name="rewardDesc" value="블랙헤븐 기차의자"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="0"/>
-<int name="questID" value="18417"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;블랙헤븐&gt;"/>
-<string name="desc" value="창공에서 펼쳐지는 겔리메르와의 결전! 어둠의 정령 스우와 오르카의 슬픈 대서사시를 경험해 보세요."/>
-<string name="startNotify" value="#c33레벨# 이상"/>
-<string name="subHead" value="블록버스터의 시작"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="infoConditionType" value="0"/>
-<string name="script" value="Guild_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="길드가입"/>
-<int name="rewardItemID" value="2450067"/>
-<string name="rewardDesc" value="경험치 1.5배 쿠폰(30분)"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="5000"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Guild_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value="%d / 5000"/>
-<int name="conditionNotifyType" value="1"/>
-<string name="completeNotify" value="기여도 5000획득"/>
-<int name="rewardItemID" value="2432358"/>
-<string name="rewardDesc" value="기여도 주머니(500)"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="10000"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Guild_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value="%d / 10000"/>
-<int name="conditionNotifyType" value="1"/>
-<string name="completeNotify" value="기여도 10000획득"/>
-<int name="rewardItemID" value="2432358"/>
-<string name="rewardDesc" value="기여도 주머니(500) 4개"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="1"/>
-<int name="questID" value="18418"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;길드&gt;"/>
-<string name="desc" value="혼자서 하는 게임이 지루하신가요? 메이플월드의 길드에 정착해 보세요. 길드에 가입하면 각종 혜택을 누릴 수 있습니다."/>
-<string name="startNotify" value="#c길드 가입 유저#"/>
-<string name="subHead" value="영원한 동반자"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="infoConditionType" value="0"/>
-<string name="script" value="Boss_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="마왕발록 잡기"/>
-<int name="rewardItemID" value="5680251"/>
-<string name="rewardDesc" value="군단장 탈 상자(7일)"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Boss_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="노멀자쿰 잡기"/>
-<int name="rewardItemID" value="4310153"/>
-<string name="rewardDesc" value="M.I.B코인 10개"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Boss_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="이지 혼테일 잡기"/>
-<int name="rewardItemID" value="2432970"/>
-<string name="rewardDesc" value="명성치 5,000"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="2"/>
-<int name="questID" value="18419"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;보스 컨텐츠&gt;"/>
-<string name="desc" value="단순한 사냥이 지루하시다구요? 그렇다면 보스 UI를 통해 메이플월드의 다양한 보스를 만나보세요. "/>
-<string name="startNotify" value="#c65레벨# 이상"/>
-<string name="subHead" value="더욱 강력해진 적을 마주하라"/>
-</imgdir>
-</imgdir>
-<imgdir name="3">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="300"/>
-<int name="conditionType" value="1"/>
-<string name="infoConditionType" value="0"/>
-<string name="script" value="Enchant_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value="%d / 300"/>
-<int name="conditionNotifyType" value="1"/>
-<string name="completeNotify" value="주문의흔적 300개 보유"/>
-<int name="rewardItemID" value="4001832"/>
-<string name="rewardDesc" value="주문의 흔적 300개"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="10"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Enchant_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value="%d / 10"/>
-<int name="conditionNotifyType" value="1"/>
-<string name="completeNotify" value="주문의흔적강화 10회 성공"/>
-<int name="rewardItemID" value="2049449"/>
-<string name="rewardDesc" value="잠재능력 부여주문서(7일)"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="10"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Enchant_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value="%d / 10"/>
-<int name="conditionNotifyType" value="1"/>
-<string name="completeNotify" value="스타포스강화 10회 성공"/>
-<int name="rewardItemID" value="2711006"/>
-<string name="rewardDesc" value="명장의 큐브(7일)"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="3"/>
-<int name="questID" value="18420"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;아이템 강화&gt;"/>
-<string name="desc" value="주문의 흔적 강화에서 스타포스 강화까지! 다양하고 체계적인 메이플스토리의 강화시스템을 체험해 보세요."/>
-<string name="startNotify" value="#c제한 없음#"/>
-<string name="subHead" value="내 캐릭터를 더욱 강하게"/>
-</imgdir>
-</imgdir>
-<imgdir name="4">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="infoConditionType" value="0"/>
-<string name="script" value="SP_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="뉴탤런트 되기"/>
-<int name="rewardItemID" value="2433062"/>
-<string name="rewardDesc" value="시간2배 경험치쿠폰 지급권(7일)"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="SP_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="프레시탤런트 되기"/>
-<int name="rewardItemID" value="2023402"/>
-<string name="rewardDesc" value="S.P. 50"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="SP_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="주니어탤런트 되기"/>
-<int name="rewardItemID" value="2432299"/>
-<string name="rewardDesc" value="500 마일리지"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="4"/>
-<int name="questID" value="18421"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;스타플래닛&gt;"/>
-<string name="desc" value="모두가 스타인 세계, 스타플래닛에서라면 당신도 유명인이 될 수 있어요. 다양한 미니게임과 이벤트를 즐겨보세요"/>
-<string name="startNotify" value="#c33레벨# 이상"/>
-<string name="subHead" value="이젠 놀면서 유명해지자!"/>
-</imgdir>
-</imgdir>
-<imgdir name="5">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="infoConditionType" value="0"/>
-<string name="script" value="FS_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="프롤로그 완료"/>
-<int name="rewardItemID" value="2001567"/>
-<string name="rewardDesc" value="피자호빵 50개"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="FS_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="챕터2 완료"/>
-<int name="rewardItemID" value="4310124"/>
-<string name="rewardDesc" value="금바늘 10개"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="FS_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="챕터5 완료"/>
-<int name="rewardItemID" value="3010867"/>
-<string name="rewardDesc" value="절친의자 (택1)"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="5"/>
-<int name="questID" value="18422"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;프렌즈스토리&gt;"/>
-<string name="desc" value="메이플월드의 캐릭터들이 현실에 나타났다. 장롱너머의 세계에선 어떤 재밌는 일이 기다리고 있을까요?"/>
-<string name="startNotify" value="#c33레벨# 이상"/>
-<string name="subHead" value="실사판 메이플스토리 드라마"/>
-</imgdir>
-</imgdir>
-<imgdir name="6">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="infoConditionType" value="0"/>
-<string name="script" value="FV_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="총리대신의등장 완료"/>
-<int name="rewardItemID" value="5680179"/>
-<string name="rewardDesc" value="경험치 1.5배 쿠폰(30분)"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="FV_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="비올레타 구출 완료"/>
-<int name="rewardItemID" value="4310153"/>
-<string name="rewardDesc" value="M.I.B코인 10개"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="FV_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="전체퀘스트 완료"/>
-<int name="rewardItemID" value="3015048"/>
-<string name="rewardDesc" value="비올레타 샤랄라 기차의자"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="6"/>
-<int name="questID" value="18423"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;버섯의성&gt;"/>
-<string name="desc" value="인기폭발! 메이플월드 최고의 미녀(?) 비올레타 공주를 만나러 버섯의 성으로 지금 바로 떠나보세요"/>
-<string name="startNotify" value="#c60레벨# 이상"/>
-<string name="subHead" value="재미와 감동의 테마던전"/>
-</imgdir>
-</imgdir>
-<imgdir name="7">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="3"/>
-<int name="conditionType" value="1"/>
-<string name="infoConditionType" value="0"/>
-<string name="script" value="EV_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value="%d / 3"/>
-<int name="conditionNotifyType" value="1"/>
-<string name="completeNotify" value="링크1 클리어 3회"/>
-<int name="rewardItemID" value="4310060"/>
-<string name="rewardDesc" value="이볼빙코인 10개"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="6"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="EV_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value="%d / 6"/>
-<int name="conditionNotifyType" value="1"/>
-<string name="completeNotify" value="링크2 클리어 6회"/>
-<int name="rewardItemID" value="4310060"/>
-<string name="rewardDesc" value="이볼빙코인 30개"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="9"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="EV_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value="%d / 9"/>
-<int name="conditionNotifyType" value="1"/>
-<string name="completeNotify" value="링크3 클리어 9회"/>
-<int name="rewardItemID" value="4310060"/>
-<string name="rewardDesc" value="이볼빙코인 50개"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="7"/>
-<int name="questID" value="18424"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;이볼빙 시스템&gt;"/>
-<string name="desc" value="몬스터, 배경, BGM까지 내 취향에 꼭 맞는 나만의 사냥터를 만들 수 있는 기회를 놓치지 마세요"/>
-<string name="startNotify" value="#c105레벨# 이상"/>
-<string name="subHead" value="내가만든 사냥터"/>
-</imgdir>
-</imgdir>
-<imgdir name="8">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="infoConditionType" value="0"/>
-<string name="script" value="LB_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="에피소드1 클리어"/>
-<int name="rewardItemID" value="2001567"/>
-<string name="rewardDesc" value="피자호빵 50개"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="LB_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="에피소드2 클리어"/>
-<int name="rewardItemID" value="4310153"/>
-<string name="rewardDesc" value="M.I.B코인 10개"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="LB_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="에피소드3 클리어"/>
-<int name="rewardItemID" value="5680245"/>
-<string name="rewardDesc" value="펜던트 추가슬롯(7일)"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="8"/>
-<int name="questID" value="18425"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;차원의 도서관&gt;"/>
-<string name="desc" value="흥미로운 스토리와 참신한 재미요소들로 가득한 차원의 도서관! 메이플월드의 역사를 배워보세요~"/>
-<string name="startNotify" value="#c100레벨# 이상"/>
-<string name="subHead" value="메이플월드의 역사"/>
-</imgdir>
-</imgdir>
-<imgdir name="9">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="5"/>
-<int name="conditionType" value="1"/>
-<string name="infoConditionType" value="0"/>
-<string name="script" value="WP_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value="%d / 5"/>
-<int name="conditionNotifyType" value="1"/>
-<string name="completeNotify" value="월드통합파티퀘스트 5회 클리어"/>
-<int name="rewardItemID" value="2001567"/>
-<string name="rewardDesc" value="피자호빵 50개"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="10"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="WP_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value="%d / 10"/>
-<int name="conditionNotifyType" value="1"/>
-<string name="completeNotify" value="월드통합파티퀘스트 10회 클리어"/>
-<int name="rewardItemID" value="4310153"/>
-<string name="rewardDesc" value="M.I.B코인 10개"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="15"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="WP_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value="%d / 15"/>
-<int name="conditionNotifyType" value="1"/>
-<string name="completeNotify" value="월드통합파티퀘스트 15회 클리어"/>
-<int name="rewardItemID" value="2433495"/>
-<string name="rewardDesc" value="월드통합 파티퀘스트 경험치 버프쿠폰(30분) 5개"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="9"/>
-<int name="questID" value="18426"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;월드통합 파티퀘스트&gt;"/>
-<string name="desc" value="단순한 파티사냥? NO! 이제는 월드 통합으로 즐긴다. 4가지 독특한 던전을 다른 유저들과 함께 클리어해 보세요."/>
-<string name="startNotify" value="#c50레벨# 이상"/>
-<string name="subHead" value="우린 혼자가 아니야"/>
-</imgdir>
-</imgdir>
-<imgdir name="finishTooltip">
-<string name="head" value="&lt;컨텐츠 스탬프북&gt;"/>
-<string name="completeNotify" value="모든 컨텐츠 스탬프 클리어"/>
-<int name="rewardItemID" value="4310153"/>
-<string name="rewardDesc" value="M.I.B코인 200개"/>
-<string name="subHead" value="최종단계"/>
-</imgdir>
-<string name="openScript" value="OpenContentsBook"/>
-<string name="finishScript" value="finish"/>
-</imgdir>
-<imgdir name="1">
-<imgdir name="0">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="LV_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="레벨 100달성"/>
-<int name="rewardItemID" value="2434010"/>
-<string name="rewardDesc" value="칭호: 핑크빈좀 키워본, 훈장 : 내 친구는 핑크빈!"/>
-<string name="rewardDesc2" value="3종 보스 장신구 박스"/>
-<int name="rewardItemID2" value="2434006"/>
-<string name="subHead" value="이제 나도 모험가!"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="LV_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="레벨 150달성"/>
-<int name="rewardItemID" value="2433981"/>
-<string name="rewardDesc" value="핑크빈 데미지스킨"/>
-<string name="rewardDesc2" value="150Lv유니크 무기박스"/>
-<int name="rewardItemID2" value="2434007"/>
-<string name="subHead" value="노멀 핑크빈이 되다!"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="LV_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="레벨 200 달성"/>
-<int name="rewardItemID" value="2434011"/>
-<string name="rewardDesc" value="유니크 카오스 핑크빈 마크"/>
-<string name="rewardDesc2" value="고성능 확성기 5개"/>
-<int name="rewardItemID2" value="5072000"/>
-<string name="subHead" value="하드 핑크빈이 되다!"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="0"/>
-<int name="questID" value="500706"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;성장 일기&gt;"/>
-<string name="desc" value="음~? 이계에서 넘어왔더니 몸이 많이 약해진 것 같은데?? 이계 최강자인 내가 이래선 안되지. 다시 원래의 탱탱하고 강력한 핑크빈이 되어야겠어! "/>
-<string name="subHead" value="좌충우돌 성장기!"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="infoConditionType" value="0"/>
-<string name="script" value="Hunt_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="콤보킬 300 달성"/>
-<int name="rewardItemID" value="2434012"/>
-<string name="rewardDesc" value="부농탱글 명찰반지 (30일)"/>
-<string name="rewardDesc2" value="파워 엘릭서 20개"/>
-<int name="rewardItemID2" value="2000019"/>
-<string name="subHead" value="가벼운 몸풀기"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Hunt_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=""/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="몬스터 999마리 잡기"/>
-<int name="rewardItemID" value="2434013"/>
-<string name="rewardDesc" value="함께해! 핑크빈 라이딩(30일)"/>
-<string name="rewardDesc2" value="라이온하트 방어구 박스"/>
-<int name="rewardItemID2" value="2434008"/>
-<string name="subHead" value="친구들아 미안해"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Hunt_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=""/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="엘리트보스 1마리 잡기"/>
-<int name="rewardItemID" value="2434014"/>
-<string name="rewardDesc" value="칭호: 요요좀 던져봤음"/>
-<string name="rewardDesc2" value="말랑 핑크빈 (50일)"/>
-<int name="rewardItemID2" value="5000452"/>
-<string name="subHead" value="너도 보스니? 나도야!"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="1"/>
-<int name="questID" value="500707"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;사냥 일기&gt;"/>
-<string name="desc" value="이곳 메이플 월드에는 참 많은 친구들이 있는 것 같아. 이계에는 나 밖에 없었는데 말이야. 얘들아 나랑 같이 놀지 않을래? 어랏? 도망가지마~"/>
-<string name="subHead" value="우린 모두 몬스터"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="3"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Life_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="3일간 출석하기"/>
-<int name="rewardItemID" value="2434015"/>
-<string name="rewardDesc" value="칭호: 이계에서 온 이민자"/>
-<string name="rewardDesc2" value="전설의 영웅비약 10개"/>
-<int name="rewardItemID2" value="2003526"/>
-<string name="subHead" value="여긴 어디? 나는 누구?"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Life_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="3시간동안 접속하기"/>
-<int name="rewardItemID" value="1012532"/>
-<string name="rewardDesc" value="핑크빈 얼굴장식(30일)"/>
-<string name="rewardDesc2" value="경험치 1.5배 30분 쿠폰 1개"/>
-<int name="rewardItemID2" value="2023207"/>
-<string name="subHead" value="엉덩이가 무거워"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="2"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Life_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="주말에 2번 접속하기"/>
-<int name="rewardItemID" value="2711006"/>
-<string name="rewardDesc" value="명장의 큐브"/>
-<string name="rewardDesc2" value="경험치 1.5배 30분 쿠폰 2장"/>
-<int name="rewardItemID2" value="2023207"/>
-<string name="subHead" value="주말에 만나요"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="2"/>
-<int name="questID" value="500708"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;생활 일기&gt;"/>
-<string name="desc" value="이곳은 참 복잡한 세계야. 공부해야 할 것도 많고... 이곳에 익숙해 지려면 오래 머무르는 것이 좋겠지? 얼른 이곳도 이계처럼 내 지배하에 두겠어! 하하하!"/>
-<string name="subHead" value="공부는 엉덩이힘"/>
-</imgdir>
-</imgdir>
-<imgdir name="3">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Enchant_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=""/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="1000만메소 모으기"/>
-<int name="rewardItemID" value="2434034"/>
-<string name="rewardDesc" value="핑크빈의 성향 성장 비약"/>
-<string name="rewardDesc2" value="400만 메소"/>
-<int name="rewardItemID2" value="2433910"/>
-<string name="subHead" value="한푼만 주세요"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="50"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Enchant_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value="%d / 50"/>
-<int name="conditionNotifyType" value="1"/>
-<string name="completeNotify" value="주문의흔적강화 50회 성공"/>
-<int name="rewardItemID" value="2350001"/>
-<string name="rewardDesc" value="캐릭터 슬롯 증가 쿠폰"/>
-<string name="rewardDesc2" value="주문의 흔적 1500개"/>
-<int name="rewardItemID2" value="4001832"/>
-<string name="subHead" value="강화로 더욱 탱탱!"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="50"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Enchant_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value="%d / 50"/>
-<int name="conditionNotifyType" value="1"/>
-<string name="completeNotify" value="스타포스강화 50회 성공"/>
-<int name="rewardItemID" value="2434016"/>
-<string name="rewardDesc" value="칭호: 통통한 배, 부의 상징"/>
-<string name="rewardDesc2" value="말랑 핑크빈 (50일)"/>
-<int name="rewardItemID2" value="5000452"/>
-<string name="subHead" value="별이 다섯개!"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="3"/>
-<int name="questID" value="15504"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;강화 일기&gt;"/>
-<string name="desc" value="이제 나도 메이플 월드의 용사가 되었으니 그에 걸맞는 장비를 갖춰야 해! 물론 이 몸은 이미 충분히 강하지만 말이야. 어떤 장비 부터 강화해 볼까나? 흐흐흐"/>
-<string name="subHead" value="강화는 나를 강하게 한다"/>
-</imgdir>
-</imgdir>
-<imgdir name="4">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Boss_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="노멀 자쿰 잡기"/>
-<int name="rewardItemID" value="2434020"/>
-<string name="rewardDesc" value="강력한 환생의 불꽃"/>
-<string name="rewardDesc2" value="수상한 큐브 30개"/>
-<int name="rewardItemID2" value="2711000"/>
-<string name="subHead" value="깜찍한 돌맹이"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Boss_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="이지 혼테일 잡기"/>
-<int name="rewardItemID" value="2434017"/>
-<string name="rewardDesc" value="칭호: 용잡이 핑크빈"/>
-<string name="rewardDesc2" value="장인의 큐브 5개"/>
-<int name="rewardItemID2" value="2711003"/>
-<string name="subHead" value="귀여운 아가용"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Boss_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="노멀 핑크빈 잡기"/>
-<int name="rewardItemID" value="2434018"/>
-<string name="rewardDesc" value="핑크빈의 소울상자"/>
-<string name="rewardDesc2" value="명장의 큐브 5개"/>
-<int name="rewardItemID2" value="2711004"/>
-<string name="subHead" value="날 닮은 너를"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="4"/>
-<int name="questID" value="500710"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;보스사냥 일기&gt;"/>
-<string name="desc" value="이 곳 메이플 월드에서는 나를 &apos;보스&apos;라고 부르는구나. 그런데 보스가 나 말고도 많이 있는 것 같아. 친구들아~ 우리 누가 더 강한지 겨뤄보지 않을래? 살살해줘~"/>
-<string name="subHead" value="본격 보스의 보스사냥"/>
-</imgdir>
-</imgdir>
-<imgdir name="5">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Adv_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="초보 탐험가 칭호 획득"/>
-<int name="rewardItemID" value="2450144"/>
-<string name="rewardDesc" value="경험치 2배 쿠폰(15분) 1개"/>
-<string name="rewardDesc2" value="고성능 순간이동의 돌 5개"/>
-<int name="rewardItemID2" value="5041000"/>
-<string name="subHead" value="이리저리 탱탱탱!"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Adv_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="미나르숲 탐험가 칭호 획득"/>
-<int name="rewardItemID" value="2434019"/>
-<string name="rewardDesc" value="칭호: 핑크그릴스"/>
-<string name="rewardDesc2" value="경험치 1.5배 30분 쿠폰 1개"/>
-<string name="rewardItemID2" value="2023207"/>
-<string name="subHead" value="용용 탱탱탱!"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Adv_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="정상에 서본자 칭호 획득"/>
-<int name="rewardItemID" value="2450144"/>
-<string name="rewardDesc" value="경험치 2배 쿠폰(15분) 1개"/>
-<string name="rewardDesc2" value="전설의 영웅비약 10개"/>
-<int name="rewardItemID2" value="2003526"/>
-<string name="subHead" value="더 높이 탱탱탱!"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="5"/>
-<string name="questID" value="500711"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;여행 일기&gt;"/>
-<string name="desc" value="여긴 어디지? 이건 또 뭐하는 물건이지? 먹는건가? 이곳 메이플 월드에는 온통 신기한 것 투성이야! 이계로 돌아가기 전에 모두 여행해 주겠어!"/>
-<string name="subHead" value="메이플 월드는 어떤 곳일까?"/>
-</imgdir>
-</imgdir>
-<imgdir name="6">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Relation_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="스탄&gt;하인즈&gt;알케스터 방문"/>
-<int name="rewardItemID" value="2434021"/>
-<string name="rewardDesc" value="명성치 10,000"/>
-<string name="rewardDesc2" value="파워엘릭서 20개"/>
-<int name="rewardItemID2" value="2000019"/>
-<string name="subHead" value="어른을 공경해"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Relation_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="친구 10명 등록"/>
-<int name="rewardItemID" value="2434021"/>
-<string name="rewardDesc" value="명성치 10,000"/>
-<string name="rewardDesc2" value="핑크파워 버프쿠폰 3장"/>
-<int name="rewardItemID2" value="2023501"/>
-<string name="subHead" value="해치지 않아요"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Relation_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="인기도 3 획득"/>
-<int name="rewardItemID" value="2434022"/>
-<string name="rewardDesc" value="칭호: 핑크빛 아이돌"/>
-<string name="rewardDesc2" value="영원한 환생의불꽃 5개"/>
-<int name="rewardItemID2" value="2048723"/>
-<string name="subHead" value="어디서든 통하는 매력"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="6"/>
-<int name="questID" value="500712"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;관계 일기&gt;"/>
-<string name="desc" value="이곳에는 어떤 아이들이 있을까? 이계에선 너무 외로웠어... 나랑 미니빈 밖에 없었거든... 이곳의 용사들은 나를 좋아할까? 가만 보면 나는 참 귀여운 것 같은데 말이야... "/>
-<string name="subHead" value="치명적인 핑크색의 매력"/>
-</imgdir>
-</imgdir>
-<imgdir name="7">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Char_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=""/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="카리스마 레벨 10 달성"/>
-<int name="rewardItemID" value="2434023"/>
-<string name="rewardDesc" value="칭호: 둥근 눈의 카리스마"/>
-<string name="rewardDesc2" value="주문의 흔적 1000개"/>
-<int name="rewardItemID2" value="4001832"/>
-<string name="subHead" value="거친 생각"/>
-</imgdir>
-<imgdir name="tooltipForReoot">
-<string name="conditionNotify" value=""/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="카리스마 레벨 10 달성"/>
-<int name="rewardItemID" value="2434023"/>
-<string name="rewardDesc" value="칭호: 둥근 눈의 카리스마"/>
-<string name="rewardDesc2" value="주문의 흔적 1000개"/>
-<int name="rewardItemID2" value="4000999"/>
-<string name="subHead" value="거친 생각"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Char_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=""/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="손재주 레벨 10 달성"/>
-<int name="rewardItemID" value="2022797"/>
-<string name="rewardDesc" value="초강력 손세정제 10개"/>
-<string name="rewardDesc2" value="주문의 흔적 1000개"/>
-<int name="rewardItemID2" value="4001832"/>
-<string name="subHead" value="불안한 눈빛"/>
-</imgdir>
-<imgdir name="tooltipForReboot">
-<string name="conditionNotify" value=""/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="손재주 레벨 10 달성"/>
-<int name="rewardItemID" value="2022797"/>
-<string name="rewardDesc" value="초강력 손세정제 10개"/>
-<string name="rewardDesc2" value="주문의 흔적 1000개"/>
-<int name="rewardItemID2" value="4000999"/>
-<string name="subHead" value="불안한 눈빛"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Char_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=""/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="매력 레벨 10 달성"/>
-<int name="rewardItemID" value="2023109"/>
-<string name="rewardDesc" value="고급 향수 10개"/>
-<string name="rewardDesc2" value="주문의 흔적 1000개"/>
-<int name="rewardItemID2" value="4001832"/>
-<string name="subHead" value="나를 지켜보는 너"/>
-</imgdir>
-<imgdir name="tooltipForReboot">
-<string name="conditionNotify" value=""/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="매력 레벨 10 달성"/>
-<int name="rewardItemID" value="2023109"/>
-<string name="rewardDesc" value="고급 향수 10개"/>
-<string name="rewardDesc2" value="주문의 흔적 1000개"/>
-<int name="rewardItemID2" value="4000999"/>
-<string name="subHead" value="나를 지켜보는 너"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="7"/>
-<int name="questID" value="500713"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;성향 일기&gt;"/>
-<string name="desc" value="메이플 월드에서 나도 몰랐던 나의 성격을 많이 발견했어. 나는 늘 착하고 순진한 줄로만 알았는데...사실 난 훨씬 멋있는 존재였던거야! 헤헷"/>
-<string name="subHead" value="다양한 매력에 빠져!"/>
-</imgdir>
-</imgdir>
-<imgdir name="8">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Hidden1_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="???"/>
-<int name="rewardItemID" value="2434032"/>
-<string name="rewardDesc" value="영구 핑크빈 변신물약"/>
-<string name="rewardDesc2" value="핑크파워 버프쿠폰 3장"/>
-<int name="rewardItemID2" value="2023501"/>
-<string name="subHead" value="이름값 할 필요 있나요"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Hidden1_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="???"/>
-<int name="rewardItemID" value="2434025"/>
-<string name="rewardDesc" value="핑크빈과 둥둥여행 라이딩(30일)"/>
-<string name="rewardDesc2" value="파워엘릭서 50개"/>
-<int name="rewardItemID2" value="2000019"/>
-<string name="subHead" value="고기를 계승하는 중입니다"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Hidden1_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="???"/>
-<int name="rewardItemID" value="2434026"/>
-<string name="rewardDesc" value="영원한 환생의 불꽃"/>
-<string name="rewardDesc2" value="파워엘릭서 50개"/>
-<int name="rewardItemID2" value="2000019"/>
-<string name="subHead" value="여기가 아니네"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="8"/>
-<int name="questID" value="500714"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;비밀 일기&gt;"/>
-<string name="desc" value="이건 나의 비밀 일기야. 히힛 다른 사람들은 이 내용을 절대 알지 못하겠지? 신기한 일을 겪을 때 마다 몰래 몰래 하나씩 기록해 나가야 겠다!"/>
-<string name="subHead" value="?????"/>
-</imgdir>
-</imgdir>
-<imgdir name="9">
-<imgdir name="0">
-<string name="keyName" value="A"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Hidden2_1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=""/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="???"/>
-<int name="rewardItemID" value="2434021"/>
-<string name="rewardDesc" value="명성치 10,000"/>
-<string name="rewardDesc2" value="핑크빈과 둥둥여행 라이딩"/>
-<int name="rewardItemID2" value="2434025"/>
-<string name="subHead" value="친구라고 생각했어"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="B"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Hidden2_2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=""/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="???"/>
-<int name="rewardItemID" value="2450144"/>
-<string name="rewardDesc" value="경험치 2배 쿠폰(15분) 5개"/>
-<string name="rewardDesc2" value="영원한 환생의 불꽃 5개"/>
-<int name="rewardItemID2" value="2048723"/>
-<string name="subHead" value="핑레디 머큐리"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="C"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="Hidden2_3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=""/>
-<int name="conditionNotifyType" value="0"/>
-<string name="completeNotify" value="???"/>
-<int name="rewardItemID" value="2434029"/>
-<string name="rewardDesc" value="팡팡! 핑크빈 의자"/>
-<string name="rewardDesc2" value="경험치 1.5배 30분 쿠폰 2장"/>
-<int name="rewardItemID2" value="2023207"/>
-<string name="subHead" value="나 때는 말이야"/>
-</imgdir>
-</imgdir>
-<long name="contentsIcon" value="9"/>
-<int name="questID" value="500715"/>
-<imgdir name="tooltip">
-<string name="head" value="&lt;비밀 일기&gt;"/>
-<string name="desc" value="이건 나의 비밀 일기야. 히힛 다른 사람들은 이 내용을 절대 알지 못하겠지? 신기한 일을 겪을 때 마다 몰래 몰래 하나씩 기록해 나가야 겠다!"/>
-<string name="subHead" value="?????"/>
-</imgdir>
-</imgdir>
-<imgdir name="finishTooltip">
-<string name="head" value="&lt;다썼다! 다이어리!&gt;"/>
-<string name="completeNotify" value="모든 일기 완성"/>
-<int name="rewardItemID" value="2434030"/>
-<string name="rewardDesc" value="영구칭호: 핑아일체"/>
-<string name="subHead" value="모든 일기 완성"/>
-</imgdir>
-<string name="openScript" value="OpenSecretDiary"/>
-<string name="finishScript" value="finish"/>
-<int name="finishQuest" value="500716"/>
-</imgdir>
-<imgdir name="2">
-<imgdir name="0">
-<imgdir name="0">
-<string name="keyName" value="1"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m1"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2000019"/>
-<string name="rewardDesc" value="파워 엘릭서 300개"/>
-<string name="subHead" value="1차 전직 완료"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="2"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m2"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2435851"/>
-<string name="rewardDesc" value="10주년 화이트 방어구 세트 상자"/>
-<string name="subHead" value="2차 전직 완료"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="3"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m3"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2023623"/>
-<string name="rewardDesc" value="V 버프 30개"/>
-<string name="subHead" value="3차 전직 완료"/>
-</imgdir>
-</imgdir>
-<imgdir name="3">
-<string name="keyName" value="4"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m4"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2431935"/>
-<string name="rewardDesc" value="마스터리 북 20 3개"/>
-<string name="subHead" value="4차 전직 완료"/>
-</imgdir>
-</imgdir>
-<imgdir name="4">
-<string name="keyName" value="5"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m5"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2435719"/>
-<string name="rewardDesc" value="코어 젬스톤 30개"/>
-<string name="subHead" value="5차 전직 완료"/>
-</imgdir>
-</imgdir>
-<imgdir name="tooltip">
-<string name="head" value="[전직]"/>
-</imgdir>
-<int name="questID" value="18990"/>
-</imgdir>
-<imgdir name="1">
-<imgdir name="0">
-<string name="keyName" value="11"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m11"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="3015610"/>
-<string name="rewardDesc" value="요정학원 엘리넬 의자"/>
-<string name="subHead" value="요정학원 엘리넬 클리어"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="12"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m12"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="3015611"/>
-<string name="rewardDesc" value="지상낙원 골드비치 의자"/>
-<string name="subHead" value="지상낙원 골드비치 클리어"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="13"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m13"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="3015612"/>
-<string name="rewardDesc" value="리에나 해협 의자"/>
-<string name="subHead" value="리에나 해협 클리어"/>
-</imgdir>
-</imgdir>
-<imgdir name="3">
-<string name="keyName" value="14"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m14"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="3015613"/>
-<string name="rewardDesc" value="꽃보다 비올레타 의자"/>
-<string name="subHead" value="꽃보다 비올레타 클리어"/>
-</imgdir>
-</imgdir>
-<imgdir name="4">
-<string name="keyName" value="15"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m15"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="3015614"/>
-<string name="rewardDesc" value="차원의 도서관 의자"/>
-<string name="subHead" value="차원의 도서관 클리어"/>
-</imgdir>
-</imgdir>
-<imgdir name="tooltip">
-<string name="head" value="[테마던전]"/>
-</imgdir>
-<int name="questID" value="18990"/>
-</imgdir>
-<imgdir name="2">
-<imgdir name="0">
-<string name="keyName" value="21"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m21"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="1122017"/>
-<string name="rewardDesc" value="정령의 펜던트"/>
-<string name="subHead" value="레벨 범위 몬스터 55,555마리 사냥"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="22"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m22"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2434288"/>
-<string name="rewardDesc" value="스페셜 명예의 훈장 2개"/>
-<string name="subHead" value="스타포스 몬스터 5,555마리 사냥"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="23"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m23"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2711009"/>
-<string name="rewardDesc" value="수상한 큐브 50개"/>
-<string name="subHead" value="엘리트 몬스터 333마리 사냥"/>
-</imgdir>
-</imgdir>
-<imgdir name="3">
-<string name="keyName" value="24"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m24"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2450064"/>
-<string name="rewardDesc" value="경험치 2배 쿠폰 (30분) 5개"/>
-<string name="subHead" value="엘리트 보스 3마리 사냥"/>
-</imgdir>
-</imgdir>
-<imgdir name="4">
-<string name="keyName" value="25"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m25"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2049703"/>
-<string name="rewardDesc" value="에픽 잠재능력 주문서 100%"/>
-<string name="subHead" value="루타비스 보스(카오스) 1마리 사냥"/>
-</imgdir>
-</imgdir>
-<imgdir name="tooltip">
-<string name="head" value="[사냥]"/>
-</imgdir>
-<int name="questID" value="18991"/>
-</imgdir>
-<imgdir name="3">
-<imgdir name="0">
-<string name="keyName" value="31"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m31"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="5044002"/>
-<string name="rewardDesc" value="[7일]텔레포트 월드맵"/>
-<string name="subHead" value="&lt;초보 탐험가&gt; 훈장 획득"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="32"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m32"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="5130000"/>
-<string name="rewardDesc" value="호신부적 10개"/>
-<string name="subHead" value="&lt;빅토리아 탐험가&gt; 훈장 획득"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="33"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m33"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="5072000"/>
-<string name="rewardDesc" value="고성능 확성기"/>
-<string name="subHead" value="&lt;메이플 탐험가&gt; 훈장 획득"/>
-</imgdir>
-</imgdir>
-<imgdir name="3">
-<string name="keyName" value="34"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m34"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2711006"/>
-<string name="rewardDesc" value="명장의 큐브 2개"/>
-<string name="subHead" value="&lt;시간의 신전&gt; 탐험 완료"/>
-</imgdir>
-</imgdir>
-<imgdir name="4">
-<string name="keyName" value="35"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m35"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2048723"/>
-<string name="rewardDesc" value="영원한 환생의 불꽃 3개"/>
-<string name="subHead" value="&lt;크리티아스&gt; 탐험 완료"/>
-</imgdir>
-</imgdir>
-<imgdir name="tooltip">
-<string name="head" value="[탐험]"/>
-</imgdir>
-<int name="questID" value="18991"/>
-</imgdir>
-<imgdir name="4">
-<imgdir name="0">
-<string name="keyName" value="6"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m6"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2434921"/>
-<string name="rewardDesc" value="성향 성장의 비약"/>
-<string name="subHead" value="모든 성향 5레벨 달성"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="7"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m7"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="5062800"/>
-<string name="rewardDesc" value="미라클 서큘레이터 3개"/>
-<string name="subHead" value="명성치 30,000 사용"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="8"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m8"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2435855"/>
-<string name="rewardDesc" value="선택 전문기술 10칸 가방 교환권"/>
-<string name="subHead" value="제작 전문 기술 5레벨 달성"/>
-</imgdir>
-</imgdir>
-<imgdir name="3">
-<string name="keyName" value="9"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m9"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2048724"/>
-<string name="rewardDesc" value="강력한 환생의 불꽃 3개"/>
-<string name="subHead" value="주문의 흔적 5,000개 사용"/>
-</imgdir>
-<imgdir name="tooltipForReboot">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2048724"/>
-<string name="rewardDesc" value="강력한 환생의 불꽃 3개"/>
-<string name="subHead" value="주문의 흔적 5,000개 획득"/>
-</imgdir>
-</imgdir>
-<imgdir name="4">
-<string name="keyName" value="10"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m10"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2711005"/>
-<string name="rewardDesc" value="장인의 큐브 2개"/>
-<string name="subHead" value="착용 스타포스 55 달성"/>
-</imgdir>
-</imgdir>
-<imgdir name="tooltip">
-<string name="head" value="[육성]"/>
-</imgdir>
-<int name="questID" value="18990"/>
-</imgdir>
-<imgdir name="5">
-<imgdir name="0">
-<string name="keyName" value="16"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m16"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2433441"/>
-<string name="rewardDesc" value="장비슬롯 8칸 확장권"/>
-<string name="subHead" value="&lt;메이플 연합&gt; 참여 퀘스트 완료"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="17"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m17"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2434267"/>
-<string name="rewardDesc" value="소비슬롯 8칸 확장권"/>
-<string name="subHead" value="&lt;블랙헤븐&gt; 클리어"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="18"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m18"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2434268"/>
-<string name="rewardDesc" value="설치슬롯 8칸 확장권"/>
-<string name="subHead" value="&lt;프렌즈스토리&gt; 클리어"/>
-</imgdir>
-</imgdir>
-<imgdir name="3">
-<string name="keyName" value="19"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m19"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2434269"/>
-<string name="rewardDesc" value="기타슬롯 8칸 확장권"/>
-<string name="subHead" value="&lt;히어로즈 오브 메이플&gt; 클리어"/>
-</imgdir>
-</imgdir>
-<imgdir name="4">
-<string name="keyName" value="20"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m20"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2435853"/>
-<string name="rewardDesc" value="슬롯 8칸 확장권 꾸러미"/>
-<string name="subHead" value="&lt;소멸의 여로&gt; 클리어"/>
-</imgdir>
-</imgdir>
-<imgdir name="tooltip">
-<string name="head" value="[스토리]"/>
-</imgdir>
-<int name="questID" value="18990"/>
-</imgdir>
-<imgdir name="6">
-<imgdir name="0">
-<string name="keyName" value="26"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m26"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="4310210"/>
-<string name="rewardDesc" value="V 코인 50개"/>
-<string name="subHead" value="룬 5회 작동"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="27"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m27"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="4310210"/>
-<string name="rewardDesc" value="V 코인 50개"/>
-<string name="subHead" value="콤보킬 500회 달성"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="28"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m28"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="4310210"/>
-<string name="rewardDesc" value="V 코인 50개"/>
-<string name="subHead" value="랜덤포탈 10회 이용"/>
-</imgdir>
-</imgdir>
-<imgdir name="3">
-<string name="keyName" value="29"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m29"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="4310210"/>
-<string name="rewardDesc" value="V 코인 50개"/>
-<string name="subHead" value="돌발미션 15회 완료"/>
-</imgdir>
-</imgdir>
-<imgdir name="4">
-<string name="keyName" value="30"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m30"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="4310210"/>
-<string name="rewardDesc" value="V 코인 50개"/>
-<string name="subHead" value="100% 버닝필드 방문"/>
-</imgdir>
-</imgdir>
-<imgdir name="tooltip">
-<string name="head" value="[필드]"/>
-</imgdir>
-<int name="questID" value="18991"/>
-</imgdir>
-<imgdir name="7">
-<imgdir name="0">
-<string name="keyName" value="36"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m36"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2434917"/>
-<string name="rewardDesc" value="폴로와 프리토 입장권 5개"/>
-<string name="subHead" value="&lt;네트의 피라미드&gt; 5회 클리어"/>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<string name="keyName" value="37"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m37"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2590010"/>
-<string name="rewardDesc" value="스페셜 소울 인챈터"/>
-<string name="subHead" value="이볼빙 코인 50개 획득"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="keyName" value="38"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m38"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="4001864"/>
-<string name="rewardDesc" value="몬스터파크 REBORN 무료 이용권"/>
-<string name="subHead" value="&lt;몬스터파크&gt; 5회 클리어"/>
-</imgdir>
-</imgdir>
-<imgdir name="3">
-<string name="keyName" value="39"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m39"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="2431936"/>
-<string name="rewardDesc" value="마스터리 북 30 3개"/>
-<string name="subHead" value="&lt;고스트파크&gt; 5회 클리어"/>
-</imgdir>
-</imgdir>
-<imgdir name="4">
-<string name="keyName" value="40"/>
-<int name="completeCondition" value="1"/>
-<int name="conditionType" value="1"/>
-<string name="script" value="m40"/>
-<imgdir name="tooltip">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="4001832"/>
-<string name="rewardDesc" value="주문의 흔적 2000개"/>
-<string name="subHead" value="&lt;디멘션 인베이드&gt; 5회 클리어"/>
-</imgdir>
-<imgdir name="tooltipForReboot">
-<string name="conditionNotify" value=" "/>
-<int name="conditionNotifyType" value="0"/>
-<int name="rewardItemID" value="4000999"/>
-<string name="rewardDesc" value="주문의 흔적 2000개"/>
-<string name="subHead" value="&lt;디멘션 인베이드&gt; 5회 클리어"/>
-</imgdir>
-</imgdir>
-<imgdir name="tooltip">
-<string name="head" value="[스페셜 컨텐츠]"/>
-</imgdir>
-<int name="questID" value="18991"/>
-</imgdir>
-<imgdir name="finishTooltip">
-<string name="head" value="[V 다이어리]"/>
-<int name="rewardItemID" value="3700388"/>
-<string name="rewardDesc" value="&lt;메이플을 잘 아는&gt; 칭호"/>
-<string name="subHead" value="모든 미션 완료하기"/>
-</imgdir>
-<string name="openScript" value="openUI"/>
-<string name="finishScript" value="completeMission"/>
-<int name="finishQuest" value="18989"/>
-<string name="finishEx" value="total"/>
-<int name="finishValue" value="40"/>
-</imgdir>
+  <imgdir name="0">
+    <imgdir name="0">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="infoConditionType" value="0" />
+        <string name="script" value="BH_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="完成黑暗天堂 Act.2" />
+          <int name="rewardItemID" value="2001567" />
+          <string name="rewardDesc" value="10週年紀念藥水 50個" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="BH_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="完成黑暗天堂 Act.4" />
+          <int name="rewardItemID" value="4310153" />
+          <string name="rewardDesc" value="10週年硬幣 10個" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="BH_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="完成黑暗天堂 Act.6" />
+          <int name="rewardItemID" value="3015049" />
+          <string name="rewardDesc" value="黑暗天堂疾速椅" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="0" />
+      <int name="questID" value="18417" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;黑暗天堂&gt;" />
+        <string name="desc" value="快來體驗在蒼空上與傑利麥勒展開的決戰！黑暗精靈史烏和殺人鯨的淒美詩篇。" />
+        <string name="startNotify" value="#c33等級#以上" />
+        <string name="subHead" value="黑暗天堂的開始" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="1">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="infoConditionType" value="0" />
+        <string name="script" value="Guild_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="加入公會" />
+          <int name="rewardItemID" value="2450067" />
+          <string name="rewardDesc" value="經驗值 1.5倍券(30分)" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="5000" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Guild_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="%d / 5000" />
+          <int name="conditionNotifyType" value="1" />
+          <string name="completeNotify" value="獲得 5000貢獻度" />
+          <int name="rewardItemID" value="2432358" />
+          <string name="rewardDesc" value="貢獻度袋子(500)" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="10000" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Guild_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="%d / 10000" />
+          <int name="conditionNotifyType" value="1" />
+          <string name="completeNotify" value="獲得 10000貢獻度" />
+          <int name="rewardItemID" value="2432358" />
+          <string name="rewardDesc" value="貢獻度袋子(500) 4個" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="1" />
+      <int name="questID" value="18418" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;公會&gt;" />
+        <string name="desc" value="一個人玩遊戲很無聊？請加入楓之谷世界的公會吧，加入公會可以享受各種優惠！" />
+        <string name="startNotify" value="#c加入公會的玩家#" />
+        <string name="subHead" value="永遠的夥伴" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="2">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="infoConditionType" value="0" />
+        <string name="script" value="Boss_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="狩獵魔王巴洛古" />
+          <int name="rewardItemID" value="5680251" />
+          <string name="rewardDesc" value="軍團長面具箱子(7天)" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Boss_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="狩獵普通炎魔" />
+          <int name="rewardItemID" value="4310153" />
+          <string name="rewardDesc" value="10週年硬幣 10個" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Boss_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="狩獵簡單闇黑龍王" />
+          <int name="rewardItemID" value="2432970" />
+          <string name="rewardDesc" value="名譽值 5,000" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="2" />
+      <int name="questID" value="18419" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;魔王遠征&gt;" />
+        <string name="desc" value="單純的狩獵很無聊嗎？請試著透過BOSS介面來挑戰各式各樣的BOSS！" />
+        <string name="startNotify" value="#c65等級# 以上" />
+        <string name="subHead" value="面對更強大的敵人" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="3">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="300" />
+        <int name="conditionType" value="1" />
+        <string name="infoConditionType" value="0" />
+        <string name="script" value="Enchant_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="%d / 300" />
+          <int name="conditionNotifyType" value="1" />
+          <string name="completeNotify" value="持有咒文的痕跡 300個" />
+          <int name="rewardItemID" value="4001832" />
+          <string name="rewardDesc" value="咒文的痕跡 300個" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="10" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Enchant_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="%d / 10" />
+          <int name="conditionNotifyType" value="1" />
+          <string name="completeNotify" value="咒文的痕跡強化成功 10次" />
+          <int name="rewardItemID" value="2049449" />
+          <string name="rewardDesc" value="潛在能力賦予卷軸(7天)" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="10" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Enchant_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="%d / 10" />
+          <int name="conditionNotifyType" value="1" />
+          <string name="completeNotify" value="星之力強化成功 10次" />
+          <int name="rewardItemID" value="2711006" />
+          <string name="rewardDesc" value="5星裝備強化卷軸" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="3" />
+      <int name="questID" value="18420" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;道具強化&gt;" />
+        <string name="desc" value="咒文的痕跡可強化到星之力強化為止！快來體驗豐富多樣又有體系的楓之谷強化系統。" />
+        <string name="startNotify" value="#c沒有限制#" />
+        <string name="subHead" value="強化自己的角色" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="4">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="infoConditionType" value="0" />
+        <string name="script" value="SP_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="成為新人" />
+          <int name="rewardItemID" value="2433062" />
+          <string name="rewardDesc" value="時間2倍經驗禮券贈送券(7天)" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="SP_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="成為新鮮演員" />
+          <int name="rewardItemID" value="2023402" />
+          <string name="rewardDesc" value="S.P. 50" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="SP_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="成為年少演員" />
+          <int name="rewardItemID" value="2432299" />
+          <string name="rewardDesc" value="10 里程" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="4" />
+      <int name="questID" value="18421" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;新星世界&gt;" />
+        <string name="desc" value="所有的人都成為明星的世界，在新星世界中，你也可以成為有名人士。請盡情享受各種小遊戲和活動吧！" />
+        <string name="startNotify" value="#c33等級# 以上" />
+        <string name="subHead" value="開始邊玩邊有名吧！" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="5">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="infoConditionType" value="0" />
+        <string name="script" value="FS_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="完成序章" />
+          <int name="rewardItemID" value="2001567" />
+          <string name="rewardDesc" value="10週年紀念藥水 50個" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="FS_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="完成章節 2" />
+          <int name="rewardItemID" value="4310124" />
+          <string name="rewardDesc" value="金針 10個" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="FS_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="完成章節 5 " />
+          <int name="rewardItemID" value="3010867" />
+          <string name="rewardDesc" value="摯友椅子 (選1)" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="5" />
+      <int name="questID" value="18422" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;皇家神獸學院&gt;" />
+        <string name="desc" value="楓之谷世界的角色出現在現實世界。衣櫥後方的世界會有什麼好玩的事情在等著我呢？" />
+        <string name="startNotify" value="#c33等級# 以上" />
+        <string name="subHead" value="真實版楓之谷連續劇" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="6">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="infoConditionType" value="0" />
+        <string name="script" value="AM_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="完成[陌生的世界]任務" />
+          <int name="rewardItemID" value="5680179" />
+          <string name="rewardDesc" value="10週年紀念藥水" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="AM_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="完成[往山頂出發]任務" />
+          <int name="rewardItemID" value="4310153" />
+          <string name="rewardDesc" value="經驗值 1.5倍券(30分)" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="AM_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="完成[回家吧]任務" />
+          <int name="rewardItemID" value="3015048" />
+          <string name="rewardDesc" value="10週年硬幣 10個" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="6" />
+      <int name="questID" value="18423" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;阿里山&gt;" />
+        <string name="desc" value="內容充滿著刺激與療癒 ！請馬上到美麗的阿里山旅行吧！" />
+        <string name="startNotify" value="#c33等級# 以上" />
+        <string name="subHead" value="趣味又感人的主題副本" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="7">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="3" />
+        <int name="conditionType" value="1" />
+        <string name="infoConditionType" value="0" />
+        <string name="script" value="EV_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="%d / 3" />
+          <int name="conditionNotifyType" value="1" />
+          <string name="completeNotify" value="連接1 完成 3次" />
+          <int name="rewardItemID" value="4310060" />
+          <string name="rewardDesc" value="進化硬幣 10個" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="6" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="EV_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="%d / 6" />
+          <int name="conditionNotifyType" value="1" />
+          <string name="completeNotify" value="連接2 完成 6次" />
+          <int name="rewardItemID" value="4310060" />
+          <string name="rewardDesc" value="進化硬幣 30個" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="9" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="EV_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="%d / 9" />
+          <int name="conditionNotifyType" value="1" />
+          <string name="completeNotify" value="連接3 完成 9次" />
+          <int name="rewardItemID" value="4310060" />
+          <string name="rewardDesc" value="進化硬幣 50個" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="7" />
+      <int name="questID" value="18424" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;進化系統&gt;" />
+        <string name="desc" value="千萬別錯過能把怪物、背景、BGM依照自己愛好來製作成個人狩獵場的機會" />
+        <string name="startNotify" value="#c105等級# 以上" />
+        <string name="subHead" value="我製作的狩獵場" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="8">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="infoConditionType" value="0" />
+        <string name="script" value="LB_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="章節1 完成" />
+          <int name="rewardItemID" value="2001567" />
+          <string name="rewardDesc" value="10週年紀念藥水 50個" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="LB_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="章節2 完成" />
+          <int name="rewardItemID" value="4310153" />
+          <string name="rewardDesc" value="10週年硬幣 10個" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="LB_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="章節3 完成" />
+          <int name="rewardItemID" value="5680245" />
+          <string name="rewardDesc" value="追加項鍊欄位(7天)" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="8" />
+      <int name="questID" value="18425" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;次元圖書館&gt;" />
+        <string name="desc" value="深度的劇情和全新趣味要素的次元圖書館！快來了解楓之谷世界的歷史吧～" />
+        <string name="startNotify" value="#c100等級# 以上" />
+        <string name="subHead" value="楓之谷世界的歷史" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="9">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="5" />
+        <int name="conditionType" value="1" />
+        <string name="infoConditionType" value="0" />
+        <string name="script" value="WP_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="%d / 5" />
+          <int name="conditionNotifyType" value="1" />
+          <string name="completeNotify" value="完成跨伺服器組隊任務 5次" />
+          <int name="rewardItemID" value="2001567" />
+          <string name="rewardDesc" value="10週年紀念藥水 50個" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="10" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="WP_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="%d / 10" />
+          <int name="conditionNotifyType" value="1" />
+          <string name="completeNotify" value="完成跨伺服器組隊任務 10次" />
+          <int name="rewardItemID" value="4310153" />
+          <string name="rewardDesc" value="10週年硬幣 10個" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="15" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="WP_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="%d / 15" />
+          <int name="conditionNotifyType" value="1" />
+          <string name="completeNotify" value="完成跨伺服器組隊任務 15次" />
+          <int name="rewardItemID" value="2433495" />
+          <string name="rewardDesc" value="跨伺服器組隊任務經驗強化券(30分) 5個" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="9" />
+      <int name="questID" value="18426" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;跨伺服器組隊任務&gt;" />
+        <string name="desc" value="只是組隊狩獵沒意思？來吧！試著透過跨伺服器組隊方式，體驗4個獨特的跨伺服器組隊副本，跟不同世界的冒險者一起挑戰吧！" />
+        <string name="startNotify" value="#c50等級# 以上" />
+        <string name="subHead" value="我們並不孤單" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="finishTooltip">
+      <string name="head" value="&lt;冒險紀錄&gt;" />
+      <string name="completeNotify" value="完成所有內容紀錄" />
+      <int name="rewardItemID" value="4310153" />
+      <string name="rewardDesc" value="10周年硬幣 200個，MapleX 硬幣 15個" />
+      <string name="subHead" value="最終階段" />
+    </imgdir>
+    <string name="openScript" value="OpenContentsBook" />
+    <string name="finishScript" value="finish" />
+  </imgdir>
+  <imgdir name="1">
+    <imgdir name="0">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="LV_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="達成100等級" />
+          <int name="rewardItemID" value="2434010" />
+          <string name="rewardDesc" value="稱號：養過皮卡啾, 勳章 : 我的朋友皮卡啾！" />
+          <string name="rewardDesc2" value="3種BOSS飾品箱子" />
+          <int name="rewardItemID2" value="2434006" />
+          <string name="subHead" value="現在我也是冒險家！" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="LV_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="達成150等級" />
+          <int name="rewardItemID" value="2433981" />
+          <string name="rewardDesc" value="皮卡啾傷害字型" />
+          <string name="rewardDesc2" value="150Lv罕見武器箱子" />
+          <int name="rewardItemID2" value="2434007" />
+          <string name="subHead" value="成為一般皮卡啾！" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="LV_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="達成200等級" />
+          <int name="rewardItemID" value="2434011" />
+          <string name="rewardDesc" value="罕見混沌皮卡啾標誌" />
+          <string name="rewardDesc2" value="高效能喇叭5個" />
+          <int name="rewardItemID2" value="5072000" />
+          <string name="subHead" value="成為困難皮卡啾！" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="0" />
+      <int name="questID" value="500706" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;成長日記&gt;" />
+        <string name="desc" value="嗯～？從異界過來之後，好像變弱了不少？？身為異界最強者的我怎麼可以這樣。得重新回到原本Q彈又強大的皮卡啾了！" />
+        <string name="subHead" value="跌跌撞撞成長記！" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="1">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="infoConditionType" value="0" />
+        <string name="script" value="Hunt_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="達成300連擊" />
+          <int name="rewardItemID" value="2434012" />
+          <string name="rewardDesc" value="粉紅柔軟名牌戒指(30天)" />
+          <string name="rewardDesc2" value="超級藥水20個" />
+          <int name="rewardItemID2" value="2000019" />
+          <string name="subHead" value="簡單的暖身" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Hunt_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="" />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="打敗999隻怪物" />
+          <int name="rewardItemID" value="2434013" />
+          <string name="rewardDesc" value="一起吧！皮卡啾騎乘(30天)" />
+          <string name="rewardDesc2" value="獅子心形防具箱子" />
+          <int name="rewardItemID2" value="2434008" />
+          <string name="subHead" value="朋友們抱歉" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Hunt_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="" />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="打敗1隻菁英BOSS" />
+          <int name="rewardItemID" value="2434014" />
+          <string name="rewardDesc" value="稱號：甩過溜溜球" />
+          <string name="rewardDesc2" value="軟Q皮卡啾(50天)" />
+          <int name="rewardItemID2" value="5000452" />
+          <string name="subHead" value="你是BOSS？我也是！" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="1" />
+      <int name="questID" value="500707" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;狩獵日記&gt;" />
+        <string name="desc" value="楓之谷內好像有很多朋友呢。在異界都只有我自己而已。大家要不要跟我一起玩？哎呀？別跑啊～" />
+        <string name="subHead" value="大家都是怪物" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="2">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="3" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Life_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="點名3天" />
+          <int name="rewardItemID" value="2434015" />
+          <string name="rewardDesc" value="稱號：從異世界來的移民者" />
+          <string name="rewardDesc2" value="傳說中的英雄秘藥10個" />
+          <int name="rewardItemID2" value="2003526" />
+          <string name="subHead" value="這裡是哪裡？我又是誰？" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Life_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="連線3小時" />
+          <int name="rewardItemID" value="1012532" />
+          <string name="rewardDesc" value="皮卡啾臉部裝飾(30天)" />
+          <string name="rewardDesc2" value="經驗值1.5倍券(30分)1張" />
+          <int name="rewardItemID2" value="2023207" />
+          <string name="subHead" value="屁股好重" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="2" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Life_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="周末登入2次" />
+          <int name="rewardItemID" value="2711006" />
+          <string name="rewardDesc" value="經驗值1.5倍30分兌換券3張" />
+          <string name="rewardDesc2" value="經驗值1.5倍30分兌換券2張" />
+          <int name="rewardItemID2" value="2023207" />
+          <string name="subHead" value="周末見" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="2" />
+      <int name="questID" value="500708" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;生活日記&gt;" />
+        <string name="desc" value="這裡還真是個複雜的世界。要學的東西也很多…想要習慣這個地方的話，應該要待久一點比較好對吧？得趕快像異界一樣支配這個地方了！哈哈哈！" />
+        <string name="subHead" value="學習靠的是屁股的力量" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="3">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Enchant_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="" />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="蒐集1000萬楓幣" />
+          <int name="rewardItemID" value="2434034" />
+          <string name="rewardDesc" value="皮卡啾的性向成長秘藥" />
+          <string name="rewardDesc2" value="蒐集400萬楓幣" />
+          <int name="rewardItemID2" value="2433910" />
+          <string name="subHead" value="給我一點錢" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="50" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Enchant_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="%d / 50" />
+          <int name="conditionNotifyType" value="1" />
+          <string name="completeNotify" value="成功強化咒文的痕跡50次" />
+          <int name="rewardItemID" value="2350001" />
+          <string name="rewardDesc" value="角色欄位擴充券" />
+          <string name="rewardDesc2" value="咒文的痕跡1500個" />
+          <int name="rewardItemID2" value="4001832" />
+          <string name="subHead" value="透過強化變得更Q彈！" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="50" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Enchant_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="%d / 50" />
+          <int name="conditionNotifyType" value="1" />
+          <string name="completeNotify" value="成功強化50次星之力" />
+          <int name="rewardItemID" value="2434016" />
+          <string name="rewardDesc" value="稱號：圓滾滾的肚子，富裕的象徵" />
+          <string name="rewardDesc2" value="軟Q皮卡啾 (50天)" />
+          <int name="rewardItemID2" value="5000452" />
+          <string name="subHead" value="五顆星星！" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="3" />
+      <int name="questID" value="15504" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;強化日記&gt;" />
+        <string name="desc" value="現在我也成為了楓之谷的勇士，得具備相應的裝備！！雖然我本身就已經很強大了。應該要來強化哪種裝備呢？呵呵呵" />
+        <string name="subHead" value="強化讓我變得更強" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="4">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Boss_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="打敗一般殘暴炎魔" />
+          <int name="rewardItemID" value="2434020" />
+          <string name="rewardDesc" value="強力的輪迴星火交換券" />
+          <string name="rewardDesc2" value="輪迴星火110級" />
+          <int name="rewardItemID2" value="2711000" />
+          <string name="subHead" value="小巧可愛的石頭" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Boss_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="打敗簡單闇黑龍王" />
+          <int name="rewardItemID" value="2434017" />
+          <string name="rewardDesc" value="稱號：弒龍者皮卡啾" />
+          <string name="rewardDesc2" value="輪迴星火110級" />
+          <int name="rewardItemID2" value="2711003" />
+          <string name="subHead" value="可愛的龍寶寶" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Boss_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="打敗一般皮卡啾" />
+          <int name="rewardItemID" value="2434018" />
+          <string name="rewardDesc" value="輪迴星火130級" />
+          <string name="rewardDesc2" value="輪迴星火120級" />
+          <int name="rewardItemID2" value="2711004" />
+          <string name="subHead" value="像我的你" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="4" />
+      <int name="questID" value="500710" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;怪物狩獵日記&gt;" />
+        <string name="desc" value="原來在楓之谷這個地方，大家都叫我'BOSS'呢。但BOSS除了我之外好像還有很多。朋友們～我們要不要比比看誰比較強？手下留情～" />
+        <string name="subHead" value="真正的BOSS就要狩獵BOSS" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="5">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Adv_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="獲得新手探險家稱號" />
+          <int name="rewardItemID" value="2450144" />
+          <string name="rewardDesc" value="經驗值2倍券(15分)1張" />
+          <string name="rewardDesc2" value="高級瞬移之石5個" />
+          <int name="rewardItemID2" value="5041000" />
+          <string name="subHead" value="這裡那裡都Q彈!" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Adv_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="獲得米納爾森林探險家稱號" />
+          <int name="rewardItemID" value="2434019" />
+          <string name="rewardDesc" value="稱號：皮卡格里爾斯" />
+          <string name="rewardDesc2" value="經驗值1.5倍券(30分)1張" />
+          <string name="rewardItemID2" value="2023207" />
+          <string name="subHead" value="龍龍超Q彈！" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Adv_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="獲得站在至上者稱號" />
+          <int name="rewardItemID" value="2450144" />
+          <string name="rewardDesc" value="經驗值2倍券(15分)1張" />
+          <string name="rewardDesc2" value="傳說中的英雄秘藥 10個" />
+          <int name="rewardItemID2" value="2003526" />
+          <string name="subHead" value="彈得更高更遠！" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="5" />
+      <string name="questID" value="500711" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;旅行日記&gt;" />
+        <string name="desc" value="這裡是？這東西又是拿來做什麼的？是吃的嗎？楓之谷這個地方充滿了各種新奇的東西呢！在回到異界之前得全部逛過一遍才行！" />
+        <string name="subHead" value="楓之谷是個什麼樣的地方呢？" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="6">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Relation_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="訪問斯坦&gt;漢斯&gt;亞凱斯特" />
+          <int name="rewardItemID" value="2434021" />
+          <string name="rewardDesc" value="名聲值10,000" />
+          <string name="rewardDesc2" value="超級藥水20個" />
+          <int name="rewardItemID2" value="2000019" />
+          <string name="subHead" value="尊敬年長者" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Relation_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="登錄10個好友" />
+          <int name="rewardItemID" value="2434021" />
+          <string name="rewardDesc" value="名聲值10,000" />
+          <string name="rewardDesc2" value="粉紅力量加持卷3張" />
+          <int name="rewardItemID2" value="2023501" />
+          <string name="subHead" value="我不會害你" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Relation_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="獲得人氣度3" />
+          <int name="rewardItemID" value="2434022" />
+          <string name="rewardDesc" value="稱號：粉紅色偶像" />
+          <string name="rewardDesc2" value="永遠的輪迴星火" />
+          <int name="rewardItemID2" value="2048723" />
+          <string name="subHead" value="這魅力到哪裡都吃得開" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="6" />
+      <int name="questID" value="500712" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;關係日記&gt;" />
+        <string name="desc" value="這個地方會有哪些朋友呢？在異界的時候實在是太孤單了…只我有跟迷你啾而已…這裡的勇士們會喜歡我嗎？其實我還蠻可愛的… " />
+        <string name="subHead" value="粉紅色的致命魅力" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="7">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Char_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="" />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="達成領導力等級10" />
+          <int name="rewardItemID" value="2434023" />
+          <string name="rewardDesc" value="稱號：圓圓眼睛的領導力" />
+          <string name="rewardDesc2" value="咒文的痕跡1000個" />
+          <int name="rewardItemID2" value="4001832" />
+          <string name="subHead" value="不羈的想法" />
+        </imgdir>
+        <imgdir name="tooltipForReoot">
+          <string name="conditionNotify" value="" />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="達成領導力等級10" />
+          <int name="rewardItemID" value="2434023" />
+          <string name="rewardDesc" value="稱號：圓眼睛的領導力" />
+          <string name="rewardDesc2" value="咒文的痕跡1000個" />
+          <int name="rewardItemID2" value="4000999" />
+          <string name="subHead" value="不羈的想法" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Char_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="" />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="達成手藝等級10" />
+          <int name="rewardItemID" value="2022797" />
+          <string name="rewardDesc" value="超強力洗手液10個" />
+          <string name="rewardDesc2" value="咒文的痕跡1000個" />
+          <int name="rewardItemID2" value="4001832" />
+          <string name="subHead" value="不安的眼神" />
+        </imgdir>
+        <imgdir name="tooltipForReboot">
+          <string name="conditionNotify" value="" />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="達成手藝等級10" />
+          <int name="rewardItemID" value="2022797" />
+          <string name="rewardDesc" value="超強力洗手液10個" />
+          <string name="rewardDesc2" value="咒文的痕跡1000個" />
+          <int name="rewardItemID2" value="4000999" />
+          <string name="subHead" value="不安的眼神" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Char_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="" />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="達成魅力等級10" />
+          <int name="rewardItemID" value="2023109" />
+          <string name="rewardDesc" value="高級香水 10個" />
+          <string name="rewardDesc2" value="咒文的痕跡 1000個" />
+          <int name="rewardItemID2" value="4001832" />
+          <string name="subHead" value="看著我的你" />
+        </imgdir>
+        <imgdir name="tooltipForReboot">
+          <string name="conditionNotify" value="" />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="達成魅力等級10" />
+          <int name="rewardItemID" value="2023109" />
+          <string name="rewardDesc" value="高級香水 10個" />
+          <string name="rewardDesc2" value="咒文的痕跡 1000個" />
+          <int name="rewardItemID2" value="4000999" />
+          <string name="subHead" value="看著我的你" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="7" />
+      <int name="questID" value="500713" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;性向日記&gt;" />
+        <string name="desc" value="在楓之谷裡發現了很多連我自己都不知道的個性。一直以為我就是善良又純真而已…其實我是更為帥氣的存在！嘿嘿" />
+        <string name="subHead" value="陷入各種魅力！" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="8">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Hidden1_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="???" />
+          <int name="rewardItemID" value="2434032" />
+          <string name="rewardDesc" value="永久皮卡啾變身藥水" />
+          <string name="rewardDesc2" value="粉紅力量加持卷3張" />
+          <int name="rewardItemID2" value="2023501" />
+          <string name="subHead" value="需要我報上名字嗎？" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Hidden1_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="???" />
+          <int name="rewardItemID" value="2434025" />
+          <string name="rewardDesc" value="與皮卡啾咚咚旅行騎寵(30天)" />
+          <string name="rewardDesc2" value="超級藥水50個" />
+          <int name="rewardItemID2" value="2000019" />
+          <string name="subHead" value="這塊肉就由我接收了" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Hidden1_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="???" />
+          <int name="rewardItemID" value="2434026" />
+          <string name="rewardDesc" value="永遠的輪迴星火交換券" />
+          <string name="rewardDesc2" value="超級藥水50個" />
+          <int name="rewardItemID2" value="2000019" />
+          <string name="subHead" value="原來不是這裡啊" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="8" />
+      <int name="questID" value="500714" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;秘密日記&gt;" />
+        <string name="desc" value="這是我的秘密日記。嘻嘻其他人絕對不會知道吧？每當遇到新奇的事，都要偷偷記錄下來！" />
+        <string name="subHead" value="預定上映作品 1" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="9">
+      <imgdir name="0">
+        <string name="keyName" value="A" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Hidden2_1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="" />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="???" />
+          <int name="rewardItemID" value="2434021" />
+          <string name="rewardDesc" value="名聲值10,000" />
+          <string name="rewardDesc2" value="皮卡啾飄浮旅行騎寵(30天)券" />
+          <int name="rewardItemID2" value="2434025" />
+          <string name="subHead" value="我以為我們是朋友" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="B" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Hidden2_2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="" />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="???" />
+          <int name="rewardItemID" value="2450144" />
+          <string name="rewardDesc" value="經驗值2倍券(30分)5個" />
+          <string name="rewardDesc2" value="永遠的輪迴星火" />
+          <int name="rewardItemID2" value="2048723" />
+          <string name="subHead" value="皮萊迪·墨裘瑞" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="C" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="Hidden2_3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value="" />
+          <int name="conditionNotifyType" value="0" />
+          <string name="completeNotify" value="???" />
+          <int name="rewardItemID" value="2434029" />
+          <string name="rewardDesc" value="乓乓！皮卡啾椅子" />
+          <string name="rewardDesc2" value="經驗值1.5倍30分兌換券 2個" />
+          <int name="rewardItemID2" value="2023207" />
+          <string name="subHead" value="我那個時期" />
+        </imgdir>
+      </imgdir>
+      <long name="contentsIcon" value="9" />
+      <int name="questID" value="500715" />
+      <imgdir name="tooltip">
+        <string name="head" value="&lt;秘密日記&gt;" />
+        <string name="desc" value="這是我的秘密日記。嘻嘻其他人絕對不會知道吧？每當遇到新奇的事，都要偷偷記錄下來！" />
+        <string name="subHead" value="預定上映作品 2" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="finishTooltip">
+      <string name="head" value="&lt;寫完了！日記！&gt;" />
+      <string name="completeNotify" value="完成所有日記" />
+      <int name="rewardItemID" value="2434030" />
+      <string name="rewardDesc" value="영구칭호: 핑아일체" />
+      <string name="subHead" value="完成所有日記" />
+    </imgdir>
+    <string name="openScript" value="OpenSecretDiary" />
+    <string name="finishScript" value="finish" />
+    <int name="finishQuest" value="500716" />
+  </imgdir>
+  <imgdir name="2">
+    <imgdir name="0">
+      <imgdir name="0">
+        <string name="keyName" value="1" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2000019" />
+          <string name="rewardDesc" value="超級藥水300個" />
+          <string name="subHead" value="1次轉職完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="2" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2435851" />
+          <string name="rewardDesc" value="10週年白色防具組合包箱子" />
+          <string name="subHead" value="2次轉職完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="3" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2023623" />
+          <string name="rewardDesc" value="V加持30個" />
+          <string name="subHead" value="3次轉職完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="3">
+        <string name="keyName" value="4" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m4" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2431935" />
+          <string name="rewardDesc" value="技能書20 3個" />
+          <string name="subHead" value="4次轉職完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="4">
+        <string name="keyName" value="5" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m5" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2435719" />
+          <string name="rewardDesc" value="核心寶石30個" />
+          <string name="subHead" value="5次轉職完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="tooltip">
+        <string name="head" value="[轉職]" />
+      </imgdir>
+      <int name="questID" value="18990" />
+    </imgdir>
+    <imgdir name="1">
+      <imgdir name="0">
+        <string name="keyName" value="11" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m11" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="3015610" />
+          <string name="rewardDesc" value="妖精學園愛里涅椅子" />
+          <string name="subHead" value="妖精學園愛里涅完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="12" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m12" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="3015611" />
+          <string name="rewardDesc" value="地上樂園黃金海岸椅子" />
+          <string name="subHead" value="地上樂園黃金海岸完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="13" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m13" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="3015612" />
+          <string name="rewardDesc" value="里艾那海峽椅子" />
+          <string name="subHead" value="里艾那海峽完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="3">
+        <string name="keyName" value="14" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m14" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="3015613" />
+          <string name="rewardDesc" value="花漾菲歐娜椅子" />
+          <string name="subHead" value="花漾菲歐娜完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="4">
+        <string name="keyName" value="15" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m15" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="3015614" />
+          <string name="rewardDesc" value="次元圖書館椅子" />
+          <string name="subHead" value="次元圖書館完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="tooltip">
+        <string name="head" value="[主題地下城]" />
+      </imgdir>
+      <int name="questID" value="18990" />
+    </imgdir>
+    <imgdir name="2">
+      <imgdir name="0">
+        <string name="keyName" value="21" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m21" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="1122017" />
+          <string name="rewardDesc" value="精靈墜飾" />
+          <string name="subHead" value="狩獵等級範圍怪物55,555隻" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="22" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m22" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2434288" />
+          <string name="rewardDesc" value="特殊名譽勳章 2個" />
+          <string name="subHead" value="狩獵星力怪物5,555隻" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="23" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m23" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2711009" />
+          <string name="rewardDesc" value="可疑的方塊50個" />
+          <string name="subHead" value="狩獵菁英怪物333隻" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="3">
+        <string name="keyName" value="24" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m24" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2450064" />
+          <string name="rewardDesc" value="經驗值2倍卷 (30分) 5個" />
+          <string name="subHead" value="菁英BOSS 3隻狩獵" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="4">
+        <string name="keyName" value="25" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m25" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2049703" />
+          <string name="rewardDesc" value="稀有潛在能力卷軸100%" />
+          <string name="subHead" value="露塔必思BOSS(混沌) 1隻狩獵" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="tooltip">
+        <string name="head" value="[狩獵]" />
+      </imgdir>
+      <int name="questID" value="18991" />
+    </imgdir>
+    <imgdir name="3">
+      <imgdir name="0">
+        <string name="keyName" value="31" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m31" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="5044002" />
+          <string name="rewardDesc" value="[7日]超級瞬移之石" />
+          <string name="subHead" value="&lt;初學冒險家&gt; 獲得勳章" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="32" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m32" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="5130000" />
+          <string name="rewardDesc" value="護身符 10個" />
+          <string name="subHead" value="&lt;維多利亞冒險家&gt; 獲得勳章" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="33" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m33" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="5072000" />
+          <string name="rewardDesc" value="高效能喇叭" />
+          <string name="subHead" value="&lt;楓之谷冒險家&gt; 獲得勳章" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="3">
+        <string name="keyName" value="34" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m34" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2711006" />
+          <string name="rewardDesc" value="黃金烙印印章 2個" />
+          <string name="subHead" value="&lt;時間神殿&gt;冒險完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="4">
+        <string name="keyName" value="35" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m35" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2048723" />
+          <string name="rewardDesc" value="永恆輪迴星火3個" />
+          <string name="subHead" value="&lt;岩壁巨人&gt;冒險完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="tooltip">
+        <string name="head" value="[冒險]" />
+      </imgdir>
+      <int name="questID" value="18991" />
+    </imgdir>
+    <imgdir name="4">
+      <imgdir name="0">
+        <string name="keyName" value="6" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m6" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2434921" />
+          <string name="rewardDesc" value="向上成長秘藥" />
+          <string name="subHead" value="所有性向5等級達成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="7" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m7" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="5062800" />
+          <string name="rewardDesc" value="奇幻傳播者3個" />
+          <string name="subHead" value="使用名聲值30,000 " />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="8" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m8" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2435855" />
+          <string name="rewardDesc" value="選擇專業技術10格包包兌換券" />
+          <string name="subHead" value="製作專業技術5等級達成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="3">
+        <string name="keyName" value="9" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m9" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2048724" />
+          <string name="rewardDesc" value="強力重生火花 3個" />
+          <string name="subHead" value="咒文的痕跡 5,000個使用" />
+        </imgdir>
+        <imgdir name="tooltipForReboot">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2048724" />
+          <string name="rewardDesc" value="強力重生火花 3個" />
+          <string name="subHead" value="咒文的痕跡 5,000個 獲得" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="4">
+        <string name="keyName" value="10" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m10" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2711005" />
+          <string name="rewardDesc" value="銀光烙印的印章 2個" />
+          <string name="subHead" value="套用星力55 達成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="tooltip">
+        <string name="head" value="[養成]" />
+      </imgdir>
+      <int name="questID" value="18990" />
+    </imgdir>
+    <imgdir name="5">
+      <imgdir name="0">
+        <string name="keyName" value="16" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m16" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2433441" />
+          <string name="rewardDesc" value="裝備欄位8格擴充卷" />
+          <string name="subHead" value="&lt;楓之谷聯盟&gt; 參加任務完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="17" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m17" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2434267" />
+          <string name="rewardDesc" value="消耗欄位8格擴充卷" />
+          <string name="subHead" value="&lt;黑暗天堂&gt;完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="18" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m18" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2434268" />
+          <string name="rewardDesc" value="裝飾欄位8格擴充卷" />
+          <string name="subHead" value="&lt;皇家神獸學院&gt;完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="3">
+        <string name="keyName" value="19" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m19" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2434269" />
+          <string name="rewardDesc" value="其它欄位8格擴充卷" />
+          <string name="subHead" value="&lt;楓之谷英雄&gt;完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="4">
+        <string name="keyName" value="20" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m20" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2435853" />
+          <string name="rewardDesc" value="欄位8格擴充卷袋子" />
+          <string name="subHead" value="&lt;消逝的旅途&gt;完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="tooltip">
+        <string name="head" value="[故事]" />
+      </imgdir>
+      <int name="questID" value="18990" />
+    </imgdir>
+    <imgdir name="6">
+      <imgdir name="0">
+        <string name="keyName" value="26" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m26" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="4310210" />
+          <string name="rewardDesc" value="V硬幣50個" />
+          <string name="subHead" value="輪5回啟動" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="27" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m27" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="4310210" />
+          <string name="rewardDesc" value="V硬幣50個" />
+          <string name="subHead" value="連續擊殺500回達成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="28" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m28" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="4310210" />
+          <string name="rewardDesc" value="V硬幣50個" />
+          <string name="subHead" value="隨機傳送 10回使用" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="3">
+        <string name="keyName" value="29" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m29" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="4310210" />
+          <string name="rewardDesc" value="V硬幣50個" />
+          <string name="subHead" value="突發任務15回完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="4">
+        <string name="keyName" value="30" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m30" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="4310210" />
+          <string name="rewardDesc" value="V硬幣50個" />
+          <string name="subHead" value="100%燃燒區域訪問" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="tooltip">
+        <string name="head" value="[區域]" />
+      </imgdir>
+      <int name="questID" value="18991" />
+    </imgdir>
+    <imgdir name="7">
+      <imgdir name="0">
+        <string name="keyName" value="36" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m36" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2434917" />
+          <string name="rewardDesc" value="波羅和普里托入場券5個" />
+          <string name="subHead" value="&lt;奈特的金字塔&gt; 5回完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="37" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m37" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2590010" />
+          <string name="rewardDesc" value="150 靈魂卷軸 100%" />
+          <string name="subHead" value="進化硬幣50個 獲得" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="38" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m38" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="4001864" />
+          <string name="rewardDesc" value="怪物公園REBORN 免費使用卷" />
+          <string name="subHead" value="&lt;怪物公園&gt; 5回完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="3">
+        <string name="keyName" value="39" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m39" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2431936" />
+          <string name="rewardDesc" value="技能書30 3個" />
+          <string name="subHead" value="&lt;鬼怪公園&gt; 5回完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="4">
+        <string name="keyName" value="40" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m40" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="4001832" />
+          <string name="rewardDesc" value="咒文的痕跡 2000個" />
+          <string name="subHead" value="&lt;次元入侵&gt; 5回完成" />
+        </imgdir>
+        <imgdir name="tooltipForReboot">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="4000999" />
+          <string name="rewardDesc" value="咒文的痕跡 2000個" />
+          <string name="subHead" value="&lt;次元入侵&gt; 5回完成" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="tooltip">
+        <string name="head" value="[特殊內容]" />
+      </imgdir>
+      <int name="questID" value="18991" />
+    </imgdir>
+    <imgdir name="finishTooltip">
+      <string name="head" value="[V日記]" />
+      <int name="rewardItemID" value="3700388" />
+      <string name="rewardDesc" value="&lt;了解楓之谷&gt; 稱號" />
+      <string name="subHead" value="所有任務完成" />
+    </imgdir>
+    <string name="openScript" value="openUI" />
+    <string name="finishScript" value="completeMission" />
+    <int name="finishQuest" value="18989" />
+    <string name="finishEx" value="total" />
+    <int name="finishValue" value="40" />
+  </imgdir>
+  <imgdir name="3">
+    <imgdir name="0">
+      <imgdir name="0">
+        <string name="keyName" value="1" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m1" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2437027" />
+          <string name="rewardDesc" value="選擇欄位4格擴充券" />
+          <string name="subHead" value="發動伊露納礦石之力階段1" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="2" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m2" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2437033" />
+          <string name="rewardDesc" value="經驗值2倍優惠券(30分鐘)5個" />
+          <string name="subHead" value="發動伊露納礦石之力階段3" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="3" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m3" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="1143049" />
+          <string name="rewardDesc" value="&lt;伊露納的氣息&gt;勳章" />
+          <string name="subHead" value="發動伊露納礦石之力階段5" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="3">
+        <string name="keyName" value="4" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m4" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2437029" />
+          <string name="rewardDesc" value="精靈墜飾(14天)" />
+          <string name="subHead" value="擊破伊露納礦石柱33次" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="4">
+        <string name="keyName" value="5" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m5" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2437030" />
+          <string name="rewardDesc" value="墜飾新增欄位擴充券(20天)" />
+          <string name="subHead" value="製作伊露納飾品3個" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="tooltip">
+        <string name="head" value="[伊露納礦石之力]" />
+      </imgdir>
+      <int name="questID" value="500028" />
+    </imgdir>
+    <imgdir name="1">
+      <imgdir name="0">
+        <string name="keyName" value="6" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m6" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2854004" />
+          <string name="rewardDesc" value="那堤萌獸卡牌組1個" />
+          <string name="subHead" value="狩獵伊露納那堤怪物3333隻" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="7" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m7" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2437031" />
+          <string name="rewardDesc" value="選擇專業技術背包(10格)" />
+          <string name="subHead" value="採集伊露納植物333次" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="8" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m8" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2437032" />
+          <string name="rewardDesc" value="傾向成長秘藥1個" />
+          <string name="subHead" value="執行伊露納開拓委託33次" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="3">
+        <string name="keyName" value="9" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m9" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2437033" />
+          <string name="rewardDesc" value="經驗值2倍優惠券(30分鐘)5個" />
+          <string name="subHead" value="擊倒靈魂的重量3次" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="4">
+        <string name="keyName" value="10" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m10" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2437035" />
+          <string name="rewardDesc" value="核心寶石10個" />
+          <string name="subHead" value="達成伊露納開拓S級10次" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="tooltip">
+        <string name="head" value="[伊露納開拓時代！]" />
+      </imgdir>
+      <int name="questID" value="500028" />
+    </imgdir>
+    <imgdir name="2">
+      <imgdir name="0">
+        <string name="keyName" value="11" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m11" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="4310225" />
+          <string name="rewardDesc" value="BEYOND硬幣25個" />
+          <string name="subHead" value="完成伊露納特快車任務33個" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="12" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m12" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="4310225" />
+          <string name="rewardDesc" value="BEYOND硬幣25個" />
+          <string name="subHead" value="獲得Combo Kill珠333個" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="13" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m13" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="4310225" />
+          <string name="rewardDesc" value="BEYOND硬幣25個" />
+          <string name="subHead" value="完成突發任務15次" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="3">
+        <string name="keyName" value="14" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m14" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="4310225" />
+          <string name="rewardDesc" value="BEYOND硬幣25個" />
+          <string name="subHead" value="進入燃燒地圖" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="4">
+        <string name="keyName" value="15" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m15" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="4310225" />
+          <string name="rewardDesc" value="BEYOND硬幣25個" />
+          <string name="subHead" value="狩獵精銳怪物33隻" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="tooltip">
+        <string name="head" value="[特快車快速成長]" />
+      </imgdir>
+      <int name="questID" value="500028" />
+    </imgdir>
+    <imgdir name="3">
+      <imgdir name="0">
+        <string name="keyName" value="16" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m16" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2437036" />
+          <string name="rewardDesc" value="純白的咒文書10% 5個" />
+          <string name="subHead" value="達成裝備星力70" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="1">
+        <string name="keyName" value="17" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m17" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2437037" />
+          <string name="rewardDesc" value="金烙印的印章(50%)2個" />
+          <string name="subHead" value="透過方塊提升至稀有以上潛在能力等級１次" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="2">
+        <string name="keyName" value="18" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m18" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2437038" />
+          <string name="rewardDesc" value="奇幻傳播者3個" />
+          <string name="subHead" value="使用名聲值30,000" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="3">
+        <string name="keyName" value="19" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m19" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2437039" />
+          <string name="rewardDesc" value="可疑的方塊50個" />
+          <string name="subHead" value="星力強化失敗30次" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="4">
+        <string name="keyName" value="20" />
+        <int name="completeCondition" value="1" />
+        <int name="conditionType" value="1" />
+        <string name="script" value="m20" />
+        <imgdir name="tooltip">
+          <string name="conditionNotify" value=" " />
+          <int name="conditionNotifyType" value="0" />
+          <int name="rewardItemID" value="2437034" />
+          <string name="rewardDesc" value="黃金鐵鎚50% 2個" />
+          <string name="subHead" value="使用陶德的鐵鎚30次" />
+        </imgdir>
+      </imgdir>
+      <imgdir name="tooltip">
+        <string name="head" value="[特快車無限強化]" />
+      </imgdir>
+      <int name="questID" value="500028" />
+    </imgdir>
+    <imgdir name="finishTooltip">
+      <string name="head" value="[伊露納核對清單]" />
+      <int name="rewardItemID" value="2437002" />
+      <string name="rewardDesc" value="伊露納大師箱" />
+      <string name="subHead" value="完成所有任務" />
+    </imgdir>
+    <string name="openScript" value="openUI" />
+    <string name="finishScript" value="finishMission" />
+    <int name="finishQuest" value="500027" />
+    <string name="finishEx" value="total" />
+    <int name="finishValue" value="20" />
+  </imgdir>
 </imgdir>

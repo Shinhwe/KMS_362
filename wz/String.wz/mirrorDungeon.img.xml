@@ -1,1 +1,255 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><imgdir name="mirrorDungeon.img"><imgdir name="map321190300"><string name="name" value="빛나는 동굴"/><string name="desc" value="혼테일을 만날 수 있는 빛나는 동굴이다"/><string name="level" value="스토리 챕터1 진행중"/><string name="disable" value="스토리 챕터1 진행중"/></imgdir><imgdir name="map321190200"><string name="name" value="아프리엔의 동굴"/><string name="desc" value="현명한 오닉스 드래곤 아프리엔의 동굴이다"/><null name="level"/><null name="disable"/></imgdir><imgdir name="map322090110"><string name="name" value="남쪽 사막"/><string name="desc" value="괴도 팬텀의 아지트가 있다는 남쪽 사막이다"/><string name="level" value="스토리 챕터2 진행중"/><string name="disable" value="스토리 챕터2 진행중"/></imgdir><imgdir name="map323090100"><string name="name" value="헤네시스 삼거리"/><string name="desc" value="에반과 조용히 대화할 수 있는 헤네시스 삼거리이다"/><string name="level" value="스토리 챕터3 진행중"/><string name="disable" value="스토리 챕터3 진행중"/></imgdir><imgdir name="map323090200"><string name="name" value="북쪽 숲길"/><string name="desc" value="라르헨이 갇힌 동굴이 있는 있는 북쪽 숲길이다"/><string name="level" value="스토리 챕터4 진행중"/><string name="disable" value="스토리 챕터4 진행중"/></imgdir><imgdir name="map324090210"><string name="name" value="안개 자욱한 숲"/><string name="desc" value="우공과 한태수가 납치된 안개 자욱한 숲이다"/><string name="level" value="스토리 챕터5 진행중"/><string name="disable" value="스토리 챕터5 진행중"/></imgdir><imgdir name="map325090030"><string name="name" value="가로등길"/><string name="desc" value="와니와 만나기로 한 가로등길이다"/><string name="level" value="스토리 챕터6 진행중"/><string name="disable" value="스토리 챕터6 진행중"/></imgdir><imgdir name="map325090310"><string name="name" value="바위길"/><string name="desc" value="아르센이 넘어온 바위길이다"/><string name="level" value="스토리 챕터7 진행중"/><string name="disable" value="스토리 챕터7 진행중"/></imgdir></imgdir>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<imgdir name="mirrorDungeon.img">
+  <imgdir name="map321190300">
+    <string name="name" value="發光的洞穴" />
+    <string name="desc" value="可以見到闇黑龍王的發光洞穴" />
+    <string name="level" value="故事第1章進行中" />
+    <string name="disable" value="故事第1章進行中" />
+  </imgdir>
+  <imgdir name="map321190200">
+    <string name="name" value="阿普立恩洞穴" />
+    <string name="desc" value="賢明的歐尼斯龍亞普力耶的洞穴。" />
+    <null name="level" />
+    <null name="disable" />
+  </imgdir>
+  <imgdir name="map322090110">
+    <string name="name" value="南邊沙漠" />
+    <string name="desc" value="是怪盜幻影俠盜的據點所在的南邊沙漠。" />
+    <string name="level" value="故事第2章進行中" />
+    <string name="disable" value="故事第2章進行中" />
+  </imgdir>
+  <imgdir name="map323090100">
+    <string name="name" value="弓箭手村三岔路" />
+    <string name="desc" value="能與龍魔導士安靜對談的弓箭手村三叉路" />
+    <string name="level" value="故事第3章進行中" />
+    <string name="disable" value="故事第3章進行中" />
+  </imgdir>
+  <imgdir name="map323090200">
+    <string name="name" value="北邊林道" />
+    <string name="desc" value="囚禁拉勒赫的洞穴所在的北邊森林路。" />
+    <string name="level" value="故事第4章進行中" />
+    <string name="disable" value="故事第4章進行中" />
+  </imgdir>
+  <imgdir name="map324090210">
+    <string name="name" value="濃霧瀰漫的森林" />
+    <string name="desc" value="愚公與韓泰秀被綁架的濃霧瀰漫的森林" />
+    <string name="level" value="故事第5章進行中" />
+    <string name="disable" value="故事第5章進行中" />
+  </imgdir>
+  <imgdir name="map325090030">
+    <string name="name" value="街燈路" />
+    <string name="desc" value="和瓦尼見面的街燈路" />
+    <string name="level" value="故事第6章進行中" />
+    <string name="disable" value="故事第6章進行中" />
+  </imgdir>
+  <imgdir name="map325090310">
+    <string name="name" value="石頭路" />
+    <string name="desc" value="阿爾塞走過的岩石路" />
+    <string name="level" value="故事第7章進行中" />
+    <string name="disable" value="故事第7章進行中" />
+  </imgdir>
+  <imgdir name="mirrorD_321_0_">
+    <string name="name" value="米納爾西邊森林" />
+    <string name="desc" value="雖然看起來很美麗，但實際上是凶暴的怪物棲息的米納爾西邊森林\n\n完成次數：#jcount#\r\n最短紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="100~103" />
+    <string name="disable" value="章節1-1章開始時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_321_1_">
+    <string name="name" value="米納爾東邊森林" />
+    <string name="desc" value="森林支配者，半人馬國王管轄的米納爾東邊森林\n\n完成次數：#jcount#\r\n最短紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="103~105" />
+    <string name="disable" value="章節1-1章開始時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_321_2_">
+    <string name="name" value="黃昏森林" />
+    <string name="desc" value="緩緩降下的太陽讓四周都渲染成一片嫣紅的黃昏森林。\n\n過關次數：#jcount#\r\n最短記錄：#jmin#分#jsec#秒" />
+    <string name="level" value="105~107" />
+    <string name="disable" value="章節1-1章開始時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_321_3_">
+    <string name="name" value="翼龍山谷" />
+    <string name="desc" value="在險峻的石頭之間，由翼龍築巢而成的翼龍巢溪谷。\n\n完成次數:#jcount#\r\n最短紀錄:#jmin#分#jsec#秒" />
+    <string name="level" value="107~109" />
+    <string name="disable" value="章節1-1章開始時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_322_0_">
+    <string name="name" value="納希北門外" />
+    <string name="desc" value="在炎熱沙漠上可以看見仙人掌的納希沙漠西門外側。\n\n過關次數：#jcount#\r\n最短記錄：#jmin#分#jsec#秒" />
+    <string name="level" value="110~113" />
+    <string name="disable" value="開始章節2時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_322_1_">
+    <string name="name" value="納希東門外" />
+    <string name="desc" value="在炙熱沙子上快速奔跑的蜥蜴們所棲息的納希東門外\n\n通關次數：#jcount#\r\n最短紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="113~115" />
+    <string name="disable" value="開始章節2時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_322_2_">
+    <string name="name" value="納希北門外" />
+    <string name="desc" value="覬覦來往納希綠洲城商團的入侵者們聚集的納希北門外\n\n完成次數：#jcount#\r\n最短紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="115~117" />
+    <string name="disable" value="開始章節2時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_322_3_">
+    <string name="name" value="金字塔" />
+    <string name="desc" value="由木乃伊看守的古代納希沙漠王國金字塔。\n\n完成次數：#jcount#\r\n最短紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="117~119" />
+    <string name="disable" value="開始章節2時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_323_0_">
+    <string name="name" value="小菇菇山丘" />
+    <string name="desc" value="生長有弓箭手村的特產菇菇的小菇菇山。\n\n完成次數:#jcount#\r\n最短紀錄:#jmin#分#jsec#秒" />
+    <string name="level" value="120~123" />
+    <string name="disable" value="開始章節3時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_323_1_">
+    <string name="name" value="石巨人的占領地" />
+    <string name="desc" value="全身是石頭的石巨人棲息的石巨人領土\n\n完成次數：#jcount#\r\n最短紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="123~125" />
+    <string name="disable" value="開始章節3時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_323_2_">
+    <string name="name" value="金色海岸" />
+    <string name="desc" value="可以一眼看到藍色海岸和藍色大海的金光海邊。\n\n完成次數:#jcount#\r\n最短紀錄:#jmin#分#jsec#秒" />
+    <string name="level" value="125~127" />
+    <string name="disable" value="開始章節3時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_323_3_">
+    <string name="name" value="沉睡森林下方" />
+    <string name="desc" value="是躲藏著凶殘的德雷克的沉睡森林的樹蔭。\n\n過關次數：#jcount#\r\n最短記錄：#jmin#分#jsec#秒" />
+    <string name="level" value="127~129" />
+    <string name="disable" value="開始章節3時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_324_0_">
+    <string name="name" value="仙人的修練場" />
+    <string name="desc" value="任何想要成為仙人的人，都必須經過的仙人修練場\n\n完成次數：#jcount#\r\n最短紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="130~131" />
+    <string name="disable" value="開始章節4時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_324_1_">
+    <string name="name" value="天空森林" />
+    <string name="desc" value="是喜歡仙桃的搗蛋者蟠猴們棲息的天空森林。\n\n完成次數:#jcount#\r\n最短紀錄:#jmin#分#jsec#秒" />
+    <string name="level" value="131~133" />
+    <string name="disable" value="開始章節4時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_324_2_">
+    <string name="name" value="熊的領域" />
+    <string name="desc" value="因修練而走火入魔的肯德熊藏匿的熊區\n\n完成次數：#jcount#\r\n最短紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="133~135" />
+    <string name="disable" value="開始章節4時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_324_3_">
+    <string name="name" value="藥草田" />
+    <string name="desc" value="栽培武陵代表特產物深山人蔘的藥草田。\n\n過關次數：#jcount#\r\n最短記錄：#jmin#分#jsec#秒" />
+    <string name="level" value="135~137" />
+    <string name="disable" value="開始章節4時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_324_4_">
+    <string name="name" value="海賊團基地" />
+    <string name="desc" value="是停泊在武陵且不斷惹事生非海盜團的巢穴\n\n過關次數：#jcount#\r\n最短記錄：#jmin#分#jsec#秒" />
+    <string name="level" value="137~139" />
+    <string name="disable" value="開始章節4時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_325_0_">
+    <string name="name" value="路燈街" />
+    <string name="desc" value="為強化埃德爾斯坦的治安，配置有巡邏機器人與警衛機器人的道路\n\n完成次數：#jcount#\r\n最短紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="140~143" />
+    <string name="disable" value="開始章節5時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_325_1_">
+    <string name="name" value="險峻岩山" />
+    <string name="desc" value="看起來隨時會山崩，必須小心通過的險峻岩山\n\n完成次數：#jcount#\r\n最短紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="143~145" />
+    <string name="disable" value="開始章節5時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_325_2_">
+    <string name="name" value="礦山深處" />
+    <string name="desc" value="挖掘在埃德爾斯坦發現的獨特神祕礦石的礦山深處\n\n完成次數：#jcount#\r\n最短紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="145~147" />
+    <string name="disable" value="開始章節5時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_325_3_">
+    <string name="name" value="礦山警備區" />
+    <string name="desc" value="嚴禁一般人出入的礦山警備區域\n\n完成次數：#jcount#\r\n最快紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="147~149" />
+    <string name="disable" value="開始章節5時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_326_0_">
+    <string name="name" value="蒙特鳩的實驗室A" />
+    <string name="desc" value="追求生命煉金術的煉金術學派，蒙特鳩實驗室A\n\n完成次數：#jcount#\r\n最短紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="150~153" />
+    <string name="disable" value="開始章節6時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_326_1_">
+    <string name="name" value="卡帕萊特實驗室A" />
+    <string name="desc" value="追求生命與機械結合的煉金術學派，卡帕萊特實驗室A\n\n完成次數：#jcount#\r\n最短紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="153~155" />
+    <string name="disable" value="開始章節6時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_326_2_">
+    <string name="name" value="蒙特鳩的實驗室B" />
+    <string name="desc" value="不輕易向外部公開的蒙特鳩的實驗室B。\n\n完成次數:#jcount#\r\n最短紀錄:#jmin#分#jsec#秒" />
+    <string name="level" value="155~157" />
+    <string name="disable" value="開始章節6時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_326_3_">
+    <string name="name" value="卡帕萊特實驗室B" />
+    <string name="desc" value="充滿由生命與機械合成的實驗體，卡帕萊特實驗室B\n\n完成次數：#jcount#\r\n最短紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="157~159" />
+    <string name="disable" value="開始章節6時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_327_0_">
+    <string name="name" value="玩具工廠" />
+    <string name="desc" value="為了配合不斷湧進的訂單，一刻都不得休息的玩具工廠。\n\n完成次數：#jcount#\r\n最短紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="160~163" />
+    <string name="disable" value="開始章節7時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_327_1_">
+    <string name="name" value="時間塔內部" />
+    <string name="desc" value="關著桃花仙境停頓的時間的時間塔內部。\n\n過關次數：#jcount#\r\n最短記錄：#jmin#分#jsec#秒" />
+    <string name="level" value="163~165" />
+    <string name="disable" value="開始章節7時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_327_2_">
+    <string name="name" value="時間塔下層" />
+    <string name="desc" value="這裡是鐘塔最下層，存放著玩具工廠未銷出的玩具庫存\n\n完成次數：#jcount#\r\n最短紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="165~167" />
+    <string name="disable" value="開始章節7時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_327_3_">
+    <string name="name" value="時間塔最下層" />
+    <string name="desc" value="可以解除桃花仙境封印的時間的時間塔最下層。\n\n過關次數：#jcount#\r\n最短記錄：#jmin#分#jsec#秒" />
+    <string name="level" value="167~169" />
+    <string name="disable" value="開始章節7時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_328_0_">
+    <string name="name" value="回憶之路" />
+    <string name="desc" value="是能夠找到流逝的時間的回憶之路。\n\n過關次數：#jcount#\r\n最短記錄：#jmin#分#jsec#秒" />
+    <string name="level" value="170~172" />
+    <string name="disable" value="開始章節8時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_328_1_">
+    <string name="name" value="悔恨之路" />
+    <string name="desc" value="充滿無法挽回的過去，悲傷與悔恨的後悔之路。\n\n過關次數：#jcount#\r\n最短記錄：#jmin#分#jsec#秒" />
+    <string name="level" value="172~176" />
+    <string name="disable" value="開始章節8時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_328_2_">
+    <string name="name" value="忘卻之路" />
+    <string name="desc" value="這條忘卻之路能把想遺忘的一切瞬間抹除\n\n完成次數：#jcount#\r\n最短紀錄：#jmin#分#jsec#秒" />
+    <string name="level" value="176~180" />
+    <string name="disable" value="開始章節8時可入場" />
+  </imgdir>
+  <imgdir name="mirrorD_329_0_">
+    <string name="name" value="克里提亞斯外圍(困難)" />
+    <string name="desc" value="因克里提亞斯外圍地區是非常#c危險的地方#，所以最好不要進去。\r\n1天可進入3次\r\n完成次數:#jcount#\r\n最短紀錄:#jmin#分#jsec#秒" />
+    <string name="level" value="140~250" />
+    <string name="disable" value="需要道具輪迴發條\n\r1天可入場3次" />
+  </imgdir>
+  <imgdir name="mirrorD_329_1_">
+    <string name="name" value="克里提亞斯外圍(普通)" />
+    <string name="desc" value="因克里提亞斯外圍地區是非常#c危險的地方#，所以最好不要進去。\r\n1天可進入3次\r\n完成次數:#jcount#\r\n最短紀錄:#jmin#分#jsec#秒" />
+    <string name="level" value="100~140" />
+    <string name="disable" value="需要道具輪迴發條\n\r1天可入場3次" />
+  </imgdir>
+</imgdir>

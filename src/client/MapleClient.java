@@ -2556,8 +2556,7 @@ public class MapleClient
     Timer.PingTimer.getInstance().schedule(new Runnable()
     {
 
-      @Override
-      public void run ()
+      @Override public void run ()
       {
         try
         {
@@ -3092,6 +3091,16 @@ public class MapleClient
       return this.keyValues.get(key);
     }
     return null;
+  }
+
+  public String getKeyValue (String key, String defaultValue)
+  {
+    if (this.keyValues.containsKey(key))
+    {
+      return this.keyValues.get(key);
+    }
+    this.setKeyValue(key, defaultValue);
+    return defaultValue;
   }
 
   public void setKeyValue (String key, String value)

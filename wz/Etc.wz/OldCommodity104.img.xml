@@ -1,334 +1,1082 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <imgdir name="OldCommodity104.img">
-<imgdir name="0">
-<int name="SN" value="10400000"/>
-<int name="ItemId" value="9102853"/>
-<int name="Count" value="1"/>
-<int name="Price" value="9900"/>
-<int name="Bonus" value="0"/>
-<int name="Period" value="0"/>
-<int name="Priority" value="100"/>
-<int name="ReqPOP" value="0"/>
-<int name="ReqLEV" value="0"/>
-<int name="Gender" value="2"/>
-<int name="OnSale" value="0"/>
-<int name="Class" value="9"/>
-<int name="PbCash" value="30"/>
-<int name="PbPoint" value="30"/>
-<int name="PbGift" value="30"/>
-<int name="Refundable" value="0"/>
-<int name="WebShop" value="0"/>
-</imgdir>
-<imgdir name="1">
-<int name="SN" value="10400001"/>
-<int name="ItemId" value="9102854"/>
-<int name="Count" value="1"/>
-<int name="Price" value="9900"/>
-<int name="Bonus" value="0"/>
-<int name="Period" value="0"/>
-<int name="Priority" value="100"/>
-<int name="ReqPOP" value="0"/>
-<int name="ReqLEV" value="0"/>
-<int name="Gender" value="2"/>
-<int name="OnSale" value="0"/>
-<int name="Class" value="9"/>
-<int name="PbCash" value="30"/>
-<int name="PbPoint" value="30"/>
-<int name="PbGift" value="30"/>
-<int name="Refundable" value="0"/>
-<int name="WebShop" value="0"/>
-</imgdir>
-<imgdir name="2">
-<int name="SN" value="10400002"/>
-<int name="ItemId" value="5000237"/>
-<int name="Count" value="1"/>
-<int name="Price" value="6900"/>
-<int name="Bonus" value="0"/>
-<int name="Period" value="0"/>
-<int name="Priority" value="100"/>
-<int name="ReqPOP" value="0"/>
-<int name="ReqLEV" value="0"/>
-<int name="Gender" value="2"/>
-<int name="OnSale" value="0"/>
-<int name="Class" value="9"/>
-<int name="PbCash" value="30"/>
-<int name="PbPoint" value="30"/>
-<int name="PbGift" value="30"/>
-<int name="Refundable" value="0"/>
-<int name="WebShop" value="0"/>
-</imgdir>
-<imgdir name="3">
-<int name="SN" value="10400003"/>
-<int name="ItemId" value="1802375"/>
-<int name="Count" value="1"/>
-<int name="Price" value="1500"/>
-<int name="Bonus" value="0"/>
-<int name="Period" value="0"/>
-<int name="Priority" value="100"/>
-<int name="ReqPOP" value="0"/>
-<int name="ReqLEV" value="0"/>
-<int name="Gender" value="2"/>
-<int name="OnSale" value="0"/>
-<int name="Class" value="9"/>
-<int name="PbCash" value="30"/>
-<int name="PbPoint" value="30"/>
-<int name="PbGift" value="30"/>
-<int name="Refundable" value="1"/>
-<int name="WebShop" value="0"/>
-</imgdir>
-<imgdir name="4">
-<int name="SN" value="10400004"/>
-<int name="ItemId" value="5240065"/>
-<int name="Count" value="6"/>
-<int name="Price" value="1500"/>
-<int name="Bonus" value="0"/>
-<int name="Period" value="0"/>
-<int name="Priority" value="100"/>
-<int name="ReqPOP" value="0"/>
-<int name="ReqLEV" value="0"/>
-<int name="Gender" value="2"/>
-<int name="OnSale" value="0"/>
-<int name="Class" value="9"/>
-<int name="PbCash" value="30"/>
-<int name="PbPoint" value="30"/>
-<int name="PbGift" value="30"/>
-<int name="Refundable" value="1"/>
-<int name="WebShop" value="0"/>
-</imgdir>
-<imgdir name="5">
-<int name="SN" value="10400005"/>
-<int name="ItemId" value="5030023"/>
-<int name="Count" value="1"/>
-<int name="originalPrice" value="1200"/>
-<int name="Price" value="600"/>
-<int name="Bonus" value="0"/>
-<int name="Period" value="1"/>
-<int name="Priority" value="99"/>
-<int name="ReqPOP" value="0"/>
-<int name="ReqLEV" value="0"/>
-<int name="Gender" value="2"/>
-<int name="OnSale" value="0"/>
-<int name="Class" value="9"/>
-<int name="Limit" value="3"/>
-<int name="Refundable" value="0"/>
-<int name="WebShop" value="0"/>
-</imgdir>
-<imgdir name="6">
-<int name="SN" value="10400006"/>
-<int name="ItemId" value="9112000"/>
-<int name="Count" value="1"/>
-<int name="originalPrice" value="7600"/>
-<int name="Price" value="3800"/>
-<int name="Bonus" value="0"/>
-<int name="Period" value="0"/>
-<int name="Priority" value="100"/>
-<int name="ReqPOP" value="0"/>
-<int name="ReqLEV" value="0"/>
-<int name="Gender" value="2"/>
-<int name="OnSale" value="0"/>
-<int name="Class" value="9"/>
-<int name="PbCash" value="30"/>
-<int name="PbPoint" value="30"/>
-<int name="PbGift" value="30"/>
-<int name="Refundable" value="0"/>
-<int name="WebShop" value="0"/>
-</imgdir>
-<imgdir name="7">
-<int name="SN" value="10400007"/>
-<int name="ItemId" value="9114000"/>
-<int name="Count" value="1"/>
-<int name="originalPrice" value="7600"/>
-<int name="Price" value="3800"/>
-<int name="Bonus" value="0"/>
-<int name="Period" value="0"/>
-<int name="Priority" value="100"/>
-<int name="ReqPOP" value="0"/>
-<int name="ReqLEV" value="0"/>
-<int name="Gender" value="2"/>
-<int name="OnSale" value="0"/>
-<int name="Class" value="9"/>
-<int name="PbCash" value="30"/>
-<int name="PbPoint" value="30"/>
-<int name="PbGift" value="30"/>
-<int name="Refundable" value="0"/>
-<int name="WebShop" value="0"/>
-</imgdir>
-<imgdir name="8">
-<int name="SN" value="10400008"/>
-<int name="ItemId" value="5061001"/>
-<int name="Count" value="1"/>
-<int name="originalPrice" value="2900"/>
-<int name="Price" value="990"/>
-<int name="Bonus" value="0"/>
-<int name="Period" value="0"/>
-<int name="Priority" value="99"/>
-<int name="ReqPOP" value="0"/>
-<int name="ReqLEV" value="0"/>
-<int name="Gender" value="2"/>
-<int name="OnSale" value="0"/>
-<int name="Class" value="9"/>
-<int name="bombSale" value="1"/>
-<int name="PbCash" value="0"/>
-<int name="PbPoint" value="0"/>
-<int name="PbGift" value="0"/>
-<int name="Refundable" value="1"/>
-<int name="WebShop" value="0"/>
-</imgdir>
-<imgdir name="9">
-<int name="SN" value="10400009"/>
-<int name="ItemId" value="9102814"/>
-<int name="Count" value="1"/>
-<int name="Price" value="8800"/>
-<int name="Bonus" value="0"/>
-<int name="Period" value="0"/>
-<int name="Priority" value="101"/>
-<int name="ReqPOP" value="0"/>
-<int name="ReqLEV" value="0"/>
-<int name="Gender" value="2"/>
-<int name="OnSale" value="0"/>
-<int name="Class" value="9"/>
-<int name="PbCash" value="30"/>
-<int name="PbPoint" value="30"/>
-<int name="PbGift" value="30"/>
-<int name="Refundable" value="1"/>
-<int name="WebShop" value="0"/>
-</imgdir>
-<imgdir name="10">
-<int name="SN" value="10400010"/>
-<int name="ItemId" value="9102815"/>
-<int name="Count" value="1"/>
-<int name="Price" value="8800"/>
-<int name="Bonus" value="0"/>
-<int name="Period" value="0"/>
-<int name="Priority" value="101"/>
-<int name="ReqPOP" value="0"/>
-<int name="ReqLEV" value="0"/>
-<int name="Gender" value="2"/>
-<int name="OnSale" value="0"/>
-<int name="Class" value="9"/>
-<int name="PbCash" value="30"/>
-<int name="PbPoint" value="30"/>
-<int name="PbGift" value="30"/>
-<int name="Refundable" value="1"/>
-<int name="WebShop" value="0"/>
-</imgdir>
-<imgdir name="11">
-<int name="SN" value="10400011"/>
-<int name="ItemId" value="9102795"/>
-<int name="Count" value="1"/>
-<int name="Price" value="1000"/>
-<int name="Bonus" value="0"/>
-<int name="Period" value="0"/>
-<int name="Priority" value="99"/>
-<int name="ReqPOP" value="0"/>
-<int name="ReqLEV" value="0"/>
-<int name="Gender" value="2"/>
-<int name="OnSale" value="0"/>
-<int name="Class" value="9"/>
-<int name="PbCash" value="30"/>
-<int name="PbPoint" value="30"/>
-<int name="PbGift" value="30"/>
-<int name="Refundable" value="0"/>
-<int name="WebShop" value="0"/>
-</imgdir>
-<imgdir name="12">
-<int name="SN" value="10400012"/>
-<int name="ItemId" value="5062400"/>
-<int name="Count" value="1"/>
-<int name="originalPrice" value="2700"/>
-<int name="Price" value="2000"/>
-<int name="Bonus" value="0"/>
-<int name="Period" value="0"/>
-<int name="Priority" value="99"/>
-<int name="ReqPOP" value="0"/>
-<int name="ReqLEV" value="0"/>
-<int name="Gender" value="2"/>
-<int name="OnSale" value="0"/>
-<int name="Class" value="9"/>
-<int name="PbCash" value="30"/>
-<int name="PbPoint" value="30"/>
-<int name="PbGift" value="30"/>
-<int name="Refundable" value="1"/>
-<int name="WebShop" value="0"/>
-</imgdir>
-<imgdir name="13">
-<int name="SN" value="10400013"/>
-<int name="ItemId" value="9111000"/>
-<int name="Count" value="1"/>
-<int name="originalPrice" value="7600"/>
-<int name="Price" value="3800"/>
-<int name="Bonus" value="0"/>
-<int name="Period" value="0"/>
-<int name="Priority" value="100"/>
-<int name="ReqPOP" value="0"/>
-<int name="ReqLEV" value="0"/>
-<int name="Gender" value="2"/>
-<int name="OnSale" value="0"/>
-<int name="Class" value="9"/>
-<int name="PbCash" value="30"/>
-<int name="PbPoint" value="30"/>
-<int name="PbGift" value="30"/>
-<int name="Refundable" value="0"/>
-<int name="WebShop" value="0"/>
-</imgdir>
-<imgdir name="14">
-<int name="SN" value="10400014"/>
-<int name="ItemId" value="5430000"/>
-<int name="Count" value="1"/>
-<int name="originalPrice" value="6900"/>
-<int name="Price" value="4800"/>
-<int name="Bonus" value="0"/>
-<int name="Priority" value="100"/>
-<int name="ReqPOP" value="0"/>
-<int name="ReqLEV" value="0"/>
-<int name="Gender" value="2"/>
-<int name="OnSale" value="0"/>
-<int name="Class" value="9"/>
-<string name="gameWorld" value="0/1/2/3/4/5/6/7/8/9/12/13/15/16/17/18/20/21/23/24/25/26/27/28/29/30/31/32/33/34/35/36/37/38/39/40/41/42"/>
-<int name="PbCash" value="30"/>
-<int name="PbPoint" value="30"/>
-<int name="PbGift" value="30"/>
-<int name="Refundable" value="0"/>
-<int name="WebShop" value="0"/>
-</imgdir>
-<imgdir name="15">
-<int name="SN" value="10400015"/>
-<int name="ItemId" value="5072000"/>
-<int name="Count" value="1"/>
-<int name="originalPrice" value="990"/>
-<int name="Price" value="500"/>
-<int name="Bonus" value="0"/>
-<int name="Period" value="0"/>
-<int name="Priority" value="101"/>
-<int name="ReqPOP" value="0"/>
-<int name="ReqLEV" value="0"/>
-<int name="Gender" value="2"/>
-<int name="OnSale" value="0"/>
-<int name="Class" value="9"/>
-<int name="PbCash" value="30"/>
-<int name="PbPoint" value="30"/>
-<int name="PbGift" value="30"/>
-<int name="Refundable" value="1"/>
-<int name="WebShop" value="0"/>
-</imgdir>
-<imgdir name="16">
-<int name="SN" value="10400016"/>
-<int name="ItemId" value="5230000"/>
-<int name="Count" value="1"/>
-<int name="originalPrice" value="660"/>
-<int name="Price" value="330"/>
-<int name="Bonus" value="0"/>
-<int name="Period" value="0"/>
-<int name="Priority" value="101"/>
-<int name="ReqPOP" value="0"/>
-<int name="ReqLEV" value="0"/>
-<int name="Gender" value="2"/>
-<int name="OnSale" value="0"/>
-<int name="Class" value="9"/>
-<int name="PbCash" value="30"/>
-<int name="PbPoint" value="30"/>
-<int name="PbGift" value="30"/>
-<int name="Refundable" value="1"/>
-<int name="WebShop" value="0"/>
-</imgdir>
+  <imgdir name="0">
+    <int name="SN" value="10400000" />
+    <int name="ItemId" value="9102853" />
+    <int name="Count" value="1" />
+    <int name="Price" value="9900" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="100" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="Class" value="9" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="0" />
+    <int name="WebShop" value="0" />
+  </imgdir>
+  <imgdir name="1">
+    <int name="SN" value="10400001" />
+    <int name="ItemId" value="9102854" />
+    <int name="Count" value="1" />
+    <int name="Price" value="9900" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="100" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="Class" value="9" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="0" />
+    <int name="WebShop" value="0" />
+  </imgdir>
+  <imgdir name="2">
+    <int name="SN" value="10400002" />
+    <int name="ItemId" value="5000237" />
+    <int name="Count" value="1" />
+    <int name="Price" value="6900" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="100" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="Class" value="9" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="0" />
+    <int name="WebShop" value="0" />
+  </imgdir>
+  <imgdir name="3">
+    <int name="SN" value="10400003" />
+    <int name="ItemId" value="1802375" />
+    <int name="Count" value="1" />
+    <int name="Price" value="1500" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="100" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="Class" value="9" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+    <int name="WebShop" value="0" />
+  </imgdir>
+  <imgdir name="4">
+    <int name="SN" value="10400004" />
+    <int name="ItemId" value="5240065" />
+    <int name="Count" value="6" />
+    <int name="Price" value="1500" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="100" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="Class" value="9" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+    <int name="WebShop" value="0" />
+  </imgdir>
+  <imgdir name="5">
+    <int name="SN" value="10400005" />
+    <int name="ItemId" value="5030023" />
+    <int name="Count" value="1" />
+    <int name="originalPrice" value="1200" />
+    <int name="Price" value="600" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="1" />
+    <int name="Priority" value="99" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="Class" value="9" />
+    <int name="Limit" value="3" />
+    <int name="Refundable" value="0" />
+    <int name="WebShop" value="0" />
+  </imgdir>
+  <imgdir name="6">
+    <int name="SN" value="10400006" />
+    <int name="ItemId" value="9112000" />
+    <int name="Count" value="1" />
+    <int name="originalPrice" value="7600" />
+    <int name="Price" value="3800" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="100" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="Class" value="9" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="0" />
+    <int name="WebShop" value="0" />
+  </imgdir>
+  <imgdir name="7">
+    <int name="SN" value="10400007" />
+    <int name="ItemId" value="9114000" />
+    <int name="Count" value="1" />
+    <int name="originalPrice" value="7600" />
+    <int name="Price" value="3800" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="100" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="Class" value="9" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="0" />
+    <int name="WebShop" value="0" />
+  </imgdir>
+  <imgdir name="8">
+    <int name="SN" value="10400008" />
+    <int name="ItemId" value="5061001" />
+    <int name="Count" value="1" />
+    <int name="originalPrice" value="2900" />
+    <int name="Price" value="990" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="99" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="Class" value="9" />
+    <int name="bombSale" value="1" />
+    <int name="PbCash" value="0" />
+    <int name="PbPoint" value="0" />
+    <int name="PbGift" value="0" />
+    <int name="Refundable" value="1" />
+    <int name="WebShop" value="0" />
+  </imgdir>
+  <imgdir name="9">
+    <int name="SN" value="10400009" />
+    <int name="ItemId" value="9102814" />
+    <int name="Count" value="1" />
+    <int name="Price" value="8800" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="101" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="Class" value="9" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+    <int name="WebShop" value="0" />
+  </imgdir>
+  <imgdir name="10">
+    <int name="SN" value="10400010" />
+    <int name="ItemId" value="9102815" />
+    <int name="Count" value="1" />
+    <int name="Price" value="8800" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="101" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="Class" value="9" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+    <int name="WebShop" value="0" />
+  </imgdir>
+  <imgdir name="11">
+    <int name="SN" value="10400011" />
+    <int name="ItemId" value="9102795" />
+    <int name="Count" value="1" />
+    <int name="Price" value="1000" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="99" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="Class" value="9" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="0" />
+    <int name="WebShop" value="0" />
+  </imgdir>
+  <imgdir name="12">
+    <int name="SN" value="10400012" />
+    <int name="ItemId" value="5062400" />
+    <int name="Count" value="1" />
+    <int name="originalPrice" value="2700" />
+    <int name="Price" value="2000" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="99" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="Class" value="9" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+    <int name="WebShop" value="0" />
+  </imgdir>
+  <imgdir name="13">
+    <int name="SN" value="10400013" />
+    <int name="ItemId" value="9111000" />
+    <int name="Count" value="1" />
+    <int name="originalPrice" value="7600" />
+    <int name="Price" value="3800" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="100" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="Class" value="9" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="0" />
+    <int name="WebShop" value="0" />
+  </imgdir>
+  <imgdir name="14">
+    <int name="SN" value="10400014" />
+    <int name="ItemId" value="5430000" />
+    <int name="Count" value="1" />
+    <int name="originalPrice" value="6900" />
+    <int name="Price" value="4800" />
+    <int name="Bonus" value="0" />
+    <int name="Priority" value="100" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="Class" value="9" />
+    <string name="gameWorld" value="0/1/2/3/4/5/6/7/8/9/12/13/15/16/17/18/20/21/23/24/25/26/27/28/29/30/31/32/33/34/35/36/37/38/39/40/41/42" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="0" />
+    <int name="WebShop" value="0" />
+  </imgdir>
+  <imgdir name="15">
+    <int name="SN" value="10400015" />
+    <int name="ItemId" value="5072000" />
+    <int name="Count" value="1" />
+    <int name="originalPrice" value="990" />
+    <int name="Price" value="500" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="101" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="Class" value="9" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+    <int name="WebShop" value="0" />
+  </imgdir>
+  <imgdir name="16">
+    <int name="SN" value="10400016" />
+    <int name="ItemId" value="5230000" />
+    <int name="Count" value="1" />
+    <int name="originalPrice" value="660" />
+    <int name="Price" value="330" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="101" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="Class" value="9" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+    <int name="WebShop" value="0" />
+  </imgdir>
+  <imgdir name="17">
+    <int name="SN" value="10400017" />
+    <int name="ItemId" value="1042076" />
+    <int name="Count" value="1" />
+    <int name="Price" value="50" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="8" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="18">
+    <int name="SN" value="10400018" />
+    <int name="ItemId" value="1032029" />
+    <int name="Count" value="1" />
+    <int name="Price" value="40" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="8" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="19">
+    <int name="SN" value="10400019" />
+    <int name="ItemId" value="1040130" />
+    <int name="Count" value="1" />
+    <int name="Price" value="50" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="8" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="20">
+    <int name="SN" value="10400020" />
+    <int name="ItemId" value="1082173" />
+    <int name="Count" value="1" />
+    <int name="Price" value="40" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="8" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="21">
+    <int name="SN" value="10400021" />
+    <int name="ItemId" value="1062039" />
+    <int name="Count" value="1" />
+    <int name="Price" value="50" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="8" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="22">
+    <int name="SN" value="10400022" />
+    <int name="ItemId" value="1072279" />
+    <int name="Count" value="1" />
+    <int name="Price" value="40" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="8" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="23">
+    <int name="SN" value="10400023" />
+    <int name="ItemId" value="1042166" />
+    <int name="Count" value="1" />
+    <int name="Price" value="50" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="8" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="24">
+    <int name="SN" value="10400024" />
+    <int name="ItemId" value="1062073" />
+    <int name="Count" value="1" />
+    <int name="Price" value="40" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="8" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="25">
+    <int name="SN" value="10400025" />
+    <int name="ItemId" value="1062040" />
+    <int name="Count" value="1" />
+    <int name="Price" value="50" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="8" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="26">
+    <int name="SN" value="10400026" />
+    <int name="ItemId" value="1061141" />
+    <int name="Count" value="1" />
+    <int name="Price" value="50" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="8" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="27">
+    <int name="SN" value="10400027" />
+    <int name="ItemId" value="1072259" />
+    <int name="Count" value="1" />
+    <int name="Price" value="40" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="8" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="28">
+    <int name="SN" value="10400028" />
+    <int name="ItemId" value="1062110" />
+    <int name="Count" value="1" />
+    <int name="Price" value="40" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="8" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="29">
+    <int name="SN" value="10400029" />
+    <int name="ItemId" value="1062104" />
+    <int name="Count" value="1" />
+    <int name="Price" value="50" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="8" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="30">
+    <int name="SN" value="10400030" />
+    <int name="ItemId" value="1072331" />
+    <int name="Count" value="1" />
+    <int name="Price" value="30" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="8" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="31">
+    <int name="SN" value="10400031" />
+    <int name="ItemId" value="1002439" />
+    <int name="Count" value="1" />
+    <int name="Price" value="60" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="32">
+    <int name="SN" value="10400032" />
+    <int name="ItemId" value="1002824" />
+    <int name="Count" value="1" />
+    <int name="Price" value="75" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="33">
+    <int name="SN" value="10400033" />
+    <int name="ItemId" value="1003010" />
+    <int name="Count" value="1" />
+    <int name="Price" value="110" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="34">
+    <int name="SN" value="10400034" />
+    <int name="ItemId" value="1012080" />
+    <int name="Count" value="1" />
+    <int name="Price" value="50" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="35">
+    <int name="SN" value="10400035" />
+    <int name="ItemId" value="1032051" />
+    <int name="Count" value="1" />
+    <int name="Price" value="40" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="36">
+    <int name="SN" value="10400036" />
+    <int name="ItemId" value="1032029" />
+    <int name="Count" value="1" />
+    <int name="Price" value="40" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="37">
+    <int name="SN" value="10400037" />
+    <int name="ItemId" value="1022042" />
+    <int name="Count" value="1" />
+    <int name="Price" value="70" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="38">
+    <int name="SN" value="10400038" />
+    <int name="ItemId" value="1022021" />
+    <int name="Count" value="1" />
+    <int name="Price" value="55" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="39">
+    <int name="SN" value="10400039" />
+    <int name="ItemId" value="1052057" />
+    <int name="Count" value="1" />
+    <int name="Price" value="100" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="40">
+    <int name="SN" value="10400040" />
+    <int name="ItemId" value="1052058" />
+    <int name="Count" value="1" />
+    <int name="Price" value="100" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="41">
+    <int name="SN" value="10400041" />
+    <int name="ItemId" value="1052060" />
+    <int name="Count" value="1" />
+    <int name="Price" value="100" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="42">
+    <int name="SN" value="10400042" />
+    <int name="ItemId" value="1052087" />
+    <int name="Count" value="1" />
+    <int name="Price" value="85" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="43">
+    <int name="SN" value="10400043" />
+    <int name="ItemId" value="1042110" />
+    <int name="Count" value="1" />
+    <int name="Price" value="65" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="44">
+    <int name="SN" value="10400044" />
+    <int name="ItemId" value="1042122" />
+    <int name="Count" value="1" />
+    <int name="Price" value="80" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="45">
+    <int name="SN" value="10400045" />
+    <int name="ItemId" value="1042158" />
+    <int name="Count" value="1" />
+    <int name="Price" value="55" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="46">
+    <int name="SN" value="10400046" />
+    <int name="ItemId" value="1042134" />
+    <int name="Count" value="1" />
+    <int name="Price" value="60" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="47">
+    <int name="SN" value="10400047" />
+    <int name="ItemId" value="1062055" />
+    <int name="Count" value="1" />
+    <int name="Price" value="40" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="48">
+    <int name="SN" value="10400048" />
+    <int name="ItemId" value="1062110" />
+    <int name="Count" value="1" />
+    <int name="Price" value="40" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="49">
+    <int name="SN" value="10400049" />
+    <int name="ItemId" value="1062035" />
+    <int name="Count" value="1" />
+    <int name="Price" value="50" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="50">
+    <int name="SN" value="10400050" />
+    <int name="ItemId" value="1072274" />
+    <int name="Count" value="1" />
+    <int name="Price" value="40" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="51">
+    <int name="SN" value="10400051" />
+    <int name="ItemId" value="1071026" />
+    <int name="Count" value="1" />
+    <int name="Price" value="30" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="52">
+    <int name="SN" value="10400052" />
+    <int name="ItemId" value="1072469" />
+    <int name="Count" value="1" />
+    <int name="Price" value="50" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="53">
+    <int name="SN" value="10400053" />
+    <int name="ItemId" value="1082113" />
+    <int name="Count" value="1" />
+    <int name="Price" value="35" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="54">
+    <int name="SN" value="10400054" />
+    <int name="ItemId" value="1702045" />
+    <int name="Count" value="1" />
+    <int name="Price" value="140" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="55">
+    <int name="SN" value="10400055" />
+    <int name="ItemId" value="1702172" />
+    <int name="Count" value="1" />
+    <int name="Price" value="160" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="56">
+    <int name="SN" value="10400056" />
+    <int name="ItemId" value="1112113" />
+    <int name="Count" value="1" />
+    <int name="Price" value="60" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="57">
+    <int name="SN" value="10400057" />
+    <int name="ItemId" value="1102068" />
+    <int name="Count" value="1" />
+    <int name="Price" value="80" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="58">
+    <int name="SN" value="10400058" />
+    <int name="ItemId" value="1102072" />
+    <int name="Count" value="1" />
+    <int name="Price" value="80" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="59">
+    <int name="SN" value="10400059" />
+    <int name="ItemId" value="1102164" />
+    <int name="Count" value="1" />
+    <int name="Price" value="80" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
+  <imgdir name="60">
+    <int name="SN" value="10400060" />
+    <int name="ItemId" value="1102214" />
+    <int name="Count" value="1" />
+    <int name="Price" value="90" />
+    <int name="Bonus" value="0" />
+    <int name="Period" value="0" />
+    <int name="Priority" value="9" />
+    <int name="ReqPOP" value="0" />
+    <int name="ReqLEV" value="0" />
+    <int name="Gender" value="2" />
+    <int name="OnSale" value="0" />
+    <int name="PbCash" value="30" />
+    <int name="PbPoint" value="30" />
+    <int name="PbGift" value="30" />
+    <int name="Refundable" value="1" />
+  </imgdir>
 </imgdir>

@@ -1,1 +1,261 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><imgdir name="UI.img"><imgdir name="JobFreeChange"><imgdir name="112"><string name="0" value="검이나 도끼를 주로 사용하며 강력한 공격력을 가지고 있다. 공격을 통해 콤보 카운터를 모아 데미지를 더욱 끌어올릴 수 있으며 콤보 카운터 완충 시 강력한 공격을 할 수 있다."/><string name="1" value="‘콤보 어택’을 활성화시키면 공격할 때마다 일정 확률로 ‘콤보 카운터’가 누적된다. 누적된 콤보 카운터당 공격력과 최종 데미지가 증가한다. 콤보 카운터 완충 시 강화된 ‘레이징 블로우’를 사용할 수 있다. 또한, ‘스카링 소드’로 적에게 지워지지 않는 자상을 남기고, 자상이 남은 적을 공격 시 데미지가 증가한다. 목표한 적을 향해 빠르게 돌진하여 베어내는 &apos;플래시 슬래시&apos;로 기동성이 높으며, 원하는 위치를 향해 검기를 날리는 &apos;오라 블레이드&apos;로 원거리 타격도 가능하다."/></imgdir><imgdir name="122"><string name="0" value="홀리 포스 스킬을 사용하여 신성한 빛의 힘으로 공격력과 피격 데미지 감소율을 증가시키고¸ 신성한 망치를 이용한 다양한 스킬을 사용할 수 있다."/><string name="1" value="홀리 포스 스킬을 연속적으로 사용할 경우 ‘홀리 차지’가 충전된다. 홀리 차지가 증가할수록 공격력과 치유랑이 증가하고 자신의 피격 데미지가 감소한다. 성스러운 힘을 사용하는 ‘디바인 차지’와 ‘블래스트’는 일정 시간마다 한층 강화되어 적을 공격한다. 또한, ‘컴뱃 오더스’, ‘노블 디맨드’ 등으로 파티원들을 강화시켜주며 자신은 신의 가호를 받아 긴 시간 동안 무적 상태가 되는 ‘새크로생티티’와 피격 시 보호막을 생성하는 ‘블래싱 아머’로 탁월한 생존능력을 자랑한다."/></imgdir><imgdir name="132"><string name="0" value="창이나 폴암을 사용하여 넓은 범위의 적을 공격할 수 있다. 어둠의 사자인 비홀더를 소환하여 전투에 다양하게 활용할 수 있다. 다크나이트는 HP가 0이 되어도 어둠과의 계약에 의해 죽음을 무시하고 적을 응징한다."/><string name="1" value="‘비홀더’를 다양한 방식으로 전투에 활용한다. 더불어 자신의 현재 HP에 따라 강해지는 ‘크로스 오버 체인’과 적을 공격 시 HP를 회복하는 &apos;다크 서스트&apos;로 쉽게 죽지 않으면서 강력한 힘을 발휘할 수 있다. 신화 속의 창을 소환하여 적에게 던지는 ‘궁니르 디센트’는 소수의 적에게 큰 피해를 줄 수 있다. 어둠과의 계약으로 HP가 0이 되어도 ‘리인카네이션’을 통해 죽음을 무시하고 무적 상태가 되며, ‘리인카네이션 액셉트’로 어둠과의 계약 방식을 유동적으로 변경할 수 있다."/></imgdir><imgdir name="212"><string name="0" value="화염과 독 속성 마법을 사용한다. 대부분의 공격이 적에게 지속 데미지를 입히며 지속 데미지를 많이 입힐수록 공격의 위력이 강해진다. "/><string name="1" value="화염 마법에 당한 적은 화상을, 독 마법에 당한 적은 중독 상태가 되어 도트 데미지를 입는다. 어느 속성이든 적에게 도트 데미지를 적용시킬 때마다 ‘퍼번트 드레인’ 스킬을 통해 모든 공격의 위력이 강해진다. 독 속성 마법인 ‘포이즌 리젼’과 ‘포이즌 미스트’로 주위를 장악시키고 이것을 다양한 화염 마법과 ‘미스트 이럽션’을 통해 폭발시킨다. 영혼까지 불태우는 화염 마법인 ‘메기도 플레임’은 공격할 때마다 화염이 재생성되어 더욱 많은 적을 공격할 수 있다."/></imgdir><imgdir name="222"><string name="0" value="번개와 얼음 속성 마법을 사용한다. 적에게 얼음 속성 공격을 하여 빙결시킬 수 있으며 빙결에 중첩된 적을 강력한 번개 마법으로 공격 시 더 많은 피해를 입힐 수 있다. "/><string name="1" value="적에게 얼음 속성 마법을 사용하여 적을 빙결시킨다. 빙결된 적에게 전기 마법을 적중하면 ‘프리징 이펙트’를 통해 더 큰 피해를 입힐 수 있다. 고압의 전류를 발사하는 ‘체인 라이트닝’은 주변의 적에게 전이되어 연쇄 공격한다. 또한, &apos;프리징 브레스&apos;로 적을 순식간에 얼려 꼼짝 못 하게 할 수 있고 ‘라이트닝 스피어’로 전방에 전기의 구를 소환하여 강력한 데미지를 지속적으로 가할 수 있다."/></imgdir><imgdir name="232"><string name="0" value="자애로운 천사의 모습으로 아군을 치유하고 보조하는 이로운 스킬을 사용할 수 있다. 더불어 자애의 천사를 복수의 천사로 반전시켜 이로운 스킬들을 강력한 위력을 보이는 공격 특화 스킬로 변경할 수 있다."/><string name="1" value="아군을 지원할 수 있는 많은 버프 스킬을 가지고 있다. 파티원들이 주변에 있지 않아도 체력을 회복시킬 수 있는 ‘홀리 파운틴’과 ‘홀리 워터’, 상태 이상을 해제하는 ‘디스펠’, 사망한 파티원을 부활시키는 ‘리저렉션’ 등 신성한 힘으로 아군을 이롭게 한다. 하지만 ‘벤전스 오브 엔젤’을 통해 자애로운 천사 모습의 스킬을 복수의 천사로 변환시키면 아군을 지원했던 &apos;자애&apos; 스킬이 강력한 위력을 자랑하는 &apos;복수&apos; 스킬로 변화되어 상황에 맞춰 유연하게 활용할 수 있다."/></imgdir><imgdir name="312"><string name="0" value="활을 사용하여 원거리 공격을 하며 특수 화살촉을 상황에 따라 변화하여 쓸 수 있다. 잔영이 남을 정도로 빠른 궁술로 끊임없이 적을 공격한다."/><string name="1" value="빠른 공격 속도를 가진 스킬과 기동기를 보유하고 있어 스타일리쉬한 전투를 할 수 있다. 직접 사용하거나 원하는 위치에 설치할 수 있는 &apos;애로우 플래터&apos;로 끊임없이 화살을 발사할 수 있으며, 잔영이 남을 정도로 빠른 궁술을 구사하는 &apos;플레시 미라주&apos;로 일정 횟수 이상 공격할 때마다 잔영이 주변의 적을 추적하는 화살을 발사한다. 특수 화살촉인 &apos;퀴버 카트리지&apos;로 마법 화살과 흡혈 화살 중 하나를 선택하여 공격할 때마다 특수 화살촉의 효과를 얻을 수 있다."/></imgdir><imgdir name="322"><string name="0" value="석궁을 사용하여 멀리에서도 적을 저격할 수 있는 긴 사거리가 특징이다. 일정 횟수 이상 공격이 적중하면 다음 화살에는 예기가 더해져 더 강력한 공격을 할 수 있다."/><string name="1" value="활보다는 느리지만 강력한 힘을 가지고 있는 석궁을 사용한다. ‘피어싱’으로 매우 먼 거리의 적까지 꿰뚫어 버리는 관통 화살을 날린다. 먼 거리에서 적을 향해 날아가는 ‘스나이핑’은 적의 급소를 노려 더 치명적인 공격을 할 수 있다. 일정 횟수 이상 피어싱이나 스나이핑이 적중하면 &apos;인핸스 애로우&apos;가 준비되어 다음 공격 시 &apos;인핸스 피어싱&apos; 또는 &apos;인핸스 스나이핑&apos;을 사용할 수 있다. 인핸스 스킬은 더 강력한 위력을 자랑한다."/></imgdir><imgdir name="332"><string name="0" value="고대 유물에 매료된 호기심 많은 모험가였으나 탐사 도중 얻은 저주의 영향으로 고대의 힘을 사용할 수 있게 되었다. 에인션트 보우를 사용하며 세 개의 궁술을 연계해 렐릭 게이지를 충전하고 강력한 스킬을 사용할 수 있다."/><string name="1" value="‘렐릭 차지’로 인해 카디널 포스 스킬로 적을 공격할 때마다 렐릭 게이지가 충전된다. 렐릭 게이지를 소비하여 ‘엣지 오브 레조넌스’ 등 강력한 에인션트 포스 스킬과 ‘콤보 어썰트’ 등 현재 렐릭의 문양에 따라 효과가 바뀌는 인챈트 포스 스킬을 사용할 수 있다. 또한 ‘에디셔널~’ 스킬과 ‘렐릭 차지 II’로 인해 카디널 포스 스킬로 렐릭의 문양이 변경될 때마다 강력한 효과를 얻을 수 있다. &apos;커스 트랜지션&apos;으로 인해 적에게 고대의 저주 디버프를 부여하여 저주가 쌓인 만큼 더 큰 피해를 줄 수 있다."/></imgdir><imgdir name="412"><string name="0" value="원거리에서 매우 빠르게 다수의 표창을 날리며, 다양함 힘을 가진 부적을 붙인 수리검으로 넓은 범위의 적을 공격할 수 있다."/><string name="1" value="빠른 속도로 표창을 던지는 ‘쿼드러플 스로우’ 스킬을 사용해 빠르고 강력한 공격을 구사하며, 그림자와 하나가 되어 이동하는 &apos;쉐도우 러쉬&apos;를 통해 스타일리쉬한 공격을 펼칠 수 있다. ‘마크 오브 어쌔신’은 적을 공격하면 일정 확률로 적에게 암살자의 표식을 남기고, 표식이 있는 적을 공격하면 여러 개의 표창이 사출되어 주위의 적들을 추가 공격한다. 또한 수리검에 그림자의 힘을 담은 부적을 붙여 공격하는 &apos;쇼다운 챌린지&apos;로 다수의 적을 공격한다."/></imgdir><imgdir name="422"><string name="0" value="연막과 그림자에 몸을 숨긴 후 단검을 사용한 치명적인 연격으로 적을 암살한다. 행운의 상징인 동전을 통해 다양한 스킬을 구사한다."/><string name="1" value="적에게서 동전을 훔쳐 떨어뜨리는 ‘픽 파킷’과 동전을 움직여 적을 공격하게 하는 ‘메소 익스플로젼’으로 넓은 범위의 적을 공격할 수 있다. 암살자의 표식이 담긴 동전을 떨어뜨리는 ‘블러디 파킷’을 활성화하면, 메소 익스플로젼이 적중했을 때 암살자의 ‘살의’ 버프를 획득한다. 살의 버프를 획득한 상태에서 적에게 ‘암살’을 사용하면 더 강력한 마무리 일격을 가할 수 있다. ‘다크 사이트’ 상태를 유지시켜 주는 ‘연막탄’과 ‘베일 오브 섀도우’로 자신은 공격을 회피하며 적을 공격한다."/></imgdir><imgdir name="434"><string name="0" value="비밀 도적 조직인 비화원의 일원. 단검과 블레이드를 모두 사용하는 이도류가 특징이다. 두 개의 검을 통해 매우 빠른 속도로 휘몰아치듯 공격한다."/><string name="1" value="다양한 이동 스킬로 기동력이 뛰어나고, 비화원의 비기인 ‘블레이드 퓨리’와 ‘팬텀 블로우’로 연속 공격을 가한다. 분신을 만드는 ‘미러 이미징’으로 인해 더 큰 피해를 줄 수 있고, 그림자를 분리시키는 ‘더미 이펙트’와 잠시 동안 무적이 되는 &apos;파이널 컷&apos;과 ‘사슬지옥’으로 생존력 또한 뛰어나다. ‘아수라’는 보이지 않을 정도로 빠른 진공의 칼날로 적들을 섬멸한다."/></imgdir><imgdir name="512"><string name="0" value="너클을 사용하여 적을 제압하는 격투 스킬을 사용하며, 수룡의 힘을 다룰 수 있다. 수룡의 힘은 격투 스킬 사용 시 자동으로 실체화되어 적을 추가로 공격한다."/><string name="1" value="자신의 순수한 육체를 이용하여 적을 무력화하는 격투 스킬에 능하다. 또한 바다에 대한 친화력으로 거친 바다에 잠들어 있던 수룡의 힘을 실체화하는 ‘씨 서펜트’ 스킬을 사용할 수 있다. 씨 서펜트 스킬은 격투 스킬 사용 시 일정 시간마다 발동된다. 수룡이 실체화될 때마다 생기는 잔흔을 모으는 ‘서펜트 스톤’을 활성화하면 더 강력한 수룡 스킬인 ‘어썰트’ 스킬을 사용할 수 있다. "/></imgdir><imgdir name="522"><string name="0" value="총을 사용하며 빠른 속도로 적에게 탄환을 퍼붓는다. 노틸러스의 용맹한 선원들과 병기를 소환하여 다양한 공격을 구사한다."/><string name="1" value="&apos;래피드 파이어’로 매우 빠른 속도로 적에게 탄환 세례를 가한다. ‘헤드샷’은 일격으로 적에게 치명적인 피해를 줄 수 있다. 또한, ‘서먼 크루’를 통해 노틸러스의 선원들을 소환해 함께 전투에 임하도록 지휘한다. 노틸러스의 강력한 병기인 ‘배틀쉽 봄버’와 ‘시즈 봄버’를 소환하고, ‘사인 오브 봄바드’로 캡틴의 표식을 설치하면 해당 위치로 병기들이 일제 폭격을 가하게 된다. ‘언위어링 넥타’는 함장의 기개로 육체를 고양시키고 모든 소환수를 강화시킬 수 있다."/></imgdir><imgdir name="532"><string name="0" value="몸집만 한 핸드캐논을 사용하여 긴 사정거리의 강력한 공격을 할 수 있다. 파트너인 몽키와 함께 묵직한 폭격을 가한다."/><string name="1" value="한계까지 압축시킨 화약을 뿜어내는 ‘캐논 바주카’는 긴 사정거리가 특징이며, 고연사 캐논으로 하나의 적에게 집중 사격하는 ‘캐논 버스터’는 강력한 폭발 공격을 가한다. 캐논슈터의 특별한 산탄 기술을 적용한 ‘벅 샷’은 데미지가 줄어드는 대신 공격 속도를 증가시키고 모든 공격 횟수를 3배로 증폭시킨다. 캐논슈터의 든든한 파트너인 몽키는 &apos;미니 캐논볼&apos;을 적에게 투척하거나 날려 전투를 보조한다. ‘롤링 캐논 레인보우’는 세 개의 캐논포를 소환하여 무자비한 화력을 쏟아낸다."/></imgdir></imgdir><imgdir name="invasion"><imgdir name="message"><imgdir name="0"><string name="0" value="받아랏!"/><string name="1" value="넌 이미 죽어있다."/><string name="2" value="공격!"/><string name="3" value="하하하하하하하!"/><string name="4" value="어리석은 불나방이 또 한마리 날아들었구나."/><string name="5" value="우리의 소원은 통일..."/><string name="6" value="메이플 옥션에 좋은 템 올려놨다!"/><string name="7" value="나는 괴도 팬텀. 포기를 모르는 남자지."/><string name="8" value="침공전이 하고 싶어요. 이번엔 진짜라구요."/><string name="9" value="데미지는 등가 교환!"/><string name="10" value="구멍을 뚫는다면 크리셰까지 뚫는다!"/><string name="11" value="암흑보다 더 어두운 자여!"/><string name="12" value="들어갈 데미지는 들어간다."/></imgdir><imgdir name="1"><string name="0" value="강력한 일격"/><string name="1" value="날카로운 공격"/><string name="2" value="필살기"/><string name="3" value="굳은살 박힌 맨주먹"/><string name="4" value="느끼한 미소"/><string name="5" value="돈뭉치"/><string name="6" value="젓가락"/><string name="7" value="거들뿐인 왼손"/><string name="8" value="터져버린 라지에이터"/><string name="9" value="보이드"/><string name="10" value="가위"/><string name="11" value="저먼 스플렉스"/><string name="12" value="돌직구"/></imgdir><imgdir name="2"><string name="0" value="끝이다아아아아아!!"/><string name="1" value="Game Over."/><string name="2" value="나의 승리다."/><string name="3" value="메이플 스토리는 실전이야!"/><string name="4" value="용돈 인상!"/><string name="5" value="불태웠어... 새하얗게..."/><string name="6" value="나는 방어왕이 될거야!"/><string name="7" value="막타, 이게 너와 나의 눈높이 차이다."/><string name="8" value="프리드는 죽었어! 이젠 없어! 하지만 이 등에, 이 가슴에 하나가 되어 함께 살아가!"/><string name="9" value="Why so serious?"/><string name="10" value="막타는 포기해... 그럼 편해..."/><string name="11" value="당신의 최고의 순간은 언제였죠? 전 막타를 먹은 지금입니다."/><string name="12" value="막타를 먹은 자! 그게 바로 나다!"/></imgdir></imgdir><imgdir name="boss"><string name="0" value="매그너스"/><string name="1" value="힐라"/><string name="2" value="반 레온"/><string name="3" value="아카이럼"/></imgdir><imgdir name="phase"><string name="0" value=""/><string name="1" value="군단장들의 침공이 더 거세지고 있소!  강력한 적이 출현할 것이오!"/><string name="2" value="군단장들의 침공이 더 거세지고 있네!  강력한 적이 출현할걸세!"/><string name="3" value="곧 군단장이 직접 공격해 온다는 정찰 내용이 보고되었다네!  모두 조심하게나!"/></imgdir><imgdir name="invasionStatus"><string name="start" value="군단장들의 침공 징후가 포착되었소! 메이플 용사들의 도움이 필요하오!"/><string name="start1" value="크리티아스를 방어해야 하오! 북쪽 막사로 와서 나에게 방어 임무를 받으시오!"/><string name="change" value="30초 정도 후면 침공이 시작될걸세! 크리티아스 지역에 큰 충격이 있을지 모르니 조심하게나!"/><string name="fail" value="용사님들의 도움으로 군단장들이 잠시 물러나긴 했지만... 많은 피해를 입었소..."/><string name="success" value="적들을 격퇴했소! 군단장에게 결정적인 타격을 준 용사는 %s님이오!"/><string name="after" value="도움을 준 용사들에게 감사하오. 북쪽 막사로 와서 기여에 상응하는 보상을 받으시오."/></imgdir></imgdir><imgdir name="bossArena"><imgdir name="skill"><string name="0" value="상태이상 해제 : 현재 걸려있는 상태이상을 제거합니다. 자신에게 이로운 효과도 해제합니다. 재사용 대기시간 4초"/><string name="1" value="리콜 : 시작지점으로 순간이동 합니다. 재사용 대기시간 30초"/><string name="2" value="스턴 어택 : 10초 동안 모든 공격에 스턴 효과가 생기고 상대가 몸에 닿으면 피해를 입습니다. 재사용 대기시간 60초"/><string name="3" value="힐 : 체력을 일부 회복합니다. 재사용 대기시간 60초"/></imgdir><imgdir name="boss"><string name="0" value="매그너스 : 근거리와 중거리 전투에 강하고 운석소환을 통한 압박을 할 수 있습니다."/><string name="1" value="교도관 아니 : 움직임은 느리지만 유혹 스킬과 철퇴 공격을 이용한 근접전에 강합니다."/><string name="2" value="아카이럼 : 긴 사정거리를 이용한 원거리전에 강합니다. 근접하는 상대를 무력화 시키는 스킬을 다수 보유하고 있습니다."/><string name="3" value="드래고니카 : 점프 스킬을 빠르게 2번 누르면 일정 시간 비행할 수 있습니다. 비행 중에 공격 및 스킬을 쓸 수 있으며 비행 재사용 대기시간이 존재합니다."/><string name="4" value="시그너스 : 소환 스킬과 사정 거리가 길고 범위가 넓은 공격을 동시에 사용하여 상대를 압박할 수 있습니다."/><string name="5" value="반 레온 : 근거리 전투에 강하고 텔레포트 스킬로 상대에게 순식간에 접근할 수 있습니다."/></imgdir></imgdir><imgdir name="party"><imgdir name="create"><string name="0" value="함께 파티해요~!"/><string name="1" value="파티플레이 빠르게 ㄱㄱ"/><string name="2" value="역시 게임은 파티가 제맛!"/></imgdir></imgdir><imgdir name="itemCollection"><imgdir name="0"><string name="name" value="4주년 무기"/></imgdir><imgdir name="1"><string name="name" value="5주년메이플망토"/></imgdir><imgdir name="2"><string name="name" value="5주년메이플리프"/></imgdir><imgdir name="3"><string name="name" value="7주년파이롭 무기"/></imgdir><imgdir name="4"><string name="name" value="8주년 베릴 무기"/></imgdir><imgdir name="5"><string name="name" value="8주년 래티넘 무기"/></imgdir><imgdir name="6"><string name="name" value="9주년이올렛무기"/></imgdir><imgdir name="7"><string name="name" value="10주년 화이트무기"/></imgdir><imgdir name="8"><string name="name" value="10주년 블랙 무기"/></imgdir><imgdir name="9"><string name="name" value="10주년 블랙 보조"/></imgdir><imgdir name="10"><string name="name" value="11주년세인트 무기"/></imgdir><imgdir name="11"><string name="name" value="1500일 깃발"/></imgdir></imgdir><imgdir name="monsterCollection"><imgdir name="title"><string name="0" value="빅토리아 아일랜드"/><string name="0_0" value="빅토리아 아일랜드"/><string name="0_1" value="빅토리아 아일랜드"/><string name="0_2" value="빅토리아 아일랜드"/><string name="0_3" value="빅토리아 아일랜드"/><string name="0_4" value="슬리피우드"/><string name="0_5" value="슬리피우드"/><string name="0_6" value="커닝타워"/><string name="1" value="빅토리아 인근 섬"/><string name="1_0" value="빅토리아 인근 섬"/><string name="1_1" value="더 시드"/><string name="2" value="에델슈타인"/><string name="2_0" value="에델슈타인"/><string name="2_1" value="기계무덤"/><string name="3" value="엘나스 산맥"/><string name="3_0" value="오르비스"/><string name="3_1" value="엘나스"/><string name="3_2" value="엘나스"/><string name="4" value="루더스 호수"/><string name="4_0" value="루디브리엄"/><string name="4_1" value="루디브리엄"/><string name="4_2" value="엘린숲"/><string name="4_3" value="루더스 호수 인근"/><string name="5" value="아쿠아로드"/><string name="5_0" value="아쿠아로드"/><string name="6" value="니할사막"/><string name="6_0" value="니할사막"/><string name="6_1" value="마가티아"/><string name="7" value="무릉도원"/><string name="7_0" value="무릉도원"/><string name="7_1" value="무릉도원"/><string name="8" value="미나르 숲"/><string name="8_0" value="미나르 숲"/><string name="8_1" value="용의 숲"/><string name="8_2" value="크리티아스"/><string name="8_3" value="미나르 숲"/><string name="9" value="시간의 신전"/><string name="9_0" value="과거의 문"/><string name="9_1" value="미래의 문"/><string name="10" value="그란디스"/><string name="10_0" value="그란디스"/><string name="10_1" value="그란디스"/><string name="11" value="아케인리버"/><string name="11_0" value="아케인리버"/><string name="11_1" value="아케인리버"/><string name="11_2" value="아케인리버"/></imgdir></imgdir></imgdir>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<imgdir name="UI.img">
+  <imgdir name="JobFreeChange">
+    <imgdir name="112">
+      <string name="0" value="主要使用劍或斧頭，擁有強力的攻擊力。透過攻擊收集Combo量，並使傷害提升更多，Combo補滿時可施展強力的攻擊。" />
+      <string name="1" value="開啟「Combo攻擊」時，每次的攻擊會以一定的機率累積「Combo量」。依照累積的Combo量增加攻擊力和最終傷害。Combo量補滿時，可使用強化的「狂暴攻擊」。另外，可用「傷痕之劍」對敵人留下無法抹滅的刺傷，攻擊留下刺傷的敵人時，會增加傷害。「閃光斬」會向目標敵人快速的突進後揮砍，機動性很高，也可使用朝向想要的方向發射劍氣的遠距離攻擊「靈氣之刃」。" />
+    </imgdir>
+    <imgdir name="122">
+      <string name="0" value="使用神聖力量並利用神聖的光之力增加攻擊力和被擊傷害減少率，也可用神聖之鎚使用各種技能。" />
+      <string name="1" value="連續使用神聖力量時，會補充「神聖凝聚」。神聖凝聚增加時，攻擊力和治癒量也會增加，並減少自己的被擊傷害。使用神聖力量的「神聖衝擊」和「騎士衝擊波」會每隔一段時間增強並攻擊敵人。另外可用「戰鬥命令」、「高貴威嚴」等強化隊員，自己則可透過能獲得神之庇護而長時間變成無敵狀態的「神域護佑」及被擊時會產生護盾的「祝福護甲」等，擁有卓越的生存能力。" />
+    </imgdir>
+    <imgdir name="132">
+      <string name="0" value="使用矛或鐵戟對廣範圍的敵人發動攻擊。召喚出能在戰鬥中運用的黑暗使者闇靈。黑騎士即使HP變成0也因為以和黑暗締結契約，可無視死亡繼續懲罰敵人。" />
+      <string name="1" value="可讓「闇靈」以多種方式投入戰鬥。再加上能依照自己目前的HP而變強的「十字深鎖鏈」和攻擊敵人時能恢復HP的「黑暗渴望」，使自己變成不容易死亡，並且能發揮強大的力量。召喚出神話裡的矛，並拋向敵人的「岡格尼爾之擊」，是可對少數敵人造成很大傷害的技能。因受到黑暗契約的影響，即使HP變成0，也能透過「轉生」無視死亡且變成無敵狀態，可透過「轉生契約」動態的變更黑暗契約的方式。" />
+    </imgdir>
+    <imgdir name="212">
+      <string name="0" value="使用火焰和毒屬性的魔法。大部分的攻擊可對敵人造成持續傷害，持續傷害越多，造成的攻擊威力也會變得更強。" />
+      <string name="1" value="被火焰魔法傷害的敵人會呈現燒傷狀態，被毒魔法攻擊的敵人則會變成中毒狀態而受到持續傷害。無論是哪一種屬性，只要對敵人套用持續傷害時，可透過「元素強化」技能將所有攻擊的威力變強。可利用毒屬性魔法「劇毒領域」和「致命毒霧」掌握周圍區域，並利用各種火焰魔法和「地獄爆發」引爆。每次使用連靈魂也能被焚燒的火焰魔法「藍焰斬」攻擊時，會繼續生成火焰而攻擊更多的敵人。" />
+    </imgdir>
+    <imgdir name="222">
+      <string name="0" value="使用閃電和冰凍屬性的魔法。對敵人使用冰凍屬性的攻擊，即可凍結敵人，對凍結狀態重疊的敵人使用強力的閃電魔法攻擊時，可造成更多的傷害。" />
+      <string name="1" value="對敵人使用冰凍屬性的魔法使敵人凍結。對凍結的敵人使用電系魔法且命中時，可透過「結冰特效」造成更大的傷害。發射高壓電流的「閃電連擊」可對周圍的敵人發動連鎖攻擊。另外，「冰龍吐息」能讓敵人瞬間結冰而無法動彈，再利用「閃電之矛」對前方召喚出閃電球，可造成強力的持續傷害。" />
+    </imgdir>
+    <imgdir name="232">
+      <string name="0" value="帶著慈愛的天使之姿治癒我軍，還可使用有益的輔助技能。還可讓慈愛的天使反轉成復仇天使，將有益的技能轉換成能呈現強大威力的攻擊特化技能。" />
+      <string name="1" value="擁有能支援我軍的許多Buff技能。即使隊員不在周圍也能恢復體力的「神聖之泉」和「神聖之水」，能解除狀態異常的「淨化」，能復活隊員的「復甦之光」等，可用神聖的力量讓我軍獲得益處。但是透過「復仇天使」將慈愛天使的技能轉變成復仇天使時，原本支援隊員的「慈愛」技能會變成擁有強大威力的「復仇」技能，角色可依照狀況彈性的運用技能。" />
+    </imgdir>
+    <imgdir name="312">
+      <string name="0" value="使用弓箭發動遠距離攻擊，特殊的箭矢可依狀況而變換使用。利用快速到能留下殘影的弓術不斷的攻擊敵人。" />
+      <string name="1" value="擁有攻擊速度飛快的技能以及機動性，可展現相當流暢的戰鬥。利用能直接使用或是設置在想要位置的「箭座」即可不斷的發射箭矢，透過快速到會留下殘影的「閃光幻象」弓術攻擊一定次數以上時，殘影會發射出能追擊敵人的箭矢。特殊箭矢「魔幻箭筒」可選擇魔法箭矢或吸血箭矢其中一個來發動攻擊，每次的攻擊都能獲得特殊箭矢的效果。" />
+    </imgdir>
+    <imgdir name="322">
+      <string name="0" value="弩弓的特徵是超長攻擊距離，能狙擊遙遠距離的敵人。命中次數到達一定次數以上時，下一發箭矢會變得更加銳利並施展更強力的攻擊。" />
+      <string name="1" value="雖然比弓箭速度慢，但弩弓有著強大的力量。可利用「光速神弩」對非常遙遠距離的敵人發射能貫穿一切的穿透箭矢。從遙遠距離朝向敵人發射的「必殺狙擊」會瞄準敵人的要害，發動更加致命的攻擊。光速神弩或必殺狙擊命中一定次數以上時，會觸發「增強箭矢」，並且可在下一次攻擊時使用「覺醒之箭」或是「增強必殺狙擊」。增強技能擁有更強力的威力。" />
+    </imgdir>
+    <imgdir name="332">
+      <string name="0" value="原本是著迷於古代遺物的充滿好奇的冒險家，後來在探查途中受到詛咒的影響，變得可以使用古代的力量。可使用古代之弓連接三個弓術，補充遺跡計量施展強大的技能。" />
+      <string name="1" value="每當藉由「遺跡填充」以基本之力技能攻擊敵人時，會自補充遺跡計量。可消耗遺跡計量，使用「稜之共鳴」等強大的古代之力技能，以及「連段襲擊」等效果會根據目前遺跡圖騰改變的賦魔之力技能。另外，每當透過「附加~」技能和「遺跡填充II」，以基本之力技能使遺跡圖騰產生變動時，可獲得強大的效果。透過「詛咒轉移」賦予敵人古代的詛咒減益效果，當詛咒累積量越多，可造成的傷害越大。" />
+    </imgdir>
+    <imgdir name="412">
+      <string name="0" value="能在遠距離快速發射多數的飛鏢，還可利用貼上各種力量之符的手裏劍對廣範圍的敵人發動攻擊。" />
+      <string name="1" value="使用能快速投擲飛鏢的「四飛閃」技能來施展強力又快速的攻擊，透過與影子合而為一來移動的「暗影衝刺」還能展開流暢的攻擊。使用「刺客刻印」攻擊敵人時，可依一定的機率對敵人留下暗殺者的標記，攻擊有標記的敵人時，可發射多個飛鏢來追加攻擊周圍的敵人。另外也可使用在手裏劍貼上蘊含影子之力的符咒發動攻擊的「挑釁契約」去攻擊多數敵人。" />
+    </imgdir>
+    <imgdir name="422">
+      <string name="0" value="利用煙霧和影子隱身後，使用短劍連續對敵人發動致命的暗殺攻擊。透過象徵幸運的硬幣展現多種技能。" />
+      <string name="1" value="利用偷取敵人硬幣的「勇者掠奪術」和移動硬幣攻擊敵人的「楓幣炸彈」對廣範圍的敵人發動攻擊。開啟「血腥掠奪術」能掉落有暗殺者標記的硬幣，此時楓幣炸彈命中時，可獲得暗殺者的「殺意」Buff。獲得殺意Buff的狀態下對敵人使用「致命暗殺」時，能發動更強力的最後一擊。使用能讓自己維持「隱身術」狀態的「煙幕彈」和「暗影黑幕」能迴避攻擊並發動攻擊。" />
+    </imgdir>
+    <imgdir name="434">
+      <string name="0" value="秘密盜賊組織－秘密花園的成員。特徵就是能同時使用短劍和短刀的雙刀流。透過兩把劍並利用非常快速的速度展開暴風般的攻擊。" />
+      <string name="1" value="因擁有各種移動技能，機動力相當出色，可使用秘密花園的祕技「短刀護佑」和「幻影箭」發動連續攻擊。透過創造分身的「替身術」能造成更大的傷害，使用分離影子的「幻影替身」和能夠暫時變無敵的「絕殺刃」和「隱‧鎖鏈地獄」使生存力更加卓越。修羅攻擊能利用肉眼看不見的速度快速的用刀刃殲滅敵人。" />
+    </imgdir>
+    <imgdir name="512">
+      <string name="0" value="使用指虎發動能壓制敵人的格鬥技能，還可控制海龍的力量。海龍之力會在使用格鬥技能時自動實體化，並額外攻擊敵人。" />
+      <string name="1" value="擅長利用自己純粹的肉體讓敵人無力化的格鬥技能。另外還能利用和大海的親和力，使用將沈睡在粗獷大海中的海龍之力實體化的「海龍」技能。海龍技能會在使用格鬥技能時，每隔一段時間發動。開啟「海龍風暴」能收集每當海龍實體化時產生的殘痕，就能使用能發揮更強的海龍技能「突擊」。" />
+    </imgdir>
+    <imgdir name="522">
+      <string name="0" value="使用槍快速對敵人發射子彈。可召喚鯨魚號的勇猛船員和兵器進行各種攻擊。" />
+      <string name="1" value="「瞬‧迅雷」能非常快速的用子彈對敵人加以洗禮。「爆頭射擊」可對敵人用一擊造成致命的傷害。另外還可透過「召喚船員」召喚出鯨魚號的船員，指揮他們一起戰鬥。召喚出鯨魚號的強力兵器「海盜砲擊艇」和「攻城轟炸機」，使用「砲擊標記」設置槍神的標記，兵器就會對該位置發動全面砲擊。「撫慰甘露」能以艦長的氣魄提升肉體，強化所有的召喚獸。" />
+    </imgdir>
+    <imgdir name="532">
+      <string name="0" value="使用如身體一樣大的重砲，對遠距離發動強力的攻擊。和夥伴猴子一起施展火力十足的砲擊。" />
+      <string name="1" value="把壓縮到極限的火藥發射出去的「加農砲火箭」最大特色是遠距離的射程，透過高連射加農對一名敵人集中射擊的「加農砲連擊」能發動出強力的爆發攻擊。套用重砲指揮官特殊散彈技術的「壓制砲擊」雖然會降低傷害，但能增加攻擊速度，可將所有的攻擊次數增加到3倍。重砲指揮官的可靠夥伴猴子可對敵人投擲「迷你加農砲」來進行輔助戰鬥。「滾動彩虹加農炮」可召喚出三個加農砲並砲轟可怕的火力。" />
+    </imgdir>
+  </imgdir>
+  <imgdir name="invasion">
+    <imgdir name="message">
+      <imgdir name="0">
+        <string name="0" value="接招！" />
+        <string name="1" value="你已經死了。" />
+        <string name="2" value="攻擊！" />
+        <string name="3" value="哈哈哈哈哈！" />
+        <string name="4" value="不知死活的飛蛾又出現了一隻。" />
+        <string name="5" value="我們的願望就是統一… " />
+        <string name="6" value="楓之谷拍賣出現好道具了！" />
+        <string name="7" value="我是怪盜幻影俠盜。是不懂得放棄的男人。" />
+        <string name="8" value="好想進行侵攻戰。這次是真的。" />
+        <string name="9" value="傷害是等價交換！" />
+        <string name="10" value="只要穿出洞的話，就能夠穿到克里塞！" />
+        <string name="11" value="比黑暗更黑的人啊！" />
+        <string name="12" value="傷害奏效了。" />
+      </imgdir>
+      <imgdir name="1">
+        <string name="0" value="強力的一擊" />
+        <string name="1" value="銳利的攻擊" />
+        <string name="2" value="必殺技" />
+        <string name="3" value="長繭的拳頭" />
+        <string name="4" value="噁心的笑容" />
+        <string name="5" value="錢堆" />
+        <string name="6" value="筷子" />
+        <string name="7" value="環狀的左手" />
+        <string name="8" value="炸裂的散熱器" />
+        <string name="9" value="虛無" />
+        <string name="10" value="剪刀" />
+        <string name="11" value="遙遠的史波雷斯" />
+        <string name="12" value="強力直擊" />
+      </imgdir>
+      <imgdir name="2">
+        <string name="0" value="結束了啊啊啊啊啊！！" />
+        <string name="1" value="GameOver." />
+        <string name="2" value="我贏了。" />
+        <string name="3" value="楓之谷故事是實戰！" />
+        <string name="4" value="提高零用錢！" />
+        <string name="5" value="燒掉了…雪白…" />
+        <string name="6" value="我要成為防禦王！" />
+        <string name="7" value="最後一次打擊，這是你和我之間標準的差異。" />
+        <string name="8" value="普力特死了！已經沒有了！但是在我的背上、在我的心裡，我們會成為一體，繼續活下去的！" />
+        <string name="9" value="Why so serious?" />
+        <string name="10" value="我放棄最後一次打擊…那樣比較方便…" />
+        <string name="11" value="你最威風的時候是何時呢？我覺得是使出最後一擊的現在。" />
+        <string name="12" value="進行最後一擊的人！那就是我！" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="boss">
+      <string name="0" value="梅格耐斯" />
+      <string name="1" value="希拉" />
+      <string name="2" value="凡雷恩" />
+      <string name="3" value="阿卡伊農" />
+    </imgdir>
+    <imgdir name="phase">
+      <string name="0" value="" />
+      <string name="1" value="軍團長的攻勢變得更強烈了！強力的敵人即將會出現！" />
+      <string name="2" value="軍團長的攻勢變得更強烈了！強力的敵人即將會出現！" />
+      <string name="3" value="有報告指出軍團長就快要親自攻過來了！大家要小心一點！" />
+    </imgdir>
+    <imgdir name="invasionStatus">
+      <string name="start" value="捕捉到軍團長們入侵的徵兆了！我們需要楓之谷勇士的幫忙！" />
+      <string name="start1" value="必須要防禦克里提亞斯！請來北方沙漠，向我接取防禦任務！" />
+      <string name="change" value="30秒後會開始進攻！說不定克里提亞斯地區會發生大衝擊，千萬要多加小心！" />
+      <string name="fail" value="雖然因勇士們的幫忙讓軍團長暫時撤退了… 但還是受到很多的損失… " />
+      <string name="success" value="擊退敵人了！給軍團長決定性一擊的勇士就是%s大人啊！" />
+      <string name="after" value="感謝給予幫助的勇者們。請來北邊的棚子領取符合貢獻的獎勵。" />
+    </imgdir>
+  </imgdir>
+  <imgdir name="bossArena">
+    <imgdir name="skill">
+      <string name="0" value="解除狀態異常 : 解除目前的異常狀態.也會解除對自己的有利的狀態. 冷卻時間4秒" />
+      <string name="1" value="召回 : 往起始點瞬移. 冷卻時間30秒" />
+      <string name="2" value="強烈攻擊 : 10秒內所有攻擊會產生反擊效果 對方碰到身體的話會受到傷害. 冷卻時間60秒" />
+      <string name="3" value="療癒 : 恢復部分體力. 冷卻時間60秒" />
+    </imgdir>
+    <imgdir name="boss">
+      <string name="0" value="梅格耐斯 : 有利於近距離與中距離戰鬥透過召喚隕石予以壓制." />
+      <string name="1" value="教官亞尼 : 雖然行動緩慢但利用迷惑技能與鐵錘攻擊有利於近距離戰." />
+      <string name="2" value="阿卡伊農 : 有利於射程距離較遠的遠距離戰.擁有使靠近的敵人無力化的技能." />
+      <string name="3" value="夢幻龍族 : 快速點擊 2次跳躍技能就能飛行一定時間.飛行時可使用攻擊技能需等待飛行冷卻時間." />
+      <string name="4" value="西格諾斯 : 同時使用召喚技能與射程距離長且範圍廣的攻擊以壓制敵人." />
+      <string name="5" value="凡雷恩 : 有利於近距離戰鬥且利用瞬間移動技能瞬間接近敵人." />
+    </imgdir>
+  </imgdir>
+  <imgdir name="party">
+    <imgdir name="create">
+      <string name="0" value="一起來組隊~!" />
+      <string name="1" value="組隊進行更快速 呵呵" />
+      <string name="2" value="果然組隊最好玩!" />
+    </imgdir>
+  </imgdir>
+  <imgdir name="itemCollection">
+    <imgdir name="0">
+      <string name="name" value="4週年武器" />
+    </imgdir>
+    <imgdir name="1">
+      <string name="name" value="5週年楓之谷披風" />
+    </imgdir>
+    <imgdir name="2">
+      <string name="name" value="5週年楓之谷水晶" />
+    </imgdir>
+    <imgdir name="3">
+      <string name="name" value="6週年黃金楓葉武器" />
+    </imgdir>
+    <imgdir name="4">
+      <string name="name" value="7週年楓葉綠寶石武器" />
+    </imgdir>
+    <imgdir name="5">
+      <string name="name" value="7週年楓葉白金武器" />
+    </imgdir>
+    <imgdir name="6">
+      <string name="name" value="8週年楓葉赤光武器" />
+    </imgdir>
+    <imgdir name="7">
+      <string name="name" value="9週年白色武器" />
+    </imgdir>
+    <imgdir name="8">
+      <string name="name" value="9週年黑色武器" />
+    </imgdir>
+    <imgdir name="9">
+      <string name="name" value="9週年黑色補助武器" />
+    </imgdir>
+    <imgdir name="10">
+      <string name="name" value="10週年神聖武器" />
+    </imgdir>
+    <imgdir name="11">
+      <string name="name" value="1500日旗子" />
+    </imgdir>
+  </imgdir>
+  <imgdir name="monsterCollection">
+    <imgdir name="title">
+      <string name="0" value="維多利亞島" />
+      <string name="0_0" value="維多利亞島" />
+      <string name="0_1" value="維多利亞島" />
+      <string name="0_2" value="維多利亞島" />
+      <string name="0_3" value="維多利亞島" />
+      <string name="0_4" value="奇幻村" />
+      <string name="0_5" value="奇幻村" />
+      <string name="0_6" value="墮落塔咖啡店" />
+      <string name="1" value="維多利亞鄰近島嶼" />
+      <string name="1_0" value="維多利亞鄰近島嶼" />
+      <string name="1_1" value="The Seed" />
+      <string name="2" value="埃德爾斯坦" />
+      <string name="2_0" value="埃德爾斯坦" />
+      <string name="2_1" value="機械墳墓" />
+      <string name="3" value="冰原雪域" />
+      <string name="3_0" value="天空之城" />
+      <string name="3_1" value="冰原雪域" />
+      <string name="3_2" value="冰原雪域" />
+      <string name="4" value="路德斯湖" />
+      <string name="4_0" value="玩具城" />
+      <string name="4_1" value="玩具城" />
+      <string name="4_2" value="艾靈森林" />
+      <string name="4_3" value="路德斯湖附近" />
+      <string name="5" value="水之路" />
+      <string name="5_0" value="水之路" />
+      <string name="6" value="納希沙漠" />
+      <string name="6_0" value="納希沙漠" />
+      <string name="6_1" value="瑪迦提亞城" />
+      <string name="7" value="武陵桃園" />
+      <string name="7_0" value="武陵桃園" />
+      <string name="7_1" value="武陵桃園" />
+      <string name="8" value="米納爾森林" />
+      <string name="8_0" value="米納爾森林" />
+      <string name="8_1" value="龍森林" />
+      <string name="8_2" value="克里提亞斯" />
+      <string name="8_3" value="米納爾森林" />
+      <string name="9" value="時間神殿" />
+      <string name="9_0" value="過去的門" />
+      <string name="9_1" value="未來之門" />
+      <string name="10" value="格蘭蒂斯" />
+      <string name="10_0" value="格蘭蒂斯" />
+      <string name="10_1" value="格蘭蒂斯" />
+      <string name="11" value="奧術之河" />
+      <string name="11_0" value="奧術之河" />
+      <string name="11_1" value="奧術之河" />
+      <string name="11_2" value="奧術之河" />
+    </imgdir>
+  </imgdir>
+  <imgdir name="EquipEssence">
+    <string name="Extract_Drop_Fail" value="此道具無法輸出成裝備的精髓。" />
+    <string name="Extract_Process_Try" value="此裝備輸出成精髓後，裝備將會消失且無法復原。\n要將裝備輸出成精髓嗎？" />
+    <string name="Confirm_Drop_Fail" value="只能使用裝備的精髓道具。" />
+    <string name="Confirm_Process_Try" value="要將裝備的精髓轉換成選擇的裝備嗎？" />
+    <string name="UIOpen_EventDate" value="非可使用的時間。" />
+    <string name="UIOpen_AlreadyTransmit" value="已經完成裝備傳授。" />
+    <string name="Extract_UIOpen_Fail" value="已經輸出道具的精髓。" />
+    <string name="Confirm_UIOpen_Fail" value="沒有輸出的裝備精髓的資訊。" />
+    <string name="Confirm_SameCharacter" value="嘗試再次將裝備傳授給輸出裝備的角色。\n傳授的裝備有可以不會與原本的裝備一致，仍會消耗傳授機會。\n真的要進續進行嗎？" />
+    <string name="Type_Empty" value="沒有可以選擇的道具。" />
+    <string name="Extract_Process_Fail_Exchange" value="裝備的精髓輸出失敗。請確認道具欄。" />
+    <string name="Extract_Process_Fail_Etc" value="裝備的精髓輸出失敗。" />
+    <string name="Confirm_Process_Fail_Exchange" value="轉換裝備失敗。請確認道具欄。" />
+    <string name="Confirm_Process_Fail_Etc" value="轉換裝備失敗。" />
+  </imgdir>
+</imgdir>

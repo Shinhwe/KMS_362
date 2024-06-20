@@ -1,835 +1,835 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <imgdir name="EventUIInfo.img">
-<imgdir name="0">
-<string name="start" value="2011042100"/>
-<string name="end" value="2011053000"/>
-<imgdir name="mission">
-<imgdir name="0">
-<int name="quest" value="11253"/>
-<string name="title" value="팔락조의 깃털 사용 성공"/>
-<string name="desc" value="이벤트 기간 동안 45렙제 메이플 장비를 잠재능력이 박힌 70렙제 메이플 장비로 바꿔주는 팔락조의 깃털(npc벼루 판매)과 반짝이는 팔락조의 깃털(몬스터 팔락조 드롭)을 사용해서 8번 성공의 기쁨을 느껴보자."/>
-<int name="count" value="8"/>
-</imgdir>
-<imgdir name="1">
-<int name="quest" value="11250"/>
-<string name="title" value="팔락조 사냥"/>
-<string name="desc" value="이벤트 기간 동안 메이플월드에 필드에 나타나는 팔락조 8마리를  사냥해야한다. 언제 어디서 나타날지 모르니 항상 주위를 살펴봐야 한다."/>
-<int name="count" value="8"/>
-</imgdir>
-<imgdir name="2">
-<int name="quest" value="11252"/>
-<string name="title" value="주황버섯 라이딩"/>
-<string name="desc" value="이벤트 기간 동안 주황버섯 라이딩 이용권을 얻어서 주황버섯 라이딩을 배워보자."/>
-<int name="count" value="1"/>
-</imgdir>
-<imgdir name="3">
-<int name="quest" value="11251"/>
-<string name="title" value="단풍나무분재 재배"/>
-<string name="desc" value="이벤트 기간 동안 몬스터나 광물, 식물에서 얻을 수 있는 단풍나무 분재화분을 구해서 아이템팟(Y)에서 8개를 재배해서 열매를 얻어보자. 황금 단풍 열매를 더블클릭으로 확인해 보면 재배카운트를 올릴 수 있다."/>
-<int name="count" value="8"/>
-</imgdir>
-<imgdir name="4">
-<int name="quest" value="11259"/>
-<string name="title" value="8일간 댄스 연습"/>
-<string name="desc" value="시그너스, 리린, 발레리 중 한 사람의 팬클럽에 가입해서 댄스 연습을 도와주는 퀘스트를 8일간 수행한다. 반드시 연속될 필요는 없다. 팬클럽을 바꿔도 예전 기록이 사라지지는 않는다."/>
-<int name="count" value="8"/>
-</imgdir>
-<imgdir name="5">
-<int name="quest" value="11254"/>
-<string name="title" value="8일간 보컬 연습"/>
-<string name="desc" value="시그너스, 리린, 발레리 중 한 사람의 팬클럽에 가입해서 보컬 연습을 도와주는 퀘스트를 8일간 수행한다. 반드시 연속될 필요는 없다. 팬클럽을 바꿔도 예전 기록이 사라지지는 않는다."/>
-<int name="count" value="8"/>
-</imgdir>
-<imgdir name="6">
-<int name="quest" value="11255"/>
-<string name="title" value="8일간 악기 연습"/>
-<string name="desc" value="시그너스, 리린, 발레리 중 한 사람의 팬클럽에 가입해서 악기 연습을 도와주는 퀘스트를 8일간 수행한다. 반드시 연속될 필요는 없다. 팬클럽을 바꿔도 예전 기록이 사라지지는 않는다."/>
-<int name="count" value="8"/>
-</imgdir>
-<imgdir name="7">
-<int name="quest" value="11258"/>
-<string name="title" value="8일간 응원하기"/>
-<string name="desc" value="시그너스, 리린, 발레리 중 한 사람의 팬클럽에 가입해서 응원해 주는 퀘스트를 8일간 수행한다. 반드시 연속될 필요는 없다. 팬클럽을 바꿔도 예전 기록이 사라지지는 않는다."/>
-<int name="count" value="8"/>
-</imgdir>
-<imgdir name="8">
-<int name="quest" value="11257"/>
-<string name="title" value="8일간 평판 관리"/>
-<string name="desc" value="시그너스, 리린, 발레리 중 한 사람의 팬클럽에 가입해서 평판 관리를 도와주는 퀘스트를 8일간 수행한다. 반드시 연속될 필요는 없다. 팬클럽을 바꿔도 예전 기록이 사라지지는 않는다."/>
-<int name="count" value="8"/>
-</imgdir>
-<imgdir name="9">
-<int name="quest" value="11256"/>
-<string name="title" value="8일간 외모 관리"/>
-<string name="desc" value="시그너스, 리린, 발레리 중 한 사람의 팬클럽에 가입해서 외모 관리를 도와주는 퀘스트를 8일간 수행한다. 반드시 연속될 필요는 없다. 팬클럽을 바꿔도 예전 기록이 사라지지는 않는다."/>
-<int name="count" value="8"/>
-</imgdir>
-</imgdir>
-</imgdir>
-<imgdir name="1">
-<imgdir name="npcInfo">
-<imgdir name="9010031">
-<string name="job" value="여제"/>
-<string name="year" value="???"/>
-<string name="desc" value="기사단의 요청으로 콘테스트 참가. 타고난 목소리와 기품이 있지만 노력이 부족한 편"/>
-</imgdir>
-<imgdir name="9010032">
-<string name="job" value="말괄량이 해적"/>
-<string name="year" value="16세"/>
-<string name="desc" value="가족관계 불명. 밝고 명랑한 왈가닥 소녀다. 자신이 누구인지 알아내기 위해 콘테스트에 참여"/>
-</imgdir>
-<imgdir name="9010033">
-<string name="job" value="펭귄들의 대장"/>
-<string name="year" value="16세"/>
-<string name="desc" value="선천적인 재능은 부족하지만 얼음속에 갇힌 아란을 기다릴만큼 끈기와 근성이 뛰어나다."/>
-</imgdir>
-</imgdir>
-<imgdir name="questInfo">
-<imgdir name="11230">
-<string name="title" value="보컬 트레이닝"/>
-<string name="desc" value="메이플운영자로부터 받을 수 있는 너는 7ㅏ수다&apos; 퀘스트를 완료하면 보컬 트레이닝 횟수가 증가하고 NPC의 성장에 영향을 미칠 수 있습니다."/>
-</imgdir>
-<imgdir name="11231">
-<string name="title" value="악기 트레이닝"/>
-<string name="desc" value="카산드라로부터 받을 수 있는 &apos;도전! 오르페우스&apos; 퀘스트를 완료하면 악기 트레이닝 횟수가 증가하고 NPC의 성장에 영향을 미칠 수 있습니다."/>
-</imgdir>
-<imgdir name="11232">
-<string name="title" value="댄스 트레이닝"/>
-<string name="desc" value="가가로부터 받을 수 있는 &apos;쉘 위 댄스?&apos; 퀘스트를 완료하면 댄스 트레이닝 횟수가 증가하고 NPC의 성장에 영향을 미칠 수 있습니다."/>
-</imgdir>
-<imgdir name="11233">
-<string name="title" value="외모 관리하기"/>
-<string name="desc" value="카산드라로 부터 받을 수 있는 &apos;다이어트는 스타의 숙명&apos; 퀘스트를 완료하면 외모 관리 횟수가 증가하고 NPC의 성장에 영향을 미칠 수 있습니다."/>
-</imgdir>
-<imgdir name="11234">
-<string name="title" value="인기 관리하기"/>
-<string name="desc" value="가가로부터 받을 수 있는 &apos;스타는 무엇으로 사는가&apos; 퀘스트를 완료하면 인기 관리 횟수가 증가하고 NPC의 성장에 영향을 미칠 수 있습니다."/>
-</imgdir>
-<imgdir name="11235">
-<string name="title" value="평판 관리하기"/>
-<string name="desc" value="카산드라로부터 받을 수 있는 &apos;스타 X파일 유출사건&apos; 퀘스트를 완료하면 평판 관리 횟수가 증가하고 NPC의 성장에 영향을 미칠 수 있습니다."/>
-</imgdir>
-</imgdir>
-<imgdir name="notice">
-<string name="0" value="$0$매주 일요일 PM 2시, 5시에 라이징$1$스타 3인방의 특별한$2$ 콘서트가 열립니다$4$"/>
-<string name="1" value="$0$차원의 거울을 통해 $7$스타홀로 이동하시면 미래의 $5$$4$3인방을 만나실 수 있습니다$6$$3$"/>
-<string name="2" value="$0$NPC의 성장은 5월1일, 8일, 15일, 22일, 29일에 확인하실 수 있습니다.$3$$2$"/>
-</imgdir>
-</imgdir>
-<imgdir name="2">
-<string name="start" value="2011051600"/>
-<string name="end" value="2011062300"/>
-<imgdir name="mission">
-<imgdir name="0">
-<int name="quest" value="11300"/>
-<string name="title" value="출석체크 3일차!"/>
-<string name="desc" value="하루에 한 번씩 세인트 세이버 스톤에 힘을 모아 #e세인트 세이버의 축복 스킬을 1회 사용#n하면 출석 체크를 할 수 있다.\r\n#r출석 체크를 3일 달성#k하면 체력과 마력을 전부 회복시켜 주는 #e#b파워 엘릭서 200개#k#n를 획득할 수 있다."/>
-<int name="count" value="3"/>
-</imgdir>
-<imgdir name="1">
-<int name="quest" value="11300"/>
-<string name="title" value="출석체크 4일차!"/>
-<string name="desc" value="하루에 한 번씩 세인트 세이버 스톤에 힘을 모아 #e세인트 세이버의 축복 스킬을 1회 사용#n하면 출석 체크를 할 수 있다.\r\n#r출석 체크를 4일 달성#k하면 자신이 배운 전문 기술에 맞는 레시피 중 3개를 얻을 수 있는 #e#b비밀의 레시피#k#n를 획득할 수 있다."/>
-<int name="count" value="4"/>
-</imgdir>
-<imgdir name="2">
-<int name="quest" value="11300"/>
-<string name="title" value="출석체크 5일차!"/>
-<string name="desc" value="하루에 한 번씩 세인트 세이버 스톤에 힘을 모아 #e세인트 세이버의 축복 스킬을 1회 사용#n하면 출석 체크를 할 수 있다.\r\n#r출석 체크를 5일 달성#k하면 장비 아이템의 주문서 사용 가능 수치를 1 증가시켜 주는 #e#b황금 망치를 1개#k#n 획득할 수 있다. 단, 실패하면 아무 일도 일어나지 않는다."/>
-<int name="count" value="5"/>
-</imgdir>
-<imgdir name="3">
-<int name="quest" value="11300"/>
-<string name="title" value="출석체크 6일차!"/>
-<string name="desc" value="하루에 한 번씩 세인트 세이버 스톤에 힘을 모아 #e세인트 세이버의 축복 스킬을 1회 사용#n하면 출석 체크를 할 수 있다.\r\n#r출석 체크를 6일 달성#k하면 나이트메어 라이딩 스킬을 10일 간 사용할 수 있는 #e#b나이트메어 라이딩 10일 이용권을 1개#k#n 획득할 수 있다."/>
-<int name="count" value="6"/>
-</imgdir>
-<imgdir name="4">
-<int name="quest" value="11300"/>
-<string name="title" value="출석체크 7일차!"/>
-<string name="desc" value="하루에 한 번씩 세인트 세이버 스톤에 힘을 모아 #e세인트 세이버의 축복 스킬을 1회 사용#n하면 출석 체크를 할 수 있다.\r\n#r출석 체크를 7일 달성#k하면 업그레이드가 끝난 아이템을 한 단계 더 강화시켜주는 #e#b고급 장비 강화 주문서 3개#k#n를 획득할 수 있다."/>
-<int name="count" value="7"/>
-</imgdir>
-<imgdir name="5">
-<int name="quest" value="11300"/>
-<string name="title" value="출석체크 8일차!"/>
-<string name="desc" value="하루에 한 번씩 세인트 세이버 스톤에 힘을 모아 #e세인트 세이버의 축복 스킬을 1회 사용#n하면 출석 체크를 할 수 있다.\r\n#r출석 체크를 8일 달성#k하면 잠재 능력이 없는 아이템에 잠재 능력을 부여할 수 있는 #e#b스페셜 잠재능력 부여 주문서 3개#k#n를 획득할 수 있다."/>
-<int name="count" value="8"/>
-</imgdir>
-<imgdir name="6">
-<int name="quest" value="11300"/>
-<string name="title" value="출석체크 9일차!"/>
-<string name="desc" value="하루에 한 번씩 세인트 세이버 스톤에 힘을 모아 #e세인트 세이버의 축복 스킬을 1회 사용#n하면 출석 체크를 할 수 있다.\r\n#r출석 체크를 9일 달성#k하면 장비 아이템의 주문서 사용 가능 수치를 1만큼 더 올려 주는 #e#b황금 망치를 3개#k#n 획득할 수 있다. 단, 실패하면 아무 일도 일어나지 않는다."/>
-<int name="count" value="9"/>
-</imgdir>
-<imgdir name="7">
-<int name="quest" value="11300"/>
-<string name="title" value="출석체크 10일차!"/>
-<string name="desc" value="하루에 한 번씩 세인트 세이버 스톤에 힘을 모아 #e세인트 세이버의 축복 스킬을 1회 사용#n하면 출석 체크를 할 수 있다.\r\n#r출석 체크를 10일 달성#k하면 레벨 제한 75, #e업그레이드 가능 수치 7, STR/DEX/INT/LUK +3, HP/MP +200\n이동속도/점프력 +10, 회피치/명중치 +100, 모든 성향 +40#n옵션을 가진 #b#e세인트 세이버 이어링#n#k을 받을 수 있다."/>
-<int name="count" value="10"/>
-</imgdir>
-<imgdir name="8">
-<int name="quest" value="11300"/>
-<string name="title" value="출석체크 모두 완료!"/>
-<string name="desc" value="10일 출석을 모두 완료하였다. 이제 세인트 세이버 스톤의 힘을 빌려 무한 사냥을 즐기자!"/>
-<int name="count" value="-1"/>
-</imgdir>
-</imgdir>
-</imgdir>
-<imgdir name="3">
-<string name="start" value="2011061600"/>
-<string name="end" value="2011063000"/>
-<imgdir name="mission">
-<imgdir name="0">
-<int name="quest" value="11343"/>
-<string name="title" value="영농 일기 1일째!"/>
-<string name="desc" value="가가에게서 받는 첫번째 꿀수박 화분을 잘 키워서 가가표 꿀수박을 획득하면 하루 1번씩 꿀수박 영농 일기를 쓸 수 있다.\r\n1일째 보상으로 #b영농 후계자 칭호#k를 얻을 수 있다."/>
-</imgdir>
-<imgdir name="1">
-<int name="quest" value="11344"/>
-<string name="title" value="영농 일기 3일째!"/>
-<string name="desc" value="가가에게서 받는 첫번째 꿀수박 화분을 잘 키워서 가가표 꿀수박을 획득하면 하루 1번씩 꿀수박 영농 일기를 쓸 수 있다.\r\n3일째 보상으로 #b파워 엘릭서 100개#k를 얻을 수 있다."/>
-</imgdir>
-<imgdir name="2">
-<int name="quest" value="11345"/>
-<string name="title" value="영농 일기 5일째!"/>
-<string name="desc" value="가가에게서 받는 첫번째 꿀수박 화분을 잘 키워서 가가표 꿀수박을 획득하면 하루 1번씩 꿀수박 영농 일기를 쓸 수 있다.\r\n5일째 보상으로 다른 대륙의 원하는 도시로 이동시켜 주는 #b대륙 이동 주문서#k를 얻을 수 있다."/>
-</imgdir>
-<imgdir name="3">
-<int name="quest" value="11346"/>
-<string name="title" value="영농 일기 7일째!"/>
-<string name="desc" value="가가에게서 받는 첫번째 꿀수박 화분을 잘 키워서 가가표 꿀수박을 획득하면 하루 1번씩 꿀수박 영농 일기를 쓸 수 있다.\r\n7일째 보상으로 #b50레벨 이상, 공격력/마력+5, 물리/마법방어력+50, 이동속도+10, 점프력+8, 30일 기간제 #r꿀수박 목걸이#k가 들어 있는 보관함을 얻을 수 있다."/>
-</imgdir>
-<imgdir name="4">
-<int name="quest" value="11346"/>
-<string name="title" value="영농 일기 작성 완료!"/>
-<string name="desc" value="가가에게서 받은 영농 일기를 마지막 페이지까지 모두 작성하였다. 매일 꿀수박 화분을 키우고 가가표 꿀수박의 신비한 힘으로 무한 사냥을 즐기자!"/>
-</imgdir>
-</imgdir>
-</imgdir>
-<imgdir name="4">
-<string name="start" value="2011052600"/>
-<string name="end" value="2011062300"/>
-<imgdir name="mission">
-<imgdir name="0">
-<int name="quest" value="11353"/>
-<string name="title" value="팥빙수 제조 1일차!"/>
-<string name="desc" value="하루에 한 번 #e빙수용 팥, 얼음, 떡 세 가지 재료를 모아 특제 팥빙수#n를 만들면 더위사냥 비법서에 기록을 남길 수 있다.\r\n#r팥빙수 제조를 1일간 수행#k하면 MP를 2000 회복시켜 주는 #e#b팥빙수 100개#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="1">
-<int name="quest" value="11354"/>
-<string name="title" value="팥빙수 제조 3일차!"/>
-<string name="desc" value="하루에 한 번 #e빙수용 팥, 얼음, 떡 세 가지 재료를 모아 특제 팥빙수를#n 만들면 더위사냥 비법서에 기록을 남길 수 있다.\r\n#r팥빙수 제조를 3일간 수행#k하면 HP와 MP를 모두 회복시켜 주는 #e#b파워엘릭서 100개#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="2">
-<int name="quest" value="11355"/>
-<string name="title" value="팥빙수 제조 5일차!"/>
-<string name="desc" value="하루에 한 번 #e빙수용 팥, 얼음, 떡 세 가지 재료를 모아 특제 팥빙수#n를 만들면 더위사냥 비법서에 기록을 남길 수 있다.\r\n#r팥빙수 제조를 5일간 수행#k하면 업그레이드가 끝난 아이템을 한 단계 더 강화시켜주는 #e#b고급 장비 강화 주문서#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="3">
-<int name="quest" value="11356"/>
-<string name="title" value="팥빙수 제조 7일차!"/>
-<string name="desc" value="하루에 한 번 #e빙수용 팥, 얼음, 떡을 모아 특제 팥빙수#n를 만들면 더위사냥 비법서에 기록을 남길 수 있다.\r\n#r팥빙수 제조를 7일간 수행#k하면 STR/DEX/INT/LUK +5, 물리/마법 방어력 +10, 회피치/명중치 +30 옵션을 가진 얼굴장식 아이템  #e#b얼음결정 페이스페인팅#k#n을 획득할 수 있다."/>
-</imgdir>
-<imgdir name="4">
-<int name="quest" value="11356"/>
-<string name="title" value="팥빙수 제조 7일차!"/>
-<string name="desc" value="팥빙수 제조를 7일차까지 완료하였다. 이제 남은 여름도 시원하게 더위사냥!!!"/>
-</imgdir>
-</imgdir>
-</imgdir>
-<imgdir name="5">
-<string name="start" value="2011062300"/>
-<string name="end" value="2011070700"/>
-<imgdir name="mission">
-<imgdir name="0">
-<int name="quest" value="11393"/>
-<string name="title" value="보물지도 완성 1일차!"/>
-<string name="desc" value="하루에 한 번 #e해적의 보물지도 조각 6개를 모아 #n 지도를 완성하면 보물 지도책에 기록을 남길 수 있다.\r\n#r보물지도를 처음 완성#k시키면 HP와 MP를 모두 회복시켜 주는 #b파워엘릭서 20개#k를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="1">
-<int name="quest" value="11394"/>
-<string name="title" value="보물지도 완성 3일차!"/>
-<string name="desc" value="하루에 한 번 #e해적의 보물지도 조각 6개를 모아 #n 지도를 완성하면 보물 지도책에 기록을 남길 수 있다.\r\n#r보물지도 완성을 3일간 수행#k하면 다른 대륙의 원하는 도시로 이동시켜 주는 #b대륙 이동 주문서 3장#k과 HP와 MP를 모두 회복시켜 주는 #b파워엘릭서 30개#k을 얻을 수 있다."/>
-</imgdir>
-<imgdir name="2">
-<int name="quest" value="11395"/>
-<string name="title" value="보물지도 완성 5일차!"/>
-<string name="desc" value="하루에 한 번 #e해적의 보물지도 조각 6개를 모아 #n 지도를 완성하면 보물 지도책에 기록을 남길 수 있다.\r\n#r보물지도 완성을 5일간 수행#k하면 핸드캐논에 65%의 확률로 물리공격력+2, STR+1 의 옵션을 추가시켜주는 #b핸드캐논 공격력 주문서 65% 3장#k과 #b파워엘릭서 50개#k을 얻을 수 있다."/>
-</imgdir>
-<imgdir name="3">
-<int name="quest" value="11396"/>
-<string name="title" value="보물지도 완성 7일차!"/>
-<string name="desc" value="하루에 한 번 #e해적의 보물지도 조각 6개를 모아 #n 지도를 완성하면 보물 지도책에 기록을 남길 수 있다.\r\n#r보물지도 완성을 7일간 수행#k하면 공격력+107, 물리방어력+62 의 옵션을 가진 캐논슈터의 특별한 100레벨 무기 #b레전드 크뤼소스#k를 얻을 수 있다."/>
-</imgdir>
-<imgdir name="4">
-<int name="quest" value="11396"/>
-<string name="title" value="보물지도 완성 7일차!"/>
-<string name="desc" value="보물지도 완성을 7일차까지 완료하였다. 하지만 나의 모험은 이제 시작일 뿐이야!!!"/>
-</imgdir>
-</imgdir>
-</imgdir>
-<imgdir name="6">
-<string name="start" value="2011063000"/>
-<string name="end" value="2011071800"/>
-<imgdir name="mission">
-<imgdir name="0">
-<int name="quest" value="11372"/>
-<string name="title" value="인형 회수 1일째!"/>
-<string name="desc" value="하루에 한 번씩 원숭이 인형을 되찾아 주면 회수 기록부에 도장을 찍을 수 있다.\r\n1일 째 보상으로 #b파워 엘릭서 20개#k를 받을 수 있다."/>
-</imgdir>
-<imgdir name="1">
-<int name="quest" value="11373"/>
-<string name="title" value="인형 회수 3일째!"/>
-<string name="desc" value="하루에 한 번씩 원숭이 인형을 되찾아 주면 회수 기록부에 도장을 찍을 수 있다.\r\n3일 째 보상으로 #b파워 엘릭서 30개#k와 #b방어구 공격력 / 마력 주문서 15% 2종 중 1개#k를 선택해서 받을 수 있다."/>
-</imgdir>
-<imgdir name="2">
-<int name="quest" value="11374"/>
-<string name="title" value="인형 회수 5일째!"/>
-<string name="desc" value="하루에 한 번씩 원숭이 인형을 되찾아 주면 회수 기록부에 도장을 찍을 수 있다.\r\n5일 째 보상으로 #b파워 엘릭서 50개#k와 #b장갑 공격력 / 마력 주문서 60% 2종 중 1개#k를 선택해서 받을 수 있다."/>
-</imgdir>
-<imgdir name="3">
-<int name="quest" value="11375"/>
-<string name="title" value="인형 회수 7일째!"/>
-<string name="desc" value="하루에 한 번씩 원숭이 인형을 되찾아 주면 회수 기록부에 도장을 찍을 수 있다.\r\n7일 째 보상으로 #r기간 제한이 없는 #b스페셜 잠재 능력 부여 주문서 3장#k과 계정 내 이동이 가능하고 캐논 슈터가 가지고 있을 경우 원숭이를 장식할 수 있는 #b블링블링 몽키#k를 받을 수 있다."/>
-</imgdir>
-<imgdir name="4">
-<int name="quest" value="11371"/>
-<string name="title" value="출석체크 모두 완료!"/>
-<string name="desc" value="7일 출석을 모두 완료하였다. 10분에 한 번씩 원숭이 인형을 되찾아 주고 #b몽키 바나나#k와 #b캐논 슈터용 미미르의 샘물#k을 받자."/>
-<int name="count" value="-1"/>
-</imgdir>
-</imgdir>
-</imgdir>
-<imgdir name="7">
-<string name="start" value="2011062800"/>
-<string name="end" value="2011072100"/>
-<imgdir name="mission">
-<imgdir name="0">
-<int name="quest" value="11436"/>
-<string name="title" value="도전! 딸기주스 달인"/>
-<string name="desc" value="이벤트 기간 동안 일반 몬스터를 사냥해 새빨간 딸기 50개를 모아 가가에게 전달하면 딸기 주스를 만들 수 있다.  가가와 함께 딸기 주스를 3회 만들면 #b경험치#k를 보상으로 받고 #r멜론주스  달인#k에  도전할 수 있다."/>
-<int name="count" value="3"/>
-</imgdir>
-<imgdir name="1">
-<int name="quest" value="11437"/>
-<string name="title" value="도전! 멜론주스 달인"/>
-<string name="desc" value="이벤트 기간 동안 일반 몬스터를 사냥해 시원한 멜론 50개를 모아 가가에게 전달하면 멜론주스를 만들 수 있다.  가가와 함께 멜론주스를 5회 만들면 #b경험치#k를 보상으로 받고 #r키위주스  달인#k에  도전할 수 있다."/>
-<int name="count" value="5"/>
-<int name="lock" value="11436"/>
-</imgdir>
-<imgdir name="2">
-<int name="quest" value="11438"/>
-<string name="title" value="도전! 키위주스 달인"/>
-<string name="desc" value="이벤트 기간 동안 일반 몬스터를 사냥해 잘 익은 키위 50개를 모아 가가에게 전달하면 키위주스를 만들 수 있다.  가가와 함께 키위 주스를 7회 만들면 #b경험치#k를 보상으로 받고 #r파인애플주스  달인#k에  도전할 수 있다."/>
-<int name="count" value="7"/>
-<int name="lock" value="11437"/>
-</imgdir>
-<imgdir name="3">
-<int name="quest" value="11439"/>
-<string name="title" value="도전! 파인애플주스 달인"/>
-<string name="desc" value="이벤트 기간 동안 일반 몬스터를 사냥해 싱싱한 파인애플 50개를 모아 가가에게 전달하면 파인애플주스를 만들 수 있다.  가가와 함께 파인애플 주스를 10회 만들면 경험치와 함께  최종 보상으로 의자 아이템인 #r핑크 비치파라솔#k과 #bAllstat+1, 물리/마법방어력 +50 의 옵션#k을 가진 #r새콤달콤 귀고리#k를 받을 수 있다. "/>
-<int name="count" value="10"/>
-<int name="lock" value="11438"/>
-</imgdir>
-</imgdir>
-</imgdir>
-<imgdir name="8">
-<string name="start" value="2011071100"/>
-<string name="end" value="2011081000"/>
-<imgdir name="mission">
-<imgdir name="0">
-<int name="quest" value="11544"/>
-<string name="title" value="에코레인저 3일차!"/>
-<string name="desc" value="하루에 한 번씩 코즈믹 그린에 힘을 모아 #e샤이닝 그린 스킬을 1회 사용#n하면 작전 일지에 기록을 남길 수 있다.\r\n#r3일 차 보상으로 #k체력과 마력을 전부 회복시켜 주는 #e#b파워 엘릭서 50개#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="1">
-<int name="quest" value="11545"/>
-<string name="title" value="에코레인저 4일차!"/>
-<string name="desc" value="하루에 한 번씩 코즈믹 그린에 힘을 모아 #e샤이닝 그린 스킬을 1회 사용#n하면 출동 일지에 기록을 남길 수 있다.\r\n#r4일 차 보상으로 #k전설의 상점에서 사용 가능한 #e#b레전드 코인 2개#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="2">
-<int name="quest" value="11546"/>
-<string name="title" value="에코레인저 5일차!"/>
-<string name="desc" value="하루에 한 번씩 코즈믹 그린에 힘을 모아 #e샤이닝 그린 스킬을 1회 사용#n하면 작전 일지에 기록을 남길 수 있다.\r\n#r5일 차 보상으로 #k눈 장식 아이템에 스탯+2 의 옵션을 추가시켜주는 #e#b눈 장식 스탯 주문서 60%#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="3">
-<int name="quest" value="11547"/>
-<string name="title" value="에코레인저 6일차!"/>
-<string name="desc" value="하루에 한 번씩 코즈믹 그린에 힘을 모아 #e샤이닝 그린 스킬을 1회 사용#n하면 작전 일지에 기록을 남길 수 있다.\r\n#r6일 차 보상으로 #k전설의 상점에서 사용 가능한 #e#b레전드 코인 3개#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="4">
-<int name="quest" value="11548"/>
-<string name="title" value="에코레인저 7일차!"/>
-<string name="desc" value="하루에 한 번씩 코즈믹 그린에 힘을 모아 #e샤이닝 그린 스킬을 1회 사용#n하면 작전 일지에 기록을 남길 수 있다.\r\n#r7일 차 보상으로 #k악세서리 아이템에 공격력/마력 +1 옵션을 추가시키는 #e#b악세서리 공격력/마력 15% 주문서#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="5">
-<int name="quest" value="11549"/>
-<string name="title" value="에코레인저 8일차!"/>
-<string name="desc" value="하루에 한 번씩 코즈믹 그린에 힘을 모아 #e샤이닝 그린 스킬을 1회 사용#n하면 작전 일지에 기록을 남길 수 있다.\r\n#r8일 차 보상으로 #k전설의 상점에서 사용 가능한 #e#b레전드 코인 5개#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="6">
-<int name="quest" value="11550"/>
-<string name="title" value="에코레인저 9일차!"/>
-<string name="desc" value="하루에 한 번씩 코즈믹 그린에 힘을 모아 #e샤이닝 그린 스킬을 1회 사용#n하면 작전 일지에 기록을 남길 수 있다.\r\n#r9일 차 보상으로#k 장비 아이템의 주문서 사용 가능 수치를 1만큼 더 올려 주는 #e#b황금 망치를#k#n 획득할 수 있다."/>
-</imgdir>
-<imgdir name="7">
-<int name="quest" value="11551"/>
-<string name="title" value="에코레인저 10일차!"/>
-<string name="desc" value="하루에 한 번씩 코즈믹 그린에 힘을 모아 #e샤이닝 그린 스킬을 1회 사용#n하면 작전 일지에 기록을 남길 수 있다.\r\n#r10일 차 보상으로#k 레벨 제한 10, #e공격력/마력 +2, STR/DEX/INT/LUK +2, 물리/마법 방어력 +20, HP/MP +20, 회피치/명중치 +30, 매력 +100#n 옵션을 가진 눈 장식 아이템 #b#e엘븐 글래스#n#k를 받을 수 있다."/>
-</imgdir>
-<imgdir name="8">
-<int name="quest" value="11551"/>
-<string name="title" value="에코레인저 모든 미션 완료!"/>
-<string name="desc" value="에코레인저로서의 모든 미션을 완료하였다. 이제 샤이닝 그린의 힘과 함께 더욱 멋진 메이플 월드를 만들어 나가자! "/>
-</imgdir>
-</imgdir>
-<string name="path" value="UI/UIWindow2.img/EventInfo/bg/2/backgrnd"/>
-<int name="count" value="8"/>
-<int name="quest" value="11556"/>
-</imgdir>
-<imgdir name="9">
-<string name="start" value="2011080400"/>
-<string name="end" value="2011081800"/>
-<imgdir name="mission">
-<imgdir name="0">
-<int name="quest" value="11582"/>
-<string name="title" value="몬스터 소탕 1일차!"/>
-<string name="desc" value="하루 한 번 #r휴양지 몬스터 소탕! 퀘스트를 완료#k하면 출석 체크를 할 수 있다.\r\n#b1일차 보상#k으로 체력과 마력을 모두 회복시켜 주는 #b파워 엘릭서 20개#k를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="1">
-<int name="quest" value="11583"/>
-<string name="title" value="몬스터 소탕 2일차!"/>
-<string name="desc" value="하루 한 번 #r휴양지 몬스터 소탕! 퀘스트를 완료#k하면 출석 체크를 할 수 있다.\r\n#b2일차 보상#k으로 전설의 상점에서 사용할 수 있는 #b레전드 코인을 1개#k를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="2">
-<int name="quest" value="11584"/>
-<string name="title" value="몬스터 소탕 3일차!"/>
-<string name="desc" value="하루 한 번 #r휴양지 몬스터 소탕! 퀘스트를 완료#k하면 출석 체크를 할 수 있다.\r\n#b3일차 보상#k으로 체력과 마력을 전부 회복시켜 주는 #b파워 엘릭서 30개#k를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="3">
-<int name="quest" value="11585"/>
-<string name="title" value="몬스터 소탕 4일차!"/>
-<string name="desc" value="하루 한 번 #r휴양지 몬스터 소탕! 퀘스트를 완료#k하면 출석 체크를 할 수 있다.\r\n#b4일차 보상#k으로 전설의 상점에서 사용할 수 있는 #b레전드 코인 3개#k를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="4">
-<int name="quest" value="11586"/>
-<string name="title" value="몬스터 소탕 5일차!"/>
-<string name="desc" value="하루 한 번 #r휴양지 몬스터 소탕! 퀘스트를 완료#k하면 출석 체크를 할 수 있다.\r\n#b5일차 보상#k으로 자신이 배운 전문 기술의 레시피를 3개 획득할 수 있는 #b비밀의 레시피를 1개#k 획득할 수 있다."/>
-</imgdir>
-<imgdir name="5">
-<int name="quest" value="11587"/>
-<string name="title" value="몬스터 소탕 6일차!"/>
-<string name="desc" value="하루 한 번 #r휴양지 몬스터 소탕! 퀘스트를 완료#k하면 출석 체크를 할 수 있다.\r\n#b6일차 보상#k으로 업그레이드가 끝난 아이템을 강화할 수 있는 #b고급 장비 강화 주문서 1개#k를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="6">
-<int name="quest" value="11588"/>
-<string name="title" value="몬스터 소탕 7일차!"/>
-<string name="desc" value="하루 한 번 #r휴양지 몬스터 소탕! 퀘스트를 완료#k하면 출석 체크를 할 수 있다.\r\n#b7일차 보상#k으로 일반 아이템에 잠재 능력을 부여하는 #b스페셜 잠재 능력 부여 주문서 3개#k를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="7">
-<int name="quest" value="11588"/>
-<string name="title" value="몬스터 소탕 모두 완료!"/>
-<string name="desc" value="우리의 여름을 방해하는 몬스터 소탕을 7일 모두 완료하였다. 더욱 쾌적해진 메이플 월드에서 신나는 여름을 만들어 나가자!"/>
-</imgdir>
-</imgdir>
-<string name="path" value="UI/UIWindow2.img/EventInfo/bg/2/backgrnd"/>
-<int name="count" value="7"/>
-<int name="quest" value="11598"/>
-</imgdir>
-<imgdir name="10">
-<string name="start" value="2011082500"/>
-<string name="end" value="2011090900"/>
-<imgdir name="mission">
-<imgdir name="0">
-<int name="quest" value="11658"/>
-<string name="title" value="추억만들기 1일차!"/>
-<string name="desc" value="하루에 한 번씩 그 날의 추억만들기 퀘스트를 완료하면 여름의 추억 일기에 기록을 남길 수 있다.\r\n#r1일 차 보상으로 #k체력과 마력을 전부 회복시켜 주는 #e#b파워 엘릭서 20개#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="1">
-<int name="quest" value="11659"/>
-<string name="title" value="추억만들기 2일차!"/>
-<string name="desc" value="하루에 한 번씩 그 날의 추억만들기 퀘스트를 완료하면 여름의 추억 일기에 기록을 남길 수 있다.\r\n#r2일 차 보상으로 #k공격력, 마력, 체력, 마나, 이동속도를 일정시간동안 높여주는 #e#b복날의 닭다리 버프 쿠폰 3장#k#n을 획득할 수 있다."/>
-</imgdir>
-<imgdir name="2">
-<int name="quest" value="11660"/>
-<string name="title" value="추억만들기 3일차!"/>
-<string name="desc" value="하루에 한 번씩 그 날의 추억만들기 퀘스트를 완료하면 여름의 추억 일기에 기록을 남길 수 있다.\r\n#r3일 차 보상으로 #k직업과 레벨의 제한 없이 캐릭터의 경험치를 일정 비율 상승시켜주는 소비아이템 #e#b레전드 미미르의 샘물 3개와 캐논슈터의 친구 블링블링 몽키#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="3">
-<int name="quest" value="11661"/>
-<string name="title" value="추억만들기 4일차!"/>
-<string name="desc" value="하루에 한 번씩 그 날의 추억만들기 퀘스트를 완료하면 여름의 추억 일기에 기록을 남길 수 있다.\r\n#r4일 차 보상으로 #k1시간동안 획득 경험치의 양을 1.5배 상승시켜 주는 #e#b경험치 1.5배 쿠폰 3장#k#n을 획득할 수 있다."/>
-</imgdir>
-<imgdir name="4">
-<int name="quest" value="11662"/>
-<string name="title" value="추억만들기 5일차!"/>
-<string name="desc" value="하루에 한 번씩 그 날의 추억만들기 퀘스트를 완료하면 여름의 추억 일기에 기록을 남길 수 있다.\r\n#r5일 차 보상으로 #k업그레이드가 끝난 아이템을 한 단계 더 강화시켜주는 #e#b고급 장비 강화 주문서#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="5">
-<int name="quest" value="11663"/>
-<string name="title" value="추억만들기 6일차!"/>
-<string name="desc" value="하루에 한 번씩 그 날의 추억만들기 퀘스트를 완료하면 여름의 추억 일기에 기록을 남길 수 있다.\r\n#r6일 차 보상으로#k 장비 아이템의 주문서 사용 가능 수치를 1만큼 더 올려 주는 #e#b황금 망치를#k#n 획득할 수 있다."/>
-</imgdir>
-<imgdir name="6">
-<int name="quest" value="11664"/>
-<string name="title" value="추억만들기 7일차!"/>
-<string name="desc" value="하루에 한 번씩 그 날의 추억만들기 퀘스트를 완료하면 여름의 추억 일기에 기록을 남길 수 있다.\r\n#r7일 차 보상으로#k 레벨제한 75, 업그레이드 가능횟수 5, Allstat +3, 물리/마법방어력 +50 의 옵션과 잠재능력이 기본으로 부여되어 있는 #e#b레전드 새콤달콤 귀고리#k#n와 멋진 칭호를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="7">
-<int name="quest" value="11665"/>
-<string name="title" value="추억만들기 Bonus+"/>
-<string name="desc" value="하루에 한 번씩 그 날의 추억만들기 퀘스트를 완료하면 여름의 추억 일기에 기록을 남길 수 있다.\r\n#r7일차까지 모든 미션을 완료하고 나면 8일차부터는 스페셜 아이템 하나가 랜덤으로 나오는  #e#b여름의 추억상자#k#n를 1일 1회에 한하여 획득할 수 있다."/>
-</imgdir>
-<imgdir name="8">
-<int name="quest" value="11665"/>
-<string name="title" value="추억만들기 Bonus+"/>
-<string name="desc" value="전설의 여름 추억만들기 미션을 모두 완료하였다. 추억은 영원하리! "/>
-</imgdir>
-</imgdir>
-<string name="path" value="UI/UIWindow2.img/EventInfo/bg/2/backgrnd"/>
-<int name="count" value="8"/>
-<int name="quest" value="11649"/>
-</imgdir>
-<imgdir name="11">
-<string name="start" value="2011090800"/>
-<string name="end" value="2011091900"/>
-<imgdir name="mission">
-<imgdir name="0">
-<int name="quest" value="11696"/>
-<string name="title" value="흰 송편 세트 만들기!"/>
-<string name="desc" value="이벤트 기간 동안 일반 몬스터를 사냥해 흰 송편 50개를 모아 카산드라에게 전달하면 흰 송편 세트를 만들 수 있다. 카산드라와 함께 흰 송편 세트를 3회 만들면 #b경험치 1.5배 쿠폰#k을 보상으로 받고 #r쑥 송편 세트 만들기#k에  도전할 수 있다."/>
-<int name="start" value="0"/>
-<int name="count" value="3"/>
-<int name="lock" value="11696"/>
-</imgdir>
-<imgdir name="1">
-<int name="quest" value="11696"/>
-<string name="title" value="쑥 송편 세트 만들기!"/>
-<string name="desc" value="이벤트 기간 동안 일반 몬스터를 사냥해 쑥 송편 50개를 모아 카산드라에게 전달하면 쑥 송편 세트를 만들 수 있다. 카산드라와 함께 쑥 송편 세트를 5회 만들면 #b경험치 1.5배 쿠폰#k을 보상으로 받고 #r분홍 송편 세트 만들기#k에  도전할 수 있다."/>
-<int name="start" value="3"/>
-<int name="count" value="5"/>
-<int name="lock" value="11696"/>
-</imgdir>
-<imgdir name="2">
-<int name="quest" value="11696"/>
-<string name="title" value="분홍 송편 세트 만들기!"/>
-<string name="desc" value="이벤트 기간 동안 일반 몬스터를 사냥해 분홍 송편 50개를 모아 카산드라에게 전달하면 분홍 송편 세트를 만들 수 있다. 카산드라와 함께 분홍 송편 세트를 7회 만들면 #b경험치 1.5배 쿠폰#k을 보상으로 받고 #r금 송편 세트 만들기#k에  도전할 수 있다."/>
-<int name="start" value="8"/>
-<int name="count" value="7"/>
-<int name="lock" value="11696"/>
-</imgdir>
-<imgdir name="3">
-<int name="quest" value="11696"/>
-<string name="title" value="금 송편 세트 만들기!"/>
-<string name="desc" value="이벤트 기간 동안 일반 몬스터를 사냥해 금 송편 50개를 모아 카산드라에게 전달하면 금 송편 세트를 만들 수 있다. 카산드라와 함께 금 송편 세트를 10회 만들면 모든 능력치 +6, 공격력과 마력 +1, 물리/마법 방어력 +50, 5회 업그레이드할 수 있는 #r황금 송편 목걸이#k를 받을 수 있다."/>
-<int name="start" value="15"/>
-<int name="count" value="10"/>
-<int name="lock" value="11696"/>
-</imgdir>
-</imgdir>
-<int name="gauge" value="1"/>
-<string name="path" value="UI/UIWindow2.img/EventInfo/bg/1/backgrnd"/>
-<int name="count" value="4"/>
-</imgdir>
-<imgdir name="12">
-<string name="start" value="2011091900"/>
-<string name="end" value="2011100300"/>
-<imgdir name="mission">
-<imgdir name="0">
-<int name="quest" value="11704"/>
-<string name="title" value="첫사랑 찾기 1일차!"/>
-<string name="desc" value="하루 한 번 #r누구에게나 첫사랑은 있다! 퀘스트를 완료#k하면 출석 체크를 할 수 있다.\r\n#b1일차 보상#k으로 멋지고 재미있는 #b칭호 아이템 1개#k를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="1">
-<int name="quest" value="11705"/>
-<string name="title" value="첫사랑 찾기 2일차!"/>
-<string name="desc" value="하루 한 번 #r누구에게나 첫사랑은 있다! 퀘스트를 완료#k하면 출석 체크를 할 수 있다.\r\n#b2일차 보상#k으로 체력과 마력을 모두 회복시켜 주는 #b파워엘릭서 20개#k를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="2">
-<int name="quest" value="11706"/>
-<string name="title" value="첫사랑 찾기 3일차!"/>
-<string name="desc" value="하루 한 번 #r누구에게나 첫사랑은 있다! 퀘스트를 완료#k하면 출석 체크를 할 수 있다.\r\n#b3일차 보상#k으로 60%확률로 악세서리에 스탯+2의 옵션을 추가시켜 주는 #b악세서리 스탯 주문서 60% 1장#k을 획득할 수 있다."/>
-</imgdir>
-<imgdir name="3">
-<int name="quest" value="11707"/>
-<string name="title" value="첫사랑 찾기 4일차!"/>
-<string name="desc" value="하루 한 번 #r누구에게나 첫사랑은 있다! 퀘스트를 완료#k하면 출석 체크를 할 수 있다.\r\n#b4일차 보상#k으로 15%확률로 악세서리에 공격력/마력+1 의 옵션을 추가시켜 주는 #b악세서리 공격력/마력 주문서 15% 1장#k을 획득할 수 있다."/>
-</imgdir>
-<imgdir name="4">
-<int name="quest" value="11708"/>
-<string name="title" value="첫사랑 찾기 5일차!"/>
-<string name="desc" value="하루 한 번 #r누구에게나 첫사랑은 있다! 퀘스트를 완료#k하면 출석 체크를 할 수 있다.\r\n#b5일차 보상#k으로 15%확률로 악세서리에 공격력/마력+1 의 옵션을 추가시켜 주는 #b악세서리 공격력/마력 주문서 15% 2장#k을 획득할 수 있다."/>
-</imgdir>
-<imgdir name="5">
-<int name="quest" value="11709"/>
-<string name="title" value="첫사랑 찾기 6일차!"/>
-<string name="desc" value="하루 한 번 #r누구에게나 첫사랑은 있다! 퀘스트를 완료#k하면 출석 체크를 할 수 있다.\r\n#b6일차 보상#k으로 장비의 현재 옵션을 더 좋거나 나쁘게 조정해주는 #b혼돈의 주문서 60% 1장#k을 획득할 수 있다."/>
-</imgdir>
-<imgdir name="6">
-<int name="quest" value="11710"/>
-<string name="title" value="첫사랑 찾기 7일차!"/>
-<string name="desc" value="하루 한 번 #r누구에게나 첫사랑은 있다! 퀘스트를 완료#k하면 출석 체크를 할 수 있다.\r\n#b7일차 보상#k으로 레벨제한 70, 업그레이드 가능횟수 3, Allstat +3, 물리/마법방어력+50 의 옵션을 가진 얼굴장식 아이템 #b두근두근 첫사랑#k을 획득할 수 있다."/>
-</imgdir>
-<imgdir name="7">
-<int name="quest" value="11712"/>
-<string name="title" value="첫사랑 찾기 8일차!"/>
-<string name="desc" value="하루 한 번 #r누구에게나 첫사랑은 있다! 퀘스트를 완료#k하면 출석 체크를 할 수 있다.\r\n#b8일차 보상#k으로 세상 그 어떤 의자보다 폭신할 것만 같은 #b핑크빈 의자#k를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="8">
-<int name="quest" value="11712"/>
-<string name="title" value="그녀의 첫사랑은 어디에...?"/>
-<string name="desc" value="카산드라의 첫사랑을 찾기위해 그동안 열심히 노력하였다. 하지만 이것으로 끝은 아니니 남은 시간 동안도 그녀를 계속해서 도와줘야겠지?"/>
-</imgdir>
-</imgdir>
-<string name="path" value="UI/UIWindow2.img/EventInfo/bg/2/backgrnd"/>
-<int name="count" value="8"/>
-<int name="quest" value="11711"/>
-</imgdir>
-<imgdir name="13">
-<string name="start" value="2011112400"/>
-<string name="end" value="2011121500"/>
-<imgdir name="mission">
-<imgdir name="0">
-<int name="quest" value="11845"/>
-<string name="title" value="꼬마 인디언 구출참여 1회!"/>
-<string name="desc" value="매 시간 5분, 35분에 날라오는 초대장을 클릭하여  #r사나운 맹수로부터 꼬마 인디언들을 구출#k하면 선물을 받을 수 있다.\r\n#b구출 참여 1회차#k 보상으로  #b파워엘릭서 30개#k를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="1">
-<int name="quest" value="11846"/>
-<string name="title" value="꼬마 인디언 구출참여 5회!"/>
-<string name="desc" value="매 시간 5분, 35분에 날라오는 초대장을 클릭하여  #r사나운 맹수로부터 꼬마 인디언들을 구출#k하면 선물을 받을 수 있다.\r\n#b구출 참여 5회차#k 보상으로  #b인디언의 외침 버프#k와 #b인디언 고유의 멋진 칭호#k를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="2">
-<int name="quest" value="11847"/>
-<string name="title" value="꼬마 인디언 구출참여 10회!"/>
-<string name="desc" value="매 시간 5분, 35분에 날라오는 초대장을 클릭하여  #r사나운 맹수로부터 꼬마 인디언들을 구출#k하면 선물을 받을 수 있다.\r\n#b구출 참여 10회차#k 보상으로  #b무기 공격력/마력 주문서 60%#k 중 한 장을 선택하여 획득할 수 있다."/>
-</imgdir>
-<imgdir name="3">
-<int name="quest" value="11848"/>
-<string name="title" value="꼬마 인디언 구출참여 15회!"/>
-<string name="desc" value="매 시간 5분, 35분에 날라오는 초대장을 클릭하여  #r사나운 맹수로부터 꼬마 인디언들을 구출#k하면 선물을 받을 수 있다.\r\n#b구출 참여 15회차#k 보상으로  #b인디언 호그 30일 이용권 #k과 #b인디언 고유의 멋진 칭호#k를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="4">
-<string name="quest" value="11849"/>
-<string name="title" value="꼬마 인디언 구출참여 20회!"/>
-<string name="desc" value="매 시간 5분, 35분에 날라오는 초대장을 클릭하여  #r사나운 맹수로부터 꼬마 인디언들을 구출#k하면 선물을 받을 수 있다.\r\n#b구출 참여 20회차#k 보상으로  #b놀라운 혼돈의 주문서 60%#k를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="5">
-<int name="quest" value="11850"/>
-<string name="title" value="꼬마 인디언 구출참여 25회!"/>
-<string name="desc" value="매 시간 5분, 35분에 날라오는 초대장을 클릭하여  #r사나운 맹수로부터 꼬마 인디언들을 구출#k하면 선물을 받을 수 있다.\r\n#b구출 참여 25회차#k 보상으로  #b꼬마 인디언의 허리띠#k와 #b인디언 고유의 멋진 칭호#k를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="6">
-<int name="quest" value="11850"/>
-<string name="title" value="꼬마 인디언 구출참여 완료!"/>
-<string name="desc" value="꼬마 인디언 구출 참여를 25회까지 완료했다. 하지만 여전히 맹수들에게 잡혀간 꼬마 인디언들이 남아 있을지 모르니 끝까지 이들을 도와주도록 하자!"/>
-</imgdir>
-</imgdir>
-<string name="path" value="UI/UIWindow2.img/EventInfo/bg/3/backgrnd"/>
-<int name="count" value="6"/>
-<int name="quest" value="11844"/>
-</imgdir>
-<imgdir name="14">
-<string name="start" value="2012040500"/>
-<string name="end" value="2012042600"/>
-<imgdir name="mission">
-<imgdir name="0">
-<int name="quest" value="12243"/>
-<string name="title" value="세인트 세이버 3일차!"/>
-<string name="desc" value="하루에 한 번씩 세인트 세이버 스톤에 힘을 모아 #e세인트 세이버의 축복 스킬을 1회 사용#n하면 출석 체크를 할 수 있다.\r\n#r출석 체크를 3일 달성#k하면 체력과 마력을 전부 회복시켜 주는 #e#b파워 엘릭서 100개#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="1">
-<int name="quest" value="12244"/>
-<string name="title" value="세인트 세이버 4일차!"/>
-<string name="desc" value="하루에 한 번씩 세인트 세이버 스톤에 힘을 모아 #e세인트 세이버의 축복 스킬을 1회 사용#n하면 출석 체크를 할 수 있다.\r\n#r출석 체크를 4일 달성#k하면 자신이 배운 전문 기술에 맞는 레시피 중 3개를 얻을 수 있는 #e#b비밀의 레시피#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="2">
-<int name="quest" value="12245"/>
-<string name="title" value="세인트 세이버 5일차!"/>
-<string name="desc" value="하루에 한 번씩 세인트 세이버 스톤에 힘을 모아 #e세인트 세이버의 축복 스킬을 1회 사용#n하면 출석 체크를 할 수 있다.\r\n#r출석 체크를 5일 달성#k하면 15%확률로 악세서리에 공격력/마력+1 의 옵션을 추가시켜 주는 #e#b악세서리 공격력/마력 주문서 15% 3장#k#n을 획득할 수 있다."/>
-</imgdir>
-<imgdir name="3">
-<int name="quest" value="12246"/>
-<string name="title" value="세인트 세이버 6일차!"/>
-<string name="desc" value="하루에 한 번씩 세인트 세이버 스톤에 힘을 모아 #e세인트 세이버의 축복 스킬을 1회 사용#n하면 출석 체크를 할 수 있다.\r\n#r출석 체크를 6일 달성#k하면 나이트메어 라이딩 스킬을 10일 간 사용할 수 있는 #e#b나이트메어 라이딩 10일 이용권을 1개#k#n 획득할 수 있다."/>
-</imgdir>
-<imgdir name="4">
-<int name="quest" value="12247"/>
-<string name="title" value="세인트 세이버 7일차!"/>
-<string name="desc" value="하루에 한 번씩 세인트 세이버 스톤에 힘을 모아 #e세인트 세이버의 축복 스킬을 1회 사용#n하면 출석 체크를 할 수 있다.\r\n#r출석 체크를 7일 달성#k하면 업그레이드가 끝난 아이템을 한 단계 더 강화시켜주는 #e#b고급 장비 강화 주문서 3장#k#n을 획득할 수 있다. "/>
-</imgdir>
-<imgdir name="5">
-<int name="quest" value="12248"/>
-<string name="title" value="세인트 세이버 8일차!"/>
-<string name="desc" value="하루에 한 번씩 세인트 세이버 스톤에 힘을 모아 #e세인트 세이버의 축복 스킬을 1회 사용#n하면 출석 체크를 할 수 있다.\r\n#r출석 체크를 8일 달성#k하면 잠재 능력이 없는 아이템에 잠재 능력을 부여할 수 있는 #e#b스페셜 잠재능력 부여 주문서 3장#k#n을 획득할 수 있다."/>
-</imgdir>
-<imgdir name="6">
-<int name="quest" value="12249"/>
-<string name="title" value="세인트 세이버 9일차!"/>
-<string name="desc" value="하루에 한 번씩 세인트 세이버 스톤에 힘을 모아 #e세인트 세이버의 축복 스킬을 1회 사용#n하면 출석 체크를 할 수 있다.\r\n#r출석 체크를 9일 달성#k하면 장비 아이템의 주문서 사용 가능 수치를 1만큼 더 올려 주는 #e#b황금 망치 3개#k#n를 획득할 수 있다. "/>
-</imgdir>
-<imgdir name="7">
-<int name="quest" value="12250"/>
-<string name="title" value="세인트 세이버 10일차!"/>
-<string name="desc" value="하루에 한 번씩 세인트 세이버 스톤에 힘을 모아 #e세인트 세이버의 축복 스킬을 1회 사용#n하면 출석 체크를 할 수 있다.\r\n#r출석 체크를 10일 달성#k하면 레벨 제한 70, #e업그레이드 가능 수치 5, STR/DEX/INT/LUK +4, 회피치/명중치 +30, 물리/마법 방어력 +30#n옵션을 가진 눈장식 장비 아이템인 #b#e세인트 세이버 고글#n#k을 얻을 수 있다."/>
-</imgdir>
-<imgdir name="8">
-<int name="quest" value="12250"/>
-<string name="title" value="세인트세이버 임무 완수!"/>
-<string name="desc" value="세인트 세이버의 이름으로 10일간 열심히 활동하였다. 당장의 임무는 완수하였지만 메이플 월드를 위해 멈추지 않고 계속해서 노력해야 겠다!"/>
-</imgdir>
-</imgdir>
-<string name="path" value="UI/UIWindow2.img/EventInfo/bg/2/backgrnd"/>
-<int name="count" value="8"/>
-<int name="quest" value="12251"/>
-</imgdir>
-<imgdir name="15">
-<string name="start" value="2012060500"/>
-<string name="end" value="2012070200"/>
-<imgdir name="mission">
-<imgdir name="0">
-<int name="quest" value="12657"/>
-<string name="title" value="더위사냥 3일차"/>
-<string name="desc" value="하루에 한 번씩 더위사냥에 응시하면 출석체크를 할 수 있다.\r\n#r출석 체크를 3일 달성#k하면 체력과 마력을 전부 회복시켜 주는 #e#b파워 엘릭서 50개#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="1">
-<int name="quest" value="12658"/>
-<string name="title" value="더위사냥 4일차"/>
-<string name="desc" value="하루에 한 번씩 더위사냥에 응시하면 출석체크를 할 수 있다.\r\n#r출석 체크를 4일을 달성하면 #e#b뉴 얼음결정 페이스페이팅#k#n을 획득할 수 있다."/>
-</imgdir>
-<imgdir name="2">
-<int name="quest" value="12659"/>
-<string name="title" value="더위사냥 5일차"/>
-<string name="desc" value="하루에 한 번씩 더위사냥에 응시하면 출석체크를 할 수 있다.\r\n#r출석 체크를 5일 달성하면 #e#b고급 장비 강화 주문서#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="3">
-<int name="quest" value="12660"/>
-<string name="title" value="더위사냥 6일차"/>
-<string name="desc" value="하루에 한 번씩 더위사냥에 응시하면 출석체크를 할 수 있다.\r\n#r출석 체크를 6일 달성하면 #e#b황금망치#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="4">
-<int name="quest" value="12661"/>
-<string name="title" value="더위사냥 7일차"/>
-<string name="desc" value="하루에 한 번씩 더위사냥에 응시하면 출석체크를 할 수 있다.\r\n#r출석 체크를 7일 달성#k하면 #e#b혼돈의 주문서#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="5">
-<int name="quest" value="12662"/>
-<string name="title" value="더위사냥 8일차"/>
-<string name="desc" value="하루에 한 번씩 더위사냥에 응시하면 출석체크를 할 수 있다.\r\n#r출석 체크를 8일 달성#k하면 #e#b뉴 레인보우 뱃지#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="6">
-<int name="quest" value="12662"/>
-<string name="title" value="더위사냥 완료!"/>
-<string name="desc" value="하지만 진짜 더위는 이제부터 시작이다..."/>
-</imgdir>
-</imgdir>
-<string name="path" value="UI/UIWindow2.img/EventInfo/bg/3/backgrnd"/>
-<int name="count" value="6"/>
-<int name="quest" value="12664"/>
-</imgdir>
-<imgdir name="16">
-<string name="start" value="2012062000"/>
-<string name="end" value="2012071200"/>
-<imgdir name="mission">
-<imgdir name="0">
-<int name="quest" value="12676"/>
-<string name="title" value="메소레인저 출석체크 1일차"/>
-<string name="desc" value="하루에 한 번씩 메소레인저 입사시험에 응시하면 출석체크를 할 수 있다.\r\n#r출석 체크를 1일 달성#k하면 체력과 마력을 전부 회복시켜 주는 #e#b파워 엘릭서 50개#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="1">
-<int name="quest" value="12677"/>
-<string name="title" value="메소레인저 출석체크 2일차"/>
-<string name="desc" value="하루에 한 번씩 메소레인저 입사시험에 응시하면 출석체크를 할 수 있다.\r\n#r출석 체크를 2일을 달성하면 #e#b스페이스쉽 라이딩#k#n을 획득할 수 있다."/>
-</imgdir>
-<imgdir name="2">
-<int name="quest" value="12678"/>
-<string name="title" value="메소레인저 출석체크 3일차"/>
-<string name="desc" value="하루에 한 번씩 메소레인저 입사시험에 응시하면 출석체크를 할 수 있다.\r\n#r출석 체크를 3일 달성하면 #e#b메소레인저 놀라운 혼돈의 주문서 60%#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="3">
-<int name="quest" value="12679"/>
-<string name="title" value="메소레인저 출석체크 4일차"/>
-<string name="desc" value="하루에 한 번씩 메소레인저 입사시험에 응시하면 출석체크를 할 수 있다.\r\n#r출석 체크를 4일 달성하면 #e#b정령의 펜던트#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="4">
-<int name="quest" value="12680"/>
-<string name="title" value="메소레인저 출석체크 5일차"/>
-<string name="desc" value="하루에 한 번씩 메소레인저 입사시험에 응시하면 출석체크를 할 수 있다.\r\n#r출석 체크를 5일 달성#k하면 #e#b혼돈의 주문서 60%#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="5">
-<int name="quest" value="12681"/>
-<string name="title" value="메소레인저 출석체크 6일차"/>
-<string name="desc" value="하루에 한 번씩 메소레인저 입사시험에 응시하면 출석체크를 할 수 있다.\r\n#r출석 체크를 6일 달성#k하면 #e#b고급 잠재능력 부여 주문서#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="6">
-<int name="quest" value="12682"/>
-<string name="title" value="메소레인저 출석체크 7일차"/>
-<string name="desc" value="하루에 한 번씩 메소레인저 입사시험에 응시하면 출석체크를 할 수 있다.\r\n#r출석 체크를 7일 달성#k하면 #e#b메소레인저 안드로이드 교환권#k#n을 획득할 수 있다."/>
-</imgdir>
-<imgdir name="7">
-<int name="quest" value="12683"/>
-<string name="title" value="메소레인저 출석체크 그 이후"/>
-<string name="desc" value="하루에 한 번씩 메소레인저 입사시험에 응시하면 #e#b카산드라의 마법 및 정체불명의 러브레터#k#n를 획득할 수 있다."/>
-</imgdir>
-<imgdir name="8">
-<int name="quest" value="12683"/>
-<string name="title" value="메소레인저 출석체크 그 이후"/>
-<string name="desc" value="하루에 한 번씩 메소레인저 입사시험에 응시하면 #e#b카산드라의 마법 및 정체불명의 러브레터#k#n를 획득할 수 있다."/>
-</imgdir>
-</imgdir>
-<string name="path" value="UI/UIWindow2.img/EventInfo/bg/2/backgrnd"/>
-<int name="count" value="8"/>
-<int name="quest" value="12684"/>
-</imgdir>
-<imgdir name="17">
-<string name="start" value="2012120600"/>
-<string name="end" value="2013030100"/>
-<imgdir name="mission">
-<imgdir name="0">
-<int name="quest" value="13272"/>
-<string name="title" value="1회차 PC방 선물 받기"/>
-<string name="desc" value="#bPC방 출석체크 이벤트에 참여#k하여 마틸다에게서 선물을 받을 수 있다.\r\n PC방 출석 횟수 #r1회차 선물#k로 PC방 랜덤 변신물약을 얻을 수 있다."/>
-</imgdir>
-<imgdir name="1">
-<int name="quest" value="13273"/>
-<string name="title" value="2회차 PC방 선물 받기"/>
-<string name="desc" value="#bPC방 출석체크 이벤트에 참여#k하여 마틸다에게서 선물을 받을 수 있다.\r\n PC방 출석 횟수 #r2회차 선물#k로 파워 엘릭서를 얻을 수 있다."/>
-</imgdir>
-<imgdir name="2">
-<int name="quest" value="13274"/>
-<string name="title" value="3회차 PC방 선물 받기"/>
-<string name="desc" value="#bPC방 출석체크 이벤트에 참여#k하여 마틸다에게서 선물을 받을 수 있다.\r\n PC방 출석 횟수 #r3회차 선물#k로 스페셜 정령의 펜던트를 얻을 수 있다."/>
-</imgdir>
-<imgdir name="3">
-<int name="quest" value="13275"/>
-<string name="title" value="4회차 PC방 선물 받기"/>
-<string name="desc" value="#bPC방 출석체크 이벤트에 참여#k하여 마틸다에게서 선물을 받을 수 있다.\r\n PC방 출석 횟수 #r4회차 선물#k로 럭키데이 주문서를 얻을 수 있다."/>
-</imgdir>
-<imgdir name="4">
-<int name="quest" value="13276"/>
-<string name="title" value="5회차 PC방 선물 받기"/>
-<string name="desc" value="#bPC방 출석체크 이벤트에 참여#k하여 마틸다에게서 선물을 받을 수 있다.\r\n PC방 출석 횟수 #r5회차 선물#k로 놀라운 혼돈의 주문서 60%를 얻을 수 있다."/>
-</imgdir>
-<imgdir name="5">
-<int name="quest" value="13277"/>
-<string name="title" value="6회차 PC방 선물 받기"/>
-<string name="desc" value="#bPC방 출석체크 이벤트에 참여#k하여 마틸다에게서 선물을 받을 수 있다.\r\n PC방 출석 횟수 #r6회차 선물#k로 고급 장비강화 주문서를 얻을 수 있다."/>
-</imgdir>
-<imgdir name="6">
-<int name="quest" value="13278"/>
-<string name="title" value="7회차 PC방 선물 받기"/>
-<string name="desc" value="#bPC방 출석체크 이벤트에 참여#k하여 마틸다에게서 선물을 받을 수 있다.\r\n PC방 출석 횟수 #r7회차 선물#k로 금빛 각인의 인장을 얻을 수 있다."/>
-</imgdir>
-<imgdir name="7">
-<int name="quest" value="13278"/>
-<string name="title" value="PC방 출석체크 한바퀴 완료!"/>
-<string name="desc" value="PC방 출석체크 7회차의 선물을 모두 받은 당신! 다시 1회차로 돌아가서 계속 선물을 받아보자.\r\n#r이벤트기간 동안 계속 반복됩니다.#k"/>
-</imgdir>
-</imgdir>
-<string name="path" value="UI/UIWindow2.img/EventInfo/bg/2/backgrnd"/>
-<int name="count" value="7"/>
-<int name="questex" value="18080"/>
-<string name="questexkey" value="num"/>
-</imgdir>
+  <imgdir name="0">
+    <string name="start" value="2012071112" />
+    <string name="end" value="2012081512" />
+    <imgdir name="mission">
+      <imgdir name="0">
+        <int name="quest" value="11253" />
+        <string name="title" value="成功使用藍鳥的羽毛" />
+        <string name="desc" value="活動期間使用能把45等級的楓之谷裝備換成擁有潛力值的70等級裝備的藍鳥的羽毛(npc必魯 )和閃亮的藍鳥的羽毛(怪物藍鳥上掉落)，藉此來體驗8次成功的快樂。" />
+        <int name="count" value="8" />
+      </imgdir>
+      <imgdir name="1">
+        <int name="quest" value="11250" />
+        <string name="title" value="獵打藍鳥" />
+        <string name="desc" value="必須於活動期間把出現在楓之谷打獵區的藍鳥打下8隻才行。因為藍鳥不知道何時何地才會出現，所以請隨時提高警覺。" />
+        <int name="count" value="8" />
+      </imgdir>
+      <imgdir name="2">
+        <int name="quest" value="11252" />
+        <string name="title" value="菇菇寶貝騎乘" />
+        <string name="desc" value="於活動期間以所獲得的菇菇寶貝騎乘使用卷來練習菇菇寶貝騎乘這項技能。" />
+        <int name="count" value="1" />
+      </imgdir>
+      <imgdir name="3">
+        <int name="quest" value="11251" />
+        <string name="title" value="栽培楓葉樹盆栽" />
+        <string name="desc" value="可以利用活動期間從怪物或礦物，植物身上所獲得楓樹盆栽花盆，於道具瓶(Y)裡栽培8個就可以獲得果實。 黃金楓葉果實點選兩下，栽培值就可以提升。" />
+        <int name="count" value="8" />
+      </imgdir>
+      <imgdir name="4">
+        <int name="quest" value="11259" />
+        <string name="title" value="為期8天跳舞練習" />
+        <string name="desc" value="加入到西格諾斯，莉琳，瓦蕾莉這三個人其中一個人的粉絲團，幫助完成為期8天的跳舞練習。不一定要連續練習。即使變更俱樂部相關紀錄也並不會因此而消失。" />
+        <int name="count" value="8" />
+      </imgdir>
+      <imgdir name="5">
+        <int name="quest" value="11254" />
+        <string name="title" value="為期8天聲樂練習" />
+        <string name="desc" value="加入到西格諾斯，莉琳，瓦蕾莉這三個人其中一個人的粉絲團，幫助完成為期8天的聲樂練習。不一定要連續練習。即使變更俱樂部相關紀錄也並不會因此而消失。" />
+        <int name="count" value="8" />
+      </imgdir>
+      <imgdir name="6">
+        <int name="quest" value="11255" />
+        <string name="title" value="為期8天樂器練習" />
+        <string name="desc" value="加入到西格諾斯，莉琳，瓦蕾莉這三個人其中一個人的粉絲團，幫助完成為期8天的樂器練習。不一定要連續練習。即使變更俱樂部相關紀錄也並不會因此而消失。" />
+        <int name="count" value="8" />
+      </imgdir>
+      <imgdir name="7">
+        <int name="quest" value="11258" />
+        <string name="title" value="為期8天應援" />
+        <string name="desc" value="加入到西格諾斯，莉琳，瓦蕾莉這三個人其中一個人的粉絲團，幫助完成為期8天的應援。不一定要連續練習。即使變更俱樂部相關紀錄也並不會因此而消失。" />
+        <int name="count" value="8" />
+      </imgdir>
+      <imgdir name="8">
+        <int name="quest" value="11257" />
+        <string name="title" value="為期8天名譽管理" />
+        <string name="desc" value="加入到西格諾斯，莉琳，瓦蕾莉這三個人其中一個人的粉絲團，幫助完成為期8天的名譽管理。不一定要連續練習。即使變更俱樂部相關紀錄也並不會因此而消失。" />
+        <int name="count" value="8" />
+      </imgdir>
+      <imgdir name="9">
+        <int name="quest" value="11256" />
+        <string name="title" value="為期8天外貌管理" />
+        <string name="desc" value="加入到西格諾斯，莉琳，瓦蕾莉這三個人其中一個人的粉絲團，幫助完成為期8天的外貌管理。不一定要連續練習。即使變更俱樂部相關紀錄也並不會因此而消失。" />
+        <int name="count" value="8" />
+      </imgdir>
+    </imgdir>
+  </imgdir>
+  <imgdir name="1">
+    <imgdir name="npcInfo">
+      <imgdir name="9010031">
+        <string name="job" value="女皇" />
+        <string name="year" value="？？？" />
+        <string name="desc" value="受到騎士團的邀請參加演唱會。雖然這些選手有與生俱來的歌聲以及氣質，不過就是努力稍嫌不夠的樣子。" />
+      </imgdir>
+      <imgdir name="9010032">
+        <string name="job" value="活躍的海賊" />
+        <string name="year" value="16歲" />
+        <string name="desc" value="出身不明的她是個個性開朗的女孩。她為了想要自己的身世所以才會參加比賽。" />
+      </imgdir>
+      <imgdir name="9010033">
+        <string name="job" value="企鵝們的隊長" />
+        <string name="year" value="16歲" />
+        <string name="desc" value="雖然並沒有什麼與生俱來的才能，不過其器度和韌性都是無人能及的。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="questInfo">
+      <imgdir name="11230">
+        <string name="title" value="聲樂練習" />
+        <string name="desc" value="完成從楓之谷GM那接收的“你是歌手”任務的話，就可以增加聲樂練習的次數，也會影響到NPC的選擇。" />
+      </imgdir>
+      <imgdir name="11231">
+        <string name="title" value="樂器練習" />
+        <string name="desc" value="完成從尤莉亞的“'挑戰！ 奧菲斯'”的任務的話，就可以增加樂器練習的次數，也會影響到NPC的選擇。" />
+      </imgdir>
+      <imgdir name="11232">
+        <string name="title" value="跳舞練習" />
+        <string name="desc" value="完成從加加手上所接收“為何而跳舞？”的任務的話，就可以增加跳舞練習的次數，也會影響到NPC的選擇。" />
+      </imgdir>
+      <imgdir name="11233">
+        <string name="title" value="外貌管理" />
+        <string name="desc" value="完成從尤莉亞手上所接收的“減肥是明星的宿命”任務的話，就可以增加外貌管理的次數，也會影響到NPC的選擇。" />
+      </imgdir>
+      <imgdir name="11234">
+        <string name="title" value="人氣管理" />
+        <string name="desc" value="完成從加加手上所接收的“明星靠什麼吃飯”任務的話，人氣管理的次數就會新增，也會影響到NPC的選擇。" />
+      </imgdir>
+      <imgdir name="11235">
+        <string name="title" value="名譽管理" />
+        <string name="desc" value="完成從尤莉亞手上所接收的“明星X檔案流出事件”任務的話，名譽管理的次數就會新增，也會影響到NPC的選擇。" />
+      </imgdir>
+    </imgdir>
+    <imgdir name="notice">
+      <string name="0" value="$0$每週週日下午PM2點，5點$1$3名超新星選手的特別$2$演唱會就會展開。$4$" />
+      <string name="1" value="透過$0$次元之鏡$7$移動到超新星大廳的話，就可以和$5$$4$3名歌手見到面了。" />
+      <string name="2" value="$0$NPC的成長可以於5月1日，8日，15日，22日，29日進行確認。$3$$2$" />
+    </imgdir>
+  </imgdir>
+  <imgdir name="2">
+    <string name="start" value="2011102612" />
+    <string name="end" value="2011111612" />
+    <imgdir name="mission">
+      <imgdir name="0">
+        <int name="quest" value="11300" />
+        <string name="title" value="簽到第三天！" />
+        <string name="desc" value="每天在聖軍刀之石上收集一次力量，使用 #e聖軍刀的祝福技能1次#n就能做簽到。\r\n#r達成簽到 3天#k的話可以獲得體力和魔力全部回復的 #e#b超級藥水 200個#k#n喔。" />
+        <int name="count" value="3" />
+      </imgdir>
+      <imgdir name="1">
+        <int name="quest" value="11300" />
+        <string name="title" value="簽到第四天！" />
+        <string name="desc" value="每天在聖軍刀之石上收集一次力量，使用 #e聖軍刀的祝福技能1次#n就能做簽到。\r\n#r達成簽到 4天#k的話可以獲得與自己學習的專業技術等級相當的製作法當中3個 #e#b秘密配方#k#n喔。" />
+        <int name="count" value="4" />
+      </imgdir>
+      <imgdir name="2">
+        <int name="quest" value="11300" />
+        <string name="title" value="簽到第五天！！" />
+        <string name="desc" value="每天在聖軍刀之石上收集一次力量，使用 #e聖軍刀的祝福技能1次#n就能做簽到。\r\n#r達成簽到 5天#k的話可以獲得可以獲得裝備道具衝卷數提升1的 #e#b黃金鐵槌 1個#k#n。 失敗的話，什麼事都不會發生" />
+        <int name="count" value="5" />
+      </imgdir>
+      <imgdir name="3">
+        <int name="quest" value="11300" />
+        <string name="title" value="簽到第六天！" />
+        <string name="desc" value="每天在聖軍刀之石上收集一次力量，使用 #e聖軍刀的祝福技能1次#n就能做簽到。\r\n#r達成簽到 6天#k的話可以獲得使用夢魘騎乘技能的 #e#b夢魘騎乘10日使用卷1張#k#n 。" />
+        <int name="count" value="6" />
+      </imgdir>
+      <imgdir name="4">
+        <int name="quest" value="11300" />
+        <string name="title" value="簽到第七天！" />
+        <string name="desc" value="每天在聖軍刀之石上收集一次力量，使用 #e聖軍刀的祝福技能1次#n就能做簽到。\r\n#r達成簽到 7天#k的話可以獲得使升級結束的裝備道具強化一個階段的#e#b高級裝備強化卷軸3張#k#n喔。" />
+        <int name="count" value="7" />
+      </imgdir>
+      <imgdir name="5">
+        <int name="quest" value="11300" />
+        <string name="title" value="簽到第八天！" />
+        <string name="desc" value="每天在聖軍刀之石上收集一次力量，使用 #e聖軍刀的祝福技能1次#n就能做簽到。\r\n#r達成簽到 8天#k的話可以獲得能在沒有潛在能力的道具上賦予潛在能力的#e#b特殊潛在能力卷軸3張#k#n喔。" />
+        <int name="count" value="8" />
+      </imgdir>
+      <imgdir name="6">
+        <int name="quest" value="11300" />
+        <string name="title" value="簽到第九天！" />
+        <string name="desc" value="每天在聖軍刀之石上收集一次力量，使用 #e聖軍刀的祝福技能1次#n就能做簽到。\r\n#r達成簽到 9天#k的話可以獲得裝備道具衝卷數提升1的 #e#b黃金鐵鎚3個#k#n。 失敗的話，什麼事都不會發生" />
+        <int name="count" value="9" />
+      </imgdir>
+      <imgdir name="7">
+        <int name="quest" value="11300" />
+        <string name="title" value="簽到第十天！" />
+        <string name="desc" value="每天在聖軍刀之石上收集一次力量，使用 #e聖軍刀的祝福技能1次#n就能做簽到。\r\n#r達成簽到 10天#k的話可以獲得等級限制 75， #e可以升級次數 7， STR/DEX/INT/LUK +3， HP/MP +200\n移動速度/跳躍力 +10， 迴避值/命中值 +100，所有性向 +40#n選項的 #b#e金槍戰鬥機耳環#n#k" />
+        <int name="count" value="10" />
+      </imgdir>
+      <imgdir name="8">
+        <int name="quest" value="11300" />
+        <string name="title" value="所有簽到完成！" />
+        <string name="desc" value="為期十天的簽到都完成了。現在就來借用金槍戰鬥機之石的力量進行無限的狩獵吧！" />
+        <int name="count" value="-1" />
+      </imgdir>
+    </imgdir>
+  </imgdir>
+  <imgdir name="3">
+    <string name="start" value="2011061600" />
+    <string name="end" value="2011063000" />
+    <imgdir name="mission">
+      <imgdir name="0">
+        <int name="quest" value="11343" />
+        <string name="title" value="西瓜農日記第一天！" />
+        <string name="desc" value="把從加加手上所獲得的西瓜花盆好好栽培，並獲得到西瓜的話，就可以一天寫一次西瓜農日記。\r\n第一天獎賞可獲得#b務農繼承人稱號#k。" />
+      </imgdir>
+      <imgdir name="1">
+        <int name="quest" value="11344" />
+        <string name="title" value="西瓜農日記第三天！" />
+        <string name="desc" value="把從加加手上所獲得的西瓜花盆好好栽培，並獲得到西瓜的話，就可以一天寫一次西瓜農日記。\r\n第三天獎賞可獲得#b超級藥水 100個#k。" />
+      </imgdir>
+      <imgdir name="2">
+        <int name="quest" value="11345" />
+        <string name="title" value="西瓜農日記第五天！" />
+        <string name="desc" value="把從加加手上所獲得的西瓜花盆好好栽培，並獲得到西瓜的話，就可以一天寫一次西瓜農日記。\r\n第五天獎賞可獲得可隨心所欲進行到其他大陸的#b移動大陸的卷軸#k。" />
+      </imgdir>
+      <imgdir name="3">
+        <int name="quest" value="11346" />
+        <string name="title" value="西瓜農日記第七天！" />
+        <string name="desc" value="把從加加手上所獲得的西瓜花盆好好栽培，並獲得到西瓜的話，就可以一天寫一次西瓜農日記。\r\n第7天獎賞可獲得有#b50等級以上，攻擊力/魔力+5，物理/魔法防禦力+50，移動速度+10，彈跳力+8，30日時間制效果的#r西瓜項鍊保管箱#k。" />
+      </imgdir>
+      <imgdir name="4">
+        <int name="quest" value="11346" />
+        <string name="title" value="西瓜農日記寫作完成！" />
+        <string name="desc" value="從加加手上獲得的西瓜農日記已經完成到最後一頁了。每天細心栽培西瓜花盆，就可以利用 加加西瓜裡神秘的力量來盡情打怪。" />
+      </imgdir>
+    </imgdir>
+  </imgdir>
+  <imgdir name="4">
+    <string name="start" value="2011052600" />
+    <string name="end" value="2011062300" />
+    <imgdir name="mission">
+      <imgdir name="0">
+        <int name="quest" value="11353" />
+        <string name="title" value="製作紅豆刨冰第一天！" />
+        <string name="desc" value="一天一次蒐集到#e刨冰用的紅豆，冰塊，年糕這三種材料，就可製作成特製紅豆刨冰#n，相關紀錄並會寫入炎熱打獵秘笈上。\r\n#r蒐集紅豆刨冰材料1天的話#k，即可獲得讓MP恢復2000的#e#b紅豆刨冰100個#k#n。" />
+      </imgdir>
+      <imgdir name="1">
+        <int name="quest" value="11354" />
+        <string name="title" value="製作紅豆刨冰第三天！" />
+        <string name="desc" value="一天一次蒐集到#e刨冰用的紅豆，冰塊，年糕這三種材料，就可製作成特製紅豆刨冰#n，相關紀錄並會寫入炎熱打獵秘笈上。\r\n#r蒐集紅豆刨冰材料3天的話#k，即可獲得讓HP和MP恢復的#e#b超級藥水100個#k#n。" />
+      </imgdir>
+      <imgdir name="2">
+        <int name="quest" value="11355" />
+        <string name="title" value="製作紅豆刨冰第五天！" />
+        <string name="desc" value="一天一次蒐集到#e刨冰用的紅豆，冰塊，年糕這三種材料，就可製作成特製紅豆刨冰#n，相關紀錄並會寫入炎熱打獵秘笈上。\r\n#r蒐集紅豆刨冰材料5天的話#k，即可獲得已停止升級的道具再強話一階段的#e#b高級裝備強化卷軸#k#n。" />
+      </imgdir>
+      <imgdir name="3">
+        <int name="quest" value="11356" />
+        <string name="title" value="製作紅豆刨冰第七天！" />
+        <string name="desc" value="一天一次蒐集到#e刨冰用的紅豆，冰塊，年糕這三種材料，就可製作成特製紅豆刨冰#n，相關紀錄並會寫入炎熱打獵秘笈上。\r\n#r蒐集紅豆刨冰材料7天的話#k，即可獲得擁有STR/DEX/INT/LUK +5，物理/魔法防禦力+10，迴避值/命中值+30選項臉部裝飾道具的#e#b結冰化妝#k#n。" />
+      </imgdir>
+      <imgdir name="4">
+        <int name="quest" value="11356" />
+        <string name="title" value="製作紅豆刨冰第七天！" />
+        <string name="desc" value="製作紅豆刨冰7天完成了。接下來就可以過個清涼的夏天，盡情狩獵吧！" />
+      </imgdir>
+    </imgdir>
+  </imgdir>
+  <imgdir name="5">
+    <string name="start" value="2011112300" />
+    <string name="end" value="2011120700" />
+    <imgdir name="mission">
+      <imgdir name="0">
+        <int name="quest" value="11393" />
+        <string name="title" value="寶藏圖完成的第一天！" />
+        <string name="desc" value="一天內蒐集到1次#e6個海賊寶藏圖的碎片#n並完成地圖的話，相關紀錄就會寫入寶藏圖書上。\r\n#r第一次完成寶藏圖#k的話，即可獲得可以讓HP和MP全部恢復的#b超級藥水20個#k。" />
+      </imgdir>
+      <imgdir name="1">
+        <int name="quest" value="11394" />
+        <string name="title" value="寶藏圖完成的第三天！" />
+        <string name="desc" value="一天內蒐集到1次#e6個海賊寶藏圖的碎片#n並完成地圖的話，相關紀錄就會寫入寶藏圖書上。\r\n#r執行寶藏圖完成3天的話，#k就可以獲得可移動到所想要的其他都市的#b3張移動大陸卷軸#k，並可以獲得讓HP和MP全部恢復的#b超級藥水30個#k。" />
+      </imgdir>
+      <imgdir name="2">
+        <int name="quest" value="11395" />
+        <string name="title" value="寶藏圖完成的第五天！！" />
+        <string name="desc" value="一天內蒐集到1次#e6個海賊寶藏圖的碎片#n並完成地圖的話，相關紀錄就會寫入寶藏圖書上。\r\n#r執行寶藏圖完成5天的話，#k於手製加農上就會新增可以讓物理攻擊+2，STR+1(機率65%)的#b3張手製加農攻擊力卷軸65%#k和#b超級藥水50個#k。" />
+      </imgdir>
+      <imgdir name="3">
+        <int name="quest" value="11396" />
+        <string name="title" value="完成寶藏圖的第七天！" />
+        <string name="desc" value="一天內蒐集到1次#e6個海賊寶藏圖的碎片#n並完成地圖的話，相關紀錄就會寫入寶藏圖書上。\r\n#r執行寶藏圖完成7天的話，#k可獲得擁有攻擊力+107，物理防禦力+62的特殊100級武器的#b傳說黃金火箭炮#k。" />
+      </imgdir>
+      <imgdir name="4">
+        <int name="quest" value="11396" />
+        <string name="title" value="寶藏圖完成的第七天！" />
+        <string name="desc" value="已經來到完成寶藏圖的第七天了。不過一切冒險才正要開始呢！！！" />
+      </imgdir>
+    </imgdir>
+  </imgdir>
+  <imgdir name="6">
+    <string name="start" value="2011112300" />
+    <string name="end" value="2011120700" />
+    <imgdir name="mission">
+      <imgdir name="0">
+        <int name="quest" value="11372" />
+        <string name="title" value="回收娃娃第一天！" />
+        <string name="desc" value="一天之內幫忙找回猴子娃娃1次的話，就可以在回收紀錄簿內蓋章。\r\n第一天的獎賞是#b超級藥水20個#k。" />
+      </imgdir>
+      <imgdir name="1">
+        <int name="quest" value="11373" />
+        <string name="title" value="回收娃娃第三天！" />
+        <string name="desc" value="一天之內幫忙找回猴子娃娃1次的話，就可以在回收紀錄簿內蓋章。\r\n第三天的獎賞是#b超級藥水30個#k和#b防具攻擊力/ 魔力卷軸15% 兩種其中一個#k。" />
+      </imgdir>
+      <imgdir name="2">
+        <int name="quest" value="11374" />
+        <string name="title" value="回收娃娃第五天！" />
+        <string name="desc" value="一天之內幫忙找回猴子娃娃1次的話，就可以在回收紀錄簿內蓋章。\r\n第五天的獎賞是#b超級藥水50個#k和 #b裝甲攻擊力 / 魔力卷軸 60%兩種其中一個#k。" />
+      </imgdir>
+      <imgdir name="3">
+        <int name="quest" value="11375" />
+        <string name="title" value="回收娃娃第七天！" />
+        <string name="desc" value="一天之內幫忙找回猴子娃娃1次的話，就可以在回收紀錄簿內蓋章。\r\n第七天的獎賞是#r無期限的#b賦予特殊潛力能力的卷軸3張#k以及可以在帳號內進行移動並當加農砲手攜帶時也可以讓猴子裝備上的#b閃亮亮小猴子#k。" />
+      </imgdir>
+      <imgdir name="4">
+        <int name="quest" value="11371" />
+        <string name="title" value="簽到全數完成！" />
+        <string name="desc" value="為期7天的簽到都完成了。要是在10分鐘之內找回猴子娃娃的話，就可以獲得#b猴子香蕉#k以及#b炫風火槍專用泉水#k。" />
+        <int name="count" value="-1" />
+      </imgdir>
+    </imgdir>
+  </imgdir>
+  <imgdir name="7">
+    <string name="start" value="2011062800" />
+    <string name="end" value="2011072100" />
+    <imgdir name="mission">
+      <imgdir name="0">
+        <int name="quest" value="11436" />
+        <string name="title" value="挑戰！ 草莓汁達人" />
+        <string name="desc" value="活動期間內，狩獵一般怪物，收集紅色草莓50個，交給加加就能製作草莓汁。  和加加一起製作草莓汁3次，就能獲得 #b經驗值#k，同時還能挑戰 #r哈密瓜汁達人#k。" />
+        <int name="count" value="3" />
+      </imgdir>
+      <imgdir name="1">
+        <int name="quest" value="11437" />
+        <string name="title" value="挑戰！ 哈密瓜汁達人" />
+        <string name="desc" value="活動期間內，狩獵一般怪物，收集清涼的哈密瓜50個，交給加加就能製作哈密瓜汁。  和加加一起製作哈密瓜汁5次，就能獲得 #b經驗值#k，同時還能挑戰 #r奇異果汁達人#k。" />
+        <int name="count" value="5" />
+        <int name="lock" value="11436" />
+      </imgdir>
+      <imgdir name="2">
+        <int name="quest" value="11438" />
+        <string name="title" value="挑戰！ 奇異果汁達人" />
+        <string name="desc" value="活動期間內，狩獵一般怪物，收集成熟的奇異果50個，交給加加就能製作奇異果汁。  和加加一起製作奇異果汁7次，就能獲得 #b經驗值#k，同時還能挑戰 #r鳳梨汁達人#k。" />
+        <int name="count" value="7" />
+        <int name="lock" value="11437" />
+      </imgdir>
+      <imgdir name="3">
+        <int name="quest" value="11439" />
+        <string name="title" value="挑戰！ 鳳梨汁達人" />
+        <string name="desc" value="活動期間內,狩獵一般怪物，收集新鮮的鳳梨50個，交給加加就能製作鳳梨汁。  和加加一起製作鳳梨汁10次，就能獲得經驗值和最終獎勵椅子道具#r粉紅海灘遮陽椅#k和 #bAllstat+1，物理/魔法防禦力 +50 屬性#k的 #r酸酸甜甜的耳環#k。 " />
+        <int name="count" value="10" />
+        <int name="lock" value="11438" />
+      </imgdir>
+    </imgdir>
+  </imgdir>
+  <imgdir name="8">
+    <string name="start" value="2012072512" />
+    <string name="end" value="2012081512" />
+    <imgdir name="mission">
+      <imgdir name="0">
+        <int name="quest" value="11544" />
+        <string name="title" value="環境守護者第3日！" />
+        <string name="desc" value="每天在宇宙綠能收集一次力量 #e使用閃亮綠能技能一次#n就能在作戰日誌上留下記錄。\r\n#r作為3日獎勵可以獲得 #k體力和魔力全部回復的 #e#b超級藥水 50個#k#n喔。" />
+      </imgdir>
+      <imgdir name="1">
+        <int name="quest" value="11545" />
+        <string name="title" value="環境守護者第4日！" />
+        <string name="desc" value="每天在宇宙綠能收集一次力量 #e使用閃亮綠能技能一次#n就能在作戰日誌上留下記錄。\r\n#r作為4日獎勵可以獲得 #k在傳說商店裡可以使用的#e#b傳說硬幣2個#k#n喔。" />
+      </imgdir>
+      <imgdir name="2">
+        <int name="quest" value="11546" />
+        <string name="title" value="環境守護者第5日！" />
+        <string name="desc" value="每天在宇宙綠能收集一次力量 #e使用閃亮綠能技能一次#n就能在作戰日誌上留下記錄。\r\n#r作為5日獎勵可以獲得 #k眼部裝飾道具上數值+2的選項的#e#b眼部裝飾數值卷軸60％#k#n喔。" />
+      </imgdir>
+      <imgdir name="3">
+        <int name="quest" value="11547" />
+        <string name="title" value="環境守護者第6日！" />
+        <string name="desc" value="每天在宇宙綠能收集一次力量 #e使用閃亮綠能技能一次#n就能在作戰日誌上留下記錄。\r\n#r作為6日獎勵可以獲得 #k在傳說商店裡可使用的#e#b傳說硬幣3個#k#n喔。" />
+      </imgdir>
+      <imgdir name="4">
+        <int name="quest" value="11548" />
+        <string name="title" value="環境守護者第7日！" />
+        <string name="desc" value="每天在宇宙綠能收集一次力量 #e使用閃亮綠能技能一次#n就能在作戰日誌上留下記錄。\r\n#r作為7日獎勵可以獲得 #k在飾品道具上可增加攻擊力/魔力+1的數值的 #e#b飾品攻擊力/魔力15％卷軸#k#n喔。" />
+      </imgdir>
+      <imgdir name="5">
+        <int name="quest" value="11549" />
+        <string name="title" value="環境守護者第8日！" />
+        <string name="desc" value="每天在宇宙綠能收集一次力量 #e使用閃亮綠能技能一次#n就能在作戰日誌上留下記錄。\r\n#r作為8日獎勵可以獲得 #k在傳說商店裡可使用的#e#b傳說硬幣5個#k#n喔。" />
+      </imgdir>
+      <imgdir name="6">
+        <int name="quest" value="11550" />
+        <string name="title" value="環境守護者第9日！" />
+        <string name="desc" value="每天在宇宙綠能收集一次力量 #e使用閃亮綠能技能一次#n就能在作戰日誌上留下記錄。\r\n#r作為9日獎勵可以獲得#k 可使得裝備道具的卷軸使用數值再提高1的#e#b黃金鐵鎚#k#n" />
+      </imgdir>
+      <imgdir name="7">
+        <int name="quest" value="11551" />
+        <string name="title" value="環境守護者第10日！" />
+        <string name="desc" value="每天在宇宙綠能收集一次力量 #e使用閃亮綠能技能一次#n就能在作戰日誌上留下記錄。\r\n#r作為10日獎勵可以獲得#k等級限制 10， #e攻擊力/魔力 +2， STR/DEX/INT/LUK +2， 物理/魔法防禦力 +20， HP/MP +20， 回避值/命中值 +30， 魅力 +100#n 選項的眼部裝飾道具 #b#e艾芬格萊斯#n#k。" />
+      </imgdir>
+      <imgdir name="8">
+        <int name="quest" value="11551" />
+        <string name="title" value="環境守護者所有任務已完成！" />
+        <string name="desc" value="作為環境守護者的所有任務都已完成。現在開始享受光明綠化力量的同時，創造更出色的新楓之谷世界吧！ " />
+      </imgdir>
+    </imgdir>
+    <string name="path" value="UI/UIWindow2.img/EventInfo/bg/2/backgrnd" />
+    <int name="count" value="8" />
+    <int name="quest" value="11556" />
+  </imgdir>
+  <imgdir name="9">
+    <string name="start" value="2012011112" />
+    <string name="end" value="2012020112" />
+    <imgdir name="mission">
+      <imgdir name="0">
+        <int name="quest" value="11582" />
+        <string name="title" value="怪物掃蕩第1日！" />
+        <string name="desc" value="每天一次 #r度假村怪物掃蕩！ 完成任務#k就能簽到。\r\n#b第1日獎勵#k為恢復體力和魔力的#b超級藥水 20個#k。" />
+      </imgdir>
+      <imgdir name="1">
+        <int name="quest" value="11583" />
+        <string name="title" value="怪物掃蕩第2日！" />
+        <string name="desc" value="每天一次 #r度假村怪物掃蕩！ 完成任務#k就能簽到。\r\n#b第2日獎勵#k為可在傳說商店上使用的#b正義硬幣1個#k。" />
+      </imgdir>
+      <imgdir name="2">
+        <int name="quest" value="11584" />
+        <string name="title" value="怪物掃蕩第3日！" />
+        <string name="desc" value="每天一次 #r度假村怪物掃蕩！ 完成任務#k就能簽到。\r\n#b第3日獎勵#k為恢復體力和魔力的#b超級藥水30個#k。" />
+      </imgdir>
+      <imgdir name="3">
+        <int name="quest" value="11585" />
+        <string name="title" value="怪物掃蕩第4日！" />
+        <string name="desc" value="每天一次 #r度假村怪物掃蕩！ 完成任務#k就能簽到。\r\n#b第4日獎勵#k為在傳說商店上可使用的#b正義硬幣 3個#k。" />
+      </imgdir>
+      <imgdir name="4">
+        <int name="quest" value="11586" />
+        <string name="title" value="怪物掃蕩第5日！" />
+        <string name="desc" value="每天一次 #r度假村怪物掃蕩！ 完成任務#k就能簽到。\r\n#b第5日獎勵#k為可獲得自己學習的專門技術製作法3個的#b神秘製作法1個#k。" />
+      </imgdir>
+      <imgdir name="5">
+        <int name="quest" value="11587" />
+        <string name="title" value="怪物掃蕩第6日！" />
+        <string name="desc" value="每天一次 #r度假村怪物掃蕩！ 完成任務#k就能簽到。\r\n#b第6日獎勵#k為升級完成的道具可以再強化的#b高級裝備強化卷軸1個#k。" />
+      </imgdir>
+      <imgdir name="6">
+        <int name="quest" value="11588" />
+        <string name="title" value="怪物掃蕩第7日！" />
+        <string name="desc" value="每天一次 #r度假村怪物掃蕩！ 完成任務#k就能簽到。\r\n#b第7日獎勵#k為可以在一般道具上賦予潛在能力的#b特殊潛在能力賦予卷軸3個#k。" />
+      </imgdir>
+      <imgdir name="7">
+        <int name="quest" value="11588" />
+        <string name="title" value="怪物掃蕩已完成！" />
+        <string name="desc" value="除掉妨礙我們夏天的怪物掃蕩7日已全部完成。 在更暢快的新楓之谷世界，創造出更有趣的夏天吧！" />
+      </imgdir>
+    </imgdir>
+    <string name="path" value="UI/UIWindow2.img/EventInfo/bg/2/backgrnd" />
+    <int name="count" value="7" />
+    <int name="quest" value="11598" />
+  </imgdir>
+  <imgdir name="10">
+    <string name="start" value="2011082500" />
+    <string name="end" value="2011090900" />
+    <imgdir name="mission">
+      <imgdir name="0">
+        <int name="quest" value="11658" />
+        <string name="title" value="製造回憶第1天！" />
+        <string name="desc" value="每天完成製作回憶的任務1次的話，可以在夏日記憶日記中留下紀錄。\r\n#r作為1日獎勵可以獲得 #k能恢復全部體力和魔力的#e#b超級藥水 20個#k#n喔。" />
+      </imgdir>
+      <imgdir name="1">
+        <int name="quest" value="11659" />
+        <string name="title" value="" />
+        <string name="desc" value="每天完成製作回憶的任務1次的話，可以在夏日記憶日記中留下紀錄。\r\n#r作為2日獎勵可以獲得 #k能在一定時間內提升攻擊力，魔力， 體力， 活力， 移動速度的 #e#b伏天的雞腿增益效果券 3張#k#n喔" />
+      </imgdir>
+      <imgdir name="2">
+        <int name="quest" value="11660" />
+        <string name="title" value="" />
+        <string name="desc" value="每天完成製作回憶的任務1次的話，可以在夏日記憶日記中留下紀錄。\r\n#r作為3日獎勵可以獲得 #k職業等級皆無限制，提升角色的一定比率經驗值的消耗品#e#b傳說之泉水 3個和閃亮亮小猴子#k#n喔。" />
+      </imgdir>
+      <imgdir name="3">
+        <int name="quest" value="11661" />
+        <string name="title" value="" />
+        <string name="desc" value="每天完成製作回憶的任務1次的話，可以在夏日記憶日記中留下紀錄。\r\n#r作為4日獎勵可以獲得 #k1小時內獲得的經驗值量上升 1。5倍的#e#b經驗值1。5倍禮券 3張#k#n喔" />
+      </imgdir>
+      <imgdir name="4">
+        <int name="quest" value="11662" />
+        <string name="title" value="" />
+        <string name="desc" value="每天完成製作回憶的任務1次的話，可以在夏日記憶日記中留下紀錄。\r\n#r作為5日獎勵可以獲得 #k升級結束的道具可再強化一階段的 #e#b高級裝備強化卷軸#k#n喔。" />
+      </imgdir>
+      <imgdir name="5">
+        <int name="quest" value="11663" />
+        <string name="title" value="" />
+        <string name="desc" value="每天完成製作回憶的任務1次的話，可以在夏日記憶日記中留下紀錄。\r\n#r作為6日獎勵可以獲得#k 可以使用裝備道具的卷軸使數值再上升1的 #e#b黃金鐵鎚#k#n喔。" />
+      </imgdir>
+      <imgdir name="6">
+        <int name="quest" value="11664" />
+        <string name="title" value="" />
+        <string name="desc" value="每天完成製作回憶的任務1次的話，可以在夏日記憶日記中留下紀錄。\r\n#r作為7日獎勵可以獲得#k 等級限制 75，可升級次數 5， Allstat +3，物理/魔法防禦力+50的選項和潛在能力賦予的 #e#b傳說酸甜耳環#k#n和帥氣稱號喔。" />
+      </imgdir>
+      <imgdir name="7">
+        <int name="quest" value="11665" />
+        <string name="title" value="製造回憶 Bonus+" />
+        <string name="desc" value="每天完成製作回憶的任務1次的話，可以在夏日記憶日記中留下紀錄。\r\n#r7日的所有任務都完成的話，從8日開始會贈送隨機出現一個特別道具的 #e#b夏日的回憶箱#k#n每天只可獲得1次喔。" />
+      </imgdir>
+      <imgdir name="8">
+        <int name="quest" value="11665" />
+        <string name="title" value="製造回憶 Bonus+" />
+        <string name="desc" value="已完成所有傳說的夏日回憶製造任務。回憶將永存不滅！" />
+      </imgdir>
+    </imgdir>
+    <string name="path" value="UI/UIWindow2.img/EventInfo/bg/2/backgrnd" />
+    <int name="count" value="8" />
+    <int name="quest" value="11649" />
+  </imgdir>
+  <imgdir name="11">
+    <string name="start" value="2011090800" />
+    <string name="end" value="2011091900" />
+    <imgdir name="mission">
+      <imgdir name="0">
+        <int name="quest" value="11696" />
+        <string name="title" value="製作白松糕組合！" />
+        <string name="desc" value="活動期間，獵殺一般怪物獲取白松糕50個並轉交給卡珊德拉，即可製作白松糕組合。若和卡珊德拉一起製作白松糕組合3次，就可獲得#b經驗值1.5倍券#k作為獎勵，還能挑戰#r製作艾蒿松糕組合#k。" />
+        <int name="start" value="0" />
+        <int name="count" value="3" />
+        <int name="lock" value="11696" />
+      </imgdir>
+      <imgdir name="1">
+        <int name="quest" value="11696" />
+        <string name="title" value="製作艾蒿松糕組合！" />
+        <string name="desc" value="活動期間，獵殺一般怪物獲取艾蒿松糕50個並轉交給卡珊德拉，即可製作艾蒿松糕組合。若和卡珊德拉一起製作艾蒿松糕組合5次，就可獲得#b經驗值1.5倍券#k作為獎勵，還能挑戰#r製作粉紅松糕組合#k。" />
+        <int name="start" value="3" />
+        <int name="count" value="5" />
+        <int name="lock" value="11696" />
+      </imgdir>
+      <imgdir name="2">
+        <int name="quest" value="11696" />
+        <string name="title" value="製作粉紅松糕組合！" />
+        <string name="desc" value="活動期間，獵殺一般怪物獲取粉紅松糕50個並轉交給卡珊德拉，即可製作粉紅松糕組合。若和卡珊德拉一起製作粉紅松糕組合7次，就可獲得#b經驗值1.5倍券#k作為獎勵，還能挑戰#r製作金松糕組合#k。" />
+        <int name="start" value="8" />
+        <int name="count" value="7" />
+        <int name="lock" value="11696" />
+      </imgdir>
+      <imgdir name="3">
+        <int name="quest" value="11696" />
+        <string name="title" value="製作金松糕組合！" />
+        <string name="desc" value="活動期間，獵殺一般怪物獲取金松糕50個並轉交給卡珊德拉，即可製作金松糕組合。若和卡珊德拉一起製作金松糕組合10次，就能獲得所有能力值+6、攻擊力與魔力+1、物裡／魔法防禦力+50、可升級5次的#r黃金松糕項鍊#k。" />
+        <int name="start" value="15" />
+        <int name="count" value="10" />
+        <int name="lock" value="11696" />
+      </imgdir>
+    </imgdir>
+    <int name="gauge" value="1" />
+    <string name="path" value="UI/UIWindow2.img/EventInfo/bg/1/backgrnd" />
+    <int name="count" value="4" />
+  </imgdir>
+  <imgdir name="12">
+    <string name="start" value="2011091900" />
+    <string name="end" value="2011100300" />
+    <imgdir name="mission">
+      <imgdir name="0">
+        <int name="quest" value="11704" />
+        <string name="title" value="找尋初戀第1天！" />
+        <string name="desc" value="一天一次#r若完成每個人都有初戀！任務#k即可出席點名。\r\n#b第1天獎勵#k可獲得又帥又有趣的#b稱號道具1個#k。" />
+      </imgdir>
+      <imgdir name="1">
+        <int name="quest" value="11705" />
+        <string name="title" value="" />
+        <string name="desc" value="一天一次 #r若完成每個人都有初戀！任務#k即可出席點名。\r\n#b第2天獎勵#k可獲得恢復全部體力與魔力的#b超級藥水20個#k。" />
+      </imgdir>
+      <imgdir name="2">
+        <int name="quest" value="11706" />
+        <string name="title" value="" />
+        <string name="desc" value="一天一次 #r若完成每個人都有初戀！任務#k即可出席點名。\r\n#b第3天獎勵#k可獲得以60%機率於飾品上額外增加屬性+2的#b飾品屬性卷軸60%1張#k。" />
+      </imgdir>
+      <imgdir name="3">
+        <int name="quest" value="11707" />
+        <string name="title" value="" />
+        <string name="desc" value="一天一次 #r若完成每個人都有初戀！任務#k即可出席點名。\r\n#b第4天獎勵#k可獲得以15%機率於飾品上額外增加攻擊力 / 魔力+1的#b飾品攻擊力 / 魔力卷軸15%1張#k。" />
+      </imgdir>
+      <imgdir name="4">
+        <int name="quest" value="11708" />
+        <string name="title" value="" />
+        <string name="desc" value="一天一次 #r若完成每個人都有初戀！任務#k即可出席點名。\r\n#b第4天獎勵#k可獲得以15%機率於飾品上額外增加攻擊力 / 魔力+1的#b飾品攻擊力 / 魔力卷軸15%2張#k。" />
+      </imgdir>
+      <imgdir name="5">
+        <int name="quest" value="11709" />
+        <string name="title" value="" />
+        <string name="desc" value="一天一次 #r若完成每個人都有初戀！任務#k即可出席點名。\r\n#b第6天獎勵#k可獲得將裝備現有屬性調整為更好或更差的#混沌卷軸60%1張#k。" />
+      </imgdir>
+      <imgdir name="6">
+        <int name="quest" value="11710" />
+        <string name="title" value="" />
+        <string name="desc" value="一天一次 #r若完成每個人都有初戀！任務#k即可出席點名。\r\n#b第7天獎勵#k可獲得等級限制70、可升級次數3、全屬性 +3、物理 / 魔法防禦力+50的臉飾道具#b心動初戀#k。" />
+      </imgdir>
+      <imgdir name="7">
+        <int name="quest" value="11712" />
+        <string name="title" value="" />
+        <string name="desc" value="一天一次 #r若完成每個人都有初戀！任務#k即可出席點名。\r\n#b第8天獎勵#k可獲得世界上最柔軟的椅子#b皮卡啾椅#k。" />
+      </imgdir>
+      <imgdir name="8">
+        <int name="quest" value="11712" />
+        <string name="title" value="她的初戀在哪裡…？" />
+        <string name="desc" value="為了找尋卡珊德拉的初戀，那段時間你已經很努力了。但這並不代表結束，剩餘的時間你也要繼續幫助她，對吧？" />
+      </imgdir>
+    </imgdir>
+    <string name="path" value="UI/UIWindow2.img/EventInfo/bg/2/backgrnd" />
+    <int name="count" value="8" />
+    <int name="quest" value="11711" />
+  </imgdir>
+  <imgdir name="13">
+    <string name="start" value="2011112400" />
+    <string name="end" value="2011121500" />
+    <imgdir name="mission">
+      <imgdir name="0">
+        <int name="quest" value="11845" />
+        <string name="title" value="參與印第安小傢伙救出1次！" />
+        <string name="desc" value="點選#r每小時5分、35分#k時出現的邀請函，  #r從殘暴的猛獸那裡救出印第安小傢伙#k  就能得到禮物。\r\n#b參與救出第1次#k  可獲得  #b超級藥水30個#k當作獎勵。" />
+      </imgdir>
+      <imgdir name="1">
+        <int name="quest" value="11846" />
+        <string name="title" value="參與印第安小傢伙救出5次！" />
+        <string name="desc" value="點選#r每小時5分、35分#k時出現的邀請函，  #r從殘暴的猛獸那裡救出印第安小傢伙#k  就能得到禮物。\r\n#b參與救出第5次#k  可獲得#b印地安人的傲氣加持#k和#b印地安人固有的帥氣的稱號#k  當作獎勵。" />
+      </imgdir>
+      <imgdir name="2">
+        <int name="quest" value="11847" />
+        <string name="title" value="參與印第安小傢伙救出10次！" />
+        <string name="desc" value="點選#r每小時5分、35分#k時出現的邀請函，#r從殘暴的猛獸那裡救出印第安小傢伙#k  就能得到禮物。\r\n#b參與救出第10次#k可從#b武器攻擊或魔法攻擊卷軸  60%#k挑選一張當作獎勵。" />
+      </imgdir>
+      <imgdir name="3">
+        <int name="quest" value="11848" />
+        <string name="title" value="參與印第安小傢伙救出15次！" />
+        <string name="desc" value="點選#r每小時5分、35分#k時出現的邀請函，  #r從殘暴的猛獸那裡救出印第安小傢伙#k  就能得到禮物。\r\n#b參與救出第15次#k  可獲得  #b印地安肥肥  30天使用券  #k和  #b印地安人固有的帥氣的稱號#k當作獎勵。" />
+      </imgdir>
+      <imgdir name="4">
+        <string name="quest" value="11849" />
+        <string name="title" value="參與印第安小傢伙救出20次！" />
+        <string name="desc" value="點選#r每小時5分、35分#k時出現的邀請函，  #r從殘暴的猛獸那裡救出印第安小傢伙#k  就能得到禮物。\r\n#b參與救出第20次#k  可獲得  #b驚訝的混沌卷軸  60%#k  當作獎勵。" />
+      </imgdir>
+      <imgdir name="5">
+        <int name="quest" value="11850" />
+        <string name="title" value="參與印第安小傢伙救出25次！" />
+        <string name="desc" value="點選#r每小時5分、35分#k時出現的邀請函，#r從殘暴的猛獸那裡救出印第安小傢伙#k  就能得到禮物。\r\n#b參與救出第25次#k  可獲得#b印第安小傢伙的腰帶#k和  #b印地安人固有的帥氣的稱號#k當作獎勵。" />
+      </imgdir>
+      <imgdir name="6">
+        <int name="quest" value="11850" />
+        <string name="title" value="參與印第安小傢伙救出完成！" />
+        <string name="desc" value="參與印第安小傢伙救出已完成  25次。 可是不知道還有沒有被猛獸抓走的印第安小傢伙，要幫他們的忙幫到最後！" />
+      </imgdir>
+    </imgdir>
+    <string name="path" value="UI/UIWindow2.img/EventInfo/bg/3/backgrnd" />
+    <int name="count" value="6" />
+    <int name="quest" value="11844" />
+  </imgdir>
+  <imgdir name="14">
+    <string name="start" value="2012040500" />
+    <string name="end" value="2012042600" />
+    <imgdir name="mission">
+      <imgdir name="0">
+        <int name="quest" value="12243" />
+        <string name="title" value="聖軍刀第3日!" />
+        <string name="desc" value="每天在聖軍刀之石上收集一次力量，使用#e聖軍刀的祝福技能1次#n就能做簽到。\r\n#r達成簽到 3天#k的話，可獲得恢復體力和魔力的#e#b超級藥水100個#k#n喔。" />
+      </imgdir>
+      <imgdir name="1">
+        <int name="quest" value="12244" />
+        <string name="title" value="聖軍刀第4日!" />
+        <string name="desc" value="每天在聖軍刀之石上收集一次力量，使用 #e聖軍刀的祝福技能1次#n就能做簽到。\r\n#r達成簽到 4天#k的話，可獲得符合自己學習的專門技術製作法當中3個的#e#b神秘製作法#k#n喔。" />
+      </imgdir>
+      <imgdir name="2">
+        <int name="quest" value="12245" />
+        <string name="title" value="聖軍刀第5日!" />
+        <string name="desc" value="每天在聖軍刀之石上收集一次力量，使用 #e聖軍刀的祝福技能1次#n就能做簽到。\r\n#r達成簽到 5天#k的話，可獲得15%機率於飾品上額外增加攻擊力/魔力+1的#e#b飾品攻擊力/魔力卷軸15% 3張#k#n喔" />
+      </imgdir>
+      <imgdir name="3">
+        <int name="quest" value="12246" />
+        <string name="title" value="聖軍刀第6日!" />
+        <string name="desc" value="每天在聖軍刀之石上收集一次力量，使用 #e聖軍刀的祝福技能1次#n就能做簽到。\r\n#r達成簽到 6天#k的話，可獲得10日期間就可以使用夢魘騎乘的技能的#e#b夢魘騎乘10日使用卷1個#k#n喔。" />
+      </imgdir>
+      <imgdir name="4">
+        <int name="quest" value="12247" />
+        <string name="title" value="聖軍刀第7日!" />
+        <string name="desc" value="每天在聖軍刀之石上收集一次力量，使用 #e聖軍刀的祝福技能1次#n就能做簽到。\r\n#r達成簽到 7天#k的話，可獲得使升級結束的裝備道具強化一個階段的#e#b高級裝備強化卷軸3張#k#n喔 " />
+      </imgdir>
+      <imgdir name="5">
+        <int name="quest" value="12248" />
+        <string name="title" value="聖軍刀第8日!" />
+        <string name="desc" value="每天在聖軍刀之石上收集一次力量，使用 #e聖軍刀的祝福技能1次#n就能做簽到。\r\n#r達成簽到 8天#k的話，可獲得能在沒有潛在能力的道具上賦予潛在能力的#e#b特殊潛在能力卷軸3#k#n喔" />
+      </imgdir>
+      <imgdir name="6">
+        <int name="quest" value="12249" />
+        <string name="title" value="聖軍刀第9日!" />
+        <string name="desc" value="每天在聖軍刀之石上收集一次力量，使用 #e聖軍刀的祝福技能1次#n就能做簽到。\r\n#r達成簽到 9天#k的話，可獲得裝備道具衝卷數提升1的 #e#b黃金鐵鎚3個#k#n喔。 " />
+      </imgdir>
+      <imgdir name="7">
+        <int name="quest" value="12250" />
+        <string name="title" value="聖軍刀第10日！" />
+        <string name="desc" value="每天在聖軍刀之石上收集一次力量，使用 #e聖軍刀的祝福技能1次#n就能做簽到。\r\n#r達成簽到 10天#k的話，可獲得等級限制70、#e衝卷次數5、全屬性 +4、迴避值/命中值+30、物理/魔法防禦力+30#n屬性的眼飾裝備#b#e聖軍刀太陽眼鏡" />
+      </imgdir>
+      <imgdir name="8">
+        <int name="quest" value="12250" />
+        <string name="title" value="聖軍刀任務完成！" />
+        <string name="desc" value="打著聖軍刀的名號認真地活動了10天。" />
+      </imgdir>
+    </imgdir>
+    <string name="path" value="UI/UIWindow2.img/EventInfo/bg/2/backgrnd" />
+    <int name="count" value="8" />
+    <int name="quest" value="12251" />
+  </imgdir>
+  <imgdir name="15">
+    <string name="start" value="2012060500" />
+    <string name="end" value="2012070200" />
+    <imgdir name="mission">
+      <imgdir name="0">
+        <int name="quest" value="12657" />
+        <string name="title" value="炎熱打獵 第3日" />
+        <string name="desc" value="一天一次參加炎熱打獵的話，就可以簽到。\r\n#r簽到達成3日的話，#k可以獲得恢復全部體力和魔力的#e#b超級藥水50個#k#n。" />
+      </imgdir>
+      <imgdir name="1">
+        <int name="quest" value="12658" />
+        <string name="title" value="炎熱打獵 第4日" />
+        <string name="desc" value="一天一次參加炎熱打獵的話，就可以簽到。\r\n#r簽到達成4日的話，#e#b可以獲得新結冰化妝#k#n。" />
+      </imgdir>
+      <imgdir name="2">
+        <int name="quest" value="12659" />
+        <string name="title" value="炎熱打獵 第5日" />
+        <string name="desc" value="一天一次參加炎熱打獵的話，就可以簽到。\r\n#r簽到達成5日的話，#e#b可以獲得高級裝備強化卷軸#k#n。" />
+      </imgdir>
+      <imgdir name="3">
+        <int name="quest" value="12660" />
+        <string name="title" value="炎熱打獵 第6日" />
+        <string name="desc" value="一天一次參加炎熱打獵的話，就可以簽到。\r\n#r簽到達成6日的話，#e#b可以獲得黃金鐵鎚#k#n。" />
+      </imgdir>
+      <imgdir name="4">
+        <int name="quest" value="12661" />
+        <string name="title" value="炎熱打獵 第7日" />
+        <string name="desc" value="一天一次參加炎熱打獵的話，就可以簽到。\r\n#r簽到達成7日的話， #e#b可以獲得混沌卷軸#k#n。" />
+      </imgdir>
+      <imgdir name="5">
+        <int name="quest" value="12662" />
+        <string name="title" value="炎熱打獵 第8日" />
+        <string name="desc" value="一天一次參加炎熱打獵的話，就可以簽到。\r\n#r簽到達成8日的話，#e#b可以獲得彩虹胸章#k#n。" />
+      </imgdir>
+      <imgdir name="6">
+        <int name="quest" value="12662" />
+        <string name="title" value="炎熱打獵 結束！" />
+        <string name="desc" value="但是現在才是炎熱的開始呢。。。" />
+      </imgdir>
+    </imgdir>
+    <string name="path" value="UI/UIWindow2.img/EventInfo/bg/3/backgrnd" />
+    <int name="count" value="6" />
+    <int name="quest" value="12664" />
+  </imgdir>
+  <imgdir name="16">
+    <string name="start" value="2012120500" />
+    <string name="end" value="2012122600" />
+    <imgdir name="mission">
+      <imgdir name="0">
+        <int name="quest" value="12676" />
+        <string name="title" value="楓葉戰士簽到 第1日" />
+        <string name="desc" value="每天參加楓葉戰士考試的話就可做簽到。\r\n#r達成簽到 1天#k的話可以獲得體力和魔力全部回復的 #e#b超級藥水 50個#k#n喔。" />
+      </imgdir>
+      <imgdir name="1">
+        <int name="quest" value="12677" />
+        <string name="title" value="楓葉戰士簽到 第2日" />
+        <string name="desc" value="每天參加楓葉戰士考試的話就可做簽到。\r\n#r達成簽到 2天的話可以獲得 #e#b宇宙船騎乘#k#n喔" />
+      </imgdir>
+      <imgdir name="2">
+        <int name="quest" value="12678" />
+        <string name="title" value="楓葉戰士簽到 第3日" />
+        <string name="desc" value="每天參加楓葉戰士考試的話就可做簽到。\r\n#r達成簽到 3天的話可以獲得#e#b楓葉戰士驚訝的混沌卷軸 60%#k#n喔。" />
+      </imgdir>
+      <imgdir name="3">
+        <int name="quest" value="12679" />
+        <string name="title" value="楓葉戰士簽到 第4日" />
+        <string name="desc" value="每天參加楓葉戰士考試的話就可做簽到。\r\n#r達成簽到 4天的話可以獲得#e#b精靈墜飾#k#n喔。" />
+      </imgdir>
+      <imgdir name="4">
+        <int name="quest" value="12680" />
+        <string name="title" value="楓葉戰士簽到 第5日" />
+        <string name="desc" value="每天參加楓葉戰士考試的話就可做簽到。\r\n#r達成簽到 5天#k的話可以獲得#e#b混沌卷軸 60%#k#n喔。" />
+      </imgdir>
+      <imgdir name="5">
+        <int name="quest" value="12681" />
+        <string name="title" value="楓葉戰士簽到 第6日" />
+        <string name="desc" value="每天參加楓葉戰士考試的話就可做簽到。\r\n#r達成簽到 6天#k的話可以獲得#e#b高級潛在能力賦予卷軸#k#n喔。" />
+      </imgdir>
+      <imgdir name="6">
+        <int name="quest" value="12682" />
+        <string name="title" value="楓葉戰士簽到 第7日" />
+        <string name="desc" value="每天參加楓葉戰士考試的話就可做簽到。\r\n#r達成簽到 7天#k的話可以獲得#e#b楓葉戰士機器人交換券#k#n喔" />
+      </imgdir>
+      <imgdir name="7">
+        <int name="quest" value="12683" />
+        <string name="title" value="楓葉戰士簽到 之後" />
+        <string name="desc" value="每天參加楓葉戰士考試的話可以獲得#e#b尤莉亞的魔法和來路不明的情書#k#n喔。" />
+      </imgdir>
+      <imgdir name="8">
+        <int name="quest" value="12683" />
+        <string name="title" value="楓葉戰士簽到 之後" />
+        <string name="desc" value="每天參加楓葉戰士考試的話可以獲得#e#b尤莉亞的魔法和來路不明的情書#k#n喔。" />
+      </imgdir>
+    </imgdir>
+    <string name="path" value="UI/UIWindow2.img/EventInfo/bg/2/backgrnd" />
+    <int name="count" value="8" />
+    <int name="quest" value="12684" />
+  </imgdir>
+  <imgdir name="17">
+    <string name="start" value="2012120600" />
+    <string name="end" value="2013030100" />
+    <imgdir name="mission">
+      <imgdir name="0">
+        <int name="quest" value="13272" />
+        <string name="title" value="獲得1次高級服務禮物" />
+        <string name="desc" value="#b參加高級服務點名活動的話#k可以從馬蒂達那裡獲得禮物。\r\n 高級服務出席次數 #r1次可以獲得#k高級服務隨機變身藥水作為禮物。" />
+      </imgdir>
+      <imgdir name="1">
+        <int name="quest" value="13273" />
+        <string name="title" value="獲得2次高級服務禮物" />
+        <string name="desc" value="#b參加高級服務點名活動的話#k可以從馬蒂達那裡獲得禮物。\r\n  高級服務出席次數  #r2次可以獲得#k超級藥水作為禮物。" />
+      </imgdir>
+      <imgdir name="2">
+        <int name="quest" value="13274" />
+        <string name="title" value="獲得3次高級服務禮物" />
+        <string name="desc" value="#b參加高級服務點名活動的話#k可以從馬蒂達那裡獲得禮物。\r\n  高級服務出席次數  #r3次可以獲得#k特別版精靈墜飾作為禮物。" />
+      </imgdir>
+      <imgdir name="3">
+        <int name="quest" value="13275" />
+        <string name="title" value="獲得4次高級服務禮物" />
+        <string name="desc" value="#b參加高級服務點名活動的話#k可以從馬蒂達那裡獲得禮物。\r\n  高級服務出席次數  #r4次可以獲得#k幸運日卷軸作為禮物。" />
+      </imgdir>
+      <imgdir name="4">
+        <int name="quest" value="13276" />
+        <string name="title" value="獲得5次高級服務禮物" />
+        <string name="desc" value="#b參加高級服務點名活動的話#k可以從馬蒂達那裡獲得禮物。\r\n  高級服務出席次數  #r5次可以獲得#k驚訝的混沌卷軸 60%作為禮物。" />
+      </imgdir>
+      <imgdir name="5">
+        <int name="quest" value="13277" />
+        <string name="title" value="獲得6次高級服務禮物" />
+        <string name="desc" value="#b參加高級服務點名活動的話#k可以從馬蒂達那裡獲得禮物。\r\n  高級服務出席次數  #r6次可以獲得#k高級裝備強化卷軸作為禮物。" />
+      </imgdir>
+      <imgdir name="6">
+        <int name="quest" value="13278" />
+        <string name="title" value="獲得7次高級服務禮物" />
+        <string name="desc" value="#b參加高級服務點名活動的話#k可以從馬蒂達那裡獲得禮物。\r\n  高級服務出席次數  #r7次可以獲得#k銀光烙印的印章作為禮物。" />
+      </imgdir>
+      <imgdir name="7">
+        <int name="quest" value="13278" />
+        <string name="title" value="網咖簽到一輪完成!" />
+        <string name="desc" value="獲得高級服務點名活動7次禮物的你! 重新回到1次，繼續獲得禮物吧。\r\n#r活動期間可以重複進行。#k" />
+      </imgdir>
+    </imgdir>
+    <string name="path" value="UI/UIWindow2.img/EventInfo/bg/2/backgrnd" />
+    <int name="count" value="7" />
+    <int name="questex" value="18080" />
+    <string name="questexkey" value="num" />
+  </imgdir>
 </imgdir>

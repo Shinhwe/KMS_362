@@ -22298,12 +22298,11 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     }
     else if (acc)
     {
-
       for (String keyValue : clientDateKeyValues)
       {
         if (keyValue.equals("dailyGiftComplete"))
         {
-          int 已簽到天數 = Integer.parseInt(client.getKeyValue("dailyGiftDay"));
+          int 已簽到天數 = Integer.parseInt(client.getKeyValue("dailyGiftDay", "0"));
           int 今天日期 = GameConstants.getCurrentDate_NoTime();
           if (kc.getDayt() == 1)
           {
@@ -22777,35 +22776,29 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   public void gainSuddenMission (final int startquestid, final int midquestid, final boolean first)
   {
     final long nowtime = first ? PacketHelper.getKoreanTimestamp(System.currentTimeMillis()) : this.getKeyValue(51351, "starttime");
+
     final long endtime = first ? (nowtime + 17980000000L) : this.getKeyValue(51351, "endtime");
+
     if (first)
     {
       this.removeKeyValue(51351);
+
       this.setKeyValue(51351, "starttime", String.valueOf(nowtime));
+
       this.setKeyValue(51351, "endtime", String.valueOf(endtime));
+
       this.setKeyValue(51351, "startquestid", String.valueOf(startquestid));
+
       this.setKeyValue(51351, "midquestid", String.valueOf(midquestid));
+
       this.setKeyValue(51351, "queststat", "2");
-      final int[] array;
-      final int[] questdel = array = new int[] { 49001, 49002, 49003, 49012, 49013, 49014, 49016 };
-      for (final Integer qid : array)
+
+      for (int questId = 49001; questId <= 49018; questId++)
       {
-        MapleQuest.getInstance(qid).forfeit(this);
+        MapleQuest.getInstance(questId).forfeit(this);
       }
-      switch (startquestid)
-      {
-        case 49001:
-        case 49002:
-        case 49003:
-        case 49012:
-        case 49013:
-        case 49014:
-        case 49016:
-        {
-          MapleQuest.getInstance(startquestid).forceStart(this, 0, "0");
-          break;
-        }
-      }
+
+      MapleQuest.getInstance(startquestid).forceStart(this, 0, "0");
     }
     this.getClient().send(CWvsContext.updateSuddenQuest(startquestid, true, endtime, ""));
     this.getClient().send(CWvsContext.updateSuddenQuest(midquestid, false, nowtime, "count=0;Quest=" + startquestid + ";state=1"));
@@ -24109,12 +24102,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
         }
         if (Randomizer.isSuccess(1, 1000) && Long.parseLong(MapleCharacter.this.getV("lastSudden")) < System.currentTimeMillis())
         {
-          int questid = 0;
-          do
-          {
-            questid = Randomizer.rand(49001, 49018);
-          }
-          while (questid == 49015);
+          int questid = Randomizer.rand(49001, 49018);
           MapleCharacter.this.gainSuddenMission(questid, 49000, true);
           MapleCharacter.this.addKV("lastSudden", String.valueOf(System.currentTimeMillis() + 1000000000L));
         }
