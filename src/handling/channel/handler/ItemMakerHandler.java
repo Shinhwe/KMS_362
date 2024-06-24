@@ -821,7 +821,7 @@ public class ItemMakerHandler
               MapleInventoryManipulator.addFromDrop(c, receive, true, false, false);
               if (ce.needOpenItem)
               {
-                byte mLevel = chr.getMasterLevel(craftID);
+                int mLevel = chr.getMasterLevel(craftID);
                 if (mLevel == 1)
                 {
                   sa.put(ce, new SkillEntry(0, (byte) 0, SkillFactory.getDefaultSExpiry(ce)));

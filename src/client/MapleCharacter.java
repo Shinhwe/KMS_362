@@ -1703,7 +1703,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
           /*  2801 */
           int skl = rs.getInt("skilllevel");
           /*  2802 */
-          byte msl = rs.getByte("masterlevel");
+          int msl = rs.getInt("masterlevel");
           /*  2803 */
           if (skil != null)
           {
@@ -2466,7 +2466,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       {
         ps.setInt(2, skill.getKey().getId());
         ps.setInt(3, skill.getValue().skillevel);
-        ps.setByte(4, skill.getValue().masterlevel);
+        ps.setInt(4, skill.getValue().masterlevel);
         ps.setLong(5, skill.getValue().expiration);
         ps.execute();
       }
@@ -4999,7 +4999,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
         {
           ps.setInt(2, skill.getKey().getId());
           ps.setInt(3, skill.getValue().skillevel);
-          ps.setByte(4, skill.getValue().masterlevel);
+          ps.setInt(4, skill.getValue().masterlevel);
           ps.setLong(5, skill.getValue().expiration);
           ps.execute();
         }
@@ -8373,7 +8373,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     this.changeSingleSkillLevel(SkillFactory.getSkill(id), total, (byte) 30);
   }
 
-  public void changeSingleSkillLevel (final Skill skill, final int newLevel, final byte newMasterlevel)
+  public void changeSingleSkillLevel (final Skill skill, final int newLevel, final int newMasterlevel)
   {
     if (skill == null)
     {
@@ -8382,7 +8382,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     this.changeSingleSkillLevel(skill, newLevel, newMasterlevel, SkillFactory.getDefaultSExpiry(skill));
   }
 
-  public void changeSingleSkillLevel (final Skill skill, final int newLevel, final byte newMasterlevel, final long expiration)
+  public void changeSingleSkillLevel (final Skill skill, final int newLevel, final int newMasterlevel, final long expiration)
   {
     final Map<Skill, SkillEntry> list = new HashMap<Skill, SkillEntry>();
     boolean hasRecovery = false;
@@ -8453,7 +8453,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     }
   }
 
-  public boolean changeSkillData (final Skill skill, final int newLevel, byte newMasterlevel, final long expiration)
+  public boolean changeSkillData (final Skill skill, final int newLevel, int newMasterlevel, final long expiration)
   {
     if (skill == null)
     {
@@ -8461,7 +8461,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     }
     if (newLevel < newMasterlevel)
     {
-      newMasterlevel = (byte) newLevel;
+      newMasterlevel = newLevel;
     }
     if (newLevel == 0 && newMasterlevel == 0)
     {
@@ -8478,17 +8478,17 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     return true;
   }
 
-  public void changeSkillLevel (final int skill, final byte newLevel, final byte newMasterLevel)
+  public void changeSkillLevel (final int skill, final int newLevel, final int newMasterLevel)
   {
     this.changeSkillLevel(SkillFactory.getSkill(skill), newLevel, newMasterLevel);
   }
 
-  public void changeSkillLevel (final Skill skill, final byte newLevel, final byte newMasterlevel)
+  public void changeSkillLevel (final Skill skill, final int newLevel, final int newMasterlevel)
   {
     this.changeSkillLevel_Skip(skill, newLevel, newMasterlevel);
   }
 
-  public void changeSkillLevel_Skip (final Skill skil, final int skilLevel, final byte masterLevel)
+  public void changeSkillLevel_Skip (final Skill skil, final int skilLevel, final int masterLevel)
   {
     final Map<Skill, SkillEntry> enry = new HashMap<Skill, SkillEntry>(1);
     enry.put(skil, new SkillEntry(skilLevel, masterLevel, -1L));
@@ -10013,12 +10013,12 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     return skilllv;
   }
 
-  public byte getMasterLevel (final int skill)
+  public int getMasterLevel (final int skill)
   {
     return this.getMasterLevel(SkillFactory.getSkill(skill));
   }
 
-  public byte getMasterLevel (final Skill skill)
+  public int getMasterLevel (final Skill skill)
   {
     final SkillEntry ret = this.skills.get(skill);
     if (ret == null)
@@ -10148,6 +10148,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       }
       this.changeSkillsLevel(list);
     }
+    this.changeSkillLevel(SkillFactory.getSkill(80002419), this.level, this.level);
     if (GameConstants.isZero(this.job))
     {
       if (this.level == 100)

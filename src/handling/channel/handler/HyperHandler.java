@@ -8,12 +8,12 @@ import java.util.HashMap;
 
 public class HyperHandler
 {
-  
-  public static int[] table = new int[]{
-      0, 1, 2, 4, 8, 10, 15, 20, 25, 30,
-      35, 50, 65, 80, 95, 110};
-  
-  public static void getHyperSkill(LittleEndianAccessor rh, MapleClient c)
+
+  public static int[] table = new int[] {
+      0, 1, 2, 4, 8, 10, 15, 20, 25, 30, 35, 50, 65, 80, 95, 110
+  };
+
+  public static void getHyperSkill (LittleEndianAccessor rh, MapleClient c)
   {
     String value = rh.readMapleAsciiString();
     int rate = 0;
@@ -102,37 +102,29 @@ public class HyperHandler
       if (lvl >= 28 && lvl <= 40)
       {
         unk = true;
-        table = (sp == 1) ? ((lvl == 28 || lvl == 32 || lvl == 38) ? 1 : 0) : ((lvl == 28 || lvl == 30 || lvl == 33 || lvl == 36 || lvl == 38) ? 1 : 0);
+        table = (sp == 1) ? ((lvl == 30 || lvl == 34 || lvl == 40) ? 1 : 0) : ((lvl == 28 || lvl == 30 || lvl == 32 || lvl == 34 || lvl == 36 || lvl == 38 || lvl == 40) ? 1 : 0);
       }
       c.getSession().writeAndFlush(CWvsContext.updateHyperSp(value, lvl, sp, table, unk));
     }
+    else if (value.equals("honorLeveling"))
+    {
+      System.out.println("honorLeveling");
+      c.getSession().writeAndFlush(CWvsContext.updateSpecialStat(value, lvl, sp, c.getPlayer().getHonourNextExp()));
+    }
     else
     {
-      if (value.equals("honorLeveling"))
+      rate = Math.max(0, 100 - (lvl + 1 - c.getPlayer().getProfessionLevel(Integer.parseInt(value))) * 20);
+
+      if (value.startsWith("9200") || value.startsWith("9201") || value.startsWith("9203") || value.startsWith("9204"))
       {
-        return;
+        rate = 100;
       }
-      if (!value.equals("hyper") && !value.equals("incHyperStat"))
-      {
-        if (value.startsWith("9200") || value.startsWith("9201") || value.startsWith("9203") || value.startsWith("9204"))
-        {
-          rate = 100;
-        }
-        else
-        {
-          if (value.equals("honorLeveling"))
-          {
-            c.getSession().writeAndFlush(CWvsContext.updateSpecialStat(value, lvl, sp, c.getPlayer().getHonourNextExp()));
-            return;
-          }
-          rate = Math.max(0, 100 - (lvl + 1 - c.getPlayer().getProfessionLevel(Integer.parseInt(value))) * 20);
-        }
-        c.getSession().writeAndFlush(CWvsContext.updateSpecialStat(value, lvl, sp, rate));
-      }
+
+      c.getSession().writeAndFlush(CWvsContext.updateSpecialStat(value, lvl, sp, rate));
     }
   }
-  
-  public static void HyperStatHandler(LittleEndianAccessor slea, MapleClient c)
+
+  public static void HyperStatHandler (LittleEndianAccessor slea, MapleClient c)
   {
     final int pos = slea.readInt();
     final int skillid = slea.readInt();
@@ -259,8 +251,8 @@ public class HyperHandler
       c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
     }
   }
-  
-  public static void ResetHyperStatHandler(LittleEndianAccessor slea, MapleClient c)
+
+  public static void ResetHyperStatHandler (LittleEndianAccessor slea, MapleClient c)
   {
     int pos = slea.readInt();
     long price = 10000000L;
@@ -288,8 +280,8 @@ public class HyperHandler
     c.getSession().writeAndFlush(CWvsContext.updateHyperPresets(c.getPlayer(), pos, (byte) 1));
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
   }
-  
-  public static void HyperStatPresets(LittleEndianAccessor slea, MapleClient c)
+
+  public static void HyperStatPresets (LittleEndianAccessor slea, MapleClient c)
   {
     MapleCharacter chr = c.getPlayer();
     slea.skip(4);
@@ -307,12 +299,12 @@ public class HyperHandler
     c.getSession().writeAndFlush(CWvsContext.updateHyperPresets(c.getPlayer(), pos, (byte) 0));
     chr.setKeyValue(2498, "hyperstats", String.valueOf(pos));
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
-//        for (int i=4; i<=6; i++) {
-//            c.getSession().writeAndFlush(CWvsContext.updateHyperPresets(c.getPlayer(), 0, (byte) i));
-//        }
+    //        for (int i=4; i<=6; i++) {
+    //            c.getSession().writeAndFlush(CWvsContext.updateHyperPresets(c.getPlayer(), 0, (byte) i));
+    //        }
   }
-  
-  public static void ResetHyperSkill(MapleClient c)
+
+  public static void ResetHyperSkill (MapleClient c)
   {
     long price = 100000L;
     MapleCharacter chr = c.getPlayer();

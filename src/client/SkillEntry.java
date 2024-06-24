@@ -8,11 +8,11 @@ public class SkillEntry implements Serializable
   
   public int skillevel;
   
-  public byte masterlevel;
+  public int masterlevel;
   
   public long expiration;
   
-  public SkillEntry(int skillevel, byte masterlevel, long expiration)
+  public SkillEntry(int skillevel, int masterlevel, long expiration)
   {
     this.skillevel = skillevel;
     this.masterlevel = masterlevel;

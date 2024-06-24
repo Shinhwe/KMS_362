@@ -2189,6 +2189,7 @@ public class InterServerHandler
         }
       }
 
+      player.changeSkillLevel(SkillFactory.getSkill(80002419), player.getLevel(), player.getLevel());
       /* 1283 */
     }
     catch (Exception e)
