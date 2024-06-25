@@ -443,7 +443,7 @@ public class MaplePet
   public final short getFlags()
   {
     /* 316 */
-    return 503;
+    return 2047;
   }
   
   public final void setFlags(int fffh)
