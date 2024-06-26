@@ -391,6 +391,7 @@ function action(mode, type, sel) {
 			cm.getPlayer().AutoTeachSkill();
 			addMedal();
 			addPet();
+			cm.gainItem(2632124, 1);
                                            cm.gainItem(2431307, 1);
                                          cm.gainItem(2433444, 1);
                                          cm.gainItem(3018469, 1);

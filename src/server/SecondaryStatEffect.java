@@ -5800,7 +5800,8 @@ public class SecondaryStatEffect implements Serializable
       {
         bufftimeR = false;
         aftercancel = true;
-        int duration1 = (applyTo.getRoyalStack() != 5) ? ((applyTo.getRoyalStack() != 4) ? ((applyTo.getRoyalStack() != 3) ? ((applyTo.getRoyalStack() != 2) ? 1420 : 1330) : 1280) : 1230) : 150;
+        // int duration1 = (applyTo.getRoyalStack() != 5) ? ((applyTo.getRoyalStack() != 4) ? ((applyTo.getRoyalStack() != 3) ? ((applyTo.getRoyalStack() != 2) ? 1420 : 1330) : 1280) : 1230) : 150;
+        int duration1 = 1500;
         if (applyTo.getBuffedValue(400011083))
         {
           duration1 += 500;

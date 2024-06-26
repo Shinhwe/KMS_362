@@ -10148,7 +10148,8 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
       }
       this.changeSkillsLevel(list);
     }
-    this.changeSkillLevel(SkillFactory.getSkill(80002419), this.level, this.level);
+    this.changeSkillLevel(SkillFactory.getSkill(80000186), 1, 1);
+    this.changeSkillLevel(SkillFactory.getSkill(80000187), this.level, this.level);
     if (GameConstants.isZero(this.job))
     {
       if (this.level == 100)

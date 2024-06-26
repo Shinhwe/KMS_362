@@ -2730,7 +2730,7 @@ public final class MapleMap
         spawnItemDrop(monster, chr, toDrop, new Point((monster.getTruePosition()).x + 25, (monster.getTruePosition()).y), true, false);
       }
 
-      if (!getIsEliteBossMap() && !isEliteChampionMap() && !monster.isEliteMonster() && !getIsEliteBossRewardMap() && !monster.isEliteBoss() && !monster.getStats().isBoss() && monster.getStats().getLevel() > 100 && monster.getStats().getLevel() - 21 <= chr.getLevel() && chr.getLevel() <= monster.getStats().getLevel() + 21 && isSpawnPoint())
+      if (getCustomValue(8222222) == null && !getIsEliteBossMap() && !isEliteChampionMap() && !monster.isEliteMonster() && !getIsEliteBossRewardMap() && !monster.isEliteBoss() && !monster.getStats().isBoss() && monster.getStats().getLevel() > 100 && monster.getStats().getLevel() - 21 <= chr.getLevel() && chr.getLevel() <= monster.getStats().getLevel() + 21 && isSpawnPoint())
       {
         setEliteMobCommonCount(this.EliteMobCommonCount + 1);
       }
@@ -8770,10 +8770,17 @@ public final class MapleMap
     else
     {
       eliteMonster.setUseRuneSpawn(false);
-      setCustomInfo(8222222, 0, 3 * 60 * 1000);
     }
     eliteMonster.setEliteMonster();
     eliteMonster.setEliteHp(eliteMonster.getHp());
+    eliteMonster.addListener(new MonsterListener()
+    {
+      @Override public void monsterKilled ()
+      {
+        MapleMap.this.setEliteMobCommonCount(0);
+        MapleMap.this.setCustomInfo(8222222, 0, 3 * 60 * 1000);
+      }
+    });
     spawnMonsterOnGroundBelow(eliteMonster, pos);
     broadcastMessage(CField.startMapEffect("어두운 기운과 함께 강력한 몬스터가 출현합니다.", 5120124, true));
     broadcastMessage(CField.specialMapSound("Field.img/eliteMonster/Regen"));

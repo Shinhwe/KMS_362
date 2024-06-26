@@ -784,6 +784,11 @@ public class PlayerStats implements Serializable
     long localmaxhp_ = this.getMaxHp();
     long localmaxmp_ = this.getMaxMp();
     this.resetLocalStats(chra.getJob());
+    if (chra.getSkillLevel(80000187) > 0)
+    {
+      localmaxhp_ += 500;
+      localmaxmp_ += 500;
+    }
     for (final MapleTrait.MapleTraitType t : MapleTrait.MapleTraitType.values())
     {
       chra.getTrait(t).clearLocalExp();

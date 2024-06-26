@@ -7240,7 +7240,7 @@ public class PlayerHandler
         }
         else if (isvh.getRank() == 2)
         {
-          if (rand < 1)
+          if (rand < 5)
           {
             nowrank = 3;
           }
@@ -7251,7 +7251,7 @@ public class PlayerHandler
         }
         else if (isvh.getRank() == 1)
         {
-          if (rand < 5)
+          if (rand < 15)
           {
             nowrank = 2;
           }
@@ -7260,7 +7260,7 @@ public class PlayerHandler
             nowrank = 1;
           }
         }
-        else if (rand < 15)
+        else if (rand < 30)
         {
           nowrank = 1;
         }
@@ -12384,7 +12384,7 @@ public class PlayerHandler
         }
         return;
       case 51121009:
-        if (info.equals(""))
+        if (info == null || info.equals(""))
         {
           c.getPlayer().updateInfoQuest(1544, "51121009=1;");
         }
