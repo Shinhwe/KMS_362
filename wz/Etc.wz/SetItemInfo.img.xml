@@ -1898,29 +1898,56 @@
     </imgdir>
     <imgdir name="Effect">
       <imgdir name="3">
-        <int name="incAllStat" value="3" />
-        <short name="incMHP" value="100" />
-        <short name="incMMP" value="100" />
+        <int name="incAllStat" value="40" />
+        <int name="incPAD" value="40"/>
+        <int name="incMAD" value="40"/>
+        <imgdir name="Option">
+          <imgdir name="1">
+            <int name="option" value="60023" />
+            <int name="level" value="13" />
+          </imgdir>
+        </imgdir>
+        <short name="incMHP" value="1000" />
+        <short name="incMMP" value="1000" />
       </imgdir>
       <imgdir name="4">
-        <int name="incPAD" value="5" />
-        <int name="incMAD" value="5" />
-        <int name="incAllStat" value="5" />
+        <int name="incAllStat" value="60" />
+        <int name="incPAD" value="60"/>
+        <int name="incMAD" value="60"/>
+        <imgdir name="Option">
+          <imgdir name="1">
+            <int name="option" value="60023" />
+            <int name="level" value="13" />
+          </imgdir>
+        </imgdir>
+        <short name="incMHP" value="3000" />
+        <short name="incMMP" value="3000" />
       </imgdir>
       <imgdir name="5">
-        <int name="incPAD" value="5" />
-        <int name="incMAD" value="5" />
-        <int name="incAllStat" value="6" />
-        <short name="incMHP" value="150" />
-        <short name="incMMP" value="150" />
+        <int name="incAllStat" value="80" />
+        <int name="incPAD" value="80"/>
+        <int name="incMAD" value="80"/>
+        <imgdir name="Option">
+          <imgdir name="1">
+            <int name="option" value="060024" />
+            <int name="level" value="13" />
+          </imgdir>
+        </imgdir>
+        <short name="incMHP" value="5000" />
+        <short name="incMMP" value="5000" />
       </imgdir>
       <imgdir name="6">
-        <int name="incPAD" value="5" />
-        <int name="incMAD" value="5" />
-        <int name="incAllStat" value="7" />
-        <short name="incMHP" value="200" />
-        <short name="incMMP" value="200" />
-        <int name="incSpeed" value="5" />
+        <int name="incAllStat" value="100" />
+        <int name="incPAD" value="100"/>
+        <int name="incMAD" value="100"/>
+        <imgdir name="Option">
+          <imgdir name="1">
+            <int name="option" value="060024" />
+            <int name="level" value="13" />
+          </imgdir>
+        </imgdir>
+        <short name="incMHPr" value="15" />
+        <short name="incMMPr" value="15" />
       </imgdir>
     </imgdir>
     <int name="jokerPossible" value="1" />
