@@ -1296,14 +1296,15 @@ public class MapleMonster extends AbstractLoadedMapleLife
 
   private final void giveExpToCharacter (MapleCharacter attacker, long exp, boolean highestDamage, int numExpSharers, byte pty, byte Class_Bonus_EXP_PERCENT, byte Premium_Bonus_EXP_PERCENT, int lastskillID)
   {
-
     if (exp > 0L)
-    {// 레벨별 배율
+    {
       MonsterStatusEffect ms = getBuff(MonsterStatus.MS_Showdown);
+
       if (ms != null)
       {
         exp += (int) (exp * ms.getValue() / 100.0D);
       }
+
       if (attacker.hasDisease(SecondaryStat.Curse))
       {
         exp /= 2L;
@@ -1319,19 +1320,12 @@ public class MapleMonster extends AbstractLoadedMapleLife
         attacker.getClient().getSession().writeAndFlush(CField.runeCurse("룬을 해방하여 엘리트 보스의 저주를 풀어야 합니다!!\\n저주 " + attacker.getMap().getRuneCurse() + "단계 :  경험치 획득, 드롭률 " + attacker.getMap().getRuneCurseDecrease() + "% 감소 효과 적용 중", false));
         exp -= exp * attacker.getMap().getRuneCurseDecrease() / 100L;
       }
-      // if (attacker.getLevel() >= 200)
-      // {
-      //   int level = 20;
-      //   if (attacker.getMap().isSpawnPoint() && !getStats().isBoss() && (getStats().getLevel() - level > attacker.getLevel() || attacker.getLevel() > getStats().getLevel() + level))
-      //   {
-      //     exp -= exp * 80L / 100L;
-      //     if (attacker.getSkillCustomValue0(60524) == 0L)
-      //     {
-      //       attacker.setSkillCustomInfo(60524, 1L, 0L);
-      //       attacker.getClient().getSession().writeAndFlush(CField.UIPacket.detailShowInfo("레벨 범위를 벗어난 몬스터를 사냥 시 경험치와 메소 획득량이 크게 감소합니다.", 3, 20, 20));
-      //     }
-      //   }
-      // }
+      // 等級相差10級內會獲得20%額外經驗值
+      int level = 10;
+      if (attacker.getMap().isSpawnPoint() && !getStats().isBoss() && (getStats().getLevel() - level <= attacker.getLevel() || attacker.getLevel() <= getStats().getLevel() + level))
+      {
+        exp = (long) (exp * 1.2D);
+      }
       if (isBuffed(MonsterStatus.MS_SeperateSoulP) || isBuffed(MonsterStatus.MS_SeperateSoulC))
       {
         exp *= 2L;
@@ -1340,7 +1334,7 @@ public class MapleMonster extends AbstractLoadedMapleLife
       {
         exp = (long) (exp * 0.2D);
       }
-      exp *= attacker.getClient().getChannelServer().getExpRate();
+      // exp *= attacker.getClient().getChannelServer().getExpRate();
       attacker.gainExpMonster(exp, true, highestDamage);
       attacker.getTrait(MapleTrait.MapleTraitType.charisma).addExp(this.stats.getCharismaEXP(), attacker);
     }

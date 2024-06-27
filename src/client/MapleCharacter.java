@@ -9373,6 +9373,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     {
       this.stats.checkEquipLevels(this, total);
     }
+    total *= this.getClient().getChannelServer().getExpRate();
     final long needed = this.getNeededExp();
     if (this.level >= 300)
     {
