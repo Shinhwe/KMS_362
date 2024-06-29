@@ -12,7 +12,7 @@
 <string name="islot" value="Po"/>
 <string name="vslot" value="Po"/>
 <int name="reqJob" value="0"/>
-<int name="reqLevel" value="160"/>
+<int name="reqLevel" value="200"/>
 <int name="reqSTR" value="0"/>
 <int name="reqDEX" value="0"/>
 <int name="reqINT" value="0"/>
@@ -31,6 +31,15 @@
 <int name="cash" value="0"/>
 <int name="bossReward" value="1"/>
 <int name="equipTradeBlock" value="1"/>
+<int name="specialGrade" value="1"/>
+<int name="fixedGrade" value="4"/>
+<int name="fixedPotential" value="1"/>
+<imgdir name="option">
+<imgdir name="0">
+<int name="option" value="60002"/>
+<int name="level" value="1"/>
+</imgdir>
+</imgdir>
 <int name="setItemID" value="677"/>
 </imgdir>
 </imgdir>

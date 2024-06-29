@@ -1342,7 +1342,7 @@ public class MapleItemInformationProvider
             }
             List<Pair<EnchantFlag, Integer>> list1 = new ArrayList<>();
             // TODO: 黑卷強化
-            equip.setShowScrollOption(new EquipmentScroll(list1));
+            // equip.setShowScrollOption(new EquipmentScroll(list1));
             break;
           }
 

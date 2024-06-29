@@ -26,13 +26,23 @@
 <int name="incMAD" value="50"/>
 <int name="incACC" value="50"/>
 <int name="incEVA" value="50"/>
-<int name="incSpeed" value="10"/>
-<int name="incJump" value="10"/>
+<int name="incSpeed" value="50"/>
+<int name="incJump" value="50"/>
 <int name="price" value="1"/>
 <int name="cash" value="0"/>
-<int name="notSale" value="1"/>
 <int name="bossReward" value="1"/>
-<int name="equipTradeBlock" value="1"/>
+<int name="notSale" value="1"/>
+<int name="notExtend" value="1"/>
+<int name="tradeBlock" value="1"/>
+<int name="specialGrade" value="1"/>
+<int name="fixedGrade" value="4"/>
+<int name="fixedPotential" value="1"/>
+<imgdir name="option">
+<imgdir name="0">
+<int name="option" value="60002"/>
+<int name="level" value="1"/>
+</imgdir>
+</imgdir>
 <int name="setItemID" value="677"/>
 </imgdir>
 </imgdir>
