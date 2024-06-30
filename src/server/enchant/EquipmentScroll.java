@@ -11,8 +11,9 @@ public class EquipmentScroll
   private int juhun;
   private int flag;
   private String name;
-  private String type = '';
+  private String type = "";
   private int successChance = 0;
+  private int scrollIcon = 0;
 
   public EquipmentScroll (List<Pair<EnchantFlag, Integer>> stats)
   {
@@ -22,12 +23,20 @@ public class EquipmentScroll
     setFlag();
   }
 
-  public EquipmentScroll (String name, int juhun, String type, int successChance, List<Pair<EnchantFlag, Integer>> stats)
+  public EquipmentScroll (String name, String type, int successChance, int juhun, int scrollIcon, List<Pair<EnchantFlag, Integer>> stats)
   {
     this.name = name;
     this.juhun = juhun;
+    this.type = type;
+    this.scrollIcon = scrollIcon;
+    this.successChance = successChance;
     setStats(stats);
     setFlag();
+  }
+
+  public int getScrollIcon ()
+  {
+    return this.scrollIcon;
   }
 
   public int getJuhun ()
@@ -131,19 +140,18 @@ public class EquipmentScroll
     return this.stats;
   }
 
-  public int getSuccessChance() {
+  public int getSuccessChance ()
+  {
     return this.successChance;
   }
 
-  public String getType() {
+  public String getType ()
+  {
     return this.type;
   }
 
   public void setStats (List<Pair<EnchantFlag, Integer>> stats)
   {
-    for (Pair<EnchantFlag, Integer> stat : stats)
-    {
-      this.stats.add(stat);
-    }
+    this.stats.addAll(stats);
   }
 }

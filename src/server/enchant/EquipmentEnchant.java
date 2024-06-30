@@ -21,34 +21,6 @@ public class EquipmentEnchant
 {
   public static int[] usejuhun = new int[4];
 
-  public static int scrollType (String name)
-  {
-    if (name.contains("100%"))
-    {
-      return 0;
-    }
-    if (name.contains("回真卷軸"))
-    {
-      return 4;
-    }
-    if (name.contains("純白的卷軸"))
-    {
-      return 5;
-    }
-    if (name.contains("70%"))
-    {
-      return 1;
-    }
-    if (name.contains("30%"))
-    {
-      return 2;
-    }
-    if (name.contains("10%"))
-    {
-      return 3;
-    }
-    return 0;
-  }
 
   public static boolean isMagicWeapon (MapleWeaponType type)
   {
@@ -82,7 +54,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Luk, 3));
           stats.add(new Pair<>(EnchantFlag.Hp, 50));
           stats.add(new Pair<>(EnchantFlag.Mp, 50));
-          ess.add(new EquipmentScroll("100% 攻擊力卷軸","咒文的痕跡強化卷軸", 100, 30, stats));
+          ess.add(new EquipmentScroll("100% 攻擊力卷軸", "咒文的痕跡強化卷軸", 100, 30, 0, stats));
           stats.clear();
 
           stats.add(new Pair<>(EnchantFlag.Watk, 7));
@@ -92,7 +64,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Luk, 7));
           stats.add(new Pair<>(EnchantFlag.Hp, 150));
           stats.add(new Pair<>(EnchantFlag.Mp, 150));
-          ess.add(new EquipmentScroll("75% 攻擊力卷軸","咒文的痕跡強化卷軸", 75, 3000, stats));
+          ess.add(new EquipmentScroll("75% 攻擊力卷軸", "咒文的痕跡強化卷軸", 75, 3000, 1, stats));
           stats.clear();
 
           stats.add(new Pair<>(EnchantFlag.Watk, 10));
@@ -102,7 +74,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Luk, 10));
           stats.add(new Pair<>(EnchantFlag.Hp, 200));
           stats.add(new Pair<>(EnchantFlag.Mp, 200));
-          ess.add(new EquipmentScroll("35% 攻擊力卷軸","咒文的痕跡強化卷軸", 35, 15000, stats));
+          ess.add(new EquipmentScroll("35% 攻擊力卷軸", "咒文的痕跡強化卷軸", 35, 15000, 2, stats));
           stats.clear();
 
           stats.add(new Pair<>(EnchantFlag.Watk, 16));
@@ -112,7 +84,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Luk, 16));
           stats.add(new Pair<>(EnchantFlag.Hp, 320));
           stats.add(new Pair<>(EnchantFlag.Mp, 320));
-          ess.add(new EquipmentScroll("15% 攻擊力卷軸","咒文的痕跡強化卷軸", 15, 30000, stats));
+          ess.add(new EquipmentScroll("15% 攻擊力卷軸", "咒文的痕跡強化卷軸", 15, 30000, 3, stats));
           stats.clear();
         }
         else
@@ -124,7 +96,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Luk, 3));
           stats.add(new Pair<>(EnchantFlag.Hp, 50));
           stats.add(new Pair<>(EnchantFlag.Mp, 50));
-          ess.add(new EquipmentScroll("100% 魔法攻擊力卷軸","咒文的痕跡強化卷軸", 100, 30, stats));
+          ess.add(new EquipmentScroll("100% 魔法攻擊力卷軸", "咒文的痕跡強化卷軸", 100, 30, 0, stats));
           stats.clear();
 
           stats.add(new Pair<>(EnchantFlag.Matk, 7));
@@ -134,7 +106,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Luk, 7));
           stats.add(new Pair<>(EnchantFlag.Hp, 150));
           stats.add(new Pair<>(EnchantFlag.Mp, 150));
-          ess.add(new EquipmentScroll("75% 魔法攻擊力卷軸","咒文的痕跡強化卷軸", 75, 3000, stats));
+          ess.add(new EquipmentScroll("75% 魔法攻擊力卷軸", "咒文的痕跡強化卷軸", 75, 3000, 1, stats));
           stats.clear();
 
           stats.add(new Pair<>(EnchantFlag.Matk, 10));
@@ -144,7 +116,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Luk, 10));
           stats.add(new Pair<>(EnchantFlag.Hp, 200));
           stats.add(new Pair<>(EnchantFlag.Mp, 200));
-          ess.add(new EquipmentScroll("35% 魔法攻擊力卷軸","咒文的痕跡強化卷軸", 35, 15000, stats));
+          ess.add(new EquipmentScroll("35% 魔法攻擊力卷軸", "咒文的痕跡強化卷軸", 35, 15000, 2, stats));
           stats.clear();
 
           stats.add(new Pair<>(EnchantFlag.Matk, 16));
@@ -154,9 +126,91 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Luk, 16));
           stats.add(new Pair<>(EnchantFlag.Hp, 320));
           stats.add(new Pair<>(EnchantFlag.Mp, 320));
-          ess.add(new EquipmentScroll("15% 魔法攻擊力卷軸","咒文的痕跡強化卷軸", 15, 30000, stats));
+          ess.add(new EquipmentScroll("15% 魔法攻擊力卷軸", "咒文的痕跡強化卷軸", 15, 30000, 3, stats));
           stats.clear();
         }
+      }
+      else if (GameConstants.isAndroidHeart(equip.getItemId()))
+      {
+        stats.add(new Pair<>(EnchantFlag.Watk, 3));
+        stats.add(new Pair<>(EnchantFlag.Str, 3));
+        stats.add(new Pair<>(EnchantFlag.Dex, 3));
+        stats.add(new Pair<>(EnchantFlag.Int, 3));
+        stats.add(new Pair<>(EnchantFlag.Luk, 3));
+        stats.add(new Pair<>(EnchantFlag.Hp, 50));
+        stats.add(new Pair<>(EnchantFlag.Mp, 50));
+        ess.add(new EquipmentScroll("100% 攻擊力卷軸", "咒文的痕跡強化卷軸", 100, 30, 0, stats));
+        stats.clear();
+
+        stats.add(new Pair<>(EnchantFlag.Watk, 7));
+        stats.add(new Pair<>(EnchantFlag.Str, 7));
+        stats.add(new Pair<>(EnchantFlag.Dex, 7));
+        stats.add(new Pair<>(EnchantFlag.Int, 7));
+        stats.add(new Pair<>(EnchantFlag.Luk, 7));
+        stats.add(new Pair<>(EnchantFlag.Hp, 150));
+        stats.add(new Pair<>(EnchantFlag.Mp, 150));
+        ess.add(new EquipmentScroll("75% 攻擊力卷軸", "咒文的痕跡強化卷軸", 75, 3000, 1, stats));
+        stats.clear();
+
+        stats.add(new Pair<>(EnchantFlag.Watk, 10));
+        stats.add(new Pair<>(EnchantFlag.Str, 10));
+        stats.add(new Pair<>(EnchantFlag.Dex, 10));
+        stats.add(new Pair<>(EnchantFlag.Int, 10));
+        stats.add(new Pair<>(EnchantFlag.Luk, 10));
+        stats.add(new Pair<>(EnchantFlag.Hp, 200));
+        stats.add(new Pair<>(EnchantFlag.Mp, 200));
+        ess.add(new EquipmentScroll("35% 攻擊力卷軸", "咒文的痕跡強化卷軸", 35, 15000, 2, stats));
+        stats.clear();
+
+        stats.add(new Pair<>(EnchantFlag.Watk, 16));
+        stats.add(new Pair<>(EnchantFlag.Str, 16));
+        stats.add(new Pair<>(EnchantFlag.Dex, 16));
+        stats.add(new Pair<>(EnchantFlag.Int, 16));
+        stats.add(new Pair<>(EnchantFlag.Luk, 16));
+        stats.add(new Pair<>(EnchantFlag.Hp, 320));
+        stats.add(new Pair<>(EnchantFlag.Mp, 320));
+        ess.add(new EquipmentScroll("15% 攻擊力卷軸", "咒文的痕跡強化卷軸", 15, 30000, 3, stats));
+        stats.clear();
+
+        stats.add(new Pair<>(EnchantFlag.Matk, 3));
+        stats.add(new Pair<>(EnchantFlag.Str, 3));
+        stats.add(new Pair<>(EnchantFlag.Dex, 3));
+        stats.add(new Pair<>(EnchantFlag.Int, 3));
+        stats.add(new Pair<>(EnchantFlag.Luk, 3));
+        stats.add(new Pair<>(EnchantFlag.Hp, 50));
+        stats.add(new Pair<>(EnchantFlag.Mp, 50));
+        ess.add(new EquipmentScroll("100% 魔法攻擊力卷軸", "咒文的痕跡強化卷軸", 100, 30, 0, stats));
+        stats.clear();
+
+        stats.add(new Pair<>(EnchantFlag.Matk, 7));
+        stats.add(new Pair<>(EnchantFlag.Str, 7));
+        stats.add(new Pair<>(EnchantFlag.Dex, 7));
+        stats.add(new Pair<>(EnchantFlag.Int, 7));
+        stats.add(new Pair<>(EnchantFlag.Luk, 7));
+        stats.add(new Pair<>(EnchantFlag.Hp, 150));
+        stats.add(new Pair<>(EnchantFlag.Mp, 150));
+        ess.add(new EquipmentScroll("75% 魔法攻擊力卷軸", "咒文的痕跡強化卷軸", 75, 3000, 1, stats));
+        stats.clear();
+
+        stats.add(new Pair<>(EnchantFlag.Matk, 10));
+        stats.add(new Pair<>(EnchantFlag.Str, 10));
+        stats.add(new Pair<>(EnchantFlag.Dex, 10));
+        stats.add(new Pair<>(EnchantFlag.Int, 10));
+        stats.add(new Pair<>(EnchantFlag.Luk, 10));
+        stats.add(new Pair<>(EnchantFlag.Hp, 200));
+        stats.add(new Pair<>(EnchantFlag.Mp, 200));
+        ess.add(new EquipmentScroll("35% 魔法攻擊力卷軸", "咒文的痕跡強化卷軸", 35, 15000, 2, stats));
+        stats.clear();
+
+        stats.add(new Pair<>(EnchantFlag.Matk, 16));
+        stats.add(new Pair<>(EnchantFlag.Str, 16));
+        stats.add(new Pair<>(EnchantFlag.Dex, 16));
+        stats.add(new Pair<>(EnchantFlag.Int, 16));
+        stats.add(new Pair<>(EnchantFlag.Luk, 16));
+        stats.add(new Pair<>(EnchantFlag.Hp, 320));
+        stats.add(new Pair<>(EnchantFlag.Mp, 320));
+        ess.add(new EquipmentScroll("15% 魔法攻擊力卷軸", "咒文的痕跡強化卷軸", 15, 30000, 3, stats));
+        stats.clear();
       }
       else
       {
@@ -174,7 +228,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Avoid, 2));
           stats.add(new Pair<>(EnchantFlag.Acc, 2));
         }
-        ess.add(new EquipmentScroll("100% 攻擊力卷軸","咒文的痕跡強化卷軸", 100, 30, stats));
+        ess.add(new EquipmentScroll("100% 攻擊力卷軸", "咒文的痕跡強化卷軸", 100, 30, 0, stats));
         stats.clear();
 
         stats.add(new Pair<>(EnchantFlag.Watk, 4));
@@ -191,7 +245,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Avoid, 4));
           stats.add(new Pair<>(EnchantFlag.Acc, 4));
         }
-        ess.add(new EquipmentScroll("75% 攻擊力卷軸","咒文的痕跡強化卷軸", 75, 3000, stats));
+        ess.add(new EquipmentScroll("75% 攻擊力卷軸", "咒文的痕跡強化卷軸", 75, 3000, 1, stats));
         stats.clear();
 
         stats.add(new Pair<>(EnchantFlag.Watk, 6));
@@ -208,7 +262,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Avoid, 6));
           stats.add(new Pair<>(EnchantFlag.Acc, 6));
         }
-        ess.add(new EquipmentScroll("35% 攻擊力卷軸","咒文的痕跡強化卷軸", 35, 15000, stats));
+        ess.add(new EquipmentScroll("35% 攻擊力卷軸", "咒文的痕跡強化卷軸", 35, 15000, 2, stats));
         stats.clear();
 
         stats.add(new Pair<>(EnchantFlag.Watk, 10));
@@ -225,7 +279,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Avoid, 10));
           stats.add(new Pair<>(EnchantFlag.Acc, 10));
         }
-        ess.add(new EquipmentScroll("15% 攻擊力卷軸","咒文的痕跡強化卷軸", 15, 30000, stats));
+        ess.add(new EquipmentScroll("15% 攻擊力卷軸", "咒文的痕跡強化卷軸", 15, 30000, 3, stats));
         stats.clear();
 
         stats.add(new Pair<>(EnchantFlag.Matk, 2));
@@ -242,7 +296,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Avoid, 2));
           stats.add(new Pair<>(EnchantFlag.Acc, 2));
         }
-        ess.add(new EquipmentScroll("100% 魔法攻擊力卷軸","咒文的痕跡強化卷軸", 100, 30, stats));
+        ess.add(new EquipmentScroll("100% 魔法攻擊力卷軸", "咒文的痕跡強化卷軸", 100, 30, 0, stats));
         stats.clear();
 
         stats.add(new Pair<>(EnchantFlag.Matk, 4));
@@ -259,7 +313,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Avoid, 4));
           stats.add(new Pair<>(EnchantFlag.Acc, 4));
         }
-        ess.add(new EquipmentScroll("75% 魔法攻擊力卷軸","咒文的痕跡強化卷軸", 75, 3000, stats));
+        ess.add(new EquipmentScroll("75% 魔法攻擊力卷軸", "咒文的痕跡強化卷軸", 75, 3000, 1, stats));
         stats.clear();
 
         stats.add(new Pair<>(EnchantFlag.Matk, 6));
@@ -276,7 +330,7 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Avoid, 6));
           stats.add(new Pair<>(EnchantFlag.Acc, 6));
         }
-        ess.add(new EquipmentScroll("35% 魔法攻擊力卷軸","咒文的痕跡強化卷軸", 35, 15000, stats));
+        ess.add(new EquipmentScroll("35% 魔法攻擊力卷軸", "咒文的痕跡強化卷軸", 35, 15000, 2, stats));
         stats.clear();
 
         stats.add(new Pair<>(EnchantFlag.Matk, 10));
@@ -293,17 +347,18 @@ public class EquipmentEnchant
           stats.add(new Pair<>(EnchantFlag.Avoid, 10));
           stats.add(new Pair<>(EnchantFlag.Acc, 10));
         }
-        ess.add(new EquipmentScroll("15% 魔法攻擊力卷軸","咒文的痕跡強化卷軸", 15, 30000, stats));
+        ess.add(new EquipmentScroll("15% 魔法攻擊力卷軸", "咒文的痕跡強化卷軸", 15, 30000, 3, stats));
         stats.clear();
       }
-      ess.add(new EquipmentScroll("回真卷軸 30%","回真卷軸",50,5000, stats));
-      ess.add(new EquipmentScroll("亞克回真卷軸 30%","亞克回真卷軸",50,5000, stats));
-      ess.add(new EquipmentScroll("回真卷軸 100%","回真卷軸",100,50000, stats));
-      ess.add(new EquipmentScroll("亞克回真卷軸 100%","亞克回真卷軸",100,50000, stats));
+      ess.add(new EquipmentScroll("回真卷軸 30%", "回真卷軸", 30, 5000, 4, stats));
+      ess.add(new EquipmentScroll("亞克回真卷軸 30%", "亞克回真卷軸", 30, 5000, 4, stats));
+      ess.add(new EquipmentScroll("回真卷軸 100%", "回真卷軸", 100, 30000, 4, stats));
+      ess.add(new EquipmentScroll("亞克回真卷軸 100%", "亞克回真卷軸", 100, 30000, 4, stats));
+      ess.add(new EquipmentScroll("完美回真卷軸 100%", "完美回真卷軸", 100, 50000, 4, stats));
 
       if (equip.getFailUpgradeSlots() > 0)
       {
-        ess.add(new EquipmentScroll("純白的卷軸 20%","純白的卷軸", 20, 5000, stats));
+        ess.add(new EquipmentScroll("純白的卷軸 20%", "純白的卷軸", 20, 5000, 5, stats));
       }
     }
     return ess;
@@ -361,7 +416,7 @@ public class EquipmentEnchant
         if (equipLevel == 80)
         {
           // Heliseum
-          int[] statusArr = new int[]{2, 3, 5};
+          int[] statusArr = new int[] { 2, 3, 5 };
 
           incAllStat += statusArr[nextStarForceLevel - 1];
 
@@ -369,14 +424,14 @@ public class EquipmentEnchant
         else if (equipLevel == 110)
         {
           // Nova
-          int[] statusArr = new int[]{9, 10, 12, 15, 19};
+          int[] statusArr = new int[] { 9, 10, 12, 15, 19 };
 
           incAllStat += statusArr[nextStarForceLevel - 1];
         }
         else if (equipLevel >= 150)
         {
           // Tyrant and MindPendent
-          int[] statusArr = new int[]{19, 20, 22, 25, 29};
+          int[] statusArr = new int[] { 19, 20, 22, 25, 29 };
 
           incAllStat += statusArr[nextStarForceLevel - 1];
         }
@@ -387,14 +442,14 @@ public class EquipmentEnchant
         if (equipLevel == 110)
         {
           // Nova 10 star
-          int[] statusArr = new int[]{5, 6, 7, 9, 10};
+          int[] statusArr = new int[] { 5, 6, 7, 9, 10 };
           incWAtk += statusArr[nextStarForceLevel - 1];
           incMAtk += statusArr[nextStarForceLevel - 1];
         }
         else if (equipLevel == 110)
         {
           // Tyrant and MindPendent 15 star
-          int[] statusArr = new int[]{9, 10, 11, 12, 13, 15, 17, 19, 21, 23};
+          int[] statusArr = new int[] { 9, 10, 11, 12, 13, 15, 17, 19, 21, 23 };
           incWAtk += statusArr[nextStarForceLevel - 1];
           incMAtk += statusArr[nextStarForceLevel - 1];
         }
@@ -693,7 +748,7 @@ public class EquipmentEnchant
           if (equipLevel == 80)
           {
             // Heliseum
-            int[] statusArr = new int[]{2, 3, 5};
+            int[] statusArr = new int[] { 2, 3, 5 };
 
             incAllStat += statusArr[currentStarForceLevel - 1];
 
@@ -701,14 +756,14 @@ public class EquipmentEnchant
           else if (equipLevel == 110)
           {
             // Nova
-            int[] statusArr = new int[]{9, 10, 12, 15, 19};
+            int[] statusArr = new int[] { 9, 10, 12, 15, 19 };
 
             incAllStat += statusArr[currentStarForceLevel - 1];
           }
           else if (equipLevel >= 150)
           {
             // Tyrant and MindPendent
-            int[] statusArr = new int[]{19, 20, 22, 25, 29};
+            int[] statusArr = new int[] { 19, 20, 22, 25, 29 };
 
             incAllStat += statusArr[currentStarForceLevel - 1];
           }
@@ -719,14 +774,14 @@ public class EquipmentEnchant
           if (equipLevel == 110)
           {
             // Nova 10 star
-            int[] statusArr = new int[]{5, 6, 7, 9, 10};
+            int[] statusArr = new int[] { 5, 6, 7, 9, 10 };
             incWAtk += statusArr[currentStarForceLevel - 1];
             incMAtk += statusArr[currentStarForceLevel - 1];
           }
           else if (equipLevel == 110)
           {
             // Tyrant and MindPendent 15 star
-            int[] statusArr = new int[]{9, 10, 11, 12, 13, 15, 17, 19, 21, 23};
+            int[] statusArr = new int[] { 9, 10, 11, 12, 13, 15, 17, 19, 21, 23 };
             incWAtk += statusArr[currentStarForceLevel - 1];
             incMAtk += statusArr[currentStarForceLevel - 1];
           }
@@ -1032,7 +1087,7 @@ public class EquipmentEnchant
         es = ess.get(index);
         i = 0;
 
-        percent = Integer.parseInt(es.getName().replaceAll("[\\D]*", ""));
+        percent = es.getSuccessChance();
 
         if (ServerConstants.feverTime)
         {
@@ -1088,12 +1143,12 @@ public class EquipmentEnchant
               equip1.亞克回真();
             }
           }
-          else if(es.getType().equals("回真卷軸"))
+          else if (es.getType().equals("回真卷軸"))
           {
             item.普通回真();
 
             item.setEquipmentType(4352);
-            
+
             if (equip1 != null)
             {
               equip1.普通回真();
@@ -1251,9 +1306,12 @@ public class EquipmentEnchant
           }
         }
 
-        if (es.getType().equals("純白的卷軸")) {
+        if (es.getType().equals("純白的卷軸"))
+        {
           c.getSession().writeAndFlush(CWvsContext.equipmentEnchantResult(50, item, null, null, null, 0));
-        } else {
+        }
+        else
+        {
           c.getSession().writeAndFlush(CWvsContext.equipmentEnchantResult(100, equip3, item, es, null, i));
         }
 

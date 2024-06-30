@@ -50,6 +50,20 @@ public class ItemInformation
 
   public boolean isBossItem = false;
 
+  public int fixedPotential = 0;
+
+  public int fixedPotentialOption1 = 0;
+
+  public int fixedPotentialOption1Level = 0;
+
+  public int fixedPotentialOption2 = 0;
+
+  public int fixedPotentialOption2Level = 0;
+
+  public int fixedPotentialOption3 = 0;
+
+  public int fixedPotentialOption3Level = 0;
+
   // 主武器副武器都算Weapon, 需要根据islot进行二次判断
   // 服务器的islot是Si或者WpSi
   // 但是Emblem的islot也是Si, 所以需要这个字段来判断是不是Emblem

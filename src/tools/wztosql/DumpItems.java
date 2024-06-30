@@ -471,6 +471,52 @@ public class DumpItems
         pse.addBatch();
       }
     }
+    int fixedPotential = MapleDataTool.getIntConvert("info/fixedPotential", iz, 0);
+    if (fixedPotential == 1)
+    {
+      pse.setString(3, "fixedPotential");
+      pse.setString(4, "1");
+      pse.addBatch();
+
+      int fixedPotentialOption1 = MapleDataTool.getIntConvert("info/option/0/option", iz, 0);
+      int fixedPotentialOption1Level = MapleDataTool.getIntConvert("info/option/0/level", iz, 0);
+      if (fixedPotentialOption1 > 0 && fixedPotentialOption1Level > 0)
+      {
+        pse.setString(3, "fixedPotentialOption1");
+        pse.setString(4, fixedPotentialOption1 + "");
+        pse.addBatch();
+
+        pse.setString(3, "fixedPotentialOption1Level");
+        pse.setString(4, fixedPotentialOption1Level + "");
+        pse.addBatch();
+      }
+
+      int fixedPotentialOption2 = MapleDataTool.getIntConvert("info/option/1/option", iz, 0);
+      int fixedPotentialOption2Level = MapleDataTool.getIntConvert("info/option/1/level", iz, 0);
+      if (fixedPotentialOption2 > 0 && fixedPotentialOption2Level > 0)
+      {
+        pse.setString(3, "fixedPotentialOption2");
+        pse.setString(4, fixedPotentialOption2 + "");
+        pse.addBatch();
+
+        pse.setString(3, "fixedPotentialOption2Level");
+        pse.setString(4, fixedPotentialOption2Level + "");
+        pse.addBatch();
+      }
+
+      int fixedPotentialOption3 = MapleDataTool.getIntConvert("info/option/2/option", iz, 0);
+      int fixedPotentialOption3Level = MapleDataTool.getIntConvert("info/option/2/level", iz, 0);
+      if (fixedPotentialOption3 > 0 && fixedPotentialOption3Level > 0)
+      {
+        pse.setString(3, "fixedPotentialOption3");
+        pse.setString(4, fixedPotentialOption3 + "");
+        pse.addBatch();
+
+        pse.setString(3, "fixedPotentialOption3Level");
+        pse.setString(4, fixedPotentialOption3Level + "");
+        pse.addBatch();
+      }
+    }
     dat = iz.getChildByPath("info/addition");
     if (dat != null)
     {

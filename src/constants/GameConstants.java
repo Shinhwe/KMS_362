@@ -34,7 +34,7 @@ public class GameConstants
   public static final List<MapleMapObjectType> rangedMapobjectTypes = Collections.unmodifiableList(Arrays.asList(MapleMapObjectType.ITEM, MapleMapObjectType.MONSTER, MapleMapObjectType.DOOR, MapleMapObjectType.REACTOR, MapleMapObjectType.SUMMON, MapleMapObjectType.NPC, MapleMapObjectType.MIST, MapleMapObjectType.EXTRACTOR));
 
   public static final long[] exp = new long[1000];
-
+  public static boolean isOpen = false;
   public static final int[] itemBlock = new int[0];
   public static final Integer[] cashBlock = new Integer[0];
   public static final int JAIL = 180000002;
@@ -249,8 +249,6 @@ public class GameConstants
   private static int[] 特殊裝備強化卷軸成功率 = new int[] { 100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 10, 10, 10, 10, 10 };
 
   private static int[] 潛能卷軸列表 = new int[] { 2049790, 2049700, 2049406 };
-
-  private static int[] 附加潛能卷軸列表 = new int[] { 2048307, 2049731 };
 
   private static int[] 附加潛能卷軸列表 = new int[] { 2048307, 2049731 };
 
@@ -693,7 +691,7 @@ public class GameConstants
     exp[297] = 1053187790325960L;
     exp[298] = 1158506569358560L;
     exp[299] = 1737759854037840L;
-    
+
   }
 
   static
@@ -3085,14 +3083,19 @@ public class GameConstants
     return 是永遠的輪迴星火(scrollId) || 是強力的輪迴星火(scrollId) || 是暗黑輪迴星火(scrollId);
   }
 
-  public static boolean 是永遠的輪迴星火 (int scrollId)
+  public static boolean 是暗黑輪迴星火 (int scrollId)
   {
-    return (scrollId / 100 == 20487);
+    return Arrays.stream(暗黑輪迴星火列表).anyMatch(item -> item == scrollId);
   }
 
-    public static boolean 是強力的輪迴星火 (int scrollId)
+  public static boolean 是永遠的輪迴星火 (int scrollId)
   {
-    return (scrollId / 100 == 20487);
+    return Arrays.stream(永遠的輪迴星火列表).anyMatch(item -> item == scrollId);
+  }
+
+  public static boolean 是強力的輪迴星火 (int scrollId)
+  {
+    return Arrays.stream(強力的輪迴星火列表).anyMatch(item -> item == scrollId);
   }
 
   public static boolean isSpecialScroll (int scrollId)

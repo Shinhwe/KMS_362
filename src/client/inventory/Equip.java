@@ -1,6 +1,9 @@
 package client.inventory;
 
 import constants.GameConstants;
+import constants.權重;
+import constants.權重算法;
+import server.ItemInformation;
 import server.MapleItemInformationProvider;
 import server.Randomizer;
 import server.enchant.EnchantFlag;
@@ -724,6 +727,11 @@ public class Equip extends Item implements Serializable
 
   public int getPotential1 ()
   {
+    ItemInformation itemInformation = MapleItemInformationProvider.getInstance().getItemInformation(this.getItemId());
+    if (itemInformation.fixedPotential == 1)
+    {
+      return itemInformation.fixedPotentialOption1;
+    }
     return this.potential1;
   }
 
@@ -734,6 +742,11 @@ public class Equip extends Item implements Serializable
 
   public int getPotential2 ()
   {
+    ItemInformation itemInformation = MapleItemInformationProvider.getInstance().getItemInformation(this.getItemId());
+    if (itemInformation.fixedPotential == 1)
+    {
+      return itemInformation.fixedPotentialOption2;
+    }
     return this.potential2;
   }
 
@@ -744,6 +757,11 @@ public class Equip extends Item implements Serializable
 
   public int getPotential3 ()
   {
+    ItemInformation itemInformation = MapleItemInformationProvider.getInstance().getItemInformation(this.getItemId());
+    if (itemInformation.fixedPotential == 1)
+    {
+      return itemInformation.fixedPotentialOption3;
+    }
     return this.potential3;
   }
 
@@ -818,6 +836,11 @@ public class Equip extends Item implements Serializable
 
   public 裝備潛能等級 獲取潛能等級 ()
   {
+    ItemInformation itemInformation = MapleItemInformationProvider.getInstance().getItemInformation(this.getItemId());
+    if (itemInformation.fixedPotential == 1)
+    {
+      return 潛能等級.稀有;
+    }
     return this.潛能等級;
   }
 
@@ -1551,36 +1574,21 @@ public class Equip extends Item implements Serializable
 
     // check https://strategywiki.org/wiki/MapleStory/Bonus_Stats
 
-    // 条件有点多, 简化一下, 普通装备1到5级, boss装备4到8级, 用强力火花的BOSS装备可以达到5到9级和7到12级(魔改)
-    // 保持最大最小值差距是4, 简化了概率计算
+    // 条件有点多, 简化一下,
+    // 用紅色火花的普通裝備可以达到1到5级
+    // 用彩色火花的BOSS装备可以达到2到5级
+    // 用紅色火花的BOSS装备可以达到4到7级
+    // 用彩色火花的BOSS装备可以达到6到9级
+    // 彩色火花可以跳過降低使用等級這個詞條
     int minValue = 1;
 
     int maxValue = 5;
 
     // 普通装备不总是 4 条火花的, 概率也不是等分的
     // 参照wiki, 进行一部分的简化 40 40 15 5
-    //  5% 很少? 官服只有4%!
-
-    int chance = Randomizer.nextInt(100);
-
-    System.out.println("计算火花条数的Chance =  " + chance);
 
     int numberOfLines = 1;
-
-    if (chance > 95)
-    {
-      numberOfLines = 4;
-    }
-    else if (chance > 80)
-    {
-      numberOfLines = 3;
-    }
-    else if (chance > 40)
-    {
-      numberOfLines = 2;
-    }
-
-    // 但是BOSS物品肯定是4条, 再别说了, BOSS装备就是强力
+    // BOSS装备固定4条火花
     if (isBossItem)
     {
       numberOfLines = 4;
@@ -1589,39 +1597,55 @@ public class Equip extends Item implements Serializable
 
       maxValue = 6;
     }
-
-    if (MapleItemInformationProvider.getInstance().getName(scrollId) != null)
+    else
     {
-      if (MapleItemInformationProvider.getInstance().getName(scrollId).contains("강력한 환생의"))
+      // 普通装备隨機1到4条火花
+      // 概率 1條: 35; 2條: 40; 3條: 20; 4條: 5%
+      int chance = Randomizer.nextInt(100);
+
+      System.out.println("计算火花条数的Chance =  " + chance);
+
+      ArrayList<權重> 火花條數權重 = new ArrayList<>();
+
+      火花條數權重.add(new 權重(1, 35));
+
+      火花條數權重.add(new 權重(2, 40));
+
+      火花條數權重.add(new 權重(3, 20));
+
+      火花條數權重.add(new 權重(4, 5));
+
+      numberOfLines = 權重算法.計算權重(火花條數權重).獲取值();
+    }
+
+    if (GameConstants.是強力的輪迴星火(scrollId))
+    {
+      if (isBossItem)
       {
-        if (isBossItem)
-        {
-          minValue = 3;
-          maxValue = 6;
-        }
-        else
-        {
-          minValue = 1;
-          maxValue = 4;
-        }
+        minValue = 4;
+        maxValue = 7;
       }
-      if (MapleItemInformationProvider.getInstance().getName(scrollId).contains("영원한 환생의") || MapleItemInformationProvider.getInstance().getName(scrollId).contains("검은 환생의"))
+      else
       {
-        if (isBossItem)
-        {
-          minValue = 6;
-          maxValue = 9;
-        }
-        else
-        {
-          minValue = 2;
-          maxValue = 5;
-        }
+        minValue = 1;
+        maxValue = 5;
+      }
+    }
+    if (GameConstants.是暗黑輪迴星火(scrollId) || GameConstants.是永遠的輪迴星火(scrollId))
+    {
+      if (isBossItem)
+      {
+        minValue = 6;
+        maxValue = 9;
+      }
+      else
+      {
+        minValue = 2;
+        maxValue = 5;
       }
     }
 
     System.out.println("经过一顿夏姬八计算 numberOfLines = " + numberOfLines + "; minValue = " + minValue + "; maxValue = " + maxValue);
-
 
     MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
 
@@ -1629,6 +1653,7 @@ public class Equip extends Item implements Serializable
     {
       this.setKarmaCount((byte) 10);
     }
+
     long[] flameResultList = new long[] { 10L, 10L, 10L, 10L };
 
     int[] flameOptionList = new int[] { 1, 1, 1, 1 };
@@ -1643,7 +1668,7 @@ public class Equip extends Item implements Serializable
       {
         randomOption = Randomizer.nextInt(25);
 
-        while (flameOptionList[0] == randomOption || flameOptionList[1] == randomOption || flameOptionList[2] == randomOption || flameOptionList[3] == randomOption || randomOption == 12 || randomOption == 14 || randomOption == 15 || randomOption == 16 || !GameConstants.isWeapon(this.getItemId()) && (randomOption == 21 || randomOption == 23))
+        while (flameOptionList[0] == randomOption || flameOptionList[1] == randomOption || flameOptionList[2] == randomOption || flameOptionList[3] == randomOption || randomOption == 12 || randomOption == 14 || randomOption == 15 || randomOption == 16 || !GameConstants.isWeapon(this.getItemId()) && (randomOption == 21 || randomOption == 23) || (GameConstants.是永遠的輪迴星火(scrollId) || GameConstants.是永遠的輪迴星火(scrollId) && randomOption == 22))
         {
           randomOption = Randomizer.nextInt(25);
         }
@@ -1652,50 +1677,72 @@ public class Equip extends Item implements Serializable
 
         randomValue = minValue;
 
-
-        // 最大最小值差4, 概率分布
-        // 普通装备 40 40 10 15 5
-        // BOSS装备 10 20 30 30 10
-        // 5% 很少? 官服只有 1%!
-
-        chance = Randomizer.nextInt(100);
+        int chance = Randomizer.nextInt(100);
 
         if (isBossItem)
         {
-          if (chance > 90)
+          // 概率分佈:
+          // 彩色火花: 10%  50%  30% 10%
+          // 紅色火花: 5% 40% 40% 15%
+          if (GameConstants.是永遠的輪迴星火(scrollId) || GameConstants.是暗黑輪迴星火(scrollId))
           {
-            randomValue = maxValue;
+            ArrayList<權重> 火花權重 = new ArrayList<>();
+
+            火花權重.add(new 權重(maxValue, 10));
+
+            火花權重.add(new 權重(maxValue - 1, 50));
+
+            火花權重.add(new 權重(maxValue - 2, 30));
+
+            火花權重.add(new 權重(maxValue - 3, 10));
+
+            randomValue = 權重算法.計算權重(火花權重).獲取值();
           }
-          else if (chance > 70)
+          else if (GameConstants.是強力的輪迴星火(scrollId))
           {
-            randomValue = maxValue - 1;
-          }
-          else if (chance > 40)
-          {
-            randomValue = maxValue - 2;
-          }
-          else if (chance > 10)
-          {
-            randomValue = maxValue - 3;
+            ArrayList<權重> 火花權重 = new ArrayList<>();
+
+            火花權重.add(new 權重(maxValue, 5));
+
+            火花權重.add(new 權重(maxValue - 1, 40));
+
+            火花權重.add(new 權重(maxValue - 2, 40));
+
+            火花權重.add(new 權重(maxValue - 3, 15));
+
+            randomValue = 權重算法.計算權重(火花權重).獲取值();
           }
         }
         else
         {
-          if (chance > 95)
+          // 概率分佈:
+          // 彩色火花: 5%  50%  45%
+          // 紅色火花: 1% 15% 50% 34%
+          if (GameConstants.是永遠的輪迴星火(scrollId) || GameConstants.是暗黑輪迴星火(scrollId))
           {
-            randomValue = maxValue;
+            ArrayList<權重> 火花權重 = new ArrayList<>();
+
+            火花權重.add(new 權重(maxValue, 5));
+
+            火花權重.add(new 權重(maxValue - 1, 50));
+
+            火花權重.add(new 權重(maxValue - 2, 45));
+
+            randomValue = 權重算法.計算權重(火花權重).獲取值();
           }
-          else if (chance > 90)
+          else if (GameConstants.是強力的輪迴星火(scrollId))
           {
-            randomValue = maxValue - 1;
-          }
-          else if (chance > 80)
-          {
-            randomValue = maxValue - 2;
-          }
-          else if (chance > 40)
-          {
-            randomValue = maxValue - 3;
+            ArrayList<權重> 火花權重 = new ArrayList<>();
+
+            火花權重.add(new 權重(maxValue, 1));
+
+            火花權重.add(new 權重(maxValue - 1, 15));
+
+            火花權重.add(new 權重(maxValue - 2, 50));
+
+            火花權重.add(new 權重(maxValue - 3, 34));
+
+            randomValue = 權重算法.計算權重(火花權重).獲取值();
           }
         }
 
@@ -1715,100 +1762,6 @@ public class Equip extends Item implements Serializable
 
     // 不会更新火花, 只是计算出结果
     return flame;
-  }
-
-  public long calcZeroNewFlame (int scrollId)
-  {
-    if (GameConstants.isRing(this.getItemId()) || this.getItemId() / 1000 == 1092 || this.getItemId() / 1000 == 1342 || this.getItemId() / 1000 == 1713 || this.getItemId() / 1000 == 1712 || this.getItemId() / 1000 == 1152 || this.getItemId() / 1000 == 1142 || this.getItemId() / 1000 == 1143 || this.getItemId() / 1000 == 1672 || GameConstants.isSecondaryWeapon(this.getItemId()) || this.getItemId() / 1000 == 1190 || this.getItemId() / 1000 == 1191 || this.getItemId() / 1000 == 1182 || this.getItemId() / 1000 == 1662 || this.getItemId() / 1000 == 1802)
-    {
-      return 0L;
-    }
-
-
-    // 再别说了, 神之子的武器就是BOSS武器, 别问, 问就是我的怜悯
-    int minValue = 4;
-
-    int maxValue = 8;
-
-    int numberOfLines = 4;
-
-    if (MapleItemInformationProvider.getInstance().getName(scrollId) != null)
-    {
-      if (MapleItemInformationProvider.getInstance().getName(scrollId).contains("강력한 환생의"))
-      {
-        minValue = 5;
-        maxValue = 9;
-      }
-      if (MapleItemInformationProvider.getInstance().getName(scrollId).contains("강력한 환생의") || MapleItemInformationProvider.getInstance().getName(scrollId).contains("검은 환생의"))
-      {
-        minValue = 8;
-        maxValue = 12;
-      }
-    }
-
-    long[] rebirth = new long[] { -1L, -1L, -1L, -1L };
-
-    int[] rebirthOptions = new int[] { -1, -1, -1, -1 };
-
-
-    for (int i = 0; i < 4; ++i)
-    {
-      int randomOption = 1;
-
-      int randomValue = 0;
-
-      if (numberOfLines > i)
-      {
-        randomOption = Randomizer.nextInt(25);
-
-        while (rebirthOptions[0] == randomOption || rebirthOptions[1] == randomOption || rebirthOptions[2] == randomOption || rebirthOptions[3] == randomOption || randomOption == 12 || randomOption == 14 || randomOption == 15 || randomOption == 16 || !GameConstants.isWeapon(this.getItemId()) && (randomOption == 21 || randomOption == 23))
-        {
-          randomOption = Randomizer.nextInt(25);
-        }
-
-        rebirthOptions[i] = randomOption;
-
-        randomValue = minValue;
-
-
-        // 最大最小值差4, 概率分布
-        // 普通装备 40 40 10 5 5
-        // BOSS装备 8 32 32 20 8
-        // 5% 很少? 官服只有 1%!
-
-        int chance = Randomizer.nextInt(100);
-
-
-        if (chance > 92)
-        {
-          randomValue = maxValue;
-        }
-        else if (chance > 72)
-        {
-          randomValue = maxValue - 1;
-        }
-        else if (chance > 40)
-        {
-          randomValue = maxValue - 2;
-        }
-        else if (chance > 8)
-        {
-          randomValue = maxValue - 3;
-        }
-
-        System.out.println("当前随机第 " + i + " 条火花! randomValue = " + randomValue + "; chance = " + chance + "; randomOption = " + randomOption);
-      }
-
-      rebirth[i] = randomOption * 10L + randomValue;
-
-      for (int j = 0; j < i; ++j)
-      {
-        rebirth[i] = rebirth[i] * 1000L;
-      }
-
-    }
-
-    return rebirth[0] + rebirth[1] + rebirth[2] + rebirth[3];
   }
 
   public int getMoru ()

@@ -2093,10 +2093,10 @@ public class CWvsContext
         mplew.write(ess.size());
         for (EquipmentScroll es : ess)
         {
-          mplew.writeInt(EquipmentEnchant.scrollType(es.getName()));
+          mplew.writeInt(es.getScrollIcon());
           mplew.writeMapleAsciiString(es.getName());
-          mplew.writeInt(es.getName().contains("純白") ? 2 : (es.getName().contains("回真卷軸") ? 1 : 0));
-          mplew.writeInt(es.getName().contains("亞克回真卷軸") ? 4 : ((es.getName().contains("回真卷軸") || es.getName().contains("純白")) ? 1 : 0));
+          mplew.writeInt(es.getType().contains("純白") ? 2 : (es.getType().contains("回真") ? 1 : 0));
+          mplew.writeInt(es.getType().contains("亞克") ? 4 : ((es.getType().contains("回真") || es.getType().contains("純白")) ? 1 : 0));
           mplew.writeInt(es.getFlag());
           if (EnchantFlag.Watk.check(es.getFlag()))
           {
@@ -2148,7 +2148,7 @@ public class CWvsContext
           }
           mplew.writeInt(es.getJuhun());
           mplew.writeInt(es.getJuhun());
-          mplew.write(es.getName().contains("100%"));
+          mplew.write(es.getSuccessChance() == 100);
         }
         break;
       case 52:

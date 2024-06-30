@@ -8,7 +8,6 @@ import constants.GameConstants;
 import database.DatabaseConnection;
 import provider.*;
 import server.enchant.EnchantFlag;
-import server.enchant.EquipmentScroll;
 import server.quest.MapleQuest;
 import tools.Pair;
 import tools.Triple;
@@ -1455,7 +1454,7 @@ public class MapleItemInformationProvider
           {
             if (GameConstants.isZero(chr.getJob()) && equip.getPosition() == -11)
             {
-              long 火花 = equip.calcZeroNewFlame(卷軸Id);
+              long 火花 = equip.calcNewFlame(卷軸Id);
               equip.setFlame(火花);
               equip.calcFlameStats();
               if (zeroEquip != null)
@@ -1942,7 +1941,35 @@ public class MapleItemInformationProvider
 
     String value = sqlEquipData.getString("value");
 
-    if (key.equalsIgnoreCase("islot"))
+    if (key.equalsIgnoreCase("fixedPotential"))
+    {
+      this.tmpInfo.fixedPotential = Integer.valueOf(value);
+    }
+    else if (key.equalsIgnoreCase("fixedPotentialOption1"))
+    {
+      this.tmpInfo.fixedPotentialOption1 = Integer.valueOf(value);
+    }
+    else if (key.equalsIgnoreCase("fixedPotentialOption1Level"))
+    {
+      this.tmpInfo.fixedPotentialOption1Level = Integer.valueOf(value);
+    }
+    else if (key.equalsIgnoreCase("fixedPotentialOption2"))
+    {
+      this.tmpInfo.fixedPotentialOption2 = Integer.valueOf(value);
+    }
+    else if (key.equalsIgnoreCase("fixedPotentialOption2Level"))
+    {
+      this.tmpInfo.fixedPotentialOption2Level = Integer.valueOf(value);
+    }
+    else if (key.equalsIgnoreCase("fixedPotentialOption3"))
+    {
+      this.tmpInfo.fixedPotentialOption3 = Integer.valueOf(value);
+    }
+    else if (key.equalsIgnoreCase("fixedPotentialOption3Level"))
+    {
+      this.tmpInfo.fixedPotentialOption3Level = Integer.valueOf(value);
+    }
+    else if (key.equalsIgnoreCase("islot"))
     {
       this.tmpInfo.islot = value;
     }
