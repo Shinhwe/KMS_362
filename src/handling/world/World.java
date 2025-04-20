@@ -890,7 +890,7 @@ public class World
           final MapleCharacter targeter = ChannelServer.getInstance(ch).getPlayerStorage().getCharacterByName(target);
           if (targeter != null && targeter.getMessenger() == null)
           {
-            if (!targeter.isIntern() || gm)
+            if (gm)
             {
               targeter.getClient().getSession().writeAndFlush(CField.messengerInvite(sender, messengerid));
               from.getClient().getSession().writeAndFlush(CField.messengerNote(target, 4, 1));

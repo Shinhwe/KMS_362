@@ -21,8 +21,8 @@ public class Equip extends Item implements Serializable
 {
   public StarForceStats starForceStats = new StarForceStats(new ArrayList<>());
   private 裝備潛能等級 潛能等級 = 裝備潛能等級.沒有潛能;
-  private 裝備潛能等級 附加潛能等級 = 裝備潛能等級.沒有潛能;
   private byte 未鑑定潛能條數 = 0;
+  private byte 未鑑定附加潛能條數 = 0;
   private byte extraUpgradeSlots = 0;
   private byte successUpgradeSlots = 0;
   private byte failUpgradeSlots = 0;
@@ -128,12 +128,12 @@ public class Equip extends Item implements Serializable
   private int authenticHp = 0;
   private int durability = -1;
   private int incSkill = -1;
-  private int potential1 = 0;
-  private int potential2 = 0;
-  private int potential3 = 0;
-  private int potential4 = 0;
-  private int potential5 = 0;
-  private int potential6 = 0;
+  private int 第一條主潛能 = 0;
+  private int 第二條主潛能 = 0;
+  private int 第三條主潛能 = 0;
+  private int 第一條附加潛能 = 0;
+  private int 第二條附加潛能 = 0;
+  private int 第三條附加潛能 = 0;
   private int soulskill = 0;
   private int moru = 0;
   private int equipmentType = 4352;
@@ -324,12 +324,12 @@ public class Equip extends Item implements Serializable
     this.extraUpgradeSlots = set.extraUpgradeSlots;
     this.successUpgradeSlots = set.successUpgradeSlots;
     this.failUpgradeSlots = set.failUpgradeSlots;
-    this.potential1 = set.potential1;
-    this.potential2 = set.potential2;
-    this.potential3 = set.potential3;
-    this.potential4 = set.potential4;
-    this.potential5 = set.potential5;
-    this.potential6 = set.potential6;
+    this.第一條主潛能 = set.第一條主潛能;
+    this.第二條主潛能 = set.第二條主潛能;
+    this.第三條主潛能 = set.第三條主潛能;
+    this.第一條附加潛能 = set.第一條附加潛能;
+    this.第二條附加潛能 = set.第二條附加潛能;
+    this.第三條附加潛能 = set.第三條附加潛能;
     this.incSkill = set.incSkill;
     this.enchantBuff = set.enchantBuff;
     this.itemLevel = set.itemLevel;
@@ -346,7 +346,6 @@ public class Equip extends Item implements Serializable
     this.stats = set.stats;
     this.specialStats = set.specialStats;
     this.潛能等級 = set.潛能等級;
-    this.附加潛能等級 = set.附加潛能等級;
     this.未鑑定潛能條數 = set.未鑑定潛能條數;
     this.flame = set.flame;
     this.moru = set.moru;
@@ -429,12 +428,12 @@ public class Equip extends Item implements Serializable
     ret.extraUpgradeSlots = this.extraUpgradeSlots;
     ret.successUpgradeSlots = this.successUpgradeSlots;
     ret.failUpgradeSlots = this.failUpgradeSlots;
-    ret.potential1 = this.potential1;
-    ret.potential2 = this.potential2;
-    ret.potential3 = this.potential3;
-    ret.potential4 = this.potential4;
-    ret.potential5 = this.potential5;
-    ret.potential6 = this.potential6;
+    ret.第一條主潛能 = this.第一條主潛能;
+    ret.第二條主潛能 = this.第二條主潛能;
+    ret.第三條主潛能 = this.第三條主潛能;
+    ret.第一條附加潛能 = this.第一條附加潛能;
+    ret.第二條附加潛能 = this.第二條附加潛能;
+    ret.第三條附加潛能 = this.第三條附加潛能;
     ret.incSkill = this.incSkill;
     ret.enchantBuff = this.enchantBuff;
     ret.itemLevel = this.itemLevel;
@@ -455,7 +454,6 @@ public class Equip extends Item implements Serializable
     ret.stats = this.stats;
     ret.specialStats = this.specialStats;
     ret.潛能等級 = this.潛能等級;
-    ret.附加潛能等級 = this.附加潛能等級;
     ret.未鑑定潛能條數 = this.未鑑定潛能條數;
     ret.flame = this.flame;
     ret.soulskill = this.soulskill;
@@ -725,82 +723,97 @@ public class Equip extends Item implements Serializable
     this.starForceLevel = en;
   }
 
-  public int getPotential1 ()
+  public int 獲取第一條主潛能 ()
   {
     ItemInformation itemInformation = MapleItemInformationProvider.getInstance().getItemInformation(this.getItemId());
     if (itemInformation.fixedPotential == 1)
     {
       return itemInformation.fixedPotentialOption1;
     }
-    return this.potential1;
+    return this.第一條主潛能;
   }
 
-  public void setPotential1 (int en)
+  public void 設置第一條主潛能 (int 潛能Id)
   {
-    this.potential1 = en;
+    ItemInformation itemInformation = MapleItemInformationProvider.getInstance().getItemInformation(this.getItemId());
+    if (itemInformation.fixedPotential == 1)
+    {
+      return;
+    }
+    this.第一條主潛能 = 潛能Id;
   }
 
-  public int getPotential2 ()
+  public int 獲取第二條主潛能 ()
   {
     ItemInformation itemInformation = MapleItemInformationProvider.getInstance().getItemInformation(this.getItemId());
     if (itemInformation.fixedPotential == 1)
     {
       return itemInformation.fixedPotentialOption2;
     }
-    return this.potential2;
+    return this.第二條主潛能;
   }
 
-  public void setPotential2 (int en)
+  public void 設置第二條主潛能 (int 潛能Id)
   {
-    this.potential2 = en;
+    ItemInformation itemInformation = MapleItemInformationProvider.getInstance().getItemInformation(this.getItemId());
+    if (itemInformation.fixedPotential == 1)
+    {
+      return;
+    }
+    this.第二條主潛能 = 潛能Id;
   }
 
-  public int getPotential3 ()
+  public int 獲取第三條主潛能 ()
   {
     ItemInformation itemInformation = MapleItemInformationProvider.getInstance().getItemInformation(this.getItemId());
     if (itemInformation.fixedPotential == 1)
     {
       return itemInformation.fixedPotentialOption3;
     }
-    return this.potential3;
+    return this.第三條主潛能;
   }
 
-  public void setPotential3 (int en)
+  public void 設置第三條主潛能 (int 潛能Id)
   {
-    this.potential3 = en;
+    ItemInformation itemInformation = MapleItemInformationProvider.getInstance().getItemInformation(this.getItemId());
+    if (itemInformation.fixedPotential == 1)
+    {
+      return;
+    }
+    this.第三條主潛能 = 潛能Id;
   }
 
-  public int getPotential4 ()
+  public int 獲取第一條附加潛能 ()
   {
-    return this.potential4;
+    return this.第一條附加潛能;
   }
 
-  public void setPotential4 (int en)
+  public void 設置第一條附加潛能 (int 潛能Id)
   {
-    this.potential4 = en;
+    this.第一條附加潛能 = 潛能Id;
   }
 
-  public int getPotential5 ()
+  public int 獲取第二條附加潛能 ()
   {
-    return this.potential5;
+    return this.第二條附加潛能;
   }
 
-  public void setPotential5 (int en)
+  public void 設置第二條附加潛能 (int 潛能Id)
   {
-    this.potential5 = en;
+    this.第二條附加潛能 = 潛能Id;
   }
 
-  public int getPotential6 ()
+  public int 獲取第三條附加潛能 ()
   {
-    return this.potential6;
+    return this.第三條附加潛能;
   }
 
-  public void setPotential6 (int en)
+  public void 設置第三條附加潛能 (int 潛能Id)
   {
-    this.potential6 = en;
+    this.第三條附加潛能 = 潛能Id;
   }
 
-  public void setPotentialLevel (byte potentialLevel)
+  public void 設置潛能等級 (byte potentialLevel)
   {
     switch (potentialLevel)
     {
@@ -828,12 +841,58 @@ public class Equip extends Item implements Serializable
       case 20:
         潛能等級 = 裝備潛能等級.傳說;
         break;
+      case 33:
+        潛能等級 = 裝備潛能等級.主潛能特殊未鑑定附加潛能未鑑定;
+        break;
+      case 34:
+        潛能等級 = 裝備潛能等級.主潛能稀有未鑑定附加潛能未鑑定;
+        break;
+      case 35:
+        潛能等級 = 裝備潛能等級.主潛能罕見未鑑定附加潛能未鑑定;
+        break;
+      case 36:
+        潛能等級 = 裝備潛能等級.主潛能傳說未鑑定附加潛能未鑑定;
+        break;
+      case 49:
+        潛能等級 = 裝備潛能等級.主潛能特殊附加潛能未鑑定;
+        break;
+      case 50:
+        潛能等級 = 裝備潛能等級.主潛能稀有附加潛能未鑑定;
+        break;
+      case 51:
+        潛能等級 = 裝備潛能等級.主潛能罕見附加潛能未鑑定;
+        break;
+      case 52:
+        潛能等級 = 裝備潛能等級.主潛能傳說附加潛能未鑑定;
+        break;
       default:
         潛能等級 = 裝備潛能等級.沒有潛能;
         break;
     }
   }
 
+  public boolean 是否可以重設主潛能 ()
+  {
+    ItemInformation itemInformation = MapleItemInformationProvider.getInstance().getItemInformation(this.getItemId());
+    if (itemInformation.fixedPotential == 1)
+    {
+      return false;
+    }
+    return 獲取次級主潛能等級() != 裝備潛能等級.沒有潛能;
+  }
+
+  public boolean 是否可以重設附加潛能 ()
+  {
+    return 獲取次級附加潛能等級() != 裝備潛能等級.沒有潛能;
+  }
+
+
+  public void 設置潛能等級 (裝備潛能等級 潛能等級)
+  {
+    this.潛能等級 = 潛能等級;
+  }
+
+  // 這個是用來發封包的
   public 裝備潛能等級 獲取潛能等級 ()
   {
     ItemInformation itemInformation = MapleItemInformationProvider.getInstance().getItemInformation(this.getItemId());
@@ -844,9 +903,172 @@ public class Equip extends Item implements Serializable
     return this.潛能等級;
   }
 
-  public void 設置潛能等級 (裝備潛能等級 潛能等級)
+  // 這個是用來邏輯判斷的
+  public 裝備潛能等級 獲取主潛能等級 ()
   {
-    this.潛能等級 = 潛能等級;
+    switch (第一條主潛能 / 10000)
+    {
+      case 1:
+      {
+        return 裝備潛能等級.特殊;
+      }
+      case 2:
+      {
+        return 裝備潛能等級.稀有;
+      }
+      case 3:
+      {
+        return 裝備潛能等級.罕見;
+      }
+      case 4:
+      {
+        return 裝備潛能等級.傳說;
+      }
+    }
+
+    return 裝備潛能等級.沒有潛能;
+  }
+
+  public 裝備潛能等級 獲取次級附加潛能等級 ()
+  {
+    switch (第一條附加潛能 / 10000)
+    {
+      case 1:
+      case 2:
+      {
+        return 裝備潛能等級.特殊;
+      }
+      case 3:
+      {
+        return 裝備潛能等級.稀有;
+      }
+      case 4:
+      {
+        return 裝備潛能等級.罕見;
+      }
+    }
+
+    return 裝備潛能等級.沒有潛能;
+  }
+
+  public 裝備潛能等級 獲取次級主潛能等級 ()
+  {
+    switch (第一條主潛能 / 10000)
+    {
+      case 1:
+      case 2:
+      {
+        return 裝備潛能等級.特殊;
+      }
+      case 3:
+      {
+        return 裝備潛能等級.稀有;
+      }
+      case 4:
+      {
+        return 裝備潛能等級.罕見;
+      }
+    }
+
+    return 裝備潛能等級.沒有潛能;
+  }
+
+  public 裝備潛能等級 獲取附加潛能等級 ()
+  {
+    switch (第一條附加潛能)
+    {
+      case 1:
+      {
+        return 裝備潛能等級.特殊;
+      }
+      case 2:
+      {
+        return 裝備潛能等級.稀有;
+      }
+      case 3:
+      {
+        return 裝備潛能等級.罕見;
+      }
+      case 4:
+      {
+        return 裝備潛能等級.傳說;
+      }
+    }
+
+    switch (第一條附加潛能 / 10000)
+    {
+      case 1:
+      {
+        return 裝備潛能等級.特殊;
+      }
+      case 2:
+      {
+        return 裝備潛能等級.稀有;
+      }
+      case 3:
+      {
+        return 裝備潛能等級.罕見;
+      }
+      case 4:
+      {
+        return 裝備潛能等級.傳說;
+      }
+    }
+
+    return 裝備潛能等級.沒有潛能;
+  }
+
+  public boolean 是否需要鑑定 ()
+  {
+    if (未鑑定潛能條數 <= 0 && 未鑑定附加潛能條數 <= 0)
+    {
+      return false;
+    }
+    switch (潛能等級)
+    {
+      case 特殊未鑑定:
+      case 稀有未鑑定:
+      case 罕見未鑑定:
+      case 傳說未鑑定:
+      case 主潛能特殊未鑑定附加潛能未鑑定:
+      case 主潛能稀有未鑑定附加潛能未鑑定:
+      case 主潛能罕見未鑑定附加潛能未鑑定:
+      case 主潛能傳說未鑑定附加潛能未鑑定:
+      case 主潛能特殊附加潛能未鑑定:
+      case 主潛能稀有附加潛能未鑑定:
+      case 主潛能罕見附加潛能未鑑定:
+      case 主潛能傳說附加潛能未鑑定:
+        return true;
+    }
+    return false;
+  }
+
+  public boolean 是否能使用附加潛能卷軸 ()
+  {
+    switch (潛能等級)
+    {
+      case 特殊:
+      case 稀有:
+      case 罕見:
+      case 傳說:
+        return 獲取附加潛能等級() == 裝備潛能等級.沒有潛能;
+      case 特殊未鑑定:
+      case 稀有未鑑定:
+      case 罕見未鑑定:
+      case 傳說未鑑定:
+        return true;
+      case 沒有潛能:
+      case 主潛能特殊未鑑定附加潛能未鑑定:
+      case 主潛能稀有未鑑定附加潛能未鑑定:
+      case 主潛能罕見未鑑定附加潛能未鑑定:
+      case 主潛能傳說未鑑定附加潛能未鑑定:
+      case 主潛能特殊附加潛能未鑑定:
+      case 主潛能稀有附加潛能未鑑定:
+      case 主潛能罕見附加潛能未鑑定:
+      case 主潛能傳說附加潛能未鑑定:
+        return false;
+    }
+    return false;
   }
 
   public byte 獲取未鑑定潛能條數 ()
@@ -859,70 +1081,41 @@ public class Equip extends Item implements Serializable
     this.未鑑定潛能條數 = 未鑑定潛能條數;
   }
 
-  public boolean 是否未鑑定 ()
+  public byte 獲取未鑑定附加潛能條數 ()
   {
-    return 潛能等級.獲取潛能等級的值() > 0 && 潛能等級.獲取潛能等級的值() < 5;
+    return this.未鑑定附加潛能條數;
   }
 
-  public void setAdditionalPotentialLevel (byte additionalPotentialLevel)
+  public void 設置未鑑定附加潛能條數 (byte 未鑑定附加潛能條數)
   {
-    switch (additionalPotentialLevel)
-    {
-      case 1:
-        附加潛能等級 = 裝備潛能等級.特殊未鑑定;
-        break;
-      case 2:
-        附加潛能等級 = 裝備潛能等級.稀有未鑑定;
-        break;
-      case 3:
-        附加潛能等級 = 裝備潛能等級.罕見未鑑定;
-        break;
-      case 4:
-        附加潛能等級 = 裝備潛能等級.傳說未鑑定;
-        break;
-      case 17:
-        附加潛能等級 = 裝備潛能等級.特殊;
-        break;
-      case 18:
-        附加潛能等級 = 裝備潛能等級.稀有;
-        break;
-      case 19:
-        附加潛能等級 = 裝備潛能等級.罕見;
-        break;
-      case 20:
-        附加潛能等級 = 裝備潛能等級.傳說;
-        break;
-      default:
-        附加潛能等級 = 裝備潛能等級.沒有潛能;
-        break;
-    }
+    this.未鑑定附加潛能條數 = 未鑑定附加潛能條數;
   }
 
-  public 裝備潛能等級 獲取鑑定之後的裝備潛能 ()
-  {
-    switch (潛能等級)
-    {
-      case 特殊未鑑定:
-        return 裝備潛能等級.特殊;
-      case 稀有未鑑定:
-        return 裝備潛能等級.稀有;
-      case 罕見未鑑定:
-        return 裝備潛能等級.罕見;
-      case 傳說未鑑定:
-        return 裝備潛能等級.傳說;
-    }
-    return 裝備潛能等級.沒有潛能;
-  }
+  // public 裝備潛能等級 獲取鑑定之後的裝備潛能 ()
+  // {
+  //   switch (潛能等級)
+  //   {
+  //     case 特殊未鑑定:
+  //       return 裝備潛能等級.特殊;
+  //     case 稀有未鑑定:
+  //       return 裝備潛能等級.稀有;
+  //     case 罕見未鑑定:
+  //       return 裝備潛能等級.罕見;
+  //     case 傳說未鑑定:
+  //       return 裝備潛能等級.傳說;
+  //   }
+  //   return 裝備潛能等級.沒有潛能;
+  // }
 
-  public void resetPotential ()
-  {
-    int rank = Randomizer.nextInt(100) < 4 ? (Randomizer.nextInt(100) < 4 ? -19 : -18) : -17;
-    this.setPotential1(rank);
-    this.setPotential2(Randomizer.nextInt(10) == 0 ? rank : 0);
-    this.setPotential3(0);
-    this.setPotential4(0);
-    this.setPotential5(0);
-  }
+  // public void resetPotential ()
+  // {
+  //   int rank = Randomizer.nextInt(100) < 4 ? (Randomizer.nextInt(100) < 4 ? -19 : -18) : -17;
+  //   this.設置第一條主潛能(rank);
+  //   this.設置第二條主潛能(Randomizer.nextInt(10) == 0 ? rank : 0);
+  //   this.設置第三條主潛能(0);
+  //   this.設置第一條附加潛能(0);
+  //   this.設置第二條附加潛能(0);
+  // }
 
 
   public long getFlame ()
@@ -2500,55 +2693,10 @@ public class Equip extends Item implements Serializable
     this.authenticExp = authenticExp;
   }
 
-  public 裝備潛能等級 獲取附加潛能等級 ()
-  {
-    return 附加潛能等級;
-  }
-
-  public void 設置附加潛能等級 (裝備潛能等級 附加潛能等級)
-  {
-    this.附加潛能等級 = 附加潛能等級;
-  }
-
-  public void 設置附加潛能等級 (byte state)
-  {
-    switch (state)
-    {
-      case 1:
-        潛能等級 = 裝備潛能等級.特殊未鑑定;
-        break;
-      case 2:
-        潛能等級 = 裝備潛能等級.稀有未鑑定;
-        break;
-      case 3:
-        潛能等級 = 裝備潛能等級.罕見未鑑定;
-        break;
-      case 4:
-        潛能等級 = 裝備潛能等級.傳說未鑑定;
-        break;
-      case 17:
-        潛能等級 = 裝備潛能等級.特殊;
-        break;
-      case 18:
-        潛能等級 = 裝備潛能等級.稀有;
-        break;
-      case 19:
-        潛能等級 = 裝備潛能等級.罕見;
-        break;
-      case 20:
-        潛能等級 = 裝備潛能等級.傳說;
-        break;
-      default:
-        潛能等級 = 裝備潛能等級.沒有潛能;
-        break;
-    }
-  }
-
 
   public enum ScrollResult
   {
     SUCCESS, FAIL, CURSE
-
   }
 }
 

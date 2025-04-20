@@ -15034,7 +15034,7 @@
 </canvas>
 <imgdir name="common">
 <int name="maxLevel" value="25"/>
-<string name="cooltime" value="8"/>
+<string name="cooltime" value="12"/>
 <string name="mpCon" value="800"/>
 <string name="x" value="350+20*x"/>
 <string name="y" value="420+20*x"/>
@@ -15042,7 +15042,7 @@
 <string name="w" value="600+24*x"/>
 <string name="v" value="700+28*x"/>
 <string name="mobCount" value="12"/>
-<string name="attackCount" value="12"/>
+<string name="attackCount" value="7"/>
 <string name="time" value="10"/>
 <string name="q" value="6"/>
 <string name="s" value="5"/>

@@ -17,7 +17,7 @@ function act() {
 			m1 = i
 		}
 		if(re[i].getReactorId() == 9250001){
-			re[i].setPotentialLevel(1);
+			re[i].設置潛能等級(1);
 			rm.getPlayer().dropMessage(5,"i : "+i+"/ re : "+ re[i].getReactorId());
 			m2 = i
 		}

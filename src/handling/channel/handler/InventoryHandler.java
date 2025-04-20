@@ -2,7 +2,9 @@ package handling.channel.handler;
 
 import client.*;
 import client.inventory.*;
-import constants.*;
+import constants.GameConstants;
+import constants.ServerConstants;
+import constants.潛能生成器;
 import database.DatabaseConnection;
 import handling.RecvPacketOpcode;
 import handling.world.MaplePartyCharacter;
@@ -15,8 +17,8 @@ import provider.MapleDataProviderFactory;
 import provider.MapleDataTool;
 import scripting.EventManager;
 import scripting.NPCScriptManager;
-import server.Timer;
 import server.*;
+import server.Timer;
 import server.life.MapleLifeFactory;
 import server.life.MapleMonster;
 import server.life.MobSkill;
@@ -36,8 +38,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 
 public class InventoryHandler
 {
@@ -394,32 +396,34 @@ public class InventoryHandler
     }
   }
 
-  public static void UseMagnify (final LittleEndianAccessor slea, final MapleClient c)
+  public static void 處理鑑定潛能 (final LittleEndianAccessor slea, final MapleClient c)
   {
     try
     {
       slea.skip(4);
       boolean useGlass = false;
-      boolean isEquipped = false;
       final short useSlot = slea.readShort();
       final short equipSlot = slea.readShort();
 
       final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
 
-      Equip equip;
+      Equip 裝備;
 
       if (equipSlot < 0)
       {
-        equip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(equipSlot);
-        isEquipped = true;
+        裝備 = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(equipSlot);
       }
       else
       {
-        equip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(equipSlot);
+        裝備 = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(equipSlot);
       }
 
-      if (equip.獲取潛能等級() == 裝備潛能等級.沒有潛能)
+      if (裝備.是否需要鑑定() == false)
       {
+        c.getPlayer().dropMessage(1, "無法作用於該裝備!");
+
+        c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
         return;
       }
 
@@ -427,119 +431,264 @@ public class InventoryHandler
 
       if (useSlot != 20000)
       {
-        if (glass == null || equip == null)
+        if (glass == null || 裝備 == null)
         {
           c.getPlayer().dropMessage(1, "GLASS NULL!");
-          c.getSession().writeAndFlush(CWvsContext.InventoryPacket.getInventoryFull());
+          c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
           return;
         }
         useGlass = true;
       }
       else
       {
-        final long price = GameConstants.getMagnifyPrice(equip);
+        final long price = GameConstants.getMagnifyPrice(裝備);
         c.getPlayer().gainMeso(-price, false);
       }
-      if (equip.是否未鑑定())
+
+      int 潛能條數 = 裝備.獲取未鑑定潛能條數();
+
+      MapleCharacter character = c.getPlayer();
+
+      switch (裝備.獲取潛能等級())
       {
-        MapleCharacter character = c.getPlayer();
-
-        if (equip.獲取未鑑定潛能條數() == 0)
+        case 主潛能特殊附加潛能未鑑定:
+        case 主潛能稀有附加潛能未鑑定:
+        case 主潛能罕見附加潛能未鑑定:
+        case 主潛能傳說附加潛能未鑑定:
         {
-          if (Randomizer.isSuccess(25))
+          潛能條數 = 裝備.獲取未鑑定附加潛能條數();
+
+          int 附加潛能1 = 潛能生成器.生成潛能(裝備, 裝備.獲取附加潛能等級());
+          裝備.設置第一條附加潛能(附加潛能1);
+
+          int 附加潛能2 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.特殊);
+          裝備.設置第二條附加潛能(附加潛能2);
+
+          if (潛能條數 == 3)
           {
-            equip.設置未鑑定潛能條數((byte) 2);
+            int 附加潛能3 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.特殊);
+            裝備.設置第三條附加潛能(附加潛能3);
+
+            while (潛能生成器.檢查裝備第三條附加潛能是否合法(裝備) == false)
+            {
+              附加潛能3 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.特殊);
+              裝備.設置第三條附加潛能(附加潛能3);
+            }
           }
-          else
+          break;
+        }
+        case 特殊未鑑定:
+        case 主潛能特殊未鑑定附加潛能未鑑定:
+        {
+          int 潛能1 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.特殊);
+          裝備.設置第一條主潛能(潛能1);
+
+          int 潛能2 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.特殊);
+          裝備.設置第二條主潛能(潛能2);
+
+          while (潛能生成器.檢查裝備第二條主潛能是否合法(裝備) == false)
           {
-            equip.設置未鑑定潛能條數((byte) 3);
+            潛能2 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.特殊);
+            裝備.設置第二條主潛能(潛能2);
           }
-        }
 
-        equip.設置潛能等級(equip.獲取鑑定之後的裝備潛能());
-
-        int 潛能等級 = equip.獲取潛能等級().獲取潛能等級的值() - 16;
-
-        int 低一級潛能等級 = Math.max(equip.獲取潛能等級().獲取潛能等級的值() - 17, 1);
-
-        int 潛能2等級 = 低一級潛能等級;
-
-        int 裝備Id = equip.getItemId();
-
-        equip.setPotential1(潛能生成器.生成潛能(裝備Id, 潛能等級));
-
-        equip.setPotential2(潛能生成器.生成潛能(裝備Id, 潛能2等級));
-
-        while (潛能生成器.檢查裝備潛能2是否合法(equip) == false)
-        {
-          equip.setPotential2(潛能生成器.生成潛能(裝備Id, 潛能2等級));
-        }
-
-        if (equip.獲取未鑑定潛能條數() == 3)
-        {
-          int 潛能3等級 = 低一級潛能等級;
-
-          equip.setPotential3(潛能生成器.生成潛能(裝備Id, 潛能3等級));
-
-          while (潛能生成器.檢查裝備潛能3是否合法(equip) == false)
+          if (潛能條數 == 3)
           {
-            equip.setPotential3(潛能生成器.生成潛能(裝備Id, 潛能3等級));
+            int 潛能3 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.特殊);
+            裝備.設置第三條主潛能(潛能3);
+
+            while (潛能生成器.檢查裝備第三條主潛能是否合法(裝備) == false)
+            {
+              潛能3 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.特殊);
+              裝備.設置第三條主潛能(潛能3);
+            }
           }
+          break;
         }
-
-        Equip zeroEquip = null;
-
-        if (GameConstants.isAlphaWeapon(equip.getItemId()))
+        case 稀有未鑑定:
+        case 主潛能稀有未鑑定附加潛能未鑑定:
         {
-          zeroEquip = (Equip) character.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10);
+          int 潛能1 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.稀有);
+          裝備.設置第一條主潛能(潛能1);
+
+          int 潛能2 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.特殊);
+          裝備.設置第二條主潛能(潛能2);
+
+          while (潛能生成器.檢查裝備第二條主潛能是否合法(裝備) == false)
+          {
+            潛能2 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.特殊);
+            裝備.設置第二條主潛能(潛能2);
+          }
+
+          if (潛能條數 == 3)
+          {
+            int 潛能3 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.特殊);
+            裝備.設置第三條主潛能(潛能3);
+
+            while (潛能生成器.檢查裝備第三條主潛能是否合法(裝備) == false)
+            {
+              潛能3 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.特殊);
+              裝備.設置第三條主潛能(潛能3);
+            }
+          }
+          break;
         }
-        else if (GameConstants.isBetaWeapon(equip.getItemId()))
+        case 罕見未鑑定:
+        case 主潛能罕見未鑑定附加潛能未鑑定:
         {
-          zeroEquip = (Equip) character.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
-        }
+          int 潛能1 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.罕見);
+          裝備.設置第一條主潛能(潛能1);
 
-        if (zeroEquip != null)
+          int 潛能2 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.稀有);
+          裝備.設置第二條主潛能(潛能2);
+
+          while (潛能生成器.檢查裝備第二條主潛能是否合法(裝備) == false)
+          {
+            潛能2 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.稀有);
+            裝備.設置第二條主潛能(潛能2);
+          }
+
+          if (潛能條數 == 3)
+          {
+            int 潛能3 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.稀有);
+            裝備.設置第三條主潛能(潛能3);
+
+            while (潛能生成器.檢查裝備第三條主潛能是否合法(裝備) == false)
+            {
+              潛能3 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.稀有);
+              裝備.設置第三條主潛能(潛能3);
+            }
+          }
+          break;
+        }
+        case 傳說未鑑定:
+        case 主潛能傳說未鑑定附加潛能未鑑定:
         {
-          zeroEquip.設置潛能等級(equip.獲取潛能等級());
+          int 潛能1 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.傳說);
+          裝備.設置第一條主潛能(潛能1);
 
-          zeroEquip.設置附加潛能等級(equip.獲取附加潛能等級());
+          int 潛能2 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.罕見);
+          裝備.設置第二條主潛能(潛能2);
 
-          zeroEquip.setPotential1(equip.getPotential1());
+          while (潛能生成器.檢查裝備第二條主潛能是否合法(裝備) == false)
+          {
+            潛能2 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.罕見);
+            裝備.設置第二條主潛能(潛能2);
+          }
 
-          zeroEquip.setPotential2(equip.getPotential2());
+          if (潛能條數 == 3)
+          {
+            int 潛能3 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.罕見);
+            裝備.設置第三條主潛能(潛能3);
 
-          zeroEquip.setPotential3(equip.getPotential3());
-
-          zeroEquip.setPotential4(equip.getPotential4());
-
-          zeroEquip.setPotential5(equip.getPotential5());
-
-          zeroEquip.setPotential6(equip.getPotential6());
-
-          c.getPlayer().forceReAddItem(zeroEquip, MapleInventoryType.EQUIPPED);
+            while (潛能生成器.檢查裝備第三條主潛能是否合法(裝備) == false)
+            {
+              潛能3 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.罕見);
+              裝備.設置第二條主潛能(潛能3);
+            }
+          }
+          break;
         }
-
-        c.getPlayer().forceReAddItem(equip, equipSlot < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
-
-        if (useGlass)
-        {
-          final MapleInventory useInventory = c.getPlayer().getInventory(MapleInventoryType.USE);
-
-          useInventory.removeItem(useSlot, (short) 1, false);
-        }
-
-        c.getPlayer().getTrait(MapleTrait.MapleTraitType.insight).addExp(10, c.getPlayer());
-
-        c.getPlayer().getMap().broadcastMessage(CField.showMagnifyingEffect(c.getPlayer().getId(), equipSlot));
-
-        c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
       }
+
+      switch (裝備.獲取潛能等級())
+      {
+        case 特殊未鑑定:
+        case 主潛能特殊附加潛能未鑑定:
+        {
+          裝備.設置潛能等級(裝備潛能等級.特殊);
+          break;
+        }
+        case 稀有未鑑定:
+        case 主潛能稀有附加潛能未鑑定:
+        {
+          裝備.設置潛能等級(裝備潛能等級.稀有);
+          break;
+        }
+        case 罕見未鑑定:
+        case 主潛能罕見附加潛能未鑑定:
+        {
+          裝備.設置潛能等級(裝備潛能等級.罕見);
+          break;
+        }
+        case 傳說未鑑定:
+        case 主潛能傳說附加潛能未鑑定:
+        {
+          裝備.設置潛能等級(裝備潛能等級.傳說);
+          break;
+        }
+        case 主潛能特殊未鑑定附加潛能未鑑定:
+        {
+          裝備.設置潛能等級(裝備潛能等級.主潛能特殊附加潛能未鑑定);
+          break;
+        }
+        case 主潛能稀有未鑑定附加潛能未鑑定:
+        {
+          裝備.設置潛能等級(裝備潛能等級.主潛能稀有附加潛能未鑑定);
+          break;
+        }
+        case 主潛能罕見未鑑定附加潛能未鑑定:
+        {
+          裝備.設置潛能等級(裝備潛能等級.主潛能罕見附加潛能未鑑定);
+          break;
+        }
+        case 主潛能傳說未鑑定附加潛能未鑑定:
+        {
+          裝備.設置潛能等級(裝備潛能等級.主潛能傳說附加潛能未鑑定);
+          break;
+        }
+      }
+
+      Equip zeroEquip = null;
+
+      if (GameConstants.isAlphaWeapon(裝備.getItemId()))
+      {
+        zeroEquip = (Equip) character.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10);
+      }
+      else if (GameConstants.isBetaWeapon(裝備.getItemId()))
+      {
+        zeroEquip = (Equip) character.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
+      }
+
+      if (zeroEquip != null)
+      {
+        zeroEquip.設置潛能等級(裝備.獲取潛能等級());
+
+        zeroEquip.設置第一條主潛能(裝備.獲取第一條主潛能());
+
+        zeroEquip.設置第二條主潛能(裝備.獲取第二條主潛能());
+
+        zeroEquip.設置第三條主潛能(裝備.獲取第三條主潛能());
+
+        zeroEquip.設置第一條附加潛能(裝備.獲取第一條附加潛能());
+
+        zeroEquip.設置第二條附加潛能(裝備.獲取第二條附加潛能());
+
+        zeroEquip.設置第三條附加潛能(裝備.獲取第三條附加潛能());
+
+        c.getPlayer().forceReAddItem(zeroEquip, MapleInventoryType.EQUIPPED);
+      }
+
+      c.getPlayer().forceReAddItem(裝備, equipSlot < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
+
+      if (useGlass)
+      {
+        final MapleInventory useInventory = c.getPlayer().getInventory(MapleInventoryType.USE);
+
+        useInventory.removeItem(useSlot, (short) 1, false);
+      }
+
+      c.getPlayer().getTrait(MapleTrait.MapleTraitType.insight).addExp(10, c.getPlayer());
+
+      c.getPlayer().getMap().broadcastMessage(CField.showMagnifyingEffect(c.getPlayer().getId(), equipSlot));
+
+      c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
     }
     catch (Exception e)
     {
       e.printStackTrace();
     }
-
   }
 
   public static void UseStamp (final LittleEndianAccessor slea, final MapleClient c)
@@ -579,22 +728,22 @@ public class InventoryHandler
       zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
     }
 
-    if (Randomizer.isSuccess(GameConstants.獲取烙印的印章成功率(stamp.getItemId())))
+    if (Randomizer.isSuccess(GameConstants.獲取烙印印章成功率(stamp.getItemId())))
     {
       int 潛能3等級 = Math.max(toStamp.獲取潛能等級().獲取潛能等級的值() - 16 - 1, 1);
 
-      toStamp.setPotential3(潛能生成器.生成潛能(toStamp.getItemId(), 潛能3等級));
+      toStamp.設置第三條主潛能(潛能生成器.生成潛能(toStamp.getItemId(), 潛能3等級));
 
-      while (潛能生成器.檢查裝備潛能3是否合法(toStamp) == false)
+      while (潛能生成器.檢查裝備第三條主潛能是否合法(toStamp) == false)
       {
-        toStamp.setPotential3(潛能生成器.生成潛能(toStamp.getItemId(), 潛能3等級));
+        toStamp.設置第三條主潛能(潛能生成器.生成潛能(toStamp.getItemId(), 潛能3等級));
       }
 
       success = true;
 
       if (zeroEquip != null)
       {
-        zeroEquip.setPotential3(toStamp.getPotential3());
+        zeroEquip.設置第三條主潛能(toStamp.獲取第三條主潛能());
       }
 
       useInventory.removeItem(stamp.getPosition(), (short) 1, false);
@@ -612,7 +761,7 @@ public class InventoryHandler
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
   }
 
-  public static void useAdditionalPotentialStamp (final LittleEndianAccessor slea, final MapleClient c)
+  public static void 處理使用附加烙印印章 (final LittleEndianAccessor slea, final MapleClient c)
   {
     slea.skip(4);
 
@@ -624,15 +773,15 @@ public class InventoryHandler
 
     final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
 
-    Equip toStamp;
+    Equip 裝備;
 
     if (dst < 0)
     {
-      toStamp = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(dst);
+      裝備 = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(dst);
     }
     else
     {
-      toStamp = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(dst);
+      裝備 = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(dst);
     }
 
     final MapleInventory useInventory = c.getPlayer().getInventory(MapleInventoryType.USE);
@@ -642,20 +791,31 @@ public class InventoryHandler
     Equip zeroEquip = null;
 
 
-    if (Randomizer.isSuccess(GameConstants.獲取附加烙印的印章成功率(stamp.getItemId())))
+    if (Randomizer.isSuccess(GameConstants.獲取附加烙印印章成功率(stamp.getItemId())))
     {
 
-      int 潛能6等級 = Math.max(toStamp.獲取附加潛能等級().獲取潛能等級的值() - 16 - 1, 1);
+      int 第一條附加潛能 = 裝備.獲取第一條附加潛能();
 
-      toStamp.setPotential6(潛能生成器.生成潛能(toStamp.getItemId(), 潛能6等級));
+      int 第一條附加潛能等級 = 第一條附加潛能 / 10000;
+
+      int 第三條附加潛能 = 潛能生成器.生成潛能(裝備.getItemId(), 第一條附加潛能等級);
+
+      裝備.設置第三條附加潛能(第三條附加潛能);
+
+      while (潛能生成器.檢查裝備第三條附加潛能是否合法(裝備) == false)
+      {
+        第三條附加潛能 = 潛能生成器.生成潛能(裝備.getItemId(), 第一條附加潛能等級);
+
+        裝備.設置第三條附加潛能(第三條附加潛能);
+      }
 
       success = true;
 
-      if (GameConstants.isAlphaWeapon(toStamp.getItemId()))
+      if (GameConstants.isAlphaWeapon(裝備.getItemId()))
       {
         zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10);
       }
-      else if (GameConstants.isBetaWeapon(toStamp.getItemId()))
+      else if (GameConstants.isBetaWeapon(裝備.getItemId()))
       {
         zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
       }
@@ -663,25 +823,25 @@ public class InventoryHandler
 
       if (zeroEquip != null)
       {
-        zeroEquip.setPotential6(toStamp.getPotential6());
+        zeroEquip.設置第三條附加潛能(裝備.獲取第三條附加潛能());
       }
 
       useInventory.removeItem(stamp.getPosition(), (short) 1, false);
 
-      c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateScrollandItem(stamp, toStamp));
+      c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateScrollandItem(stamp, 裝備));
 
       if (zeroEquip != null)
       {
         c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateScrollandItem(stamp, zeroEquip));
       }
 
-      c.getPlayer().getMap().broadcastMessage(CField.showPotentialReset(c.getPlayer().getId(), success, stamp.getItemId(), toStamp.getItemId()));
+      c.getPlayer().getMap().broadcastMessage(CField.showPotentialReset(c.getPlayer().getId(), success, stamp.getItemId(), 裝備.getItemId()));
     }
 
     c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
   }
 
-  public static void UseChooseCube (final LittleEndianAccessor slea, final MapleClient c)
+  public static void 處理選擇黑魔方潛能 (final LittleEndianAccessor slea, final MapleClient c)
   {
     slea.skip(4);
     final byte type = slea.readByte();
@@ -717,13 +877,12 @@ public class InventoryHandler
     if (zeroEquip != null)
     {
       zeroEquip.設置潛能等級(equip.獲取潛能等級());
-      zeroEquip.設置附加潛能等級(equip.獲取附加潛能等級());
-      zeroEquip.setPotential1(equip.getPotential1());
-      zeroEquip.setPotential2(equip.getPotential2());
-      zeroEquip.setPotential3(equip.getPotential3());
-      zeroEquip.setPotential4(equip.getPotential4());
-      zeroEquip.setPotential5(equip.getPotential5());
-      zeroEquip.setPotential6(equip.getPotential6());
+      zeroEquip.設置第一條主潛能(equip.獲取第一條主潛能());
+      zeroEquip.設置第二條主潛能(equip.獲取第二條主潛能());
+      zeroEquip.設置第三條主潛能(equip.獲取第三條主潛能());
+      zeroEquip.設置第一條附加潛能(equip.獲取第一條附加潛能());
+      zeroEquip.設置第二條附加潛能(equip.獲取第二條附加潛能());
+      zeroEquip.設置第三條附加潛能(equip.獲取第三條附加潛能());
     }
 
     c.getPlayer().choicePotential = null;
@@ -890,7 +1049,6 @@ public class InventoryHandler
     final byte oldLevel = toScroll.getEnchantLevel();
     final byte oldEnhance = toScroll.getStarForceLevel();
     final 裝備潛能等級 老的潛能等級 = toScroll.獲取潛能等級();
-    final 裝備潛能等級 老的附加潛能等級 = toScroll.獲取附加潛能等級();
     final int oldFlag = toScroll.getFlag();
     final byte oldSlots = toScroll.getTotalUpgradeSlots();
     if (scroll == null || header == RecvPacketOpcode.USE_FLAG_SCROLL)
@@ -1068,7 +1226,7 @@ public class InventoryHandler
     {
       scrollSuccess = Equip.ScrollResult.SUCCESS;
     }
-    else if (scrolled.getEnchantLevel() > oldLevel || scrolled.getStarForceLevel() > oldEnhance || scrolled.獲取潛能等級() != 老的潛能等級 || scrolled.獲取附加潛能等級() != 老的附加潛能等級 || scrolled.getFlag() > oldFlag)
+    else if (scrolled.getEnchantLevel() > oldLevel || scrolled.getStarForceLevel() > oldEnhance || scrolled.獲取潛能等級() != 老的潛能等級 || scrolled.getFlag() > oldFlag)
     {
       scrollSuccess = Equip.ScrollResult.SUCCESS;
     }
@@ -1195,7 +1353,7 @@ public class InventoryHandler
     return true;
   }
 
-  public static void useAdditionalPotentialScroll (final LittleEndianAccessor slea, final MapleClient c)
+  public static void 處理使用附加潛能卷軸 (final LittleEndianAccessor slea, final MapleClient c)
   {
     try
     {
@@ -1211,20 +1369,20 @@ public class InventoryHandler
       {
         final short slot = slea.readShort();
 
-        Equip equip;
+        Equip 裝備;
 
         if (slot < 0)
         {
-          equip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(slot);
+          裝備 = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem(slot);
         }
         else
         {
-          equip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(slot);
+          裝備 = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem(slot);
         }
 
-        if (equip.getPotential1() == 0)
+        if (裝備.是否能使用附加潛能卷軸() == false)
         {
-          c.getPlayer().dropMessage(1, "無法作用於沒有潛能的道具!");
+          c.getPlayer().dropMessage(1, "無法作用於該裝備!");
 
           c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
 
@@ -1237,71 +1395,102 @@ public class InventoryHandler
 
         Equip zeroEquip = null;
 
+        MapleCharacter character = c.getPlayer();
 
         if (是否成功)
         {
-          boolean has3Line = Randomizer.isSuccess(25);
-
-          final 裝備潛能等級 潛能等級 = GameConstants.獲取附加潛能卷軸等級(卷軸Id);
-
-          final int 潛能等級的值 = 潛能等級.獲取潛能等級的值() - 16;
-
-          int 低一級潛能等級 = Math.max(潛能等級的值 - 1, 1);
-
-          equip.設置附加潛能等級(潛能等級);
-
-          equip.setPotential4(潛能生成器.生成附加潛能(equip.getItemId(), 潛能等級的值));
-
-          equip.setPotential5(潛能生成器.生成附加潛能(equip.getItemId(), 低一級潛能等級));
-
-          if (has3Line)
+          switch (裝備.獲取潛能等級())
           {
-            equip.setPotential6(潛能生成器.生成潛能(equip.getItemId(), 低一級潛能等級));
+            case 特殊:
+            {
+              裝備.設置潛能等級(裝備潛能等級.主潛能特殊附加潛能未鑑定);
+              break;
+            }
+            case 特殊未鑑定:
+            {
+              裝備.設置潛能等級(裝備潛能等級.主潛能特殊未鑑定附加潛能未鑑定);
+              break;
+            }
+            case 稀有:
+            {
+              裝備.設置潛能等級(裝備潛能等級.主潛能稀有附加潛能未鑑定);
+              break;
+            }
+            case 稀有未鑑定:
+            {
+              裝備.設置潛能等級(裝備潛能等級.主潛能稀有未鑑定附加潛能未鑑定);
+              break;
+            }
+            case 罕見:
+            {
+              裝備.設置潛能等級(裝備潛能等級.主潛能罕見附加潛能未鑑定);
+              break;
+            }
+            case 罕見未鑑定:
+            {
+              裝備.設置潛能等級(裝備潛能等級.主潛能罕見未鑑定附加潛能未鑑定);
+              break;
+            }
+            case 傳說:
+            {
+              裝備.設置潛能等級(裝備潛能等級.主潛能傳說附加潛能未鑑定);
+              break;
+            }
+            case 傳說未鑑定:
+            {
+              裝備.設置潛能等級(裝備潛能等級.主潛能傳說未鑑定附加潛能未鑑定);
+              break;
+            }
           }
 
-          if (GameConstants.isAlphaWeapon(equip.getItemId()))
+          if (卷軸Id == 2049731)
           {
-            zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-10));
+            裝備.設置第一條附加潛能(2);
           }
-          else if (GameConstants.isBetaWeapon(equip.getItemId()))
+          else
           {
-            zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) (-11));
-          }
-
-          if (zeroEquip != null)
-          {
-            zeroEquip.設置潛能等級(equip.獲取潛能等級());
-
-            zeroEquip.設置附加潛能等級(equip.獲取附加潛能等級());
-
-            zeroEquip.setPotential1(equip.getPotential1());
-
-            zeroEquip.setPotential2(equip.getPotential2());
-
-            zeroEquip.setPotential3(equip.getPotential3());
-
-            zeroEquip.setPotential4(equip.getPotential4());
-
-            zeroEquip.setPotential5(equip.getPotential5());
-
-            zeroEquip.setPotential6(equip.getPotential6());
-
-            c.getPlayer().forceReAddItem(zeroEquip, MapleInventoryType.EQUIPPED);
+            裝備.設置第一條附加潛能(1);
           }
 
-          c.getPlayer().forceReAddItem(equip, slot < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
+          if (Randomizer.isSuccess(25))
+          {
+            裝備.設置未鑑定附加潛能條數((byte) 3);
+          }
+          else
+          {
+            裝備.設置未鑑定附加潛能條數((byte) 2);
+          }
+
+          c.getPlayer().forceReAddItem(裝備, slot < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
+
+          c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateScrollandItem(toUse, 裝備));
         }
 
-        c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateScrollandItem(toUse, equip));
+        if (GameConstants.isAlphaWeapon(裝備.getItemId()))
+        {
+          zeroEquip = (Equip) character.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10);
+        }
+        else if (GameConstants.isBetaWeapon(裝備.getItemId()))
+        {
+          zeroEquip = (Equip) character.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
+        }
 
         if (zeroEquip != null)
         {
+          zeroEquip.設置潛能等級(裝備.獲取潛能等級());
+
+          zeroEquip.設置第一條附加潛能(裝備.獲取第一條附加潛能());
+
+          c.getPlayer().forceReAddItem(zeroEquip, slot < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
+
           c.getSession().writeAndFlush(CWvsContext.InventoryPacket.updateScrollandItem(toUse, zeroEquip));
         }
 
-        c.getPlayer().getMap().broadcastMessage(CField.showPotentialReset(c.getPlayer().getId(), 是否成功, 卷軸Id, equip.getItemId()));
+        c.getPlayer().getMap().broadcastMessage(CField.showPotentialReset(c.getPlayer().getId(), 是否成功, 卷軸Id, 裝備.getItemId()));
 
         MapleInventoryManipulator.removeById(c, MapleInventoryType.USE, 卷軸Id, 1, true, false);
+
+        c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
       }
     }
     catch (Exception ex)
@@ -4444,6 +4633,7 @@ public class InventoryHandler
 
       case 5062500:
       {
+        // 附加方塊
         pos = slea.readInt();
 
         item = c.getPlayer().getInventory(pos < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP).getItem((short) pos);
@@ -4452,27 +4642,18 @@ public class InventoryHandler
 
         if (item != null && c.getPlayer().getInventory(MapleInventoryType.USE).getNumFreeSlot() >= 1)
         {
-          Equip eq = (Equip) item;
+          Equip 裝備 = (Equip) item;
 
-          if (eq.getPotential4() == 0)
+          if (裝備.是否可以重設附加潛能() == false)
           {
-            c.getPlayer().dropMessage(1, "無法作用於沒有附加潛能的道具!");
+            c.getPlayer().dropMessage(1, "無法作用於該裝備!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
 
             return;
           }
 
-          if (eq.獲取附加潛能等級().獲取潛能等級的值() < 16)
-          {
-            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定附加潛能的裝備!");
-
-            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
-
-            return;
-          }
-
-          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(eq.getItemId()))
+          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(裝備.getItemId()))
           {
             c.getPlayer().dropMessage(6, "沒有足夠的楓幣!");
 
@@ -4481,95 +4662,110 @@ public class InventoryHandler
             return;
           }
 
-          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(eq.getItemId()), false);
+          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(裝備.getItemId()), false);
 
-          if (eq.獲取附加潛能等級() == 裝備潛能等級.特殊)
+          if (裝備.獲取附加潛能等級() == 裝備潛能等級.特殊)
           {
-            if (Randomizer.isSuccess(50))
+            if (Randomizer.isSuccess(20))
             {
               up = true;
-              eq.設置附加潛能等級(裝備潛能等級.稀有);
+              裝備.設置第一條附加潛能(20000);
             }
           }
-          else if (eq.獲取附加潛能等級() == 裝備潛能等級.稀有)
+          else if (裝備.獲取附加潛能等級() == 裝備潛能等級.稀有)
           {
             if (Randomizer.isSuccess(10))
             {
               up = true;
-              eq.設置附加潛能等級(裝備潛能等級.罕見);
+              裝備.設置第一條附加潛能(30000);
             }
           }
-          else if (eq.獲取附加潛能等級() == 裝備潛能等級.罕見)
+          else if (裝備.獲取附加潛能等級() == 裝備潛能等級.罕見)
           {
             if (Randomizer.isSuccess(1))
             {
               up = true;
-              eq.設置附加潛能等級(裝備潛能等級.傳說);
+              裝備.設置第一條附加潛能(40000);
             }
           }
 
-          int 潛能等級 = eq.獲取附加潛能等級().獲取潛能等級的值() - 16;
+          裝備潛能等級 附加潛能等級 = 裝備.獲取附加潛能等級();
 
-          int 低一級潛能等級 = Math.max(eq.獲取附加潛能等級().獲取潛能等級的值() - 17, 1);
+          裝備潛能等級 次級附加潛能等級 = 裝備.獲取次級附加潛能等級();
 
-          int 裝備Id = eq.getItemId();
+          boolean 有第三條附加潛能 = 裝備.獲取第三條主潛能() > 0;
 
-          eq.setPotential4(潛能生成器.生成附加潛能(裝備Id, 潛能等級));
+          裝備.設置第一條附加潛能(0);
 
-          if (Randomizer.isSuccess(20))
+          裝備.設置第二條附加潛能(0);
+
+          裝備.設置第三條附加潛能(0);
+
+          裝備.設置第一條附加潛能(潛能生成器.生成附加潛能(裝備, 附加潛能等級));
+
+          boolean isSuccess = Randomizer.isSuccess(10);
+
+          int 第二條附加潛能 = 潛能生成器.生成附加潛能(裝備, 次級附加潛能等級);
+
+          if (isSuccess)
           {
-            eq.setPotential5(潛能生成器.生成附加潛能(裝備Id, 潛能等級));
+            第二條附加潛能 = 潛能生成器.生成附加潛能(裝備, 附加潛能等級);
           }
-          else
-          {
-            eq.setPotential5(潛能生成器.生成附加潛能(裝備Id, 低一級潛能等級));
-          }
 
-          if (eq.getPotential6() > 0)
-          {
-            int 潛能6等級 = 低一級潛能等級;
+          裝備.設置第二條附加潛能(第二條附加潛能);
 
-            if (Randomizer.isSuccess(5))
+          if (有第三條附加潛能)
+          {
+            裝備潛能等級 第三條附加潛能等級 = 次級附加潛能等級;
+
+            if (isSuccess && Randomizer.isSuccess(5))
             {
-              潛能6等級 = 潛能等級;
+              第三條附加潛能等級 = 附加潛能等級;
             }
 
-            eq.setPotential6(潛能生成器.生成附加潛能(裝備Id, 潛能6等級));
+            int 第三條附加潛能 = 潛能生成器.生成附加潛能(裝備, 第三條附加潛能等級);
+
+            裝備.設置第三條附加潛能(第三條附加潛能);
+
+            while (潛能生成器.檢查裝備第三條附加潛能是否合法(裝備) == false)
+            {
+              第三條附加潛能 = 潛能生成器.生成附加潛能(裝備, 第三條附加潛能等級);
+
+              裝備.設置第三條附加潛能(第三條附加潛能);
+            }
           }
 
-          if (GameConstants.isAlphaWeapon(eq.getItemId()))
+          if (GameConstants.isAlphaWeapon(裝備.getItemId()))
           {
             zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10);
           }
-          else if (GameConstants.isBetaWeapon(eq.getItemId()))
+          else if (GameConstants.isBetaWeapon(裝備.getItemId()))
           {
             zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
           }
 
           if (zeroEquip != null)
           {
-            zeroEquip.設置潛能等級(eq.獲取潛能等級());
+            zeroEquip.設置潛能等級(裝備.獲取潛能等級());
 
-            zeroEquip.設置附加潛能等級(eq.獲取附加潛能等級());
+            zeroEquip.設置第一條主潛能(裝備.獲取第一條主潛能());
 
-            zeroEquip.setPotential1(eq.getPotential1());
+            zeroEquip.設置第二條主潛能(裝備.獲取第二條主潛能());
 
-            zeroEquip.setPotential2(eq.getPotential2());
+            zeroEquip.設置第三條主潛能(裝備.獲取第三條主潛能());
 
-            zeroEquip.setPotential3(eq.getPotential3());
+            zeroEquip.設置第一條附加潛能(裝備.獲取第一條附加潛能());
 
-            zeroEquip.setPotential4(eq.getPotential4());
+            zeroEquip.設置第二條附加潛能(裝備.獲取第二條附加潛能());
 
-            zeroEquip.setPotential5(eq.getPotential5());
-
-            zeroEquip.setPotential6(eq.getPotential6());
+            zeroEquip.設置第三條附加潛能(裝備.獲取第三條附加潛能());
 
             c.getPlayer().forceReAddItem(zeroEquip, MapleInventoryType.EQUIPPED);
           }
 
           c.getPlayer().forceReAddItem(item, pos < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
 
-          c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, itemId, eq.getItemId()));
+          c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, itemId, 裝備.getItemId()));
 
           c.getSession().writeAndFlush(CField.getAdditionalPotentialCubeStart(c.getPlayer(), item, up, itemId, c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
 
@@ -4588,6 +4784,7 @@ public class InventoryHandler
 
       case 5062503:
       {
+        // 白色附加方塊
         pos = slea.readInt();
 
         item = c.getPlayer().getInventory(pos < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP).getItem((short) pos);
@@ -4596,31 +4793,22 @@ public class InventoryHandler
 
         if (item != null && c.getPlayer().getInventory(MapleInventoryType.USE).getNumFreeSlot() >= 1)
         {
-          Equip eq = (Equip) item;
+          Equip 裝備 = (Equip) item;
 
-          Equip neq = (Equip) eq.copy();
+          Equip 裝備副本 = (Equip) 裝備.copy();
 
           c.getPlayer().addKV("lastCube", String.valueOf(itemId));
 
-          if (eq.getPotential4() == 0)
+          if (裝備.是否可以重設附加潛能() == false)
           {
-            c.getPlayer().dropMessage(1, "無法作用於沒有附加潛能的道具!");
+            c.getPlayer().dropMessage(1, "無法作用於該裝備!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
 
             return;
           }
 
-          if (eq.獲取附加潛能等級().獲取潛能等級的值() < 16)
-          {
-            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定附加潛能的裝備!");
-
-            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
-
-            return;
-          }
-
-          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(eq.getItemId()))
+          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(裝備.getItemId()))
           {
             c.getPlayer().dropMessage(6, "沒有足夠的楓幣!");
 
@@ -4629,67 +4817,83 @@ public class InventoryHandler
             return;
           }
 
-          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(neq.getItemId()), false);
+          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(裝備.getItemId()), false);
 
-          if (neq.獲取附加潛能等級() == 裝備潛能等級.特殊)
+          if (裝備副本.獲取附加潛能等級() == 裝備潛能等級.特殊)
           {
-            if (Randomizer.isSuccess(60))
+            if (Randomizer.isSuccess(30))
             {
               up = true;
-              neq.設置附加潛能等級(裝備潛能等級.稀有);
+              裝備副本.設置第一條附加潛能(20000);
             }
           }
-          else if (neq.獲取附加潛能等級() == 裝備潛能等級.稀有)
+          else if (裝備副本.獲取附加潛能等級() == 裝備潛能等級.稀有)
           {
             if (Randomizer.isSuccess(15))
             {
               up = true;
-              neq.設置附加潛能等級(裝備潛能等級.罕見);
+              裝備副本.設置第一條附加潛能(30000);
             }
           }
-          else if (neq.獲取附加潛能等級() == 裝備潛能等級.罕見)
+          else if (裝備副本.獲取附加潛能等級() == 裝備潛能等級.罕見)
           {
-            if (Randomizer.isSuccess(1))
+            if (Randomizer.isSuccess(2))
             {
               up = true;
-              neq.設置附加潛能等級(裝備潛能等級.傳說);
+              裝備副本.設置第一條附加潛能(40000);
             }
           }
+          裝備潛能等級 附加潛能等級 = 裝備副本.獲取附加潛能等級();
 
-          int 潛能等級 = neq.獲取附加潛能等級().獲取潛能等級的值() - 16;
+          裝備潛能等級 次級附加潛能等級 = 裝備副本.獲取次級附加潛能等級();
 
-          int 低一級潛能等級 = Math.max(neq.獲取附加潛能等級().獲取潛能等級的值() - 17, 1);
+          boolean 有第三條附加潛能 = 裝備副本.獲取第三條附加潛能() > 0;
 
-          int 裝備Id = neq.getItemId();
+          裝備副本.設置第一條附加潛能(0);
 
-          neq.setPotential4(潛能生成器.生成附加潛能(裝備Id, 潛能等級));
+          裝備副本.設置第二條附加潛能(0);
 
-          if (Randomizer.isSuccess(30))
+          裝備副本.設置第三條附加潛能(0);
+
+          裝備副本.設置第一條附加潛能(潛能生成器.生成附加潛能(裝備副本, 附加潛能等級));
+
+          boolean isSuccess = Randomizer.isSuccess(10);
+
+          int 第二條附加潛能 = 潛能生成器.生成附加潛能(裝備副本, 次級附加潛能等級);
+
+          if (isSuccess)
           {
-            neq.setPotential5(潛能生成器.生成附加潛能(裝備Id, 潛能等級));
+            第二條附加潛能 = 潛能生成器.生成附加潛能(裝備副本, 附加潛能等級);
           }
-          else
-          {
-            neq.setPotential5(潛能生成器.生成附加潛能(裝備Id, 低一級潛能等級));
-          }
 
-          if (eq.getPotential6() > 0)
-          {
-            int 潛能6等級 = 低一級潛能等級;
+          裝備副本.設置第二條附加潛能(第二條附加潛能);
 
-            if (Randomizer.isSuccess(10))
+          if (有第三條附加潛能)
+          {
+            裝備潛能等級 第三條附加潛能等級 = 次級附加潛能等級;
+
+            if (isSuccess && Randomizer.isSuccess(5))
             {
-              潛能6等級 = 潛能等級;
+              第三條附加潛能等級 = 附加潛能等級;
             }
 
-            neq.setPotential6(潛能生成器.生成附加潛能(裝備Id, 潛能6等級));
+            int 第三條附加潛能 = 潛能生成器.生成附加潛能(裝備副本, 第三條附加潛能等級);
+
+            裝備副本.設置第三條附加潛能(第三條附加潛能);
+
+            while (潛能生成器.檢查裝備第三條附加潛能是否合法(裝備副本) == false)
+            {
+              第三條附加潛能 = 潛能生成器.生成附加潛能(裝備副本, 第三條附加潛能等級);
+
+              裝備副本.設置第三條附加潛能(第三條附加潛能);
+            }
           }
 
-          c.getSession().writeAndFlush(CField.getWhiteCubeStart(c.getPlayer(), neq, up, itemId, c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
+          c.getSession().writeAndFlush(CField.getWhiteCubeStart(c.getPlayer(), 裝備副本, up, itemId, c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
 
-          c.getPlayer().getMap().broadcastMessage(CField.getBlackCubeEffect(c.getPlayer().getId(), up, itemId, neq.getItemId()));
+          c.getPlayer().getMap().broadcastMessage(CField.getBlackCubeEffect(c.getPlayer().getId(), up, itemId, 裝備副本.getItemId()));
 
-          (c.getPlayer()).choicePotential = neq;
+          (c.getPlayer()).choicePotential = 裝備副本;
 
           if ((c.getPlayer()).memorialcube == null)
           {
@@ -4709,6 +4913,7 @@ public class InventoryHandler
 
       case 5062009:
       {
+        // 紅色方塊
         pos = slea.readInt();
 
         item = c.getPlayer().getInventory(pos < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP).getItem((short) pos);
@@ -4717,9 +4922,9 @@ public class InventoryHandler
 
         if (item != null && c.getPlayer().getInventory(MapleInventoryType.USE).getNumFreeSlot() >= 1)
         {
-          Equip eq = (Equip) item;
+          Equip 裝備 = (Equip) item;
 
-          if (eq.getPotential1() == 0)
+          if (裝備.是否可以重設主潛能() == false)
           {
             c.getPlayer().dropMessage(1, "無法作用於沒有潛能的道具!");
 
@@ -4728,16 +4933,7 @@ public class InventoryHandler
             return;
           }
 
-          if (eq.獲取潛能等級().獲取潛能等級的值() < 16)
-          {
-            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定潛能的裝備!");
-
-            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
-
-            return;
-          }
-
-          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(eq.getItemId()))
+          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(裝備.getItemId()))
           {
             c.getPlayer().dropMessage(1, "沒有足夠的楓幣!");
 
@@ -4746,104 +4942,149 @@ public class InventoryHandler
             return;
           }
 
-          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(eq.getItemId()), false);
+          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(裝備.getItemId()), false);
 
-          if (eq.獲取潛能等級() == 裝備潛能等級.特殊)
+          if (裝備.獲取潛能等級() == 裝備潛能等級.特殊 || 裝備.獲取潛能等級() == 裝備潛能等級.主潛能特殊未鑑定附加潛能未鑑定)
           {
-            if (Randomizer.isSuccess(50))
+            if (Randomizer.isSuccess(40))
             {
               up = true;
-              eq.設置潛能等級(裝備潛能等級.稀有);
+
+              if (裝備.獲取潛能等級() == 裝備潛能等級.主潛能特殊未鑑定附加潛能未鑑定)
+              {
+                裝備.設置潛能等級(裝備潛能等級.主潛能稀有未鑑定附加潛能未鑑定);
+              }
+              else
+              {
+                裝備.設置潛能等級(裝備潛能等級.稀有);
+              }
+
+              裝備.設置第一條主潛能(20000);
             }
           }
-          else if (eq.獲取潛能等級() == 裝備潛能等級.稀有)
+          else if (裝備.獲取潛能等級() == 裝備潛能等級.稀有 || 裝備.獲取潛能等級() == 裝備潛能等級.主潛能稀有未鑑定附加潛能未鑑定)
           {
-            if (Randomizer.isSuccess(10))
+            if (Randomizer.isSuccess(20))
             {
               up = true;
-              eq.設置潛能等級(裝備潛能等級.罕見);
+
+              if (裝備.獲取潛能等級() == 裝備潛能等級.主潛能稀有未鑑定附加潛能未鑑定)
+              {
+                裝備.設置潛能等級(裝備潛能等級.主潛能罕見未鑑定附加潛能未鑑定);
+              }
+              else
+              {
+                裝備.設置潛能等級(裝備潛能等級.罕見);
+              }
+
+              裝備.設置第一條主潛能(30000);
             }
           }
-          else if (eq.獲取潛能等級() == 裝備潛能等級.罕見)
+          else if (裝備.獲取潛能等級() == 裝備潛能等級.罕見 || 裝備.獲取潛能等級() == 裝備潛能等級.主潛能罕見未鑑定附加潛能未鑑定)
           {
             if (Randomizer.isSuccess(3))
             {
               up = true;
-              eq.設置潛能等級(裝備潛能等級.傳說);
+
+              if (裝備.獲取潛能等級() == 裝備潛能等級.主潛能罕見未鑑定附加潛能未鑑定)
+              {
+                裝備.設置潛能等級(裝備潛能等級.主潛能傳說未鑑定附加潛能未鑑定);
+              }
+              else
+              {
+                裝備.設置潛能等級(裝備潛能等級.傳說);
+              }
+
+              裝備.設置第一條主潛能(40000);
             }
           }
 
-          int 潛能等級 = eq.獲取潛能等級().獲取潛能等級的值() - 16;
+          裝備潛能等級 主潛能等級 = 裝備.獲取主潛能等級();
 
-          int 低一級潛能等級 = Math.max(eq.獲取潛能等級().獲取潛能等級的值() - 17, 1);
+          裝備潛能等級 次級主潛能等級 = 裝備.獲取次級主潛能等級();
 
-          int 潛能2等級 = 低一級潛能等級;
+          boolean 有第三條主潛能 = 裝備.獲取第三條主潛能() > 0;
 
-          int 裝備Id = eq.getItemId();
+          裝備.設置第一條主潛能(0);
 
-          eq.setPotential1(潛能生成器.生成潛能(裝備Id, 潛能等級));
+          裝備.設置第二條主潛能(0);
 
-          if (Randomizer.isSuccess(20))
+          裝備.設置第三條主潛能(0);
+
+          裝備.設置第一條主潛能(潛能生成器.生成潛能(裝備, 主潛能等級));
+
+          boolean isSuccess = Randomizer.isSuccess(10);
+
+          裝備潛能等級 第二條主潛能等級 = 次級主潛能等級;
+
+          if (isSuccess)
           {
-            潛能2等級 = 潛能等級;
+            第二條主潛能等級 = 主潛能等級;
           }
 
-          eq.setPotential2(潛能生成器.生成潛能(裝備Id, 潛能2等級));
+          int 第二條主潛能 = 潛能生成器.生成潛能(裝備, 第二條主潛能等級);
 
-          while (潛能生成器.檢查裝備潛能2是否合法(eq) == false)
+          裝備.設置第二條主潛能(第二條主潛能);
+
+          while (潛能生成器.檢查裝備第二條主潛能是否合法(裝備) == false)
           {
-            eq.setPotential2(潛能生成器.生成潛能(裝備Id, 潛能2等級));
+            第二條主潛能 = 潛能生成器.生成潛能(裝備, 第二條主潛能等級);
+
+            裝備.設置第二條主潛能(第二條主潛能);
           }
 
-          if (eq.getPotential3() > 0)
+          if (有第三條主潛能)
           {
-            int 潛能3等級 = 低一級潛能等級;
+            裝備潛能等級 第三條主潛能等級 = 次級主潛能等級;
 
-            if (Randomizer.isSuccess(5))
+            if (isSuccess && Randomizer.isSuccess(5))
             {
-              潛能3等級 = 潛能等級;
+              第三條主潛能等級 = 主潛能等級;
             }
-            eq.setPotential3(潛能生成器.生成潛能(裝備Id, 潛能3等級));
 
-            while (潛能生成器.檢查裝備潛能3是否合法(eq) == false)
+            int 第三條主潛能 = 潛能生成器.生成潛能(裝備, 第三條主潛能等級);
+
+            裝備.設置第三條主潛能(第三條主潛能);
+
+            while (潛能生成器.檢查裝備第三條主潛能是否合法(裝備) == false)
             {
-              eq.setPotential3(潛能生成器.生成潛能(裝備Id, 潛能3等級));
+              第三條主潛能 = 潛能生成器.生成潛能(裝備, 第三條主潛能等級);
+
+              裝備.設置第三條主潛能(第三條主潛能);
             }
           }
 
-          if (GameConstants.isAlphaWeapon(eq.getItemId()))
+          if (GameConstants.isAlphaWeapon(裝備.getItemId()))
           {
             zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10);
           }
-          else if (GameConstants.isBetaWeapon(eq.getItemId()))
+          else if (GameConstants.isBetaWeapon(裝備.getItemId()))
           {
             zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
           }
 
           if (zeroEquip != null)
           {
-            zeroEquip.設置潛能等級(eq.獲取潛能等級());
+            zeroEquip.設置潛能等級(裝備.獲取潛能等級());
 
-            zeroEquip.設置附加潛能等級(eq.獲取附加潛能等級());
+            zeroEquip.設置第一條主潛能(裝備.獲取第一條主潛能());
 
-            zeroEquip.setPotential1(eq.getPotential1());
+            zeroEquip.設置第二條主潛能(裝備.獲取第二條主潛能());
 
-            zeroEquip.setPotential2(eq.getPotential2());
+            zeroEquip.設置第三條主潛能(裝備.獲取第三條主潛能());
 
-            zeroEquip.setPotential3(eq.getPotential3());
+            zeroEquip.設置第一條附加潛能(裝備.獲取第一條附加潛能());
 
-            zeroEquip.setPotential4(eq.getPotential4());
+            zeroEquip.設置第二條附加潛能(裝備.獲取第二條附加潛能());
 
-            zeroEquip.setPotential5(eq.getPotential5());
-
-            zeroEquip.setPotential6(eq.getPotential6());
+            zeroEquip.設置第三條附加潛能(裝備.獲取第三條附加潛能());
 
             c.getPlayer().forceReAddItem(zeroEquip, MapleInventoryType.EQUIPPED);
           }
 
           c.getPlayer().forceReAddItem(item, pos < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
 
-          c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, itemId, eq.getItemId()));
+          c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, itemId, 裝備.getItemId()));
 
           c.getSession().writeAndFlush(CField.getRedCubeStart(c.getPlayer(), item, up, itemId, c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
 
@@ -4863,6 +5104,7 @@ public class InventoryHandler
 
       case 5062010:
       {
+        // 黑色方塊
         pos = slea.readInt();
 
         item = c.getPlayer().getInventory((pos < 0) ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP).getItem((short) pos);
@@ -4871,9 +5113,9 @@ public class InventoryHandler
 
         if (item != null && c.getPlayer().getInventory(MapleInventoryType.USE).getNumFreeSlot() >= 1)
         {
-          Equip eq = (Equip) item;
+          Equip 裝備 = (Equip) item;
 
-          if (eq.getPotential1() == 0)
+          if (裝備.是否可以重設主潛能() == false)
           {
             c.getPlayer().dropMessage(1, "無法作用於沒有潛能的道具!");
 
@@ -4882,7 +5124,7 @@ public class InventoryHandler
             return;
           }
 
-          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(eq.getItemId()))
+          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(裝備.getItemId()))
           {
             c.getPlayer().dropMessage(1, "沒有足夠的楓幣!");
 
@@ -4891,90 +5133,127 @@ public class InventoryHandler
             return;
           }
 
-          if (eq.獲取潛能等級().獲取潛能等級的值() < 16)
-          {
-            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定潛能的裝備!");
-
-            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
-
-            return;
-          }
-
-          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(eq.getItemId()), false);
+          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(裝備.getItemId()), false);
 
           c.getPlayer().addKV("lastCube", String.valueOf(itemId));
 
-          Equip neq = (Equip) eq.copy();
+          Equip 裝備副本 = (Equip) 裝備.copy();
 
-          if (neq.獲取潛能等級() == 裝備潛能等級.特殊)
+          if (裝備副本.獲取潛能等級() == 裝備潛能等級.特殊 || 裝備副本.獲取潛能等級() == 裝備潛能等級.主潛能特殊未鑑定附加潛能未鑑定)
           {
-            if (Randomizer.isSuccess(60))
+            if (Randomizer.isSuccess(50))
             {
               up = true;
-              neq.設置潛能等級(裝備潛能等級.稀有);
+
+              if (裝備副本.獲取潛能等級() == 裝備潛能等級.主潛能特殊未鑑定附加潛能未鑑定)
+              {
+                裝備副本.設置潛能等級(裝備潛能等級.主潛能稀有未鑑定附加潛能未鑑定);
+              }
+              else
+              {
+                裝備副本.設置潛能等級(裝備潛能等級.稀有);
+              }
+
+              裝備副本.設置第一條主潛能(20000);
             }
           }
-          else if (neq.獲取潛能等級() == 裝備潛能等級.稀有)
+          else if (裝備副本.獲取潛能等級() == 裝備潛能等級.稀有 || 裝備副本.獲取潛能等級() == 裝備潛能等級.主潛能稀有未鑑定附加潛能未鑑定)
           {
-            if (Randomizer.isSuccess(15))
+            if (Randomizer.isSuccess(25))
             {
               up = true;
-              neq.設置潛能等級(裝備潛能等級.罕見);
+
+              if (裝備副本.獲取潛能等級() == 裝備潛能等級.主潛能稀有未鑑定附加潛能未鑑定)
+              {
+                裝備副本.設置潛能等級(裝備潛能等級.主潛能罕見未鑑定附加潛能未鑑定);
+              }
+              else
+              {
+                裝備副本.設置潛能等級(裝備潛能等級.罕見);
+              }
+
+              裝備副本.設置第一條主潛能(30000);
             }
           }
-          else if (neq.獲取潛能等級() == 裝備潛能等級.罕見)
+          else if (裝備副本.獲取潛能等級() == 裝備潛能等級.罕見 || 裝備副本.獲取潛能等級() == 裝備潛能等級.主潛能罕見未鑑定附加潛能未鑑定)
           {
-            if (Randomizer.isSuccess(8))
-            {
-              up = true;
-              neq.設置潛能等級(裝備潛能等級.傳說);
-            }
-          }
-
-          int 潛能等級 = neq.獲取潛能等級().獲取潛能等級的值() - 16;
-
-          int 低一級潛能等級 = Math.max(neq.獲取潛能等級().獲取潛能等級的值() - 17, 1);
-
-          int 潛能2等級 = 低一級潛能等級;
-
-          int 裝備Id = neq.getItemId();
-
-          neq.setPotential1(潛能生成器.生成潛能(裝備Id, 潛能等級));
-
-          if (Randomizer.isSuccess(20))
-          {
-            潛能2等級 = 潛能等級;
-          }
-
-          neq.setPotential2(潛能生成器.生成潛能(裝備Id, 潛能2等級));
-
-          while (潛能生成器.檢查裝備潛能2是否合法(neq) == false)
-          {
-            neq.setPotential2(潛能生成器.生成潛能(裝備Id, 潛能2等級));
-          }
-
-          if (neq.getPotential3() > 0)
-          {
-            int 潛能3等級 = 低一級潛能等級;
-
             if (Randomizer.isSuccess(5))
             {
-              潛能3等級 = 潛能等級;
-            }
+              up = true;
 
-            neq.setPotential3(潛能生成器.生成潛能(裝備Id, 潛能3等級));
+              if (裝備副本.獲取潛能等級() == 裝備潛能等級.主潛能罕見未鑑定附加潛能未鑑定)
+              {
+                裝備副本.設置潛能等級(裝備潛能等級.主潛能傳說未鑑定附加潛能未鑑定);
+              }
+              else
+              {
+                裝備副本.設置潛能等級(裝備潛能等級.傳說);
+              }
 
-            while (潛能生成器.檢查裝備潛能3是否合法(neq) == false)
-            {
-              neq.setPotential3(潛能生成器.生成潛能(裝備Id, 潛能3等級));
+              裝備副本.設置第一條主潛能(40000);
             }
           }
 
-          c.getSession().writeAndFlush(CField.getBlackCubeStart(c.getPlayer(), neq, up, 5062010, toUse.getPosition(), c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
+          裝備潛能等級 主潛能等級 = 裝備副本.獲取主潛能等級();
 
-          c.getPlayer().getMap().broadcastMessage(CField.getBlackCubeEffect(c.getPlayer().getId(), up, 5062010, neq.getItemId()));
+          裝備潛能等級 次級主潛能等級 = 裝備副本.獲取次級主潛能等級();
 
-          (c.getPlayer()).choicePotential = neq;
+          boolean 有第三條主潛能 = 裝備副本.獲取第三條主潛能() > 0;
+
+          裝備副本.設置第一條主潛能(0);
+
+          裝備副本.設置第二條主潛能(0);
+
+          裝備副本.設置第三條主潛能(0);
+
+          裝備副本.設置第一條主潛能(潛能生成器.生成潛能(裝備副本, 主潛能等級));
+
+          boolean isSuccess = Randomizer.isSuccess(10);
+
+          裝備潛能等級 第二條主潛能等級 = 次級主潛能等級;
+
+          if (isSuccess)
+          {
+            第二條主潛能等級 = 主潛能等級;
+          }
+
+          int 第二條主潛能 = 潛能生成器.生成潛能(裝備副本, 第二條主潛能等級);
+
+          裝備副本.設置第二條主潛能(第二條主潛能);
+
+          while (潛能生成器.檢查裝備第二條主潛能是否合法(裝備副本) == false)
+          {
+            第二條主潛能 = 潛能生成器.生成潛能(裝備副本, 第二條主潛能等級);
+
+            裝備副本.設置第二條主潛能(第二條主潛能);
+          }
+
+          if (有第三條主潛能)
+          {
+            裝備潛能等級 第三條主潛能等級 = 次級主潛能等級;
+
+            if (isSuccess && Randomizer.isSuccess(5))
+            {
+              第三條主潛能等級 = 主潛能等級;
+            }
+
+            int 第三條主潛能 = 潛能生成器.生成潛能(裝備副本, 第三條主潛能等級);
+
+            裝備副本.設置第三條主潛能(第三條主潛能);
+
+            while (潛能生成器.檢查裝備第三條主潛能是否合法(裝備副本) == false)
+            {
+              第三條主潛能 = 潛能生成器.生成潛能(裝備副本, 第三條主潛能等級);
+
+              裝備副本.設置第三條主潛能(第三條主潛能);
+            }
+          }
+
+          c.getSession().writeAndFlush(CField.getBlackCubeStart(c.getPlayer(), 裝備副本, up, 5062010, toUse.getPosition(), c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
+
+          c.getPlayer().getMap().broadcastMessage(CField.getBlackCubeEffect(c.getPlayer().getId(), up, 5062010, 裝備副本.getItemId()));
+
+          (c.getPlayer()).choicePotential = 裝備副本;
 
           if ((c.getPlayer()).memorialcube == null)
           {
@@ -5004,9 +5283,9 @@ public class InventoryHandler
 
         if (item != null && c.getPlayer().getInventory(MapleInventoryType.USE).getNumFreeSlot() >= 1)
         {
-          Equip eq = (Equip) item;
+          Equip 裝備 = (Equip) item;
 
-          if (eq.getPotential1() == 0)
+          if (裝備.是否可以重設主潛能() == false)
           {
             c.getPlayer().dropMessage(1, "無法作用於沒有潛能的道具!");
 
@@ -5015,7 +5294,7 @@ public class InventoryHandler
             return;
           }
 
-          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(eq.getItemId()))
+          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(裝備.getItemId()))
           {
             c.getPlayer().dropMessage(1, "沒有足夠的楓幣!");
 
@@ -5024,97 +5303,77 @@ public class InventoryHandler
             return;
           }
 
-          if (eq.獲取潛能等級().獲取潛能等級的值() < 16)
+          if (裝備.獲取主潛能等級() != 裝備潛能等級.傳說)
           {
-            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定潛能的裝備!");
+            c.getPlayer().dropMessage(1, "惊人的神奇魔方僅可作用於傳說級潛能的裝備!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
 
             return;
           }
 
-          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(eq.getItemId()), false);
+          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(裝備.getItemId()), false);
 
-          if (eq.獲取潛能等級() == 裝備潛能等級.特殊)
+          裝備潛能等級 潛能等級 = 裝備潛能等級.傳說;
+
+          boolean 有第三條主潛能 = 裝備.獲取第三條主潛能() > 0;
+
+          裝備.設置第一條主潛能(0);
+
+          裝備.設置第二條主潛能(0);
+
+          裝備.設置第三條主潛能(0);
+
+          裝備.設置第一條主潛能(潛能生成器.生成潛能(裝備, 潛能等級));
+
+          裝備.設置第二條主潛能(潛能生成器.生成潛能(裝備, 潛能等級));
+
+          while (潛能生成器.檢查裝備第二條主潛能是否合法(裝備) == false)
           {
-            if (Randomizer.isSuccess(65))
-            {
-              up = true;
-              eq.設置潛能等級(裝備潛能等級.稀有);
-            }
-          }
-          else if (eq.獲取潛能等級() == 裝備潛能等級.稀有)
-          {
-            if (Randomizer.isSuccess(20))
-            {
-              up = true;
-              eq.設置潛能等級(裝備潛能等級.罕見);
-            }
-          }
-          else if (eq.獲取潛能等級() == 裝備潛能等級.罕見)
-          {
-            if (Randomizer.isSuccess(8))
-            {
-              up = true;
-              eq.設置潛能等級(裝備潛能等級.傳說);
-            }
-          }
-          int 潛能等級 = eq.獲取潛能等級().獲取潛能等級的值() - 16;
-
-          int 裝備Id = eq.getItemId();
-
-          eq.setPotential1(潛能生成器.生成潛能(裝備Id, 潛能等級));
-
-          eq.setPotential2(潛能生成器.生成潛能(裝備Id, 潛能等級));
-
-          while (潛能生成器.檢查裝備潛能2是否合法(eq) == false)
-          {
-            eq.setPotential2(潛能生成器.生成潛能(裝備Id, 潛能等級));
+            裝備.設置第二條主潛能(潛能生成器.生成潛能(裝備, 潛能等級));
           }
 
-          if (eq.getPotential3() > 0)
+          if (有第三條主潛能)
           {
-            eq.setPotential3(潛能生成器.生成潛能(裝備Id, 潛能等級));
+            裝備.設置第三條主潛能(潛能生成器.生成潛能(裝備, 潛能等級));
 
-            while (潛能生成器.檢查裝備潛能3是否合法(eq) == false)
+            while (潛能生成器.檢查裝備第三條主潛能是否合法(裝備) == false)
             {
-              eq.setPotential3(潛能生成器.生成潛能(裝備Id, 潛能等級));
+              裝備.設置第三條主潛能(潛能生成器.生成潛能(裝備, 潛能等級));
             }
           }
 
-          if (GameConstants.isAlphaWeapon(eq.getItemId()))
+          if (GameConstants.isAlphaWeapon(裝備.getItemId()))
           {
             zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10);
           }
-          else if (GameConstants.isBetaWeapon(eq.getItemId()))
+          else if (GameConstants.isBetaWeapon(裝備.getItemId()))
           {
             zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
           }
 
           if (zeroEquip != null)
           {
-            zeroEquip.設置潛能等級(eq.獲取潛能等級());
+            zeroEquip.設置潛能等級(裝備.獲取潛能等級());
 
-            zeroEquip.設置附加潛能等級(eq.獲取附加潛能等級());
+            zeroEquip.設置第一條主潛能(裝備.獲取第一條主潛能());
 
-            zeroEquip.setPotential1(eq.getPotential1());
+            zeroEquip.設置第二條主潛能(裝備.獲取第二條主潛能());
 
-            zeroEquip.setPotential2(eq.getPotential2());
+            zeroEquip.設置第三條主潛能(裝備.獲取第三條主潛能());
 
-            zeroEquip.setPotential3(eq.getPotential3());
+            zeroEquip.設置第一條附加潛能(裝備.獲取第一條附加潛能());
 
-            zeroEquip.setPotential4(eq.getPotential4());
+            zeroEquip.設置第二條附加潛能(裝備.獲取第二條附加潛能());
 
-            zeroEquip.setPotential5(eq.getPotential5());
-
-            zeroEquip.setPotential6(eq.getPotential6());
+            zeroEquip.設置第三條附加潛能(裝備.獲取第三條附加潛能());
 
             c.getPlayer().forceReAddItem(zeroEquip, MapleInventoryType.EQUIPPED);
           }
 
           c.getPlayer().forceReAddItem(item, pos < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
 
-          c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, itemId, eq.getItemId()));
+          c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, itemId, 裝備.getItemId()));
 
           c.getSession().writeAndFlush(CField.getRedCubeStart(c.getPlayer(), item, up, itemId, c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
 
@@ -5141,9 +5400,9 @@ public class InventoryHandler
 
         if (item != null && c.getPlayer().getInventory(MapleInventoryType.USE).getNumFreeSlot() >= 1)
         {
-          Equip eq = (Equip) item;
+          Equip 裝備 = (Equip) item;
 
-          if (eq.getPotential1() == 0)
+          if (裝備.是否可以重設主潛能() == false)
           {
             c.getPlayer().dropMessage(1, "無法作用於沒有潛能的道具!");
 
@@ -5152,7 +5411,7 @@ public class InventoryHandler
             return;
           }
 
-          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(eq.getItemId()))
+          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(裝備.getItemId()))
           {
             c.getPlayer().dropMessage(6, "沒有足夠的楓幣!");
 
@@ -5161,64 +5420,67 @@ public class InventoryHandler
             return;
           }
 
-          if (eq.獲取潛能等級() != 裝備潛能等級.傳說)
+          if (裝備.獲取主潛能等級() != 裝備潛能等級.傳說)
           {
-            c.getPlayer().dropMessage(6, "當前方塊只能作用於傳說級潛能的裝備!");
+            c.getPlayer().dropMessage(1, "白金神奇魔方僅可作用於傳說級潛能的裝備!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
-          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(eq.getItemId()), false);
+          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(裝備.getItemId()), false);
 
-          int 潛能等級 = eq.獲取潛能等級().獲取潛能等級的值() - 16;
+          裝備潛能等級 潛能等級 = 裝備潛能等級.傳說;
 
-          int 裝備Id = eq.getItemId();
+          boolean 有第三條主潛能 = 裝備.獲取第三條主潛能() > 0;
 
-          int 潛能Id = 潛能生成器.生成潛能(裝備Id, 潛能等級);
+          裝備.設置第一條主潛能(0);
 
-          eq.setPotential1(潛能Id);
+          裝備.設置第二條主潛能(0);
 
-          eq.setPotential2(潛能Id);
+          裝備.設置第三條主潛能(0);
 
-          if (eq.getPotential3() > 0)
+          裝備.設置第一條主潛能(潛能生成器.生成潛能(裝備, 潛能等級));
+
+          裝備.設置第二條主潛能(潛能生成器.生成潛能(裝備, 潛能等級));
+
+          if (有第三條主潛能)
           {
-            eq.setPotential3(潛能Id);
+            裝備.設置第三條主潛能(潛能生成器.生成潛能(裝備, 潛能等級));
           }
 
-          if (GameConstants.isAlphaWeapon(eq.getItemId()))
+          if (GameConstants.isAlphaWeapon(裝備.getItemId()))
           {
             zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10);
           }
-          else if (GameConstants.isBetaWeapon(eq.getItemId()))
+          else if (GameConstants.isBetaWeapon(裝備.getItemId()))
           {
             zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
           }
 
           if (zeroEquip != null)
           {
-            zeroEquip.設置潛能等級(eq.獲取潛能等級());
+            zeroEquip.設置潛能等級(裝備.獲取潛能等級());
 
-            zeroEquip.設置附加潛能等級(eq.獲取附加潛能等級());
+            zeroEquip.設置第一條主潛能(裝備.獲取第一條主潛能());
 
-            zeroEquip.setPotential1(eq.getPotential1());
+            zeroEquip.設置第二條主潛能(裝備.獲取第二條主潛能());
 
-            zeroEquip.setPotential2(eq.getPotential2());
+            zeroEquip.設置第三條主潛能(裝備.獲取第三條主潛能());
 
-            zeroEquip.setPotential3(eq.getPotential3());
+            zeroEquip.設置第一條附加潛能(裝備.獲取第一條附加潛能());
 
-            zeroEquip.setPotential4(eq.getPotential4());
+            zeroEquip.設置第二條附加潛能(裝備.獲取第二條附加潛能());
 
-            zeroEquip.setPotential5(eq.getPotential5());
-
-            zeroEquip.setPotential6(eq.getPotential6());
+            zeroEquip.設置第三條附加潛能(裝備.獲取第三條附加潛能());
 
             c.getPlayer().forceReAddItem(zeroEquip, MapleInventoryType.EQUIPPED);
           }
 
           c.getPlayer().forceReAddItem(item, pos < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
 
-          c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, itemId, eq.getItemId()));
+          c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, itemId, 裝備.getItemId()));
 
           c.getSession().writeAndFlush(CField.getIngameCubeStart(c.getPlayer(), item, up, itemId, c.getPlayer().itemQuantity(toUse.getItemId()) - 1));
 
@@ -9954,7 +10216,7 @@ public class InventoryHandler
     {
       final String name = slea.readMapleAsciiString();
       final MapleCharacter victim = c.getChannelServer().getPlayerStorage().getCharacterByName(name);
-      if (victim != null && !victim.isIntern() && c.getPlayer().getEventInstance() == null && victim.getEventInstance() == null)
+      if (victim != null && !victim.isGM() && c.getPlayer().getEventInstance() == null && victim.getEventInstance() == null)
       {
         if (!FieldLimitType.VipRock.check(c.getPlayer().getMap().getFieldLimit()) && !FieldLimitType.VipRock.check(c.getChannelServer().getMapFactory().getMap(victim.getMapId()).getFieldLimit()))
         {
@@ -10191,13 +10453,13 @@ public class InventoryHandler
     c.getSession().writeAndFlush(CWvsContext.enableActions(chr));
   }
 
-  public static void UseCube (final LittleEndianAccessor slea, final MapleClient c)
+  public static void 處理使用普通魔方 (final LittleEndianAccessor slea, final MapleClient c)
   {
     int pos = 0;
     boolean up;
     short slot = slea.readShort();
     Equip zeroEquip = null;
-    Equip eq = null;
+    Equip 裝備 = null;
     final MapleItemInformationProvider ii = MapleItemInformationProvider.getInstance();
     final Item cube = c.getPlayer().getInventory(MapleInventoryType.USE).getItem(slot);
     if (cube.getItemId() >= 2730000 && cube.getItemId() <= 2730005)
@@ -10212,17 +10474,16 @@ public class InventoryHandler
     pos = slea.readShort();
     if (pos > 0)
     {
-      eq = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem((short) pos);
+      裝備 = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIP).getItem((short) pos);
     }
     else
     {
-      eq = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) pos);
+      裝備 = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) pos);
     }
-    if (eq == null)
+    if (裝備 == null)
     {
-      c.getPlayer().dropMessage(1, "找不到對應的裝備, 請聯繫管理員!");
-
       c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
       return;
     }
     int cubeId = cube.getItemId();
@@ -10233,20 +10494,21 @@ public class InventoryHandler
       case 2711009:
       case 2711011:
       {
-        if (eq != null)
+        // 可疑的方塊
+        if (裝備 != null)
         {
           up = false;
 
-          if (eq.getPotential1() == 0)
+          if (裝備.是否可以重設主潛能() == false || 裝備.獲取主潛能等級() == 裝備潛能等級.罕見 || 裝備.獲取主潛能等級() == 裝備潛能等級.傳說)
           {
-            c.getPlayer().dropMessage(1, "無法作用於沒有潛能的道具!");
+            c.getPlayer().dropMessage(1, "無法作用於該裝備!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
 
             return;
           }
 
-          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(eq.getItemId()))
+          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(裝備.getItemId()))
           {
             c.getPlayer().dropMessage(1, "沒有足夠的楓幣!");
 
@@ -10255,95 +10517,101 @@ public class InventoryHandler
             return;
           }
 
-          if (eq.獲取潛能等級().獲取潛能等級的值() < 16)
-          {
-            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定的裝備!");
+          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(裝備.getItemId()), false);
 
-            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
-
-            return;
-          }
-
-          if (eq.獲取潛能等級().獲取潛能等級的值() > 18)
-          {
-            c.getPlayer().dropMessage(1, "該裝備的潛能太強, 無法使用可疑的方塊!");
-
-            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
-
-            return;
-          }
-
-          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(eq.getItemId()), false);
-
-          if (eq.獲取潛能等級() == 裝備潛能等級.特殊)
+          if (裝備.獲取潛能等級() == 裝備潛能等級.特殊 || 裝備.獲取潛能等級() == 裝備潛能等級.主潛能特殊未鑑定附加潛能未鑑定)
           {
             if (Randomizer.isSuccess(5))
             {
               up = true;
-              eq.設置潛能等級(裝備潛能等級.稀有);
+
+              if (裝備.獲取潛能等級() == 裝備潛能等級.主潛能特殊未鑑定附加潛能未鑑定)
+              {
+                裝備.設置潛能等級(裝備潛能等級.主潛能稀有未鑑定附加潛能未鑑定);
+              }
+              else
+              {
+                裝備.設置潛能等級(裝備潛能等級.稀有);
+              }
+
+              裝備.設置第一條主潛能(20000);
             }
           }
 
-          int 潛能等級 = eq.獲取潛能等級().獲取潛能等級的值() - 16;
+          裝備潛能等級 潛能等級 = 裝備.獲取主潛能等級();
 
-          int 低一級潛能等級 = Math.max(eq.獲取潛能等級().獲取潛能等級的值() - 17, 1);
+          裝備潛能等級 次級潛能等級 = 裝備.獲取次級主潛能等級();
 
-          int 裝備Id = eq.getItemId();
+          boolean 有第三條主潛能 = 裝備.獲取第三條主潛能() > 0;
 
-          eq.setPotential1(潛能生成器.生成潛能(裝備Id, 潛能等級));
+          裝備.設置第一條主潛能(0);
 
-          eq.setPotential2(潛能生成器.生成潛能(裝備Id, 低一級潛能等級));
+          裝備.設置第二條主潛能(0);
 
-          while (潛能生成器.檢查裝備潛能2是否合法(eq) == false)
+          裝備.設置第三條主潛能(0);
+
+          int 第一條主潛能 = 潛能生成器.生成潛能(裝備, 潛能等級);
+
+          裝備.設置第一條主潛能(第一條主潛能);
+
+          int 第二條主潛能 = 潛能生成器.生成潛能(裝備, 次級潛能等級);
+
+          裝備.設置第二條主潛能(第二條主潛能);
+
+          while (潛能生成器.檢查裝備第二條主潛能是否合法(裝備) == false)
           {
-            eq.setPotential2(潛能生成器.生成潛能(裝備Id, 低一級潛能等級));
+            第二條主潛能 = 潛能生成器.生成潛能(裝備, 次級潛能等級);
+
+            裝備.設置第二條主潛能(第二條主潛能);
           }
 
-          if (eq.getPotential3() > 0)
+          if (有第三條主潛能)
           {
-            eq.setPotential3(潛能生成器.生成潛能(裝備Id, 低一級潛能等級));
+            int 第三條主潛能 = 潛能生成器.生成潛能(裝備, 次級潛能等級);
 
-            while (潛能生成器.檢查裝備潛能3是否合法(eq) == false)
+            裝備.設置第三條主潛能(第三條主潛能);
+
+            while (潛能生成器.檢查裝備第三條主潛能是否合法(裝備) == false)
             {
-              eq.setPotential3(潛能生成器.生成潛能(裝備Id, 低一級潛能等級));
+              第三條主潛能 = 潛能生成器.生成潛能(裝備, 次級潛能等級);
+
+              裝備.設置第三條主潛能(第三條主潛能);
             }
           }
 
-          if (GameConstants.isAlphaWeapon(eq.getItemId()))
+          if (GameConstants.isAlphaWeapon(裝備.getItemId()))
           {
             zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10);
           }
-          else if (GameConstants.isBetaWeapon(eq.getItemId()))
+          else if (GameConstants.isBetaWeapon(裝備.getItemId()))
           {
             zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
           }
 
           if (zeroEquip != null)
           {
-            zeroEquip.設置潛能等級(eq.獲取潛能等級());
+            zeroEquip.設置潛能等級(裝備.獲取潛能等級());
 
-            zeroEquip.設置附加潛能等級(eq.獲取附加潛能等級());
+            zeroEquip.設置第一條主潛能(裝備.獲取第一條主潛能());
 
-            zeroEquip.setPotential1(eq.getPotential1());
+            zeroEquip.設置第二條主潛能(裝備.獲取第二條主潛能());
 
-            zeroEquip.setPotential2(eq.getPotential2());
+            zeroEquip.設置第三條主潛能(裝備.獲取第三條主潛能());
 
-            zeroEquip.setPotential3(eq.getPotential3());
+            zeroEquip.設置第一條附加潛能(裝備.獲取第一條附加潛能());
 
-            zeroEquip.setPotential4(eq.getPotential4());
+            zeroEquip.設置第二條附加潛能(裝備.獲取第二條附加潛能());
 
-            zeroEquip.setPotential5(eq.getPotential5());
-
-            zeroEquip.setPotential6(eq.getPotential6());
+            zeroEquip.設置第三條附加潛能(裝備.獲取第三條附加潛能());
 
             c.getPlayer().forceReAddItem(zeroEquip, MapleInventoryType.EQUIPPED);
           }
 
-          c.getPlayer().forceReAddItem(eq, pos < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
+          c.getPlayer().forceReAddItem(裝備, pos < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
 
-          c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, cubeId, eq.getItemId()));
+          c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, cubeId, 裝備.getItemId()));
 
-          c.getSession().writeAndFlush(CField.getIngameCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
+          c.getSession().writeAndFlush(CField.getIngameCubeStart(c.getPlayer(), 裝備, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
 
           MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (short) 1, false, true);
 
@@ -10357,19 +10625,21 @@ public class InventoryHandler
       case 2730004:
       case 2730005:
       {
-        if (eq != null)
+        // 可疑的附加方塊
+        if (裝備 != null)
         {
           up = false;
 
-          if (eq.getPotential4() == 0)
+          if (裝備.是否可以重設附加潛能() == false || 裝備.獲取附加潛能等級() != 裝備潛能等級.特殊)
           {
-            c.getPlayer().dropMessage(1, "無法作用於沒有附加潛能的道具!");
+            c.getPlayer().dropMessage(1, "無法作用於該裝備!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+
             return;
           }
 
-          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(eq.getItemId()))
+          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(裝備.getItemId()))
           {
             c.getPlayer().dropMessage(1, "沒有足夠的楓幣!");
 
@@ -10377,73 +10647,71 @@ public class InventoryHandler
             return;
           }
 
-          if (eq.獲取附加潛能等級().獲取潛能等級的值() < 16)
+          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(裝備.getItemId()), false);
+
+          int 第一條附加潛能 = 潛能生成器.生成潛能(裝備, 裝備潛能等級.特殊);
+
+          裝備.設置第一條附加潛能(第一條附加潛能);
+
+          int 第二條附加潛能 = 潛能生成器.生成附加潛能(裝備, 裝備潛能等級.特殊);
+
+          裝備.設置第二條附加潛能(第二條附加潛能);
+
+          boolean 有第三條附加潛能 = 裝備.獲取第三條附加潛能() > 0;
+
+          裝備.設置第一條附加潛能(0);
+
+          裝備.設置第二條附加潛能(0);
+
+          裝備.設置第三條附加潛能(0);
+
+          if (有第三條附加潛能)
           {
-            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定附加潛能的裝備!");
+            int 第三條附加潛能 = 潛能生成器.生成附加潛能(裝備, 裝備潛能等級.特殊);
 
-            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
+            裝備.設置第三條附加潛能(第三條附加潛能);
 
-            return;
+            while (潛能生成器.檢查裝備第三條附加潛能是否合法(裝備) == false)
+            {
+              第三條附加潛能 = 潛能生成器.生成附加潛能(裝備, 裝備潛能等級.特殊);
+
+              裝備.設置第三條附加潛能(第三條附加潛能);
+            }
           }
 
-          if (eq.獲取附加潛能等級().獲取潛能等級的值() > 17)
-          {
-            c.getPlayer().dropMessage(1, "該裝備的附加潛能太強, 無法使用可疑的附加方塊!");
-
-            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
-
-            return;
-          }
-
-          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(eq.getItemId()), false);
-
-
-          int 裝備Id = eq.getItemId();
-
-          eq.setPotential4(潛能生成器.生成附加潛能(裝備Id, 1));
-
-          eq.setPotential5(潛能生成器.生成附加潛能(裝備Id, 1));
-
-          if (eq.getPotential6() > 0)
-          {
-            eq.setPotential6(潛能生成器.生成附加潛能(裝備Id, 1));
-          }
-
-          if (GameConstants.isAlphaWeapon(eq.getItemId()))
+          if (GameConstants.isAlphaWeapon(裝備.getItemId()))
           {
             zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10);
           }
-          else if (GameConstants.isBetaWeapon(eq.getItemId()))
+          else if (GameConstants.isBetaWeapon(裝備.getItemId()))
           {
             zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
           }
 
           if (zeroEquip != null)
           {
-            zeroEquip.設置潛能等級(eq.獲取潛能等級());
+            zeroEquip.設置潛能等級(裝備.獲取潛能等級());
 
-            zeroEquip.設置附加潛能等級(eq.獲取附加潛能等級());
+            zeroEquip.設置第一條主潛能(裝備.獲取第一條主潛能());
 
-            zeroEquip.setPotential1(eq.getPotential1());
+            zeroEquip.設置第二條主潛能(裝備.獲取第二條主潛能());
 
-            zeroEquip.setPotential2(eq.getPotential2());
+            zeroEquip.設置第三條主潛能(裝備.獲取第三條主潛能());
 
-            zeroEquip.setPotential3(eq.getPotential3());
+            zeroEquip.設置第一條附加潛能(裝備.獲取第一條附加潛能());
 
-            zeroEquip.setPotential4(eq.getPotential4());
+            zeroEquip.設置第二條附加潛能(裝備.獲取第二條附加潛能());
 
-            zeroEquip.setPotential5(eq.getPotential5());
-
-            zeroEquip.setPotential6(eq.getPotential6());
+            zeroEquip.設置第三條附加潛能(裝備.獲取第三條附加潛能());
 
             c.getPlayer().forceReAddItem(zeroEquip, MapleInventoryType.EQUIPPED);
           }
 
-          c.getPlayer().forceReAddItem(eq, pos < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
+          c.getPlayer().forceReAddItem(裝備, pos < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
 
-          c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, cubeId, eq.getItemId()));
+          c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, cubeId, 裝備.getItemId()));
 
-          c.getSession().writeAndFlush(CField.getIngameAdditionalCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
+          c.getSession().writeAndFlush(CField.getIngameAdditionalCubeStart(c.getPlayer(), 裝備, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
 
           MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (short) 1, false, true);
 
@@ -10455,20 +10723,21 @@ public class InventoryHandler
       case 2711005:
       case 2711012:
       {
-        if (eq != null)
+        // 工匠方塊
+        if (裝備 != null)
         {
           up = false;
 
-          if (eq.getPotential1() == 0)
+          if (裝備.是否可以重設主潛能() == false || 裝備.獲取主潛能等級() == 裝備潛能等級.傳說)
           {
-            c.getPlayer().dropMessage(1, "無法作用於沒有潛能的道具!");
+            c.getPlayer().dropMessage(1, "無法作用於該裝備!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
 
             return;
           }
 
-          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(eq.getItemId()))
+          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(裝備.getItemId()))
           {
             c.getPlayer().dropMessage(1, "沒有足夠的楓幣!");
 
@@ -10477,103 +10746,120 @@ public class InventoryHandler
             return;
           }
 
-          if (eq.獲取潛能等級().獲取潛能等級的值() < 16)
-          {
-            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定潛能的裝備!");
+          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(裝備.getItemId()), false);
 
-            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
 
-            return;
-          }
-
-          if (eq.獲取潛能等級().獲取潛能等級的值() > 19)
-          {
-            c.getPlayer().dropMessage(1, "該裝備的潛能太強, 無法使用工匠方塊!");
-
-            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
-
-            return;
-          }
-
-          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(eq.getItemId()), false);
-
-          if (eq.獲取潛能等級() == 裝備潛能等級.特殊)
+          if (裝備.獲取潛能等級() == 裝備潛能等級.特殊 || 裝備.獲取潛能等級() == 裝備潛能等級.主潛能特殊未鑑定附加潛能未鑑定)
           {
             if (Randomizer.isSuccess(8))
             {
               up = true;
-              eq.設置潛能等級(裝備潛能等級.稀有);
+
+              if (裝備.獲取潛能等級() == 裝備潛能等級.主潛能特殊未鑑定附加潛能未鑑定)
+              {
+                裝備.設置潛能等級(裝備潛能等級.主潛能稀有未鑑定附加潛能未鑑定);
+              }
+              else
+              {
+                裝備.設置潛能等級(裝備潛能等級.稀有);
+              }
+
+              裝備.設置第一條主潛能(20000);
             }
           }
-          else if (eq.獲取潛能等級() == 裝備潛能等級.稀有)
+          else if (裝備.獲取潛能等級() == 裝備潛能等級.稀有 || 裝備.獲取潛能等級() == 裝備潛能等級.主潛能稀有未鑑定附加潛能未鑑定)
           {
             if (Randomizer.isSuccess(1))
             {
               up = true;
-              eq.設置潛能等級(裝備潛能等級.罕見);
+
+              if (裝備.獲取潛能等級() == 裝備潛能等級.主潛能稀有未鑑定附加潛能未鑑定)
+              {
+                裝備.設置潛能等級(裝備潛能等級.主潛能罕見未鑑定附加潛能未鑑定);
+              }
+              else
+              {
+                裝備.設置潛能等級(裝備潛能等級.罕見);
+              }
+
+              裝備.設置第一條主潛能(30000);
             }
           }
 
-          int 潛能等級 = eq.獲取潛能等級().獲取潛能等級的值() - 16;
+          裝備潛能等級 潛能等級 = 裝備.獲取主潛能等級();
 
-          int 低一級潛能等級 = Math.max(eq.獲取潛能等級().獲取潛能等級的值() - 17, 1);
+          裝備潛能等級 次級潛能等級 = 裝備.獲取次級主潛能等級();
 
-          int 裝備Id = eq.getItemId();
+          boolean 有第三條主潛能 = 裝備.獲取第三條主潛能() > 0;
 
-          eq.setPotential1(潛能生成器.生成潛能(裝備Id, 潛能等級));
+          裝備.設置第一條主潛能(0);
 
-          eq.setPotential2(潛能生成器.生成潛能(裝備Id, 低一級潛能等級));
+          裝備.設置第二條主潛能(0);
 
-          while (潛能生成器.檢查裝備潛能2是否合法(eq) == false)
+          裝備.設置第三條主潛能(0);
+
+          int 第一條主潛能 = 潛能生成器.生成潛能(裝備, 潛能等級);
+
+          裝備.設置第一條主潛能(第一條主潛能);
+
+          int 第二條主潛能 = 潛能生成器.生成潛能(裝備, 次級潛能等級);
+
+          裝備.設置第二條主潛能(第二條主潛能);
+
+          while (潛能生成器.檢查裝備第二條主潛能是否合法(裝備) == false)
           {
-            eq.setPotential2(潛能生成器.生成潛能(裝備Id, 低一級潛能等級));
+            第二條主潛能 = 潛能生成器.生成潛能(裝備, 次級潛能等級);
+
+            裝備.設置第二條主潛能(第二條主潛能);
           }
 
-          if (eq.getPotential3() > 0)
+          if (有第三條主潛能)
           {
-            eq.setPotential3(潛能生成器.生成潛能(裝備Id, 低一級潛能等級));
+            int 第三條主潛能 = 潛能生成器.生成潛能(裝備, 次級潛能等級);
 
-            while (潛能生成器.檢查裝備潛能3是否合法(eq) == false)
+            裝備.設置第三條主潛能(第三條主潛能);
+
+            while (潛能生成器.檢查裝備第三條主潛能是否合法(裝備) == false)
             {
-              eq.setPotential3(潛能生成器.生成潛能(裝備Id, 低一級潛能等級));
+              第三條主潛能 = 潛能生成器.生成潛能(裝備, 次級潛能等級);
+
+              裝備.設置第三條主潛能(第三條主潛能);
             }
           }
 
-          if (GameConstants.isAlphaWeapon(eq.getItemId()))
+          if (GameConstants.isAlphaWeapon(裝備.getItemId()))
           {
             zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10);
           }
-          else if (GameConstants.isBetaWeapon(eq.getItemId()))
+          else if (GameConstants.isBetaWeapon(裝備.getItemId()))
           {
             zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
           }
 
           if (zeroEquip != null)
           {
-            zeroEquip.設置潛能等級(eq.獲取潛能等級());
+            zeroEquip.設置潛能等級(裝備.獲取潛能等級());
 
-            zeroEquip.設置附加潛能等級(eq.獲取附加潛能等級());
+            zeroEquip.設置第一條主潛能(裝備.獲取第一條主潛能());
 
-            zeroEquip.setPotential1(eq.getPotential1());
+            zeroEquip.設置第二條主潛能(裝備.獲取第二條主潛能());
 
-            zeroEquip.setPotential2(eq.getPotential2());
+            zeroEquip.設置第三條主潛能(裝備.獲取第三條主潛能());
 
-            zeroEquip.setPotential3(eq.getPotential3());
+            zeroEquip.設置第一條附加潛能(裝備.獲取第一條附加潛能());
 
-            zeroEquip.setPotential4(eq.getPotential4());
+            zeroEquip.設置第二條附加潛能(裝備.獲取第二條附加潛能());
 
-            zeroEquip.setPotential5(eq.getPotential5());
-
-            zeroEquip.setPotential6(eq.getPotential6());
+            zeroEquip.設置第三條附加潛能(裝備.獲取第三條附加潛能());
 
             c.getPlayer().forceReAddItem(zeroEquip, MapleInventoryType.EQUIPPED);
           }
 
-          c.getPlayer().forceReAddItem(eq, pos < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
+          c.getPlayer().forceReAddItem(裝備, pos < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
 
-          c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, cubeId, eq.getItemId()));
+          c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, cubeId, 裝備.getItemId()));
 
-          c.getSession().writeAndFlush(CField.getIngameCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
+          c.getSession().writeAndFlush(CField.getIngameCubeStart(c.getPlayer(), 裝備, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
 
           MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (short) 1, false, true);
 
@@ -10586,20 +10872,21 @@ public class InventoryHandler
       case 2711013:
       case 2711017:
       {
-        if (eq != null)
+        // 名匠方塊
+        if (裝備 != null)
         {
           up = false;
 
-          if (eq.getPotential1() == 0)
+          if (裝備.是否可以重設主潛能() == false)
           {
-            c.getPlayer().dropMessage(1, "無法作用於沒有潛能的道具!");
+            c.getPlayer().dropMessage(1, "無法作用於該裝備!");
 
             c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
 
             return;
           }
 
-          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(eq.getItemId()))
+          if (c.getPlayer().getMeso() < GameConstants.getCubeMeso(裝備.getItemId()))
           {
             c.getPlayer().dropMessage(1, "沒有足夠的楓幣!");
 
@@ -10608,102 +10895,138 @@ public class InventoryHandler
             return;
           }
 
-          if (eq.獲取潛能等級().獲取潛能等級的值() < 16)
-          {
-            c.getPlayer().dropMessage(1, "無法作用於沒有鑑定潛能的裝備!");
+          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(裝備.getItemId()), false);
 
-            c.getSession().writeAndFlush(CWvsContext.enableActions(c.getPlayer()));
 
-            return;
-          }
-
-          c.getPlayer().gainMeso(-GameConstants.getCubeMeso(eq.getItemId()), false);
-
-          if (eq.獲取潛能等級() == 裝備潛能等級.特殊)
+          if (裝備.獲取潛能等級() == 裝備潛能等級.特殊 || 裝備.獲取潛能等級() == 裝備潛能等級.主潛能特殊未鑑定附加潛能未鑑定)
           {
             if (Randomizer.isSuccess(10))
             {
               up = true;
-              eq.設置潛能等級(裝備潛能等級.稀有);
+
+              if (裝備.獲取潛能等級() == 裝備潛能等級.主潛能特殊未鑑定附加潛能未鑑定)
+              {
+                裝備.設置潛能等級(裝備潛能等級.主潛能稀有未鑑定附加潛能未鑑定);
+              }
+              else
+              {
+                裝備.設置潛能等級(裝備潛能等級.稀有);
+              }
+
+              裝備.設置第一條主潛能(20000);
             }
           }
-          else if (eq.獲取潛能等級() == 裝備潛能等級.稀有)
+          else if (裝備.獲取潛能等級() == 裝備潛能等級.稀有 || 裝備.獲取潛能等級() == 裝備潛能等級.主潛能稀有未鑑定附加潛能未鑑定)
           {
             if (Randomizer.isSuccess(3))
             {
               up = true;
-              eq.設置潛能等級(裝備潛能等級.罕見);
+
+              if (裝備.獲取潛能等級() == 裝備潛能等級.主潛能稀有未鑑定附加潛能未鑑定)
+              {
+                裝備.設置潛能等級(裝備潛能等級.主潛能罕見未鑑定附加潛能未鑑定);
+              }
+              else
+              {
+                裝備.設置潛能等級(裝備潛能等級.罕見);
+              }
+
+              裝備.設置第一條主潛能(30000);
             }
           }
-          else if (eq.獲取潛能等級() == 裝備潛能等級.罕見)
+          else if (裝備.獲取潛能等級() == 裝備潛能等級.罕見 || 裝備.獲取潛能等級() == 裝備潛能等級.主潛能罕見未鑑定附加潛能未鑑定)
           {
             if (Randomizer.isSuccess(1))
             {
               up = true;
-              eq.設置潛能等級(裝備潛能等級.傳說);
+
+              if (裝備.獲取潛能等級() == 裝備潛能等級.主潛能罕見未鑑定附加潛能未鑑定)
+              {
+                裝備.設置潛能等級(裝備潛能等級.主潛能傳說未鑑定附加潛能未鑑定);
+              }
+              else
+              {
+                裝備.設置潛能等級(裝備潛能等級.傳說);
+              }
+
+              裝備.設置第一條主潛能(40000);
             }
           }
 
-          int 潛能等級 = eq.獲取潛能等級().獲取潛能等級的值() - 16;
+          裝備潛能等級 潛能等級 = 裝備.獲取主潛能等級();
 
-          int 低一級潛能等級 = Math.max(eq.獲取潛能等級().獲取潛能等級的值() - 17, 1);
+          裝備潛能等級 次級潛能等級 = 裝備.獲取次級主潛能等級();
 
-          int 裝備Id = eq.getItemId();
+          boolean 有第三條主潛能 = 裝備.獲取第三條主潛能() > 0;
 
-          eq.setPotential1(潛能生成器.生成潛能(裝備Id, 潛能等級));
+          裝備.設置第一條主潛能(0);
 
-          eq.setPotential2(潛能生成器.生成潛能(裝備Id, 低一級潛能等級));
+          裝備.設置第二條主潛能(0);
 
-          while (潛能生成器.檢查裝備潛能2是否合法(eq) == false)
+          裝備.設置第三條主潛能(0);
+
+          int 第一條主潛能 = 潛能生成器.生成潛能(裝備, 潛能等級);
+
+          裝備.設置第一條主潛能(第一條主潛能);
+
+          int 第二條主潛能 = 潛能生成器.生成潛能(裝備, 次級潛能等級);
+
+          裝備.設置第二條主潛能(第二條主潛能);
+
+          while (潛能生成器.檢查裝備第二條主潛能是否合法(裝備) == false)
           {
-            eq.setPotential2(潛能生成器.生成潛能(裝備Id, 低一級潛能等級));
+            第二條主潛能 = 潛能生成器.生成潛能(裝備, 次級潛能等級);
+
+            裝備.設置第二條主潛能(第二條主潛能);
           }
 
-          if (eq.getPotential3() > 0)
+          if (有第三條主潛能)
           {
-            eq.setPotential3(潛能生成器.生成潛能(裝備Id, 低一級潛能等級));
+            int 第三條主潛能 = 潛能生成器.生成潛能(裝備, 次級潛能等級);
 
-            while (潛能生成器.檢查裝備潛能3是否合法(eq) == false)
+            裝備.設置第三條主潛能(第三條主潛能);
+
+            while (潛能生成器.檢查裝備第三條主潛能是否合法(裝備) == false)
             {
-              eq.setPotential3(潛能生成器.生成潛能(裝備Id, 低一級潛能等級));
+              第三條主潛能 = 潛能生成器.生成潛能(裝備, 次級潛能等級);
+
+              裝備.設置第三條主潛能(第三條主潛能);
             }
           }
 
-          if (GameConstants.isAlphaWeapon(eq.getItemId()))
+          if (GameConstants.isAlphaWeapon(裝備.getItemId()))
           {
             zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10);
           }
-          else if (GameConstants.isBetaWeapon(eq.getItemId()))
+          else if (GameConstants.isBetaWeapon(裝備.getItemId()))
           {
             zeroEquip = (Equip) c.getPlayer().getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
           }
 
           if (zeroEquip != null)
           {
-            zeroEquip.設置潛能等級(eq.獲取潛能等級());
+            zeroEquip.設置潛能等級(裝備.獲取潛能等級());
 
-            zeroEquip.設置附加潛能等級(eq.獲取附加潛能等級());
+            zeroEquip.設置第一條主潛能(裝備.獲取第一條主潛能());
 
-            zeroEquip.setPotential1(eq.getPotential1());
+            zeroEquip.設置第二條主潛能(裝備.獲取第二條主潛能());
 
-            zeroEquip.setPotential2(eq.getPotential2());
+            zeroEquip.設置第三條主潛能(裝備.獲取第三條主潛能());
 
-            zeroEquip.setPotential3(eq.getPotential3());
+            zeroEquip.設置第一條附加潛能(裝備.獲取第一條附加潛能());
 
-            zeroEquip.setPotential4(eq.getPotential4());
+            zeroEquip.設置第二條附加潛能(裝備.獲取第二條附加潛能());
 
-            zeroEquip.setPotential5(eq.getPotential5());
-
-            zeroEquip.setPotential6(eq.getPotential6());
+            zeroEquip.設置第三條附加潛能(裝備.獲取第三條附加潛能());
 
             c.getPlayer().forceReAddItem(zeroEquip, MapleInventoryType.EQUIPPED);
           }
 
-          c.getPlayer().forceReAddItem(eq, pos < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
+          c.getPlayer().forceReAddItem(裝備, pos < 0 ? MapleInventoryType.EQUIPPED : MapleInventoryType.EQUIP);
 
-          c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, cubeId, eq.getItemId()));
+          c.getSession().writeAndFlush(CField.showPotentialReset(c.getPlayer().getId(), true, cubeId, 裝備.getItemId()));
 
-          c.getSession().writeAndFlush(CField.getIngameCubeStart(c.getPlayer(), eq, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
+          c.getSession().writeAndFlush(CField.getIngameCubeStart(c.getPlayer(), 裝備, up, cubeId, c.getPlayer().itemQuantity(cubeId) - 1));
 
           MapleInventoryManipulator.removeFromSlot(c, MapleInventoryType.USE, slot, (short) 1, false, true);
 

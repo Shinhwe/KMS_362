@@ -3,7 +3,6 @@ package tools.data;
 import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 public class LittleEndianAccessor
@@ -177,7 +176,7 @@ public class LittleEndianAccessor
     {
       ret[x] = readByte();
     }
-    return new String(ret, Charset.forName("MS949"));
+    return new String(ret, StandardCharsets.UTF_8);
   }
 
   public final String readAsciiString2 (int n)

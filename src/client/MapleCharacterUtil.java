@@ -7,7 +7,7 @@ import handling.world.World;
 import tools.Triple;
 import tools.packet.CSPacket;
 
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -78,11 +78,11 @@ public class MapleCharacterUtil
   
   public static final boolean canChangePetName(String name)
   {
-    if ((name.getBytes(Charset.forName("MS949"))).length > 12)
+    if ((name.getBytes(StandardCharsets.UTF_8)).length > 12)
     {
       return false;
     }
-    if ((name.getBytes(Charset.forName("MS949"))).length < 3)
+    if ((name.getBytes(StandardCharsets.UTF_8)).length < 3)
     {
       return false;
     }

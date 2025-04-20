@@ -456,19 +456,19 @@ import java.util.concurrent.ConcurrentHashMap;
           /* 260 */
           pse.setByte(26, equip.獲取潛能等級().獲取潛能等級的值());
           /* 261 */
-          pse.setByte(27, equip.獲取未鑑定潛能條數());
+          pse.setByte(27, (byte) 0);
           /* 262 */
-          pse.setInt(28, equip.getPotential1());
+          pse.setInt(28, equip.獲取第一條主潛能());
           /* 263 */
-          pse.setInt(29, equip.getPotential2());
+          pse.setInt(29, equip.獲取第二條主潛能());
           /* 264 */
-          pse.setInt(30, equip.getPotential3());
+          pse.setInt(30, equip.獲取第三條主潛能());
           /* 265 */
-          pse.setInt(31, equip.getPotential4());
+          pse.setInt(31, equip.獲取第一條附加潛能());
           /* 266 */
-          pse.setInt(32, equip.getPotential5());
+          pse.setInt(32, equip.獲取第二條附加潛能());
           /* 267 */
-          pse.setInt(33, equip.getPotential6());
+          pse.setInt(33, equip.獲取第三條附加潛能());
           /* 268 */
           pse.setInt(34, equip.getIncSkill());
           /* 269 */
@@ -1009,21 +1009,23 @@ import java.util.concurrent.ConcurrentHashMap;
               /* 539 */
               equip.setStarForceLevel(rs1.getByte("starForceLevel"));
               /* 540 */
-              equip.setPotentialLevel(rs1.getByte("state"));
+              equip.設置潛能等級(rs1.getByte("state"));
               /* 541 */
-              equip.設置未鑑定潛能條數(rs1.getByte("line"));
+              equip.設置未鑑定潛能條數(rs1.getByte("potentialLine"));
+
+              equip.設置未鑑定潛能條數(rs1.getByte("additionalPotentialLine"));
               /* 542 */
-              equip.setPotential1(rs1.getInt("potential1"));
+              equip.設置第一條主潛能(rs1.getInt("potential1"));
               /* 543 */
-              equip.setPotential2(rs1.getInt("potential2"));
+              equip.設置第二條主潛能(rs1.getInt("potential2"));
               /* 544 */
-              equip.setPotential3(rs1.getInt("potential3"));
+              equip.設置第三條主潛能(rs1.getInt("potential3"));
               /* 545 */
-              equip.setPotential4(rs1.getInt("potential4"));
+              equip.設置第一條附加潛能(rs1.getInt("potential4"));
               /* 546 */
-              equip.setPotential5(rs1.getInt("potential5"));
+              equip.設置第二條附加潛能(rs1.getInt("potential5"));
               /* 547 */
-              equip.setPotential6(rs1.getInt("potential6"));
+              equip.設置第三條附加潛能(rs1.getInt("potential6"));
               /* 548 */
               equip.setGiftFrom(rs1.getString("sender"));
               /* 549 */

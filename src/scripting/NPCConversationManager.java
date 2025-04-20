@@ -7,8 +7,6 @@ import constants.GameConstants;
 import constants.KoreaCalendar;
 import constants.ServerConstants;
 import database.DatabaseConnection;
-import discord.DiscordServer;
-import discord.PacketCreator;
 import handling.channel.ChannelServer;
 import handling.channel.handler.InterServerHandler;
 import handling.channel.handler.MatrixHandler;
@@ -53,9 +51,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.List;
 import java.util.Timer;
-import java.util.*;
 import java.util.regex.Pattern;
 
 public class NPCConversationManager extends AbstractPlayerInteraction
@@ -4255,23 +4253,23 @@ public class NPCConversationManager extends AbstractPlayerInteraction
         break;
       case 19:
         /* 2511 */
-        sel.setPotential1(amount);
+        sel.設置第一條主潛能(amount);
         break;
       case 20:
         /* 2514 */
-        sel.setPotential2(amount);
+        sel.設置第二條主潛能(amount);
         break;
       case 21:
         /* 2517 */
-        sel.setPotential3(amount);
+        sel.設置第三條主潛能(amount);
         break;
       case 22:
         /* 2520 */
-        sel.setPotential4(amount);
+        sel.設置第一條附加潛能(amount);
         break;
       case 23:
         /* 2523 */
-        sel.setPotential5(amount);
+        sel.設置第二條附加潛能(amount);
         break;
       case 24:
         /* 2526 */
@@ -6206,7 +6204,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     int level = getPlayer().getLevel();
 
     long flameWolfDamage = getPlayer().getFlameWolfDamage();
-    
+
     if (level < 200)
     {
       if (flameWolfDamage < 1500L * 10000L)
@@ -6726,30 +6724,7 @@ public class NPCConversationManager extends AbstractPlayerInteraction
     /* 3712 */
     return this.c.getDiscordId();
   }
-
-  public final void sendMessageToChannel (String text)
-  {
-    /* 3716 */
-    DiscordServer.getInstance().getClientStorage().getClients().forEach(cli -> cli.sendPacket(PacketCreator.sendMessageToChannel(text)));
-  }
-
-  public final void sendMessageToUser (long userId, String text)
-  {
-    /* 3722 */
-    DiscordServer.getInstance().getClientStorage().getClients().forEach(cli -> cli.sendPacket(PacketCreator.sendMessageToUser(userId, text)));
-  }
-
-  public final void sendEmbeddedMessageToChannel (String title, String message, String thumbnailUrl, byte r, byte g, byte b)
-  {
-    /* 3729 */
-    DiscordServer.getInstance().getClientStorage().getClients().forEach(cli -> cli.sendPacket(PacketCreator.sendEmbedMessageToChannel(title, message, thumbnailUrl, r, g, b)));
-  }
-
-  public final void sendEmbeddedMessageToUser (long userId, String title, String message, String thumbnailUrl, byte r, byte g, byte b)
-  {
-    /* 3735 */
-    DiscordServer.getInstance().getClientStorage().getClients().forEach(cli -> cli.sendPacket(PacketCreator.sendEmbedMessageToUser(userId, title, message, thumbnailUrl, r, g, b)));
-  }
+  
 
   public void Entertuto (boolean black)
   {

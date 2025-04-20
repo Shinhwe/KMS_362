@@ -156,19 +156,8 @@ public class ServerConstants
   
   public enum PlayerGMRank
   {
-    NORMAL('@', 0),
-    DONATOR('#', 1),
-    SUPERDONATOR('$', 2),
-    INTERN('%', 3),
-    GM('!', 4),
-    SUPERGM('!', 5),
-    ADMIN('!', 6);
-    
-    static
-    {
-      PlayerGMRank[] $VALUES = $values();
-    }
-    
+    NORMAL('@', 0), GM('!', 100);
+
     private final char commandPrefix;
     private final int level;
     
@@ -177,12 +166,7 @@ public class ServerConstants
       this.commandPrefix = ch;
       this.level = level;
     }
-    
-    private static /* synthetic */ PlayerGMRank[] $values()
-    {
-      return new PlayerGMRank[]{PlayerGMRank.NORMAL, PlayerGMRank.DONATOR, PlayerGMRank.SUPERDONATOR, PlayerGMRank.INTERN, PlayerGMRank.GM, PlayerGMRank.SUPERGM, PlayerGMRank.ADMIN};
-    }
-    
+
     public char getCommandPrefix()
     {
       return this.commandPrefix;

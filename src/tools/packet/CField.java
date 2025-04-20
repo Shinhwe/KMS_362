@@ -18,8 +18,8 @@ import server.field.skill.*;
 import server.life.MapleHaku;
 import server.life.MapleMonster;
 import server.life.MapleNPC;
-import server.maps.ForceAtom;
 import server.maps.*;
+import server.maps.ForceAtom;
 import server.movement.LifeMovementFragment;
 import server.quest.MapleQuest;
 import server.shops.MapleShop;
@@ -34,8 +34,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CField
@@ -2174,18 +2174,7 @@ public class CField
     mplew.writeInt(drop.isTouchDrop() ? 1 : 0);
     if (drop.getItemId() / 1000000 == 1 && drop.getMeso() == 0 && drop.getEquip() != null)
     {
-      if (drop.getEquip().獲取附加潛能等級().獲取潛能等級的值() <= 4)
-      {
-        mplew.write(drop.getEquip().獲取附加潛能等級().獲取潛能等級的值());
-      }
-      else if (drop.getEquip().獲取附加潛能等級().獲取潛能等級的值() <= 20)
-      {
-        mplew.write(drop.getEquip().獲取附加潛能等級().獲取潛能等級的值() - 16);
-      }
-      else
-      {
-        mplew.write(0);
-      }
+      mplew.write(drop.getEquip().獲取主潛能等級().獲取潛能等級的值());
     }
     else
     {

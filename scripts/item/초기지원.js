@@ -152,12 +152,8 @@ function isMagician(i)
 			case 152:
 			case 162:
 			return true;
-			break;
-
-			default:
-			return false;
-			break;
 	}
+	return false;
 }
 
 function getWeapon(i)
@@ -397,10 +393,10 @@ function addOption(i, isWeapon)
 		if(hpJobCheck(cm.getPlayer().getJob()))
 		{
 			item.setHp(item.getHp() + 2500);
-			item.setPotentialLevel(20);
-			item.setPotential1(40086);
-			item.setPotential2(40086);
-			item.setPotential3(40086);
+			cm.setItemPotentialLevel(item, 20);
+			cm.setItemPotential1(item, 40086);
+			cm.setItemPotential2(item, 40086);
+			cm.setItemPotential3(item, 40086);
 			item.setWatk(item.getWatk() + 40);
 		}
 		else
@@ -416,10 +412,10 @@ function addOption(i, isWeapon)
 			else
 			item.setWatk(item.getWatk() + 40);
 
-			item.setPotentialLevel(19);
-			item.setPotential1(40086);
-			item.setPotential2(40086);
-			item.setPotential3(40086);
+			cm.setItemPotentialLevel(item, 19);
+			cm.setItemPotential1(item, 40086);
+			cm.setItemPotential2(item, 40086);
+			cm.setItemPotential3(item, 40086);
 		}
 	}
 	else
@@ -429,10 +425,10 @@ function addOption(i, isWeapon)
 		{
 			item.setHp(item.getHp() + 5000);
 			item.setWatk(item.getWatk() + 40);
-			item.setPotentialLevel(19);
-			item.setPotential1(30051);
-			item.setPotential2(30051);
-			item.setPotential3(30051);
+			cm.setItemPotentialLevel(item, 19);
+			cm.setItemPotential1(item, 30051);
+			cm.setItemPotential2(item, 30051);
+			cm.setItemPotential3(item, 30051);
 		}
 		else
 		{
@@ -440,20 +436,20 @@ function addOption(i, isWeapon)
 			item.setDex(item.getDex() + 30);
 			item.setInt(item.getInt() + 30);
 			item.setLuk(item.getLuk() + 30);
-			item.setPotentialLevel(19);
+			cm.setItemPotentialLevel(item, 19);
 			if(isMagician(cm.getPlayer().getJob()))
 			{
 				item.setMatk(item.getMatk() + 70);
-				item.setPotential1(30052);
-				item.setPotential2(30052);
-				item.setPotential3(30052);
+				cm.setItemPotential1(item, 30052);
+				cm.setItemPotential2(item, 30052);
+				cm.setItemPotential3(item, 30052);
 			}
 			else
 			{
 				item.setWatk(item.getWatk() + 70);
-				item.setPotential1(30051);
-				item.setPotential2(30051);
-				item.setPotential3(30051);
+				cm.setItemPotential1(item, 30051);
+				cm.setItemPotential2(item, 30051);
+				cm.setItemPotential3(item, 30051);
 			}
 		}
 	}

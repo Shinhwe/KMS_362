@@ -729,7 +729,7 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
       case USE_CUBE:
       {
         slea.skip(4);
-        InventoryHandler.UseCube(slea, c);
+        InventoryHandler.處理使用普通魔方(slea, c);
         break;
       }
       case USE_ITEM:
@@ -739,7 +739,7 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
       }
       case USE_MAGNIFY_GLASS:
       {
-        InventoryHandler.UseMagnify(slea, c);
+        InventoryHandler.處理鑑定潛能(slea, c);
         break;
       }
       case USE_STAMP:
@@ -749,12 +749,12 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
       }
       case USE_ADDITIONALPOTENTIAL_STAMP:
       {
-        InventoryHandler.useAdditionalPotentialStamp(slea, c);
+        InventoryHandler.處理使用附加烙印印章(slea, c);
         break;
       }
       case USE_CHOOSE_CUBE:
       {
-        InventoryHandler.UseChooseCube(slea, c);
+        InventoryHandler.處理選擇黑魔方潛能(slea, c);
         break;
       }
       case USE_CHOOSE_ABILITY:
@@ -824,7 +824,7 @@ public class MapleNettyHandler extends SimpleChannelInboundHandler<LittleEndianA
       }
       case USE_ADDITIONALPOTENTIAL_SCROLL:
       {
-        InventoryHandler.useAdditionalPotentialScroll(slea, c);
+        InventoryHandler.處理使用附加潛能卷軸(slea, c);
         break;
       }
       case USE_SUMMON_BAG:

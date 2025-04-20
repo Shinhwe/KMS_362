@@ -1484,7 +1484,7 @@ import java.util.Map;
                 /*  804 */
                 boolean priceLimit = (auctionItem.getPrice() >= priceMin && auctionItem.getPrice() <= priceMax);
                 /*  805 */
-                boolean potentialLimit = (potentialType == -1 || (potentialType == 0 && equip.獲取附加潛能等級() == 裝備潛能等級.沒有潛能) || (potentialType > 0 && equip.獲取附加潛能等級().獲取潛能等級的值() - 16 == potentialType));
+                boolean potentialLimit = false; // (potentialType == -1 || (potentialType == 0 && equip.獲取附加潛能等級() == 裝備潛能等級.沒有潛能) || (potentialType > 0 && equip.獲取附加潛能等級().獲取潛能等級的值() - 16 == potentialType));
                 /*  806 */
                 boolean typeLimit = typeLimit(searchType, itemType, itemSemiType, equip.getItemId());
                 /*      */

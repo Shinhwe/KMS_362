@@ -10,7 +10,7 @@ function enter(pi) {
             mob = MapleLifeProvider.getMonster(8810128);
         }
         pi.getPlayer().getMap().spawnMonsterOnGroundBelow(mob, pos);
-        map.getReactor(2408003).setPotentialLevel(1);
+        map.getReactor(2408003).設置潛能等級(1);
     }
     return false;
 }

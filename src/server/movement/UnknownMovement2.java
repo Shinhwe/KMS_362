@@ -6,27 +6,32 @@ import java.awt.*;
 
 public class UnknownMovement2 extends AbstractLifeMovement
 {
+
   private Point pixelsPerSecond;
-  
-  public UnknownMovement2(int type, int duration, int newstate, short unk, byte unk2)
+  private short xOffset;
+
+  public UnknownMovement2 (int type, Point position, int duration, int newstate, byte unk)
   {
-    super(type, new Point(0, 0), duration, newstate, unk, unk2);
+    super(type, position, duration, newstate, (short) 0, unk);
   }
-  
-  public Point getPixelsPerSecond()
-  {
-    return this.pixelsPerSecond;
-  }
-  
-  public void setPixelsPerSecond(Point wobble)
+
+  public void setPixelsPerSecond (Point wobble)
   {
     this.pixelsPerSecond = wobble;
   }
-  
-  public void serialize(MaplePacketLittleEndianWriter packet)
+
+  public void setXOffset (short xOffset)
   {
+    this.xOffset = xOffset;
+  }
+
+  @Override public void serialize (MaplePacketLittleEndianWriter packet)
+  {
+    // System.out.println("UnknownMovement2");
     packet.write(getType());
-    packet.writeShort(getFootHolds());
+    packet.writePos(getPosition());
+    packet.writePos(pixelsPerSecond);
+    packet.writeShort(xOffset);
     packet.write(getNewstate());
     packet.writeShort(getDuration());
     packet.write(getUnk());

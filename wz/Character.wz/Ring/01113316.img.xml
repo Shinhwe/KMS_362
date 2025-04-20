@@ -14,20 +14,20 @@
 <string name="islot" value="Ri"/>
 <string name="vslot" value="Ri"/>
 <int name="reqJob" value="0"/>
-<int name="reqLevel" value="160"/>
+    <int name="reqLevel" value="200"/>
 <int name="reqSTR" value="0"/>
 <int name="reqDEX" value="0"/>
 <int name="reqINT" value="0"/>
 <int name="reqLUK" value="0"/>
-<int name="incSTR" value="5"/>
-<int name="incDEX" value="5"/>
-<int name="incLUK" value="5"/>
-<int name="incINT" value="5"/>
-<int name="incPAD" value="2"/>
-<int name="incMAD" value="2"/>
-<int name="incMHP" value="200"/>
-<int name="incMMP" value="200"/>
-<int name="tuc" value="2"/>
+    <int name="incSTR" value="30"/>
+    <int name="incDEX" value="30"/>
+    <int name="incLUK" value="30"/>
+    <int name="incINT" value="30"/>
+    <int name="incPAD" value="30"/>
+    <int name="incMAD" value="30"/>
+    <int name="incMHP" value="300"/>
+    <int name="incMMP" value="300"/>
+    <int name="tuc" value="5"/>
 <int name="notSale" value="1"/>
 <int name="price" value="1"/>
 <int name="onlyEquip" value="1"/>

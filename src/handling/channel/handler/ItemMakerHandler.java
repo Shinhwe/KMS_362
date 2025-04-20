@@ -802,7 +802,7 @@ public class ItemMakerHandler
                 }
                 if (Randomizer.nextInt(100) < theLevl * ((first.getTemplate().getUpgradeSlots() > 0) ? 2 : 1))
                 {
-                  first.resetPotential();
+                  // first.resetPotential();
                   cr = CraftRanking.COOL;
                 }
                 receive = first;

@@ -81,12 +81,12 @@ public class VerifyDamage
         }
         
         int potlevel = (ii.getReqLevel(equip.getItemId()) / 10) - 1;
-        potentials.add(new Pair<>(equip.getPotential1(), potlevel));
-        potentials.add(new Pair<>(equip.getPotential2(), potlevel));
-        potentials.add(new Pair<>(equip.getPotential3(), potlevel));
-        potentials.add(new Pair<>(equip.getPotential4(), potlevel));
-        potentials.add(new Pair<>(equip.getPotential5(), potlevel));
-        potentials.add(new Pair<>(equip.getPotential6(), potlevel));
+        potentials.add(new Pair<>(equip.獲取第一條主潛能(), potlevel));
+        potentials.add(new Pair<>(equip.獲取第二條主潛能(), potlevel));
+        potentials.add(new Pair<>(equip.獲取第三條主潛能(), potlevel));
+        potentials.add(new Pair<>(equip.獲取第一條附加潛能(), potlevel));
+        potentials.add(new Pair<>(equip.獲取第二條附加潛能(), potlevel));
+        potentials.add(new Pair<>(equip.獲取第三條附加潛能(), potlevel));
         
         final Integer set = ii.getSetItemID(equip.getItemId());
         if (set != null && set > 0)

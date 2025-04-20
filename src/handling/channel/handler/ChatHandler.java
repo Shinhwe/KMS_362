@@ -18,7 +18,6 @@ import handling.world.MapleMessengerCharacter;
 import handling.world.World;
 import log.DBLogger;
 import log.LogType;
-import server.MapleItemInformationProvider;
 import tools.FileoutputUtil;
 import tools.data.LittleEndianAccessor;
 import tools.packet.CField;
@@ -33,7 +32,7 @@ public class ChatHandler
   {
     if (text.length() > 0 && chr != null && chr.getMap() != null && !CommandProcessor.processCommand(c, text, ServerConstants.CommandType.NORMAL))
     {
-      if (!chr.isIntern() && text.length() >= 80)
+      if (text.length() >= 80)
       {
         return;
       }
@@ -63,124 +62,13 @@ public class ChatHandler
       {
         if (chr.isHidden())
         {
-          if (chr.isIntern() && !chr.isSuperGM() && unk == 0)
-          {
-            chr.getMap().broadcastGMMessage(chr, CField.getChatText(chr, text, false, 1, item), true);
-            if (unk == 0)
-            {
-              World.Broadcast.broadcastSmega(CWvsContext.HyperMegaPhone(sb.toString(), c.getPlayer().getName(), sb.toString(), c.getChannel(), true, null));
-            }
-          }
-          else
-          {
-            chr.getMap().broadcastGMMessage(chr, CField.getChatText(chr, text, c.getPlayer().isSuperGM(), unk, item), true);
-          }
-        }
-        else if (chr.isIntern() && !chr.isSuperGM() && unk == 0)
-        {
-          if (unk == 0 || text.startsWith("~"))
-          {
-            if (chr.getHgrade() >= 1)
-            {
-              if (item != null)
-              {
-                if (chr.getMeso() >= 5000000L)
-                {
-                  chr.gainMeso(-5000000L, false);
-                  World.Broadcast.broadcastSmega(CWvsContext.HyperMegaPhone(sb.toString(), c.getPlayer().getName(), sb.toString(), c.getChannel(), true, item));
-                }
-                else
-                {
-                  chr.dropMessage(1, "500만 메소가 필요합니다.");
-                }
-              }
-              else
-              {
-                AdminTool.addMessage(1, "[" + chr.getClient().getChannel() + "채널] " + chr.getName() + " : " + text.replaceAll("~", ""));
-                FileoutputUtil.log(FileoutputUtil.전체채팅로그, "[전체] [" + chr.getClient().getChannel() + "채널] " + chr.getName() + " : " + text.replaceAll("~", ""));
-                World.Broadcast.broadcastSmega(CField.getGameMessage(24, sb.toString()));
-              }
-            }
-            else if (item != null)
-            {
-              if (chr.getMeso() >= 5000000L)
-              {
-                chr.gainMeso(-5000000L, false);
-                World.Broadcast.broadcastSmega(CWvsContext.HyperMegaPhone(sb.toString(), c.getPlayer().getName(), sb.toString(), c.getChannel(), true, item));
-                AdminTool.addMessage(1, "[" + chr.getClient().getChannel() + "채널] " + chr.getName() + " : [" + MapleItemInformationProvider.getInstance().getName(item.getItemId()) + "]" + text.replaceAll("~", ""));
-              }
-              else
-              {
-                chr.dropMessage(1, "500만 메소가 필요합니다.");
-              }
-            }
-            else
-            {
-              World.Broadcast.broadcastSmega(CField.getGameMessage(18, sb.toString()));
-            }
-          }
-          else
-          {
-            AdminTool.addMessage(0, "[" + chr.getClient().getChannel() + "채널] " + chr.getName() + " : " + text.replaceAll("~", ""));
-            FileoutputUtil.log(FileoutputUtil.일반채팅로그, "[일반] [" + chr.getClient().getChannel() + "채널] " + chr.getName() + " : " + text);
-            chr.getMap().broadcastMessage(CField.getChatText(chr, text, false, 1, item), c.getPlayer().getTruePosition());
-          }
-        }
-        else if (text.startsWith("~"))
-        {
-          if (chr.getHgrade() >= 1)
-          {
-            if (item != null)
-            {
-              if (chr.getMeso() >= 5000000L)
-              {
-                chr.gainMeso(-5000000L, false);
-                World.Broadcast.broadcastSmega(CWvsContext.HyperMegaPhone(sb.toString(), c.getPlayer().getName(), sb.toString(), c.getChannel(), true, item));
-              }
-              else
-              {
-                chr.dropMessage(1, "500만 메소가 필요합니다.");
-              }
-            }
-            else
-            {
-              World.Broadcast.broadcastSmega(CField.getGameMessage(24, sb.toString()));
-            }
-          }
-          else if (item != null)
-          {
-            if (chr.getMeso() >= 5000000L)
-            {
-              chr.gainMeso(-5000000L, false);
-              World.Broadcast.broadcastSmega(CWvsContext.HyperMegaPhone(sb.toString(), c.getPlayer().getName(), sb.toString(), c.getChannel(), true, item));
-              AdminTool.addMessage(1, "[" + chr.getClient().getChannel() + "채널] " + chr.getName() + " : [" + MapleItemInformationProvider.getInstance().getName(item.getItemId()) + "]" + text.replaceAll("~", ""));
-              FileoutputUtil.log(FileoutputUtil.전체채팅로그, "[전체] [" + chr.getClient().getChannel() + "채널] " + chr.getName() + " : " + text.replaceAll("~", ""));
-            }
-            else
-            {
-              chr.dropMessage(1, "500만 메소가 필요합니다.");
-            }
-          }
-          else
-          {
-            if (chr.getLevel() > 1)
-            {
-              World.Broadcast.broadcastSmega(CField.getGameMessage(24, sb.toString()));
-              // World.Broadcast.broadcastSmega(CWvsContext.HyperMegaPhone(sb.toString(), c.getPlayer().getName(), sb.toString(), c.getChannel(), true, null));
-              AdminTool.addMessage(1, "[" + chr.getClient().getChannel() + "채널] " + chr.getName() + " : " + text.replaceAll("~", ""));
-              FileoutputUtil.log(FileoutputUtil.전체채팅로그, "[전체] [" + chr.getClient().getChannel() + "채널] " + chr.getName() + " : " + text.replaceAll("~", ""));
-            }
-            else
-            {
-              chr.dropMessage(6, "전체채팅을 이용하실 수 없어용 뇽홍홍~");
-            }
-          }
+          chr.getMap().broadcastGMMessage(chr, CField.getChatText(chr, text, c.getPlayer().isGM(), unk, item), true);
         }
         else
         {
           AdminTool.addMessage(0, "[" + chr.getClient().getChannel() + "채널] " + chr.getName() + " : " + text.replaceAll("~", ""));
           FileoutputUtil.log(FileoutputUtil.일반채팅로그, "[일반] [" + chr.getClient().getChannel() + "채널] " + chr.getName() + " : " + text);
-          chr.getMap().broadcastMessage(CField.getChatText(chr, text, c.getPlayer().isSuperGM(), unk, item), c.getPlayer().getTruePosition());
+          chr.getMap().broadcastMessage(CField.getChatText(chr, text, c.getPlayer().isGM(), unk, item), c.getPlayer().getTruePosition());
         }
         DBLogger.getInstance().logChat(LogType.Chat.General, c.getPlayer().getId(), c.getPlayer().getName(), (sb.length() > 0) ? sb.toString() : text, c.getPlayer().getMap().getStreetName() + " - " + c.getPlayer().getMap().getMapName() + " (" + c.getPlayer().getMap().getId() + ")");
       }
@@ -394,15 +282,6 @@ public class ChatHandler
             if (mapleCharacter.getMessenger() == null)
             {
               /* 289 */
-              if (!mapleCharacter.isIntern() || c.getPlayer().isIntern())
-              {
-                /* 290 */
-                c.getSession().writeAndFlush(CField.messengerNote(input, 4, 1));
-                /* 291 */
-                mapleCharacter.getClient().getSession().writeAndFlush(CField.messengerInvite(c.getPlayer().getName(), messenger.getId()));
-                break;
-                /*     */
-              }
               /* 293 */
               c.getSession().writeAndFlush(CField.messengerNote(input, 4, 0));
               /*     */
@@ -419,7 +298,7 @@ public class ChatHandler
           if (World.isConnected(input))
           {
             /* 300 */
-            World.Messenger.messengerInvite(c.getPlayer().getName(), messenger.getId(), input, c.getChannel(), c.getPlayer().isIntern());
+            World.Messenger.messengerInvite(c.getPlayer().getName(), messenger.getId(), input, c.getChannel(), c.getPlayer().isGM());
             break;
             /*     */
           }
@@ -451,12 +330,9 @@ public class ChatHandler
           /*     */
         }
         /* 315 */
-        if (!c.getPlayer().isIntern())
-        {
-          /* 316 */
-          World.Messenger.declineChat(targeted, c.getPlayer().getName());
-          /*     */
-        }
+
+        World.Messenger.declineChat(targeted, c.getPlayer().getName());
+
         /*     */
         break;
       /*     */
@@ -470,7 +346,7 @@ public class ChatHandler
           /* 323 */
           String text = slea.readMapleAsciiString();
           /* 324 */
-          if (!c.getPlayer().isIntern() && text.length() >= 1000)
+          if (text.length() >= 1000)
           {
             /*     */
             return;
@@ -575,7 +451,7 @@ public class ChatHandler
           /* 378 */
           slea.readByte();
           /* 379 */
-          if (!c.getPlayer().isIntern() && text.length() >= 1000)
+          if (text.length() >= 1000)
           {
             /*     */
             return;
@@ -637,14 +513,7 @@ public class ChatHandler
             }
             if (player != null)
             {
-              if (!player.isIntern() || (c.getPlayer().isIntern() && player.isIntern()))
-              {
-                c.getSession().writeAndFlush(CField.getFindReply(recipient, (byte) ch, mode == 68));
-              }
-              else
-              {
-                c.getSession().writeAndFlush(CField.getWhisperReply(recipient, (byte) 0));
-              }
+              c.getSession().writeAndFlush(CField.getFindReply(recipient, (byte) ch, mode == 68));
               return;
             }
           }
@@ -658,12 +527,8 @@ public class ChatHandler
           }
           break;
         }
-        if (!player.isIntern() || (c.getPlayer().isIntern() && player.isIntern()))
-        {
-          c.getSession().writeAndFlush(CField.getFindReplyWithMap(player.getName(), player.getMap().getId(), mode == 68));
-          break;
-        }
-        c.getSession().writeAndFlush(CField.getWhisperReply(recipient, (byte) 0));
+
+        c.getSession().writeAndFlush(CField.getFindReplyWithMap(player.getName(), player.getMap().getId(), mode == 68));
         break;
       }
       case 6:
@@ -700,14 +565,9 @@ public class ChatHandler
           break;
         }
         player2.getClient().getSession().writeAndFlush(CField.getWhisper(c.getPlayer().getName(), c.getChannel(), text, item));
-        if (!c.getPlayer().isIntern() && player2.isIntern())
-        {
-          c.getSession().writeAndFlush(CField.getWhisperReply(recipient, (byte) 0));
-        }
-        else
-        {
-          c.getSession().writeAndFlush(CField.getWhisperReply(recipient, (byte) 1));
-        }
+
+        c.getSession().writeAndFlush(CField.getWhisperReply(recipient, (byte) 1));
+
         AdminTool.addMessage(6, "[" + c.getChannel() + "채널] " + c.getPlayer().getName() + " > " + recipient + " : " + text);
         FileoutputUtil.log(FileoutputUtil.귓속말채팅로그, "[귓속말] [" + c.getChannel() + "채널] " + c.getPlayer().getName() + " > " + recipient + " : " + text);
         break;

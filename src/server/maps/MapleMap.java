@@ -17,8 +17,8 @@ import handling.world.World;
 import scripting.EventInstanceManager;
 import scripting.EventManager;
 import scripting.NPCScriptManager;
-import server.Timer;
 import server.*;
+import server.Timer;
 import server.events.MapleBattleGroundCharacter;
 import server.field.boss.MapleBossManager;
 import server.field.boss.demian.FlyingSwordNode;
@@ -41,8 +41,8 @@ import tools.packet.*;
 
 import java.awt.*;
 import java.text.DecimalFormat;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ScheduledFuture;
@@ -1279,14 +1279,11 @@ public final class MapleMap
 
     List<MonsterDropEntry> finalPublicDropList = new ArrayList<>();
 
-    double dropBuff = chr.getStat().dropBuff;
+    double dropRate = chr.getDropRate();
 
-    if (Calendar.getInstance().get(7) == 7)
-    {
-      dropBuff += 15.0D;
-    }
+    double mesoDropChance = chr.getMesoDropChance();
 
-    dropBuff = Math.min(dropBuff, 600.0D);
+    int runeCurseDecrease = getRuneCurseDecrease();
 
     for (MonsterDropEntry de : publicDropList)
     {
@@ -1294,13 +1291,11 @@ public final class MapleMap
 
       if (de.itemId == 0)
       {
-        d1 = de.chance + (int) Math.floor(((1000000 - de.chance) * (dropBuff / 400.0D)));
-
-        // System.out.println("公共掉落枫币概率计算, 概率 = " + d1);
+        d1 = (int) mesoDropChance;
       }
       else
       {
-        d1 = de.chance * (int) Math.floor((dropBuff + showdown) / 100.0D);
+        d1 = de.chance + de.chance * (int) Math.floor((dropRate + showdown) / 100.0D);
       }
 
       if (chr.getKeyValue(210416, "TotalDeadTime") > 0L)
@@ -1308,7 +1303,14 @@ public final class MapleMap
         d1 = (int) Math.floor(d1 * 0.2D);
       }
 
-      if (Randomizer.nextInt(1000000) <= (int) d1)
+      if (runeCurseDecrease > 0)
+      {
+        d1 = (int) Math.floor(d1 * ((100.0D - runeCurseDecrease) / 100.0D));
+      }
+      
+      chr.dropMessage(6, "道具: " + de.getItemName() + " | 掉落概率" + String.format("%.2f", (d1 / 10000.0D)) + "%");
+
+      if (d1 > 0 && Randomizer.nextInt(1000000) <= d1)
       {
         finalPublicDropList.add(de);
       }
@@ -1361,14 +1363,9 @@ public final class MapleMap
 
         for (MapleCharacter member : memberList)
         {
-          dropBuff = member.getStat().dropBuff;
+          dropRate = member.getDropRate();
 
-          if (Calendar.getInstance().get(7) == 7)
-          {
-            dropBuff += 15.0D;
-          }
-
-          dropBuff = Math.min(dropBuff, 600.0D);
+          mesoDropChance = member.getMesoDropChance();
 
           List<MonsterDropEntry> finalPrivateDropList = new ArrayList<>();
 
@@ -1378,26 +1375,31 @@ public final class MapleMap
 
             if (de.itemId == 0)
             {
-              d1 = de.chance + (int) Math.floor(((1000000 - de.chance) * (dropBuff / 400.0D)));
-
+              d1 = (int) mesoDropChance;
               // System.out.println("独立掉落的枫币概率计算, 概率 = " + d1);
             }
             else
             {
-              d1 = de.chance * (int) Math.floor((dropBuff + showdown) / 100.0D);
+              d1 = de.chance + de.chance * (int) Math.floor((dropRate + showdown) / 100.0D);
             }
 
-            if (member.getKeyValue(210416, "TotalDeadTime") > 0L)
+            if (chr.getKeyValue(210416, "TotalDeadTime") > 0L)
             {
               d1 = (int) Math.floor(d1 * 0.2D);
             }
 
-            if (Randomizer.nextInt(1000000) <= (int) d1)
+            if (runeCurseDecrease > 0)
+            {
+              d1 = (int) Math.floor(d1 * ((100.0D - runeCurseDecrease) / 100.0D));
+            }
+            
+            member.dropMessage(6, "道具: " + de.getItemName() + " | 掉落概率" + String.format("%.2f", (d1 / 10000.0D)) + "%");
+            
+            if (d1 > 0 && Randomizer.nextInt(1000000) <= d1)
             {
               finalPrivateDropList.add(de);
             }
           }
-
 
           if (mob.getStats().isBoss())
           {
@@ -1428,15 +1430,10 @@ public final class MapleMap
       }
       else
       {
-        dropBuff = chr.getStat().dropBuff;
+        dropRate = chr.getDropRate();
 
-        if (Calendar.getInstance().get(7) == 7)
-        {
-          dropBuff += 15.0D;
-        }
-
-        dropBuff = Math.min(dropBuff, 600.0D);
-
+        mesoDropChance = chr.getMesoDropChance();
+        
         List<MonsterDropEntry> finalPrivateDropList = new ArrayList<>();
 
         for (MonsterDropEntry de : privateDropList)
@@ -1445,13 +1442,11 @@ public final class MapleMap
 
           if (de.itemId == 0)
           {
-            d1 = de.chance + (int) Math.floor(((1000000 - de.chance) * (dropBuff / 400.0D)));
-
-            // System.out.println("独立掉落的枫币概率计算, 概率 = " + d1);
+            d1 = (int)mesoDropChance;
           }
           else
           {
-            d1 = de.chance * (int) Math.floor((dropBuff + showdown) / 100.0D);
+            d1 = de.chance * (int) Math.floor((dropRate + showdown) / 100.0D);
           }
 
           if (chr.getKeyValue(210416, "TotalDeadTime") > 0L)
@@ -1459,7 +1454,14 @@ public final class MapleMap
             d1 = (int) Math.floor(d1 * 0.2D);
           }
 
-          if (Randomizer.nextInt(1000000) <= (int) d1)
+          if (runeCurseDecrease > 0)
+          {
+            d1 = (int) Math.floor(d1 * ((100.0D - runeCurseDecrease) / 100.0D));
+          }
+          
+          chr.dropMessage(6, "道具: " + de.getItemName() + " | 掉落概率" + String.format("%.2f", (d1 / 10000.0D)) + "%");
+
+          if (d1 > 0 && Randomizer.nextInt(1000000) <= d1)
           {
             finalPrivateDropList.add(de);
           }
@@ -1511,8 +1513,6 @@ public final class MapleMap
 
     int mobpos = (mob.getTruePosition()).x;
 
-    int mesoRate = ChannelServer.getInstance(this.channel).getMesoRate();
-
     if (de.questid > 0 && chr.getQuestStatus(de.questid) != 1)
     {
       return;
@@ -1560,8 +1560,11 @@ public final class MapleMap
       // Formulas for meso drop
       // https://strategywiki.org/wiki/MapleStory/Formulas
       int minimumMesosDropped = 1;
+
       int maximumMesosDropped = 1;
+
       int mobLevel = mob.getStats().getLevel();
+
       if (mobLevel == 1)
       {
         minimumMesosDropped = 1;
@@ -1602,45 +1605,65 @@ public final class MapleMap
         minimumMesosDropped = (int) Math.round(mobLevel * 5.2);
         maximumMesosDropped = (int) Math.round(mobLevel * 7.8);
       }
-      else if (mobLevel > 80 && mobLevel <= 200)
+      else if (mobLevel > 80 && mobLevel < 200)
       {
         minimumMesosDropped = (int) Math.round(mobLevel * 5.6);
         maximumMesosDropped = (int) Math.round(mobLevel * 8.4);
       }
-      else if (mobLevel > 200 && mobLevel < 240)
+      else if (mobLevel >= 200 && mobLevel < 210)
       {
-        minimumMesosDropped = (int) Math.round(mobLevel * 6.6);
-        maximumMesosDropped = (int) Math.round(mobLevel * 9.6);
+        minimumMesosDropped = (int) Math.round(mobLevel * 9.6);
+        maximumMesosDropped = (int) Math.round(mobLevel * 38.8);
       }
-      else if (mobLevel >= 240 && mobLevel < 270)
+      else if (mobLevel >= 200 && mobLevel < 210)
       {
-        minimumMesosDropped = (int) Math.round(mobLevel * 7.6);
-        maximumMesosDropped = (int) Math.round(mobLevel * 11.2);
+        minimumMesosDropped = (int) Math.round(mobLevel * 12.6);
+        maximumMesosDropped = (int) Math.round(mobLevel * 41.8);
+      }
+      else if (mobLevel >= 210 && mobLevel < 220)
+      {
+        minimumMesosDropped = (int) Math.round(mobLevel * 13.6);
+        maximumMesosDropped = (int) Math.round(mobLevel * 45.8);
+      }
+      else if (mobLevel >= 220 && mobLevel < 230)
+      {
+        minimumMesosDropped = (int) Math.round(mobLevel * 14.6);
+        maximumMesosDropped = (int) Math.round(mobLevel * 48.8);
+      }
+      else if (mobLevel >= 230 && mobLevel < 240)
+      {
+        minimumMesosDropped = (int) Math.round(mobLevel * 15.6);
+        maximumMesosDropped = (int) Math.round(mobLevel * 40.8);
+      }
+      else if (mobLevel >= 240 && mobLevel < 250)
+      {
+        minimumMesosDropped = (int) Math.round(mobLevel * 15.6);
+        maximumMesosDropped = (int) Math.round(mobLevel * 43.8);
+      }
+      else if (mobLevel >= 250 && mobLevel < 260)
+      {
+        minimumMesosDropped = (int) Math.round(mobLevel * 15.6);
+        maximumMesosDropped = (int) Math.round(mobLevel * 46.8);
+      }
+      else if (mobLevel >= 260 && mobLevel < 270)
+      {
+        minimumMesosDropped = (int) Math.round(mobLevel * 15.6);
+        maximumMesosDropped = (int) Math.round(mobLevel * 49.8);
       }
       else if (mobLevel >= 270 && mobLevel <= 300)
       {
-        minimumMesosDropped = (int) Math.round(mobLevel * 8.4);
-        maximumMesosDropped = (int) Math.round(mobLevel * 13.8);
+        minimumMesosDropped = (int) Math.round(mobLevel * 15.4);
+        maximumMesosDropped = (int) Math.round(mobLevel * 52.8);
       }
       int mesos = Randomizer.nextInt(1 + maximumMesosDropped - minimumMesosDropped) + minimumMesosDropped;
-
-      double mesoBuff = chr.getStat().mesoBuff;
-
-      if (Calendar.getInstance().get(7) == 1)
-      {
-        mesoBuff += 15.0D;
-      }
-
+      
       // 打等级范围内的怪有20%额外枫币
-      if (chr.getLevel() >= mobLevel - 4 && chr.getLevel() <= mobLevel + 4)
+      if (chr.getLevel() >= mobLevel - 10 && chr.getLevel() <= mobLevel + 10)
       {
         mesos = (int) Math.floor(mesos * 1.2);
       }
 
-      mesoBuff = Math.min(mesoBuff, 400.0D);
-
-
-      mesos = (int) (mesos * mesoBuff / 100.0D * mesoRate);
+      mesos = (int) (mesos * (chr.getMesoRate() / 100.0D));
 
       // 超过20级但是小于40级去刷怪, 只掉60%的钱
       if (chr.getLevel() - mobLevel >= 20 && chr.getLevel() - mobLevel < 40)
@@ -8123,7 +8146,7 @@ public final class MapleMap
         MapleCharacter chr = itr.next();
         if (source == null)
         {
-          if (chr.isStaff())
+          if (chr.isGM())
           {
             chr.getClient().getSession().writeAndFlush(packet);
           }

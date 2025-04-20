@@ -1,6 +1,7 @@
 package tools;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -8,7 +9,7 @@ import java.util.TimeZone;
 
 public class StringUtil
 {
-  private static final Charset ASCII = Charset.forName("MS949");
+  private static final Charset ASCII = StandardCharsets.UTF_8;
   
   public static String getLeftPaddedStr(String in, char padchar, int length)
   {

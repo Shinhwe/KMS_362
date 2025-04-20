@@ -64,13 +64,12 @@ public enum ItemLoader
     if ((GameConstants.isArcaneSymbol(equip.getItemId()) || GameConstants.isAuthenticSymbol(equip.getItemId()) || equip.getItemId() / 1000 == 1162) && equip.getItemId() != 1162002 && equip.獲取潛能等級().獲取潛能等級的值() > 0)
     {
       equip.設置潛能等級(裝備潛能等級.沒有潛能);
-      equip.設置未鑑定潛能條數((byte) 0);
-      equip.setPotential1(0);
-      equip.setPotential2(0);
-      equip.setPotential3(0);
-      equip.setPotential4(0);
-      equip.setPotential5(0);
-      equip.setPotential6(0);
+      equip.設置第一條主潛能(0);
+      equip.設置第二條主潛能(0);
+      equip.設置第三條主潛能(0);
+      equip.設置第一條附加潛能(0);
+      equip.設置第二條附加潛能(0);
+      equip.設置第三條附加潛能(0);
     }
     if (equip.getItemId() == 1672077)
     {
@@ -128,26 +127,25 @@ public enum ItemLoader
 
     if (equip.getItemId() == 1672082)
     {
-      equip.setPotential1(60011);
-      equip.setPotential2(60010);
+      equip.設置第一條主潛能(60011);
+      equip.設置第二條主潛能(60010);
     }
     if (equip.getItemId() == 1672083)
     {
       equip.設置潛能等級(裝備潛能等級.傳說);
-      equip.setPotential1(40601);
-      equip.setPotential2(30291);
-      equip.setPotential3(42061);
-      equip.setPotential4(42060);
-      equip.setPotential5(42060);
+      equip.設置第一條主潛能(40601);
+      equip.設置第二條主潛能(30291);
+      equip.設置第三條主潛能(42061);
+      equip.設置第一條附加潛能(42060);
+      equip.設置第二條附加潛能(42060);
       equip.setStarForceLevel((byte) 15);
       equip.calcStarForceStats();
     }
     if (equip.getItemId() == 1672085 || equip.getItemId() == 1672086)
     {
       equip.設置潛能等級(裝備潛能等級.傳說);
-      equip.設置未鑑定潛能條數((byte) 2);
-      equip.setPotential1(40601);
-      equip.setPotential2(30291);
+      equip.設置第一條主潛能(40601);
+      equip.設置第二條主潛能(30291);
       equip.setStarForceLevel((byte) 15);
       equip.calcStarForceStats();
     }
@@ -297,15 +295,15 @@ public enum ItemLoader
               equip.setGMLog(rs.getString("GM_Log"));
               equip.setDurability(rs.getInt("durability"));
               equip.setStarForceLevel(rs.getByte("starForceLevel"));
-              equip.setPotentialLevel(rs.getByte("potentialLevel"));
-              equip.setAdditionalPotentialLevel(rs.getByte("additionalPotentialLevel"));
-              equip.設置未鑑定潛能條數(rs.getByte("line"));
-              equip.setPotential1(rs.getInt("potential1"));
-              equip.setPotential2(rs.getInt("potential2"));
-              equip.setPotential3(rs.getInt("potential3"));
-              equip.setPotential4(rs.getInt("potential4"));
-              equip.setPotential5(rs.getInt("potential5"));
-              equip.setPotential6(rs.getInt("potential6"));
+              equip.設置潛能等級(rs.getByte("potentialLevel"));
+              equip.設置未鑑定潛能條數(rs.getByte("potentialLine"));
+              equip.設置未鑑定附加潛能條數(rs.getByte("additionalPotentialLine"));
+              equip.設置第一條主潛能(rs.getInt("potential1"));
+              equip.設置第二條主潛能(rs.getInt("potential2"));
+              equip.設置第三條主潛能(rs.getInt("potential3"));
+              equip.設置第一條附加潛能(rs.getInt("potential4"));
+              equip.設置第二條附加潛能(rs.getInt("potential5"));
+              equip.設置第三條附加潛能(rs.getInt("potential6"));
               equip.setGiftFrom(rs.getString("sender"));
               equip.setIncSkill(rs.getInt("incSkill"));
               equip.setCharmEXP(rs.getShort("charmEXP"));
@@ -647,14 +645,14 @@ public enum ItemLoader
           pse.setInt(37, equip.getDurability());
           pse.setByte(38, equip.getStarForceLevel());
           pse.setByte(39, equip.獲取潛能等級().獲取潛能等級的值());
-          pse.setByte(40, equip.獲取附加潛能等級().獲取潛能等級的值());
-          pse.setByte(41, equip.獲取未鑑定潛能條數());
-          pse.setInt(42, equip.getPotential1());
-          pse.setInt(43, equip.getPotential2());
-          pse.setInt(44, equip.getPotential3());
-          pse.setInt(45, equip.getPotential4());
-          pse.setInt(46, equip.getPotential5());
-          pse.setInt(47, equip.getPotential6());
+          pse.setByte(40, equip.獲取未鑑定潛能條數());
+          pse.setByte(41, equip.獲取未鑑定附加潛能條數());
+          pse.setInt(42, equip.獲取第一條主潛能());
+          pse.setInt(43, equip.獲取第二條主潛能());
+          pse.setInt(44, equip.獲取第三條主潛能());
+          pse.setInt(45, equip.獲取第一條附加潛能());
+          pse.setInt(46, equip.獲取第二條附加潛能());
+          pse.setInt(47, equip.獲取第三條附加潛能());
           pse.setInt(48, equip.getIncSkill());
           pse.setShort(49, equip.getCharmEXP());
           pse.setShort(50, (short) 0);
@@ -763,7 +761,7 @@ public enum ItemLoader
       }
       String query_2 = "INSERT INTO `" + this.table + "` (" + this.arg + ", itemid, inventorytype, position, quantity, owner, GM_Log, uniqueid, expiredate, flag, `type`, sender, marriageId" + ", price, partyid, mobid, objectid" + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?" + ", ?, ?, ?, ?" + ")";
       ps = con.prepareStatement(query_2, 1);
-      PreparedStatement pse = con.prepareStatement("INSERT INTO " + this.table_equip + " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+      PreparedStatement pse = con.prepareStatement("INSERT INTO " + this.table_equip + " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
       Iterator<Pair<Item, MapleInventoryType>> iter = items.iterator();
       while (iter.hasNext())
       {
@@ -887,14 +885,14 @@ public enum ItemLoader
             pse.setInt(37, equip.getDurability());
             pse.setByte(38, equip.getStarForceLevel());
             pse.setByte(39, equip.獲取潛能等級().獲取潛能等級的值());
-            pse.setByte(40, equip.獲取附加潛能等級().獲取潛能等級的值());
-            pse.setByte(41, equip.獲取未鑑定潛能條數());
-            pse.setInt(42, equip.getPotential1());
-            pse.setInt(43, equip.getPotential2());
-            pse.setInt(44, equip.getPotential3());
-            pse.setInt(45, equip.getPotential4());
-            pse.setInt(46, equip.getPotential5());
-            pse.setInt(47, equip.getPotential6());
+            pse.setByte(40, equip.獲取未鑑定潛能條數());
+            pse.setByte(41, equip.獲取未鑑定附加潛能條數());
+            pse.setInt(42, equip.獲取第一條主潛能());
+            pse.setInt(43, equip.獲取第二條主潛能());
+            pse.setInt(44, equip.獲取第三條主潛能());
+            pse.setInt(45, equip.獲取第一條附加潛能());
+            pse.setInt(46, equip.獲取第二條附加潛能());
+            pse.setInt(47, equip.獲取第三條附加潛能());
             pse.setInt(48, equip.getIncSkill());
             pse.setShort(49, equip.getCharmEXP());
             pse.setShort(50, (short) 0);
@@ -1052,15 +1050,15 @@ public enum ItemLoader
               equip.setGMLog(rs.getString("GM_Log"));
               equip.setDurability(rs.getInt("durability"));
               equip.setStarForceLevel(rs.getByte("starForceLevel"));
-              equip.setPotentialLevel(rs.getByte("potentialLevel"));
-              equip.setAdditionalPotentialLevel(rs.getByte("additionalPotentialLevel"));
-              equip.設置未鑑定潛能條數(rs.getByte("line"));
-              equip.setPotential1(rs.getInt("potential1"));
-              equip.setPotential2(rs.getInt("potential2"));
-              equip.setPotential3(rs.getInt("potential3"));
-              equip.setPotential4(rs.getInt("potential4"));
-              equip.setPotential5(rs.getInt("potential5"));
-              equip.setPotential6(rs.getInt("potential6"));
+              equip.設置潛能等級(rs.getByte("potentialLevel"));
+              equip.設置未鑑定潛能條數(rs.getByte("potentialLine"));
+              equip.設置未鑑定附加潛能條數(rs.getByte("additionalPotentialLine"));
+              equip.設置第一條主潛能(rs.getInt("potential1"));
+              equip.設置第二條主潛能(rs.getInt("potential2"));
+              equip.設置第三條主潛能(rs.getInt("potential3"));
+              equip.設置第一條附加潛能(rs.getInt("potential4"));
+              equip.設置第二條附加潛能(rs.getInt("potential5"));
+              equip.設置第三條附加潛能(rs.getInt("potential6"));
               equip.setGiftFrom(rs.getString("sender"));
               equip.setIncSkill(rs.getInt("incSkill"));
               equip.setCharmEXP(rs.getShort("charmEXP"));

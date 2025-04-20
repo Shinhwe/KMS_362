@@ -33,19 +33,19 @@ function action(mode, type, sel) {
         cm.gainItem(2630089, -1);
         ItemInfo = Packages.server.MapleItemInformationProvider.getInstance().getEquipById(1042231);
 	ItemInfo.setReqLevel(0);
-	ItemInfo.setPotentialLevel(20);
+	ItemInfo.設置潛能等級(20);
         ItemInfo.setStr(600);
 	ItemInfo.setDex(600);
 	ItemInfo.setInt(600);
 	ItemInfo.setLuk(600);
 	ItemInfo.setWatk(600);
 	ItemInfo.setMatk(600);
-	ItemInfo.setPotential1(40650);
-	ItemInfo.setPotential2(40650);
-	ItemInfo.setPotential3(40650);
-        ItemInfo.setPotential4(40650);
-        ItemInfo.setPotential5(40650);
-        ItemInfo.setPotential6(40650);
+	ItemInfo.設置第一條主潛能(40650);
+	ItemInfo.設置第二條主潛能(40650);
+	ItemInfo.設置第三條主潛能(40650);
+        ItemInfo.設置第一條附加潛能(40650);
+        ItemInfo.設置第二條附加潛能(40650);
+        ItemInfo.設置第三條附加潛能(40650);
 	ItemInfo.setExpiration(System.currentTimeMillis() + (1 * 5 * 3600 * 1000));
         MapleInventoryManipulator.addFromDrop(cm.getClient(), ItemInfo, false);
 	}

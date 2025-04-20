@@ -25,8 +25,8 @@ import tools.packet.CField;
 import tools.packet.CWvsContext;
 
 import java.awt.*;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 
 public class GameConstants
 {
@@ -2421,7 +2421,7 @@ public class GameConstants
     return (itemId / 10000 == 500);
   }
 
-  public static boolean isArrowForCROSSBOW (int itemId)
+  public static boolean isArrowForCrossBOW (int itemId)
   {
     return (itemId >= 2061000 && itemId < 2062000);
   }
@@ -3043,12 +3043,12 @@ public class GameConstants
     return 100;
   }
 
-  public static int 獲取烙印的印章成功率 (int 印章Id)
+  public static int 獲取烙印印章成功率 (int 印章Id)
   {
     return 100;
   }
 
-  public static int 獲取附加烙印的印章成功率 (int 印章Id)
+  public static int 獲取附加烙印印章成功率 (int 印章Id)
   {
     return 100;
   }

@@ -39,8 +39,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 
 public abstract class AbstractPlayerInteraction
 {
@@ -793,10 +793,10 @@ public abstract class AbstractPlayerInteraction
     {
       return this.c.getPlayer().isGM() ? 1 : 0;
     }
-    if (type.equals("ADMIN"))
-    {
-      return this.c.getPlayer().isAdmin() ? 1 : 0;
-    }
+    // if (type.equals("ADMIN"))
+    // {
+    //   return this.c.getPlayer().isAdmin() ? 1 : 0;
+    // }
     if (type.equals("GENDER"))
     {
       return this.c.getPlayer().getGender();
@@ -1214,9 +1214,9 @@ public abstract class AbstractPlayerInteraction
         {
           if (pcA == id)
           {
-            item.setPotential1(60056);
-            item.setPotential2(60057);
-            item.setPotential3(60058);
+            item.設置第一條主潛能(60056);
+            item.設置第二條主潛能(60057);
+            item.設置第三條主潛能(60058);
             item.setStarForceLevel((byte) 17);
             item.calcStarForceStats();
           }
@@ -1225,9 +1225,9 @@ public abstract class AbstractPlayerInteraction
         {
           if (pcAr == id)
           {
-            item.setPotential1(60057);
-            item.setPotential2(60085);
-            item.setPotential3(60086);
+            item.設置第一條主潛能(60057);
+            item.設置第二條主潛能(60085);
+            item.設置第三條主潛能(60086);
             item.setStarForceLevel((byte) 15);
             item.calcStarForceStats();
           }

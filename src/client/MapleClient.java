@@ -1811,7 +1811,7 @@ public class MapleClient
           stat1.setCustomData("3");
         }
       }
-      if (this.player.getMapId() == 180000002 && !this.player.isIntern())
+      if (this.player.getMapId() == 180000002)
       {
         MapleQuestStatus stat1 = this.player.getQuestNAdd(MapleQuest.getInstance(123455));
         MapleQuestStatus stat2 = this.player.getQuestNAdd(MapleQuest.getInstance(123456));

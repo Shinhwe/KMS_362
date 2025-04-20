@@ -811,16 +811,11 @@ public class MapleInventoryManipulator
       {
         throw new RuntimeException("Trying to create equip with non-one quantity");
       }
-      if (enhance)
-      {
-        item = checkEnhanced(item, c.getPlayer());
-      }
-      final Equip equip = (Equip) item;
-      if (equip.getItemId() == 1672082)
-      {
-        equip.setPotential1(60011);
-        equip.setPotential2(60010);
-      }
+      // TODO: 掉落帶潛能的裝備
+      // if (enhance)
+      // {
+      //   item = checkEnhanced(item, c.getPlayer());
+      // }
       final short newSlot3 = c.getPlayer().getInventory(type).addItem(item);
       if (newSlot3 == -1)
       {
@@ -870,18 +865,6 @@ public class MapleInventoryManipulator
     return true;
   }
 
-  private static Item checkEnhanced (final Item before, final MapleCharacter chr)
-  {
-    if (before instanceof Equip)
-    {
-      final Equip eq = (Equip) before;
-      if (eq.獲取附加潛能等級() == 裝備潛能等級.沒有潛能 && (eq.getTotalUpgradeSlots() >= 1 || eq.getEnchantLevel() >= 1) && GameConstants.canScroll(eq.getItemId()) && Randomizer.nextInt(100) >= 80)
-      {
-        eq.resetPotential();
-      }
-    }
-    return before;
-  }
 
   public static boolean checkSpace (final MapleClient c, final int itemid, int quantity, final String owner)
   {
@@ -1269,12 +1252,12 @@ public class MapleInventoryManipulator
       return;
     }
     List<Integer> potentials = new ArrayList<Integer>();
-    potentials.add(source.getPotential1());
-    potentials.add(source.getPotential2());
-    potentials.add(source.getPotential3());
-    potentials.add(source.getPotential4());
-    potentials.add(source.getPotential5());
-    potentials.add(source.getPotential6());
+    potentials.add(source.獲取第一條主潛能());
+    potentials.add(source.獲取第二條主潛能());
+    potentials.add(source.獲取第三條主潛能());
+    potentials.add(source.獲取第一條附加潛能());
+    potentials.add(source.獲取第二條附加潛能());
+    potentials.add(source.獲取第三條附加潛能());
     for (final Integer potential : potentials)
     {
       int lv = ii.getReqLevel(source.getItemId()) / 10 - 1;
@@ -1382,12 +1365,12 @@ public class MapleInventoryManipulator
         c.getPlayer().getClient().send(CWvsContext.SpritPandent(target.getPosition(), false, 0, 0, 0));
       }
       potentials = new ArrayList<Integer>();
-      potentials.add(target.getPotential1());
-      potentials.add(target.getPotential2());
-      potentials.add(target.getPotential3());
-      potentials.add(target.getPotential4());
-      potentials.add(target.getPotential5());
-      potentials.add(target.getPotential6());
+      potentials.add(target.獲取第一條主潛能());
+      potentials.add(target.獲取第二條主潛能());
+      potentials.add(target.獲取第三條主潛能());
+      potentials.add(target.獲取第一條附加潛能());
+      potentials.add(target.獲取第二條附加潛能());
+      potentials.add(target.獲取第三條附加潛能());
       for (final Integer potential2 : potentials)
       {
         int lv2 = ii.getReqLevel(source.getItemId()) / 10 - 1;
@@ -1623,12 +1606,12 @@ public class MapleInventoryManipulator
     }
     c.getPlayer().setSoulMP(null);
     final List<Integer> potentials = new ArrayList<Integer>();
-    potentials.add(source.getPotential1());
-    potentials.add(source.getPotential2());
-    potentials.add(source.getPotential3());
-    potentials.add(source.getPotential4());
-    potentials.add(source.getPotential5());
-    potentials.add(source.getPotential6());
+    potentials.add(source.獲取第一條主潛能());
+    potentials.add(source.獲取第二條主潛能());
+    potentials.add(source.獲取第三條主潛能());
+    potentials.add(source.獲取第一條附加潛能());
+    potentials.add(source.獲取第二條附加潛能());
+    potentials.add(source.獲取第三條附加潛能());
     for (final Integer potential : potentials)
     {
       int lv = ii.getReqLevel(source.getItemId()) / 10 - 1;

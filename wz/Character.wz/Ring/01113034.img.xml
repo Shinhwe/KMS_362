@@ -17,17 +17,21 @@
 <int name="reqDEX" value="0"/>
 <int name="reqINT" value="0"/>
 <int name="reqLUK" value="0"/>
-<int name="incSTR" value="150"/>
-<int name="incINT" value="150"/>
-<int name="incDEX" value="150"/>
-<int name="incLUK" value="150"/>
-<int name="incPAD" value="150"/>
-<int name="incMAD" value="150"/>
-<int name="tuc" value="5"/>
+    <int name="incSTR" value="10"/>
+    <int name="incDEX" value="10"/>
+    <int name="incLUK" value="10"/>
+    <int name="incINT" value="10"/>
 <int name="price" value="1"/>
-<int name="notSale" value="1"/>
-<int name="tradeBlock" value="1"/>
+    <int name="cash" value="0"/>
+    <int name="incMHP" value="100"/>
+    <int name="incMMP" value="100"/>
+    <int name="incPDD" value="100"/>
+    <int name="incMDD" value="100"/>
+    <int name="incPAD" value="10"/>
+    <int name="incMAD" value="10"/>
 <int name="onlyEquip" value="1"/>
-<int name="setItemID" value="1000"/>
+    <int name="tradeAvailable" value="2"/>
+    <int name="equipTradeBlock" value="1"/>
+    <int name="tuc" value="1"/>
 </imgdir>
 </imgdir>

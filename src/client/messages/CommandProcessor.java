@@ -2,7 +2,10 @@ package client.messages;
 
 import client.MapleCharacter;
 import client.MapleClient;
-import client.messages.commands.*;
+import client.messages.commands.CommandExecute;
+import client.messages.commands.CommandObject;
+import client.messages.commands.GMCommand;
+import client.messages.commands.PlayerCommand;
 import constants.ServerConstants;
 import database.DatabaseConnection;
 import tools.FileoutputUtil;
@@ -19,10 +22,10 @@ public class CommandProcessor
 {
   private static final HashMap<String, CommandObject> commands = new HashMap<>();
   private static final HashMap<Integer, ArrayList<String>> commandList = new HashMap<>();
-  
+
   static
   {
-    Class[] array = {PlayerCommand.class, InternCommand.class, GMCommand.class, AdminCommand.class, DonatorCommand.class, SuperDonatorCommand.class, SuperGMCommand.class, SLFCGGameCommand.class}, CommandFiles = array;
+    Class[] array = { PlayerCommand.class, GMCommand.class };
     for (Class<?> clasz : array)
     {
       try
@@ -108,7 +111,7 @@ public class CommandProcessor
   
   public static boolean processCommand(MapleClient c, String line, ServerConstants.CommandType type)
   {
-    if (line.charAt(0) == ServerConstants.PlayerGMRank.NORMAL.getCommandPrefix() || (c.getPlayer().getGMLevel() > ServerConstants.PlayerGMRank.NORMAL.getLevel() && line.charAt(0) == ServerConstants.PlayerGMRank.DONATOR.getCommandPrefix()))
+    if (line.charAt(0) == ServerConstants.PlayerGMRank.NORMAL.getCommandPrefix())
     {
       String[] arrayOfString = line.split(" ");
       arrayOfString[0] = arrayOfString[0].toLowerCase();
@@ -132,7 +135,7 @@ public class CommandProcessor
       }
       return true;
     }
-    if (c.getPlayer().getGMLevel() <= ServerConstants.PlayerGMRank.NORMAL.getLevel() || (line.charAt(0) != ServerConstants.PlayerGMRank.SUPERGM.getCommandPrefix() && line.charAt(0) != ServerConstants.PlayerGMRank.INTERN.getCommandPrefix() && line.charAt(0) != ServerConstants.PlayerGMRank.GM.getCommandPrefix() && line.charAt(0) != ServerConstants.PlayerGMRank.ADMIN.getCommandPrefix()))
+    if (c.getPlayer().getGMLevel() <= ServerConstants.PlayerGMRank.NORMAL.getLevel() || (line.charAt(0) != ServerConstants.PlayerGMRank.GM.getCommandPrefix()))
     {
       return false;
     }

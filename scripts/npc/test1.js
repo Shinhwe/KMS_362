@@ -169,13 +169,13 @@ function action(M, T, S)
 					case 21: inz.setAllStat(S4); break;
 					case 22: inz.setReqLevel(-S4); break;
 		//			case 22: inz.setDownLevel(0x88); break;
-					case 23: inz.setPotentialLevel(S4); break;
-					case 24: inz.setPotential1(S4); break;
-					case 25: inz.setPotential2(S4); break;
-					case 26: inz.setPotential3(S4); break;
-					case 27: inz.setPotential4(S4); break;
-					case 28: inz.setPotential5(S4); break;
-					case 29: inz.setPotential6(S4); break;
+					case 23: inz.設置潛能等級(S4); break;
+					case 24: inz.設置第一條主潛能(S4); break;
+					case 25: inz.設置第二條主潛能(S4); break;
+					case 26: inz.設置第三條主潛能(S4); break;
+					case 27: inz.設置第一條附加潛能(S4); break;
+					case 28: inz.設置第二條附加潛能(S4); break;
+					case 29: inz.設置第三條附加潛能(S4); break;
 				}
 		        cm.getPlayer().forceReAddItem(inz, Packages.client.inventory.MapleInventoryType.EQUIP);
                         rotation = 0;

@@ -1,6 +1,7 @@
 package constants;
 
 import client.inventory.Equip;
+import client.inventory.裝備潛能等級;
 import server.MapleItemInformationProvider;
 
 import java.util.ArrayList;
@@ -100,6 +101,16 @@ public class 潛能生成器
   public static HashMap<Integer, ArrayList<權重>> 副手武器附加潛能權重Map = new HashMap<>();
 
   public static HashMap<Integer, ArrayList<權重>> 徽章附加潛能權重Map = new HashMap<>();
+
+  public static int 生成潛能 (Equip 裝備, 裝備潛能等級 潛能等級)
+  {
+    return 生成潛能(裝備.getItemId(), 潛能等級.獲取潛能等級的值() - 16);
+  }
+
+  public static int 生成附加潛能 (Equip 裝備, 裝備潛能等級 潛能等級)
+  {
+    return 生成附加潛能(裝備.getItemId(), 潛能等級.獲取潛能等級的值() - 16);
+  }
 
   public static int 生成潛能 (int 物品Id, int 潛能等級)
   {
@@ -4465,20 +4476,20 @@ public class 潛能生成器
     }
   }
 
-  public static boolean 檢查裝備潛能2是否合法 (Equip 需要檢查的裝備)
+  public static boolean 檢查裝備第二條主潛能是否合法 (Equip 需要檢查的裝備)
   {
-    int 潛能1Id = 需要檢查的裝備.getPotential1();
+    int 第一條主潛能 = 需要檢查的裝備.獲取第一條主潛能();
 
-    int 潛能2Id = 需要檢查的裝備.getPotential2();
+    int 第二條主潛能 = 需要檢查的裝備.獲取第二條主潛能();
 
     int count = 0;
 
-    if (添加技能潛能列表.contains(潛能1Id))
+    if (添加技能潛能列表.contains(第一條主潛能))
     {
       count += 1;
     }
 
-    if (添加技能潛能列表.contains(潛能2Id))
+    if (添加技能潛能列表.contains(第二條主潛能))
     {
       count += 1;
     }
@@ -4491,28 +4502,28 @@ public class 潛能生成器
     return true;
   }
 
-  public static boolean 檢查裝備潛能3是否合法 (Equip 需要檢查的裝備)
+  public static boolean 檢查裝備第三條主潛能是否合法 (Equip 需要檢查的裝備)
   {
-    int 潛能1Id = 需要檢查的裝備.getPotential1();
+    int 第一條主潛能 = 需要檢查的裝備.獲取第一條主潛能();
 
-    int 潛能2Id = 需要檢查的裝備.getPotential2();
+    int 第二條主潛能 = 需要檢查的裝備.獲取第二條主潛能();
 
-    int 潛能3Id = 需要檢查的裝備.getPotential3();
+    int 第三條主潛能 = 需要檢查的裝備.獲取第三條主潛能();
 
 
     int count = 0;
 
-    if (添加技能潛能列表.contains(潛能1Id))
+    if (添加技能潛能列表.contains(第一條主潛能))
     {
       count += 1;
     }
 
-    if (添加技能潛能列表.contains(潛能2Id))
+    if (添加技能潛能列表.contains(第二條主潛能))
     {
       count += 1;
     }
 
-    if (添加技能潛能列表.contains(潛能3Id))
+    if (添加技能潛能列表.contains(第三條主潛能))
     {
       count += 1;
     }
@@ -4524,39 +4535,17 @@ public class 潛能生成器
 
     count = 0;
 
-    if (無視防禦力潛能列表.contains(潛能1Id))
+    if (無視防禦力潛能列表.contains(第一條主潛能))
     {
       count += 1;
     }
 
-    if (無視防禦力潛能列表.contains(潛能2Id))
+    if (無視防禦力潛能列表.contains(第二條主潛能))
     {
       count += 1;
     }
 
-    if (無視防禦力潛能列表.contains(潛能3Id))
-    {
-      count += 1;
-    }
-
-    if (count > 2)
-    {
-      return false;
-    }
-
-    count = 0;
-
-    if (BOSS傷害潛能列表.contains(潛能1Id))
-    {
-      count += 1;
-    }
-
-    if (BOSS傷害潛能列表.contains(潛能2Id))
-    {
-      count += 1;
-    }
-
-    if (BOSS傷害潛能列表.contains(潛能3Id))
+    if (無視防禦力潛能列表.contains(第三條主潛能))
     {
       count += 1;
     }
@@ -4568,17 +4557,17 @@ public class 潛能生成器
 
     count = 0;
 
-    if (掉落率潛能列表.contains(潛能1Id))
+    if (BOSS傷害潛能列表.contains(第一條主潛能))
     {
       count += 1;
     }
 
-    if (掉落率潛能列表.contains(潛能2Id))
+    if (BOSS傷害潛能列表.contains(第二條主潛能))
     {
       count += 1;
     }
 
-    if (掉落率潛能列表.contains(潛能3Id))
+    if (BOSS傷害潛能列表.contains(第三條主潛能))
     {
       count += 1;
     }
@@ -4590,17 +4579,141 @@ public class 潛能生成器
 
     count = 0;
 
-    if (楓幣數量潛能列表.contains(潛能1Id))
+    if (掉落率潛能列表.contains(第一條主潛能))
     {
       count += 1;
     }
 
-    if (楓幣數量潛能列表.contains(潛能2Id))
+    if (掉落率潛能列表.contains(第二條主潛能))
     {
       count += 1;
     }
 
-    if (楓幣數量潛能列表.contains(潛能3Id))
+    if (掉落率潛能列表.contains(第三條主潛能))
+    {
+      count += 1;
+    }
+
+    if (count > 2)
+    {
+      return false;
+    }
+
+    count = 0;
+
+    if (楓幣數量潛能列表.contains(第一條主潛能))
+    {
+      count += 1;
+    }
+
+    if (楓幣數量潛能列表.contains(第二條主潛能))
+    {
+      count += 1;
+    }
+
+    if (楓幣數量潛能列表.contains(第三條主潛能))
+    {
+      count += 1;
+    }
+
+    if (count > 2)
+    {
+      return false;
+    }
+
+    return true;
+  }
+
+
+  public static boolean 檢查裝備第三條附加潛能是否合法 (Equip 需要檢查的裝備)
+  {
+    int 第一條附加潛能 = 需要檢查的裝備.獲取第一條附加潛能();
+
+    int 第二條附加潛能 = 需要檢查的裝備.獲取第二條附加潛能();
+
+    int 第三條附加潛能 = 需要檢查的裝備.獲取第三條附加潛能();
+
+
+    int count = 0;
+
+
+    if (無視防禦力附加潛能列表.contains(第一條附加潛能))
+    {
+      count += 1;
+    }
+
+    if (無視防禦力附加潛能列表.contains(第二條附加潛能))
+    {
+      count += 1;
+    }
+
+    if (無視防禦力附加潛能列表.contains(第三條附加潛能))
+    {
+      count += 1;
+    }
+
+    if (count > 2)
+    {
+      return false;
+    }
+
+    count = 0;
+
+    if (BOSS傷害附加潛能列表.contains(第一條附加潛能))
+    {
+      count += 1;
+    }
+
+    if (BOSS傷害附加潛能列表.contains(第二條附加潛能))
+    {
+      count += 1;
+    }
+
+    if (BOSS傷害附加潛能列表.contains(第三條附加潛能))
+    {
+      count += 1;
+    }
+
+    if (count > 2)
+    {
+      return false;
+    }
+
+    count = 0;
+
+    if (掉落率附加潛能列表.contains(第一條附加潛能))
+    {
+      count += 1;
+    }
+
+    if (掉落率附加潛能列表.contains(第二條附加潛能))
+    {
+      count += 1;
+    }
+
+    if (掉落率附加潛能列表.contains(第三條附加潛能))
+    {
+      count += 1;
+    }
+
+    if (count > 2)
+    {
+      return false;
+    }
+
+    count = 0;
+
+    if (楓幣數量附加潛能列表.contains(第一條附加潛能))
+    {
+      count += 1;
+    }
+
+    if (楓幣數量附加潛能列表.contains(第二條附加潛能))
+    {
+      count += 1;
+    }
+
+    if (楓幣數量附加潛能列表.contains(第三條附加潛能))
     {
       count += 1;
     }

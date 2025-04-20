@@ -39,14 +39,14 @@ function action(mode, type, sel) {
 	ItemInfo.setLuk(180);
 	ItemInfo.setWatk(100);
 	ItemInfo.setMatk(100);
-	ItemInfo.setPotentialLevel(20);
-	ItemInfo.setPotentialLevel(20);
-	ItemInfo.setPotential1(40603);
-	ItemInfo.setPotential2(40292);
-	ItemInfo.setPotential3(40056);
-	ItemInfo.setPotential4(30055);
-	ItemInfo.setPotential5(30055);
-	ItemInfo.setPotential6(30055);
+	ItemInfo.設置潛能等級(20);
+	ItemInfo.設置潛能等級(20);
+	ItemInfo.設置第一條主潛能(40603);
+	ItemInfo.設置第二條主潛能(40292);
+	ItemInfo.設置第三條主潛能(40056);
+	ItemInfo.設置第一條附加潛能(30055);
+	ItemInfo.設置第二條附加潛能(30055);
+	ItemInfo.設置第三條附加潛能(30055);
         MapleInventoryManipulator.addFromDrop(cm.getClient(), ItemInfo, false);
 	}
 }

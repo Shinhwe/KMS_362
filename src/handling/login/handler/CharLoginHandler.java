@@ -25,7 +25,7 @@ import tools.packet.LoginPacket;
 import tools.packet.PacketHelper;
 
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -597,7 +597,7 @@ public class CharLoginHandler
       c.getSession().close();
       return;
     }
-    byte[] nowpass = c.getSecondPassword().getBytes(Charset.forName("MS949"));
+    byte[] nowpass = c.getSecondPassword().getBytes(StandardCharsets.UTF_8);
     for (int i = 0; i < nowpass.length; i++)
     {
       int real = nowpass[i] & 0xFF;

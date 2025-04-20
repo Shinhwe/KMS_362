@@ -1001,12 +1001,12 @@ public class PacketHelper
     mplew.writeMapleAsciiString(equip.getOwner());
     mplew.write(equip.獲取潛能等級().獲取潛能等級的值());
     mplew.write(equip.getStarForceLevel());
-    mplew.writeShort(equip.getPotential1());
-    mplew.writeShort(equip.getPotential2());
-    mplew.writeShort(equip.getPotential3());
-    mplew.writeShort(equip.getPotential4());
-    mplew.writeShort(equip.getPotential5());
-    mplew.writeShort(equip.getPotential6());
+    mplew.writeShort(equip.獲取第一條主潛能());
+    mplew.writeShort(equip.獲取第二條主潛能());
+    mplew.writeShort(equip.獲取第三條主潛能());
+    mplew.writeShort(equip.獲取第一條附加潛能());
+    mplew.writeShort(equip.獲取第二條附加潛能());
+    mplew.writeShort(equip.獲取第三條附加潛能());
     mplew.writeShort(equip.getMoru());
     if (!hasUniqueId)
     {

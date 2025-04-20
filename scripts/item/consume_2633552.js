@@ -60,10 +60,10 @@ function action(M, T, S)
 	item.setStarForceLevel(item.getStarForceLevel() + 15);
 	item.setHp(item.getHp() + 2000);
 	item.setMp(item.getMp() + 2000);
-	item.setPotentialLevel(19);
-	item.setPotential1(30055);
-	item.setPotential2(40086);
-	item.setPotential3(40086);
+	item.設置潛能等級(19);
+	item.設置第一條主潛能(30055);
+	item.設置第二條主潛能(40086);
+	item.設置第三條主潛能(40086);
 	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), item, false);
 		cm.dispose();
 	}
@@ -117,10 +117,10 @@ function action(M, T, S)
 	item.setStarForceLevel(item.getStarForceLevel() + 15);
 	item.setHp(item.getHp() + 2000);
 	item.setMp(item.getMp() + 2000);
-	item.setPotentialLevel(19);
-	item.setPotential1(30055);
-	item.setPotential2(40086);
-	item.setPotential3(40086);
+	item.設置潛能等級(19);
+	item.設置第一條主潛能(30055);
+	item.設置第二條主潛能(40086);
+	item.設置第三條主潛能(40086);
 	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), item, false);
 			cm.dispose();
 			return;
@@ -475,10 +475,10 @@ function addOption(i, isWeapon)
 		if(hpJobCheck(cm.getPlayer().getJob()))
 		{
 			item.setHp(item.getHp() + 2500);
-			item.setPotentialLevel(20);
-			item.setPotential1(40086);
-			item.setPotential2(40086);
-			item.setPotential3(40086);
+			item.設置潛能等級(20);
+			item.設置第一條主潛能(40086);
+			item.設置第二條主潛能(40086);
+			item.設置第三條主潛能(40086);
 			item.setWatk(item.getWatk() + 40);
 		}
 		else
@@ -494,10 +494,10 @@ function addOption(i, isWeapon)
 			else
 			item.setWatk(item.getWatk() + 40);
 
-			item.setPotentialLevel(19);
-			item.setPotential1(40086);
-			item.setPotential2(40086);
-			item.setPotential3(40086);
+			item.設置潛能等級(19);
+			item.設置第一條主潛能(40086);
+			item.設置第二條主潛能(40086);
+			item.設置第三條主潛能(40086);
 		}
 	}
 	else
@@ -507,10 +507,10 @@ function addOption(i, isWeapon)
 		{
 			item.setHp(item.getHp() + 5000);
 			item.setWatk(item.getWatk() + 40);
-			item.setPotentialLevel(19);
-			item.setPotential1(30051);
-			item.setPotential2(30051);
-			item.setPotential3(30051);
+			item.設置潛能等級(19);
+			item.設置第一條主潛能(30051);
+			item.設置第二條主潛能(30051);
+			item.設置第三條主潛能(30051);
 		}
 		else
 		{
@@ -519,26 +519,26 @@ function addOption(i, isWeapon)
 			item.setDex(item.getDex() + 80);
 			item.setInt(item.getInt() + 80);
 			item.setLuk(item.getLuk() + 80);
-			item.setPotentialLevel(19);
+			item.設置潛能等級(19);
 			if(isMagician(cm.getPlayer().getJob()))
 			{
 				item.setMatk(item.getMatk() + 134);
-				item.setPotential1(40052);
-				item.setPotential2(40052);
-				item.setPotential3(40052);
-				item.setPotential4(30602);
-				item.setPotential5(30291);
-				item.setPotential6(30070);
+				item.設置第一條主潛能(40052);
+				item.設置第二條主潛能(40052);
+				item.設置第三條主潛能(40052);
+				item.設置第一條附加潛能(30602);
+				item.設置第二條附加潛能(30291);
+				item.設置第三條附加潛能(30070);
 			}
 			else
 			{
 				item.setWatk(item.getWatk() + 134);
-				item.setPotential1(40051);
-				item.setPotential2(40051);
-				item.setPotential3(40051);
-				item.setPotential4(30602);
-				item.setPotential5(30291);
-				item.setPotential6(30070);
+				item.設置第一條主潛能(40051);
+				item.設置第二條主潛能(40051);
+				item.設置第三條主潛能(40051);
+				item.設置第一條附加潛能(30602);
+				item.設置第二條附加潛能(30291);
+				item.設置第三條附加潛能(30070);
 			}
 		}
 	}

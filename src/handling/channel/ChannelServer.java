@@ -35,7 +35,7 @@ public class ChannelServer
   private final List<PlayerNPC> playerNPCs = new LinkedList<>();
   private final List<List<Pair<Integer, MapleCharacter>>> soulmatch = new ArrayList<>();
   private final Map<MapleEventType, MapleEvent> events = new EnumMap<>(MapleEventType.class);
-  private final int dropRate = 1; // 드랍 배율
+  private int dropRate = 1; // 드랍 배율
   private final int cashRate = 1;
   private final int traitRate = 1;
   private final int channel;
@@ -147,6 +147,7 @@ public class ChannelServer
     {
       this.expRate = Integer.parseInt(ServerProperties.getProperty("world.exp", "1"));
       this.mesoRate = Integer.parseInt(ServerProperties.getProperty("world.meso", "1"));
+      this.dropRate = Integer.parseInt(ServerProperties.getProperty("world.dropRate", "1"));
       this.mobRate = Float.parseFloat(ServerProperties.getProperty("world.mobRate", "1.0"));
       this.reduceMobRespawnDelay = Integer.parseInt(ServerProperties.getProperty("world.reduceMobRespawnDelay", "2000"));
       this.serverMessage = ServerProperties.getProperty("world.serverMessage");

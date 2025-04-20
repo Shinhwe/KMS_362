@@ -408,29 +408,29 @@ function action(M, T, S) {
     if (!isWeapon) {
       if (hpJobCheck(cm.getPlayer().getJob())) {
         item.setEnchantHp(item.getEnchantHp() + 1000);
-        // item.setPotentialLevel(19);
-        // item.setPotential1(20045);
-        // item.setPotential2(20045);
-        // item.setPotential3(20045);
+        item.設置潛能等級(18);
+        item.設置第一條主潛能(20045);
+        item.設置第二條主潛能(20045);
+        item.設置第三條主潛能(20045);
       } else {
         item.setEnchantStr(item.getEnchantStr() + 20);
         item.setEnchantDex(item.getEnchantDex() + 20);
         item.setEnchantInt(item.getEnchantInt() + 20);
         item.setEnchantLuk(item.getEnchantLuk() + 20);
-        // item.setPotentialLevel(19);
-        // item.setPotential1(20086);
-        // item.setPotential2(20086);
-        // item.setPotential3(20086);
+        item.設置潛能等級(18);
+        item.設置第一條主潛能(20086);
+        item.設置第二條主潛能(20086);
+        item.設置第三條主潛能(20086);
       }
     } else {
       item.setEnchantDamage(10);
       if (hpJobCheck(cm.getPlayer().getJob())) {
         item.setEnchantHp(item.getEnchantHp() + 1000);
         item.setEnchantWatk(item.getEnchantWatk() + 50);
-        // item.setPotentialLevel(19);
-        // item.setPotential1(20045);
-        // item.setPotential2(20045);
-        // item.setPotential3(20045);
+        item.設置潛能等級(18);
+        item.設置第一條主潛能(20045);
+        item.設置第二條主潛能(20045);
+        item.設置第三條主潛能(20045);
       } else {
         item.setEnchantStr(item.getEnchantStr() + 20);
         item.setEnchantDex(item.getEnchantDex() + 20);
@@ -442,10 +442,10 @@ function action(M, T, S) {
         } else {
           item.setEnchantWatk(item.getEnchantWatk() + 50);
         }
-        // item.setPotentialLevel(19);
-        // item.setPotential1(20086);
-        // item.setPotential2(20086);
-        // item.setPotential3(20086);
+        item.設置潛能等級(18);
+        item.設置第一條主潛能(20086);
+        item.設置第二條主潛能(20086);
+        item.設置第三條主潛能(20086);
       }
     }
     item.setEnchantLevel(item.getTemplate().getUpgradeSlots());

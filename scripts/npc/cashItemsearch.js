@@ -81,10 +81,10 @@ function action(mode, type, selection) {
 	item.setLuk(160);
 	item.setWatk(80);
 	item.setMatk(80);
-	item.setPotentialLevel(20);
-	item.setPotential1(30086);
-	item.setPotential2(30086);
-	item.setPotential3(30086);
+	item.設置潛能等級(20);
+	item.設置第一條主潛能(30086);
+	item.設置第二條主潛能(30086);
+	item.設置第三條主潛能(30086);
 	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), item, false);
 	cm.getPlayer().gainDonationPoint(-200000);
         cm.sendYesNo("#fs14#선택한 아이템을 지급했어요.\r\n추가로 더 원하는 게 있다면 '예'를 눌러주세요.");

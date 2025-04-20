@@ -119,8 +119,8 @@ public class MapleMonsterDropDataProvider
       {
         drops.put(monsterId, new ArrayList<>());
       }
-      drops.get(monsterId).add(new MonsterDropEntry(2435719, 20000, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(1712001, 4300, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(2435719, 1500, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(1712001, 200, 1, 1, 0, 0));
     }
   }
 
@@ -136,8 +136,8 @@ public class MapleMonsterDropDataProvider
       {
         drops.put(monsterId, new ArrayList<>());
       }
-      drops.get(monsterId).add(new MonsterDropEntry(2435719, 20000, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(1712001, 6400, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(2435719, 2000, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(1712001, 300, 1, 1, 0, 0));
     }
   }
 
@@ -153,8 +153,8 @@ public class MapleMonsterDropDataProvider
       {
         drops.put(monsterId, new ArrayList<>());
       }
-      drops.get(monsterId).add(new MonsterDropEntry(2435719, 20000, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(1712002, 4300, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(2435719, 2000, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(1712002, 300, 1, 1, 0, 0));
     }
   }
 
@@ -170,8 +170,8 @@ public class MapleMonsterDropDataProvider
       {
         drops.put(monsterId, new ArrayList<>());
       }
-      drops.get(monsterId).add(new MonsterDropEntry(2435719, 20000, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(1712002, 6400, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(2435719, 2000, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(1712002, 300, 1, 1, 0, 0));
     }
   }
 
@@ -188,9 +188,9 @@ public class MapleMonsterDropDataProvider
         drops.put(monsterId, new ArrayList<>());
       }
 
-      drops.get(monsterId).add(new MonsterDropEntry(4001878, 200, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(2435719, 40000, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(1712003, 4300, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(4001878, 100, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(2435719, 2000, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(1712003, 300, 1, 1, 0, 0));
     }
   }
 
@@ -206,9 +206,9 @@ public class MapleMonsterDropDataProvider
       {
         drops.put(monsterId, new ArrayList<>());
       }
-      drops.get(monsterId).add(new MonsterDropEntry(4001878, 200, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(2435719, 50000, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(1712004, 4300, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(4001878, 100, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(2435719, 2000, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(1712004, 300, 1, 1, 0, 0));
     }
   }
 
@@ -224,9 +224,9 @@ public class MapleMonsterDropDataProvider
       {
         drops.put(monsterId, new ArrayList<>());
       }
-      drops.get(monsterId).add(new MonsterDropEntry(4001878, 200, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(2435719, 20000, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(1712005, 6400, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(4001878, 100, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(2435719, 2000, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(1712005, 300, 1, 1, 0, 0));
     }
   }
 
@@ -242,9 +242,9 @@ public class MapleMonsterDropDataProvider
       {
         drops.put(monsterId, new ArrayList<>());
       }
-      drops.get(monsterId).add(new MonsterDropEntry(4001889, 200, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(2435719, 20000, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(1712006, 4300, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(4001889, 100, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(2435719, 2000, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(1712006, 300, 1, 1, 0, 0));
     }
   }
 
@@ -260,9 +260,9 @@ public class MapleMonsterDropDataProvider
       {
         drops.put(monsterId, new ArrayList<>());
       }
-      drops.get(monsterId).add(new MonsterDropEntry(4001889, 200, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(2435719, 20000, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(1712006, 6400, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(4001889, 100, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(2435719, 2000, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(1712006, 300, 1, 1, 0, 0));
     }
   }
 
@@ -279,10 +279,10 @@ public class MapleMonsterDropDataProvider
       {
         drops.put(monsterId, new ArrayList<>());
       }
-      drops.get(monsterId).add(new MonsterDropEntry(4001889, 200, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(4001889, 200, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(2435719, 20000, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(2437750, 4300, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(4001878, 100, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(4001889, 100, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(2435719, 2000, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(2437750, 200, 1, 1, 0, 0));
     }
   }
 
@@ -298,10 +298,10 @@ public class MapleMonsterDropDataProvider
       {
         drops.put(monsterId, new ArrayList<>());
       }
-      drops.get(monsterId).add(new MonsterDropEntry(4001889, 200, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(4001889, 200, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(2435719, 20000, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(2437880, 4300, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(4001878, 150, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(4001889, 150, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(2435719, 2500, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(2437750, 250, 1, 1, 0, 0));
     }
   }
 
@@ -321,10 +321,10 @@ public class MapleMonsterDropDataProvider
       {
         drops.put(monsterId, new ArrayList<>());
       }
+      drops.get(monsterId).add(new MonsterDropEntry(4001878, 200, 1, 1, 0, 0));
       drops.get(monsterId).add(new MonsterDropEntry(4001889, 200, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(4001889, 200, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(2435719, 20000, 1, 1, 0, 0));
-      drops.get(monsterId).add(new MonsterDropEntry(2437760, 4300, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(2435719, 3000, 1, 1, 0, 0));
+      drops.get(monsterId).add(new MonsterDropEntry(2437750, 300, 1, 1, 0, 0));
     }
   }
 

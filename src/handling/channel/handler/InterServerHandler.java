@@ -965,40 +965,40 @@ public class InterServerHandler
           /*  643 */
           Equip eq2 = (Equip) player.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10);
           /*  644 */
-          if (eq.getPotential1() != eq2.getPotential1())
+          if (eq.獲取第一條主潛能() != eq2.獲取第一條主潛能())
           {
             /*  645 */
-            eq.setPotential1(eq2.getPotential1());
+            eq.設置第一條主潛能(eq2.獲取第一條主潛能());
           }
           /*  647 */
-          if (eq.getPotential2() != eq2.getPotential2())
+          if (eq.獲取第二條主潛能() != eq2.獲取第二條主潛能())
           {
             /*  648 */
-            eq.setPotential2(eq2.getPotential2());
+            eq.設置第二條主潛能(eq2.獲取第二條主潛能());
           }
           /*  650 */
-          if (eq.getPotential3() != eq2.getPotential3())
+          if (eq.獲取第三條主潛能() != eq2.獲取第三條主潛能())
           {
             /*  651 */
-            eq.setPotential3(eq2.getPotential3());
+            eq.設置第三條主潛能(eq2.獲取第三條主潛能());
           }
           /*  653 */
-          if (eq.getPotential4() != eq2.getPotential4())
+          if (eq.獲取第一條附加潛能() != eq2.獲取第一條附加潛能())
           {
             /*  654 */
-            eq.setPotential4(eq2.getPotential4());
+            eq.設置第一條附加潛能(eq2.獲取第一條附加潛能());
           }
           /*  656 */
-          if (eq.getPotential5() != eq2.getPotential5())
+          if (eq.獲取第二條附加潛能() != eq2.獲取第二條附加潛能())
           {
             /*  657 */
-            eq.setPotential5(eq2.getPotential5());
+            eq.設置第二條附加潛能(eq2.獲取第二條附加潛能());
           }
           /*  659 */
-          if (eq.getPotential6() != eq2.getPotential6())
+          if (eq.獲取第三條附加潛能() != eq2.獲取第三條附加潛能())
           {
             /*  660 */
-            eq.setPotential6(eq2.getPotential6());
+            eq.設置第三條附加潛能(eq2.獲取第三條附加潛能());
           }
         }
       }

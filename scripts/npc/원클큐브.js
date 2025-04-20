@@ -132,12 +132,12 @@ function action(mode, type, selection) {
                     composer = function (_item) {
                         var requireLevel = ii.getReqLevel(_item.getItemId());
                         var level = Math.floor(
-                            _item.getPotential4() >= 10000 ?
-                                _item.getPotential4() / 10000 :
-                                _item.getPotential4() / 100
+                            _item.獲取第一條附加潛能() >= 10000 ?
+                                _item.獲取第一條附加潛能() / 10000 :
+                                _item.獲取第一條附加潛能() / 100
                         );
                         if (
-                            _item.getPotential4() > 0 &&
+                            _item.獲取第一條附加潛能() > 0 &&
                             level == 4 &&
                             requireLevel >= 100
                         ) {
@@ -330,10 +330,10 @@ function renewPotential(item, isAditional) {
     if (!isAditional) {
         level = newItem.getState() - 16;
 
-        newItem.setPotential1(
+        newItem.設置第一條主潛能(
             InventoryHandler.potential(newItem.getItemId(), level)
         );
-        newItem.setPotential2(
+        newItem.設置第二條主潛能(
             InventoryHandler.potential(
                 newItem.getItemId(),
                 level == 1 || Randomizer.nextInt(100) < KEEP_LEVEL_PERCENT ?
@@ -342,8 +342,8 @@ function renewPotential(item, isAditional) {
             )
         );
 
-        if (newItem.getPotential3() > 0) {
-            newItem.setPotential3(
+        if (newItem.獲取第三條主潛能() > 0) {
+            newItem.設置第三條主潛能(
                 InventoryHandler.potential(
                     newItem.getItemId(),
                     level == 1 || Randomizer.nextInt(100) < KEEP_LEVEL_PERCENT ?
@@ -352,17 +352,17 @@ function renewPotential(item, isAditional) {
                 )
             );
         } else {
-            newItem.setPotential3(0);
+            newItem.設置第三條主潛能(0);
         }
     } else {
         level =
-            newItem.getPotential4() >= 10000 ?
-                newItem.getPotential4() / 10000 :
-                newItem.getPotential4() / 100;
-        newItem.setPotential4(
+            newItem.獲取第一條附加潛能() >= 10000 ?
+                newItem.獲取第一條附加潛能() / 10000 :
+                newItem.獲取第一條附加潛能() / 100;
+        newItem.設置第一條附加潛能(
             InventoryHandler.potential(newItem.getItemId(), level, true)
         );
-        newItem.setPotential5(
+        newItem.設置第二條附加潛能(
             InventoryHandler.potential(
                 newItem.getItemId(),
                 level == 1 || Randomizer.nextInt(100) < KEEP_LEVEL_PERCENT ?
@@ -372,8 +372,8 @@ function renewPotential(item, isAditional) {
             )
         );
 
-        if (newItem.getPotential6() > 0) {
-            newItem.setPotential6(
+        if (newItem.獲取第三條附加潛能() > 0) {
+            newItem.設置第三條附加潛能(
                 InventoryHandler.potential(
                     newItem.getItemId(),
                     level == 1 || Randomizer.nextInt(100) < KEEP_LEVEL_PERCENT ?
@@ -383,7 +383,7 @@ function renewPotential(item, isAditional) {
                 )
             );
         } else {
-            newItem.setPotential6(0);
+            newItem.設置第三條附加潛能(0);
         }
     }
     return newItem;

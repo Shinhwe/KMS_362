@@ -21,6 +21,7 @@
 package tools;
 
 import java.io.ByteArrayOutputStream;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Provides a class for manipulating hexadecimal numbers.
@@ -100,7 +101,7 @@ public class HexTool
     try
     {
       // String str = new String(ret, "MS949");
-      String str = new String(ret, "UTF-8");
+      String str = new String(ret, StandardCharsets.UTF_8);
       return str;
     }
     catch (Exception e)

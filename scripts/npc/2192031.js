@@ -91,11 +91,11 @@ function action(mode, type, sel) {
 			cm.dispose();
 			return;
 		}
-		item.setPotentialLevel(17);
+		item.設置潛能等級(17);
 		item.setLines(3);
-		item.setPotential1(10041);
-		item.setPotential2(10042);
-		item.setPotential3(10043);
+		item.設置第一條主潛能(10041);
+		item.設置第二條主潛能(10042);
+		item.設置第三條主潛能(10043);
 		cm.sendOk("#fs14#아이템에 잠재능력을 부여했습니다. 이용해 주셔서 감사합니다.");
 		cm.getPlayer().forceReAddItem(item, Packages.client.inventory.MapleInventoryType.getByType(1));
 		cm.dispose();

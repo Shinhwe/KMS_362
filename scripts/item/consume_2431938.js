@@ -56,15 +56,15 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setPotentialLevel(20);
+	inz.設置潛能等級(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
-	inz.setPotential1(40041);
-	inz.setPotential2(40041);
-	inz.setPotential3(40041);
-	inz.setPotential4(40041);
-	inz.setPotential5(40041);
-	inz.setPotential6(40041);
+	inz.設置第一條主潛能(40041);
+	inz.設置第二條主潛能(40041);
+	inz.設置第三條主潛能(40041);
+	inz.設置第一條附加潛能(40041);
+	inz.設置第二條附加潛能(40041);
+	inz.設置第三條附加潛能(40041);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 	 for(var i in 악세){
@@ -79,28 +79,28 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setPotentialLevel(20);
+	inz.設置潛能等級(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
-	inz.setPotential1(40041);
-	inz.setPotential2(40041);
-	inz.setPotential3(40041);
-	inz.setPotential4(40041);
-	inz.setPotential5(40041);
-	inz.setPotential6(40041);
+	inz.設置第一條主潛能(40041);
+	inz.設置第二條主潛能(40041);
+	inz.設置第三條主潛能(40041);
+	inz.設置第一條附加潛能(40041);
+	inz.設置第二條附加潛能(40041);
+	inz.設置第三條附加潛能(40041);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 	for(var i in 캐시템){
 	var inz = MapleItemInformationProvider.getInstance().getEquipById(캐시템[i]);
 	inz.setWatk(1000);
 	inz.setMatk(1000);
-	inz.setPotentialLevel(20);
-	inz.setPotential1(40041);
-	inz.setPotential2(40041);
-	inz.setPotential3(40041);
-	inz.setPotential4(40041);
-	inz.setPotential5(40041);
-	inz.setPotential6(40041);
+	inz.設置潛能等級(20);
+	inz.設置第一條主潛能(40041);
+	inz.設置第二條主潛能(40041);
+	inz.設置第三條主潛能(40041);
+	inz.設置第一條附加潛能(40041);
+	inz.設置第二條附加潛能(40041);
+	inz.設置第三條附加潛能(40041);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 }
@@ -117,15 +117,15 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setPotentialLevel(20);
+	inz.設置潛能等級(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
-	inz.setPotential1(40042);
-	inz.setPotential2(40042);
-	inz.setPotential3(40042);
-	inz.setPotential4(40042);
-	inz.setPotential5(40042);
-	inz.setPotential6(40042);
+	inz.設置第一條主潛能(40042);
+	inz.設置第二條主潛能(40042);
+	inz.設置第三條主潛能(40042);
+	inz.設置第一條附加潛能(40042);
+	inz.設置第二條附加潛能(40042);
+	inz.設置第三條附加潛能(40042);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 	 for(var i in 악세){
@@ -140,28 +140,28 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setPotentialLevel(20);
+	inz.設置潛能等級(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
-	inz.setPotential1(40042);
-	inz.setPotential2(40042);
-	inz.setPotential3(40042);
-	inz.setPotential4(40042);
-	inz.setPotential5(40042);
-	inz.setPotential6(40042);
+	inz.設置第一條主潛能(40042);
+	inz.設置第二條主潛能(40042);
+	inz.設置第三條主潛能(40042);
+	inz.設置第一條附加潛能(40042);
+	inz.設置第二條附加潛能(40042);
+	inz.設置第三條附加潛能(40042);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 	for(var i in 캐시템){
 	var inz = MapleItemInformationProvider.getInstance().getEquipById(캐시템[i]);
 	inz.setWatk(1000);
 	inz.setMatk(1000);
-	inz.setPotentialLevel(20);
-	inz.setPotential1(40042);
-	inz.setPotential2(40042);
-	inz.setPotential3(40042);
-	inz.setPotential4(40042);
-	inz.setPotential5(40042);
-	inz.setPotential6(40042);
+	inz.設置潛能等級(20);
+	inz.設置第一條主潛能(40042);
+	inz.設置第二條主潛能(40042);
+	inz.設置第三條主潛能(40042);
+	inz.設置第一條附加潛能(40042);
+	inz.設置第二條附加潛能(40042);
+	inz.設置第三條附加潛能(40042);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 }
@@ -178,15 +178,15 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setPotentialLevel(20);
+	inz.設置潛能等級(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
-	inz.setPotential1(40043);
-	inz.setPotential2(40043);
-	inz.setPotential3(40043);
-	inz.setPotential4(40043);
-	inz.setPotential5(40043);
-	inz.setPotential6(40043);
+	inz.設置第一條主潛能(40043);
+	inz.設置第二條主潛能(40043);
+	inz.設置第三條主潛能(40043);
+	inz.設置第一條附加潛能(40043);
+	inz.設置第二條附加潛能(40043);
+	inz.設置第三條附加潛能(40043);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 	 for(var i in 악세){
@@ -201,28 +201,28 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setPotentialLevel(20);
+	inz.設置潛能等級(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
-	inz.setPotential1(40043);
-	inz.setPotential2(40043);
-	inz.setPotential3(40043);
-	inz.setPotential4(40043);
-	inz.setPotential5(40043);
-	inz.setPotential6(40043);
+	inz.設置第一條主潛能(40043);
+	inz.設置第二條主潛能(40043);
+	inz.設置第三條主潛能(40043);
+	inz.設置第一條附加潛能(40043);
+	inz.設置第二條附加潛能(40043);
+	inz.設置第三條附加潛能(40043);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 	for(var i in 캐시템){
 	var inz = MapleItemInformationProvider.getInstance().getEquipById(캐시템[i]);
 	inz.setWatk(1000);
 	inz.setMatk(1000);
-	inz.setPotentialLevel(20);
-	inz.setPotential1(40043);
-	inz.setPotential2(40043);
-	inz.setPotential3(40043);
-	inz.setPotential4(40043);
-	inz.setPotential5(40043);
-	inz.setPotential6(40043);
+	inz.設置潛能等級(20);
+	inz.設置第一條主潛能(40043);
+	inz.設置第二條主潛能(40043);
+	inz.設置第三條主潛能(40043);
+	inz.設置第一條附加潛能(40043);
+	inz.設置第二條附加潛能(40043);
+	inz.設置第三條附加潛能(40043);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 }
@@ -239,15 +239,15 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setPotentialLevel(20);
+	inz.設置潛能等級(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
-	inz.setPotential1(40044);
-	inz.setPotential2(40044);
-	inz.setPotential3(40044);
-	inz.setPotential4(40044);
-	inz.setPotential5(40044);
-	inz.setPotential6(40044);
+	inz.設置第一條主潛能(40044);
+	inz.設置第二條主潛能(40044);
+	inz.設置第三條主潛能(40044);
+	inz.設置第一條附加潛能(40044);
+	inz.設置第二條附加潛能(40044);
+	inz.設置第三條附加潛能(40044);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 	 for(var i in 악세){
@@ -262,28 +262,28 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setPotentialLevel(20);
+	inz.設置潛能等級(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
-	inz.setPotential1(40044);
-	inz.setPotential2(40044);
-	inz.setPotential3(40044);
-	inz.setPotential4(40044);
-	inz.setPotential5(40044);
-	inz.setPotential6(40044);
+	inz.設置第一條主潛能(40044);
+	inz.設置第二條主潛能(40044);
+	inz.設置第三條主潛能(40044);
+	inz.設置第一條附加潛能(40044);
+	inz.設置第二條附加潛能(40044);
+	inz.設置第三條附加潛能(40044);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 	for(var i in 캐시템){
 	var inz = MapleItemInformationProvider.getInstance().getEquipById(캐시템[i]);
 	inz.setWatk(1000);
 	inz.setMatk(1000);
-	inz.setPotentialLevel(20);
-	inz.setPotential1(40044);
-	inz.setPotential2(40044);
-	inz.setPotential3(40044);
-	inz.setPotential4(40044);
-	inz.setPotential5(40044);
-	inz.setPotential6(40044);
+	inz.設置潛能等級(20);
+	inz.設置第一條主潛能(40044);
+	inz.設置第二條主潛能(40044);
+	inz.設置第三條主潛能(40044);
+	inz.設置第一條附加潛能(40044);
+	inz.設置第二條附加潛能(40044);
+	inz.設置第三條附加潛能(40044);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 }
@@ -300,15 +300,15 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setPotentialLevel(20);
+	inz.設置潛能等級(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
-	inz.setPotential1(40041);
-	inz.setPotential2(40041);
-	inz.setPotential3(40041);
-	inz.setPotential4(40041);
-	inz.setPotential5(40041);
-	inz.setPotential6(40041);
+	inz.設置第一條主潛能(40041);
+	inz.設置第二條主潛能(40041);
+	inz.設置第三條主潛能(40041);
+	inz.設置第一條附加潛能(40041);
+	inz.設置第二條附加潛能(40041);
+	inz.設置第三條附加潛能(40041);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 	 for(var i in 악세){
@@ -323,28 +323,28 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setPotentialLevel(20);
+	inz.設置潛能等級(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
-	inz.setPotential1(40041);
-	inz.setPotential2(40041);
-	inz.setPotential3(40041);
-	inz.setPotential4(40041);
-	inz.setPotential5(40041);
-	inz.setPotential6(40041);
+	inz.設置第一條主潛能(40041);
+	inz.設置第二條主潛能(40041);
+	inz.設置第三條主潛能(40041);
+	inz.設置第一條附加潛能(40041);
+	inz.設置第二條附加潛能(40041);
+	inz.設置第三條附加潛能(40041);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 	for(var i in 캐시템){
 	var inz = MapleItemInformationProvider.getInstance().getEquipById(캐시템[i]);
 	inz.setWatk(1000);
 	inz.setMatk(1000);
-	inz.setPotentialLevel(20);
-	inz.setPotential1(40041);
-	inz.setPotential2(40041);
-	inz.setPotential3(40041);
-	inz.setPotential4(40041);
-	inz.setPotential5(40041);
-	inz.setPotential6(40041);
+	inz.設置潛能等級(20);
+	inz.設置第一條主潛能(40041);
+	inz.設置第二條主潛能(40041);
+	inz.設置第三條主潛能(40041);
+	inz.設置第一條附加潛能(40041);
+	inz.設置第二條附加潛能(40041);
+	inz.設置第三條附加潛能(40041);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 }
@@ -361,15 +361,15 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setPotentialLevel(20);
+	inz.設置潛能等級(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
-	inz.setPotential1(40042);
-	inz.setPotential2(40042);
-	inz.setPotential3(40042);
-	inz.setPotential4(40042);
-	inz.setPotential5(40042);
-	inz.setPotential6(40042);
+	inz.設置第一條主潛能(40042);
+	inz.設置第二條主潛能(40042);
+	inz.設置第三條主潛能(40042);
+	inz.設置第一條附加潛能(40042);
+	inz.設置第二條附加潛能(40042);
+	inz.設置第三條附加潛能(40042);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 	 for(var i in 악세){
@@ -384,28 +384,28 @@ function action(mode, type, selection) {
 	inz.setBossDamage(100);
 	inz.setTotalDamage(100);
 	inz.setUpgradeSlots(0);
-	inz.setPotentialLevel(20);
+	inz.設置潛能等級(20);
 	inz.setLevel(10);
 	inz.setStarForceLevel(30);
-	inz.setPotential1(40042);
-	inz.setPotential2(40042);
-	inz.setPotential3(40042);
-	inz.setPotential4(40042);
-	inz.setPotential5(40042);
-	inz.setPotential6(40042);
+	inz.設置第一條主潛能(40042);
+	inz.設置第二條主潛能(40042);
+	inz.設置第三條主潛能(40042);
+	inz.設置第一條附加潛能(40042);
+	inz.設置第二條附加潛能(40042);
+	inz.設置第三條附加潛能(40042);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 	for(var i in 캐시템){
 	var inz = MapleItemInformationProvider.getInstance().getEquipById(캐시템[i]);
 	inz.setWatk(1000);
 	inz.setMatk(1000);
-	inz.setPotentialLevel(20);
-	inz.setPotential1(40042);
-	inz.setPotential2(40042);
-	inz.setPotential3(40042);
-	inz.setPotential4(40042);
-	inz.setPotential5(40042);
-	inz.setPotential6(40042);
+	inz.設置潛能等級(20);
+	inz.設置第一條主潛能(40042);
+	inz.設置第二條主潛能(40042);
+	inz.設置第三條主潛能(40042);
+	inz.設置第一條附加潛能(40042);
+	inz.設置第二條附加潛能(40042);
+	inz.設置第三條附加潛能(40042);
 	MapleInventoryManipulator.addbyItem(cm.getClient(), inz);
 	    }
 }

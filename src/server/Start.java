@@ -408,8 +408,7 @@ public class Start
       System.out.println("[緩存全部腳本文件]");
       CacheScript.CacheAllScript();
       System.out.println("[緩存全部腳本文件完成]");
-      潛能生成器.加載裝備潛能權重();
-      潛能生成器.加載裝備附加潛能權重();
+
       Runtime.getRuntime().addShutdownHook(new Thread(new Shutdown()));
       PlayerNPC.loadAll();
       LoginServer.setOn();
@@ -508,6 +507,8 @@ public class Start
         MapleItemInformationProvider.getInstance().runEtc();
         MapleItemInformationProvider.getInstance().runItems();
         AuctionServer.run_startup_configurations();
+        潛能生成器.加載裝備潛能權重();
+        潛能生成器.加載裝備附加潛能權重();
       }, "ItemLoader", this);
       Start.LoadingThread GuildRankingLoader = new Start.LoadingThread(() -> MapleGuildRanking.getInstance().load(), "GuildRankingLoader", this);
       Start.LoadingThread EtcLoader = new Start.LoadingThread(() ->

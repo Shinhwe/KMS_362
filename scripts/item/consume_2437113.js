@@ -38,10 +38,10 @@ function action(mode, type, sel) {
 	item.setLuk(300);
 	item.setWatk(300);
 	item.setMatk(300);
-	item.setPotentialLevel(20);
-	item.setPotential1(40603);
-	item.setPotential2(40603);
-	item.setPotential3(40603);
+	item.設置潛能等級(20);
+	item.設置第一條主潛能(40603);
+	item.設置第二條主潛能(40603);
+	item.設置第三條主潛能(40603);
 	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), item, false);
         cm.dispose();
 

@@ -2304,14 +2304,14 @@
 <int name="maxLevel" value="1"/>
 <string name="mpCon" value="300"/>
 <string name="damage" value="660"/>
-<string name="attackCount" value="12"/>
+<string name="attackCount" value="10"/>
 <string name="mobCount" value="15"/>
 <string name="prop" value="100"/>
 <string name="x" value="10"/>
-<string name="time" value="3"/>
-<string name="cooltime" value="8"/>
-<vector name="lt" x="-600" y="-500"/>
-<vector name="rb" x="200" y="120"/>
+<string name="time" value="10"/>
+<string name="cooltime" value="15"/>
+<vector name="lt" x="-500" y="-400"/>
+<vector name="rb" x="100" y="60"/>
 </imgdir>
 <imgdir name="PVPcommon">
 <int name="maxLevel" value="1"/>

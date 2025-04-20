@@ -21,8 +21,8 @@ import tools.packet.CWvsContext;
 import java.awt.*;
 import java.io.Serializable;
 import java.lang.ref.WeakReference;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -851,29 +851,29 @@ public class PlayerStats implements Serializable
           }
         }
         final List<Integer> potentials = new ArrayList<Integer>();
-        if (equip.getPotential1() > 0)
+        if (equip.獲取第一條主潛能() > 0)
         {
-          potentials.add(equip.getPotential1());
+          potentials.add(equip.獲取第一條主潛能());
         }
-        if (equip.getPotential2() > 0)
+        if (equip.獲取第二條主潛能() > 0)
         {
-          potentials.add(equip.getPotential2());
+          potentials.add(equip.獲取第二條主潛能());
         }
-        if (equip.getPotential3() > 0)
+        if (equip.獲取第三條主潛能() > 0)
         {
-          potentials.add(equip.getPotential3());
+          potentials.add(equip.獲取第三條主潛能());
         }
-        if (equip.getPotential4() > 0)
+        if (equip.獲取第一條附加潛能() > 0)
         {
-          potentials.add(equip.getPotential4());
+          potentials.add(equip.獲取第一條附加潛能());
         }
-        if (equip.getPotential5() > 0)
+        if (equip.獲取第二條附加潛能() > 0)
         {
-          potentials.add(equip.getPotential5());
+          potentials.add(equip.獲取第二條附加潛能());
         }
-        if (equip.getPotential6() > 0)
+        if (equip.獲取第三條附加潛能() > 0)
         {
-          potentials.add(equip.getPotential6());
+          potentials.add(equip.獲取第三條附加潛能());
         }
         for (final Integer potential : potentials)
         {

@@ -43522,22 +43522,22 @@
                 <int name="incMesoProp" value="20" />
             </imgdir>
             <imgdir name="20">
-                <int name="incMesoProp" value="20" />
+                <int name="incMesoProp" value="30"/>
             </imgdir>
             <imgdir name="21">
-                <int name="incMesoProp" value="20" />
+                <int name="incMesoProp" value="30"/>
             </imgdir>
             <imgdir name="22">
-                <int name="incMesoProp" value="20" />
+                <int name="incMesoProp" value="30"/>
             </imgdir>
             <imgdir name="23">
-                <int name="incMesoProp" value="20" />
+                <int name="incMesoProp" value="30"/>
             </imgdir>
             <imgdir name="24">
-                <int name="incMesoProp" value="20" />
+                <int name="incMesoProp" value="30"/>
             </imgdir>
             <imgdir name="25">
-                <int name="incMesoProp" value="20" />
+                <int name="incMesoProp" value="30"/>
             </imgdir>
         </imgdir>
     </imgdir>
@@ -43605,22 +43605,22 @@
                 <int name="incRewardProp" value="20" />
             </imgdir>
             <imgdir name="20">
-                <int name="incRewardProp" value="20" />
+                <int name="incRewardProp" value="30"/>
             </imgdir>
             <imgdir name="21">
-                <int name="incRewardProp" value="20" />
+                <int name="incRewardProp" value="30"/>
             </imgdir>
             <imgdir name="22">
-                <int name="incRewardProp" value="20" />
+                <int name="incRewardProp" value="30"/>
             </imgdir>
             <imgdir name="23">
-                <int name="incRewardProp" value="20" />
+                <int name="incRewardProp" value="30"/>
             </imgdir>
             <imgdir name="24">
-                <int name="incRewardProp" value="20" />
+                <int name="incRewardProp" value="30"/>
             </imgdir>
             <imgdir name="25">
-                <int name="incRewardProp" value="20" />
+                <int name="incRewardProp" value="30"/>
             </imgdir>
         </imgdir>
     </imgdir>
@@ -49463,22 +49463,22 @@
                 <int name="incMesoProp" value="10" />
             </imgdir>
             <imgdir name="20">
-                <int name="incMesoProp" value="10" />
+                <int name="incMesoProp" value="20"/>
             </imgdir>
             <imgdir name="21">
-                <int name="incMesoProp" value="10" />
+                <int name="incMesoProp" value="20"/>
             </imgdir>
             <imgdir name="22">
-                <int name="incMesoProp" value="10" />
+                <int name="incMesoProp" value="20"/>
             </imgdir>
             <imgdir name="23">
-                <int name="incMesoProp" value="10" />
+                <int name="incMesoProp" value="20"/>
             </imgdir>
             <imgdir name="24">
-                <int name="incMesoProp" value="10" />
+                <int name="incMesoProp" value="20"/>
             </imgdir>
             <imgdir name="25">
-                <int name="incMesoProp" value="10" />
+                <int name="incMesoProp" value="20"/>
             </imgdir>
         </imgdir>
     </imgdir>
@@ -49546,22 +49546,22 @@
                 <int name="incRewardProp" value="10" />
             </imgdir>
             <imgdir name="20">
-                <int name="incRewardProp" value="10" />
+                <int name="incRewardProp" value="20"/>
             </imgdir>
             <imgdir name="21">
-                <int name="incRewardProp" value="10" />
+                <int name="incRewardProp" value="20"/>
             </imgdir>
             <imgdir name="22">
-                <int name="incRewardProp" value="10" />
+                <int name="incRewardProp" value="20"/>
             </imgdir>
             <imgdir name="23">
-                <int name="incRewardProp" value="10" />
+                <int name="incRewardProp" value="20"/>
             </imgdir>
             <imgdir name="24">
-                <int name="incRewardProp" value="10" />
+                <int name="incRewardProp" value="20"/>
             </imgdir>
             <imgdir name="25">
-                <int name="incRewardProp" value="10" />
+                <int name="incRewardProp" value="20"/>
             </imgdir>
         </imgdir>
     </imgdir>

@@ -20,16 +20,16 @@ import provider.MapleDataProviderFactory;
 import provider.MapleDataTool;
 import scripting.EventInstanceManager;
 import scripting.NPCScriptManager;
-import server.Timer;
 import server.*;
+import server.Timer;
 import server.events.MapleSnowball;
 import server.field.boss.will.SpiderWeb;
 import server.field.skill.*;
 import server.games.BloomingRace;
 import server.games.DetectiveGame;
 import server.life.*;
-import server.maps.ForceAtom;
 import server.maps.*;
+import server.maps.ForceAtom;
 import server.movement.LifeMovementFragment;
 import server.polofritto.FrittoDancing;
 import server.polofritto.FrittoEagle;
@@ -46,8 +46,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 
 public class PlayerHandler
@@ -762,44 +762,6 @@ public class PlayerHandler
         }
         damage = 0;
       }
-      if (chr.getBuffedEffect(SecondaryStat.RoyalGuardPrepare) != null)
-      {
-        c.getSession().writeAndFlush(CField.RoyalGuardDamage());
-        if (chr.getSkillLevel(51120003) > 0)
-        {
-          SkillFactory.getSkill(51120003).getEffect(chr.getSkillLevel(51120003)).applyTo(chr, false);
-        }
-        if (chr.getRoyalStack() >= 3 && chr.getSkillLevel(51110009) > 0)
-        {
-          if (chr.getRoyalStack() < 5 && chr.getBuffedValue(51001005))
-          {
-            chr.setRoyalStack((byte) (chr.getRoyalStack() + 1));
-          }
-          SkillFactory.getSkill(51001005).getEffect(chr.getSkillLevel(51001005)).applyTo(chr);
-        }
-        else if (chr.getRoyalStack() <= 3 && chr.getSkillLevel(51001005) > 0)
-        {
-          if (chr.getRoyalStack() < 3 && chr.getBuffedValue(51001005))
-          {
-            chr.setRoyalStack((byte) (chr.getRoyalStack() + 1));
-          }
-          SkillFactory.getSkill(51001005).getEffect(chr.getSkillLevel(51001005)).applyTo(chr);
-        }
-        chr.cancelEffectFromBuffStat(SecondaryStat.RoyalGuardPrepare);
-        if (chr.getParty() != null)
-        {
-          for (MaplePartyCharacter chr1 : chr.getParty().getMembers())
-          {
-            MapleCharacter curChar = chr.getClient().getChannelServer().getPlayerStorage().getCharacterById(chr1.getId());
-            if (curChar == null || !curChar.getBuffedValue(51111008))
-            {
-              continue;
-            }
-            curChar.cancelEffectFromBuffStat(SecondaryStat.MichaelSoulLink);
-            SkillFactory.getSkill(51111008).getEffect(chr.getSkillLevel(51111008)).applyTo(chr, curChar);
-          }
-        }
-      }
       if (chr.getBuffedValue(400001050) && chr.getSkillCustomValue0(400001050) == 400001053L)
       {
         SecondaryStatEffect effect6 = SkillFactory.getSkill(400001050).getEffect(chr.getSkillLevel(400001050));
@@ -873,47 +835,9 @@ public class PlayerHandler
     }
     else if (type == -3)
     {
-      if (chr.getMapId() == 993192600 && !chr.isGM())
+      if (chr.getMapId() == 993192600)
       {
         c.getPlayer().giveDebuff(SecondaryStat.Stun, MobSkillFactory.getMobSkill(123, 94));
-      }
-      if (chr.getBuffedEffect(SecondaryStat.RoyalGuardPrepare) != null)
-      {
-        c.getSession().writeAndFlush(CField.RoyalGuardDamage());
-        if (chr.getSkillLevel(51120003) > 0)
-        {
-          SkillFactory.getSkill(51120003).getEffect(chr.getSkillLevel(51120003)).applyTo(chr, false);
-        }
-        if (chr.getRoyalStack() >= 3 && chr.getSkillLevel(51110009) > 0)
-        {
-          if (chr.getRoyalStack() < 5)
-          {
-            chr.setRoyalStack((byte) (chr.getRoyalStack() + 1));
-          }
-          SkillFactory.getSkill(51001005).getEffect(chr.getSkillLevel(51001005)).applyTo(chr);
-        }
-        else if (chr.getRoyalStack() <= 3 && chr.getSkillLevel(51001005) > 0)
-        {
-          if (chr.getRoyalStack() < 3)
-          {
-            chr.setRoyalStack((byte) (chr.getRoyalStack() + 1));
-          }
-          SkillFactory.getSkill(51001005).getEffect(chr.getSkillLevel(51001005)).applyTo(chr);
-        }
-        chr.cancelEffectFromBuffStat(SecondaryStat.RoyalGuardPrepare);
-        if (chr.getParty() != null)
-        {
-          for (MaplePartyCharacter chr1 : chr.getParty().getMembers())
-          {
-            MapleCharacter curChar = chr.getClient().getChannelServer().getPlayerStorage().getCharacterById(chr1.getId());
-            if (curChar == null || !curChar.getBuffedValue(51111008))
-            {
-              continue;
-            }
-            curChar.cancelEffectFromBuffStat(SecondaryStat.MichaelSoulLink);
-            SkillFactory.getSkill(51111008).getEffect(chr.getSkillLevel(51111008)).applyTo(chr, curChar);
-          }
-        }
       }
     }
     else if (type == -4 && (c.getPlayer().getMapId() == 350060600 || c.getPlayer().getMapId() == 350060900))
@@ -1558,6 +1482,60 @@ public class PlayerHandler
           chr.getMap().broadcastMessage(chr, CField.EffectPacket.showEffect(chr, 0, 152100011, 10, 0, 0, (byte) (chr.isFacingLeft() ? 1 : 0), false, chr.getPosition(), null, null), false);
         }
       }
+      if (chr.getBuffedEffect(SecondaryStat.RoyalGuardPrepare) != null)
+      {
+        c.getSession().writeAndFlush(CField.RoyalGuardDamage());
+        if (chr.getSkillLevel(51120003) > 0)
+        {
+          SkillFactory.getSkill(51120003).getEffect(chr.getSkillLevel(51120003)).applyTo(chr, false);
+        }
+        if (chr.getRoyalStack() >= 3 && chr.getSkillLevel(51110009) > 0)
+        {
+          if (chr.getRoyalStack() < 5 && chr.getBuffedValue(51001005))
+          {
+            // chr.setRoyalStack((byte) (chr.getRoyalStack() + 1));
+            chr.setRoyalStack((byte) 5);
+          }
+          SkillFactory.getSkill(51001005).getEffect(chr.getSkillLevel(51001005)).applyTo(chr);
+        }
+        else if (chr.getRoyalStack() <= 3 && chr.getSkillLevel(51001005) > 0)
+        {
+          if (chr.getRoyalStack() < 3 && chr.getBuffedValue(51001005))
+          {
+            // chr.setRoyalStack((byte) (chr.getRoyalStack() + 1));
+            chr.setRoyalStack((byte) 3);
+          }
+          SkillFactory.getSkill(51001005).getEffect(chr.getSkillLevel(51001005)).applyTo(chr);
+        }
+        chr.cancelEffectFromBuffStat(SecondaryStat.RoyalGuardPrepare);
+        if (chr.getParty() != null)
+        {
+          for (MaplePartyCharacter chr1 : chr.getParty().getMembers())
+          {
+            MapleCharacter curChar = chr.getClient().getChannelServer().getPlayerStorage().getCharacterById(chr1.getId());
+            if (curChar == null || !curChar.getBuffedValue(51111008))
+            {
+              continue;
+            }
+            curChar.cancelEffectFromBuffStat(SecondaryStat.MichaelSoulLink);
+            SkillFactory.getSkill(51111008).getEffect(chr.getSkillLevel(51111008)).applyTo(chr, curChar);
+          }
+        }
+        damage = 0;
+      }
+
+      int 鬥氣協和技能Id = 1110013;
+
+      final Skill 鬥氣協和 = SkillFactory.getSkill(鬥氣協和技能Id);
+
+      int 鬥氣協和技能等級 = chr.getSkillLevel(鬥氣協和技能Id);
+
+      // 處理受到傷害增加鬥氣
+      if (chr.getBuffedValue(SecondaryStat.ComboCounter) != null && 鬥氣協和技能等級 > 0)
+      {
+        chr.處理增加鬥氣(鬥氣協和技能Id);
+      }
+
       if (!damaged)
       {
         if (isDeadlyAttack)
@@ -1580,17 +1558,7 @@ public class PlayerHandler
         chr.cancelEffectFromBuffStat(SecondaryStat.IndieMadR, 80001479);
       }
     }
-    int 鬥氣協和技能Id = 1110013;
 
-    final Skill 鬥氣協和 = SkillFactory.getSkill(鬥氣協和技能Id);
-
-    int 鬥氣協和技能等級 = chr.getSkillLevel(鬥氣協和技能Id);
-
-    // 處理受到增加鬥氣
-    if (chr.getBuffedValue(SecondaryStat.ComboCounter) != null && 鬥氣協和技能等級 > 0)
-    {
-      chr.處理增加鬥氣(鬥氣協和技能Id);
-    }
     byte offset = 0;
     int offset_d = 0;
     if (slea.available() == 1L)
@@ -5285,9 +5253,9 @@ public class PlayerHandler
           {
             long duration = chr.getBuffLimit(51001005);
             duration += (effect2.getQ() * 1000L);
-            if (duration >= 12000L)
+            if (duration >= 20000L)
             {
-              duration = 12000L;
+              duration = 20000L;
             }
             SkillFactory.getSkill(51001005).getEffect(chr.getSkillLevel(51001005)).applyTo(chr, false, (int) duration);
           }
@@ -6897,7 +6865,7 @@ public class PlayerHandler
         }
         SkillFactory.getSkill(80000329).getEffect(chr.getSkillLevel(80000329)).applyTo(chr, false);
       }
-      else if (targetid != -1 && chr.isIntern())
+      else if (targetid != -1 && chr.isGM())
       {
         MapleMap to = ChannelServer.getInstance(c.getChannel()).getMapFactory().getMap(targetid);
         if (to != null)
@@ -6909,7 +6877,7 @@ public class PlayerHandler
           chr.dropMessage(5, "Map is NULL. Use !warp <mapid> instead.");
         }
       }
-      else if (targetid != -1 && !chr.isIntern())
+      else if (targetid != -1 && !chr.isGM())
       {
         int divi = chr.getMapId() / 100;
         boolean unlock = false, warp = false;
@@ -12506,7 +12474,7 @@ public class PlayerHandler
       String id = "";
       List<Pair<Byte, Byte>> list = new ArrayList<>();
       info = c.getPlayer().getInfoQuest(21770);
-      String[] info_ = (info.equals("")) ? null : info.split(";");
+      String[] info_ = (info == null || info.equals("")) ? null : info.split(";");
       info = "";
       int i;
       for (i = 0; i < 10; i++)
@@ -13670,18 +13638,18 @@ public class PlayerHandler
               if (item.getItemId() == 1672083)
               {
                 item.設置潛能等級(裝備潛能等級.傳說);
-                item.setPotential1(40601);
-                item.setPotential2(30291);
-                item.setPotential3(42061);
-                item.setPotential4(42060);
-                item.setPotential5(42060);
+                item.設置第一條主潛能(40601);
+                item.設置第二條主潛能(30291);
+                item.設置第三條主潛能(42061);
+                item.設置第一條附加潛能(42060);
+                item.設置第二條附加潛能(42060);
                 item.setStarForceLevel((byte) 15);
               }
               else if (item.getItemId() == 1672085 || item.getItemId() == 1672086)
               {
                 item.設置潛能等級(裝備潛能等級.傳說);
-                item.setPotential1(40601);
-                item.setPotential2(30291);
+                item.設置第一條主潛能(40601);
+                item.設置第二條主潛能(30291);
                 item.setStarForceLevel((byte) 15);
               }
               MapleInventoryManipulator.addbyItem(c, item);

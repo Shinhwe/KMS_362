@@ -19,8 +19,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 
 public class MapleItemInformationProvider
 {
@@ -1004,9 +1004,9 @@ public class MapleItemInformationProvider
   }
 
 
-  public final Item scrollEquipWithId (Equip equip, Item scrollId, boolean ws, MapleCharacter chr)
+  public final Item scrollEquipWithId (Equip 裝備, Item scrollId, boolean ws, MapleCharacter chr)
   {
-    if (equip.getType() == 1)
+    if (裝備.getType() == 1)
     {
       MapleQuest quest;
       List<Pair<EnchantFlag, Integer>> statz;
@@ -1024,16 +1024,16 @@ public class MapleItemInformationProvider
       short int_, luk;
       Equip zeroEquip = null;
       int 卷軸Id = scrollId.getItemId();
-      if (GameConstants.isAlphaWeapon(equip.getItemId()))
+      if (GameConstants.isAlphaWeapon(裝備.getItemId()))
       {
         zeroEquip = (Equip) chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -10);
       }
-      else if (GameConstants.isBetaWeapon(equip.getItemId()))
+      else if (GameConstants.isBetaWeapon(裝備.getItemId()))
       {
         zeroEquip = (Equip) chr.getInventory(MapleInventoryType.EQUIPPED).getItem((short) -11);
       }
       Map<String, Integer> stats = getEquipStats(卷軸Id);
-      Map<String, Integer> eqstats = getEquipStats(equip.getItemId());
+      Map<String, Integer> eqstats = getEquipStats(裝備.getItemId());
       boolean failed = false;
       switch (卷軸Id)
       {
@@ -1042,14 +1042,14 @@ public class MapleItemInformationProvider
         case 2049002:
         case 2049004:
         case 2049005:
-          if (!Randomizer.isSuccess(getSuccess(卷軸Id, chr, equip)))
+          if (!Randomizer.isSuccess(getSuccess(卷軸Id, chr, 裝備)))
           {
             failed = true;
             break;
           }
-          if (equip.getFailUpgradeSlots() > 0)
+          if (裝備.getFailUpgradeSlots() > 0)
           {
-            equip.setFailUpgradeSlots((byte) (equip.getFailUpgradeSlots() - 1));
+            裝備.setFailUpgradeSlots((byte) (裝備.getFailUpgradeSlots() - 1));
             if (zeroEquip != null)
             {
               zeroEquip.setFailUpgradeSlots((byte) (zeroEquip.getFailUpgradeSlots() - 1));
@@ -1058,58 +1058,58 @@ public class MapleItemInformationProvider
           break;
         case 2046996:
         case 2047818:
-          equip.setEnchantWatk((short) (equip.getEnchantWatk() + 10));
+          裝備.setEnchantWatk((short) (裝備.getEnchantWatk() + 10));
           if (zeroEquip != null)
           {
             zeroEquip.setEnchantWatk((short) (zeroEquip.getEnchantWatk() + 10));
           }
-          equip.setEnchantStr((short) (equip.getEnchantStr() + 3));
+          裝備.setEnchantStr((short) (裝備.getEnchantStr() + 3));
           if (zeroEquip != null)
           {
             zeroEquip.setEnchantStr((short) (zeroEquip.getEnchantStr() + 3));
           }
-          equip.setEnchantDex((short) (equip.getEnchantDex() + 3));
+          裝備.setEnchantDex((short) (裝備.getEnchantDex() + 3));
           if (zeroEquip != null)
           {
             zeroEquip.setEnchantDex((short) (zeroEquip.getEnchantDex() + 3));
           }
-          equip.setEnchantInt((short) (equip.getEnchantInt() + 3));
+          裝備.setEnchantInt((short) (裝備.getEnchantInt() + 3));
           if (zeroEquip != null)
           {
-            zeroEquip.setEnchantInt((short) (equip.getEnchantInt() + 3));
+            zeroEquip.setEnchantInt((short) (裝備.getEnchantInt() + 3));
           }
-          equip.setEnchantLuk((short) (equip.getEnchantLuk() + 3));
+          裝備.setEnchantLuk((short) (裝備.getEnchantLuk() + 3));
           if (zeroEquip != null)
           {
-            zeroEquip.setEnchantLuk((short) (equip.getEnchantLuk() + 3));
+            zeroEquip.setEnchantLuk((short) (裝備.getEnchantLuk() + 3));
           }
           break;
         case 2046997:
 
-          equip.setEnchantMatk((short) (equip.getEnchantMatk() + 10));
+          裝備.setEnchantMatk((short) (裝備.getEnchantMatk() + 10));
           if (zeroEquip != null)
           {
             zeroEquip.setEnchantMatk((short) (zeroEquip.getEnchantMatk() + 10));
           }
-          equip.setEnchantStr((short) (equip.getEnchantStr() + 3));
+          裝備.setEnchantStr((short) (裝備.getEnchantStr() + 3));
           if (zeroEquip != null)
           {
             zeroEquip.setEnchantStr((short) (zeroEquip.getEnchantStr() + 3));
           }
-          equip.setEnchantDex((short) (equip.getEnchantDex() + 3));
+          裝備.setEnchantDex((short) (裝備.getEnchantDex() + 3));
           if (zeroEquip != null)
           {
             zeroEquip.setEnchantDex((short) (zeroEquip.getEnchantDex() + 3));
           }
-          equip.setEnchantInt((short) (equip.getEnchantInt() + 3));
+          裝備.setEnchantInt((short) (裝備.getEnchantInt() + 3));
           if (zeroEquip != null)
           {
-            zeroEquip.setEnchantInt((short) (equip.getEnchantInt() + 3));
+            zeroEquip.setEnchantInt((short) (裝備.getEnchantInt() + 3));
           }
-          equip.setEnchantLuk((short) (equip.getEnchantLuk() + 3));
+          裝備.setEnchantLuk((short) (裝備.getEnchantLuk() + 3));
           if (zeroEquip != null)
           {
-            zeroEquip.setEnchantLuk((short) (equip.getEnchantLuk() + 3));
+            zeroEquip.setEnchantLuk((short) (裝備.getEnchantLuk() + 3));
           }
         case 2046841:
         case 2046842:
@@ -1117,9 +1117,9 @@ public class MapleItemInformationProvider
         case 2046971:
         case 2047803:
         case 2047917:
-          if (!Randomizer.isSuccess(getSuccess(卷軸Id, chr, equip)))
+          if (!Randomizer.isSuccess(getSuccess(卷軸Id, chr, 裝備)))
           {
-            if (Randomizer.isSuccess(getCursed(卷軸Id)) && ItemFlag.PROTECT_SHIELD.check(equip.getFlag()))
+            if (Randomizer.isSuccess(getCursed(卷軸Id)) && ItemFlag.PROTECT_SHIELD.check(裝備.getFlag()))
             {
               chr.dropMessage(5, "주문서의 효과로 아이템이 파괴되지 않았습니다.");
             }
@@ -1129,46 +1129,46 @@ public class MapleItemInformationProvider
           switch (卷軸Id)
           {
             case 2046841:
-              equip.setEnchantWatk((short) (equip.getEnchantWatk() + 1));
+              裝備.setEnchantWatk((short) (裝備.getEnchantWatk() + 1));
               break;
             case 2046842:
-              equip.setEnchantMatk((short) (equip.getEnchantMatk() + 1));
+              裝備.setEnchantMatk((short) (裝備.getEnchantMatk() + 1));
               break;
             case 2046967:
-              equip.setEnchantWatk((short) (equip.getEnchantWatk() + 9));
-              equip.setEnchantStr((short) (equip.getEnchantStr() + 3));
-              equip.setEnchantInt((short) (equip.getEnchantInt() + 3));
-              equip.setEnchantDex((short) (equip.getEnchantDex() + 3));
-              equip.setEnchantLuk((short) (equip.getEnchantLuk() + 3));
+              裝備.setEnchantWatk((short) (裝備.getEnchantWatk() + 9));
+              裝備.setEnchantStr((short) (裝備.getEnchantStr() + 3));
+              裝備.setEnchantInt((short) (裝備.getEnchantInt() + 3));
+              裝備.setEnchantDex((short) (裝備.getEnchantDex() + 3));
+              裝備.setEnchantLuk((short) (裝備.getEnchantLuk() + 3));
               break;
             case 2046971:
-              equip.setEnchantMatk((short) (equip.getEnchantMatk() + 9));
-              equip.setEnchantStr((short) (equip.getEnchantStr() + 3));
-              equip.setEnchantInt((short) (equip.getEnchantInt() + 3));
-              equip.setEnchantDex((short) (equip.getEnchantDex() + 3));
-              equip.setEnchantLuk((short) (equip.getEnchantLuk() + 3));
+              裝備.setEnchantMatk((short) (裝備.getEnchantMatk() + 9));
+              裝備.setEnchantStr((short) (裝備.getEnchantStr() + 3));
+              裝備.setEnchantInt((short) (裝備.getEnchantInt() + 3));
+              裝備.setEnchantDex((short) (裝備.getEnchantDex() + 3));
+              裝備.setEnchantLuk((short) (裝備.getEnchantLuk() + 3));
               break;
             case 2047803:
-              equip.setEnchantWatk((short) (equip.getEnchantWatk() + 9));
-              equip.setEnchantStr((short) (equip.getEnchantStr() + 3));
-              equip.setEnchantInt((short) (equip.getEnchantInt() + 3));
-              equip.setEnchantDex((short) (equip.getEnchantDex() + 3));
-              equip.setEnchantLuk((short) (equip.getEnchantLuk() + 3));
+              裝備.setEnchantWatk((short) (裝備.getEnchantWatk() + 9));
+              裝備.setEnchantStr((short) (裝備.getEnchantStr() + 3));
+              裝備.setEnchantInt((short) (裝備.getEnchantInt() + 3));
+              裝備.setEnchantDex((short) (裝備.getEnchantDex() + 3));
+              裝備.setEnchantLuk((short) (裝備.getEnchantLuk() + 3));
               break;
             case 2047917:
-              equip.setEnchantStr((short) (equip.getEnchantStr() + 9));
-              equip.setEnchantInt((short) (equip.getEnchantInt() + 9));
-              equip.setEnchantDex((short) (equip.getEnchantDex() + 9));
-              equip.setEnchantLuk((short) (equip.getEnchantLuk() + 9));
+              裝備.setEnchantStr((short) (裝備.getEnchantStr() + 9));
+              裝備.setEnchantInt((short) (裝備.getEnchantInt() + 9));
+              裝備.setEnchantDex((short) (裝備.getEnchantDex() + 9));
+              裝備.setEnchantLuk((short) (裝備.getEnchantLuk() + 9));
               break;
           }
           break;
         case 2531000:
         case 2531001:
         case 2531005:
-          flag = equip.getFlag();
+          flag = 裝備.getFlag();
           flag += ItemFlag.PROTECT_SHIELD.getValue();
-          equip.setFlag(flag);
+          裝備.setFlag(flag);
           if (zeroEquip != null)
           {
             zeroEquip.setFlag(flag);
@@ -1177,55 +1177,55 @@ public class MapleItemInformationProvider
         case 2532000:
         case 2532002:
         case 2532005:
-          flag = equip.getFlag();
+          flag = 裝備.getFlag();
           flag += ItemFlag.SAFETY_SHIELD.getValue();
-          equip.setFlag(flag);
+          裝備.setFlag(flag);
           if (zeroEquip != null)
           {
             zeroEquip.setFlag(flag);
           }
           break;
         case 2533000:
-          flag = equip.getFlag();
+          flag = 裝備.getFlag();
           flag += ItemFlag.RECOVERY_SHIELD.getValue();
-          equip.setFlag(flag);
+          裝備.setFlag(flag);
           if (zeroEquip != null)
           {
             zeroEquip.setFlag(flag);
           }
           break;
         case 2643128:
-          if (equip.getItemId() == 1114300)
+          if (裝備.getItemId() == 1114300)
           {
-            equip.setEnchantStr((short) (equip.getEnchantStr() + 1));
-            equip.setEnchantDex((short) (equip.getEnchantDex() + 1));
-            equip.setEnchantInt((short) (equip.getEnchantInt() + 1));
-            equip.setEnchantLuk((short) (equip.getEnchantLuk() + 1));
-            equip.setEnchantWatk((short) (equip.getEnchantWatk() + 1));
-            equip.setEnchantMatk((short) (equip.getEnchantMatk() + 1));
-            equip.setEnchantHp((short) (equip.getEnchantHp() + 100));
-            equip.setEnchantMp((short) (equip.getEnchantMp() + 100));
+            裝備.setEnchantStr((short) (裝備.getEnchantStr() + 1));
+            裝備.setEnchantDex((short) (裝備.getEnchantDex() + 1));
+            裝備.setEnchantInt((short) (裝備.getEnchantInt() + 1));
+            裝備.setEnchantLuk((short) (裝備.getEnchantLuk() + 1));
+            裝備.setEnchantWatk((short) (裝備.getEnchantWatk() + 1));
+            裝備.setEnchantMatk((short) (裝備.getEnchantMatk() + 1));
+            裝備.setEnchantHp((short) (裝備.getEnchantHp() + 100));
+            裝備.setEnchantMp((short) (裝備.getEnchantMp() + 100));
           }
           break;
         case 2643130:
-          if (equip.getItemId() == 1114303)
+          if (裝備.getItemId() == 1114303)
           {
-            equip.setEnchantStr((short) (equip.getEnchantStr() + 1));
-            equip.setEnchantDex((short) (equip.getEnchantDex() + 1));
-            equip.setEnchantInt((short) (equip.getEnchantInt() + 1));
-            equip.setEnchantLuk((short) (equip.getEnchantLuk() + 1));
-            equip.setEnchantWatk((short) (equip.getEnchantWatk() + 1));
-            equip.setEnchantMatk((short) (equip.getEnchantMatk() + 1));
-            equip.setEnchantHp((short) (equip.getEnchantHp() + 100));
-            equip.setEnchantMp((short) (equip.getEnchantMp() + 100));
+            裝備.setEnchantStr((short) (裝備.getEnchantStr() + 1));
+            裝備.setEnchantDex((short) (裝備.getEnchantDex() + 1));
+            裝備.setEnchantInt((short) (裝備.getEnchantInt() + 1));
+            裝備.setEnchantLuk((short) (裝備.getEnchantLuk() + 1));
+            裝備.setEnchantWatk((short) (裝備.getEnchantWatk() + 1));
+            裝備.setEnchantMatk((short) (裝備.getEnchantMatk() + 1));
+            裝備.setEnchantHp((short) (裝備.getEnchantHp() + 100));
+            裝備.setEnchantMp((short) (裝備.getEnchantMp() + 100));
           }
           break;
         case 2530000:
         case 2530001:
         case 2530002:
-          flag = equip.getFlag();
+          flag = 裝備.getFlag();
           flag += ItemFlag.LUCKY_PROTECT_SHIELD.getValue();
-          equip.setFlag(flag);
+          裝備.setFlag(flag);
           if (zeroEquip != null)
           {
             zeroEquip.setFlag(flag);
@@ -1239,14 +1239,14 @@ public class MapleItemInformationProvider
           randomstat = GameConstants.isRandStat(list, 100);
           if (卷軸Id == 2047406)
           {
-            equip.setEnchantMatk((short) (equip.getEnchantMatk() + randomstat));
+            裝備.setEnchantMatk((short) (裝備.getEnchantMatk() + randomstat));
             if (zeroEquip != null)
             {
               zeroEquip.setEnchantMatk((short) (zeroEquip.getEnchantMatk() + randomstat));
             }
             break;
           }
-          equip.setEnchantWatk((short) (equip.getEnchantWatk() + randomstat));
+          裝備.setEnchantWatk((short) (裝備.getEnchantWatk() + randomstat));
           if (zeroEquip != null)
           {
             zeroEquip.setEnchantWatk((short) (zeroEquip.getEnchantWatk() + randomstat));
@@ -1260,10 +1260,10 @@ public class MapleItemInformationProvider
           list.add(new Pair<>(Integer.valueOf(10), Integer.valueOf(33)));
           list.add(new Pair<>(Integer.valueOf(11), Integer.valueOf(33)));
           randomstat = GameConstants.isRandStat(list, 100);
-          equip.setEnchantStr((short) (equip.getEnchantStr() + 3));
-          equip.setEnchantDex((short) (equip.getEnchantDex() + 3));
-          equip.setEnchantInt((short) (equip.getEnchantInt() + 3));
-          equip.setEnchantLuk((short) (equip.getEnchantLuk() + 3));
+          裝備.setEnchantStr((short) (裝備.getEnchantStr() + 3));
+          裝備.setEnchantDex((short) (裝備.getEnchantDex() + 3));
+          裝備.setEnchantInt((short) (裝備.getEnchantInt() + 3));
+          裝備.setEnchantLuk((short) (裝備.getEnchantLuk() + 3));
 
           if (zeroEquip != null)
           {
@@ -1275,7 +1275,7 @@ public class MapleItemInformationProvider
 
           if (卷軸Id == 2046992)
           {
-            equip.setEnchantMatk((short) (equip.getEnchantMatk() + randomstat));
+            裝備.setEnchantMatk((short) (裝備.getEnchantMatk() + randomstat));
             if (zeroEquip != null)
             {
               zeroEquip.setEnchantMatk((short) (zeroEquip.getEnchantMatk() + randomstat));
@@ -1283,7 +1283,7 @@ public class MapleItemInformationProvider
           }
           else
           {
-            equip.setEnchantWatk((short) (equip.getEnchantWatk() + randomstat));
+            裝備.setEnchantWatk((short) (裝備.getEnchantWatk() + randomstat));
             if (zeroEquip != null)
             {
               zeroEquip.setEnchantWatk((short) (zeroEquip.getEnchantWatk() + randomstat));
@@ -1298,11 +1298,11 @@ public class MapleItemInformationProvider
           randomstat = GameConstants.isRandStat(list, 100);
           if (卷軸Id == 2046857)
           {
-            equip.setEnchantMatk((short) (equip.getEnchantMatk() + randomstat));
+            裝備.setEnchantMatk((short) (裝備.getEnchantMatk() + randomstat));
           }
           else
           {
-            equip.setEnchantWatk((short) (equip.getEnchantWatk() + randomstat));
+            裝備.setEnchantWatk((short) (裝備.getEnchantWatk() + randomstat));
           }
           break;
         case 2048094:
@@ -1313,7 +1313,7 @@ public class MapleItemInformationProvider
           list.add(new Pair<>(Integer.valueOf(4), Integer.valueOf(50)));
           list.add(new Pair<>(Integer.valueOf(5), Integer.valueOf(50)));
           randomstat = GameConstants.isRandStat(list, 100);
-          equip.setEnchantWatk((short) (equip.getEnchantWatk() + randomstat));
+          裝備.setEnchantWatk((short) (裝備.getEnchantWatk() + randomstat));
           break;
         case 2048095:
         case 2048805:
@@ -1323,18 +1323,18 @@ public class MapleItemInformationProvider
           list.add(new Pair<>(Integer.valueOf(4), Integer.valueOf(50)));
           list.add(new Pair<>(Integer.valueOf(5), Integer.valueOf(50)));
           randomstat = GameConstants.isRandStat(list, 100);
-          equip.setEnchantMatk((short) (equip.getEnchantMatk() + randomstat));
+          裝備.setEnchantMatk((short) (裝備.getEnchantMatk() + randomstat));
           break;
         case 2048809:
-          equip.setEnchantWatk((short) (equip.getEnchantWatk() + 2));
+          裝備.setEnchantWatk((short) (裝備.getEnchantWatk() + 2));
           break;
         case 2048810:
-          equip.setEnchantMatk((short) (equip.getEnchantMatk() + 2));
+          裝備.setEnchantMatk((short) (裝備.getEnchantMatk() + 2));
           break;
         default:
           if (GameConstants.isChaosScroll(卷軸Id))
           {
-            if (Randomizer.isSuccess(getSuccess(卷軸Id, chr, equip)))
+            if (Randomizer.isSuccess(getSuccess(卷軸Id, chr, 裝備)))
             {
               chr.dropMessage(5, "強化失敗, 裝備屬性沒有發生任何變化~");
               break;
@@ -1347,7 +1347,7 @@ public class MapleItemInformationProvider
 
           if (GameConstants.是星力強化卷軸(卷軸Id))
           {
-            boolean isSuperior = GameConstants.isSuperior(equip.getItemId());
+            boolean isSuperior = GameConstants.isSuperior(裝備.getItemId());
             if (isSuperior)
             {
               chr.dropMessage(5, "星力卷軸無法作用於極真裝備~");
@@ -1356,7 +1356,7 @@ public class MapleItemInformationProvider
             {
               ItemInformation 卷軸數據 = MapleItemInformationProvider.getInstance().getItemInformation(卷軸Id);
 
-              int 裝備等級 = equip.getTemplate().getReqLevel();
+              int 裝備等級 = 裝備.getTemplate().getReqLevel();
 
               int 強化星力 = 卷軸數據.forceUpgrade;
 
@@ -1364,9 +1364,9 @@ public class MapleItemInformationProvider
 
               int 卷軸最大要求等級 = 卷軸數據.reqEquipLevelMax;
 
-              int 當前星力等級 = equip.getStarForceLevel();
+              int 當前星力等級 = 裝備.getStarForceLevel();
 
-              int 強化成功几率 = getSuccess(卷軸Id, chr, equip);
+              int 強化成功几率 = getSuccess(卷軸Id, chr, 裝備);
 
               if (當前星力等級 >= 強化星力)
               {
@@ -1378,8 +1378,8 @@ public class MapleItemInformationProvider
               }
               else if (Randomizer.isSuccess(強化成功几率))
               {
-                equip.setStarForceLevel((byte) (強化星力));
-                equip.calcStarForceStats();
+                裝備.setStarForceLevel((byte) (強化星力));
+                裝備.calcStarForceStats();
                 chr.dropMessage(5, "強化成功, 裝備感受到一股神秘力量~");
               }
             }
@@ -1387,13 +1387,13 @@ public class MapleItemInformationProvider
           }
           if (GameConstants.是裝備強化卷軸(卷軸Id))
           {
-            int 當前強化等級 = equip.getTemplate().getReqLevel();
+            int 當前強化等級 = 裝備.getTemplate().getReqLevel();
 
-            int 當前星力等級 = equip.getStarForceLevel();
+            int 當前星力等級 = 裝備.getStarForceLevel();
 
             boolean 是特殊裝備強化卷軸 = GameConstants.是特殊裝備強化卷軸(卷軸Id);
 
-            if (equip.getTotalUpgradeSlots() != 0 && 是特殊裝備強化卷軸 == false)
+            if (裝備.getTotalUpgradeSlots() != 0 && 是特殊裝備強化卷軸 == false)
             {
               chr.dropMessage(6, "無法作用於還有強化次數的裝備~");
             }
@@ -1416,8 +1416,8 @@ public class MapleItemInformationProvider
 
               if (Randomizer.isSuccess(強化成功几率))
               {
-                equip.setStarForceLevel((byte) (當前星力等級 + 1));
-                equip.calcStarForceStats();
+                裝備.setStarForceLevel((byte) (當前星力等級 + 1));
+                裝備.calcStarForceStats();
                 chr.dropMessage(5, "強化成功, 裝備感受到一股神秘力量~");
               }
               else
@@ -1429,22 +1429,108 @@ public class MapleItemInformationProvider
           }
           if (GameConstants.是潛能卷軸(卷軸Id))
           {
-            if (equip.獲取潛能等級() == 裝備潛能等級.沒有潛能)
+            if (裝備.獲取潛能等級() == 裝備潛能等級.沒有潛能)
             {
               int 成功率 = GameConstants.獲取潛能卷軸成功率(卷軸Id);
+
               if (Randomizer.isSuccess(成功率))
               {
-                int line = 2;
                 if (Randomizer.isSuccess(25))
                 {
-                  line += 1;
+                  裝備.設置未鑑定潛能條數((byte) 3);
                 }
-                equip.設置潛能等級(裝備潛能等級.特殊未鑑定);
-                equip.設置未鑑定潛能條數((byte) line);
+                else
+                {
+                  裝備.設置未鑑定潛能條數((byte) 2);
+                }
+
+                if (卷軸Id == 2049790)
+                {
+                  裝備.設置潛能等級(裝備潛能等級.罕見未鑑定);
+                }
+                else if (卷軸Id == 2049700)
+                {
+                  裝備.設置潛能等級(裝備潛能等級.稀有未鑑定);
+                }
+                else
+                {
+                  裝備.設置潛能等級(裝備潛能等級.特殊未鑑定);
+                }
                 if (zeroEquip != null)
                 {
-                  zeroEquip.設置潛能等級(裝備潛能等級.特殊未鑑定);
-                  zeroEquip.設置未鑑定潛能條數((byte) line);
+                  zeroEquip.設置潛能等級(裝備.獲取潛能等級());
+                }
+              }
+            }
+            else if (裝備.獲取潛能等級() == 裝備潛能等級.特殊)
+            {
+              int 成功率 = GameConstants.獲取潛能卷軸成功率(卷軸Id);
+
+              if (Randomizer.isSuccess(成功率))
+              {
+                boolean 有第三條潛能 = 裝備.獲取第三條主潛能() > 0;
+
+                if (有第三條潛能 == true)
+                {
+                  裝備.設置未鑑定潛能條數((byte) 3);
+                }
+                else
+                {
+                  裝備.設置未鑑定潛能條數((byte) 2);
+                }
+
+                裝備.設置第一條主潛能(0);
+
+                裝備.設置第二條主潛能(0);
+
+                裝備.設置第三條主潛能(0);
+
+                if (卷軸Id == 2049790)
+                {
+                  裝備.設置潛能等級(裝備潛能等級.罕見未鑑定);
+                }
+                else if (卷軸Id == 2049700)
+                {
+                  裝備.設置潛能等級(裝備潛能等級.稀有未鑑定);
+                }
+
+                if (zeroEquip != null)
+                {
+                  zeroEquip.設置潛能等級(裝備.獲取潛能等級());
+                }
+              }
+            }
+            else if (裝備.獲取潛能等級() == 裝備潛能等級.稀有)
+            {
+              int 成功率 = GameConstants.獲取潛能卷軸成功率(卷軸Id);
+
+              if (Randomizer.isSuccess(成功率))
+              {
+                boolean 有第三條潛能 = 裝備.獲取第三條主潛能() > 0;
+
+                裝備.設置第一條主潛能(0);
+
+                裝備.設置第二條主潛能(0);
+
+                裝備.設置第三條主潛能(0);
+
+                if (有第三條潛能 == true)
+                {
+                  裝備.設置未鑑定潛能條數((byte) 3);
+                }
+                else
+                {
+                  裝備.設置未鑑定潛能條數((byte) 2);
+                }
+
+                if (卷軸Id == 2049790)
+                {
+                  裝備.設置潛能等級(裝備潛能等級.罕見未鑑定);
+                }
+
+                if (zeroEquip != null)
+                {
+                  zeroEquip.設置潛能等級(裝備.獲取潛能等級());
                 }
               }
             }
@@ -1452,11 +1538,11 @@ public class MapleItemInformationProvider
           }
           if (GameConstants.是輪迴星火(卷軸Id))
           {
-            if (GameConstants.isZero(chr.getJob()) && equip.getPosition() == -11)
+            if (GameConstants.isZero(chr.getJob()) && 裝備.getPosition() == -11)
             {
-              long 火花 = equip.calcNewFlame(卷軸Id);
-              equip.setFlame(火花);
-              equip.calcFlameStats();
+              long 火花 = 裝備.calcNewFlame(卷軸Id);
+              裝備.setFlame(火花);
+              裝備.calcFlameStats();
               if (zeroEquip != null)
               {
                 zeroEquip.setFlame(火花);
@@ -1465,15 +1551,15 @@ public class MapleItemInformationProvider
             }
             else
             {
-              long 火花 = equip.calcNewFlame(卷軸Id);
-              equip.setFlame(火花);
-              equip.calcFlameStats();
+              long 火花 = 裝備.calcNewFlame(卷軸Id);
+              裝備.setFlame(火花);
+              裝備.calcFlameStats();
             }
             break;
           }
       }
     }
-    return equip;
+    return 裝備;
   }
 
   public final int getSuccess (int itemId, MapleCharacter player, Equip equip)
@@ -1510,7 +1596,7 @@ public class MapleItemInformationProvider
     return generateEquipById(equipId, ringId, true);
   }
 
-  public final Equip generateEquipById (int equipId, long ringId, boolean generateFlame)
+    public final Equip generateEquipById (int equipId, long ringId, boolean generateFlame)
   {
     ItemInformation i = getItemInformation(equipId);
     if (i == null)

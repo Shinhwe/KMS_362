@@ -1,4 +1,4 @@
-﻿﻿importPackage(Packages.client.inventory);
+﻿importPackage(Packages.client.inventory);
 importPackage(Packages.client);
 importPackage(Packages.server);
 importPackage(Packages.tools.packet);
@@ -538,10 +538,10 @@ function addMedal()
 	item.setEnchantMatk(10);
 	item.setEnchantHp(500);
 	item.setEnchantMp(500);
-	// item.setPotentialLevel(19);
-	// item.setPotential1(20086);
-	// item.setPotential2(20086);
-	// item.setPotential3(20086);
+	item.設置潛能等級(18);
+	item.設置第一條主潛能(20086);
+	item.設置第二條主潛能(20086);
+	item.設置第三條主潛能(20086);
 	Packages.server.MapleInventoryManipulator.addbyItem(cm.getClient(), item, false);
 }
 

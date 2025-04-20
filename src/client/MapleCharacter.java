@@ -38,8 +38,8 @@ import server.field.skill.MapleSecondAtom;
 import server.field.skill.SecondAtom;
 import server.games.*;
 import server.life.*;
-import server.maps.ForceAtom;
 import server.maps.*;
+import server.maps.ForceAtom;
 import server.marriage.MarriageMiniBox;
 import server.movement.LifeMovementFragment;
 import server.polofritto.*;
@@ -57,10 +57,12 @@ import tools.packet.*;
 import java.awt.*;
 import java.io.Serializable;
 import java.sql.*;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Timer;
-import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -9446,25 +9448,14 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     }
   }
 
-  public boolean isSuperGM ()
-  {
-    return this.gmLevel >= ServerConstants.PlayerGMRank.SUPERGM.getLevel();
-  }
 
-  public boolean isIntern ()
-  {
-    return this.gmLevel >= ServerConstants.PlayerGMRank.INTERN.getLevel();
-  }
 
   public boolean isGM ()
   {
     return this.gmLevel >= ServerConstants.PlayerGMRank.GM.getLevel();
   }
 
-  public boolean isAdmin ()
-  {
-    return this.gmLevel >= ServerConstants.PlayerGMRank.ADMIN.getLevel();
-  }
+
 
   public int getGMLevel ()
   {
@@ -14537,11 +14528,11 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
     }
     else if (type == -3)
     {
-      this.client.getSession().writeAndFlush(CField.getChatText(this, message, this.isSuperGM(), 0, null));
+      this.client.getSession().writeAndFlush(CField.getChatText(this, message, true, 0, null));
     }
     else if (type == -4)
     {
-      this.client.getSession().writeAndFlush(CField.getChatText(this, message, this.isSuperGM(), 1, null));
+      this.client.getSession().writeAndFlush(CField.getChatText(this, message, true, 1, null));
     }
     else if (type == -5)
     {
@@ -15263,16 +15254,6 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   public void setMarriageItemId (final int mi)
   {
     this.marriageItemId = mi;
-  }
-
-  public boolean isStaff ()
-  {
-    return this.gmLevel >= ServerConstants.PlayerGMRank.INTERN.getLevel();
-  }
-
-  public boolean isDonator ()
-  {
-    return this.gmLevel >= ServerConstants.PlayerGMRank.DONATOR.getLevel();
   }
 
   public boolean startPartyQuest (final int questid)
@@ -16245,11 +16226,6 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
         }
         break;
       }
-    }
-    if (!this.isIntern())
-    {
-      this.cancelEffectFromBuffStat(SecondaryStat.WindWalk);
-      this.cancelEffectFromBuffStat(SecondaryStat.Infiltrate);
     }
   }
 
@@ -22316,6 +22292,7 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
           client.send(CWvsContext.updateDailyGift("count=0;day=" + 已簽到天數 + ";date=" + 今天日期));
           client.send(CField.dailyGift(client.getPlayer(), 1, 0));
           client.getPlayer().updateInfoQuest(16700, "count=0;date=" + 今天日期);
+          client.getPlayer().setIsDailyGiftTooltipPacketSend(false);
         }
         else if (client.getKeyValue(keyValue) != null && keyValue.equals("dailyGiftDay") == false)
         {
@@ -23856,6 +23833,113 @@ public class MapleCharacter extends AnimatedMapleMapObject implements Serializab
   public void setFlameWolf (FlameWolf flameWolf)
   {
     this.flameWolf = flameWolf;
+  }
+
+  public double getDropRate()
+  {
+    // 通過裝備和BUFF提供的掉落概率加成最高為 600%, dropBuff的基礎值是 100%, 但是我的算法用不上基礎值, 所以減掉
+    double dropRate = Math.min(getStat().dropBuff, 700.0D) - 100.0D;
+
+    // 星期六和星期天有 20% 的掉落概率加成
+    LocalDate today = LocalDate.now();
+    
+    DayOfWeek dayOfWeek = today.getDayOfWeek();
+    
+    if (dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY)
+    {
+      dropRate += 20.0D;
+    }
+
+    // 乘以服務器掉落概率加成參數, 是最終倍率, 不受最大值影響
+    dropRate *= getClient().getChannelServer().getDropRate();
+    
+    return dropRate;
+  }
+  
+  public double getMesoDropChance ()
+  {
+    double dropRate = getDropRate();
+    
+    // 基礎的楓幣掉落概率為 500000(50%), 掉落概率加成的 10% 會轉化為楓幣的掉落概率加成, 即 100% 掉落概率加成會使楓幣掉落概率提高 10%
+    double mesoDropChance = Math.min(500000.0D + 500000.0D  * (dropRate / 500.0D), 1000000.0D);
+    
+    return mesoDropChance;
+  }
+
+  public double getMesoRate ()
+  {
+    // 通過裝備和BUFF提供的楓幣掉落數量加成最高為 400%, mesoBuff的基礎值是 100%, 但是我的算法用不上基礎值, 所以減掉
+    double mesoRate = Math.min(getStat().mesoBuff, 500.0D) - 100.0D;
+
+    // 星期六和星期天有 20% 的楓幣掉落數量加成
+    LocalDate today = LocalDate.now();
+
+    DayOfWeek dayOfWeek = today.getDayOfWeek();
+
+    if (dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY)
+    {
+      mesoRate += 20.0D;
+    }
+
+    // 乘以服務器掉落概率加成參數, 是最終倍率, 不受最大值影響
+    mesoRate *= getClient().getChannelServer().getMesoRate();
+    
+    return mesoRate;
+  }
+
+  public String getExpRate ()
+  {
+    return "0%";
+  }
+
+  public String getTotalStr ()
+  {
+    return "0";
+  }
+
+  public String getStrPercent ()
+  {
+    return "0%";
+  }
+
+  public String getTotalDex ()
+  {
+    return "0";
+  }
+
+  public String getDexPercent ()
+  {
+    return "0%";
+  }
+
+  public String getTotalInt ()
+  {
+    return "0";
+  }
+
+  public String getIntPercent ()
+  {
+    return "0%";
+  }
+
+  public String getTotalLuk ()
+  {
+    return "0";
+  }
+
+  public String getLukPercent ()
+  {
+    return "0%";
+  }
+
+  public String getPAtkPercent ()
+  {
+    return "0";
+  }
+
+  public String getMAtkPercent ()
+  {
+    return "0%";
   }
 
   public enum FameStatus

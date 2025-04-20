@@ -1,5 +1,7 @@
 package server.life;
 
+import server.MapleItemInformationProvider;
+
 public class MonsterDropEntry
 {
   public int itemId;
@@ -52,5 +54,14 @@ public class MonsterDropEntry
     this.privated = privated;
     this.minLevel = minLevel;
     this.maxLevel = maxLevel;
+  }
+  
+  public String getItemName ()
+  {
+    if (this.itemId == 0)
+    {
+      return "楓幣";
+    }
+    return MapleItemInformationProvider.getInstance().getName(this.itemId);
   }
 }

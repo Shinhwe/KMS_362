@@ -221,7 +221,7 @@ public class PlayerStorage
     while (itr.hasNext())
     {
       MapleCharacter chr = itr.next();
-      if (chr.getClient().isLoggedIn() && chr.isIntern())
+      if (chr.getClient().isLoggedIn() && chr.isGM())
       {
         chr.getClient().getSession().writeAndFlush(data);
       }

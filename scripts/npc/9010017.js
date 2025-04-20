@@ -295,12 +295,12 @@ function action(M, T, S)
 					selStr += "  - 특수옵션 상태 : #e"+inv.getItem(S4).getOwner()+"#n\r\n";
 
 					selStr += "\r\n\r\n#e#fs14##b[잠재능력]#k#n\r\n#fs14#";
-					selStr += "  - 1번째 줄 : #e"+toString(inv.getItem(S4).getPotential1())+"#n\r\n";
-					selStr += "  - 2번째 줄 : #e"+toString(inv.getItem(S4).getPotential2())+"#n\r\n";
-					selStr += "  - 3번째 줄 : #e"+toString(inv.getItem(S4).getPotential3())+"#n\r\n";
-					selStr += "  - 4번째 줄 : #e"+toString(inv.getItem(S4).getPotential4())+"#n\r\n";
-					selStr += "  - 5번째 줄 : #e"+toString(inv.getItem(S4).getPotential5())+"#n\r\n";
-					selStr += "  - 6번째 줄 : #e"+toString(inv.getItem(S4).getPotential6())+"#n\r\n";
+					selStr += "  - 1번째 줄 : #e"+toString(inv.getItem(S4).獲取第一條主潛能())+"#n\r\n";
+					selStr += "  - 2번째 줄 : #e"+toString(inv.getItem(S4).獲取第二條主潛能())+"#n\r\n";
+					selStr += "  - 3번째 줄 : #e"+toString(inv.getItem(S4).獲取第三條主潛能())+"#n\r\n";
+					selStr += "  - 4번째 줄 : #e"+toString(inv.getItem(S4).獲取第一條附加潛能())+"#n\r\n";
+					selStr += "  - 5번째 줄 : #e"+toString(inv.getItem(S4).獲取第二條附加潛能())+"#n\r\n";
+					selStr += "  - 6번째 줄 : #e"+toString(inv.getItem(S4).獲取第三條附加潛能())+"#n\r\n";
 
 
 					cm.sendSimpleS(selStr, 4);

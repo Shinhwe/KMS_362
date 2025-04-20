@@ -17,8 +17,8 @@ import provider.MapleDataTool;
 import provider.MapleDataType;
 import server.field.skill.MapleMagicSword;
 import server.life.MapleMonster;
-import server.maps.ForceAtom;
 import server.maps.*;
+import server.maps.ForceAtom;
 import tools.CaltechEval;
 import tools.FileoutputUtil;
 import tools.Pair;
@@ -30,8 +30,8 @@ import tools.packet.SLFCGPacket;
 import java.awt.*;
 import java.io.Serializable;
 import java.lang.ref.WeakReference;
-import java.util.List;
 import java.util.*;
+import java.util.List;
 
 public class SecondaryStatEffect implements Serializable
 {
@@ -455,7 +455,7 @@ public class SecondaryStatEffect implements Serializable
       ret.iceGageCon = (byte) SecondaryStatEffect.parseEval("iceGageCon", source, 0, variables, level);
       ret.expR = (byte) SecondaryStatEffect.parseEval("expR", source, 0, variables, level);
       ret.expRPerM = (double) SecondaryStatEffect.parseEval("expRPerM", source, 0, variables, level) / 100.0;
-      ret.dropR = (short) SecondaryStatEffect.parseEval("expR", source, 0, variables, level);
+      ret.dropR = (short) SecondaryStatEffect.parseEval("dropR", source, 0, variables, level);
       ret.reqGuildLevel = (byte) SecondaryStatEffect.parseEval("reqGuildLevel", source, 0, variables, level);
       ret.period = (byte) SecondaryStatEffect.parseEval("period", source, 0, variables, level);
       ret.type = (byte) SecondaryStatEffect.parseEval("type", source, 0, variables, level);
@@ -2110,6 +2110,7 @@ public class SecondaryStatEffect implements Serializable
           {
             ret.statups.put(SecondaryStat.HolySymbol, new Pair<Integer, Integer>(ret.x, ret.duration));
             ret.statups.put(SecondaryStat.DropRate, new Pair<Integer, Integer>(ret.v, ret.duration));
+            ret.statups.put(SecondaryStat.MesoUp, new Pair<Integer, Integer>(ret.v, ret.duration));
             break;
           }
           case 400001023:
@@ -4073,7 +4074,6 @@ public class SecondaryStatEffect implements Serializable
           break;
         }
         applyTo.setSkillCustomInfo(2320048, SkillFactory.getSkill(2320048).getEffect(1).v, 0L);
-        localstatups.put(SecondaryStat.DropRate, new Pair<Integer, Integer>(SkillFactory.getSkill(2320048).getEffect(1).v, localDuration));
         break;
       }
       case 2311009:
